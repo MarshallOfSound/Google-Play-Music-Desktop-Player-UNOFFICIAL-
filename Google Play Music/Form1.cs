@@ -78,7 +78,7 @@ ThumbnailButtonClickedEventArgs e)
 
         // CefSharp configuration
         private CefSharp.WinForms.ChromiumWebBrowser webBrowser1;
-        globalKeyboardHook gkh = new globalKeyboardHook();
+        private static globalKeyboardHook gkh;
 
         private void InitializeForm()
         {
@@ -95,15 +95,24 @@ ThumbnailButtonClickedEventArgs e)
             Controls.AddRange(new Control[] {
             webBrowser1 });
 
+            gkh = new globalKeyboardHook();
+
+            GC.KeepAlive(gkh);
+
             // Global Hotkey Listener
             gkh.HookedKeys.Add(Keys.MediaPlayPause);
             gkh.HookedKeys.Add(Keys.MediaNextTrack);
             gkh.HookedKeys.Add(Keys.MediaPreviousTrack);
-            gkh.HookedKeys.Add(Keys.MediaStop);
+            //gkh.HookedKeys.Add(Keys.MediaStop);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
             gkh.KeyUp += new KeyEventHandler(gkh_KeyUp);
 
             webBrowser1.NavStateChanged += OnBrowserLoadingStateChanged;
+        }
+
+        private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            gkh.unhook();
         }
 
         void gkh_KeyUp(object sender, KeyEventArgs e)
