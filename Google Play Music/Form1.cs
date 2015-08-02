@@ -5,6 +5,10 @@ using System.Drawing;
 using System.Windows.Forms;
 using Utilities;
 using Microsoft.WindowsAPICodePack.Taskbar;
+using System.Text.RegularExpressions;
+using System.Net;
+using System.IO;
+using System.Text;
 
 namespace Google_Play_Music
 {
@@ -17,8 +21,6 @@ namespace Google_Play_Music
             this.Size = new Size(1080, 720);
             this.Icon = Properties.Resources.Icon1;
             this.Text = "Google Music Player";
-            this.BackColor = Color.Orange;
-            this.ForeColor = Color.Orange;
         }
 
         // Media Functions
@@ -87,8 +89,13 @@ ThumbnailButtonClickedEventArgs e)
             settings.WindowlessRenderingEnabled = true;
             Cef.Initialize(settings);
 
-            webBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser("http://play.google.com/music/listen");
-            webBrowser1.MenuHandler = new NoMenuHandler();
+            webBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser("http://play.google.com/music/listen")
+            {
+                // Use this to inject our theming and modding javascript code
+                ResourceHandlerFactory = new GPMResouceHandlerFactory(),
+                // Stop that silly right click menu appearing
+                MenuHandler = new NoMenuHandler()
+            };
 
             webBrowser1.Dock = DockStyle.Fill;
 
@@ -97,21 +104,21 @@ ThumbnailButtonClickedEventArgs e)
 
             gkh = new globalKeyboardHook();
 
+            // Don't let the Garbage Man interfere
             GC.KeepAlive(gkh);
 
             // Global Hotkey Listener
             gkh.HookedKeys.Add(Keys.MediaPlayPause);
             gkh.HookedKeys.Add(Keys.MediaNextTrack);
             gkh.HookedKeys.Add(Keys.MediaPreviousTrack);
-            //gkh.HookedKeys.Add(Keys.MediaStop);
+            gkh.HookedKeys.Add(Keys.MediaStop);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
             gkh.KeyUp += new KeyEventHandler(gkh_KeyUp);
-
-            webBrowser1.NavStateChanged += OnBrowserLoadingStateChanged;
         }
 
         private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            // Make sure we unhook once the form closes
             gkh.unhook();
         }
 
@@ -139,18 +146,41 @@ ThumbnailButtonClickedEventArgs e)
         {
             e.Handled = false;
         }
+    }
+}
 
-        private void OnBrowserLoadingStateChanged(object sender, NavStateChangedEventArgs args)
+public class GPMResouceHandlerFactory : IResourceHandlerFactory
+{
+    public bool HasHandlers
+    {
+        get
         {
-            if (!args.IsLoading)
+            return true;
+        }
+    }
+
+    public ResourceHandler GetResourceHandler(IWebBrowser browser, IRequest request)
+    {
+        if (Regex.Match(request.Url, @"webcomponents.js", RegexOptions.IgnoreCase).Success)
+        {
+            Debug.WriteLine("Injected JS into response");
+            using (WebClient webClient = new WebClient())
             {
-                Debug.WriteLine("Loading Done");
-                webBrowser1.EvaluateScriptAsync("(function() {window.onload = function() {" +
-                    "document.querySelectorAll('.gb_rb.gb_Ta.gb_r')[0].setAttribute('style', 'position: relative;top: -500px;');" +
-                    "document.querySelectorAll('.gb_ga.gb_Ta.gb_r.gb_ma.gb_ja')[0].setAttribute('style', 'position: relative;top: -500px;');" +
-                    "}})()");
+                string data = Google_Play_Music.Properties.Resources.dark_theme;
+                return ResourceHandler.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(webClient.DownloadString(request.Url) + data)), webClient.ResponseHeaders["Content-Type"]);
             }
         }
+        return null;
+    }
+
+    public void RegisterHandler(string url, ResourceHandler handler)
+    {
+        // Do nothing
+    }
+
+    public void UnregisterHandler(string url)
+    {
+        // Do nothing
     }
 }
 

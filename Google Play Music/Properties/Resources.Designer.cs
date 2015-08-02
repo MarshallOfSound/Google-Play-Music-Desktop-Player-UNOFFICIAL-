@@ -61,6 +61,15 @@ namespace Google_Play_Music.Properties {
         }
         
         /// <summary>
+        ///   The code to activate the Google Play Music Dark Theme
+        /// </summary>
+        internal static string dark_theme {
+            get {
+                return ResourceManager.GetString("dark_theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon Icon1 {
