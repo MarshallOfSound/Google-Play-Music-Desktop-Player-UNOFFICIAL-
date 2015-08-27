@@ -161,7 +161,7 @@ public class GPMResouceHandlerFactory : IResourceHandlerFactory
 
     public ResourceHandler GetResourceHandler(IWebBrowser browser, IRequest request)
     {
-        if (Regex.Match(request.Url, @"webcomponents.js", RegexOptions.IgnoreCase).Success)
+        if (Regex.Match(request.Url, @"polymer_srcs.js", RegexOptions.IgnoreCase).Success)
         {
             Debug.WriteLine("Injected JS into response");
             using (WebClient webClient = new WebClient())
