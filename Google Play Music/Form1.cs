@@ -87,6 +87,8 @@ ThumbnailButtonClickedEventArgs e)
             CefSettings settings = new CefSharp.CefSettings();
             settings.CachePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/GPMDP";
             settings.WindowlessRenderingEnabled = true;
+            settings.CefCommandLineArgs.Add("enable-smooth-scrolling", "1");
+            settings.CefCommandLineArgs.Add("enable-overlay-scrollbar", "1");
             Cef.Initialize(settings);
 
             webBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser("http://play.google.com/music/listen")
