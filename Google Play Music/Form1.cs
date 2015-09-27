@@ -151,15 +151,8 @@ ThumbnailButtonClickedEventArgs e)
 
 public class GPMResouceHandlerFactory : IResourceHandlerFactory
 {
-    public bool HasHandlers
-    {
-        get
-        {
-            return true;
-        }
-    }
 
-    public ResourceHandler GetResourceHandler(IWebBrowser browser, IRequest request)
+    public IResourceHandler GetResourceHandler(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request)
     {
         if (Regex.Match(request.Url, @"polymer_srcs.js", RegexOptions.IgnoreCase).Success)
         {
@@ -172,22 +165,34 @@ public class GPMResouceHandlerFactory : IResourceHandlerFactory
         }
         return null;
     }
-
-    public void RegisterHandler(string url, ResourceHandler handler)
+    public bool HasHandlers
     {
-        // Do nothing
-    }
-
-    public void UnregisterHandler(string url)
-    {
-        // Do nothing
+        get
+        {
+            return true;
+        }
     }
 }
 
-public class NoMenuHandler : IMenuHandler
+public class NoMenuHandler : IContextMenuHandler
 {
     public bool OnBeforeContextMenu(IWebBrowser browser, IContextMenuParams param)
     {
         return false;
+    }
+
+    public void OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
+    {
+        model.Clear();
+    }
+
+    public bool OnContextMenuCommand(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, CefMenuCommand commandId, CefEventFlags eventFlags)
+    {
+        return false;
+    }
+
+    public void OnContextMenuDismissed(IWebBrowser browserControl, IBrowser browser, IFrame frame)
+    {
+        // Do nothing
     }
 }
