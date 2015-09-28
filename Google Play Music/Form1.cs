@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Net;
 using System.IO;
 using System.Text;
+using System.Threading;
 using Newtonsoft.Json;
 
 namespace Google_Play_Music
@@ -16,7 +17,7 @@ namespace Google_Play_Music
     public partial class Form1 : Form
     {
 
-        private const string CURRENT_VERSION = "1.3.0";
+        private const string CURRENT_VERSION = "1.3.1";
 
         public Form1()
         {
@@ -40,20 +41,28 @@ namespace Google_Play_Music
             try {
                 dynamic JSON = JsonConvert.DeserializeObject(strRead.ReadToEnd());
                 string version = JSON[0].tag_name;
+                string downloadURL = JSON[0].assets[0].browser_download_url;
+                // If the newest version is not the current version there must be an update available
                 if (version != CURRENT_VERSION)
                 {
                     var result = MessageBox.Show("There is an update available for this player, do you want to download it now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
-                        string downloadURL = JSON[0].assets[0].browser_download_url;
+                        // Download the Resource URL from the GitHub API
                         Process.Start(downloadURL);
-                        this.Close();
+                        // Let the form finish initialising before closing it through an asyncronous method invoker
+                        // Prevents strange garbage collection
+                        new Thread(() =>
+                        {
+                            Thread.CurrentThread.IsBackground = true;
+                            this.BeginInvoke(new MethodInvoker(Close));
+                        }).Start();
                         return;
                     }
                 }
             } catch (Exception e)
             {
-                // Do nothing
+                // Something went wrong while fetching from the GitHub API
             }
         }
 
@@ -154,8 +163,15 @@ ThumbnailButtonClickedEventArgs e)
 
         private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // Make sure we unhook once the form closes
-            gkh.unhook();
+            try {
+                // Make sure we unhook once the form closes
+                if (gkh != null)
+                {
+                    gkh.unhook();
+                }
+            } catch (Exception) {
+                // Do nothing
+            }
         }
 
         void gkh_KeyUp(object sender, KeyEventArgs e)
