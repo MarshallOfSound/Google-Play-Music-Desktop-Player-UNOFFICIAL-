@@ -9,11 +9,15 @@ using System.Text.RegularExpressions;
 using System.Net;
 using System.IO;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Google_Play_Music
 {
     public partial class Form1 : Form
     {
+
+        private const string CURRENT_VERSION = "1.3.0";
+
         public Form1()
         {
             InitializeForm();
@@ -21,6 +25,36 @@ namespace Google_Play_Music
             this.Size = new Size(1080, 720);
             this.Icon = Properties.Resources.Icon1;
             this.Text = "Google Music Player";
+
+            // Check for updates on the Github Release API
+            HttpWebRequest wrGETURL = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases");
+            wrGETURL.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2;)";
+            StreamReader strRead;
+            try {
+                strRead = new StreamReader(wrGETURL.GetResponse().GetResponseStream());
+            } catch (WebException e)
+            {
+                return;
+            }
+
+            try {
+                dynamic JSON = JsonConvert.DeserializeObject(strRead.ReadToEnd());
+                string version = JSON[0].tag_name;
+                if (version != CURRENT_VERSION)
+                {
+                    var result = MessageBox.Show("There is an update available for this player, do you want to download it now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                    {
+                        string downloadURL = JSON[0].assets[0].browser_download_url;
+                        Process.Start(downloadURL);
+                        this.Close();
+                        return;
+                    }
+                }
+            } catch (Exception e)
+            {
+                // Do nothing
+            }
         }
 
         // Media Functions
