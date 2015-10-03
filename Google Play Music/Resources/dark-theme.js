@@ -7,6 +7,8 @@ var BACK_PRIMARY = '#222326',
 // Custom
 FORE_SECONDARY = '#1ED760';
 
+GLOBAL_STYLES = "<style>";
+
 subColors = function (style) {
     style = style.replace(/\{\{BACK_PRIMARY\}\}/g, BACK_PRIMARY);
     style = style.replace(/\{\{BACK_SECONDARY\}\}/g, BACK_SECONDARY);
@@ -24,7 +26,11 @@ setStyle = function (selector, style) {
         string += subColors(style[i]) + " !important;";
     }
     string += "}";
-    document.body.innerHTML += "<style>" + string + "</style>";
+    GLOBAL_STYLES += string;
+}
+
+flushStyles = function () {
+    document.body.innerHTML += GLOBAL_STYLES + "</style>";
 }
 
 if (localStorage.getItem("custom-theme") === null) {
@@ -62,6 +68,7 @@ BlackTheme = function () {
     setStyle('.fade-out:after', ['display: none']);
     setStyle('.column.col-0 .material-card:first-child .image-wrapper', ['padding-top: 0']);
     setStyle('.material .song-row .song-indicator', ['background-color: {{BACK_PRIMARY}}']);
+    setStyle('.material .song-row:hover .song-indicator', ['background-color: {{BACK_HIGHLIGHT}}']);
     setStyle('.material-detail-view .has-hero-image, .song-row td, .song-row td > *, .upload-progress-row td, .song-row.selected-song-row td', ['background: {{BACK_PRIMARY}}', 'color: {{FORE_PRIMARY}}']);
     setStyle('.song-row.selected-song-row .song-indicator, .song-row.selected-song-row .title-right-items, .song-row.selected-song-row .content, .song-row.selected-song-row .song-indicator[data-playback-status="paused"], .song-row.selected-song-row .song-indicator[data-playback-status="loading"], .song-row.selected-song-row [data-col="index"] .hover-button[data-id="play"], .song-row.selected-song-row [data-col="track"] .hover-button[data-id="play"], .song-row.selected-song-row td, .song-row.selected-song-row td > *', ['background-color: {{BACK_HIGHLIGHT}}']);
     setStyle('.song-row.hover .song-indicator, .song-row.hover .title-right-items, .song-row.hover .content, .song-row.hover .song-indicator[data-playback-status="paused"], .song-row.hover .song-indicator[data-playback-status="loading"], .song-row.hover [data-col="index"] .hover-button[data-id="play"], .song-row.hover [data-col="track"] .hover-button[data-id="play"], .song-row.hover td, .song-row.hover td > *', ['background-color: {{BACK_HIGHLIGHT}}']);
@@ -96,6 +103,16 @@ BlackTheme = function () {
     setStyle('paper-slider::shadow #sliderKnobInner, paper-slider::shadow #sliderBar::shadow #activeProgress', ['background-color: {{FORE_SECONDARY}}']);
     setStyle('.nav-item-container.selected core-icon', ['color: {{FORE_SECONDARY}}']);
     setStyle('.upload-dialog-title', ['background-color: {{FORE_SECONDARY}}']);
+    setStyle('.material a, .material .simple-dialog a', ['color: {{FORE_PRIMARY}}']);
+    setStyle('.material .song-table [data-col="title"], .material .song-table.mini [data-col="song-details"] .song-title', ['color: {{FORE_PRIMARY}}']);
+    setStyle('.subcategories-list, .material-detail-view .station-container-content-wrapper .material-container-details', ['background-color: {{BACK_PRIMARY}}']);
+    setStyle('.material-list li a:hover, .material-list li a:focus', ['background-color: {{BACK_HIGHLIGHT}}']);
+    setStyle('paper-input-decorator::shadow #underline .focused-underline', ['background-color: {{FORE_SECONDARY}}']);
+    setStyle('paper-action-dialog sj-paper-button, paper-dialog .buttons paper-button, .share-buttons .share-button .button-label', ['color: {{FORE_PRIMARY}}']);
+    setStyle('.song-row:hover td, .song-row:hover td > *', ['background: {{BACK_HIGHLIGHT}}']);
+    setStyle('.material .song-row:hover [data-col="track"] .hover-button[data-id="play"]', ['background-color: {{BACK_HIGHLIGHT}}']);
+
+    flushStyles();
 }
 
 window['turnOnCustom'] = function (self) {

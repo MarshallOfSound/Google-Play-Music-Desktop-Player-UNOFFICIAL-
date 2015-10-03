@@ -17,7 +17,7 @@ namespace Google_Play_Music
     public partial class Form1 : Form
     {
 
-        private const string CURRENT_VERSION = "1.3.1";
+        private const string CURRENT_VERSION = "1.3.2";
 
         public Form1()
         {
