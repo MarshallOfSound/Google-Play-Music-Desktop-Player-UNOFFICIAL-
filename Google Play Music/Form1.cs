@@ -33,7 +33,7 @@ namespace Google_Play_Music
             StreamReader strRead;
             try {
                 strRead = new StreamReader(wrGETURL.GetResponse().GetResponseStream());
-            } catch (WebException e)
+            } catch (WebException)
             {
                 return;
             }
@@ -60,7 +60,7 @@ namespace Google_Play_Music
                         return;
                     }
                 }
-            } catch (Exception e)
+            } catch (Exception)
             {
                 // Something went wrong while fetching from the GitHub API
             }
