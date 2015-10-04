@@ -17,7 +17,7 @@ namespace Google_Play_Music
     public partial class Form1 : Form
     {
 
-        private const string CURRENT_VERSION = "1.3.2";
+        private const string CURRENT_VERSION = "1.3.3";
 
         public Form1()
         {
@@ -132,6 +132,7 @@ ThumbnailButtonClickedEventArgs e)
             settings.WindowlessRenderingEnabled = true;
             settings.CefCommandLineArgs.Add("enable-smooth-scrolling", "1");
             settings.CefCommandLineArgs.Add("enable-overlay-scrollbar", "1");
+            settings.CefCommandLineArgs.Add("enable-npapi", "1");
             Cef.Initialize(settings);
 
             webBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser("http://play.google.com/music/listen")

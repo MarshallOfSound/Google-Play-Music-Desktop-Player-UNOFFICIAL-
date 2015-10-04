@@ -104,20 +104,8 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CefSharp">
-      <HintPath>..\packages\CefSharp.Common.41.0.0\CefSharp\x86\CefSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="CefSharp.BrowserSubprocess.Core">
-      <HintPath>..\packages\CefSharp.Common.41.0.0\CefSharp\x86\CefSharp.BrowserSubprocess.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="CefSharp.Core">
-      <HintPath>..\packages\CefSharp.Common.41.0.0\CefSharp\x86\CefSharp.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="CefSharp.WinForms">
-      <HintPath>..\packages\CefSharp.WinForms.41.0.0\CefSharp\x86\CefSharp.WinForms.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Core.1.1.0.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -169,7 +157,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Google Play Music_TemporaryKey.pfx" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
