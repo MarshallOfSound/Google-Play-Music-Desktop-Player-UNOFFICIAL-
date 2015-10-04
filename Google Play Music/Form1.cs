@@ -17,7 +17,7 @@ namespace Google_Play_Music
     public partial class Form1 : Form
     {
 
-        private const string CURRENT_VERSION = "1.3.3";
+        private const string CURRENT_VERSION = "1.3.4";
 
         public Form1()
         {
@@ -54,7 +54,6 @@ namespace Google_Play_Music
                         // Prevents strange garbage collection
                         new Thread(() =>
                         {
-                            Thread.CurrentThread.IsBackground = true;
                             this.BeginInvoke(new MethodInvoker(Close));
                         }).Start();
                         return;
