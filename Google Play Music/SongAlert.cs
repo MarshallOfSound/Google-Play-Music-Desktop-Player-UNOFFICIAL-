@@ -22,10 +22,6 @@ namespace Google_Play_Music
             ShowInTaskbar = false;
             Load += new EventHandler(Alert_Loaded);
 
-            Rectangle workingArea = Screen.GetWorkingArea(this);
-            Location = new Point(workingArea.Right - Size.Width - 16,
-                                      workingArea.Bottom - Size.Height + 16);
-
             PictureBox albumArt = new PictureBox();
             albumArt.Load(url);
             albumArt.Size = new Size(70, 70);
@@ -83,6 +79,13 @@ namespace Google_Play_Music
             timer.Tick += (arg1, arg2) =>
             {
                 currentStep++;
+                if (currentStep == 1)
+                {
+                    Point loc = Screen.PrimaryScreen.WorkingArea.Location;
+                    int X = loc.X + Screen.PrimaryScreen.WorkingArea.Width - Size.Width - 16;
+                    int Y = loc.Y + Screen.PrimaryScreen.WorkingArea.Height - Size.Height + 16;
+                    Location = new Point(X, Y);
+                }
                 if (currentStep <= fadeSteps)
                 {
                     Opacity = ((double)currentStep) / fadeSteps;
