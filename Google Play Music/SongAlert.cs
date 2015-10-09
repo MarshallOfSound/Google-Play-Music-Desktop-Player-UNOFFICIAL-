@@ -51,7 +51,7 @@ namespace Google_Play_Music
 
             currentStep = 0;
             int fadeSteps = 25;
-            int totalSteps = 250;
+            int totalSteps = 200;
             timer.Tick += (arg1, arg2) =>
             {
                 currentStep++;
