@@ -160,8 +160,11 @@ ThumbnailButtonClickedEventArgs e)
             gkh.HookedKeys.Add(Keys.MediaStop);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
             gkh.KeyUp += new KeyEventHandler(gkh_KeyUp);
+
+            this_form = this;
         }
 
+        private Form1 this_form;
         private SongAlert alert = null;
 
         // Fired from javascript when a different song starts playing
@@ -176,7 +179,17 @@ ThumbnailButtonClickedEventArgs e)
                     alert.currentStep = 99999;
                 }
                 alert = new SongAlert(song, artist, album, url);
+
+                alert.Shown += (sender, e) => {
+                    // Hacky work around to allow non blocking Application.run whilst maintaining TopMost
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                    alert.Owner = this_form;
+                    Control.CheckForIllegalCrossThreadCalls = true;
+                    alert.TopMost = true;
+                };
+
                 alert.FormClosing += new FormClosingEventHandler(Song_Alert_Close);
+
                 Application.Run(alert);
             }).Start();
         }

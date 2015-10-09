@@ -17,10 +17,10 @@ namespace Google_Play_Music
         {
             BackColor = Color.White;
             FormBorderStyle = FormBorderStyle.None;
-            TopMost = true;
             Size = new Size(370, 70);
             Opacity = 0;
             ShowInTaskbar = false;
+            Load += new EventHandler(Alert_Loaded);
 
             Rectangle workingArea = Screen.GetWorkingArea(this);
             Location = new Point(workingArea.Right - Size.Width - 16,
@@ -29,6 +29,7 @@ namespace Google_Play_Music
             PictureBox albumArt = new PictureBox();
             albumArt.Load(url);
             albumArt.Size = new Size(70, 70);
+            albumArt.SizeMode = PictureBoxSizeMode.StretchImage;
             Controls.Add(albumArt);
 
             Label songTitle = new Label();
@@ -46,7 +47,10 @@ namespace Google_Play_Music
             songInfo.Font = new Font("Arial", 8, FontStyle.Regular);
             songInfo.Width = 300;
             Controls.Add(songInfo);
+        }
 
+        private void Alert_Loaded(object sender, EventArgs e)
+        {
             timer.Interval = 10;
 
             currentStep = 0;
@@ -73,6 +77,10 @@ namespace Google_Play_Music
             };
 
             timer.Start();
+
+            TopMost = true;
+            TopLevel = true;
+            BringToFront();
         }
     }
 }
