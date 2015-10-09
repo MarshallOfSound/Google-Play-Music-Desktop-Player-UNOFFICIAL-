@@ -136,4 +136,7 @@
   <data name="dark_theme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dark-theme.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="custom_interface" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\custom-interface.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
 </root>

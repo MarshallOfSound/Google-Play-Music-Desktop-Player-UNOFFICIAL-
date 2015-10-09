@@ -141,6 +141,7 @@ ThumbnailButtonClickedEventArgs e)
                 // Stop that silly right click menu appearing
                 MenuHandler = new NoMenuHandler()
             };
+            webBrowser1.RegisterAsyncJsObject("csharpinterface", this);
 
             webBrowser1.Dock = DockStyle.Fill;
 
@@ -161,6 +162,31 @@ ThumbnailButtonClickedEventArgs e)
             gkh.KeyUp += new KeyEventHandler(gkh_KeyUp);
         }
 
+        private SongAlert alert = null;
+
+        // Fired from javascript when a different song starts playing
+        public void songChangeEvent(string song, string artist, string album, string url)
+        {
+            new Thread(() =>
+            {
+                // If the alert box already exists we need to kill it
+                // Trick the timer into thinking it is over
+                if (alert != null)
+                {
+                    alert.currentStep = 99999;
+                }
+                alert = new SongAlert(song, artist, album, url);
+                alert.FormClosing += new FormClosingEventHandler(Song_Alert_Close);
+                Application.Run(alert);
+            }).Start();
+        }
+
+        // When the SongAlery closes set it to null in this scope so we know
+        private void Song_Alert_Close(object sender, FormClosingEventArgs e)
+        {
+            alert = null;
+        }
+
         private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try {
@@ -169,6 +195,7 @@ ThumbnailButtonClickedEventArgs e)
                 {
                     gkh.unhook();
                 }
+                alert.currentStep = 99999;
             } catch (Exception) {
                 // Do nothing
             }
@@ -211,8 +238,10 @@ public class GPMResouceHandlerFactory : IResourceHandlerFactory
             Debug.WriteLine("Injected JS into response");
             using (WebClient webClient = new WebClient())
             {
-                string data = Google_Play_Music.Properties.Resources.dark_theme;
-                return ResourceHandler.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(webClient.DownloadString(request.Url) + data)), webClient.ResponseHeaders["Content-Type"]);
+                // These are the JS files to inject into GPM
+                string dark_theme = Google_Play_Music.Properties.Resources.dark_theme;
+                string custom_interface = Google_Play_Music.Properties.Resources.custom_interface;
+                return ResourceHandler.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(webClient.DownloadString(request.Url) + dark_theme + custom_interface)), webClient.ResponseHeaders["Content-Type"]);
             }
         }
         return null;

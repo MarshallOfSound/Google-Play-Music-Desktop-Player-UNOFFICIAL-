@@ -61,6 +61,15 @@ namespace Google_Play_Music.Properties {
         }
         
         /// <summary>
+        ///   The code to customize the interface of Google Play Music
+        /// </summary>
+        internal static string custom_interface {
+            get {
+                return ResourceManager.GetString("custom_interface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   The code to activate the Google Play Music Dark Theme
         /// </summary>
         internal static string dark_theme {
