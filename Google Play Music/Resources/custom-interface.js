@@ -50,5 +50,12 @@ var check = setInterval(function() {
         hideDiv(document.querySelectorAll('#gbwa + div')[0]);
         hideDiv(document.querySelectorAll('#gbwa + div')[0]);
         document.querySelectorAll('#gbwa + div + div')[0].setAttribute('style', 'margin-left: auto !important');
+
+		var e = document.getElementById('material-one-right');
+        e.innerHTML = '' +
+            '<style>[data-id=prev-history][disabled], [data-id=next-history][disabled] { opacity: 0.3; }</style>' +
+            '<sj-icon-button data-id="prev-history" icon="arrow-back" role="button" tabindex="0" title="Navigate Back" aria-label="Navigate Back" style="color: white" onclick="window.history.back()"></sj-icon-button>' +
+            '<sj-icon-button data-id="next-history" icon="arrow-forward" role="button" tabindex="0" title="Navigate Forward" aria-label="Navigate Forward" style="color: white" onclick="window.history.forward()"></sj-icon-button>'+
+            e.innerHTML;
     }
 }, 10);
