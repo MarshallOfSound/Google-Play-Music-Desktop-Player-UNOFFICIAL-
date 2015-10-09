@@ -111,6 +111,8 @@ BlackTheme = function () {
     setStyle('paper-action-dialog sj-paper-button, paper-dialog .buttons paper-button, .share-buttons .share-button .button-label', ['color: {{FORE_PRIMARY}}']);
     setStyle('.song-row:hover td, .song-row:hover td > *', ['background: {{BACK_HIGHLIGHT}}']);
     setStyle('.material .song-row:hover [data-col="track"] .hover-button[data-id="play"]', ['background-color: {{BACK_HIGHLIGHT}}']);
+	setStyle('.rating-container li', ['-webkit-filter: invert(1)']);
+	setStyle('#player.material .material-player-middle sj-icon-button[data-id="repeat"][value="LIST_REPEAT"], #player.material .material-player-middle sj-icon-button[data-id="repeat"][value="SINGLE_REPEAT"], #player.material .material-player-middle sj-icon-button[data-id="shuffle"][value="ALL_SHUFFLE"], #player.material .material-player-middle paper-icon-button[data-id="repeat"][value="LIST_REPEAT"], #player.material .material-player-middle paper-icon-button[data-id="repeat"][value="SINGLE_REPEAT"], #player.material .material-player-middle paper-icon-button[data-id="shuffle"][value="ALL_SHUFFLE"]', ['color: {{FORE_SECONDARY}}']);
 
     flushStyles();
 }
