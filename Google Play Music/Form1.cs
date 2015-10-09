@@ -194,7 +194,7 @@ ThumbnailButtonClickedEventArgs e)
             }).Start();
         }
 
-        // When the SongAlery closes set it to null in this scope so we know
+        // When the SongAlert closes set it to null in this scope so we know
         private void Song_Alert_Close(object sender, FormClosingEventArgs e)
         {
             alert = null;
