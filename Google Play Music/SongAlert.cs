@@ -17,7 +17,7 @@ namespace Google_Play_Music
         {
             BackColor = Color.White;
             FormBorderStyle = FormBorderStyle.None;
-            Size = new Size(370, 70);
+            Size = new Size(390, 70);
             Opacity = 0;
             ShowInTaskbar = false;
             Load += new EventHandler(Alert_Loaded);
@@ -32,20 +32,44 @@ namespace Google_Play_Music
             albumArt.SizeMode = PictureBoxSizeMode.StretchImage;
             Controls.Add(albumArt);
 
+            int n = 12;
+            Font titleFont = new Font("Arial", n, FontStyle.Regular);
+            while (TextRenderer.MeasureText(song, titleFont).Width > 312)
+            {
+                if (n < 6)
+                {
+                    break;
+                }
+                titleFont = new Font("Arial", n--, FontStyle.Regular);
+            }
+
             Label songTitle = new Label();
             songTitle.Text = song;
             songTitle.Location = new Point(78, 12);
-            songTitle.Font = SystemFonts.GetFontByName("Arial");
-            songTitle.Font = new Font("Arial", 12, FontStyle.Regular);
-            songTitle.Width = 300;
+            songTitle.Font = titleFont;
+            songTitle.Width = 312;
             Controls.Add(songTitle);
+
+            if (n > 10)
+            {
+                n = 10;
+            }
+            Font infoFont = new Font("Arial", n, FontStyle.Regular);
+            while (TextRenderer.MeasureText(artist + " - " + album, infoFont).Width > 312)
+            {
+                if (n < 6)
+                {
+                    break;
+                }
+                infoFont = new Font("Arial", n--, FontStyle.Regular);
+            }
 
             Label songInfo = new Label();
             songInfo.Text = artist + " - " + album;
             songInfo.Location = new Point(78, 44);
             songInfo.Font = SystemFonts.GetFontByName("Arial");
-            songInfo.Font = new Font("Arial", 8, FontStyle.Regular);
-            songInfo.Width = 300;
+            songInfo.Font = infoFont;
+            songInfo.Width = 312;
             Controls.Add(songInfo);
         }
 
