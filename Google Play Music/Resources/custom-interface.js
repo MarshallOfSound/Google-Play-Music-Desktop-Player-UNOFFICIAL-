@@ -31,3 +31,24 @@ setInterval(function() {
 		csharpinterface.songChangeEvent(tmp.title, tmp.album, tmp.artist, tmp.albumArt);
     }
 }, 20);
+
+var check = setInterval(function() {
+    if (document.querySelectorAll('.nav-item-container[data-action=upload-music]').length !== 0) {
+        clearInterval(check);
+        var hideDiv = function(div) {
+            div.style.display = "none";
+        };
+
+        hideDiv(document.querySelectorAll('.nav-item-container[data-action=upload-music]')[0]);
+        hideDiv(document.querySelectorAll('.nav-item-container[data-action=help-and-feedback]')[0]);
+        divs = document.querySelectorAll('[aria-label="Account Information"] > div');
+        hideDiv(divs[0]);
+        hideDiv(divs[1]);
+        hideDiv(divs[2].querySelectorAll('div')[0]);
+		divs[2].querySelectorAll('div')[1].querySelectorAll('a')[0].setAttribute('style', 'color: black !important');
+        hideDiv(document.querySelectorAll('#gbwa')[0]);
+        hideDiv(document.querySelectorAll('#gbwa + div')[0]);
+        hideDiv(document.querySelectorAll('#gbwa + div')[0]);
+        document.querySelectorAll('#gbwa + div + div')[0].setAttribute('style', 'margin-left: auto !important');
+    }
+}, 10);
