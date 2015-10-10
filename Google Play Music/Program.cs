@@ -13,7 +13,7 @@ namespace Google_Play_Music
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new CoreMusicApp());
         }
     }
 }

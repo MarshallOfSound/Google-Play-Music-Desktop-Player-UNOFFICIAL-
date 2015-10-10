@@ -5,26 +5,24 @@ using System.Drawing;
 using System.Windows.Forms;
 using Utilities;
 using Microsoft.WindowsAPICodePack.Taskbar;
-using System.Text.RegularExpressions;
 using System.Net;
 using System.IO;
-using System.Text;
 using System.Threading;
 using Newtonsoft.Json;
 
 namespace Google_Play_Music
 {
-    public partial class Form1 : Form
+    public partial class CoreMusicApp : Form
     {
 
         private const string CURRENT_VERSION = "1.3.4";
 
-        public Form1()
+        public CoreMusicApp()
         {
             InitializeForm();
 
             this.Size = new Size(1080, 720);
-            this.Icon = Properties.Resources.Icon1;
+            this.Icon = Properties.Resources.MainIcon;
             this.Text = "Google Music Player";
             StartPosition = FormStartPosition.Manual;
             Point loc = Screen.PrimaryScreen.WorkingArea.Location;
@@ -96,34 +94,25 @@ namespace Google_Play_Music
         {
             base.OnShown(e);
             prevTrackButton = new ThumbnailToolBarButton(Properties.Resources.PrevTrack, "Previous Track");
-            prevTrackButton.Click += prevTrackButton_Click;
+            prevTrackButton.Click += (send, ev) =>
+            {
+                this.prevTrack();
+            };
 
             nextTrackButton = new ThumbnailToolBarButton(Properties.Resources.NextTrack, "Next Track");
-            nextTrackButton.Click += nextTrackButton_Click;
+            nextTrackButton.Click += (send, ev) =>
+            {
+                this.nextTrack();
+            };
 
 
             playPauseButton = new ThumbnailToolBarButton(Properties.Resources.Play, "Play / Pause");
-            playPauseButton.Click += playPauseButton_Click;
+            playPauseButton.Click += (send, ev) =>
+            {
+                this.playPause();
+            };
 
             TaskbarManager.Instance.ThumbnailToolBars.AddButtons(this.Handle, prevTrackButton, playPauseButton, nextTrackButton);
-        }
-
-        private void prevTrackButton_Click(object sender,
-ThumbnailButtonClickedEventArgs e)
-        {
-            this.prevTrack();
-        }
-
-        private void nextTrackButton_Click(object sender,
-ThumbnailButtonClickedEventArgs e)
-        {
-            this.nextTrack();
-        }
-
-        private void playPauseButton_Click(object sender,
-ThumbnailButtonClickedEventArgs e)
-        {
-            this.playPause();
         }
 
         // CefSharp configuration
@@ -145,14 +134,13 @@ ThumbnailButtonClickedEventArgs e)
                 // Use this to inject our theming and modding javascript code
                 ResourceHandlerFactory = new GPMResouceHandlerFactory(),
                 // Stop that silly right click menu appearing
-                MenuHandler = new NoMenuHandler()
+                MenuHandler = new GPMMenuHandler()
             };
-            webBrowser1.RegisterAsyncJsObject("csharpinterface", this);
+            webBrowser1.RegisterAsyncJsObject("csharpinterface", new JSBound(this));
 
             webBrowser1.Dock = DockStyle.Fill;
 
-            Controls.AddRange(new Control[] {
-            webBrowser1 });
+            Controls.Add(webBrowser1);
 
             gkh = new globalKeyboardHook();
 
@@ -166,44 +154,6 @@ ThumbnailButtonClickedEventArgs e)
             gkh.HookedKeys.Add(Keys.MediaStop);
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
             gkh.KeyUp += new KeyEventHandler(gkh_KeyUp);
-
-            this_form = this;
-        }
-
-        private Form1 this_form;
-        private SongAlert alert = null;
-
-        // Fired from javascript when a different song starts playing
-        public void songChangeEvent(string song, string artist, string album, string url)
-        {
-            new Thread(() =>
-            {
-                // If the alert box already exists we need to kill it
-                // Trick the timer into thinking it is over
-                if (alert != null)
-                {
-                    alert.currentStep = 99999;
-                }
-                alert = new SongAlert(song, artist, album, url);
-
-                alert.Shown += (sender, e) => {
-                    // Hacky work around to allow non blocking Application.run whilst maintaining TopMost
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    alert.Owner = this_form;
-                    Control.CheckForIllegalCrossThreadCalls = true;
-                    alert.TopMost = true;
-                };
-
-                alert.FormClosing += new FormClosingEventHandler(Song_Alert_Close);
-
-                Application.Run(alert);
-            }).Start();
-        }
-
-        // When the SongAlert closes set it to null in this scope so we know
-        private void Song_Alert_Close(object sender, FormClosingEventArgs e)
-        {
-            alert = null;
         }
 
         private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -214,7 +164,6 @@ ThumbnailButtonClickedEventArgs e)
                 {
                     gkh.unhook();
                 }
-                alert.currentStep = 99999;
             } catch (Exception) {
                 // Do nothing
             }
@@ -244,55 +193,5 @@ ThumbnailButtonClickedEventArgs e)
         {
             e.Handled = false;
         }
-    }
-}
-
-public class GPMResouceHandlerFactory : IResourceHandlerFactory
-{
-
-    public IResourceHandler GetResourceHandler(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request)
-    {
-        if (Regex.Match(request.Url, @"polymer_srcs.js", RegexOptions.IgnoreCase).Success)
-        {
-            Debug.WriteLine("Injected JS into response");
-            using (WebClient webClient = new WebClient())
-            {
-                // These are the JS files to inject into GPM
-                string dark_theme = Google_Play_Music.Properties.Resources.dark_theme;
-                string custom_interface = Google_Play_Music.Properties.Resources.custom_interface;
-                return ResourceHandler.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(webClient.DownloadString(request.Url) + dark_theme + custom_interface)), webClient.ResponseHeaders["Content-Type"]);
-            }
-        }
-        return null;
-    }
-    public bool HasHandlers
-    {
-        get
-        {
-            return true;
-        }
-    }
-}
-
-public class NoMenuHandler : IContextMenuHandler
-{
-    public bool OnBeforeContextMenu(IWebBrowser browser, IContextMenuParams param)
-    {
-        return false;
-    }
-
-    public void OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
-    {
-        model.Clear();
-    }
-
-    public bool OnContextMenuCommand(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, CefMenuCommand commandId, CefEventFlags eventFlags)
-    {
-        return false;
-    }
-
-    public void OnContextMenuDismissed(IWebBrowser browserControl, IBrowser browser, IFrame frame)
-    {
-        // Do nothing
     }
 }

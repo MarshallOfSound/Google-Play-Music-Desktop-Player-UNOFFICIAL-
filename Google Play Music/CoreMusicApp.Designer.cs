@@ -2,7 +2,7 @@
 
 namespace Google_Play_Music
 {
-    partial class Form1
+    partial class CoreMusicApp
     {
         /// <summary>
         /// Required designer variable.
@@ -30,16 +30,16 @@ namespace Google_Play_Music
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoreMusicApp));
             this.SuspendLayout();
             // 
-            // Form1
+            // CoreMusicApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "CoreMusicApp";
             this.Text = "Google Music Player";
             this.ResumeLayout(false);
 
