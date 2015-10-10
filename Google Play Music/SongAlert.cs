@@ -15,7 +15,7 @@ namespace Google_Play_Music
 
         public SongAlert(string song, string artist, string album, string url)
         {
-            BackColor = Color.White;
+            BackColor = Color.FromArgb(240, 240, 240);
             FormBorderStyle = FormBorderStyle.None;
             Size = new Size(390, 70);
             Opacity = 0;
@@ -28,45 +28,49 @@ namespace Google_Play_Music
             albumArt.SizeMode = PictureBoxSizeMode.StretchImage;
             Controls.Add(albumArt);
 
-            int n = 12;
-            Font titleFont = new Font("Arial", n, FontStyle.Regular);
+            int n = 14;
+            Font titleFont = new Font("Calibri", n, FontStyle.Regular);
             while (TextRenderer.MeasureText(song, titleFont).Width > 312)
             {
                 if (n < 6)
                 {
                     break;
                 }
-                titleFont = new Font("Arial", n--, FontStyle.Regular);
+                titleFont = new Font("Calibri", n--, FontStyle.Regular);
             }
 
-            Label songTitle = new Label();
-            songTitle.Text = song;
+            Label songTitle = makeLabel(song);
             songTitle.Location = new Point(78, 12);
             songTitle.Font = titleFont;
-            songTitle.Width = 312;
             Controls.Add(songTitle);
 
             if (n > 10)
             {
                 n = 10;
             }
-            Font infoFont = new Font("Arial", n, FontStyle.Regular);
+            Font infoFont = new Font("Calibri", n, FontStyle.Regular);
             while (TextRenderer.MeasureText(artist + " - " + album, infoFont).Width > 312)
             {
                 if (n < 6)
                 {
                     break;
                 }
-                infoFont = new Font("Arial", n--, FontStyle.Regular);
+                infoFont = new Font("Calibri", n--, FontStyle.Regular);
             }
 
-            Label songInfo = new Label();
-            songInfo.Text = artist + " - " + album;
+            Label songInfo = makeLabel(artist + " - " + album);
             songInfo.Location = new Point(78, 44);
-            songInfo.Font = SystemFonts.GetFontByName("Arial");
             songInfo.Font = infoFont;
-            songInfo.Width = 312;
             Controls.Add(songInfo);
+        }
+
+        private Label makeLabel(string text)
+        {
+            Label lab = new Label();
+            lab.Text = text;
+            lab.Width = 312;
+            lab.ForeColor = Color.FromArgb(30, 30, 30);
+            return lab;
         }
 
         private void Alert_Loaded(object sender, EventArgs e)
