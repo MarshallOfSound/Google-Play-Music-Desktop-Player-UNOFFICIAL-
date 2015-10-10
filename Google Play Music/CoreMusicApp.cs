@@ -15,7 +15,7 @@ namespace Google_Play_Music
     public partial class CoreMusicApp : Form
     {
 
-        private const string CURRENT_VERSION = "1.4.0";
+        private const string CURRENT_VERSION = "1.4.1";
 
         public CoreMusicApp()
         {
@@ -58,7 +58,10 @@ namespace Google_Play_Music
                         // Prevents strange garbage collection
                         new Thread(() =>
                         {
-                            this.BeginInvoke(new MethodInvoker(Close));
+                            Load += (send, ev) =>
+                            {
+                                Close();
+                            };
                         }).Start();
                         return;
                     }
