@@ -15,7 +15,7 @@ namespace Google_Play_Music
     public partial class CoreMusicApp : Form
     {
 
-        private const string CURRENT_VERSION = "1.3.4";
+        private const string CURRENT_VERSION = "1.4.0";
 
         public CoreMusicApp()
         {
