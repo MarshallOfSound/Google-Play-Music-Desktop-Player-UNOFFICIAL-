@@ -32,6 +32,7 @@ namespace Google_Play_Music
                 size = mainForm.ClientSize;
                 mainForm.ClientSize = new Size(300, 300);
                 mainForm.FormBorderStyle = FormBorderStyle.FixedSingle;
+                mainForm.MaximizeBox = false;
             });
         }
 
@@ -41,6 +42,7 @@ namespace Google_Play_Music
             {
                 mainForm.ClientSize = size;
                 mainForm.FormBorderStyle = FormBorderStyle.Sizable;
+                mainForm.MaximizeBox = true;
             });
         }
 
