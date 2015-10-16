@@ -103,4 +103,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	window.goBig = function() {
 		csharpinterface.goBig();
 	};
+
+	document.addEventListener('mousedown', function(e) { if (window.miniState && e.clientY <= 210) {csharpinterface.dragStart(); e.preventDefault(); return false;}});
 });

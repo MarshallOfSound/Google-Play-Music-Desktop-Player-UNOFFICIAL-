@@ -9,6 +9,7 @@ using System.Net;
 using System.IO;
 using System.Threading;
 using Newtonsoft.Json;
+using System.Runtime.InteropServices;
 
 namespace Google_Play_Music
 {
@@ -232,6 +233,22 @@ namespace Google_Play_Music
                 }
             };
             timer.Start();
+        }
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        public void dragStart()
+        {
+            // This function fakes a window drag start
+            // It is triggered from the boundJS object
+            ReleaseCapture();
+            SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
         }
     }
 }

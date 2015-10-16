@@ -24,6 +24,14 @@ namespace Google_Play_Music
             };
         }
 
+        public void dragStart()
+        {
+            mainForm.Invoke((MethodInvoker)delegate
+            {
+                mainForm.dragStart();
+            });
+        }
+
         private Size size;
 
         public void goMini()
@@ -34,7 +42,7 @@ namespace Google_Play_Music
                 {
                     size = mainForm.ClientSize;
                     mainForm.ClientSize = new Size(300, 300);
-                    mainForm.FormBorderStyle = FormBorderStyle.FixedSingle;
+                    mainForm.FormBorderStyle = FormBorderStyle.None;
                     mainForm.MaximizeBox = false;
                     var task = mainForm.webBrowser1.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', 'mini');");
                     task.Wait();
