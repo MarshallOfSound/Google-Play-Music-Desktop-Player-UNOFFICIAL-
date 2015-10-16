@@ -119,7 +119,7 @@ namespace Google_Play_Music
         }
 
         // CefSharp configuration
-        private CefSharp.WinForms.ChromiumWebBrowser webBrowser1;
+        public CefSharp.WinForms.ChromiumWebBrowser webBrowser1;
         private static globalKeyboardHook gkh;
 
         private void InitializeForm()
@@ -195,6 +195,43 @@ namespace Google_Play_Music
         void gkh_KeyDown(object sender, KeyEventArgs e)
         {
             e.Handled = false;
+        }
+
+        public void fadeInOut(Func<int> call)
+        {
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+            timer.Interval = 2;
+            int currentStep = 0;
+            int fadeSteps = 20;
+            int totalSteps = fadeSteps * 2 + 12;
+            Boolean runTick = true;
+            timer.Tick += (arg1, arg2) =>
+            {
+                if (runTick)
+                {
+                    currentStep++;
+                    if (currentStep <= fadeSteps)
+                    {
+                        Opacity = ((double)(fadeSteps - currentStep) / fadeSteps);
+                    }
+                    else if (currentStep == fadeSteps + 1)
+                    {
+                        runTick = false;
+                        call();
+                        runTick = true;
+                    }
+                    else if (currentStep <= totalSteps)
+                    {
+                        Opacity = ((double)(fadeSteps - totalSteps + currentStep)) / fadeSteps;
+                    }
+                    else
+                    {
+                        timer.Stop();
+                        timer.Dispose();
+                    }
+                }
+            };
+            timer.Start();
         }
     }
 }

@@ -97,12 +97,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	};
 
 	window.goMini = function() {
-		document.querySelectorAll('html')[0].setAttribute('class', 'mini');
 		csharpinterface.goMini();
 	};
 
 	window.goBig = function() {
-		document.querySelectorAll('html')[0].setAttribute('class', '');
 		csharpinterface.goBig();
 	};
 });

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CefSharp;
+using System;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
@@ -29,10 +30,16 @@ namespace Google_Play_Music
         {
             mainForm.Invoke((MethodInvoker)delegate
             {
-                size = mainForm.ClientSize;
-                mainForm.ClientSize = new Size(300, 300);
-                mainForm.FormBorderStyle = FormBorderStyle.FixedSingle;
-                mainForm.MaximizeBox = false;
+                mainForm.fadeInOut(() =>
+                {
+                    size = mainForm.ClientSize;
+                    mainForm.ClientSize = new Size(300, 300);
+                    mainForm.FormBorderStyle = FormBorderStyle.FixedSingle;
+                    mainForm.MaximizeBox = false;
+                    var task = mainForm.webBrowser1.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', 'mini');");
+                    task.Wait();
+                    return 1;
+                });
             });
         }
 
@@ -40,9 +47,15 @@ namespace Google_Play_Music
         {
             mainForm.Invoke((MethodInvoker)delegate
             {
-                mainForm.ClientSize = size;
-                mainForm.FormBorderStyle = FormBorderStyle.Sizable;
-                mainForm.MaximizeBox = true;
+                mainForm.fadeInOut(() =>
+                {
+                    mainForm.ClientSize = size;
+                    mainForm.FormBorderStyle = FormBorderStyle.Sizable;
+                    mainForm.MaximizeBox = true;
+                    var task = mainForm.webBrowser1.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', '');");
+                    task.Wait();
+                    return 1;
+                });
             });
         }
 
