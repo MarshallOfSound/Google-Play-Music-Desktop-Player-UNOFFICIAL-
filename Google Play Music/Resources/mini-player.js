@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	setStyle('#player sj-icon-button[data-id="show-miniplayer-dp"]::shadow core-icon', ['width: 16px', 'height: 16px'], false)
 	setStyle('#current-track-prog-mini', ['position: absolute', 'top: 8px', 'left: 6px', 'font-size: 11px', 'display: block']);
 	setStyle('#end-track-prog-mini', ['position: absolute', 'top: 8px', 'right: 6px', 'font-size: 11px', 'display: block']);
+	setStyle('::shadow #mainContainer', ['overflow: hidden']);
 
 	document.body.innerHTML += GLOBAL_STYLES + "</style>";
 	var art = document.createElement('img');
