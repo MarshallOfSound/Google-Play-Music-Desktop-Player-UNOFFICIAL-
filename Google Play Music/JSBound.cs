@@ -76,6 +76,10 @@ namespace Google_Play_Music
         // When the SongAlert closes set it to null in this scope so we know
         private void Song_Alert_Close(object sender, FormClosingEventArgs e)
         {
+            // We must handle an unsafe thread disposal here so that the parent forms Dispose method does not cause cross thread errors
+            Control.CheckForIllegalCrossThreadCalls = false;
+            alert.Dispose();
+            Control.CheckForIllegalCrossThreadCalls = true;
             alert = null;
         }
     }
