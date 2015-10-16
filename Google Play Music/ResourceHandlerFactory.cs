@@ -18,7 +18,8 @@ namespace Google_Play_Music
                     // These are the JS files to inject into GPM
                     string dark_theme = Google_Play_Music.Properties.Resources.dark_theme;
                     string custom_interface = Google_Play_Music.Properties.Resources.custom_interface;
-                    return ResourceHandler.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(webClient.DownloadString(request.Url) + dark_theme + custom_interface)), webClient.ResponseHeaders["Content-Type"]);
+                    string mini_player = Google_Play_Music.Properties.Resources.mini_player;
+                    return ResourceHandler.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(webClient.DownloadString(request.Url) + dark_theme + custom_interface + mini_player)), webClient.ResponseHeaders["Content-Type"]);
                 }
             }
             return null;

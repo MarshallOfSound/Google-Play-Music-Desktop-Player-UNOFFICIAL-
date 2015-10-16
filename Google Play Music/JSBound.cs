@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -20,6 +21,27 @@ namespace Google_Play_Music
                     // Just ignore it
                 }
             };
+        }
+
+        private Size size;
+
+        public void goMini()
+        {
+            mainForm.Invoke((MethodInvoker)delegate
+            {
+                size = mainForm.ClientSize;
+                mainForm.ClientSize = new Size(300, 300);
+                mainForm.FormBorderStyle = FormBorderStyle.FixedSingle;
+            });
+        }
+
+        public void goBig()
+        {
+            mainForm.Invoke((MethodInvoker)delegate
+            {
+                mainForm.ClientSize = size;
+                mainForm.FormBorderStyle = FormBorderStyle.Sizable;
+            });
         }
 
         private SongAlert alert = null;

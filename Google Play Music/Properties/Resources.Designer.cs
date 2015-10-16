@@ -89,6 +89,15 @@ namespace Google_Play_Music.Properties {
         }
         
         /// <summary>
+        ///   The code to control the Google Play Music mini player
+        /// </summary>
+        internal static string mini_player {
+            get {
+                return ResourceManager.GetString("mini_player", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon NextTrack {

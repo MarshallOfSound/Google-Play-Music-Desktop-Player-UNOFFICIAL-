@@ -28,6 +28,8 @@ setInterval(function() {
     if (JSON.stringify(window.nowPlaying()) != currentPlaying) {
         currentPlaying = JSON.stringify(window.nowPlaying());
 		tmp = window.nowPlaying();
+		var event = new CustomEvent('song-change', {'detail': window.nowPlaying()});
+        window.dispatchEvent(event);
 		csharpinterface.songChangeEvent(tmp.title, tmp.album, tmp.artist, tmp.albumArt);
     }
 }, 20);
