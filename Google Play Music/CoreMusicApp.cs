@@ -27,6 +27,9 @@ namespace Google_Play_Music
             this.Text = "Google Music Player";
             StartPosition = FormStartPosition.Manual;
             reposition();
+            Padding = new Padding(0);
+            BackColor = Color.Black;
+
 
             // Check for updates on the Github Release API
             HttpWebRequest wrGETURL = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases");
