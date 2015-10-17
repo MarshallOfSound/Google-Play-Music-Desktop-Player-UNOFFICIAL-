@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	setStyle('#current-track-prog-mini', ['position: absolute', 'top: 8px', 'left: 6px', 'font-size: 11px', 'display: block']);
 	setStyle('#end-track-prog-mini', ['position: absolute', 'top: 8px', 'right: 6px', 'font-size: 11px', 'display: block']);
 	setStyle('::shadow #mainContainer', ['overflow: hidden']);
+	setStyle('#embed-container', ['width: 0', 'overflow: hidden'], false);
 
 	document.body.innerHTML += GLOBAL_STYLES + "</style>";
 	var art = document.createElement('img');
