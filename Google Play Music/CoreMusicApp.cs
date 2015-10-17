@@ -246,5 +246,18 @@ namespace Google_Play_Music
             ReleaseCapture();
             SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
         }
+
+        public void reposition()
+        {
+            reposition(Screen.PrimaryScreen);
+        }
+
+        public void reposition(Screen s)
+        {
+            Point loc = s.WorkingArea.Location;
+            int X = (s.WorkingArea.Width / 2) - (Size.Width / 2) + loc.X;
+            int Y = (s.WorkingArea.Height / 2) - (Size.Height / 2) + loc.Y;
+            Location = new Point((X > 0 ? X : 0), (Y > 0 ? Y : 0));
+        }
     }
 }
