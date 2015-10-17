@@ -78,25 +78,32 @@ namespace Google_Play_Music
         {
             new Thread(() =>
             {
-                // If the alert box already exists we need to kill it
-                // Trick the timer into thinking it is over
-                if (alert != null)
+                try {
+                    // If the alert box already exists we need to kill it
+                    // Trick the timer into thinking it is over
+                    if (alert != null)
+                    {
+                        alert.currentStep = 99999;
+                    }
+                    alert = new SongAlert(song, artist, album, url);
+
+                    alert.Shown += (sender, e) => {
+                        // Hacky work around to allow non blocking Application.run whilst maintaining TopMost
+                        Control.CheckForIllegalCrossThreadCalls = false;
+                        alert.Owner = mainForm;
+                        Control.CheckForIllegalCrossThreadCalls = true;
+                        alert.TopMost = true;
+                    };
+
+                    alert.FormClosing += new FormClosingEventHandler(Song_Alert_Close);
+
+                    Application.Run(alert);
+                } catch
                 {
-                    alert.currentStep = 99999;
+                    // This try catch is to prevent application crashes when a user spams the forward / back track button
+                    // The AsyncJSBind in CEFSharp can't handle the amount of communication and throws a NullPointer
+                    // TODO: Check CEF progress on this issue
                 }
-                alert = new SongAlert(song, artist, album, url);
-
-                alert.Shown += (sender, e) => {
-                    // Hacky work around to allow non blocking Application.run whilst maintaining TopMost
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                    alert.Owner = mainForm;
-                    Control.CheckForIllegalCrossThreadCalls = true;
-                    alert.TopMost = true;
-                };
-
-                alert.FormClosing += new FormClosingEventHandler(Song_Alert_Close);
-
-                Application.Run(alert);
             }).Start();
         }
 
@@ -104,10 +111,23 @@ namespace Google_Play_Music
         private void Song_Alert_Close(object sender, FormClosingEventArgs e)
         {
             // We must handle an unsafe thread disposal here so that the parent forms Dispose method does not cause cross thread errors
-            Control.CheckForIllegalCrossThreadCalls = false;
-            alert.Dispose();
-            Control.CheckForIllegalCrossThreadCalls = true;
-            alert = null;
+            // But first we have to check if the handle is created yet, if it isn't we attach to the HandleCreated event
+            if (alert.IsHandleCreated)
+            {
+                Control.CheckForIllegalCrossThreadCalls = false;
+                alert.Dispose();
+                Control.CheckForIllegalCrossThreadCalls = true;
+                alert = null;
+            } else
+            {
+                alert.HandleCreated += (send, ev) =>
+                {
+                    Control.CheckForIllegalCrossThreadCalls = false;
+                    alert.Dispose();
+                    Control.CheckForIllegalCrossThreadCalls = true;
+                    alert = null;
+                };
+            }
         }
     }
 }
