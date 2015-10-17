@@ -55,6 +55,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			span.setAttribute('style', 'display: none');
 			span.innerHTML = "0:00";
 			player.appendChild(span);
+
+			container = document.createElement('div');
+			container.innerHTML = '<sj-icon-button data-id="show-miniplayer-dp" icon="open-in-new" title="Show mini player" aria-label="Show mini player" role="button" tabindex="0" no-focus="" onclick="window.toggleMini()"></sj-icon-button>';
+			document.getElementById('player').appendChild(container);
 			clearInterval(addTimeSpans);
 		}
 	}, 10);
@@ -76,15 +80,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		}
 	}, 10);
 
-	firstRun_GPMDP = false;
 	window.addEventListener('song-change', function(e) {
 		document.getElementById('mini-album').src = e.detail.albumArt.replace('=s90', '=s300');
-		if (!firstRun_GPMDP) {
-			firstRun_GPMDP = true;
-			container = document.createElement('div');
-			container.innerHTML = '<sj-icon-button data-id="show-miniplayer-dp" icon="open-in-new" title="Show mini player" aria-label="Show mini player" role="button" tabindex="0" no-focus="" onclick="window.toggleMini()"></sj-icon-button>';
-			document.getElementById('player').appendChild(container);
-		}
 	});
 
 	window.miniState = false;
