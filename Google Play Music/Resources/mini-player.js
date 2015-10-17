@@ -35,8 +35,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	setStyle('#end-track-prog-mini', ['position: absolute', 'top: 8px', 'right: 6px', 'font-size: 11px', 'display: block']);
 	setStyle('::shadow #mainContainer', ['overflow: hidden']);
 	setStyle('#embed-container', ['width: 0', 'overflow: hidden'], false);
+	setStyle('#mini-info', ['position: fixed', 'top: 0px', 'left: 0', 'width: 100%', 'height: 90px', 'overflow: hidden',
+             'background: -webkit-linear-gradient(top, rgba(45,45,45,0.85) 0%,rgba(9,9,9,0.41) 79%,rgba(0,0,0,0) 100%)', 'display: block',
+             'z-index: 9999999', 'transition: opacity 0.3s', 'transition-timing-function: ease-in-out', 'opacity: 0']);
+	setStyle('#mini-info span', ['color: #EEE', 'display: block', 'font-size: 20px', 'padding: 4px 12px', 'cursor: default']);
+	setStyle('#mini-info span:last-child', ['font-size: 16px', 'height: 18px', 'overflow: hidden']);
+	setStyle('body:hover #mini-info', ['opacity: 1']);
 
 	document.body.innerHTML += GLOBAL_STYLES + "</style>";
+	var info = document.createElement('div');
+	info.id = "mini-info";
+	info.setAttribute('style', 'display: none');
+	info.innerHTML = '<span></span><span></span>';
+	document.body.appendChild(info);
+
 	var art = document.createElement('img');
 	art.id = "mini-album";
 	art.src = "https://www.samuelattard.com/img/gpm_placeholder.jpg";
@@ -82,7 +94,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	}, 10);
 
 	window.addEventListener('song-change', function(e) {
-		document.getElementById('mini-album').src = e.detail.albumArt.replace('=s90', '=s300');
+	    document.getElementById('mini-album').src = e.detail.albumArt.replace('=s90', '=s300');
+	    var infoSpans = document.getElementById('mini-info').getElementsByTagName('span');
+	    infoSpans[0].innerHTML = e.detail.title;
+	    infoSpans[1].innerHTML = e.detail.artist + " - " + e.detail.album;
 	});
 
 	window.miniState = false;
