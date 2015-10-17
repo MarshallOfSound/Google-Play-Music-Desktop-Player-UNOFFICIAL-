@@ -26,11 +26,7 @@ namespace Google_Play_Music
             this.Icon = Properties.Resources.MainIcon;
             this.Text = "Google Music Player";
             StartPosition = FormStartPosition.Manual;
-            Point loc = Screen.PrimaryScreen.WorkingArea.Location;
-            int X = (Screen.PrimaryScreen.WorkingArea.Width / 2) - 540 + loc.X;
-            int Y = (Screen.PrimaryScreen.WorkingArea.Height / 2) - 360 + loc.Y;
-            Location = new Point((X > 0 ? X : 0), (Y > 0 ? Y : 0));
-            
+            reposition();
 
             // Check for updates on the Github Release API
             HttpWebRequest wrGETURL = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases");

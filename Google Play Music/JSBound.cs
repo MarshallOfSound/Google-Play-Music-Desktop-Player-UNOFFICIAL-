@@ -41,9 +41,11 @@ namespace Google_Play_Music
                 mainForm.fadeInOut(() =>
                 {
                     size = mainForm.ClientSize;
+                    mainForm.Padding = new Padding(1);
                     mainForm.ClientSize = new Size(300, 300);
                     mainForm.FormBorderStyle = FormBorderStyle.None;
                     mainForm.MaximizeBox = false;
+                    mainForm.reposition(Screen.FromControl(mainForm));
                     var task = mainForm.webBrowser1.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', 'mini');");
                     task.Wait();
                     return 1;
