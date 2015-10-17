@@ -91,6 +91,7 @@ BlackTheme = function () {
     setStyle('#queue-overlay::after', ['border-color: transparent transparent {{BACK_PRIMARY}} {{BACK_PRIMARY}}']);
     setStyle('.upload-dialog-content', ['background-color: {{BACK_SECONDARY}}']);
     setStyle('.upload-dialog-description', ['color: {{FORE_PRIMARY}}']);
+    setStyle('.material .song-row:hover [data-col="index"] .hover-button[data-id="play"]', ['background-color: {{BACK_HIGHLIGHT}}'])
     // Accents
     setStyle('.material-container-details sj-fab, #current-loading-progress', ['background-color: {{FORE_SECONDARY}}']);
     setStyle('#player.material .material-player-middle sj-icon-button[data-id="play-pause"]:not([disabled])', ['color: {{FORE_SECONDARY}}']);
