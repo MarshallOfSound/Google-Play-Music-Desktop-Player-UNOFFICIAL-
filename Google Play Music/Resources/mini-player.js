@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	setStyle('#player', ['width: 300px', 'min-width: 280px', 'z-index: 9999999', 'height: 65px', 'min-height: 65px']);
 	setStyle('#player', ['transition: bottom 0.3s', 'bottom: -100px', 'transition-timing-function: ease-in-out', 'width: 280px', 'left: 10px', 'right: 10px',
 						 'border-bottom-left-radius: 8px', 'border-bottom-right-radius: 8px']);
-	setStyle('body:hover #player', ['bottom: 10px']);
+	setStyle('body[ready]:hover #player', ['bottom: 10px']);
+	setStyle('body[ready]:hover #mini-info', ['opacity: 1']);
 	setStyle('#material-player-left-wrapper, #material-player-right-wrapper', ['display: none']);
 	setStyle('#mini-album', ['position: fixed', 'top: 0', 'left: 0', 'display: block', 'width: 300px', 'height: 300px', 'z-index: 9999998']);
 	setStyle('.player-progress-wrapper', ['left: 0']);
@@ -40,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
              'z-index: 9999999', 'transition: opacity 0.3s', 'transition-timing-function: ease-in-out', 'opacity: 0']);
 	setStyle('#mini-info span', ['color: #EEE', 'display: block', 'font-size: 20px', 'padding: 4px 12px', 'cursor: default']);
 	setStyle('#mini-info span:last-child', ['font-size: 16px', 'height: 18px', 'overflow: hidden']);
-	setStyle('body:hover #mini-info', ['opacity: 1']);
 
 	document.body.innerHTML += GLOBAL_STYLES + "</style>";
 	var info = document.createElement('div');
@@ -110,8 +110,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		window.miniState = !window.miniState;
 	};
 
-	window.goMini = function() {
-		csharpinterface.goMini();
+    // Rely on the ready attribute because when the window is resized CEF does not check the hover state
+	document.body.addEventListener('mouseover', function () {
+	    document.body.setAttribute('ready', 'ready');
+	});
+	window.goMini = function () {
+	    document.body.removeAttribute('ready');
+	    csharpinterface.goMini();
 	};
 
 	window.goBig = function() {
