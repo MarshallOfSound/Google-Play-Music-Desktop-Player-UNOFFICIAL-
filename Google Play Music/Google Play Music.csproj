@@ -107,6 +107,9 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Google_Play_Music.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.WindowsAPICodePack-Core.1.1.0.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
@@ -138,14 +141,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ResourceHandlerFactory.cs" />
-    <Compile Include="MenuHandler.cs" />
     <Compile Include="CoreMusicApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CoreMusicApp.CEF.cs">
+      <DependentUpon>CoreMusicApp.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CoreMusicApp.Hooks.cs">
+      <DependentUpon>CoreMusicApp.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CoreMusicApp.States.cs">
+      <DependentUpon>CoreMusicApp.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CoreMusicApp.UpdateChecker.cs">
+      <DependentUpon>CoreMusicApp.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CoreMusicApp.Designer.cs">
       <DependentUpon>CoreMusicApp.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResourceHandlerFactory.cs" />
+    <Compile Include="MenuHandler.cs" />
     <Compile Include="globalKeyboardHook.cs" />
     <Compile Include="JSBound.cs" />
     <Compile Include="Program.cs" />
@@ -237,7 +256,7 @@
   </Target>
   <Import Project="..\packages\cef.redist.x86.3.2357.1287\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2357.1287\build\cef.redist.x86.targets')" />
   <Import Project="..\packages\CefSharp.Common.43.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.43.0.0\build\CefSharp.Common.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

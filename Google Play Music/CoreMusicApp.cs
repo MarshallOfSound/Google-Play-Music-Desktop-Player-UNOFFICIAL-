@@ -1,15 +1,8 @@
 ﻿using CefSharp;
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using Utilities;
 using Microsoft.WindowsAPICodePack.Taskbar;
-using System.Net;
-using System.IO;
-using System.Threading;
-using Newtonsoft.Json;
-using System.Runtime.InteropServices;
 using MaterialSkin;
 using MaterialSkin.Controls;
 
@@ -18,7 +11,7 @@ namespace Google_Play_Music
     public partial class CoreMusicApp : MaterialForm
     {
 
-        private const string CURRENT_VERSION = "1.5.0";
+        private const string CURRENT_VERSION = "1.5.1";
         private MaterialSkinManager skin;
 
         public CoreMusicApp()
@@ -48,7 +41,8 @@ namespace Google_Play_Music
             restoreMaxiState();
 
             // Setup the Web Browser
-            InitializeForm();
+            InitializeCEF();
+            RegisterKeyHooks();
 
             // Don't forget to save all our settings
             FormClosed += (send, ev) =>
@@ -63,46 +57,8 @@ namespace Google_Play_Music
                 Properties.Settings.Default.Save();
             };
 
-
             // Check for updates on the Github Release API
-            HttpWebRequest wrGETURL = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases");
-            wrGETURL.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2;)";
-            StreamReader strRead;
-            try {
-                strRead = new StreamReader(wrGETURL.GetResponse().GetResponseStream());
-            } catch (WebException)
-            {
-                return;
-            }
-
-            try {
-                dynamic JSON = JsonConvert.DeserializeObject(strRead.ReadToEnd());
-                string version = JSON[0].tag_name;
-                string downloadURL = JSON[0].assets[0].browser_download_url;
-                // If the newest version is not the current version there must be an update available
-                if (version != CURRENT_VERSION)
-                {
-                    var result = MessageBox.Show("There is an update available for this player, do you want to download it now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    if (result == DialogResult.Yes)
-                    {
-                        // Download the Resource URL from the GitHub API
-                        Process.Start(downloadURL);
-                        // Let the form finish initialising before closing it through an asyncronous method invoker
-                        // Prevents strange garbage collection
-                        new Thread(() =>
-                        {
-                            Load += (send, ev) =>
-                            {
-                                Close();
-                            };
-                        }).Start();
-                        return;
-                    }
-                }
-            } catch (Exception)
-            {
-                // Something went wrong while fetching from the GitHub API
-            }
+            checkForUpdates();
         }
 
         public void lightTheme()
@@ -165,94 +121,6 @@ namespace Google_Play_Music
             TaskbarManager.Instance.ThumbnailToolBars.AddButtons(this.Handle, prevTrackButton, playPauseButton, nextTrackButton);
         }
 
-        // CefSharp configuration
-        public CefSharp.WinForms.ChromiumWebBrowser GPMBrowser;
-        private static globalKeyboardHook gkh;
-
-        private void InitializeForm()
-        {
-            CefSettings settings = new CefSharp.CefSettings();
-            settings.CachePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/GPMDP";
-            settings.WindowlessRenderingEnabled = true;
-            settings.CefCommandLineArgs.Add("enable-smooth-scrolling", "1");
-            settings.CefCommandLineArgs.Add("enable-overlay-scrollbar", "1");
-            settings.CefCommandLineArgs.Add("enable-npapi", "1");
-            Cef.Initialize(settings);
-
-            GPMBrowser = new CefSharp.WinForms.ChromiumWebBrowser("http://play.google.com/music/listen")
-            {
-                // Use this to inject our theming and modding javascript code
-                ResourceHandlerFactory = new GPMResouceHandlerFactory(),
-                // Stop that silly right click menu appearing
-                MenuHandler = new GPMMenuHandler()
-            };
-            GPMBrowser.RegisterAsyncJsObject("csharpinterface", new JSBound(this));
-
-            GPMBrowser.Dock = DockStyle.Fill;
-
-            Controls.Add(GPMBrowser);
-
-            gkh = new globalKeyboardHook();
-
-            // Don't let the Garbage Man interfere
-            GC.KeepAlive(gkh);
-
-            // Global Hotkey Listener
-            gkh.HookedKeys.Add(Keys.MediaPlayPause);
-            gkh.HookedKeys.Add(Keys.MediaNextTrack);
-            gkh.HookedKeys.Add(Keys.MediaPreviousTrack);
-            gkh.HookedKeys.Add(Keys.MediaStop);
-            gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
-            gkh.KeyUp += new KeyEventHandler(gkh_KeyUp);
-        }
-
-        public Boolean handleZoom = false;
-
-        private void ResizeEnd_ZoomHandler(object sender, EventArgs e)
-        {
-            if (handleZoom)
-            {
-                setZoomRatio();
-            }
-        }
-
-        private void setZoomRatio()
-        {
-            // The mini player must always be a square
-            int D = Math.Max(ClientSize.Width, ClientSize.Height);
-            ClientSize = new Size(D, D);
-            double ratio = D / 300.0;
-            // Browser zoom level formula is [percentage] = 1.2 ^ [zoom level]
-            // So we reverse to get [zoom level] = Log[percentage] / Log[1.2]
-            double factor = Math.Log10(ratio) / Math.Log10(1.2);
-            GPMBrowser.SetZoomLevel(factor);
-        }
-
-        void gkh_KeyUp(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode.ToString())
-            {
-                case "MediaPlayPause":
-                    this.playPause();
-                    break;
-                case "MediaStop":
-                    this.playPause();
-                    break;
-                case "MediaNextTrack":
-                    this.nextTrack();
-                    break;
-                case "MediaPreviousTrack":
-                    this.prevTrack();
-                    break;
-            }
-            e.Handled = false;
-        }
-
-        void gkh_KeyDown(object sender, KeyEventArgs e)
-        {
-            e.Handled = false;
-        }
-
         public void fadeInOut(Func<int> call)
         {
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
@@ -298,6 +166,28 @@ namespace Google_Play_Music
             SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
         }
 
+        public Boolean handleZoom = false;
+
+        private void ResizeEnd_ZoomHandler(object sender, EventArgs e)
+        {
+            if (handleZoom)
+            {
+                setZoomRatio();
+            }
+        }
+
+        private void setZoomRatio()
+        {
+            // The mini player must always be a square
+            int D = Math.Max(ClientSize.Width, ClientSize.Height);
+            ClientSize = new Size(D, D);
+            double ratio = D / 300.0;
+            // Browser zoom level formula is [percentage] = 1.2 ^ [zoom level]
+            // So we reverse to get [zoom level] = Log[percentage] / Log[1.2]
+            double factor = Math.Log10(ratio) / Math.Log10(1.2);
+            GPMBrowser.SetZoomLevel(factor);
+        }
+
         private Point topLeft(Size currentSize, Screen s)
         {
             Point loc = s.WorkingArea.Location;
@@ -327,75 +217,6 @@ namespace Google_Play_Music
                 }
             }
             return false;
-        }
-
-        private Boolean mini = false;
-
-        public void restoreMaxiState()
-        {
-            mini = false;
-            // Maxi form settings
-            Padding = new Padding(2, 24, 2, 2);
-            if (GPMBrowser != null)
-            {
-                GPMBrowser.SetZoomLevel(0);
-            }
-            MaximumSize = new Size();
-            MaximizeBox = true;
-            handleZoom = false;
-            // Restore Maxi size and pos
-            Size savedSize = Properties.Settings.Default.MaxiSize;
-            Point savedPoint = Properties.Settings.Default.MaxiPoint;
-            if (savedSize.Height == -1 && savedSize.Width == -1)
-            {
-                savedSize = new Size(1080, 720);
-            }
-            savedPoint = (onScreen(savedPoint) ? savedPoint : new Point(-1, -1));
-            if (savedPoint.X == -1 && savedPoint.Y == -1)
-            {
-                savedPoint = topLeft(savedSize);
-            }
-            Location = savedPoint;
-            Size = savedSize;
-        }
-
-        public void restoreMiniState()
-        {
-            mini = true;
-            // Mini form settings
-            Padding = new Padding(2);
-            ClientSize = new Size(300, 300);
-            MaximizeBox = false;
-            MaximumSize = new Size(300, 300);
-            handleZoom = true;
-
-            // Restore Mini size and pos
-            Size savedSize = Properties.Settings.Default.MiniSize;
-            Point savedPoint = Properties.Settings.Default.MiniPoint;
-            savedPoint = (onScreen(savedPoint) ? savedPoint : new Point(-1, -1));
-            if (savedSize.Height == -1 && savedSize.Width == -1)
-            {
-                savedSize = new Size(300, 300);
-            }
-            if (savedPoint.X == -1 && savedPoint.Y == -1)
-            {
-                savedPoint = topLeft(savedSize);
-            }
-            Location = savedPoint;
-            Size = savedSize;
-            setZoomRatio();
-        }
-
-        public void saveMaxiState()
-        {
-            Properties.Settings.Default.MaxiSize = Size;
-            Properties.Settings.Default.MaxiPoint = Location;
-        }
-
-        public void saveMiniState()
-        {
-            Properties.Settings.Default.MiniSize = Size;
-            Properties.Settings.Default.MiniPoint = Location;
         }
     }
 }
