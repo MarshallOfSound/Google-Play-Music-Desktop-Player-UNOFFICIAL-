@@ -11,7 +11,7 @@ namespace Google_Play_Music
     public partial class CoreMusicApp : MaterialForm
     {
 
-        private const string CURRENT_VERSION = "1.5.1";
+        private const string CURRENT_VERSION = "1.5.0";
         private MaterialSkinManager skin;
 
         public CoreMusicApp()
