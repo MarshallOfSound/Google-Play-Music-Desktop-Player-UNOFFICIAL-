@@ -16,7 +16,10 @@ namespace Google_Play_Music
             mainForm.FormClosing += (o, e) =>
             {
                 try {
-                    alert.currentStep = 99999;
+                    if (alert != null)
+                    {
+                        alert.currentStep = 99999;
+                    }
                 } catch (Exception)
                 {
                     // Just ignore it
