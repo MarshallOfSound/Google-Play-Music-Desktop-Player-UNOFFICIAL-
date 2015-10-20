@@ -316,6 +316,19 @@ namespace Google_Play_Music
             return topLeft(Size, Screen.PrimaryScreen);
         }
 
+        private Boolean onScreen(Point p)
+        {
+            Screen[] screens = Screen.AllScreens;
+            foreach (Screen screen in screens)
+            {
+                if (screen.WorkingArea.Contains(p))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private Boolean mini = false;
 
         public void restoreMaxiState()
@@ -337,6 +350,7 @@ namespace Google_Play_Music
             {
                 savedSize = new Size(1080, 720);
             }
+            savedPoint = (onScreen(savedPoint) ? savedPoint : new Point(-1, -1));
             if (savedPoint.X == -1 && savedPoint.Y == -1)
             {
                 savedPoint = topLeft(savedSize);
@@ -358,6 +372,7 @@ namespace Google_Play_Music
             // Restore Mini size and pos
             Size savedSize = Properties.Settings.Default.MiniSize;
             Point savedPoint = Properties.Settings.Default.MiniPoint;
+            savedPoint = (onScreen(savedPoint) ? savedPoint : new Point(-1, -1));
             if (savedSize.Height == -1 && savedSize.Width == -1)
             {
                 savedSize = new Size(300, 300);
