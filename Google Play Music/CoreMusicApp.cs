@@ -25,9 +25,9 @@ namespace Google_Play_Music
         {
             InitializeForm();
 
-            this.Size = new Size(1080, 720);
-            this.Icon = Properties.Resources.MainIcon;
-            this.Text = "Google Music Player";
+            Size = new Size(1080, 720);
+            Icon = Properties.Resources.MainIcon;
+            Text = "Google Music Player";
             StartPosition = FormStartPosition.Manual;
             reposition();
             Padding = new Padding(2, 24, 2, 2);
