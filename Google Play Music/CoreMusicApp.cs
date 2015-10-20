@@ -23,24 +23,45 @@ namespace Google_Play_Music
 
         public CoreMusicApp()
         {
-            InitializeForm();
-
-            Size = new Size(1080, 720);
             Icon = Properties.Resources.MainIcon;
             Text = "Google Music Player";
             StartPosition = FormStartPosition.Manual;
-            reposition();
-            Padding = new Padding(2, 24, 2, 2);
             BackColor = Color.Black;
             // Stop the form disapearing
             MinimumSize = new Size(100, 100);
 
             skin = MaterialSkinManager.Instance;
             skin.AddFormToManage(this);
-            lightTheme();
+            if (Properties.Settings.Default.CustomTheme)
+            {
+                darkTheme();
+            }
+            else
+            {
+                lightTheme();
+            }
 
             // Handle smaller mini player by changing the browser zoom level
             ResizeEnd += new EventHandler(ResizeEnd_ZoomHandler);
+
+            // Initially go to Maxi
+            restoreMaxiState();
+
+            // Setup the Web Browser
+            InitializeForm();
+
+            // Don't forget to save all our settings
+            FormClosed += (send, ev) =>
+            {
+                if (mini)
+                {
+                    saveMiniState();
+                } else
+                {
+                    saveMaxiState();
+                }
+                Properties.Settings.Default.Save();
+            };
 
 
             // Check for updates on the Github Release API
@@ -86,12 +107,14 @@ namespace Google_Play_Music
 
         public void lightTheme()
         {
+            Properties.Settings.Default.CustomTheme = false;
             skin.Theme = MaterialSkinManager.Themes.LIGHT;
             skin.ColorScheme = new ColorScheme(Primary.Orange800, Primary.Orange800, Primary.Orange800, Accent.Lime700, TextShade.WHITE);
         }
 
         public void darkTheme()
         {
+            Properties.Settings.Default.CustomTheme = true;
             skin.Theme = MaterialSkinManager.Themes.DARK;
             skin.ColorScheme = new ColorScheme((Primary)0x444444, (Primary)0x444444, (Primary)0x444444, Accent.Lime700, TextShade.BLACK);
         }
@@ -189,15 +212,20 @@ namespace Google_Play_Music
         {
             if (handleZoom)
             {
-                // The mini player must always be a square
-                int D = Math.Max(ClientSize.Width, ClientSize.Height);
-                ClientSize = new Size(D, D);
-                double ratio = D / 300.0;
-                // Browser zoom level formula is [percentage] = 1.2 ^ [zoom level]
-                // So we reverse to get [zoom level] = Log[percentage] / Log[1.2]
-                double factor = Math.Log10(ratio) / Math.Log10(1.2);
-                webBrowser1.SetZoomLevel(factor);
+                setZoomRatio();
             }
+        }
+
+        private void setZoomRatio()
+        {
+            // The mini player must always be a square
+            int D = Math.Max(ClientSize.Width, ClientSize.Height);
+            ClientSize = new Size(D, D);
+            double ratio = D / 300.0;
+            // Browser zoom level formula is [percentage] = 1.2 ^ [zoom level]
+            // So we reverse to get [zoom level] = Log[percentage] / Log[1.2]
+            double factor = Math.Log10(ratio) / Math.Log10(1.2);
+            webBrowser1.SetZoomLevel(factor);
         }
 
         void gkh_KeyUp(object sender, KeyEventArgs e)
@@ -231,7 +259,7 @@ namespace Google_Play_Music
             timer.Interval = 2;
             int currentStep = 0;
             int fadeSteps = 20;
-            int totalSteps = fadeSteps * 2 + 12;
+            int totalSteps = fadeSteps * 2 + 16;
             Boolean runTick = true;
             timer.Tick += (arg1, arg2) =>
             {
@@ -270,17 +298,89 @@ namespace Google_Play_Music
             SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
         }
 
-        public void reposition()
-        {
-            reposition(Screen.PrimaryScreen);
-        }
-
-        public void reposition(Screen s)
+        private Point topLeft(Size currentSize, Screen s)
         {
             Point loc = s.WorkingArea.Location;
-            int X = (s.WorkingArea.Width / 2) - (Size.Width / 2) + loc.X;
-            int Y = (s.WorkingArea.Height / 2) - (Size.Height / 2) + loc.Y;
-            Location = new Point((X > 0 ? X : 0), (Y > 0 ? Y : 0));
+            int X = (s.WorkingArea.Width / 2) - (currentSize.Width / 2) + loc.X;
+            int Y = (s.WorkingArea.Height / 2) - (currentSize.Height / 2) + loc.Y;
+            return new Point((X > 0 ? X : 0), (Y > 0 ? Y : 0));
+        }
+
+        private Point topLeft(Size currentSize)
+        {
+            return topLeft(currentSize, Screen.PrimaryScreen);
+        }
+
+        private Point topleft()
+        {
+            return topLeft(Size, Screen.PrimaryScreen);
+        }
+
+        private Boolean mini = false;
+
+        public void restoreMaxiState()
+        {
+            mini = false;
+            // Maxi form settings
+            Padding = new Padding(2, 24, 2, 2);
+            if (webBrowser1 != null)
+            {
+                webBrowser1.SetZoomLevel(0);
+            }
+            MaximumSize = new Size();
+            MaximizeBox = true;
+            handleZoom = false;
+            // Restore Maxi size and pos
+            Size savedSize = Properties.Settings.Default.MaxiSize;
+            Point savedPoint = Properties.Settings.Default.MaxiPoint;
+            if (savedSize.Height == -1 && savedSize.Width == -1)
+            {
+                savedSize = new Size(1080, 720);
+            }
+            if (savedPoint.X == -1 && savedPoint.Y == -1)
+            {
+                savedPoint = topLeft(savedSize);
+            }
+            Location = savedPoint;
+            Size = savedSize;
+        }
+
+        public void restoreMiniState()
+        {
+            mini = true;
+            // Mini form settings
+            Padding = new Padding(2);
+            ClientSize = new Size(300, 300);
+            MaximizeBox = false;
+            MaximumSize = new Size(300, 300);
+            handleZoom = true;
+
+            // Restore Mini size and pos
+            Size savedSize = Properties.Settings.Default.MiniSize;
+            Point savedPoint = Properties.Settings.Default.MiniPoint;
+            if (savedSize.Height == -1 && savedSize.Width == -1)
+            {
+                savedSize = new Size(300, 300);
+            }
+            if (savedPoint.X == -1 && savedPoint.Y == -1)
+            {
+                savedPoint = topLeft(savedSize);
+            }
+            Location = savedPoint;
+            Size = savedSize;
+            setZoomRatio();
+        }
+
+        public void saveMaxiState()
+        {
+            Properties.Settings.Default.MaxiSize = Size;
+            Properties.Settings.Default.MaxiPoint = Location;
+        }
+
+        public void saveMiniState()
+        {
+            Properties.Settings.Default.MiniSize = Size;
+            Properties.Settings.Default.MiniPoint = Location;
         }
     }
 }

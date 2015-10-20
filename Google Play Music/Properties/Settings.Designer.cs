@@ -22,5 +22,65 @@ namespace Google_Play_Music.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1, -1")]
+        public global::System.Drawing.Size MaxiSize {
+            get {
+                return ((global::System.Drawing.Size)(this["MaxiSize"]));
+            }
+            set {
+                this["MaxiSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1, -1")]
+        public global::System.Drawing.Point MaxiPoint {
+            get {
+                return ((global::System.Drawing.Point)(this["MaxiPoint"]));
+            }
+            set {
+                this["MaxiPoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1, -1")]
+        public global::System.Drawing.Size MiniSize {
+            get {
+                return ((global::System.Drawing.Size)(this["MiniSize"]));
+            }
+            set {
+                this["MiniSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1, -1")]
+        public global::System.Drawing.Point MiniPoint {
+            get {
+                return ((global::System.Drawing.Point)(this["MiniPoint"]));
+            }
+            set {
+                this["MiniPoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CustomTheme {
+            get {
+                return ((bool)(this["CustomTheme"]));
+            }
+            set {
+                this["CustomTheme"] = value;
+            }
+        }
     }
 }

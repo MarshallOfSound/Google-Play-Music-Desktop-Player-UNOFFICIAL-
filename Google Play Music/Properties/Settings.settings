@@ -1,7 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Google_Play_Music.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MaxiSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">-1, -1</Value>
+    </Setting>
+    <Setting Name="MaxiPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-1, -1</Value>
+    </Setting>
+    <Setting Name="MiniSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">-1, -1</Value>
+    </Setting>
+    <Setting Name="MiniPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-1, -1</Value>
+    </Setting>
+    <Setting Name="CustomTheme" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
