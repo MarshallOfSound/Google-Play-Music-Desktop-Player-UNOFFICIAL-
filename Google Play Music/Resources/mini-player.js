@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	setStyle('body[ready]:hover #player', ['bottom: 10px']);
 	setStyle('body[ready]:hover #mini-info', ['opacity: 1']);
 	setStyle('#material-player-left-wrapper, #material-player-right-wrapper', ['display: none']);
-	setStyle('#mini-album', ['position: fixed', 'top: 0', 'left: 0', 'display: block', 'width: 300px', 'height: 300px', 'z-index: 9999998']);
+	setStyle('#mini-album', ['position: fixed', 'top: 0', 'left: 0', 'display: block', 'width: 100%', 'height: 100%', 'z-index: 9999998']);
 	setStyle('.player-progress-wrapper', ['left: 0']);
 	setStyle('.material-player-middle', ['margin: 0px auto']);
 	setStyle('::shadow [aria-label="play-circle-fill"], ::shadow [aria-label="pause-circle-fill"]', ['height: 50px', 'width: 50px', 'top: -8px']);

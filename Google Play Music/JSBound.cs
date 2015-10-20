@@ -64,8 +64,10 @@ namespace Google_Play_Music
                     mainForm.ClientSize = new Size(300, 300);
                     mainForm.MaximizeBox = false;
                     mainForm.reposition(Screen.FromControl(mainForm));
+                    mainForm.MaximumSize = new Size(300, 300);
                     var task = mainForm.webBrowser1.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', 'mini');");
                     task.Wait();
+                    mainForm.handleZoom = true;
                     return 1;
                 });
             });
@@ -77,12 +79,15 @@ namespace Google_Play_Music
             {
                 mainForm.fadeInOut(() =>
                 {
+                    mainForm.webBrowser1.SetZoomLevel(0);
+                    mainForm.MaximumSize = new Size();
                     mainForm.ClientSize = size;
                     mainForm.Padding = new Padding(2, 24, 2, 2);
                     mainForm.MaximizeBox = true;
                     mainForm.reposition(Screen.FromControl(mainForm));
                     var task = mainForm.webBrowser1.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', '');");
                     task.Wait();
+                    mainForm.handleZoom = false;
                     return 1;
                 });
             });

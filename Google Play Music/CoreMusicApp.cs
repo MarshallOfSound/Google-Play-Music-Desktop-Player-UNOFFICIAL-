@@ -32,10 +32,15 @@ namespace Google_Play_Music
             reposition();
             Padding = new Padding(2, 24, 2, 2);
             BackColor = Color.Black;
+            // Stop the form disapearing
+            MinimumSize = new Size(100, 100);
 
             skin = MaterialSkinManager.Instance;
             skin.AddFormToManage(this);
             lightTheme();
+
+            // Handle smaller mini player by changing the browser zoom level
+            ResizeEnd += new EventHandler(ResizeEnd_ZoomHandler);
 
 
             // Check for updates on the Github Release API
@@ -178,16 +183,20 @@ namespace Google_Play_Music
             gkh.KeyUp += new KeyEventHandler(gkh_KeyUp);
         }
 
-        private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        public Boolean handleZoom = false;
+
+        private void ResizeEnd_ZoomHandler(object sender, EventArgs e)
         {
-            try {
-                // Make sure we unhook once the form closes
-                if (gkh != null)
-                {
-                    gkh.unhook();
-                }
-            } catch (Exception) {
-                // Do nothing
+            if (handleZoom)
+            {
+                // The mini player must always be a square
+                int D = Math.Max(ClientSize.Width, ClientSize.Height);
+                ClientSize = new Size(D, D);
+                double ratio = D / 300.0;
+                // Browser zoom level formula is [percentage] = 1.2 ^ [zoom level]
+                // So we reverse to get [zoom level] = Log[percentage] / Log[1.2]
+                double factor = Math.Log10(ratio) / Math.Log10(1.2);
+                webBrowser1.SetZoomLevel(factor);
             }
         }
 
