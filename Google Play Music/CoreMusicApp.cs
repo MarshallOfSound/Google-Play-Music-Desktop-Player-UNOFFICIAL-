@@ -10,13 +10,16 @@ using System.IO;
 using System.Threading;
 using Newtonsoft.Json;
 using System.Runtime.InteropServices;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace Google_Play_Music
 {
-    public partial class CoreMusicApp : Form
+    public partial class CoreMusicApp : MaterialForm
     {
 
         private const string CURRENT_VERSION = "1.5.0";
+        private MaterialSkinManager skin;
 
         public CoreMusicApp()
         {
@@ -27,8 +30,12 @@ namespace Google_Play_Music
             this.Text = "Google Music Player";
             StartPosition = FormStartPosition.Manual;
             reposition();
-            Padding = new Padding(0);
+            Padding = new Padding(2, 24, 2, 2);
             BackColor = Color.Black;
+
+            skin = MaterialSkinManager.Instance;
+            skin.AddFormToManage(this);
+            lightTheme();
 
 
             // Check for updates on the Github Release API
@@ -70,6 +77,18 @@ namespace Google_Play_Music
             {
                 // Something went wrong while fetching from the GitHub API
             }
+        }
+
+        public void lightTheme()
+        {
+            skin.Theme = MaterialSkinManager.Themes.LIGHT;
+            skin.ColorScheme = new ColorScheme(Primary.Orange800, Primary.Orange800, Primary.Orange800, Accent.Lime700, TextShade.WHITE);
+        }
+
+        public void darkTheme()
+        {
+            skin.Theme = MaterialSkinManager.Themes.DARK;
+            skin.ColorScheme = new ColorScheme((Primary)0x444444, (Primary)0x444444, (Primary)0x444444, Accent.Lime700, TextShade.BLACK);
         }
 
         // Media Functions
@@ -233,14 +252,6 @@ namespace Google_Play_Music
             };
             timer.Start();
         }
-
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
 
         public void dragStart()
         {

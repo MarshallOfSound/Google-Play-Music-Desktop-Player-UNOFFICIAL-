@@ -40,6 +40,11 @@ Contributing
 If you find something wrong (theming issues, app crashes) please report them as an issue.  
 If you think you can add something cool or fix a problem, fork the repo and make a pull request :D
 
+Credit
+-----------
+
+IgnaceMaes for the Material Skin used in this project --> [Check it out here](https://github.com/IgnaceMaes/MaterialSkin)
+
 License
 -------
 

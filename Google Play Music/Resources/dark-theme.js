@@ -119,6 +119,7 @@ BlackTheme = function () {
 }
 
 window['turnOnCustom'] = function (self) {
+    csharpinterface.darkTheme();
     var old = document.body.className;
     if (old.split('custom').length === 1) {
         document.body.className = document.body.className + ' custom';
@@ -130,6 +131,7 @@ window['turnOnCustom'] = function (self) {
 }
 
 window['turnOffCustom'] = function (self) {
+    csharpinterface.lightTheme();
     document.body.className = document.body.className.toString().replace(/ ?custom/g, '');
     localStorage.setItem("custom-theme", "false");
     if (self !== null) {
@@ -141,5 +143,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     BlackTheme();
     if (localStorage.getItem("custom-theme") === "true") {
         window.turnOnCustom(null);
+    } else {
+        window.turnOffCustom(null);
     }
 });
