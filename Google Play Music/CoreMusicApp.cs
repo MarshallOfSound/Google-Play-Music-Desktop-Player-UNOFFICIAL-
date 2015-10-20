@@ -122,17 +122,17 @@ namespace Google_Play_Music
         // Media Functions
         private void playPause()
         {
-            webBrowser1.EvaluateScriptAsync("(function() {document.querySelectorAll('[data-id=play-pause]')[0].click()})()");
+            GPMBrowser.EvaluateScriptAsync("(function() {document.querySelectorAll('[data-id=play-pause]')[0].click()})()");
         }
 
         private void prevTrack()
         {
-            webBrowser1.EvaluateScriptAsync("(function() {document.querySelectorAll('[data-id=rewind]')[0].click()})()");
+            GPMBrowser.EvaluateScriptAsync("(function() {document.querySelectorAll('[data-id=rewind]')[0].click()})()");
         }
 
         private void nextTrack()
         {
-            webBrowser1.EvaluateScriptAsync("(function() {document.querySelectorAll('[data-id=forward]')[0].click()})()");
+            GPMBrowser.EvaluateScriptAsync("(function() {document.querySelectorAll('[data-id=forward]')[0].click()})()");
         }
 
         // Task Bar Media Controls
@@ -166,7 +166,7 @@ namespace Google_Play_Music
         }
 
         // CefSharp configuration
-        public CefSharp.WinForms.ChromiumWebBrowser webBrowser1;
+        public CefSharp.WinForms.ChromiumWebBrowser GPMBrowser;
         private static globalKeyboardHook gkh;
 
         private void InitializeForm()
@@ -179,18 +179,18 @@ namespace Google_Play_Music
             settings.CefCommandLineArgs.Add("enable-npapi", "1");
             Cef.Initialize(settings);
 
-            webBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser("http://play.google.com/music/listen")
+            GPMBrowser = new CefSharp.WinForms.ChromiumWebBrowser("http://play.google.com/music/listen")
             {
                 // Use this to inject our theming and modding javascript code
                 ResourceHandlerFactory = new GPMResouceHandlerFactory(),
                 // Stop that silly right click menu appearing
                 MenuHandler = new GPMMenuHandler()
             };
-            webBrowser1.RegisterAsyncJsObject("csharpinterface", new JSBound(this));
+            GPMBrowser.RegisterAsyncJsObject("csharpinterface", new JSBound(this));
 
-            webBrowser1.Dock = DockStyle.Fill;
+            GPMBrowser.Dock = DockStyle.Fill;
 
-            Controls.Add(webBrowser1);
+            Controls.Add(GPMBrowser);
 
             gkh = new globalKeyboardHook();
 
@@ -225,7 +225,7 @@ namespace Google_Play_Music
             // Browser zoom level formula is [percentage] = 1.2 ^ [zoom level]
             // So we reverse to get [zoom level] = Log[percentage] / Log[1.2]
             double factor = Math.Log10(ratio) / Math.Log10(1.2);
-            webBrowser1.SetZoomLevel(factor);
+            GPMBrowser.SetZoomLevel(factor);
         }
 
         void gkh_KeyUp(object sender, KeyEventArgs e)
@@ -336,9 +336,9 @@ namespace Google_Play_Music
             mini = false;
             // Maxi form settings
             Padding = new Padding(2, 24, 2, 2);
-            if (webBrowser1 != null)
+            if (GPMBrowser != null)
             {
-                webBrowser1.SetZoomLevel(0);
+                GPMBrowser.SetZoomLevel(0);
             }
             MaximumSize = new Size();
             MaximizeBox = true;

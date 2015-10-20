@@ -59,7 +59,7 @@ namespace Google_Play_Music
                 {
                     mainForm.saveMaxiState();
                     mainForm.restoreMiniState();
-                    var task = mainForm.webBrowser1.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', 'mini');");
+                    var task = mainForm.GPMBrowser.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', 'mini');");
                     task.Wait();
                     return 1;
                 });
@@ -74,7 +74,7 @@ namespace Google_Play_Music
                 {
                     mainForm.saveMiniState();
                     mainForm.restoreMaxiState();
-                    var task = mainForm.webBrowser1.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', '');");
+                    var task = mainForm.GPMBrowser.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', '');");
                     task.Wait();
                     return 1;
                 });
