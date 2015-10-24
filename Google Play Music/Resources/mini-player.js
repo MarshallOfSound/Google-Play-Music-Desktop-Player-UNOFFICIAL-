@@ -110,6 +110,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		window.miniState = !window.miniState;
 	};
 
+    // Scroll to change volume when in mini state
+	window.addEventListener('mousewheel', function (e) {
+	    if (window.miniState) {
+	        var slider = document.getElementById('material-vslider');
+	        if (e.wheelDelta < 0) {
+	            slider.decrement();
+	        } else {
+	            slider.increment();
+	        }
+	    }
+	});
+
     // Rely on the ready attribute because when the window is resized CEF does not check the hover state
 	document.body.addEventListener('mouseover', function () {
 	    document.body.setAttribute('ready', 'ready');
