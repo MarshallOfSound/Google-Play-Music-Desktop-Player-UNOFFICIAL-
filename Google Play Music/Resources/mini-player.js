@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	art.setAttribute('style', 'display: none');
     // If the album art load ever fails, use the placeholder
 	art.addEventListener('error', function (e) { e.target.src = "https://www.samuelattard.com/img/gpm_placeholder.jpg" });
+	art.addEventListener('mousedown', function (e) { e.preventDefault(); });
 	document.body.appendChild(art);
 
 	var addTimeSpans = setInterval(function() {
@@ -141,5 +142,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		csharpinterface.goBig();
 	};
 
-	document.addEventListener('mousedown', function(e) { if (window.miniState && e.clientY <= 210) {csharpinterface.dragStart(); e.preventDefault(); return false;}});
+	document.addEventListener('mousedown', function (e) { if (window.miniState && e.clientY <= 210) { csharpinterface.dragStart(); e.preventDefault(); e.stopPropagation(); return false;}});
 });
