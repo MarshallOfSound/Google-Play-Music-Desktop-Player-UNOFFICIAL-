@@ -19,6 +19,8 @@ namespace Google_Play_Music
                 GPMBrowser.SetZoomLevel(0);
             }
             MaximumSize = new Size();
+            // Force it to be always bigger than the mini player
+            MinimumSize = new Size(301, 301);
             MaximizeBox = true;
             handleZoom = false;
             // Restore Maxi size and pos
@@ -45,6 +47,7 @@ namespace Google_Play_Music
             ClientSize = new Size(300, 300);
             MaximizeBox = false;
             MaximumSize = new Size(300, 300);
+            MinimumSize = new Size(100, 100);
             handleZoom = true;
 
             // Restore Mini size and pos
