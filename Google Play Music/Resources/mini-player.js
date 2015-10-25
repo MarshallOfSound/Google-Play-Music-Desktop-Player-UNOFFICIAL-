@@ -103,13 +103,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	});
 
 	window.miniState = false;
-	window.toggleMini = function() {
-		if (window.miniState) {
-			window.goBig();
-		} else {
-			window.goMini();
-		}
-		window.miniState = !window.miniState;
+	window.miniButton = true;
+	window.toggleMini = function () {
+	    if (window.miniButton) {
+	        if (window.miniState) {
+	            window.goBig();
+	        } else {
+	            window.goMini();
+	        }
+	        window.miniState = !window.miniState;
+	        window.miniButton = false;
+	    }
 	};
 
     // Scroll to change volume when in mini state
