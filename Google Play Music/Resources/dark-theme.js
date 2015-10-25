@@ -92,6 +92,7 @@ BlackTheme = function () {
     setStyle('.upload-dialog-content', ['background-color: {{BACK_SECONDARY}}']);
     setStyle('.upload-dialog-description', ['color: {{FORE_PRIMARY}}']);
     setStyle('.material .song-row:hover [data-col="index"] .hover-button[data-id="play"]', ['background-color: {{BACK_HIGHLIGHT}}'])
+    setStyle('.goog-menuheader', ['color: {{FORE_PRIMARY}}']);
     // Accents
     setStyle('.material-container-details sj-fab, #current-loading-progress', ['background-color: {{FORE_SECONDARY}}']);
     setStyle('#player.material .material-player-middle sj-icon-button[data-id="play-pause"]:not([disabled])', ['color: {{FORE_SECONDARY}}']);
@@ -114,6 +115,11 @@ BlackTheme = function () {
     setStyle('.material .song-row:hover [data-col="track"] .hover-button[data-id="play"]', ['background-color: {{BACK_HIGHLIGHT}}']);
 	setStyle('.rating-container li', ['-webkit-filter: invert(1)']);
 	setStyle('#player.material .material-player-middle sj-icon-button[data-id="repeat"][value="LIST_REPEAT"], #player.material .material-player-middle sj-icon-button[data-id="repeat"][value="SINGLE_REPEAT"], #player.material .material-player-middle sj-icon-button[data-id="shuffle"][value="ALL_SHUFFLE"], #player.material .material-player-middle paper-icon-button[data-id="repeat"][value="LIST_REPEAT"], #player.material .material-player-middle paper-icon-button[data-id="repeat"][value="SINGLE_REPEAT"], #player.material .material-player-middle paper-icon-button[data-id="shuffle"][value="ALL_SHUFFLE"]', ['color: {{FORE_SECONDARY}}']);
+	setStyle('.cluster .lane-button core-icon, .cluster .lane-button iron-icon, #player.material #material-player-right-wrapper sj-icon-button[data-id="queue"].opened', ['color: {{FORE_SECONDARY}}']);
+	setStyle('.song-row .explicit, .material-card .explicit', ['background-color: {{FORE_SECONDARY}}']);
+	setStyle('.material-detail-view .material-container-details .read-more-button', ['color: {{FORE_SECONDARY}}']);
+	setStyle('paper-dialog', ['background: {{BACK_SECONDARY}}', 'color: {{FORE_PRIMARY}}']);
+	setStyle('.nav-toolbar .menu-logo', ['-webkit-filter: hue-rotate(90deg)']);
 
     flushStyles();
 }
