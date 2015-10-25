@@ -53,6 +53,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	art.id = "mini-album";
 	art.src = "https://www.samuelattard.com/img/gpm_placeholder.jpg";
 	art.setAttribute('style', 'display: none');
+    // If the album art load ever fails, use the placeholder
+	art.addEventListener('error', function (e) { e.target.src = "https://www.samuelattard.com/img/gpm_placeholder.jpg" });
 	document.body.appendChild(art);
 
 	var addTimeSpans = setInterval(function() {
