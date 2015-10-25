@@ -19,9 +19,12 @@ namespace Google_Play_Music
             {
                 components.Dispose();
             }
-            nextTrackButton.Dispose();
-            playPauseButton.Dispose();
-            prevTrackButton.Dispose();
+            if (playPauseButton != null)
+            {
+                nextTrackButton.Dispose();
+                playPauseButton.Dispose();
+                prevTrackButton.Dispose();
+            }
             base.Dispose(disposing);
         }
 
