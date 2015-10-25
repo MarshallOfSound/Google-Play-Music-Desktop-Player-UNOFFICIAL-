@@ -29,10 +29,13 @@ namespace Google_Play_Music
                 dynamic JSON = JsonConvert.DeserializeObject(strRead.ReadToEnd());
                 string version = JSON[0].tag_name;
                 string downloadURL = JSON[0].assets[0].browser_download_url;
+                string changeLog = JSON[0].body;
                 // If the newest version is not the current version there must be an update available
                 if (version != CURRENT_VERSION)
                 {
-                    var result = MessageBox.Show("There is an update available for this player, do you want to download it now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    UpdateDialog dialog = new UpdateDialog(changeLog, CURRENT_VERSION, version);
+                    var result = dialog.ShowDialog(this);
+                    dialog.Dispose();
                     if (result == DialogResult.Yes)
                     {
                         // Download the Resource URL from the GitHub API

@@ -172,6 +172,9 @@
     <Compile Include="SongAlert.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UpdateDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="CoreMusicApp.resx">
       <DependentUpon>CoreMusicApp.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,6 +182,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateDialog.resx">
+      <DependentUpon>UpdateDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Google Play Music_TemporaryKey.pfx" />
     <None Include="packages.config">

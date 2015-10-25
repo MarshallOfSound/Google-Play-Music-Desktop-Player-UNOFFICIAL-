@@ -108,7 +108,7 @@ namespace MaterialSkin
         private static readonly Brush CMS_BACKGROUND_HOVER_DARK_BRUSH = new SolidBrush(CMS_BACKGROUND_DARK_HOVER);
 
         //Application background
-        private static readonly Color BACKGROUND_LIGHT = Color.FromArgb(255, 239, 108, 0);
+        public static Color BACKGROUND_LIGHT = Color.FromArgb(255, 239, 108, 0);
         private static Brush BACKGROUND_LIGHT_BRUSH = new SolidBrush(BACKGROUND_LIGHT);
 
         private static readonly Color BACKGROUND_DARK = Color.FromArgb(255, 51, 51, 51);
