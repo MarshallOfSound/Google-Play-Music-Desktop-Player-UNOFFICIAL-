@@ -72,7 +72,7 @@ namespace Google_Play_Music
         {
             Properties.Settings.Default.CustomTheme = true;
             skin.Theme = MaterialSkinManager.Themes.DARK;
-            skin.ColorScheme = new ColorScheme((Primary)0x444444, (Primary)0x444444, (Primary)0x444444, Accent.Lime700, TextShade.BLACK);
+            skin.ColorScheme = new ColorScheme((Primary)0x444444, (Primary)0x444444, (Primary)0x444444, Accent.Lime700, TextShade.WHITE);
         }
 
         // Media Functions
