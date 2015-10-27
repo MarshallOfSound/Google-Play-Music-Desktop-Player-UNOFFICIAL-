@@ -37,6 +37,19 @@ namespace Google_Play_Music
             SetTopLevel(true);
             InitializeComponent();
 
+            // Click hooks
+            this.notNowButton.MouseClick += async (res, send) =>
+            {
+                await TaskEx.Delay(400);
+                Close();
+            };
+            this.updateButton.MouseClick += async (res, send) =>
+            {
+                DialogResult = DialogResult.Yes;
+                await TaskEx.Delay(400);
+                Close();
+            };
+
             // Calculate how big the change log is
             string[] lines = changeLog.Split(new string[] { "\n" }, StringSplitOptions.None);
             int drawnLines = 0;
@@ -84,11 +97,6 @@ namespace Google_Play_Music
             this.notNowButton.TabIndex = 0;
             this.notNowButton.Text = "Not Now";
             this.notNowButton.UseVisualStyleBackColor = true;
-            this.notNowButton.MouseClick += async (res, send) =>
-            {
-                await Task.Delay(400);
-                Close();
-            };
             // 
             // updateButton
             // 
@@ -101,12 +109,6 @@ namespace Google_Play_Music
             this.updateButton.TabIndex = 1;
             this.updateButton.Text = "Update";
             this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.MouseClick += async (res, send) =>
-            {
-                DialogResult = DialogResult.Yes;
-                await Task.Delay(400);
-                Close();
-            };
             // 
             // changeLogText
             // 
