@@ -1,7 +1,7 @@
 Google Play Music™ Desktop Player
 =========================
 
-![](https://www.samuelattard.com/files/gpmdp_screen.png)
+![](https://www.samuel.ninja/img/gpmdp_screen.gif)
 
 Run Google Play Music as a stand alone Windows Desktop app.  Never again will you have to hunt through your tabs to pause your music, or stop listening to your favourite song because Chrome is guzzling up all your RAM..
 
