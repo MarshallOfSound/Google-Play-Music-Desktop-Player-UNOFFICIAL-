@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Google_Play_Music
@@ -59,8 +60,8 @@ namespace Google_Play_Music
                 {
                     mainForm.saveMaxiState();
                     mainForm.restoreMiniState();
-                    var task = mainForm.GPMBrowser.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', 'mini'); window.miniButton = true;");
-                    task.Wait();
+                    mainForm.GPMBrowser.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', 'mini'); window.miniButton = true;");
+                    Task.Delay(400).Wait();
                     return 1;
                 });
             });
@@ -74,8 +75,8 @@ namespace Google_Play_Music
                 {
                     mainForm.saveMiniState();
                     mainForm.restoreMaxiState();
-                    var task = mainForm.GPMBrowser.EvaluateScriptAsync("window.origHeight = document.body.clientHeight; document.querySelectorAll('html')[0].setAttribute('class', ''); window.miniButton = true; document.body.offsetHeight; document.body.offsetHeight; window.checkHeight = setInterval(function() {console.log('check'); if (window.origHeight < document.body.clientHeight) { clearInterval(window.checkHeight); for (var k = 0; k < 30; k++) { window.dispatchEvent(new Event('resize')); }}}, 10)");
-                    task.Wait();
+                    mainForm.GPMBrowser.EvaluateScriptAsync("window.origHeight = document.body.clientHeight; document.querySelectorAll('html')[0].setAttribute('class', ''); window.miniButton = true; document.body.offsetHeight; document.body.offsetHeight; window.checkHeight = setInterval(function() {console.log('check'); if (window.origHeight < document.body.clientHeight) { clearInterval(window.checkHeight); for (var k = 0; k < 30; k++) { window.dispatchEvent(new Event('resize')); }}}, 10)");
+                    Task.Delay(400).Wait();
                     return 1;
                 });
             });
