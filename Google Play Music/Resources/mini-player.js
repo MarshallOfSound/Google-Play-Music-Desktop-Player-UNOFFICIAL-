@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-	GLOBAL_STYLES = "<style>";
+	GLOBAL_STYLES = "";
 
-	setStyle = function (selector, style, prefix) {
+	var setStyle = function (selector, style, prefix) {
 		if (typeof prefix === 'undefined') {
 			prefix = true;
 		}
@@ -25,13 +25,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	setStyle('#mini-album', ['position: fixed', 'top: 0', 'left: 0', 'display: block', 'width: 100%', 'height: 100%', 'z-index: 9999998']);
 	setStyle('.player-progress-wrapper', ['left: 0']);
 	setStyle('.material-player-middle', ['margin: 0px auto']);
-	setStyle('::shadow [aria-label="play-circle-fill"], ::shadow [aria-label="pause-circle-fill"]', ['height: 50px', 'width: 50px', 'top: -8px']);
+	setStyle('#player.material .material-player-middle sj-icon-button[data-id="play-pause"] core-icon, #player.material .material-player-middle paper-icon-button[data-id="play-pause"] iron-icon', ['height: 50px', 'width: 50px', 'top: -8px']);
 	setStyle('[data-id=play-pause]::shadow paper-ripple.circle', ['height: 50px', 'width: 50px', 'margin-left: 6px', 'margin-top: -2px']);
 	setStyle('[data-id=forward], [data-id=rewind], [data-id=repeat], [data-id=shuffle]', ['top: -8px']);
 	setStyle('[data-id=shuffle]', ['left: -8px']);
 	setStyle('[data-id=repeat]', ['left: 8px']);
 	setStyle('[data-id=show-miniplayer-dp]', ['color: #9e9e9e', 'position: absolute', 'top: auto', 'bottom: 0', 'right: 0', 'margin: 0'], false);
-	setStyle('#player sj-icon-button[data-id="show-miniplayer-dp"]::shadow core-icon', ['width: 16px', 'height: 16px'], false)
+	setStyle('#player paper-icon-button[data-id="show-miniplayer-dp"] iron-icon', ['width: 16px', 'height: 16px'], false)
 	setStyle('#current-track-prog-mini', ['position: absolute', 'top: 8px', 'left: 6px', 'font-size: 11px', 'display: block']);
 	setStyle('#end-track-prog-mini', ['position: absolute', 'top: 8px', 'right: 6px', 'font-size: 11px', 'display: block']);
 	setStyle('::shadow #mainContainer', ['overflow: hidden']);
@@ -42,7 +42,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	setStyle('#mini-info span', ['color: #EEE', 'display: block', 'font-size: 20px', 'padding: 4px 12px', 'cursor: default']);
 	setStyle('#mini-info span:last-child', ['font-size: 16px', 'height: 18px', 'overflow: hidden']);
 
-	document.body.innerHTML += GLOBAL_STYLES + "</style>";
+	var newStyle = document.createElement("style");
+	newStyle.innerHTML = GLOBAL_STYLES;
+	document.body.appendChild(newStyle);
 	var info = document.createElement('div');
 	info.id = "mini-info";
 	info.setAttribute('style', 'display: none');
@@ -73,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			player.appendChild(span);
 
 			container = document.createElement('div');
-			container.innerHTML = '<sj-icon-button data-id="show-miniplayer-dp" icon="open-in-new" title="Show mini player" aria-label="Show mini player" role="button" tabindex="0" no-focus="" onclick="window.toggleMini()"></sj-icon-button>';
+			container.innerHTML = '<paper-icon-button data-id="show-miniplayer-dp" icon="open-in-new" title="Show mini player" aria-label="Show mini player" role="button" tabindex="0" no-focus="" onclick="window.toggleMini()"></paper-icon-button>';
 			document.getElementById('player').appendChild(container);
 			clearInterval(addTimeSpans);
 		}
