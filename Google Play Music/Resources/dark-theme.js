@@ -44,11 +44,13 @@ setInterval(function () {
     if (labsCard.length > 0) {
         labsCard = labsCard[0];
         var labsList = labsCard.querySelectorAll('.labs-list')[0],
-            exists = labsList.querySelectorAll('.lab-list-item.black');
+            exists = labsList.querySelectorAll('.lab-list-item.black-custom-gpm');
         if (exists.length === 0) {
             darkOn = localStorage.getItem("custom-theme");
-            console.log(darkOn);
-            labsList.innerHTML += '<div class="lab-list-item black"><div class="lab-info"><div class="lab-name">Custom Theme</div><div class="lab-description">Changes the look of Google Play Music to a Custom Theme</div></div><paper-toggle-button onclick="window.turn' + (darkOn === "false" ? "On" : "Off") + 'Custom(this);return false;" ' + (darkOn === 'true' ? 'checked' : '') + ' title="Custom Theme" aria-label="Custom Theme" role="button" aria-pressed="' + darkOn + '" tabindex="0" touch-action="pan-y"></paper-toggle-button></div>'
+            var blackDiv = document.createElement('div');
+            blackDiv.className = "lab-list-item black-custom-gpm";
+            blackDiv.innerHTML = '<div class="lab-info"><div class="lab-name">Custom Theme</div><div class="lab-description">Changes the look of Google Play Music to a Custom Theme</div></div><paper-toggle-button data-id="custom_theme" title="Custom Theme" tabindex="0" style="touch-action: none;" toggles=""  onclick="window.turn' + (darkOn === "false" ? "On" : "Off") + 'Custom(this);return false;" ' + (darkOn === 'true' ? 'checked' : '') + ' class="x-scope paper-toggle-button-0"></paper-toggle-button>'
+            labsList.appendChild(blackDiv);
         }
     }
 }, 10);
