@@ -42,7 +42,6 @@ namespace Google_Play_Music
 
             // Setup the Web Browser
             InitializeCEF();
-            RegisterKeyHooks();
 
             // Don't forget to save all our settings
             FormClosed += (send, ev) =>
@@ -59,6 +58,7 @@ namespace Google_Play_Music
 
             // Check for updates on the Github Release API
             checkForUpdates();
+            RegisterKeyHooks();
         }
 
         public void lightTheme()
