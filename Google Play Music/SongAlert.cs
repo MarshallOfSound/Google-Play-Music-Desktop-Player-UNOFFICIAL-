@@ -28,7 +28,7 @@ namespace Google_Play_Music
             albumArt.SizeMode = PictureBoxSizeMode.StretchImage;
             Controls.Add(albumArt);
 
-            int n = 14;
+            int n = 15;
             Font titleFont = new Font("Calibri", n, FontStyle.Regular);
             while (TextRenderer.MeasureText(song, titleFont).Width > 312)
             {
@@ -40,16 +40,16 @@ namespace Google_Play_Music
             }
 
             Label songTitle = makeLabel(song);
-            songTitle.Location = new Point(78, 12);
+            songTitle.Location = new Point(78, 8);
             songTitle.Font = titleFont;
             Controls.Add(songTitle);
 
-            if (n > 10)
+            if (n > 12)
             {
-                n = 10;
+                n = 12;
             }
             Font infoFont = new Font("Calibri", n, FontStyle.Regular);
-            while (TextRenderer.MeasureText(artist + " - " + album, infoFont).Width > 312)
+            while (TextRenderer.MeasureText(artist + " - " + album, infoFont).Width > 312 * 2)
             {
                 if (n < 6)
                 {
@@ -59,7 +59,13 @@ namespace Google_Play_Music
             }
 
             Label songInfo = makeLabel(artist + " - " + album);
-            songInfo.Location = new Point(78, 44);
+            songInfo.Location = new Point(78, 32);
+            if (TextRenderer.MeasureText(artist + " - " + album, infoFont).Width <= 312)
+            {
+                songInfo.Location = new Point(78, 38);
+            }
+            songInfo.AutoSize = false;
+            songInfo.Size = new Size(312, 40);
             songInfo.Font = infoFont;
             Controls.Add(songInfo);
         }
