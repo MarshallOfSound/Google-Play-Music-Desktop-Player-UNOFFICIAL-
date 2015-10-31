@@ -87,7 +87,7 @@ namespace Google_Play_Music
                 {
                     Point loc = Screen.PrimaryScreen.WorkingArea.Location;
                     int X = loc.X + Screen.PrimaryScreen.WorkingArea.Width - Size.Width - 16;
-                    int Y = loc.Y + Screen.PrimaryScreen.WorkingArea.Height - Size.Height + 16;
+                    int Y = loc.Y + Screen.PrimaryScreen.WorkingArea.Height - Size.Height - 16;
                     Location = new Point(X, Y);
                 }
                 if (currentStep <= fadeSteps)
