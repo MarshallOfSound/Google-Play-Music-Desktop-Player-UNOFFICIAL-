@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			player.appendChild(span);
 
 			container = document.createElement('div');
-			container.innerHTML = '<paper-icon-button data-id="show-miniplayer-dp" icon="open-in-new" title="Show mini player" aria-label="Show mini player" role="button" tabindex="0" no-focus="" onclick="window.toggleMini()"></paper-icon-button>';
+			container.innerHTML = '<paper-icon-button data-id="show-miniplayer-dp" icon="open-in-new" title="Show mini player" aria-label="Show mini player" role="button" tabindex="0" no-focus="" onclick="window.toggleMini(); this.blur(); return false;"></paper-icon-button>';
 			document.getElementById('player').appendChild(container);
 			clearInterval(addTimeSpans);
 		}
