@@ -79,8 +79,11 @@ namespace Google_Play_Music
             return lab;
         }
 
+        public bool loaded = false;
+
         private void Alert_Loaded(object sender, EventArgs e)
         {
+            loaded = true;
             timer.Interval = 10;
 
             currentStep = 0;
@@ -115,9 +118,12 @@ namespace Google_Play_Music
 
             timer.Start();
 
-            TopMost = true;
             TopLevel = true;
-            BringToFront();
+        }
+
+        protected override bool ShowWithoutActivation
+        {
+            get { return true; }
         }
     }
 }

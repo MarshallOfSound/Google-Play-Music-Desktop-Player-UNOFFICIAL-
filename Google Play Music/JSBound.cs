@@ -26,6 +26,31 @@ namespace Google_Play_Music
                     // Just ignore it
                 }
             };
+            // When the parent form is deactivated (focus is lost) we must activate the notification to ensure it stays in focus
+            mainForm.Deactivate += (o, e) =>
+            {
+                if (alert != null)
+                {
+                    alert.Invoke((MethodInvoker)delegate
+                    {
+                        // If the notification is already loaded activate now
+                        // Otherwise wait for the load event
+                        if (alert.loaded)
+                        {
+                            alert.TopMost = true;
+                            alert.Activate();
+                        }
+                        else
+                        {
+                            alert.Load += (res, send) =>
+                            {
+                                alert.TopMost = true;
+                                alert.Activate();
+                            };
+                        }
+                    });
+                }
+            };
         }
 
         public void lightTheme()
@@ -90,6 +115,13 @@ namespace Google_Play_Music
             new Thread(() =>
             {
                 try {
+                    bool SelfActivate = false;
+                    mainForm.Invoke((MethodInvoker)delegate
+                    {
+                        // If the GPM application is not in focus then we have to force the notification to activate
+                        SelfActivate = !mainForm.ApplicationIsActivated();
+                    });
+
                     // If the alert box already exists we need to kill it
                     // Trick the timer into thinking it is over
                     if (alert != null)
@@ -98,13 +130,14 @@ namespace Google_Play_Music
                     }
                     alert = new SongAlert(song, artist, album, url);
 
-                    alert.Shown += (sender, e) => {
-                        // Hacky work around to allow non blocking Application.run whilst maintaining TopMost
-                        Control.CheckForIllegalCrossThreadCalls = false;
-                        alert.Owner = mainForm;
-                        Control.CheckForIllegalCrossThreadCalls = true;
-                        alert.TopMost = true;
-                    };
+                    if (SelfActivate)
+                    {
+                        alert.Load += (res, send) =>
+                        {
+                            alert.TopMost = true;
+                            alert.Activate();
+                        };
+                    }
 
                     alert.FormClosing += new FormClosingEventHandler(Song_Alert_Close);
 
