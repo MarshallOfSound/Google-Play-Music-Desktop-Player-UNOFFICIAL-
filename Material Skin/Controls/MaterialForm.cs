@@ -129,6 +129,9 @@ namespace MaterialSkin.Controls
             Right,
             BottomRight,
             Bottom,
+            Top,
+            TopLeft,
+            TopRight,
             None
         }
 
@@ -299,7 +302,17 @@ namespace MaterialSkin.Controls
 					resizeDir = ResizeDirection.BottomLeft;
 					Cursor = Cursors.SizeNESW;
 				}
-				else if (e.Location.X < BORDER_WIDTH && !isChildUnderMouse && !Maximized)
+                else if (e.Location.Y < BORDER_WIDTH && e.Location.X < BORDER_WIDTH && !isChildUnderMouse && !Maximized)
+                {
+                    resizeDir = ResizeDirection.TopLeft;
+                    Cursor = Cursors.SizeNWSE;
+                }
+                else if (e.Location.Y < BORDER_WIDTH && e.Location.X > Width - BORDER_WIDTH && !isChildUnderMouse && !Maximized)
+                {
+                    resizeDir = ResizeDirection.TopRight;
+                    Cursor = Cursors.SizeNESW;
+                }
+                else if (e.Location.X < BORDER_WIDTH && !isChildUnderMouse && !Maximized)
 				{
 					resizeDir = ResizeDirection.Left;
 					Cursor = Cursors.SizeWE;
@@ -319,7 +332,12 @@ namespace MaterialSkin.Controls
 					resizeDir = ResizeDirection.Bottom;
 					Cursor = Cursors.SizeNS;
 				}
-				else
+                else if (e.Location.Y < BORDER_WIDTH && !isChildUnderMouse && !Maximized)
+                {
+                    resizeDir = ResizeDirection.Top;
+                    Cursor = Cursors.SizeNS;
+                }
+                else
 				{
 					resizeDir = ResizeDirection.None;
 
@@ -458,6 +476,16 @@ namespace MaterialSkin.Controls
                 case ResizeDirection.Bottom:
                     dir = HTBOTTOM;
                     break;
+                case ResizeDirection.Top:
+                    dir = HTTOP;
+                    break;
+                case ResizeDirection.TopLeft:
+                    dir = HTTOPLEFT;
+                    break;
+                case ResizeDirection.TopRight:
+                    dir = HTTOPRIGHT;
+                    break;
+                
             }
 
             ReleaseCapture();
