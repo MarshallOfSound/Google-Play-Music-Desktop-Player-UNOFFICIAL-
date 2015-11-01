@@ -434,6 +434,8 @@ namespace MaterialSkin.Controls
             ReleaseCapture();
         }
 
+        public bool currently_sizing = false;
+
         private void ResizeForm(ResizeDirection direction)
         {
             if (DesignMode) return;
@@ -460,6 +462,7 @@ namespace MaterialSkin.Controls
             ReleaseCapture();
             if (dir != -1)
             {
+                currently_sizing = true;
                 SendMessage(Handle, WM_NCLBUTTONDOWN, dir, 0);
             }
         }

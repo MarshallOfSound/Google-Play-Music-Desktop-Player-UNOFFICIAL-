@@ -16,8 +16,35 @@ namespace Google_Play_Music
         private const string CURRENT_VERSION = "1.6.0";
         private MaterialSkinManager skin;
 
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_NCCALCSIZE = 0x83;
+            const int WM_SIZING = 0x0214;
+            const int WM_SIZE = 0x0005;
+
+            if (m.Msg == WM_NCCALCSIZE && m.WParam.ToInt32() == 1)
+            {
+                m.Result = new IntPtr(0xF0);   // Align client area to all borders (Fake borderless)
+                return;
+            } else if (m.Msg == WM_SIZING && currently_sizing)
+            {
+                currently_sizing = false;
+                ReleaseCapture();
+                return;
+            } else if (m.Msg == WM_SIZE)
+            {
+                OnResize(null);
+            }
+            base.WndProc(ref m);
+        }
+
         public CoreMusicApp()
         {
+            FormBorderStyle = FormBorderStyle.None;
+            var tmp = this.ClientSize;
+
+            FormBorderStyle = FormBorderStyle.Sizable;
+            Size = tmp;
             Icon = Properties.Resources.MainIcon;
             Text = "Google Music Player";
             StartPosition = FormStartPosition.Manual;
