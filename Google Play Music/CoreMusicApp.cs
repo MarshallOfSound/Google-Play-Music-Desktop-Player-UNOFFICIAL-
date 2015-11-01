@@ -20,58 +20,6 @@ namespace Google_Play_Music
         private Size rolling_size;
         private Size last_size;
 
-        protected override void WndProc(ref Message m)
-        {
-            const int WM_NCCALCSIZE = 0x83;
-            const int WM_SIZING = 0x0214;
-            const int WM_SIZE = 0x0005;
-            const int WM_SYSCOMMAND = 0x0112;
-            const int SC_RESTORE = 0xF120;
-
-            if (m.Msg == WM_NCCALCSIZE && m.WParam.ToInt32() == 1)
-            {
-                m.Result = new IntPtr(0xF0);   // Align client area to all borders (Fake borderless)
-                return;
-            } else if (m.Msg == WM_SIZING && currently_sizing)
-            {
-                currently_sizing = false;
-                ReleaseCapture();
-                return;
-            } else if (m.Msg == WM_SIZE)
-            {
-                OnResize(null);
-                if (m.WParam == (IntPtr)2)
-                {
-                    ClientSize = Size;
-                    Invalidate();
-                    WindowState = FormWindowState.Normal;
-                    Size = last_size;
-                    MaximizeWindow(true);
-                }
-                if (rolling_size == null || rolling_size != Size)
-                {
-                    if (rolling_size != null)
-                    {
-                        last_size = rolling_size;
-                    }
-                    rolling_size = Size;
-                }
-                return;
-            } else if (m.Msg == WM_SYSCOMMAND && (int)m.WParam == 0xF030)
-            {
-                MaximizeWindow(true);
-                return;
-            }
-            base.WndProc(ref m);
-            if (m.Msg == WM_SYSCOMMAND && (int)m.WParam == SC_RESTORE)
-            {
-                if (Size != rolling_size)
-                {
-                    Size = rolling_size;
-                }
-            }
-        }
-
         public CoreMusicApp()
         {
             FormBorderStyle = FormBorderStyle.None;
@@ -125,6 +73,61 @@ namespace Google_Play_Music
             // Check for updates on the Github Release API
             checkForUpdates();
             RegisterKeyHooks();
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_NCCALCSIZE = 0x83;
+            const int WM_SIZING = 0x0214;
+            const int WM_SIZE = 0x0005;
+            const int WM_SYSCOMMAND = 0x0112;
+            const int SC_RESTORE = 0xF120;
+
+            if (m.Msg == WM_NCCALCSIZE && m.WParam.ToInt32() == 1)
+            {
+                m.Result = new IntPtr(0xF0);   // Align client area to all borders (Fake borderless)
+                return;
+            }
+            else if (m.Msg == WM_SIZING && currently_sizing)
+            {
+                currently_sizing = false;
+                ReleaseCapture();
+                return;
+            }
+            else if (m.Msg == WM_SIZE)
+            {
+                OnResize(null);
+                if (m.WParam == (IntPtr)2)
+                {
+                    ClientSize = Size;
+                    Invalidate();
+                    WindowState = FormWindowState.Normal;
+                    Size = last_size;
+                    MaximizeWindow(true);
+                }
+                if (rolling_size == null || rolling_size != Size)
+                {
+                    if (rolling_size != null)
+                    {
+                        last_size = rolling_size;
+                    }
+                    rolling_size = Size;
+                }
+                return;
+            }
+            else if (m.Msg == WM_SYSCOMMAND && (int)m.WParam == 0xF030)
+            {
+                MaximizeWindow(true);
+                return;
+            }
+            base.WndProc(ref m);
+            if (m.Msg == WM_SYSCOMMAND && (int)m.WParam == SC_RESTORE)
+            {
+                if (Size != rolling_size)
+                {
+                    Size = rolling_size;
+                }
+            }
         }
 
         public void lightTheme()
