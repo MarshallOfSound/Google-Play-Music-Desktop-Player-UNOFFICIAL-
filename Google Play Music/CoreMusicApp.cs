@@ -7,6 +7,8 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Google_Play_Music
 {
@@ -15,12 +17,16 @@ namespace Google_Play_Music
 
         private const string CURRENT_VERSION = "1.6.0";
         private MaterialSkinManager skin;
+        private Size rolling_size;
+        private Size last_size;
 
         protected override void WndProc(ref Message m)
         {
             const int WM_NCCALCSIZE = 0x83;
             const int WM_SIZING = 0x0214;
             const int WM_SIZE = 0x0005;
+            const int WM_SYSCOMMAND = 0x0112;
+            const int SC_RESTORE = 0xF120;
 
             if (m.Msg == WM_NCCALCSIZE && m.WParam.ToInt32() == 1)
             {
@@ -34,17 +40,46 @@ namespace Google_Play_Music
             } else if (m.Msg == WM_SIZE)
             {
                 OnResize(null);
+                if (m.WParam == (IntPtr)2)
+                {
+                    ClientSize = Size;
+                    Invalidate();
+                    WindowState = FormWindowState.Normal;
+                    Size = last_size;
+                    MaximizeWindow(true);
+                }
+                if (rolling_size == null || rolling_size != Size)
+                {
+                    if (rolling_size != null)
+                    {
+                        last_size = rolling_size;
+                    }
+                    rolling_size = Size;
+                }
+                return;
+            } else if (m.Msg == WM_SYSCOMMAND && (int)m.WParam == 0xF030)
+            {
+                MaximizeWindow(true);
+                return;
             }
             base.WndProc(ref m);
+            if (m.Msg == WM_SYSCOMMAND && (int)m.WParam == SC_RESTORE)
+            {
+                if (Size != rolling_size)
+                {
+                    Size = rolling_size;
+                }
+            }
         }
 
         public CoreMusicApp()
         {
             FormBorderStyle = FormBorderStyle.None;
-            var tmp = this.ClientSize;
-
+            restoreMaxiState();
+            rolling_size = this.ClientSize;
+            last_size = this.ClientSize;
             FormBorderStyle = FormBorderStyle.Sizable;
-            Size = tmp;
+            Size = rolling_size;
             Icon = Properties.Resources.MainIcon;
             Text = "Google Music Player";
             StartPosition = FormStartPosition.Manual;
@@ -66,9 +101,6 @@ namespace Google_Play_Music
             // Handle smaller mini player by changing the browser zoom level
             ResizeEnd += new EventHandler(ResizeEnd_ZoomHandler);
 
-            // Initially go to Maxi
-            restoreMaxiState();
-
             // Setup the Web Browser
             InitializeCEF();
 
@@ -80,6 +112,11 @@ namespace Google_Play_Music
                     saveMiniState();
                 } else
                 {
+                    if (WindowState != FormWindowState.Normal)
+                    {
+                        WindowState = FormWindowState.Normal;
+                    }
+                    MaximizeWindow(false);
                     saveMaxiState();
                 }
                 Properties.Settings.Default.Save();
@@ -209,7 +246,11 @@ namespace Google_Play_Music
         {
             // The mini player must always be a square
             int D = Math.Max(ClientSize.Width, ClientSize.Height);
+            FormBorderStyle = FormBorderStyle.None;
             ClientSize = new Size(D, D);
+            var tmp = Size;
+            FormBorderStyle = FormBorderStyle.Sizable;
+            Size = tmp;
             double ratio = D / 300.0;
             // Browser zoom level formula is [percentage] = 1.2 ^ [zoom level]
             // So we reverse to get [zoom level] = Log[percentage] / Log[1.2]

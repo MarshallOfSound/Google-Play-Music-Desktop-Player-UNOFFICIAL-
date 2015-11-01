@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -69,8 +70,11 @@ namespace Google_Play_Music
 
         public void saveMaxiState()
         {
-            Properties.Settings.Default.MaxiSize = Size;
-            Properties.Settings.Default.MaxiPoint = Location;
+            if (!Maximized)
+            {
+                Properties.Settings.Default.MaxiSize = Size;
+                Properties.Settings.Default.MaxiPoint = Location;
+            }
         }
 
         public void saveMiniState()

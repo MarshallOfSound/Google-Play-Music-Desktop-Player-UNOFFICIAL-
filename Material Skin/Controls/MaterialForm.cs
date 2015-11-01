@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
@@ -150,7 +151,7 @@ namespace MaterialSkin.Controls
         private Rectangle actionBarBounds;
         private Rectangle statusBarBounds;
 
-        private bool Maximized;
+        public bool Maximized;
         private Size previousSize;
         private Point previousLocation;
         private bool headerMouseDown;
@@ -401,7 +402,7 @@ namespace MaterialSkin.Controls
             if (oldState != buttonState) Invalidate();
         }
 
-        private void MaximizeWindow(bool maximize)
+        public void MaximizeWindow(bool maximize)
         {
             if (!MaximizeBox || !ControlBox) return;
 
