@@ -64,7 +64,10 @@ namespace Google_Play_Music
                     {
                         WindowState = FormWindowState.Normal;
                     }
-                    MaximizeWindow(false);
+                    if (Maximized)
+                    {
+                        MaximizeWindow(false);
+                    }
                     saveMaxiState();
                 }
                 Properties.Settings.Default.Save();
