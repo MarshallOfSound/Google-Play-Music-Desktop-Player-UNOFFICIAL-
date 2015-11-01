@@ -19,6 +19,7 @@ namespace Google_Play_Music
             {
                 GPMBrowser.SetZoomLevel(0);
             }
+            FormBorderStyle = FormBorderStyle.Sizable;
             MaximumSize = new Size();
             // Force it to be always bigger than the mini player
             MinimumSize = new Size(301, 301);
@@ -50,6 +51,7 @@ namespace Google_Play_Music
             MaximumSize = new Size(300, 300);
             MinimumSize = new Size(100, 100);
             handleZoom = true;
+            FormBorderStyle = FormBorderStyle.None;
 
             // Restore Mini size and pos
             Size savedSize = Properties.Settings.Default.MiniSize;

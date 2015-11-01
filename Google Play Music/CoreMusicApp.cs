@@ -252,10 +252,8 @@ namespace Google_Play_Music
         {
             // The mini player must always be a square
             int D = Math.Max(ClientSize.Width, ClientSize.Height);
-            FormBorderStyle = FormBorderStyle.None;
             ClientSize = new Size(D, D);
             var tmp = Size;
-            FormBorderStyle = FormBorderStyle.Sizable;
             Size = tmp;
             double ratio = D / 300.0;
             // Browser zoom level formula is [percentage] = 1.2 ^ [zoom level]
