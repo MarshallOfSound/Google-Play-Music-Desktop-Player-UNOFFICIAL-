@@ -88,8 +88,11 @@ namespace Google_Play_Music
 
             if (m.Msg == WM_NCCALCSIZE && m.WParam.ToInt32() == 1)
             {
-                m.Result = new IntPtr(0xF0);   // Align client area to all borders (Fake borderless)
-                return;
+                if (!mini)
+                {
+                    m.Result = new IntPtr(0xF0);   // Align client area to all borders (Fake borderless)
+                    return;
+                }
             }
             else if (m.Msg == WM_SIZING && currently_sizing)
             {
