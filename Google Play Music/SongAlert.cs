@@ -91,6 +91,13 @@ namespace Google_Play_Music
             int totalSteps = 200;
             timer.Tick += (arg1, arg2) =>
             {
+                if (IsDisposed)
+                {
+                    this.Close();
+                    timer.Stop();
+                    timer.Dispose();
+                    return;
+                }
                 currentStep++;
                 if (currentStep == 1)
                 {
@@ -117,13 +124,22 @@ namespace Google_Play_Music
             };
 
             timer.Start();
-
-            TopLevel = true;
         }
 
         protected override bool ShowWithoutActivation
         {
             get { return true; }
+        }
+
+        private const int WS_EX_TOPMOST = 0x00000008;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams createParams = base.CreateParams;
+                createParams.ExStyle |= WS_EX_TOPMOST;
+                return createParams;
+            }
         }
     }
 }

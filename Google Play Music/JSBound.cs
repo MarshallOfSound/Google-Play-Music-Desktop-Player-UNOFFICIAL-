@@ -1,7 +1,6 @@
 ﻿using CefSharp;
 using System;
 using System.Drawing;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,30 +26,7 @@ namespace Google_Play_Music
                 }
             };
             // When the parent form is deactivated (focus is lost) we must activate the notification to ensure it stays in focus
-            mainForm.Deactivate += (o, e) =>
-            {
-                if (alert != null)
-                {
-                    alert.Invoke((MethodInvoker)delegate
-                    {
-                        // If the notification is already loaded activate now
-                        // Otherwise wait for the load event
-                        if (alert.loaded)
-                        {
-                            alert.TopMost = true;
-                            alert.Activate();
-                        }
-                        else
-                        {
-                            alert.Load += (res, send) =>
-                            {
-                                alert.TopMost = true;
-                                alert.Activate();
-                            };
-                        }
-                    });
-                }
-            };
+            
         }
 
         public void lightTheme()
@@ -112,43 +88,32 @@ namespace Google_Play_Music
         // Fired from javascript when a different song starts playing
         public void songChangeEvent(string song, string artist, string album, string url)
         {
-            new Thread(() =>
-            {
-                try {
-                    bool SelfActivate = false;
-                    mainForm.Invoke((MethodInvoker)delegate
-                    {
-                        // If the GPM application is not in focus then we have to force the notification to activate
-                        SelfActivate = !mainForm.ApplicationIsActivated();
-                    });
-
-                    // If the alert box already exists we need to kill it
-                    // Trick the timer into thinking it is over
-                    if (alert != null)
-                    {
-                        alert.currentStep = 99999;
-                    }
-                    alert = new SongAlert(song, artist, album, url);
-
-                    if (SelfActivate)
-                    {
-                        alert.Load += (res, send) =>
-                        {
-                            alert.TopMost = true;
-                            alert.Activate();
-                        };
-                    }
-
-                    alert.FormClosing += new FormClosingEventHandler(Song_Alert_Close);
-
-                    Application.Run(alert);
-                } catch
+            try {
+                // If the alert box already exists we need to kill it
+                // Trick the timer into thinking it is over
+                if (alert != null)
                 {
-                    // This try catch is to prevent application crashes when a user spams the forward / back track button
-                    // The AsyncJSBind in CEFSharp can't handle the amount of communication and throws a NullPointer
-                    // TODO: Check CEF progress on this issue
+                    alert.currentStep = 99999;
                 }
-            }).Start();
+
+                // GUI tasks should be run on a GUI thread
+                mainForm.Invoke((MethodInvoker) async delegate
+                {
+                    // Wait for the alert box to dispose of it self
+                    await TaskEx.Run(delegate
+                    {
+                        while (alert != null) ;
+                    });
+                    alert = new SongAlert(song, artist, album, url);
+                    alert.FormClosing += new FormClosingEventHandler(Song_Alert_Close);
+                    alert.Show();
+                });
+            } catch
+            {
+                // This try catch is to prevent application crashes when a user spams the forward / back track button
+                // The AsyncJSBind in CEFSharp can't handle the amount of communication and throws a NullPointer
+                // TODO: Check CEF progress on this issue
+            }
         }
 
         // When the SongAlert closes set it to null in this scope so we know
