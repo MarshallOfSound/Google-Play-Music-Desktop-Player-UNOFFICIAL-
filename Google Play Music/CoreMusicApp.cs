@@ -97,8 +97,11 @@ namespace Google_Play_Music
             else if (m.Msg == WM_SIZING && currently_sizing)
             {
                 currently_sizing = false;
-                ReleaseCapture();
-                return;
+                if (!mini)
+                {
+                    ReleaseCapture();
+                    return;
+                }
             }
             else if (m.Msg == WM_SIZE)
             {
