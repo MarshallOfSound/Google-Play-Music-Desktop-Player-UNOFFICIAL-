@@ -38,7 +38,10 @@ namespace Google_Play_Music
                 savedPoint = topLeft(savedSize);
             }
             Location = savedPoint;
+
+            FormBorderStyle = FormBorderStyle.None;
             Size = savedSize;
+            FormBorderStyle = FormBorderStyle.Sizable;
         }
 
         public void restoreMiniState()
@@ -74,7 +77,9 @@ namespace Google_Play_Music
         {
             if (!Maximized)
             {
+                FormBorderStyle = FormBorderStyle.None;
                 Properties.Settings.Default.MaxiSize = Size;
+                FormBorderStyle = FormBorderStyle.Sizable;
                 Properties.Settings.Default.MaxiPoint = Location;
             }
         }

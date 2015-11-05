@@ -22,12 +22,9 @@ namespace Google_Play_Music
 
         public CoreMusicApp()
         {
-            FormBorderStyle = FormBorderStyle.None;
             restoreMaxiState();
             rolling_size = this.ClientSize;
             last_size = this.ClientSize;
-            FormBorderStyle = FormBorderStyle.Sizable;
-            Size = rolling_size;
             Icon = Properties.Resources.MainIcon;
             Text = "Google Music Player";
             StartPosition = FormStartPosition.Manual;
