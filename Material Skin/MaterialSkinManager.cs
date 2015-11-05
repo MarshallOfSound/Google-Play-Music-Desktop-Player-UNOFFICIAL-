@@ -225,6 +225,15 @@ namespace MaterialSkin
             return (Theme == Themes.LIGHT ? BACKGROUND_LIGHT : BACKGROUND_DARK);
         }
 
+        public Color GetApplicationBackgroundColor(bool re)
+        {
+            if (!re && Theme == Themes.LIGHT)
+            {
+                return Color.FromArgb(255, 255, 255, 255);
+            }
+            return GetApplicationBackgroundColor();
+        }
+
         //Roboto font
         public Font ROBOTO_MEDIUM_12;
         public Font ROBOTO_REGULAR_11;
@@ -283,6 +292,11 @@ namespace MaterialSkin
             var newBackColor = GetApplicationBackgroundColor();
             foreach (var materialForm in formsToManage)
             {
+                if (!materialForm.Resize_Enabled && Theme == Themes.LIGHT)
+                {
+                    newBackColor = Color.FromArgb(255, 255, 255, 255);
+                }
+
                 materialForm.BackColor = newBackColor;
                 UpdateControl(materialForm, newBackColor);
             }

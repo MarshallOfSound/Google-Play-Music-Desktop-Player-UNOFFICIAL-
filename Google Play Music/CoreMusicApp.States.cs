@@ -8,7 +8,7 @@ namespace Google_Play_Music
 {
     partial class CoreMusicApp
     {
-        private Boolean mini = false;
+        public Boolean mini = false;
 
         public void restoreMaxiState()
         {

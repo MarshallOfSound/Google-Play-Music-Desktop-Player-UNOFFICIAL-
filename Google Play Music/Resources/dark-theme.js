@@ -5,7 +5,7 @@ var BACK_PRIMARY = '#222326',
 	FORE_SECONDARY = '#EF6C00';
 
 // Custom
-FORE_SECONDARY = '#1ED760';
+FORE_SECONDARY = window.CustomColor || '#1ED760';
 
 var GLOBAL_STYLES = "";
 
@@ -31,6 +31,7 @@ var setStyle = function (selector, style, imp) {
 
 var flushStyles = function () {
     var s = document.createElement('style');
+    s.setAttribute('id', 'custom-theme-style');
     s.innerHTML = GLOBAL_STYLES;
     document.body.appendChild(s);
 };
@@ -39,21 +40,14 @@ if (localStorage.getItem("custom-theme") === null) {
     localStorage.setItem("custom-theme", "false");
 }
 
-setInterval(function () {
-    var labsCard = document.querySelectorAll('.labs-card.settings-card');
-    if (labsCard.length > 0) {
-        labsCard = labsCard[0];
-        var labsList = labsCard.querySelectorAll('.labs-list')[0],
-			exists = labsList.querySelectorAll('.lab-list-item.black-custom-gpm');
-        if (exists.length === 0) {
-            var darkOn = localStorage.getItem("custom-theme"),
-				blackDiv = document.createElement('div');
-            blackDiv.className = "lab-list-item black-custom-gpm";
-            blackDiv.innerHTML = '<div class="lab-info"><div class="lab-name">Custom Theme</div><div class="lab-description">Changes the look of Google Play Music to a Custom Theme</div></div><paper-toggle-button data-id="custom_theme" title="Custom Theme" tabindex="0" style="touch-action: none;" toggles=""  onclick="window.turn' + (darkOn === "false" ? "On" : "Off") + 'Custom(this);return false;" ' + (darkOn === 'true' ? 'checked' : '') + ' class="x-scope paper-toggle-button-0"></paper-toggle-button>';
-            labsList.appendChild(blackDiv);
-        }
+window.ReDrawTheme = function () {
+    var t = document.getElementById('custom-theme-style');
+    if (t) {
+        t.remove();
     }
-}, 10);
+    FORE_SECONDARY = window.CustomColor || '#1ED760';
+    BlackTheme();
+};
 
 var BlackTheme = function () {
     setStyle('#material-app-bar', ['background-color: {{BACK_SECONDARY}}']);

@@ -17,5 +17,8 @@
     <Setting Name="CustomTheme" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="CustomColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">30, 215, 96</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

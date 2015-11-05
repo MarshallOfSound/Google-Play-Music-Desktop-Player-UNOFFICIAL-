@@ -82,5 +82,17 @@ namespace Google_Play_Music.Properties {
                 this["CustomTheme"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30, 215, 96")]
+        public global::System.Drawing.Color CustomColor {
+            get {
+                return ((global::System.Drawing.Color)(this["CustomColor"]));
+            }
+            set {
+                this["CustomColor"] = value;
+            }
+        }
     }
 }

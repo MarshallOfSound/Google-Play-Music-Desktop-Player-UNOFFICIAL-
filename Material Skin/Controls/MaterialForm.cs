@@ -286,6 +286,8 @@ namespace MaterialSkin.Controls
             Invalidate();
         }
 
+        public bool Resize_Enabled = true;
+
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -296,57 +298,69 @@ namespace MaterialSkin.Controls
 	        {
 				//True if the mouse is hovering over a child control
 				bool isChildUnderMouse = GetChildAtPoint(e.Location) != null;
+                if (!Resize_Enabled)
+                {
+                    resizeDir = ResizeDirection.None;
 
-				if (e.Location.X < BORDER_WIDTH && e.Location.Y > Height - BORDER_WIDTH && !isChildUnderMouse && !Maximized)
-				{
-					resizeDir = ResizeDirection.BottomLeft;
-					Cursor = Cursors.SizeNESW;
-				}
-                else if (e.Location.Y < BORDER_WIDTH && e.Location.X < BORDER_WIDTH && !isChildUnderMouse && !Maximized)
-                {
-                    resizeDir = ResizeDirection.TopLeft;
-                    Cursor = Cursors.SizeNWSE;
-                }
-                else if (e.Location.Y < BORDER_WIDTH && e.Location.X > Width - BORDER_WIDTH && !isChildUnderMouse && !Maximized)
-                {
-                    resizeDir = ResizeDirection.TopRight;
-                    Cursor = Cursors.SizeNESW;
-                }
-                else if (e.Location.X < BORDER_WIDTH && !isChildUnderMouse && !Maximized)
-				{
-					resizeDir = ResizeDirection.Left;
-					Cursor = Cursors.SizeWE;
-				}
-				else if (e.Location.X > Width - BORDER_WIDTH && e.Location.Y > Height - BORDER_WIDTH && !isChildUnderMouse && !Maximized)
-				{
-					resizeDir = ResizeDirection.BottomRight;
-					Cursor = Cursors.SizeNWSE;
-				}
-				else if (e.Location.X > Width - BORDER_WIDTH && !isChildUnderMouse && !Maximized)
-				{
-					resizeDir = ResizeDirection.Right;
-					Cursor = Cursors.SizeWE;
-				}
-				else if (e.Location.Y > Height - BORDER_WIDTH && !isChildUnderMouse && !Maximized)
-				{
-					resizeDir = ResizeDirection.Bottom;
-					Cursor = Cursors.SizeNS;
-				}
-                else if (e.Location.Y < BORDER_WIDTH && !isChildUnderMouse && !Maximized)
-                {
-                    resizeDir = ResizeDirection.Top;
-                    Cursor = Cursors.SizeNS;
+                    //Only reset the cursur when needed, this prevents it from flickering when a child control changes the cursor to its own needs
+                    if (resizeCursors.Contains(Cursor))
+                    {
+                        Cursor = Cursors.Default;
+                    }
                 }
                 else
-				{
-					resizeDir = ResizeDirection.None;
+                {
+                    if (e.Location.X < BORDER_WIDTH && e.Location.Y > Height - BORDER_WIDTH && !isChildUnderMouse && !Maximized)
+                    {
+                        resizeDir = ResizeDirection.BottomLeft;
+                        Cursor = Cursors.SizeNESW;
+                    }
+                    else if (e.Location.Y < BORDER_WIDTH && e.Location.X < BORDER_WIDTH && !isChildUnderMouse && !Maximized)
+                    {
+                        resizeDir = ResizeDirection.TopLeft;
+                        Cursor = Cursors.SizeNWSE;
+                    }
+                    else if (e.Location.Y < BORDER_WIDTH && e.Location.X > Width - BORDER_WIDTH && !isChildUnderMouse && !Maximized)
+                    {
+                        resizeDir = ResizeDirection.TopRight;
+                        Cursor = Cursors.SizeNESW;
+                    }
+                    else if (e.Location.X < BORDER_WIDTH && !isChildUnderMouse && !Maximized)
+                    {
+                        resizeDir = ResizeDirection.Left;
+                        Cursor = Cursors.SizeWE;
+                    }
+                    else if (e.Location.X > Width - BORDER_WIDTH && e.Location.Y > Height - BORDER_WIDTH && !isChildUnderMouse && !Maximized)
+                    {
+                        resizeDir = ResizeDirection.BottomRight;
+                        Cursor = Cursors.SizeNWSE;
+                    }
+                    else if (e.Location.X > Width - BORDER_WIDTH && !isChildUnderMouse && !Maximized)
+                    {
+                        resizeDir = ResizeDirection.Right;
+                        Cursor = Cursors.SizeWE;
+                    }
+                    else if (e.Location.Y > Height - BORDER_WIDTH && !isChildUnderMouse && !Maximized)
+                    {
+                        resizeDir = ResizeDirection.Bottom;
+                        Cursor = Cursors.SizeNS;
+                    }
+                    else if (e.Location.Y < BORDER_WIDTH && !isChildUnderMouse && !Maximized)
+                    {
+                        resizeDir = ResizeDirection.Top;
+                        Cursor = Cursors.SizeNS;
+                    }
+                    else
+                    {
+                        resizeDir = ResizeDirection.None;
 
-					//Only reset the cursur when needed, this prevents it from flickering when a child control changes the cursor to its own needs
-					if (resizeCursors.Contains(Cursor))
-					{
-						Cursor = Cursors.Default;
-					}
-				}
+                        //Only reset the cursur when needed, this prevents it from flickering when a child control changes the cursor to its own needs
+                        if (resizeCursors.Contains(Cursor))
+                        {
+                            Cursor = Cursors.Default;
+                        }
+                    }
+                }
 	        }
 
             UpdateButtons(e);
@@ -512,7 +526,7 @@ namespace MaterialSkin.Controls
             var g = e.Graphics;
             g.TextRenderingHint = TextRenderingHint.AntiAlias;
 
-            g.Clear(SkinManager.GetApplicationBackgroundColor());
+            g.Clear(SkinManager.GetApplicationBackgroundColor(Resize_Enabled));
             g.FillRectangle(SkinManager.ColorScheme.DarkPrimaryBrush, statusBarBounds);
             g.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, actionBarBounds);
 
