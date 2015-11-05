@@ -1,8 +1,8 @@
 var BACK_PRIMARY = '#222326',
-    BACK_SECONDARY = '#121314',
-    BACK_HIGHLIGHT = '#615F59',
-    FORE_PRIMARY = '#FFFFFF',
-    FORE_SECONDARY = '#EF6C00';
+	BACK_SECONDARY = '#121314',
+	BACK_HIGHLIGHT = '#615F59',
+	FORE_PRIMARY = '#FFFFFF',
+	FORE_SECONDARY = '#EF6C00';
 
 // Custom
 FORE_SECONDARY = '#1ED760';
@@ -16,24 +16,24 @@ var subColors = function (style) {
     style = style.replace(/\{\{FORE_PRIMARY\}\}/g, FORE_PRIMARY);
     style = style.replace(/\{\{FORE_SECONDARY\}\}/g, FORE_SECONDARY);
     return style;
-}
+};
 
 var setStyle = function (selector, style, imp) {
-    selector = "body.custom " + selector
+    selector = "body.custom " + selector;
     selector = selector.replace(/, /g, ", body.custom ");
-    string = selector + " {";
+    var string = selector + " {";
     for (var i = 0; i < style.length; i++) {
         string += subColors(style[i]) + (imp ? "" : " !important;");
     }
     string += "}";
     GLOBAL_STYLES += string;
-}
+};
 
 var flushStyles = function () {
     var s = document.createElement('style');
     s.innerHTML = GLOBAL_STYLES;
     document.body.appendChild(s);
-}
+};
 
 if (localStorage.getItem("custom-theme") === null) {
     localStorage.setItem("custom-theme", "false");
@@ -44,12 +44,12 @@ setInterval(function () {
     if (labsCard.length > 0) {
         labsCard = labsCard[0];
         var labsList = labsCard.querySelectorAll('.labs-list')[0],
-            exists = labsList.querySelectorAll('.lab-list-item.black-custom-gpm');
+			exists = labsList.querySelectorAll('.lab-list-item.black-custom-gpm');
         if (exists.length === 0) {
-            darkOn = localStorage.getItem("custom-theme");
-            var blackDiv = document.createElement('div');
+            var darkOn = localStorage.getItem("custom-theme"),
+				blackDiv = document.createElement('div');
             blackDiv.className = "lab-list-item black-custom-gpm";
-            blackDiv.innerHTML = '<div class="lab-info"><div class="lab-name">Custom Theme</div><div class="lab-description">Changes the look of Google Play Music to a Custom Theme</div></div><paper-toggle-button data-id="custom_theme" title="Custom Theme" tabindex="0" style="touch-action: none;" toggles=""  onclick="window.turn' + (darkOn === "false" ? "On" : "Off") + 'Custom(this);return false;" ' + (darkOn === 'true' ? 'checked' : '') + ' class="x-scope paper-toggle-button-0"></paper-toggle-button>'
+            blackDiv.innerHTML = '<div class="lab-info"><div class="lab-name">Custom Theme</div><div class="lab-description">Changes the look of Google Play Music to a Custom Theme</div></div><paper-toggle-button data-id="custom_theme" title="Custom Theme" tabindex="0" style="touch-action: none;" toggles=""  onclick="window.turn' + (darkOn === "false" ? "On" : "Off") + 'Custom(this);return false;" ' + (darkOn === 'true' ? 'checked' : '') + ' class="x-scope paper-toggle-button-0"></paper-toggle-button>';
             labsList.appendChild(blackDiv);
         }
     }
@@ -96,7 +96,7 @@ var BlackTheme = function () {
     setStyle('#queue-overlay::after', ['border-color: transparent transparent {{BACK_PRIMARY}} {{BACK_PRIMARY}}']);
     setStyle('.upload-dialog-content', ['background-color: {{BACK_SECONDARY}}']);
     setStyle('.upload-dialog-description', ['color: {{FORE_PRIMARY}}']);
-    setStyle('.material .song-row:hover [data-col="index"] .hover-button[data-id="play"]', ['background-color: {{BACK_HIGHLIGHT}}'])
+    setStyle('.material .song-row:hover [data-col="index"] .hover-button[data-id="play"]', ['background-color: {{BACK_HIGHLIGHT}}']);
     setStyle('.goog-menuheader', ['color: {{FORE_PRIMARY}}']);
     setStyle('.paper-progress-1 #primaryProgress.paper-progress', ['background-color: {{FORE_SECONDARY}}']);
     setStyle('.album-view .material-container-details .info .title .explicit', ['background-color: {{FORE_SECONDARY}}']);
@@ -135,9 +135,9 @@ var BlackTheme = function () {
     setStyle('.nav-toolbar .menu-logo', ['-webkit-filter: hue-rotate(90deg)']);
 
     flushStyles();
-}
+};
 
-window['turnOnCustom'] = function (self) {
+window.turnOnCustom = function (self) {
     csharpinterface.darkTheme();
     var old = document.body.className;
     if (old.split('custom').length === 1) {
@@ -147,18 +147,18 @@ window['turnOnCustom'] = function (self) {
     if (self !== null) {
         self.setAttribute('onclick', 'window.turnOffCustom()');
     }
-}
+};
 
-window['turnOffCustom'] = function (self) {
+window.turnOffCustom = function (self) {
     csharpinterface.lightTheme();
     document.body.className = document.body.className.toString().replace(/ ?custom/g, '');
     localStorage.setItem("custom-theme", "false");
     if (self !== null) {
         self.setAttribute('onclick', 'window.turnOnCustom()');
     }
-}
+};
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function () {
     BlackTheme();
     if (localStorage.getItem("custom-theme") === "true") {
         window.turnOnCustom(null);
