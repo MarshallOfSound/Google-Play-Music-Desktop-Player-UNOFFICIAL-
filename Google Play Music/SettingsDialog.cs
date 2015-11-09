@@ -34,9 +34,17 @@ namespace Google_Play_Music
                 if (materialCheckBox1.Checked)
                 {
                     command = "window.turnOnCustom()";
+                    app.Invoke((MethodInvoker)delegate
+                    {
+                        app.darkTheme();
+                    });
                 } else
                 {
                     command = "window.turnOffCustom()";
+                    app.Invoke((MethodInvoker)delegate
+                    {
+                        app.lightTheme();
+                    });
                 }
                 app.Invoke((MethodInvoker)delegate
                 {
