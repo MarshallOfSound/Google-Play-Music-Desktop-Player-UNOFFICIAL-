@@ -125,6 +125,16 @@ namespace Google_Play_Music
             {
                 MaximizeWindow(true);
                 return;
+            } else if (m.Msg == NativeMethods.WM_SHOWME)
+            {
+                if (WindowState == FormWindowState.Minimized)
+                {
+                    WindowState = FormWindowState.Normal;
+                }
+                
+                bool top = TopMost;
+                TopMost = true;
+                TopMost = top;
             }
             base.WndProc(ref m);
             if (m.Msg == WM_SYSCOMMAND && (int)m.WParam == SC_RESTORE)
