@@ -89,6 +89,10 @@ namespace Google_Play_Music
         // Fired from javascript when a different song starts playing
         public void songChangeEvent(string song, string artist, string album, string url)
         {
+            if (!Properties.Settings.Default.DesktopNotifications)
+            {
+                return;
+            }
             try {
                 // If the alert box already exists we need to kill it
                 // Trick the timer into thinking it is over

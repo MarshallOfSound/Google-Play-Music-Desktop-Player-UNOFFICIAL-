@@ -34,6 +34,7 @@
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.colorWheel1 = new Google_Play_Music.ColorWheel();
             this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialCheckBox2 = new MaterialSkin.Controls.MaterialCheckBox();
             this.SuspendLayout();
             // 
             // materialLabel1
@@ -102,11 +103,28 @@
             this.materialRaisedButton1.Text = "Reset and Close Application";
             this.materialRaisedButton1.UseVisualStyleBackColor = true;
             // 
+            // materialCheckBox2
+            // 
+            this.materialCheckBox2.AutoSize = true;
+            this.materialCheckBox2.Depth = 0;
+            this.materialCheckBox2.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBox2.Location = new System.Drawing.Point(13, 137);
+            this.materialCheckBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBox2.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBox2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBox2.Name = "materialCheckBox2";
+            this.materialCheckBox2.Ripple = true;
+            this.materialCheckBox2.Size = new System.Drawing.Size(163, 30);
+            this.materialCheckBox2.TabIndex = 5;
+            this.materialCheckBox2.Text = "Desktop Notifications";
+            this.materialCheckBox2.UseVisualStyleBackColor = true;
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 300);
+            this.Controls.Add(this.materialCheckBox2);
             this.Controls.Add(this.materialRaisedButton1);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialCheckBox1);
@@ -129,5 +147,6 @@
         private MaterialSkin.Controls.MaterialCheckBox materialCheckBox1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
+        private MaterialSkin.Controls.MaterialCheckBox materialCheckBox2;
     }
 }

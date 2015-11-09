@@ -20,5 +20,8 @@
     <Setting Name="CustomColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">30, 215, 96</Value>
     </Setting>
+    <Setting Name="DesktopNotifications" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

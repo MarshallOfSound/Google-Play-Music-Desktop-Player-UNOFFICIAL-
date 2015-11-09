@@ -94,5 +94,17 @@ namespace Google_Play_Music.Properties {
                 this["CustomColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DesktopNotifications {
+            get {
+                return ((bool)(this["DesktopNotifications"]));
+            }
+            set {
+                this["DesktopNotifications"] = value;
+            }
+        }
     }
 }

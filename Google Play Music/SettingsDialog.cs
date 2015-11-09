@@ -43,6 +43,18 @@ namespace Google_Play_Music
                 });
             };
 
+            materialCheckBox2.CheckStateChanged += (res, send) =>
+            {
+                if (materialCheckBox2.Checked)
+                {
+                    Properties.Settings.Default.DesktopNotifications = true;
+                } else
+                {
+                    Properties.Settings.Default.DesktopNotifications = false;
+                }
+                Properties.Settings.Default.Save();
+            };
+
             materialRaisedButton1.Click += (res, send) =>
             {
                 Properties.Settings.Default.Reset();
