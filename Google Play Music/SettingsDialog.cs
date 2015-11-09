@@ -58,7 +58,6 @@ namespace Google_Play_Music
             materialRaisedButton1.Click += (res, send) =>
             {
                 Properties.Settings.Default.Reset();
-                Debug.WriteLine(Properties.Settings.Default.MaxiPoint);
                 Properties.Settings.Default.Save();
                 DialogResult = DialogResult.Abort;
                 Close();
