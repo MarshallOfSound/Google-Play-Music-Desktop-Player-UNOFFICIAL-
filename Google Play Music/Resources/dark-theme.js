@@ -127,6 +127,10 @@ var BlackTheme = function () {
     setStyle('.material-detail-view .material-container-details .read-more-button', ['color: {{FORE_SECONDARY}}']);
     setStyle('paper-dialog', ['background: {{BACK_SECONDARY}}', 'color: {{FORE_PRIMARY}}']);
     setStyle('.nav-toolbar .menu-logo', ['-webkit-filter: hue-rotate(90deg)']);
+    setStyle('.simple-dialog', ['background-color: {{BACK_PRIMARY}}', 'border-color: {{BACK_SECONDARY}}']);
+    setStyle('.simple-dialog, .simple-dialog > div', ['background-color: {{BACK_PRIMARY}}', 'color: {{FORE_PRIMARY}}']);
+    setStyle('.goog-buttonset-default', ['background-color: {{FORE_HIGHLIGHT}}']);
+    setStyle('button.goog-buttonset-default, button.goog-buttonset-default:hover', ['background-color: {{FORE_SECONDARY}}']);
 
     flushStyles();
 };
