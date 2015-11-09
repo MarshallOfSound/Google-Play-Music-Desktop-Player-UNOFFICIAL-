@@ -27,6 +27,7 @@ namespace Google_Play_Music
             colorWheel1.Saturation = set.S;
             colorWheel1.Lightness = set.L;
 
+            materialCheckBox1.Checked = Properties.Settings.Default.CustomTheme;
             materialCheckBox1.CheckStateChanged += (res, send) =>
             {
                 string command;
@@ -43,6 +44,7 @@ namespace Google_Play_Music
                 });
             };
 
+            materialCheckBox2.Checked = Properties.Settings.Default.DesktopNotifications;
             materialCheckBox2.CheckStateChanged += (res, send) =>
             {
                 if (materialCheckBox2.Checked)
