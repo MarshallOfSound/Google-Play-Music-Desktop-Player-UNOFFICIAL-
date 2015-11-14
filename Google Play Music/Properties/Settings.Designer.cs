@@ -106,5 +106,17 @@ namespace Google_Play_Music.Properties {
                 this["DesktopNotifications"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool HoverControls {
+            get {
+                return ((bool)(this["HoverControls"]));
+            }
+            set {
+                this["HoverControls"] = value;
+            }
+        }
     }
 }

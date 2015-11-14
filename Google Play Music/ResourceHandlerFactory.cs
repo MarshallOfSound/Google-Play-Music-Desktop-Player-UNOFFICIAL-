@@ -25,7 +25,11 @@ namespace Google_Play_Music
                     Color c = Properties.Settings.Default.CustomColor;
                     string RGB = "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
                     string custom_color = ";(function() {window.CustomColor = '" + RGB + "';})();";
-                    return ResourceHandler.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(webClient.DownloadString(request.Url) + ";" + custom_color + dark_theme + custom_interface + mini_player)), webClient.ResponseHeaders["Content-Type"]);
+
+                    bool controlsOnHover = Properties.Settings.Default.HoverControls;
+                    string controlsOnHoverJS = ";(function() {window.hoverControls = " + controlsOnHover.ToString().ToLower() + ";})();";
+
+                    return ResourceHandler.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(webClient.DownloadString(request.Url) + ";" + custom_color + controlsOnHoverJS + dark_theme + custom_interface + mini_player)), webClient.ResponseHeaders["Content-Type"]);
                 }
             }
             return null;

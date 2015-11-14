@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
     setStyle('#player', ['transition: bottom 0.3s', 'bottom: -100px', 'transition-timing-function: ease-in-out', 'width: 280px', 'left: 10px', 'right: 10px',
 		'border-bottom-left-radius: 8px', 'border-bottom-right-radius: 8px'
     ]);
-    setStyle('body[ready]:hover #player', ['bottom: 10px']);
-    setStyle('body[ready]:hover #mini-info', ['opacity: 1']);
+    setStyle('body[ready]:hover #player, body[controls] #player', ['bottom: 10px']);
+    setStyle('body[ready]:hover #mini-info, body[controls] #mini-info', ['opacity: 1']);
     setStyle('#material-player-left-wrapper, #material-player-right-wrapper', ['display: none']);
     setStyle('#mini-album', ['position: fixed', 'top: 0', 'left: 0', 'display: block', 'width: 100%', 'height: 100%', 'z-index: 9999998']);
     setStyle('.player-progress-wrapper', ['left: 0']);
@@ -101,6 +101,13 @@ document.addEventListener("DOMContentLoaded", function () {
             if (targetSpan.innerHTML != maxTime.innerHTML) {
                 targetSpan.innerHTML = maxTime.innerHTML;
             }
+        }
+        // Also check the controls setting
+        if (window.hoverControls && document.body.getAttribute('controls') != null) {
+            document.body.removeAttribute('controls');
+        }
+        if (!window.hoverControls && document.body.getAttribute('controls') == null) {
+            document.body.setAttribute('controls', 'controls');
         }
     }, 10);
 

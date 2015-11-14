@@ -65,6 +65,16 @@ namespace Google_Play_Music
                 Properties.Settings.Default.Save();
             };
 
+            materialCheckBox3.Checked = !Properties.Settings.Default.HoverControls;
+            materialCheckBox3.CheckStateChanged += (res, send) =>
+            {
+                Properties.Settings.Default.HoverControls = !materialCheckBox3.Checked;
+                app.Invoke((MethodInvoker)delegate
+                {
+                    app.GPMBrowser.EvaluateScriptAsync("(function() {window.hoverControls = " + (!materialCheckBox3.Checked).ToString().ToLower() + "})();");
+                });
+            };
+
             materialRaisedButton1.Click += (res, send) =>
             {
                 Properties.Settings.Default.Reset();
