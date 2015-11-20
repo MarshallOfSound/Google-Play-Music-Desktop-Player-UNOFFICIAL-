@@ -4,11 +4,14 @@ using System.Net;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Google_Play_Music
 {
     partial class CoreMusicApp
     {
+        static bool is64BitProcess = (IntPtr.Size == 8);
+
         private void checkForUpdates()
         {
             try
@@ -19,7 +22,25 @@ namespace Google_Play_Music
                 GithubRelease g = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<GithubRelease>(content);
                 string version = g.tag_name;
                 string changeLog = g.body;
-                string downloadURL = g.assets[0].browser_download_url;
+                string download_URL_32 = "";
+                string download_URL_64 = "";
+                foreach (Asset a in g.assets)
+                {
+                    Regex test = new Regex(@"x64");
+                    Match match = test.Match(a.browser_download_url);
+                    if (match.Success)
+                    {
+                        download_URL_64 = a.browser_download_url;
+                    } else
+                    {
+                        download_URL_32 = a.browser_download_url;
+                    }
+                }
+                string downloadURL = (is64BitProcess ? download_URL_64 : download_URL_32);
+                if (downloadURL == "")
+                {
+                    return;
+                }
 
                 // If the newest version is not the current version there must be an update available
                 if (version != CURRENT_VERSION)
