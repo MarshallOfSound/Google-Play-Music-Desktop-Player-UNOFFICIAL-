@@ -37,7 +37,13 @@ namespace Google_Play_Music
                         {
                             Load += (send, ev) =>
                             {
-                                Close();
+                                GPMBrowser.IsBrowserInitializedChanged += (res, se) =>
+                                {
+                                    if (GPMBrowser.IsBrowserInitialized)
+                                    {
+                                        Close();
+                                    }
+                                };
                             };
                         }).Start();
                         return;
