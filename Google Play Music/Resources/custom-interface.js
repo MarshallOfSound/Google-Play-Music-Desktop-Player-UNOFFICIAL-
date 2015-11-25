@@ -23,9 +23,21 @@ window.nowPlaying = function () {
     }
 };
 
-var currentPlaying = JSON.stringify(null);
+var currentPlaying = JSON.stringify(null),
+    lastScrobble = 0,
+    lastScrobbleSong = JSON.stringify(null),
+    songStart = 0;
 setInterval(function () {
+    if (new Date().getTime() - lastScrobble > 10000) {
+        if (document.getElementById('sliderBar').value / document.getElementById('sliderBar').max >= 0.5 && currentPlaying !== JSON.stringify(null) && lastScrobbleSong !== currentPlaying) {
+            var tmp = window.nowPlaying();
+            csharpinterface.songScrobbleRequest(tmp.title, tmp.artist, tmp.album, songStart);
+            lastScrobble = new Date().getTime();
+            lastScrobbleSong = JSON.stringify(window.nowPlaying());
+        }
+    }
     if (JSON.stringify(window.nowPlaying()) != currentPlaying) {
+        songStart = Math.floor(Date.now() / 1000);
         currentPlaying = JSON.stringify(window.nowPlaying());
         var tmp = window.nowPlaying(),
 			event = new CustomEvent('song-change', {

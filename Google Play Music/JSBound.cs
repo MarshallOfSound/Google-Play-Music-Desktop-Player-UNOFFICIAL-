@@ -84,6 +84,19 @@ namespace Google_Play_Music
             });
         }
 
+        // Fired from javascript when a different song has been playing for over half it's duration. (As according to last.fm's scrobbling spec)
+        public void songScrobbleRequest(string song, string artist, string album, int timestamp)
+        {
+            try
+            {
+                new LastFM().scrobbleTrack(artist, song, timestamp);
+            }
+            catch (Exception e)
+            {
+                // last.fm not authenticated
+            }
+        }
+
         private SongAlert alert = null;
 
         // Fired from javascript when a different song starts playing
@@ -118,6 +131,13 @@ namespace Google_Play_Music
                 // This try catch is to prevent application crashes when a user spams the forward / back track button
                 // The AsyncJSBind in CEFSharp can't handle the amount of communication and throws a NullPointer
                 // TODO: Check CEF progress on this issue
+            }
+            try
+            {
+                new LastFM().updateNowPlaying(album, song);
+            } catch (Exception e)
+            {
+                // last.fm not authenticated
             }
         }
 

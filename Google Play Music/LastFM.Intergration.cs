@@ -19,6 +19,7 @@ namespace Google_Play_Music
 
         private const string API_KEY = "";
         private const string API_SECRET = "";
+        private const string API_URL = "https://ws.audioscrobbler.com/2.0/?";
 
         public LastFM()
         {
@@ -46,11 +47,7 @@ namespace Google_Play_Music
             Dictionary<String, String> attrs = new Dictionary<string, string>();
             attrs["password"] = password;
             attrs["username"] = username;
-            string api_sig = signMethod("auth.getMobileSession", attrs);
-            string requestURL = "https://ws.audioscrobbler.com/2.0/?method=auth.getMobileSession&username=" + username +
-                "&password=" + password +
-                "&api_key=" + API_KEY + "&api_sig=" + api_sig +
-                "&format=json";
+            string requestURL = generateAPIRequestURL("auth.getMobileSession", attrs);
 
             string auth_response = await fetchURL(requestURL);
             
@@ -79,6 +76,7 @@ namespace Google_Play_Music
                     {
                         return "";
                     }
+
                     string responseString = await response.Content.ReadAsStringAsync();
 
                     return responseString;
@@ -90,17 +88,79 @@ namespace Google_Play_Music
             }
         }
 
-        private string signMethod(string method, Dictionary<string, string> attributes)
+        private string generateAPIRequestURL(string method, Dictionary<string, string> attributes)
         {
-            string stringToSign = "api_key" + API_KEY + "method" + method;
+            string api_sig = signMethod(method, attributes);
+            string api_params = generateMethodParams(attributes);
+            string requestURL = API_URL + "method=" + method;
+            requestURL += api_params;
+            requestURL += "&api_key=" + API_KEY + 
+                "&api_sig=" + api_sig +
+                "&format=json";
+
+            return requestURL;
+        }
+
+        private string generateMethodParams(Dictionary<string, string> attributes)
+        {
+            string methodParams = "";
             List<string> keys = new List<string>(attributes.Keys);
             keys.Sort();
+            foreach (string key in keys)
+            {
+                methodParams += "&" + key + "=" + attributes[key];
+            }
+            return methodParams;
+        }
+
+        private string signMethod(string method, Dictionary<string, string> attributes)
+        {
+            string stringToSign = "";
+            attributes["api_key"] = API_KEY;
+            attributes["method"] = method;
+            List<string> keys = new List<string>(attributes.Keys);
+            keys.Sort();
+
             foreach (string key in keys)
             {
                 stringToSign += key + attributes[key];
             }
             stringToSign += API_SECRET;
             return BitConverter.ToString(((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(new UTF8Encoding().GetBytes(stringToSign))).Replace("-", string.Empty).ToLower();
+        }
+
+        // Here begins the API wrappers
+        public async void updateNowPlaying(string artist, string track)
+        {
+            if (user_key == null)
+            {
+                throw new Exception("The last.fm user is not authorized");
+            }
+            Dictionary<string, string> attributes = new Dictionary<string, string>();
+            attributes["artist"] = artist;
+            attributes["track"] = track;
+            attributes["sk"] = user_key;
+
+            string requestURL = generateAPIRequestURL("track.updateNowPlaying", attributes);
+
+            await fetchURL(requestURL);
+        }
+
+        public async void scrobbleTrack(string artist, string track, int timestamp)
+        {
+            if (user_key == null)
+            {
+                throw new Exception("The last.fm user is not authorized");
+            }
+            Dictionary<string, string> attributes = new Dictionary<string, string>();
+            attributes["artist"] = artist;
+            attributes["track"] = track;
+            attributes["timestamp"] = timestamp.ToString();
+            attributes["sk"] = user_key;
+
+            string requestURL = generateAPIRequestURL("track.scrobble", attributes);
+
+            await fetchURL(requestURL);
         }
     }
 }
