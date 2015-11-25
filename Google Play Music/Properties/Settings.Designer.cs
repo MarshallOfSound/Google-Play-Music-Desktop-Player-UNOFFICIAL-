@@ -118,5 +118,29 @@ namespace Google_Play_Music.Properties {
                 this["HoverControls"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Username")]
+        public string LastFMUsername {
+            get {
+                return ((string)(this["LastFMUsername"]));
+            }
+            set {
+                this["LastFMUsername"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1234567")]
+        public string LastFMPassword {
+            get {
+                return ((string)(this["LastFMPassword"]));
+            }
+            set {
+                this["LastFMPassword"] = value;
+            }
+        }
     }
 }

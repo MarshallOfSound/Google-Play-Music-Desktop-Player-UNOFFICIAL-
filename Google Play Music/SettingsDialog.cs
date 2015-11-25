@@ -82,6 +82,59 @@ namespace Google_Play_Music
                 DialogResult = DialogResult.Abort;
                 Close();
             };
+
+            lastFMUsername.Text = Properties.Settings.Default.LastFMUsername;
+            lastFMUsername.GotFocus += (res, send) =>
+            {
+                focusDefaultInputField(lastFMUsername, "Username", true);
+            };
+            lastFMUsername.LostFocus += async (res, send) =>
+            {
+                focusDefaultInputField(lastFMUsername, "Username", false);
+                Properties.Settings.Default.LastFMUsername = lastFMUsername.Text;
+                lastFMAuth(-1);
+                await new LastFM().init();
+                lastFMAuth((LastFM.user_key != null ? 1 : 0));
+            };
+            lastFMUsername.KeyPress += (send, e) =>
+            {
+                if (e.KeyChar == (char)13)
+                {
+                    lastFMPassword.Focus();
+                }
+            };
+
+            lastFMPassword.Text = Properties.Settings.Default.LastFMPassword;
+            lastFMPassword.GotFocus += (res, send) =>
+            {
+                focusDefaultInputField(lastFMPassword, "1234567", true);
+            };
+            lastFMPassword.LostFocus += async (res, send) =>
+            {
+                focusDefaultInputField(lastFMPassword, "1234567", false);
+                Properties.Settings.Default.LastFMPassword = lastFMPassword.Text;
+                lastFMAuth(-1);
+                await new LastFM().init();
+                lastFMAuth((LastFM.user_key != null ? 1 : 0));
+            };
+            lastFMPassword.KeyPress += (send, e) =>
+            {
+                if (e.KeyChar == (char)13)
+                {
+                    lastFMUsername.Focus();
+                }
+            };
+        }
+
+        private void focusDefaultInputField(MaterialSingleLineTextField field, string defaultText, bool focus)
+        {
+            if (field.Text == defaultText && focus)
+            {
+                field.Text = "";
+            } else if (field.Text == "" && !focus)
+            {
+                field.Text = defaultText;
+            }
         }
 
         private void Color_Changed(object sender, EventArgs e)
@@ -99,10 +152,31 @@ namespace Google_Play_Music
         {
             Activated += (res, send) =>
             {
+                lastFMAuth((LastFM.user_key != null ? 1 : 0));
                 Location = new Point(X - 300, Y - 125);
             };
             var result = ShowDialog();
             return result;
+        }
+
+        private void lastFMAuth(int isAuth)
+        {
+            // 1 = Auth Success
+            // 0 = Auth Failure
+            // -1 = Auth in Progress
+            if (isAuth == 1)
+            {
+                lastFMAuthIndicator.ForeColor = Color.Green;
+                lastFMAuthIndicator.Text = "Login Successful";
+            } else if (isAuth == 0)
+            {
+                lastFMAuthIndicator.ForeColor = Color.Red;
+                lastFMAuthIndicator.Text = "Login Failed";
+            } else if (isAuth == -1)
+            {
+                lastFMAuthIndicator.ForeColor = Color.Yellow;
+                lastFMAuthIndicator.Text = "Logging in...";
+            }
         }
     }
 }
