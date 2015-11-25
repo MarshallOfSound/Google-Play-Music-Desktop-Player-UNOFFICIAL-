@@ -89,7 +89,7 @@ namespace Google_Play_Music
         {
             try
             {
-                new LastFM().scrobbleTrack(artist, song, timestamp);
+                new LastFM().scrobbleTrack(artist, song, timestamp).Wait();
             }
             catch (Exception e)
             {
@@ -134,7 +134,7 @@ namespace Google_Play_Music
             }
             try
             {
-                new LastFM().updateNowPlaying(album, song);
+                new LastFM().updateNowPlaying(album, song).Wait();
             } catch (Exception e)
             {
                 // last.fm not authenticated

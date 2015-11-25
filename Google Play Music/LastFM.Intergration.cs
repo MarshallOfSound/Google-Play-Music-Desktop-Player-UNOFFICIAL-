@@ -130,7 +130,7 @@ namespace Google_Play_Music
         }
 
         // Here begins the API wrappers
-        public async void updateNowPlaying(string artist, string track)
+        public async Task updateNowPlaying(string artist, string track)
         {
             if (user_key == null)
             {
@@ -146,7 +146,7 @@ namespace Google_Play_Music
             await fetchURL(requestURL);
         }
 
-        public async void scrobbleTrack(string artist, string track, int timestamp)
+        public async Task scrobbleTrack(string artist, string track, int timestamp)
         {
             if (user_key == null)
             {
