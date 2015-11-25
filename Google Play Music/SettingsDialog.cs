@@ -153,7 +153,7 @@ namespace Google_Play_Music
             Activated += (res, send) =>
             {
                 lastFMAuth((LastFM.user_key != null ? 1 : 0));
-                Location = new Point(X - 300, Y - 125);
+                Location = new Point(X - 300, Y - 200);
             };
             var result = ShowDialog();
             return result;
