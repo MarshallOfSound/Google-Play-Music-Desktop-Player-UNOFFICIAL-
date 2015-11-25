@@ -9,10 +9,15 @@ namespace Google_Play_Music
 {
     class GPMResouceHandlerFactory : IResourceHandlerFactory
     {
-        private bool firstJSOnly = true;
+        private bool firstJSOnly = false;
         public IResourceHandler GetResourceHandler(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request)
         {
-            if (Regex.Match(request.Url, @".js", RegexOptions.IgnoreCase).Success && Regex.Match(request.Url, @"http", RegexOptions.IgnoreCase).Success && firstJSOnly)
+            // Every time we request the main GPM page allow another JS injection
+            if (Regex.Match(request.Url, @"^http[s]?://play\.google\.com/music/listen", RegexOptions.IgnoreCase).Success)
+            {
+                firstJSOnly = true;
+            }
+            if (Regex.Match(request.Url, @"\.js", RegexOptions.IgnoreCase).Success && Regex.Match(request.Url, @"http", RegexOptions.IgnoreCase).Success && firstJSOnly)
             {
                 firstJSOnly = false;
                 using (WebClient webClient = new WebClient())
