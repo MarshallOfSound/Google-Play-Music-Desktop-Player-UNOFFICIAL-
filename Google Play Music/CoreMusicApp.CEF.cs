@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Google_Play_Music
@@ -30,6 +31,35 @@ namespace Google_Play_Music
             GPMBrowser.Dock = DockStyle.Fill;
 
             Controls.Add(GPMBrowser);
+        }
+
+        public void ZoomInBrowser()
+        {
+            deltaZoomBrowser(1.2);
+        }
+
+        public void ZoomOutBrowser()
+        {
+            deltaZoomBrowser(1 / 1.2);
+        }
+
+        public void ZoomResetBrowser()
+        {
+            Properties.Settings.Default.MaxiZoomLevel = 0;
+            GPMBrowser.SetZoomLevel(0);
+        }
+
+        private void deltaZoomBrowser(double delta)
+        {
+            if (!mini)
+            {
+                Task<double> zoomRatio = GPMBrowser.GetZoomLevelAsync();
+                zoomRatio.Wait();
+                double currentZoom = zoomRatio.Result;
+                double newZoom = Math.Log10(Math.Pow(10, currentZoom) * delta);
+                GPMBrowser.SetZoomLevel(newZoom);
+                Properties.Settings.Default.MaxiZoomLevel = newZoom;
+            }
         }
     }
 }

@@ -32,5 +32,8 @@
     <Setting Name="LastFMPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">1234567</Value>
     </Setting>
+    <Setting Name="MaxiZoomLevel" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

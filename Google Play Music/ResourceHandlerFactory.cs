@@ -34,7 +34,9 @@ namespace Google_Play_Music
                     bool controlsOnHover = Properties.Settings.Default.HoverControls;
                     string controlsOnHoverJS = ";(function() {window.hoverControls = " + controlsOnHover.ToString().ToLower() + ";})();";
 
-                    return ResourceHandler.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(webClient.DownloadString(request.Url) + ";" + custom_color + controlsOnHoverJS + dark_theme + custom_interface + mini_player)), webClient.ResponseHeaders["Content-Type"]);
+                    string setInitialZoomJS = ";(function() {csharpinterface.setInitialZoom();})();";
+
+                    return ResourceHandler.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(webClient.DownloadString(request.Url) + ";" + custom_color + controlsOnHoverJS + setInitialZoomJS + dark_theme + custom_interface + mini_player)), webClient.ResponseHeaders["Content-Type"]);
                 }
             }
             return null;

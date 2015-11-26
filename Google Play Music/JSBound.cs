@@ -30,6 +30,14 @@ namespace Google_Play_Music
             
         }
 
+        public void setInitialZoom()
+        {
+            mainForm.Invoke((MethodInvoker)delegate
+            {
+                mainForm.GPMBrowser.SetZoomLevel(Properties.Settings.Default.MaxiZoomLevel);
+            });
+        }
+
         public void lightTheme()
         {
             mainForm.Invoke((MethodInvoker)delegate

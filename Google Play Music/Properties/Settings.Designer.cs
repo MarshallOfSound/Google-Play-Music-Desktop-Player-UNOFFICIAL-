@@ -142,5 +142,17 @@ namespace Google_Play_Music.Properties {
                 this["LastFMPassword"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double MaxiZoomLevel {
+            get {
+                return ((double)(this["MaxiZoomLevel"]));
+            }
+            set {
+                this["MaxiZoomLevel"] = value;
+            }
+        }
     }
 }

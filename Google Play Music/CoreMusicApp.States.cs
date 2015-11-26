@@ -17,7 +17,7 @@ namespace Google_Play_Music
             Padding = new Padding(2, 24, 2, 2);
             if (GPMBrowser != null)
             {
-                GPMBrowser.SetZoomLevel(0);
+                GPMBrowser.SetZoomLevel(Properties.Settings.Default.MaxiZoomLevel);
             }
             FormBorderStyle = FormBorderStyle.Sizable;
             MaximumSize = new Size();
