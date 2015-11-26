@@ -18,7 +18,7 @@ namespace Google_Play_Music
             settings.CefCommandLineArgs.Add("enable-npapi", "1");
             Cef.Initialize(settings);
 
-            GPMBrowser = new CefSharp.WinForms.ChromiumWebBrowser("http://play.google.com/music/listen")
+            GPMBrowser = new CefSharp.WinForms.ChromiumWebBrowser("https://play.google.com/music/listen")
             {
                 // Use this to inject our theming and modding javascript code
                 ResourceHandlerFactory = new GPMResouceHandlerFactory(),
