@@ -108,7 +108,7 @@ namespace Google_Play_Music
         private SongAlert alert = null;
 
         // Fired from javascript when a different song starts playing
-        public void songChangeEvent(string song, string artist, string album, string url)
+        public void songChangeEvent(string song, string album, string artist, string url)
         {
             if (!Properties.Settings.Default.DesktopNotifications)
             {
@@ -125,12 +125,14 @@ namespace Google_Play_Music
                 // GUI tasks should be run on a GUI thread
                 mainForm.Invoke((MethodInvoker) async delegate
                 {
+                    // Update the title to show the current song
+                    mainForm.Text = song + " - " + artist;
                     // Wait for the alert box to dispose of it self
                     await TaskEx.Run(delegate
                     {
                         while (alert != null) ;
                     });
-                    alert = new SongAlert(song, artist, album, url);
+                    alert = new SongAlert(song, album, artist, url);
                     alert.FormClosing += new FormClosingEventHandler(Song_Alert_Close);
                     alert.Show();
                 });
