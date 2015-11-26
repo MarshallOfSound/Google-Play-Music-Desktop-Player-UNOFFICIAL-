@@ -57,7 +57,8 @@ var check = setInterval(function () {
 
         hideDiv(document.querySelectorAll('.nav-item-container[data-action=upload-music]')[0]);
         hideDiv(document.querySelectorAll('.nav-item-container[data-action=help-and-feedback]')[0]);
-        var divs = document.querySelectorAll('[aria-label="Account Information"] > div');
+        document.querySelectorAll('[href="https://plus.google.com/u/0/dashboard"]')[0].parentNode.setAttribute('data-gpmdp-account-node', 'true');
+        var divs = document.querySelectorAll('[data-gpmdp-account-node="true"] > div');
         hideDiv(divs[0]);
         hideDiv(divs[1]);
         hideDiv(divs[2].querySelectorAll('div')[0]);
