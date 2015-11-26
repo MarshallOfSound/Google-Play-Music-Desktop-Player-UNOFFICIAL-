@@ -54,12 +54,12 @@ var BlackTheme = function () {
     setStyle('', ['background-color: {{BACK_SECONDARY}}']);
     setStyle('#nav-container, #loading-overlay, #loading-progress, #loading-progress-bar', ['background: {{BACK_PRIMARY}}']);
     setStyle('#loading-progress-bar', ['border: none']);
-    setStyle('.nav-toolbar, .material-card .details, .material-card .image-wrapper', ['background: {{BACK_PRIMARY}}']);
+    setStyle('.nav-toolbar, .material-card .details, .material-card .image-wrapper, .situations-filter', ['background: {{BACK_PRIMARY}}']);
     setStyle('#nav', ['background: {{BACK_PRIMARY}}', 'color: {{FORE_PRIMARY}}']);
     setStyle('#player, .player-rating-container, #player.material .now-playing-actions paper-icon-button', ['color: {{FORE_PRIMARY}}', 'background-color: {{BACK_PRIMARY}}']);
     setStyle('#player.material:hover #material-player-progress #sliderContainer:not(.disabled) #sliderBar #progressContainer, .playlist-view .editable:hover', ['background: {{BACK_HIGHLIGHT}}']);
     setStyle('.cluster-text-protection::before, .cluster-text-protection', ['background: transparent']);
-    setStyle('.title, .recommended-header', ['color: {{FORE_PRIMARY}}']);
+    setStyle('.title, .situation-title, .recommended-header', ['color: {{FORE_PRIMARY}}']);
     setStyle('.nav-item-container', ['color: {{FORE_PRIMARY}}']);
     setStyle('#nav_collections .nav-item-container:focus, .nav-item-container:focus, .nav-item-container:hover, .nav-item-container.selected', ['background-color: {{BACK_HIGHLIGHT}}']);
     setStyle('.nav-item-container:not(:focus):hover iron-icon', ['color: {{FORE_SECONDARY}}']);
