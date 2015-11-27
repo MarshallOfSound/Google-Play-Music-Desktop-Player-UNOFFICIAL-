@@ -144,7 +144,7 @@ namespace Google_Play_Music
             }
             try
             {
-                new LastFM().updateNowPlaying(album, song).Wait();
+                new LastFM().updateNowPlaying(artist, song).Wait();
             } catch (Exception e)
             {
                 // last.fm not authenticated
