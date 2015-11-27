@@ -61,5 +61,15 @@ namespace Google_Play_Music
                 Properties.Settings.Default.MaxiZoomLevel = newZoom;
             }
         }
+
+        public void navigateBackBrowser()
+        {
+            GPMBrowser.ExecuteScriptAsync("(function() { window.history.back(); })()");
+        }
+
+        public void navigateForwardBrowser()
+        {
+            GPMBrowser.ExecuteScriptAsync("(function() { window.history.forward(); })()");
+        }
     }
 }

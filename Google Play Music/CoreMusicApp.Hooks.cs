@@ -1,37 +1,34 @@
-﻿using System;
+﻿using Gma.System.MouseKeyHook;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Utilities;
 
 namespace Google_Play_Music
 {
     partial class CoreMusicApp
     {
-        private static globalKeyboardHook gkh;
+        private IKeyboardMouseEvents globalKeyMouseHook;
 
         private void RegisterKeyHooks()
         {
-            gkh = new globalKeyboardHook();
-
-            // Don't let the Garbage Man interfere
-            GC.KeepAlive(gkh);
-
-            // Global Hotkey Listener
-            gkh.HookedKeys.Add(Keys.MediaPlayPause);
-            gkh.HookedKeys.Add(Keys.MediaNextTrack);
-            gkh.HookedKeys.Add(Keys.MediaPreviousTrack);
-            gkh.HookedKeys.Add(Keys.MediaStop);
-            gkh.HookedKeys.Add(Keys.Control);
-            gkh.HookedKeys.Add(Keys.ControlKey);
-            gkh.HookedKeys.Add(Keys.RControlKey);
-            gkh.HookedKeys.Add(Keys.LControlKey);
-            gkh.HookedKeys.Add(Keys.Oemplus);
-            gkh.HookedKeys.Add(Keys.Add);
-            gkh.HookedKeys.Add(Keys.OemMinus);
-            gkh.HookedKeys.Add(Keys.Subtract);
-            gkh.HookedKeys.Add(Keys.D0);
-            gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
-            gkh.KeyUp += new KeyEventHandler(gkh_KeyUp);
+            globalKeyMouseHook = Hook.GlobalEvents();
+            globalKeyMouseHook.MouseDownExt += (send, e) => {
+                if (!ApplicationIsActivated()) return;
+                switch (e.Button)
+                {
+                    case MouseButtons.XButton1:
+                        navigateBackBrowser();
+                        break;
+                    case MouseButtons.XButton2:
+                        navigateForwardBrowser();
+                        break;
+                }
+            };
+            globalKeyMouseHook.KeyDown += new KeyEventHandler(gkh_KeyDown);
+            globalKeyMouseHook.KeyUp += new KeyEventHandler(gkh_KeyUp);
+            FormClosed += (send, e) =>
+            {
+                globalKeyMouseHook.Dispose();
+            };
         }
 
         private bool controlDown = false;
@@ -41,29 +38,29 @@ namespace Google_Play_Music
 
         void gkh_KeyUp(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode.ToString())
+            switch (e.KeyCode)
             {
-                case "MediaPlayPause":
+                case Keys.MediaPlayPause:
                     this.playPause();
                     break;
-                case "MediaStop":
+                case Keys.MediaStop:
                     this.playPause();
                     break;
-                case "MediaNextTrack":
+                case Keys.MediaNextTrack:
                     this.nextTrack();
                     break;
-                case "MediaPreviousTrack":
+                case Keys.MediaPreviousTrack:
                     this.prevTrack();
                     break;
                 // Zooming shortcuts
-                case "Control":
-                case "ControlKey":
-                case "RControlKey":
-                case "LControlKey":
+                case Keys.Control:
+                case Keys.ControlKey:
+                case Keys.RControlKey:
+                case Keys.LControlKey:
                     controlDown = false;
                     break;
-                case "Oemplus":
-                case "Add":
+                case Keys.Oemplus:
+                case Keys.Add:
                     if (controlDown && ApplicationIsActivated() && !zoomInProgress)
                     {
                         zoomInProgress = true;
@@ -72,8 +69,8 @@ namespace Google_Play_Music
                         zoomInProgress = false;
                     }
                     break;
-                case "OemMinus":
-                case "Subtract":
+                case Keys.OemMinus:
+                case Keys.Subtract:
                     if (controlDown && ApplicationIsActivated() && !zoomInProgress)
                     {
                         zoomInProgress = true;
@@ -82,7 +79,7 @@ namespace Google_Play_Music
                         zoomInProgress = false;
                     }
                     break;
-                case "D0":
+                case Keys.D0:
                     if (controlDown && ApplicationIsActivated() && !zoomInProgress)
                     {
                         zoomInProgress = true;
@@ -98,7 +95,7 @@ namespace Google_Play_Music
 
         void gkh_KeyDown(object sender, KeyEventArgs e)
         {
-            if (new List<string> { "Control", "ControlKey", "RControlKey", "LControlKey" }.Contains(e.KeyCode.ToString()))
+            if (new List<Keys> { Keys.Control, Keys.ControlKey, Keys.RControlKey, Keys.LControlKey }.Contains(e.KeyCode))
             {
                 controlDown = true;
             }

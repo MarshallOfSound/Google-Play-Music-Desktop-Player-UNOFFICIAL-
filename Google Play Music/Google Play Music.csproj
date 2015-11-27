@@ -111,6 +111,10 @@
     <StartupObject>Google_Play_Music.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Gma.System.MouseKeyHook, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MouseKeyHook.5.3.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
       <Private>True</Private>
@@ -207,7 +211,6 @@
     <Compile Include="LastFM.Intergration.cs" />
     <Compile Include="ResourceHandlerFactory.cs" />
     <Compile Include="MenuHandler.cs" />
-    <Compile Include="globalKeyboardHook.cs" />
     <Compile Include="JSBound.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
