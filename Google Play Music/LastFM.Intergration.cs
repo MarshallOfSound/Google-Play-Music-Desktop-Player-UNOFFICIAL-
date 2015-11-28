@@ -108,7 +108,7 @@ namespace Google_Play_Music
             keys.Sort();
             foreach (string key in keys)
             {
-                methodParams += "&" + key + "=" + attributes[key];
+                methodParams += "&" + key + "=" + System.Web.HttpUtility.UrlEncode(attributes[key]);
             }
             return methodParams;
         }
