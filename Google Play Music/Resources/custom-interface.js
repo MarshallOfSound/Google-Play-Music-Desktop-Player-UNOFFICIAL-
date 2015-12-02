@@ -29,7 +29,7 @@ var currentPlaying = JSON.stringify(null),
     songStart = 0;
 setInterval(function () {
     if (new Date().getTime() - lastScrobble > 10000) {
-        if (document.getElementById('sliderBar').value / document.getElementById('sliderBar').max >= 0.5 && currentPlaying !== JSON.stringify(null) && lastScrobbleSong !== currentPlaying) {
+        if (document.getElementById('sliderBar') && document.getElementById('sliderBar').value / document.getElementById('sliderBar').max >= 0.5 && currentPlaying !== JSON.stringify(null) && lastScrobbleSong !== currentPlaying) {
             var tmp = window.nowPlaying();
             csharpinterface.songScrobbleRequest(tmp.title, tmp.artist, tmp.album, songStart);
             lastScrobble = new Date().getTime();
@@ -52,21 +52,35 @@ var check = setInterval(function () {
     if (document.querySelectorAll('.nav-item-container[data-action=upload-music]').length !== 0) {
         clearInterval(check);
         var hideDiv = function (div) {
-            div.style.display = "none";
+            if (div) {
+                div.style.display = "none";
+            }
         };
 
         hideDiv(document.querySelectorAll('.nav-item-container[data-action=upload-music]')[0]);
         hideDiv(document.querySelectorAll('.nav-item-container[data-action=help-and-feedback]')[0]);
-        document.querySelectorAll('[href="https://plus.google.com/u/0/dashboard"]')[0].parentNode.setAttribute('data-gpmdp-account-node', 'true');
-        var divs = document.querySelectorAll('[data-gpmdp-account-node="true"] > div');
-        hideDiv(divs[0]);
-        hideDiv(divs[1]);
-        hideDiv(divs[2].querySelectorAll('div')[0]);
-        divs[2].querySelectorAll('div')[1].querySelectorAll('a')[0].setAttribute('style', 'color: black !important');
+        node = null;
+        for (var i = 0; i < 20; i++) {
+            var tmp = document.querySelectorAll('[href="https://plus.google.com/u/' + i + '/dashboard"]');
+            if (tmp.length > 0) {
+                node = tmp[0];
+            }
+        }
+        if (node) {
+            node.parentNode.setAttribute('data-gpmdp-account-node', 'true');
+            var divs = document.querySelectorAll('[data-gpmdp-account-node="true"] > div');
+            hideDiv(divs[0]);
+            hideDiv(divs[1]);
+            if (divs[2]) hideDiv(divs[2].querySelectorAll('div')[0]);
+        }
+        if (divs[2].querySelectorAll('div')[1] && divs[2].querySelectorAll('div')[1].querySelectorAll('a')[0]) {
+            divs[2].querySelectorAll('div')[1].querySelectorAll('a')[0].setAttribute('style', 'color: black !important');
+        }
         hideDiv(document.querySelectorAll('#gbwa')[0]);
         hideDiv(document.querySelectorAll('#gbwa + div')[0]);
         hideDiv(document.querySelectorAll('#gbwa + div')[0]);
-        document.querySelectorAll('#gbwa + div + div')[0].setAttribute('style', 'margin-left: auto !important');
+        node = document.querySelectorAll('#gbwa + div + div')[0];
+        if (node) node.setAttribute('style', 'margin-left: auto !important');
 
         var e = document.getElementById('material-one-right');
         e.innerHTML = '' +
