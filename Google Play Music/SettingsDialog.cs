@@ -22,10 +22,9 @@ namespace Google_Play_Music
             skin.AddFormToManage(this);
 
             colorWheel1.MouseUp += Color_Changed;
-            HslColor set = ColorMath.RgbToHsl(Properties.Settings.Default.CustomColor);
-            colorWheel1.Hue = set.H;
-            colorWheel1.Saturation = set.S;
-            colorWheel1.Lightness = set.L;
+            SetColorWheelToRgb(Properties.Settings.Default.CustomColor);
+
+            themeHexTextBox.Text = ColorMath.RgbToHex(Properties.Settings.Default.CustomColor);
 
             materialCheckBox1.Checked = Properties.Settings.Default.CustomTheme;
             materialCheckBox1.CheckStateChanged += (res, send) =>
@@ -126,6 +125,14 @@ namespace Google_Play_Music
             };
         }
 
+        private void SetColorWheelToRgb(Color color)
+        {
+            HslColor set = ColorMath.RgbToHsl(color);
+            colorWheel1.Hue = set.H;
+            colorWheel1.Saturation = set.S;
+            colorWheel1.Lightness = set.L;
+        }
+
         private void focusDefaultInputField(MaterialSingleLineTextField field, string defaultText, bool focus)
         {
             if (field.Text == defaultText && focus)
@@ -139,13 +146,25 @@ namespace Google_Play_Music
 
         private void Color_Changed(object sender, EventArgs e)
         {
-            Properties.Settings.Default.CustomColor = ColorMath.HslToRgb(new HslColor(colorWheel1.Hue, colorWheel1.Saturation, colorWheel1.Lightness));
-            Color c = Properties.Settings.Default.CustomColor;
-            string RGB = "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+            Color color = ColorMath.HslToRgb(new HslColor(colorWheel1.Hue, colorWheel1.Saturation, colorWheel1.Lightness));
+            string hex = SetThemeToColor(color);
+
+        }
+
+        private string SetThemeToColor(Color color)
+        {
+            Properties.Settings.Default.CustomColor = color;
+            string hex = ColorMath.RgbToHex(color);
+
             app.Invoke((MethodInvoker)delegate
-            {
-                app.GPMBrowser.EvaluateScriptAsync("(function() {window.CustomColor = '" + RGB + "'; window.ReDrawTheme();})();");
-            });
+                    {
+                        app.GPMBrowser.EvaluateScriptAsync("(function() {window.CustomColor = '" + hex +"'; window.ReDrawTheme();})();");
+                    });
+
+
+            themeHexTextBox.Text = hex;
+
+            return hex;
         }
 
         public DialogResult open(int X, int Y)
@@ -177,6 +196,13 @@ namespace Google_Play_Music
                 lastFMAuthIndicator.ForeColor = Color.Yellow;
                 lastFMAuthIndicator.Text = "Logging in...";
             }
+        }
+
+        private void setCusomHexBtn_Click(object sender, EventArgs e)
+        {
+            Color rgb = ColorMath.HexToRgb(themeHexTextBox.Text);
+            SetColorWheelToRgb(rgb);
+            SetThemeToColor(rgb);
         }
     }
 }
