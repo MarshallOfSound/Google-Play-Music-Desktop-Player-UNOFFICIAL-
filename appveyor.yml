@@ -1,0 +1,15 @@
+version: 1.0.{build}
+before_build:
+- cmd: nuget restore
+build:
+  verbosity: minimal
+
+platform:
+  - x86
+  - x64
+
+configuration:
+  - Release
+
+matrix:
+  fast_finish: true
