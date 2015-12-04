@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.Runtime.InteropServices;
 
 namespace Google_Play_Music
@@ -517,6 +518,58 @@ namespace Google_Play_Music
             }
             return Color.FromArgb(rgb[0], rgb[1], rgb[2]);
         }
+
+
+        /// <summary>
+        /// Convert RGB Color to a hex value
+        /// </summary>
+        /// <param name="rgb">RGB color</param>
+        /// <returns>Hex value of RGB color</returns>
+
+        public static string RgbToHex(Color rgb)
+        {
+            string hex = "#" + rgb.R.ToString("X2") + rgb.G.ToString("X2") + rgb.B.ToString("X2");
+            return hex.ToUpper();
+        }
+        
+
+        /// <summary>
+        /// Convert hex value to RGB color
+        /// </summary>
+        /// <param name="hex">Hex value of color</param>
+        /// <returns>Color</returns>
+        public static Color HexToRgb(string hex)
+        {
+            int intVal = HexToInt(hex);
+            if (intVal == -1)
+            {
+                return Color.Empty;
+            }
+            else
+            {
+                Color rgb = Color.FromArgb(intVal);
+                return rgb;
+            }
+        }
+
+        /// <summary>
+        /// Convert hex value to int value. Filters leading # character.
+        /// </summary>
+        /// <param name="hex">Hex value of color</param>
+        /// <returns>int value of color, or black if invalid</returns>
+
+        private static int HexToInt(string hex)
+        {
+            int rgb = 0;
+
+            if (!int.TryParse(hex.Replace("#", string.Empty), NumberStyles.HexNumber, null, out rgb))
+            {
+                rgb = -1;
+            }
+
+            return rgb;
+        }
+
 
         /// <summary>
         /// Computes the real modulus value, not the division remainder.
