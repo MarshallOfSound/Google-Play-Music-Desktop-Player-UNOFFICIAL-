@@ -227,6 +227,7 @@
     <Compile Include="UpdateDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilities\ColorMath.cs" />
     <EmbeddedResource Include="CoreMusicApp.resx">
       <DependentUpon>CoreMusicApp.cs</DependentUpon>
     </EmbeddedResource>
