@@ -201,6 +201,14 @@ namespace Google_Play_Music
         private void setCusomHexBtn_Click(object sender, EventArgs e)
         {
             Color rgb = ColorMath.HexToRgb(themeHexTextBox.Text);
+
+            // Color.Empty is the equivalent of a null value,
+            // so reset to the previous color (or the default).
+            if (rgb == Color.Empty)
+            {
+                rgb = Properties.Settings.Default.CustomColor;
+            }
+
             SetColorWheelToRgb(rgb);
             SetThemeToColor(rgb);
         }

@@ -540,8 +540,16 @@ namespace Google_Play_Music
         /// <returns>Color</returns>
         public static Color HexToRgb(string hex)
         {
-            Color rgb = Color.FromArgb(HexToInt(hex));
-            return rgb;
+            int intVal = HexToInt(hex);
+            if (intVal == -1)
+            {
+                return Color.Empty;
+            }
+            else
+            {
+                Color rgb = Color.FromArgb(intVal);
+                return rgb;
+            }
         }
 
         /// <summary>
@@ -552,12 +560,11 @@ namespace Google_Play_Music
 
         private static int HexToInt(string hex)
         {
-
             int rgb = 0;
 
             if (!int.TryParse(hex.Replace("#", string.Empty), NumberStyles.HexNumber, null, out rgb))
             {
-                //invalid hex
+                rgb = -1;
             }
 
             return rgb;
