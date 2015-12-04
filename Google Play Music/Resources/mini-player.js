@@ -27,11 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
     setStyle('.player-progress-wrapper', ['left: 0']);
     setStyle('.material-player-middle', ['margin: 0px auto']);
     setStyle('#player.material .material-player-middle sj-icon-button[data-id="play-pause"] core-icon, #player.material .material-player-middle paper-icon-button[data-id="play-pause"] iron-icon', ['height: 50px', 'width: 50px', 'top: -8px']);
+    setStyle('paper-icon-button[data-id="play-pause"]', ['text-aligen: center']);
     setStyle('[data-id=play-pause]::shadow paper-ripple.circle', ['height: 50px', 'width: 50px', 'margin-left: 6px', 'margin-top: -2px']);
     setStyle('[data-id=forward], [data-id=rewind], [data-id=repeat], [data-id=shuffle]', ['top: -8px']);
-    setStyle('[data-id=shuffle]', ['left: -8px']);
-    setStyle('[data-id=repeat]', ['left: 8px']);
-    setStyle('[data-id=show-miniplayer-dp]', ['color: #9e9e9e', 'position: absolute', 'top: auto', 'bottom: 0', 'right: 0', 'margin: 0'], false);
+    setStyle('[data-id=repeat]', ['left: 28px']);
+    setStyle('[data-id=rewind]', ['left: 16px']);
+    setStyle('[data-id=forward]', ['left: -16px']);
+    setStyle('[data-id=shuffle]', ['left: -28px']);
+    setStyle('[data-id=show-miniplayer-dp]', ['color: #9e9e9e', 'position: absolute', 'top: auto', 'bottom: -4px', 'right: -4px', 'margin: 0'], false);
     setStyle('#player paper-icon-button[data-id="show-miniplayer-dp"] iron-icon', ['width: 16px', 'height: 16px'], false);
     setStyle('#current-track-prog-mini', ['position: absolute', 'top: 8px', 'left: 6px', 'font-size: 11px', 'display: block']);
     setStyle('#end-track-prog-mini', ['position: absolute', 'top: 8px', 'right: 6px', 'font-size: 11px', 'display: block']);
@@ -146,7 +149,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Rely on the ready attribute because when the window is resized CEF does not check the hover state
     document.body.addEventListener('mouseover', function () {
-        document.body.setAttribute('ready', 'ready');
+        if (window.miniButton) {
+            document.body.setAttribute('ready', 'ready');
+        }
     });
     window.goMini = function () {
         document.body.removeAttribute('ready');
