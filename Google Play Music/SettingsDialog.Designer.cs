@@ -40,18 +40,19 @@
             this.lastFMPassword = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.colorWheel1 = new Google_Play_Music.ColorWheel();
             this.lastFMAuthIndicator = new MaterialSkin.Controls.MaterialLabel();
+            this.materialCheckBox4 = new MaterialSkin.Controls.MaterialCheckBox();
             this.SuspendLayout();
             // 
             // materialLabel1
             // 
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel1.Location = new System.Drawing.Point(411, 72);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(171, 18);
+            this.materialLabel1.Size = new System.Drawing.Size(176, 19);
             this.materialLabel1.TabIndex = 1;
             this.materialLabel1.Text = "Custom Theme Highlight";
             // 
@@ -59,7 +60,7 @@
             // 
             this.materialCheckBox1.AutoSize = true;
             this.materialCheckBox1.Depth = 0;
-            this.materialCheckBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.materialCheckBox1.Font = new System.Drawing.Font("Roboto", 10F);
             this.materialCheckBox1.Location = new System.Drawing.Point(13, 97);
             this.materialCheckBox1.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox1.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -75,12 +76,12 @@
             // 
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel2.Location = new System.Drawing.Point(12, 71);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(117, 18);
+            this.materialLabel2.Size = new System.Drawing.Size(119, 19);
             this.materialLabel2.TabIndex = 3;
             this.materialLabel2.Text = "General Settings";
             // 
@@ -100,8 +101,8 @@
             // 
             this.materialCheckBox2.AutoSize = true;
             this.materialCheckBox2.Depth = 0;
-            this.materialCheckBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.materialCheckBox2.Location = new System.Drawing.Point(13, 137);
+            this.materialCheckBox2.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBox2.Location = new System.Drawing.Point(13, 134);
             this.materialCheckBox2.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox2.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBox2.MouseState = MaterialSkin.MouseState.HOVER;
@@ -116,8 +117,8 @@
             // 
             this.materialCheckBox3.AutoSize = true;
             this.materialCheckBox3.Depth = 0;
-            this.materialCheckBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.materialCheckBox3.Location = new System.Drawing.Point(13, 177);
+            this.materialCheckBox3.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBox3.Location = new System.Drawing.Point(13, 171);
             this.materialCheckBox3.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox3.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBox3.MouseState = MaterialSkin.MouseState.HOVER;
@@ -132,12 +133,12 @@
             // 
             this.materialLabel3.AutoSize = true;
             this.materialLabel3.Depth = 0;
-            this.materialLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel3.Location = new System.Drawing.Point(12, 248);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(115, 18);
+            this.materialLabel3.Size = new System.Drawing.Size(120, 19);
             this.materialLabel3.TabIndex = 7;
             this.materialLabel3.Text = "Last.fm Account";
             // 
@@ -194,20 +195,37 @@
             // 
             this.lastFMAuthIndicator.AutoSize = true;
             this.lastFMAuthIndicator.Depth = 0;
-            this.lastFMAuthIndicator.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.lastFMAuthIndicator.ForeColor = System.Drawing.Color.Red;
+            this.lastFMAuthIndicator.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lastFMAuthIndicator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lastFMAuthIndicator.Location = new System.Drawing.Point(29, 325);
             this.lastFMAuthIndicator.MouseState = MaterialSkin.MouseState.HOVER;
             this.lastFMAuthIndicator.Name = "lastFMAuthIndicator";
-            this.lastFMAuthIndicator.Size = new System.Drawing.Size(93, 13);
+            this.lastFMAuthIndicator.Size = new System.Drawing.Size(131, 19);
             this.lastFMAuthIndicator.TabIndex = 10;
             this.lastFMAuthIndicator.Text = "Not Authenticated";
+            // 
+            // materialCheckBox4
+            // 
+            this.materialCheckBox4.AutoSize = true;
+            this.materialCheckBox4.Depth = 0;
+            this.materialCheckBox4.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBox4.Location = new System.Drawing.Point(12, 208);
+            this.materialCheckBox4.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBox4.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBox4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBox4.Name = "materialCheckBox4";
+            this.materialCheckBox4.Ripple = true;
+            this.materialCheckBox4.Size = new System.Drawing.Size(187, 30);
+            this.materialCheckBox4.TabIndex = 11;
+            this.materialCheckBox4.Text = "Mini Player always on top";
+            this.materialCheckBox4.UseVisualStyleBackColor = true;
             // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 400);
+            this.Controls.Add(this.materialCheckBox4);
             this.Controls.Add(this.lastFMAuthIndicator);
             this.Controls.Add(this.lastFMPassword);
             this.Controls.Add(this.lastFMUsername);
@@ -242,5 +260,6 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField lastFMUsername;
         private MaterialSkin.Controls.MaterialSingleLineTextField lastFMPassword;
         private MaterialSkin.Controls.MaterialLabel lastFMAuthIndicator;
+        private MaterialSkin.Controls.MaterialCheckBox materialCheckBox4;
     }
 }

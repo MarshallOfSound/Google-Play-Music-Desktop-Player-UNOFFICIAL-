@@ -42,6 +42,8 @@ namespace Google_Play_Music
             FormBorderStyle = FormBorderStyle.None;
             Size = savedSize;
             FormBorderStyle = FormBorderStyle.Sizable;
+
+            TopMost = false;
         }
 
         public void restoreMiniState()
@@ -71,6 +73,8 @@ namespace Google_Play_Music
             Location = savedPoint;
             Size = savedSize;
             setZoomRatio();
+
+            TopMost = Properties.Settings.Default.MiniAlwaysOnTop;
         }
 
         public void saveMaxiState()

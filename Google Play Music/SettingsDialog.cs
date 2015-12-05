@@ -76,6 +76,12 @@ namespace Google_Play_Music
                 });
             };
 
+            materialCheckBox4.Checked = Properties.Settings.Default.MiniAlwaysOnTop;
+            materialCheckBox4.CheckStateChanged += (res, send) =>
+            {
+                Properties.Settings.Default.MiniAlwaysOnTop = materialCheckBox4.Checked;
+            };
+
             materialRaisedButton1.Click += (res, send) =>
             {
                 Properties.Settings.Default.Reset();

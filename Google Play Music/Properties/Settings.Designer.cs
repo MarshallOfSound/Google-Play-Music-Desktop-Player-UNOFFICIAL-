@@ -154,5 +154,17 @@ namespace Google_Play_Music.Properties {
                 this["MaxiZoomLevel"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool MiniAlwaysOnTop {
+            get {
+                return ((bool)(this["MiniAlwaysOnTop"]));
+            }
+            set {
+                this["MiniAlwaysOnTop"] = value;
+            }
+        }
     }
 }
