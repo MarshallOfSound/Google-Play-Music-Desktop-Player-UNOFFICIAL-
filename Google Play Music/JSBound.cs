@@ -110,6 +110,13 @@ namespace Google_Play_Music
         // Fired from javascript when a different song starts playing
         public void songChangeEvent(string song, string album, string artist, string url)
         {
+            mainForm.Invoke((MethodInvoker)delegate
+            {
+                // Update the title to show the current song
+                mainForm.Text = song + " - " + artist;
+            });
+
+            // If no desktop notifications just stop here :)
             if (!Properties.Settings.Default.DesktopNotifications)
             {
                 return;
@@ -125,8 +132,6 @@ namespace Google_Play_Music
                 // GUI tasks should be run on a GUI thread
                 mainForm.Invoke((MethodInvoker) async delegate
                 {
-                    // Update the title to show the current song
-                    mainForm.Text = song + " - " + artist;
                     // Wait for the alert box to dispose of it self
                     await TaskEx.Run(delegate
                     {
