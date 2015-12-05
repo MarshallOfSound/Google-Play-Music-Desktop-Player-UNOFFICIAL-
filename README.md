@@ -27,7 +27,9 @@ Features
 --------
 
 * Supports media keys (play, pause, next, previous)
+* [last.fm](https://www.last.fm) scrobbling and now playing support!
 * Desktop notifications on track change
+* A simplistic mini player
 * Dark theme
 * Task bar media controls (media controls embedded into the taskbar)
 * Smooth scrolling and overlay scrollbars for a nicer User Experience
