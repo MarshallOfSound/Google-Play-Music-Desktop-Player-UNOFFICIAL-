@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+    <Fragment>
+        <?include Common.wxi ?>
+        <ComponentGroup Id="Google_Play_Music_Core" Directory="$(var.InstallDirectory)" >            
+            <Component Id="Google_Play_Music">
+                <File KeyPath="yes" Source="'C:\gitprojects\Google-Play-Music-Desktop-Player-UNOFFICIAL-\Google Play Music\bin\x86\Release\Google Play Music.exe'" />
+                <File Source="$(var.SourcePath)\Google Play Music.exe.config" />
+            </Component>
+        </ComponentGroup>
+
+        <ComponentGroup Id="Locales" Directory="locales">
+            <Component Id="PAKs">
+                <File KeyPath="yes" Source="$(var.SourcePath)\locales\am.pak" />
+                <File Source="$(var.SourcePath)\locales\ar.pak" />
+                <File Source="$(var.SourcePath)\locales\bg.pak" />
+                <File Source="$(var.SourcePath)\locales\bn.pak" />
+                <File Source="$(var.SourcePath)\locales\ca.pak" />
+                <File Source="$(var.SourcePath)\locales\cs.pak" />
+                <File Source="$(var.SourcePath)\locales\da.pak" />
+                <File Source="$(var.SourcePath)\locales\de.pak" />
+                <File Source="$(var.SourcePath)\locales\el.pak" />
+                <File Source="$(var.SourcePath)\locales\en-GB.pak" />
+                <File Source="$(var.SourcePath)\locales\en-US.pak" />
+                <File Source="$(var.SourcePath)\locales\es.pak" />
+                <File Source="$(var.SourcePath)\locales\es-419.pak" />
+                <File Source="$(var.SourcePath)\locales\et.pak" />
+                <File Source="$(var.SourcePath)\locales\fa.pak" />
+                <File Source="$(var.SourcePath)\locales\fi.pak" />
+                <File Source="$(var.SourcePath)\locales\fil.pak" />
+                <File Source="$(var.SourcePath)\locales\fr.pak" />
+                <File Source="$(var.SourcePath)\locales\gu.pak" />
+                <File Source="$(var.SourcePath)\locales\he.pak" />
+                <File Source="$(var.SourcePath)\locales\hi.pak" />
+                <File Source="$(var.SourcePath)\locales\hr.pak" />
+                <File Source="$(var.SourcePath)\locales\hu.pak" />
+                <File Source="$(var.SourcePath)\locales\id.pak" />
+                <File Source="$(var.SourcePath)\locales\it.pak" />
+                <File Source="$(var.SourcePath)\locales\ja.pak" />
+                <File Source="$(var.SourcePath)\locales\kn.pak" />
+                <File Source="$(var.SourcePath)\locales\ko.pak" />
+                <File Source="$(var.SourcePath)\locales\lt.pak" />
+                <File Source="$(var.SourcePath)\locales\lb.pak" />
+                <File Source="$(var.SourcePath)\locales\ml.pak" />
+                <File Source="$(var.SourcePath)\locales\mr.pak" />
+                <File Source="$(var.SourcePath)\locales\ms.pak" />
+                <File Source="$(var.SourcePath)\locales\nb.pak" />
+                <File Source="$(var.SourcePath)\locales\nl.pak" />
+                <File Source="$(var.SourcePath)\locales\pl.pak" />
+                <File Source="$(var.SourcePath)\locales\pt-BR.pak" />
+                <File Source="$(var.SourcePath)\locales\pt-PT.pak" />
+                <File Source="$(var.SourcePath)\locales\ro.pak" />
+                <File Source="$(var.SourcePath)\locales\ru.pak" />
+                <File Source="$(var.SourcePath)\locales\sk.pak" />
+                <File Source="$(var.SourcePath)\locales\sl.pak" />
+                <File Source="$(var.SourcePath)\locales\sr.pak" />
+                <File Source="$(var.SourcePath)\locales\sv.pak" />
+                <File Source="$(var.SourcePath)\locales\sw.pak" />
+                <File Source="$(var.SourcePath)\locales\ta.pak" />
+                <File Source="$(var.SourcePath)\locales\te.pak" />
+                <File Source="$(var.SourcePath)\locales\th.pak" />
+                <File Source="$(var.SourcePath)\locales\tr.pak" />
+                <File Source="$(var.SourcePath)\locales\uk.pak" />
+                <File Source="$(var.SourcePath)\locales\vi.pak" />
+                <File Source="$(var.SourcePath)\locales\zh-CN.pak" />
+                <File Source="$(var.SourcePath)\locales\zh-TW.pak" />
+            </Component>
+        </ComponentGroup>
+        
+        <ComponentGroup Id="Dependencies" Directory="$(var.InstallDirectory)">
+            <Component Id="CefSharp_Common">
+                <File KeyPath="yes" Source="$(var.SourcePath)\CefSharp.dll" />
+                <File Source="$(var.SourcePath)\CefSharp.BrowserSubprocess.exe" />
+                <File Source="$(var.SourcePath)\CefSharp.Core.dll" />
+                <File Source="$(var.SourcePath)\CefSharp.xml" />
+                <File Source="$(var.SourcePath)\CefSharp.Core.xml" />
+            </Component>
+
+            <Component Id="CefSharp_WinForms">
+                <File Source="$(var.SourcePath)\CefSharp.WinForms.dll" />
+                <File Source="$(var.SourcePath)\CefSharp.WinForms.xml" />
+            </Component>
+
+            <Component Id="CefSharp_Redist">
+                <File KeyPath="yes" Source="$(var.SourcePath)\libcef.dll" />
+                <File Source="$(var.SourcePath)\d3dcompiler_43.dll" />
+                <File Source="$(var.SourcePath)\d3dcompiler_47.dll" />
+                <File Source="$(var.SourcePath)\ffmpegsumo.dll" />
+                <File Source="$(var.SourcePath)\libEGL.dll" />
+                <File Source="$(var.SourcePath)\libGLESv2.dll" />
+                <File Source="$(var.SourcePath)\snapshot_blob.bin" />
+                <File Source="$(var.SourcePath)\natives_blob.bin" />
+            </Component>
+
+            <Component Id="Microsoft_Bcl_Async">
+                <File KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Threading.Tasks.dll" />
+                <File Source="$(var.SourcePath)\Microsoft.Threading.Tasks.xml" />
+                <File Source="$(var.SourcePath)\Microsoft.Threading.Tasks.Extensions.dll" />
+                <File Source="$(var.SourcePath)\Microsoft.Threading.Tasks.Extensions.xml" />
+
+                <File Source="$(var.SourcePath)\Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
+                <File Source="$(var.SourcePath)\Microsoft.Threading.Tasks.Extensions.Desktop.xml" />
+            </Component>
+
+            <Component Id="Microsoft_Bcl_Build">
+                <File Source="$(var.SourcePath)\System.Net.Http.Extensions.dll" />
+                <File Source="$(var.SourcePath)\System.Net.Http.Primitives.dll" />
+                <File Source="$(var.SourcePath)\System.Net.Http.WebRequest.dll" />
+                <File Source="$(var.SourcePath)\System.Net.Http.dll" />
+            </Component>
+
+            <Component Id="Microsoft_Net_Http">
+                <File KeyPath="yes" Source="$(var.SourcePath)\System.Net.Http.dll" />
+                <File Source="$(var.SourcePath)\System.Net.Http.xml" />
+                <File Source="$(var.SourcePath)\System.Net.Http.Extensions.dll" />
+                <File Source="$(var.SourcePath)\System.Net.Http.Extensions.xml" />
+                <File Source="$(var.SourcePath)\System.Net.Http.Primitives.dll" />
+                <File Source="$(var.SourcePath)\System.Net.Http.Primitives.xml" />
+            </Component>
+
+            <Component Id="Microsoft_Bcl">
+                <File KeyPath="yes" Source="$(var.SourcePath)\System.IO.dll" />
+                <File Source="$(var.SourcePath)\System.IO.xml" />
+                <File Source="$(var.SourcePath)\System.Runtime.dll" />
+                <File Source="$(var.SourcePath)\System.Runtime.xml" />
+                <File Source="$(var.SourcePath)\System.Threading.Tasks.dll" />
+                <File Source="$(var.SourcePath)\System.Threading.Tasks.xml" />
+            </Component>
+
+            <Component Id="Microsoft_WindowsAPICodePack_Core">
+                <File KeyPath="yes" Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.dll" />
+                <File Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.xml" />
+            </Component>
+
+            <Component Id="Microsoft_WindowsAPICodePack_Shell">
+                <File KeyPath="yes" Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.Shell.dll" />
+                <File Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.Shell.xml" />
+                <File Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.ShellExtensions.dll" />
+                <File Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.ShellExtensions.xml" />
+            </Component>
+
+            <Component Id="GMA_System_MouseKeyHook">
+                <File KeyPath="yes" Source="$(var.SourcePath)\Gma.System.MouseKeyHook.dll" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

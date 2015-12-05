@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+    <?include Common.wxi ?>
+
+    <Product Id="*"
+             Name="Google Play Music"
+             Language="1033"
+             Version="1.0.0.0"
+             Manufacturer="Marshall Of Sound"
+             UpgradeCode="2f8492cc-221c-4815-8e50-891e43989b7f" >
+
+        <Package Id="*"
+                 InstallerVersion="301"
+                 Compressed="yes"
+                 InstallScope="perMachine"
+                 Platform="$(var.Platform)"
+                 AdminImage="yes" />
+
+        <!-- ====== Product Prerequisites ====== -->
+        <!-- Required on both 32 and 64 bit machines -->
+        <PropertyRef Id="NETFRAMEWORK40FULL"/>
+        <Property Id="VC2013X86">
+            <RegistrySearch Id="VC2013x86Key" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{ce085a78-074e-4823-8dc1-8a721b94b76d}" Name="Installed" Root="HKLM" Type="raw" Win64="no" />
+        </Property>
+
+        <!-- Product Prerequisite failure messages -->
+        <Condition Message="This application requires .NET Framework 4.0. Please install the .NET Framework, then run this installer again."><![CDATA[Installed OR NETFRAMEWORK40FULL]]></Condition>
+        <Condition Message="This setup requires the 2013 Visual C++ Runtime (32-bit) to be installed"><![CDATA[Installed OR VC2013X86]]></Condition>
+
+        <!-- This property sets the app icon for Add/Remove Programs -->
+        <Property Id="ARPPRODUCTICON" Value="AppIcon" />
+        <Icon Id="AppIcon" SourceFile="..\Google Play Music\Resources\Icon1.ico"/>
+
+        <!--If setup is built using x86 then it will not installed on x64-->
+        <?if $(var.Platform)=x86 ?>
+        <Condition Message="Setup can not be installed on x64 machine.">
+            <![CDATA[Installed OR Not VersionNT64]]>
+        </Condition>
+        <?endif?>
+
+        <!-- Google Play Music Solution Features -->
+        <Feature Id="Core" Title="Google Play Music">
+            <ComponentGroupRef Id="Google_Play_Music_Core"/>
+            <ComponentGroupRef Id="Locales"/>
+            <ComponentGroupRef Id="Dependencies"/>
+        </Feature>
+
+        <!--<Property Id="ALLUSERS"><![CDATA[2]]></Property>-->
+        <UI>
+            <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"/>
+        </UI>
+
+        <InstallUISequence>
+            <LaunchConditions After="AppSearch"/>
+        </InstallUISequence>
+
+    </Product>
+
+    <Fragment>
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="INSTALLFOLDER" Name="GPMDP">
+                    <Directory Id="locales" Name="locales" />
+                </Directory>
+            </Directory>
+            <Directory Id="ProgramFiles64Folder">
+                <Directory Id="INSTALLPARENTFOLDER_x64" Name="GPMDP">
+                    <Directory Id="locales_x64" Name="locales" />
+                </Directory>
+            </Directory>
+
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="Google_Play_Music" Name="Google Play Music">
+                </Directory>
+            </Directory>
+        </Directory>
+    </Fragment>
+</Wix>
