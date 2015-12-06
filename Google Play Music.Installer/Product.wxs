@@ -16,7 +16,7 @@
                  InstallScope="perMachine"
                  Platform="$(var.Platform)"
                  AdminImage="yes" />
-
+        <MediaTemplate EmbedCab="yes" />
         <!-- ====== Product Prerequisites ====== -->
         <!-- Required on both 32 and 64 bit machines -->
         <PropertyRef Id="NETFRAMEWORK40FULL"/>
@@ -65,7 +65,7 @@
                 </Directory>
             </Directory>
             <Directory Id="ProgramFiles64Folder">
-                <Directory Id="INSTALLPARENTFOLDER_x64" Name="GPMDP">
+                <Directory Id="INSTALLFOLDER_x64" Name="GPMDP">
                     <Directory Id="locales_x64" Name="locales" />
                 </Directory>
             </Directory>
@@ -73,7 +73,9 @@
             <Directory Id="ProgramMenuFolder">
                 <Directory Id="Google_Play_Music" Name="Google Play Music">
                 </Directory>
+                
             </Directory>
         </Directory>
+
     </Fragment>
 </Wix>
