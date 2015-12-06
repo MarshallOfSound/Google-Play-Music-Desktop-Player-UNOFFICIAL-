@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
-     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
     <?include Common.wxi ?>
 
     <Product Id="*"
@@ -16,7 +17,8 @@
                  InstallScope="perMachine"
                  Platform="$(var.Platform)"
                  AdminImage="yes" />
-        <MediaTemplate EmbedCab="yes" />
+        <MediaTemplate EmbedCab="yes" CompressionLevel="mszip" />
+        
         <!-- ====== Product Prerequisites ====== -->
         <!-- Required on both 32 and 64 bit machines -->
         <PropertyRef Id="NETFRAMEWORK40FULL"/>
@@ -34,9 +36,9 @@
 
         <!--If setup is built using x86 then it will not installed on x64-->
         <?if $(var.Platform)=x86 ?>
-        <Condition Message="Setup can not be installed on x64 machine.">
-            <![CDATA[Installed OR Not VersionNT64]]>
-        </Condition>
+            <Condition Message="Setup can not be installed on x64 machine.">
+                <![CDATA[Installed OR Not VersionNT64]]>
+            </Condition>
         <?endif?>
 
         <!-- Google Play Music Solution Features -->
@@ -46,36 +48,34 @@
             <ComponentGroupRef Id="Dependencies"/>
         </Feature>
 
-        <!--<Property Id="ALLUSERS"><![CDATA[2]]></Property>-->
         <UI>
-            <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"/>
+            <UIRef Id="WixUI_InstallDir"/>
+            <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER$(var.Suffix)" />
         </UI>
-
-        <InstallUISequence>
-            <LaunchConditions After="AppSearch"/>
-        </InstallUISequence>
-
+        <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
     </Product>
 
     <Fragment>
-        <Directory Id="TARGETDIR" Name="SourceDir">
+        <Directory Id="TARGETDIR" Name="SourceDir">            
+            <!-- 32 bit directory -->
             <Directory Id="ProgramFilesFolder">
                 <Directory Id="INSTALLFOLDER" Name="GPMDP">
                     <Directory Id="locales" Name="locales" />
                 </Directory>
             </Directory>
+
+            <!-- 64 bit directory -->
             <Directory Id="ProgramFiles64Folder">
-                <Directory Id="INSTALLFOLDER_x64" Name="GPMDP">
-                    <Directory Id="locales_x64" Name="locales" />
+                <Directory Id="INSTALLFOLDER_X64" Name="GPMDP">
+                    <Directory Id="locales_X64" Name="locales" />
                 </Directory>
             </Directory>
 
+            <!-- Start Menu Folder -->
             <Directory Id="ProgramMenuFolder">
                 <Directory Id="Google_Play_Music" Name="Google Play Music">
                 </Directory>
-                
             </Directory>
         </Directory>
-
     </Fragment>
 </Wix>

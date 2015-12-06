@@ -16,7 +16,7 @@
             </Component>
         </ComponentGroup>
 
-        <ComponentGroup Id="Locales" Directory="locales$(var.Suffix)">
+        <ComponentGroup Id="Locales" Directory="$(var.locales)">
             <Component Guid="{0F8F4110-BEC1-49EE-92F2-E7E58EA162AA}" Id="PAKs">
                 <File KeyPath="yes" Source="$(var.SourcePath)\locales\am.pak" />
                 <File Source="$(var.SourcePath)\locales\ar.pak" />

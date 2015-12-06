@@ -12,9 +12,9 @@
     <?else?>
         <?define Is64=yes ?>
         <?define SourcePath=$(var.SourcePathx64)?>
-        <?define InstallDirectory=INSTALLFOLDER_x64?>
-        <?define locales=locales_x64?>
-        <?define Suffix=_x64 ?>
+        <?define InstallDirectory=INSTALLFOLDER_X64?>
+        <?define locales=locales_X64?>
+        <?define Suffix=_X64 ?>
         <?define GuidSuffix=B?>
     <?endif?>
 
