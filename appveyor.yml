@@ -13,3 +13,6 @@ configuration:
 
 matrix:
   fast_finish: true
+
+artifacts:
+  - path: Google Play Music/bin
