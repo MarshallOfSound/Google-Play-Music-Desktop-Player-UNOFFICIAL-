@@ -15,5 +15,5 @@ matrix:
   fast_finish: true
 
 artifacts:
-  - path: Google Play Music/bin/{platform}/{configuration}
-    name: GPMDP.Beta.{platform}
+  - path: Google Play Music/bin/$(platform)/$(configuration)
+    name: GPMDP.Beta.$(platform)
