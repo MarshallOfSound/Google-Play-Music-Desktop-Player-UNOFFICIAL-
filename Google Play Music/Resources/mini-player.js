@@ -22,12 +22,20 @@ document.addEventListener("DOMContentLoaded", function () {
     ]);
     setStyle('body[ready]:hover #player, body[controls] #player', ['bottom: 10px']);
     setStyle('body[ready]:hover #mini-info, body[controls] #mini-info', ['opacity: 1']);
-    setStyle('#material-player-left-wrapper, #material-player-right-wrapper', ['display: none']);
+    setStyle('#material-player-right-wrapper, #material-player-left-wrapper .player-left .image-wrapper, #material-player-left-wrapper .now-playing-info-content, #material-player-left-wrapper [data-id="now-playing-menu"]', ['display: none']);
+    setStyle('#material-player-left-wrapper', ['flex: none', 'width: 0'])
+    setStyle('#material-player-left-wrapper .now-playing-actions ', ['opacity: 1']);
+    setStyle('#player #material-player-left-wrapper .rating-container paper-icon-button', ['background: transparent', 'position: absolute', 'top: 8px']);
+    setStyle('#player #material-player-left-wrapper .rating-container paper-icon-button:nth-child(1)', ['left: 20px', 'display: none']);
+    setStyle('#player #material-player-left-wrapper .rating-container paper-icon-button:nth-child(2)', ['left: 210px', 'display: none']);
+    setStyle('#player[radio] #material-player-left-wrapper .rating-container paper-icon-button:nth-child(1)', ['display: block']);
+    setStyle('#player[radio] #material-player-left-wrapper .rating-container paper-icon-button:nth-child(2)', ['display: block']);
+    setStyle('#material-player-left-wrapper .rating-container', ['width: 0'])
     setStyle('#mini-album', ['position: fixed', 'top: 0', 'left: 0', 'display: block', 'width: 100%', 'height: 100%', 'z-index: 9999998']);
     setStyle('.player-progress-wrapper', ['left: 0']);
     setStyle('.material-player-middle', ['margin: 0px auto']);
-    setStyle('#player.material .material-player-middle sj-icon-button[data-id="play-pause"] core-icon, #player.material .material-player-middle paper-icon-button[data-id="play-pause"] iron-icon', ['height: 50px', 'width: 50px', 'top: -8px']);
-    setStyle('paper-icon-button[data-id="play-pause"]', ['text-aligen: center']);
+    setStyle('#player.material .material-player-middle sj-icon-button[data-id="play-pause"] core-icon, #player.material .material-player-middle paper-icon-button[data-id="play-pause"] iron-icon', ['height: 50px', 'width: 50px', 'top: -2px']);
+    setStyle('paper-icon-button[data-id="play-pause"]', ['text-align: center']);
     setStyle('[data-id=play-pause]::shadow paper-ripple.circle', ['height: 50px', 'width: 50px', 'margin-left: 6px', 'margin-top: -2px']);
     setStyle('[data-id=forward], [data-id=rewind], [data-id=repeat], [data-id=shuffle]', ['top: -8px']);
     setStyle('[data-id=repeat]', ['left: 28px']);
@@ -111,6 +119,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (!window.hoverControls && document.body.getAttribute('controls') == null) {
             document.body.setAttribute('controls', 'controls');
+        }
+        // Also check if it is radio or not
+        var repeat = document.querySelectorAll('paper-icon-button[data-id="repeat"]'),
+            player = document.querySelector('#player');
+        if (repeat && repeat[0] && player) {
+            if (repeat[0].style.display === 'none') {
+                if (player.getAttribute('radio') === null) {
+                    player.setAttribute('radio', 'on');
+                }
+            } else {
+                if (player.getAttribute('radio') !== null) {
+                    player.removeAttribute('radio');
+                }
+            }
         }
     }, 10);
 
