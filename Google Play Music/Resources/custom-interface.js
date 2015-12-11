@@ -9,11 +9,11 @@ window.nowPlaying = function () {
         if (element.length > 0) {
             element = element[0];
             info.album = element.innerText || element.textContent;
-            element = document.getElementById('player-song-title');
+            element = document.getElementById('currently-playing-title');
             info.title = element.innerText || element.textContent;
             element = document.getElementById('player-artist');
             info.artist = element.innerText || element.textContent;
-            info.albumArt = document.getElementById('playingAlbumArt').src;
+            info.albumArt = document.getElementById('playerBarArt').src;
         }
     }
     if (!info.title) {
