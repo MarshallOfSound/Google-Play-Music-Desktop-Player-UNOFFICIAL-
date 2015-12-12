@@ -184,6 +184,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CEF Modules\DragHandler.cs" />
     <Compile Include="ColorWheel.cs">
       <SubType>Component</SubType>
     </Compile>
