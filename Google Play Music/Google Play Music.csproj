@@ -96,7 +96,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\Icon1.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icons\Icon1.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>920C494146A769C3AF47E513A455B77B9F7928B2</ManifestCertificateThumbprint>
@@ -211,11 +211,16 @@
       <DependentUpon>CoreMusicApp.cs</DependentUpon>
     </Compile>
     <Compile Include="LastFM.Intergration.cs" />
-    <Compile Include="ResourceHandlerFactory.cs" />
-    <Compile Include="MenuHandler.cs" />
+    <Compile Include="CEF Modules\ResourceHandlerFactory.cs" />
+    <Compile Include="CEF Modules\MenuHandler.cs" />
     <Compile Include="JSBound.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,11 +258,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -268,7 +268,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Icon1.ico" />
+    <None Include="Resources\Icons\Icon1.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -283,22 +283,22 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PrevTrack.ico" />
-    <None Include="Resources\Play.ico" />
-    <None Include="Resources\Pause.ico" />
-    <None Include="Resources\NextTrack.ico" />
+    <None Include="Resources\Icons\PrevTrack.ico" />
+    <None Include="Resources\Icons\Play.ico" />
+    <None Include="Resources\Icons\Pause.ico" />
+    <None Include="Resources\Icons\NextTrack.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\dark-theme.js" />
+    <None Include="Resources\JS\dark-theme.js" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\custom-interface.js" />
+    <None Include="Resources\JS\custom-interface.js" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\mini-player.js" />
+    <None Include="Resources\JS\mini-player.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Material Skin\MaterialSkin.csproj">
