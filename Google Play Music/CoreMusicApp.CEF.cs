@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Google_Play_Music.CEF_Modules;
 
 namespace Google_Play_Music
 {
@@ -27,6 +28,7 @@ namespace Google_Play_Music
                 MenuHandler = new GPMMenuHandler()
             };
             GPMBrowser.RegisterAsyncJsObject("csharpinterface", new JSBound(this));
+            GPMBrowser.DragHandler = new GPMDragHandler();
 
             GPMBrowser.Dock = DockStyle.Fill;
 
