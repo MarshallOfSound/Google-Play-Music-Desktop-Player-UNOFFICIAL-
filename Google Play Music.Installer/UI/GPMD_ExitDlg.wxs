@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI>
+      <Dialog Id="GPMD_ExitDlg" Width="374" Height="266" Title="!(loc.DlgTitle)">
+        <Control Id="Finish" Type="PushButton" X="230" Y="243" Width="66" Height="17" Default="yes" Cancel="yes" Text="!(loc.WixUIFinish)" />
+        <Control Id="Cancel" Type="PushButton" X="301" Y="243" Width="66" Height="17" Disabled="yes" Text="!(loc.btnCancel)" />
+        <Control Id="Back" Type="PushButton" X="164" Y="243" Width="66" Height="17" Disabled="yes" Text="!(loc.btnBack)" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="374" Height="0" />
+        <Control Id="Description" Type="Text" X="145" Y="70" Width="220" Height="40" Transparent="yes" NoPrefix="yes" Text="{\WelcomeDesFont}!(loc.ExitDialogDescription)" />
+        <Control Id="Title" Type="Text" X="145" Y="20" Width="220" Height="60" Transparent="yes" NoPrefix="yes" Text="{\TitleFont}!(loc.ExitDialogTitle)" />
+        <Control Id="OptionalText" Type="Text" X="145" Y="110" Width="220" Height="80" Transparent="yes" NoPrefix="yes" Hidden="yes" Text="[WIXUI_EXITDIALOGOPTIONALTEXT]">
+          <Condition Action="show">WIXUI_EXITDIALOGOPTIONALTEXT AND NOT Installed</Condition>
+        </Control>
+        <Control Id="OptionalCheckBox" Type="CheckBox" X="145" Y="190" Width="220" Height="40" Hidden="yes" Property="WIXUI_EXITDIALOGOPTIONALCHECKBOX" CheckBoxValue="1" Text="[WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT]">
+          <Condition Action="show">WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT AND NOT Installed</Condition>
+        </Control>
+      </Dialog>
+
+      <InstallUISequence>
+        <Show Dialog="GPMD_ExitDlg" OnExit="success" Overridable="yes" />
+      </InstallUISequence>
+
+      <AdminUISequence>
+        <Show Dialog="GPMD_ExitDlg" OnExit="success" Overridable="yes" />
+      </AdminUISequence>
+    </UI>
+  </Fragment>
+</Wix>

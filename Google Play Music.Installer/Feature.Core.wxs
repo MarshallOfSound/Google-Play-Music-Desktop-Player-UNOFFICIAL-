@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Fragment>
         <?include Common.wxi ?>
         <ComponentGroup Id="Google_Play_Music_Core" Directory="$(var.InstallDirectory)" >            

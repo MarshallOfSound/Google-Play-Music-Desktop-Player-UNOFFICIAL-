@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
     <?include Common.wxi ?>
@@ -12,7 +12,7 @@
              UpgradeCode="2f8492cc-221c-4815-8e50-891e43989b7f" >
 
         <Package Id="*"
-                 InstallerVersion="301"
+                 InstallerVersion="500"
                  Compressed="yes"
                  InstallScope="perMachine"
                  Platform="$(var.Platform)"
@@ -27,8 +27,8 @@
         </Property>
 
         <!-- Product Prerequisite failure messages -->
-        <Condition Message="This application requires .NET Framework 4.0. Please install the .NET Framework, then run this installer again."><![CDATA[Installed OR NETFRAMEWORK40FULL]]></Condition>
-        <Condition Message="This setup requires the 2013 Visual C++ Runtime (32-bit) to be installed"><![CDATA[Installed OR VC2013X86]]></Condition>
+        <Condition Message="This application requires .NET Framework 4.0. Please install the .NET Framework 4.0, then run this installer again. https://www.microsoft.com/en-us/download/details.aspx?id=17851"><![CDATA[Installed OR NETFRAMEWORK40FULL]]></Condition>
+        <Condition Message="This setup requires the 2013 Visual C++ Runtime (32-bit) to be installed. Please install the 2013 Visual C++ Runtime (32-bit), then run this installer again. https://www.microsoft.com/en-us/download/details.aspx?id=40784"><![CDATA[Installed OR VC2013X86]]></Condition>
 
         <!-- This property sets the app icon for Add/Remove Programs -->
         <Property Id="ARPPRODUCTICON" Value="AppIcon" />
@@ -49,10 +49,9 @@
         </Feature>
 
         <UI>
-            <UIRef Id="WixUI_InstallDir"/>
+          <UIRef Id="GPMD_BaseUI"/>
             <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER$(var.Suffix)" />
         </UI>
-        <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
     </Product>
 
     <Fragment>
