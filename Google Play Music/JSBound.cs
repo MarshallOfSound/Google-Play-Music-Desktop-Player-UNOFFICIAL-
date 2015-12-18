@@ -95,13 +95,10 @@ namespace Google_Play_Music
         // Fired from javascript when a different song has been playing for over half it's duration. (As according to last.fm's scrobbling spec)
         public void songScrobbleRequest(string song, string artist, string album, int timestamp)
         {
-            try
+            // Check last.fm user authenticated before attempting to "scrobble" the current song.
+            if (LastFM.user_key != null)
             {
                 new LastFM().scrobbleTrack(artist, song, timestamp).Wait();
-            }
-            catch (Exception e)
-            {
-                // last.fm not authenticated
             }
         }
 
@@ -147,12 +144,11 @@ namespace Google_Play_Music
                 // The AsyncJSBind in CEFSharp can't handle the amount of communication and throws a NullPointer
                 // TODO: Check CEF progress on this issue
             }
-            try
+
+            // Check last.fm user authenticated before attempting to update the current song.
+            if (LastFM.user_key != null)
             {
                 new LastFM().updateNowPlaying(artist, song).Wait();
-            } catch (Exception e)
-            {
-                // last.fm not authenticated
             }
         }
 
