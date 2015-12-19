@@ -22,13 +22,13 @@
         <!-- ====== Product Prerequisites ====== -->
         <!-- Required on both 32 and 64 bit machines -->
         <PropertyRef Id="NETFRAMEWORK40FULL"/>
-        <Property Id="VC2013X86">
-            <RegistrySearch Id="VC2013x86Key" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{ce085a78-074e-4823-8dc1-8a721b94b76d}" Name="Installed" Root="HKLM" Type="raw" Win64="no" />
+        <Property Id="VC2012X64">
+            <RegistrySearch Id="VC2012x64Key" Key="SOFTWARE\Classes\Installer\Dependencies\{ca67548a-5ebe-413a-b50c-4b9ceb6d66c6}" Name="Installed" Root="HKLM" Type="raw" Win64="no" />
         </Property>
 
-        <!-- Product Prerequisite failure messages -->
-        <Condition Message="This application requires .NET Framework 4.0. Please install the .NET Framework 4.0, then run this installer again. https://www.microsoft.com/en-us/download/details.aspx?id=17851"><![CDATA[Installed OR NETFRAMEWORK40FULL]]></Condition>
-        <Condition Message="This setup requires the 2013 Visual C++ Runtime (32-bit) to be installed. Please install the 2013 Visual C++ Runtime (32-bit), then run this installer again. https://www.microsoft.com/en-us/download/details.aspx?id=40784"><![CDATA[Installed OR VC2013X86]]></Condition>
+        <Property Id="VC2012X86">
+            <RegistrySearch Id="VC2012x86Key" Key="SOFTWARE\Classes\Installer\Dependencies\{33d1fd90-4274-48a1-9bc1-97e33d9c2d6f}" Name="Installed" Root="HKLM" Type="raw" Win64="no" />
+        </Property>
 
         <!-- This property sets the app icon for Add/Remove Programs -->
         <Property Id="ARPPRODUCTICON" Value="AppIcon" />

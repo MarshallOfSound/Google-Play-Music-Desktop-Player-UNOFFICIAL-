@@ -43,7 +43,8 @@
   <String Id="MaintenanceTypeDlgTitle">Change, Repair, or Remove [ProductName]</String>
 
   <String Id="NetFrameworkPrereq">This application requires .NET Framework 4.0. Please install the .NET Framework 4.0, then run this installer again.</String>
-  <String Id="VCRuntimePrereq">This setup requires the 2013 Visual C++ Runtime (32-bit) to be installed. Please install the 2013 Visual C++ Runtime (32-bit), then run this installer again.</String> 
+  <String Id="VCRuntimePrereqx86">This setup requires the 2012 Visual C++ Runtime (32-bit) to be installed. Please install the 2013 Visual C++ Runtime (32-bit), then run this installer again.</String>
+  <String Id="VCRuntimePrereqx64">This setup requires the 2012 Visual C++ Runtime (64-bit) to be installed. Please install the 2013 Visual C++ Runtime (64-bit), then run this installer again.</String> 
   <String Id="ProgressDlgTitleUpdating">Updating [ProductName] Wizard</String>
   <String Id="ProgressDlgTitleRemoving">Removing [ProductName] Wizard</String>
   <String Id="DiskCostDlgTitle">Disk Space Requirements</String>
