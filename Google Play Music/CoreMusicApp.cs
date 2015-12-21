@@ -176,6 +176,11 @@ namespace Google_Play_Music
             GPMBrowser.EvaluateScriptAsync("(function() {document.querySelectorAll('[data-id=forward]')[0].click()})()");
         }
 
+        private void findFocus()
+        {
+            GPMBrowser.EvaluateScriptAsync("(function() {document.querySelectorAll('sj-search-box > input')[0].focus()})()");
+        }
+
         // Task Bar Media Controls
         private ThumbnailToolBarButton prevTrackButton;
         private ThumbnailToolBarButton nextTrackButton;
