@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Net;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
@@ -12,32 +13,37 @@ namespace Google_Play_Music
     {
         static bool is64BitProcess = (IntPtr.Size == 8);
 
-        private void checkForUpdates()
+        private void CheckForUpdates()
         {
             try
             {
                 WebClient fetcher = (new WebClient());
                 fetcher.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2;)");
                 var content = fetcher.DownloadString("https://api.github.com/repos/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases/latest");
-                GithubRelease g = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<GithubRelease>(content);
-                string version = g.tag_name;
-                string changeLog = g.body;
-                string download_URL_32 = "";
-                string download_URL_64 = "";
-                foreach (Asset a in g.assets)
+
+                GithubRelease g = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(GithubRelease)).ReadObject(new System.IO.MemoryStream(System.Text.Encoding.Unicode.GetBytes(content))) as GithubRelease;
+
+                string version = g.TagName;
+                string changeLog = g.LongPropertyName;
+                string downloadUrl32 = "";
+                string downloadUrl64 = "";
+
+                foreach (Asset a in g.Assets)
                 {
                     Regex test = new Regex(@"x64");
-                    Match match = test.Match(a.browser_download_url);
+                    Match match = test.Match(a.BrowserDownloadUrl);
                     if (match.Success)
                     {
-                        download_URL_64 = a.browser_download_url;
-                    } else
+                        downloadUrl64 = a.BrowserDownloadUrl;
+                    }
+                    else
                     {
-                        download_URL_32 = a.browser_download_url;
+                        downloadUrl32 = a.BrowserDownloadUrl;
                     }
                 }
-                string downloadURL = (is64BitProcess ? download_URL_64 : download_URL_32);
-                if (downloadURL == "")
+
+                string downloadUrl = (is64BitProcess ? downloadUrl64 : downloadUrl32);
+                if (downloadUrl == "")
                 {
                     return;
                 }
@@ -51,7 +57,7 @@ namespace Google_Play_Music
                     if (result == DialogResult.Yes)
                     {
                         // Download the Resource URL from the GitHub API
-                        Process.Start(downloadURL);
+                        Process.Start(downloadUrl);
                         // Let the form finish initialising before closing it through an asyncronous method invoker
                         // Prevents strange garbage collection
                         new Thread(() =>
@@ -71,22 +77,28 @@ namespace Google_Play_Music
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 // Something went wrong while fetching from the GitHub API
+                Program.Logger.Error("Error while fetching from GitHub API", e);
             }
         }
     }
-
+    [System.Runtime.Serialization.DataContract]
     public class GithubRelease
     {
-        public string body { get; set; }
-        public string tag_name { get; set; }
-        public List<Asset> assets { get; set; }
+        [System.Runtime.Serialization.DataMember(Name = "body", IsRequired = true)]
+        public string LongPropertyName { get; set; }
+        [System.Runtime.Serialization.DataMember(Name = "tag_name", IsRequired = true)]
+        public string TagName { get; set; }
+        [System.Runtime.Serialization.DataMember(Name = "assets", IsRequired = true)]
+        public List<Asset> Assets { get; set; }
     }
 
+    [System.Runtime.Serialization.DataContract]
     public class Asset
     {
-        public string browser_download_url { get; set; }
+        [System.Runtime.Serialization.DataMember(Name = "browser_download_url", IsRequired = true)]
+        public string BrowserDownloadUrl { get; set; }
     }
 }
