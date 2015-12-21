@@ -23,7 +23,6 @@ namespace Google_Play_Music
                         break;
                 }
             };
-            globalKeyMouseHook.KeyDown += new KeyEventHandler(gkh_KeyDown);
             globalKeyMouseHook.KeyUp += new KeyEventHandler(gkh_KeyUp);
             FormClosed += (send, e) =>
             {
@@ -31,13 +30,13 @@ namespace Google_Play_Music
             };
         }
 
-        private bool controlDown = false;
         // Due to the syncronous (and slow) nature of the SetZoomLevel method on a CefBrowser object
         // We wait until the previous zoom is finished before allowing a new zoom to be requested
         private bool zoomInProgress = false;
 
         void gkh_KeyUp(object sender, KeyEventArgs e)
         {
+            bool controlDown = (ModifierKeys & Keys.Control) == Keys.Control;
             switch (e.KeyCode)
             {
                 case Keys.MediaPlayPause:
@@ -57,7 +56,6 @@ namespace Google_Play_Music
                 case Keys.ControlKey:
                 case Keys.RControlKey:
                 case Keys.LControlKey:
-                    controlDown = false;
                     break;
                 case Keys.Oemplus:
                 case Keys.Add:
@@ -88,16 +86,12 @@ namespace Google_Play_Music
                         zoomInProgress = false;
                     }
                     break;
-
-            }
-            e.Handled = false;
-        }
-
-        void gkh_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (new List<Keys> { Keys.Control, Keys.ControlKey, Keys.RControlKey, Keys.LControlKey }.Contains(e.KeyCode))
-            {
-                controlDown = true;
+                case Keys.F:
+                    if(controlDown && ApplicationIsActivated())
+                    {
+                        this.findFocus();
+                    }
+                    break;
             }
             e.Handled = false;
         }
