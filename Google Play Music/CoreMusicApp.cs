@@ -55,7 +55,8 @@ namespace Google_Play_Music
                 if (mini)
                 {
                     saveMiniState();
-                } else
+                }
+                else
                 {
                     if (WindowState != FormWindowState.Normal)
                     {
@@ -71,7 +72,7 @@ namespace Google_Play_Music
             };
 
             // Check for updates on the Github Release API
-            checkForUpdates();
+            CheckForUpdates();
             RegisterKeyHooks();
         }
 
@@ -125,13 +126,14 @@ namespace Google_Play_Music
             {
                 MaximizeWindow(true);
                 return;
-            } else if (m.Msg == NativeMethods.WM_SHOWME)
+            }
+            else if (m.Msg == NativeMethods.WM_SHOWME)
             {
                 if (WindowState == FormWindowState.Minimized)
                 {
                     WindowState = FormWindowState.Normal;
                 }
-                
+
                 bool top = TopMost;
                 TopMost = true;
                 TopMost = top;

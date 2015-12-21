@@ -3,12 +3,14 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using log4net;
 
 namespace Google_Play_Music
 {
     static class Program
     {
         static Mutex mutex = new Mutex(true, "{8F6F0AC4-B9A1-45fd-A8CF-72F04E6BDE8F}");
+        internal static readonly ILog Logger = LogManager.GetLogger(typeof(Program));
 
         /// <summary>
         /// The main entry point for the application.
@@ -19,7 +21,7 @@ namespace Google_Play_Music
             if (mutex.WaitOne(TimeSpan.Zero, true))
             {
                 // Init the last.fm authentication with the user set username and password
-                Task lastFMInit = new LastFM().init();
+                Task lastFMInit = LastFM.GetInstance().AttemptLogIn();
                 lastFMInit.Wait();
 
                 Application.EnableVisualStyles();

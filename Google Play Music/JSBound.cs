@@ -4,10 +4,11 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using log4net.Core;
 
 namespace Google_Play_Music
 {
-    class JSBound
+    internal class JSBound
     {
         private CoreMusicApp mainForm;
 
@@ -16,18 +17,20 @@ namespace Google_Play_Music
             mainForm = parent;
             mainForm.FormClosing += (o, e) =>
             {
-                try {
+                try
+                {
                     if (alert != null)
                     {
                         alert.currentStep = 99999;
                     }
-                } catch (Exception)
+                }
+                catch (Exception)
                 {
                     // Just ignore it
                 }
             };
             // When the parent form is deactivated (focus is lost) we must activate the notification to ensure it stays in focus
-            
+
         }
 
         public void setInitialZoom()
@@ -97,11 +100,15 @@ namespace Google_Play_Music
         {
             try
             {
-                new LastFM().scrobbleTrack(artist, song, timestamp).Wait();
+                if (LastFM.GetInstance().IsAuthenticated())
+                {
+                    LastFM.GetInstance().ScrobbleTrack(artist, song, album, timestamp).Wait();
+                }
             }
             catch (Exception e)
             {
                 // last.fm not authenticated
+                Program.Logger.Error(String.Format("Error while attempting to scrobble song:'{0}' artist:'{1}' album:'{2}' timestamp:'{3}'", song, artist, album, timestamp), e);
             }
         }
 
@@ -116,66 +123,77 @@ namespace Google_Play_Music
                 mainForm.Text = song + " - " + artist;
             });
 
-            // If no desktop notifications just stop here :)
-            if (!Properties.Settings.Default.DesktopNotifications)
+            // If no desktop notifications, don't show the screen
+            if (Properties.Settings.Default.DesktopNotifications)
             {
-                return;
-            }
-            try {
-                // If the alert box already exists we need to kill it
-                // Trick the timer into thinking it is over
-                if (alert != null)
+                try
                 {
-                    alert.currentStep = 99999;
-                }
-
-                // GUI tasks should be run on a GUI thread
-                mainForm.Invoke((MethodInvoker) async delegate
-                {
-                    // Wait for the alert box to dispose of it self
-                    await TaskEx.Run(delegate
+                    // If the alert box already exists we need to kill it
+                    // Trick the timer into thinking it is over
+                    if (alert != null)
                     {
-                        while (alert != null) ;
+                        alert.currentStep = 99999;
+                    }
+
+                    // GUI tasks should be run on a GUI thread
+                    mainForm.Invoke((MethodInvoker)async delegate
+                    {
+                        // Wait for the alert box to dispose of it self
+                        await TaskEx.Run(delegate
+                        {
+                            while (alert != null) ;
+                        });
+                        alert = new SongAlert(song, album, artist, url);
+                        alert.FormClosing += new FormClosingEventHandler(Song_Alert_Close);
+                        alert.Show();
                     });
-                    alert = new SongAlert(song, album, artist, url);
-                    alert.FormClosing += new FormClosingEventHandler(Song_Alert_Close);
-                    alert.Show();
-                });
-            } catch
-            {
-                // This try catch is to prevent application crashes when a user spams the forward / back track button
-                // The AsyncJSBind in CEFSharp can't handle the amount of communication and throws a NullPointer
-                // TODO: Check CEF progress on this issue
+                }
+                catch (Exception e)
+                {
+                    // This try catch is to prevent application crashes when a user spams the forward / back track button
+                    // The AsyncJSBind in CEFSharp can't handle the amount of communication and throws a NullPointer
+                    // TODO: Check CEF progress on this issue
+                    Program.Logger.Debug(String.Format("Error while attempting to show the SongAlert - song:'{0}' artist:'{1}' album:'{2}' url:'{3}'", song, artist, album, url), e);
+                }
             }
+
             try
             {
-                new LastFM().updateNowPlaying(artist, song).Wait();
-            } catch (Exception e)
+                if (LastFM.GetInstance().IsAuthenticated())
+                {
+                    LastFM.GetInstance().UpdateNowPlaying(artist, song, album).Wait();
+                }
+            }
+            catch (Exception e)
             {
                 // last.fm not authenticated
+                Program.Logger.Error(String.Format("Error while attempting to update LastFM change song - song:'{0}' artist:'{1}' album:'{2}' url:'{3}'", song, artist, album, url), e);
             }
         }
 
         // When the SongAlert closes set it to null in this scope so we know
-        private void Song_Alert_Close(object sender, FormClosingEventArgs e)
+        private void Song_Alert_Close(object sender, EventArgs e)
         {
             // We must handle an unsafe thread disposal here so that the parent forms Dispose method does not cause cross thread errors
             // But first we have to check if the handle is created yet, if it isn't we attach to the HandleCreated event
             if (alert.IsHandleCreated)
             {
-                Control.CheckForIllegalCrossThreadCalls = false;
-                alert.Dispose();
-                Control.CheckForIllegalCrossThreadCalls = true;
-                alert = null;
-            } else
-            {
-                alert.HandleCreated += (send, ev) =>
+                // If the current thread is not the UI thread, then push the action to the UI thread.
+                if (alert.InvokeRequired)
                 {
-                    Control.CheckForIllegalCrossThreadCalls = false;
+                    // Move the action to the UI thread.
+                    alert.BeginInvoke(new EventHandler(Song_Alert_Close));
+                }
+                else
+                {
                     alert.Dispose();
-                    Control.CheckForIllegalCrossThreadCalls = true;
                     alert = null;
-                };
+                }
+            }
+            else
+            {
+                // Based on previous intent, the Handle is required to be created but since the alert is closing, we need to dispose of the alert as soon as the handle is created for the alert.
+                alert.HandleCreated += new EventHandler(Song_Alert_Close);
             }
         }
 
@@ -195,10 +213,12 @@ namespace Google_Play_Music
                     if (mainForm.mini)
                     {
                         mainForm.restoreMiniState();
-                    } else
+                    }
+                    else
                     {
                         mainForm.restoreMaxiState();
                     }
+
                     settings.Dispose();
                     mainForm.GPMBrowser.GetBrowser().CloseBrowser(true);
                     mainForm.Close();
