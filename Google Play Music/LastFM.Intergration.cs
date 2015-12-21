@@ -37,12 +37,7 @@ namespace Google_Play_Music
 
         public async Task<Boolean> AttemptLogIn()
         {
-            return await AttemptLogIn(UserName, Password);
-        }
-
-        public async Task<Boolean> AttemptLogIn(string userName, string password)
-        {
-            if (userName == "Username" && password == "1234567")
+            if (UserName == "Username" && Password == "1234567")
             {
                 Program.Logger.Info("Skipped logging with default credentials (Username or 1234567)");
                 return false;
@@ -50,29 +45,29 @@ namespace Google_Play_Music
 
             Dictionary<String, String> attrs = new Dictionary<string, string>();
 
-            attrs["password"] = password;
-            attrs["username"] = userName;
+            attrs["password"] = Password;
+            attrs["username"] = UserName;
 
             string requestURL = GenerateAPIRequestURL("auth.getMobileSession", attrs);
 
-            Program.Logger.InfoFormat("Attempting login for '{0}'", userName);
+            Program.Logger.InfoFormat("Attempting login for '{0}'", UserName);
 
             string auth_response = await FetchURL(requestURL);
 
             if (auth_response == "")
             {
-                Program.Logger.InfoFormat("Failed login for '{0}'", userName);
+                Program.Logger.InfoFormat("Failed login for '{0}'", UserName);
                 user_key = null;
                 return false;
             }
 
-            Program.Logger.InfoFormat("Successful login for '{0}'", userName);
+            Program.Logger.InfoFormat("Successful login for '{0}'", UserName);
 
             AuthenticationResponse auth = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(AuthenticationResponse)).ReadObject(new System.IO.MemoryStream(System.Text.Encoding.Unicode.GetBytes(auth_response))) as AuthenticationResponse;
             user_key = auth.Session.Key;
 
-            Properties.Settings.Default.LastFMUsername = userName;
-            Properties.Settings.Default.LastFMPassword = password;
+            Properties.Settings.Default.LastFMUsername = UserName;
+            Properties.Settings.Default.LastFMPassword = Password;
 
             return true;
         }
