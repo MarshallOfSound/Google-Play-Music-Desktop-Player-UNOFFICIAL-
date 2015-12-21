@@ -29,6 +29,7 @@ namespace Google_Play_Music
             colorWheel1.Lightness = set.L;
 
             materialCheckBox1.Checked = Properties.Settings.Default.CustomTheme;
+
             materialCheckBox1.CheckStateChanged += (res, send) =>
             {
                 string command;
@@ -39,7 +40,8 @@ namespace Google_Play_Music
                     {
                         app.darkTheme();
                     });
-                } else
+                }
+                else
                 {
                     command = "window.turnOffCustom()";
                     app.Invoke((MethodInvoker)delegate
@@ -54,12 +56,14 @@ namespace Google_Play_Music
             };
 
             materialCheckBox2.Checked = Properties.Settings.Default.DesktopNotifications;
+
             materialCheckBox2.CheckStateChanged += (res, send) =>
             {
                 if (materialCheckBox2.Checked)
                 {
                     Properties.Settings.Default.DesktopNotifications = true;
-                } else
+                }
+                else
                 {
                     Properties.Settings.Default.DesktopNotifications = false;
                 }
@@ -91,18 +95,21 @@ namespace Google_Play_Music
             };
 
             lastFMUsername.Text = Properties.Settings.Default.LastFMUsername;
+
             lastFMUsername.GotFocus += (res, send) =>
             {
                 focusDefaultInputField(lastFMUsername, "Username", true);
             };
+
             lastFMUsername.LostFocus += async (res, send) =>
             {
                 focusDefaultInputField(lastFMUsername, "Username", false);
-                Properties.Settings.Default.LastFMUsername = lastFMUsername.Text;
-                lastFMAuth(-1);
-                await new LastFM().init();
-                lastFMAuth((LastFM.user_key != null ? 1 : 0));
+                LastFM.GetInstance().UserName = lastFMUsername.Text;
+                lastFmAuth(-1);
+                await LastFM.GetInstance().AttemptLogIn();
+                lastFmAuth((LastFM.GetInstance().IsAuthenticated() ? 1 : 0));
             };
+
             lastFMUsername.KeyPress += (send, e) =>
             {
                 if (e.KeyChar == (char)13)
@@ -119,11 +126,12 @@ namespace Google_Play_Music
             lastFMPassword.LostFocus += async (res, send) =>
             {
                 focusDefaultInputField(lastFMPassword, "1234567", false);
-                Properties.Settings.Default.LastFMPassword = lastFMPassword.Text;
-                lastFMAuth(-1);
-                await new LastFM().init();
-                lastFMAuth((LastFM.user_key != null ? 1 : 0));
+                LastFM.GetInstance().Password = lastFMPassword.Text;
+                lastFmAuth(-1);
+                await LastFM.GetInstance().AttemptLogIn();
+                lastFmAuth((LastFM.GetInstance().IsAuthenticated() ? 1 : 0));
             };
+
             lastFMPassword.KeyPress += (send, e) =>
             {
                 if (e.KeyChar == (char)13)
@@ -138,7 +146,8 @@ namespace Google_Play_Music
             if (field.Text == defaultText && focus)
             {
                 field.Text = "";
-            } else if (field.Text == "" && !focus)
+            }
+            else if (field.Text == "" && !focus)
             {
                 field.Text = defaultText;
             }
@@ -159,14 +168,15 @@ namespace Google_Play_Music
         {
             Activated += (res, send) =>
             {
-                lastFMAuth((LastFM.user_key != null ? 1 : 0));
+                lastFmAuth((LastFM.GetInstance().IsAuthenticated() ? 1 : 0));
                 Location = new Point(X - 300, Y - 200);
             };
+
             var result = ShowDialog();
             return result;
         }
 
-        private void lastFMAuth(int isAuth)
+        private void lastFmAuth(int isAuth)
         {
             // 1 = Auth Success
             // 0 = Auth Failure
@@ -175,11 +185,13 @@ namespace Google_Play_Music
             {
                 lastFMAuthIndicator.ForeColor = Color.Green;
                 lastFMAuthIndicator.Text = "Login Successful";
-            } else if (isAuth == 0)
+            }
+            else if (isAuth == 0)
             {
                 lastFMAuthIndicator.ForeColor = Color.Red;
                 lastFMAuthIndicator.Text = "Login Failed";
-            } else if (isAuth == -1)
+            }
+            else if (isAuth == -1)
             {
                 lastFMAuthIndicator.ForeColor = Color.Yellow;
                 lastFMAuthIndicator.Text = "Logging in...";
