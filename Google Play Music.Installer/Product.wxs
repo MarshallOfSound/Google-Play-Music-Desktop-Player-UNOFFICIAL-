@@ -32,7 +32,7 @@
 
         <!-- This property sets the app icon for Add/Remove Programs -->
         <Property Id="ARPPRODUCTICON" Value="AppIcon" />
-        <Icon Id="AppIcon" SourceFile="..\Google Play Music\Resources\Icon1.ico"/>
+        <Icon Id="AppIcon" SourceFile="..\Google Play Music\Resources\Icons\Icon1.ico"/>
 
         <!--If setup is built using x86 then it will not installed on x64-->
         <?if $(var.Platform)=x64 ?>
