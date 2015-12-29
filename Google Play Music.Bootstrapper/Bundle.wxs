@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
+     xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
+	<Bundle Name="Google Play Music Desktop Player" Version="1.9.2" Manufacturer="MarshallOfSound"
+          UpgradeCode="cd40bffe-ea0f-4e9b-aeaf-2416f44ad40f" Compressed="yes" DisableModify="yes"
+          IconSourceFile="..\Google Play Music\Resources\Icons\Icon1.ico"
+          HelpUrl="https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues" DisableRepair="yes">
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLicense">
+      <bal:WixStandardBootstrapperApplication LicenseUrl="" SuppressOptionsUI="yes" ShowVersion="yes"
+                                              LogoFile="icon.png" />
+    </BootstrapperApplicationRef>
+
+    <Chain>
+      <PackageGroupRef Id="NetFx40Web"/>
+      <RollbackBoundary />
+      
+      <?if $(var.Platform)=x86 ?>
+        <ExePackage SourceFile="vcredist_x86.exe" InstallCommand="/install /quiet" RepairCommand="/repair /quiet" UninstallCommand="/uninstall /quiet" Compressed="yes" />
+      <?endif?>
+      <?if $(var.Platform)=x64 ?>
+        <ExePackage SourceFile="vcredist_x64.exe" InstallCommand="/install /quiet" RepairCommand="/repair /quiet" UninstallCommand="/uninstall /quiet" Compressed="yes" />
+      <?endif?>
+
+      <RollbackBoundary />
+      <MsiPackage Id="CoreApplication" SourceFile="$(var.Google Play Music.Installer.TargetPath)" DisplayInternalUI="yes"  Compressed="yes" />
+		</Chain>
+	</Bundle>
+</Wix>

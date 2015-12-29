@@ -5,7 +5,7 @@
     <?include Common.wxi ?>
 
     <Product Id="*"
-             Name="Google Play Music"
+             Name="Google Play Music Desktop Player"
              Language="1033"
              Version="1.9.2"
              Manufacturer="MarshallOfSound"
@@ -48,10 +48,6 @@
             <ComponentGroupRef Id="Dependencies"/>
         </Feature>
 
-        <Feature Id="VCRedist" Title="Visual C++ 8.0 Runtime" AllowAdvertise="no" Display="hidden" Level="1">
-          <MergeRef Id="VCRedist"/>
-        </Feature>
-
         <UI>
           <UIRef Id="GPMD_BaseUI"/>
             <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER$(var.Suffix)" />
@@ -60,7 +56,6 @@
 
     <Fragment>
         <Directory Id="TARGETDIR" Name="SourceDir">
-            <Merge Id="VCRedist" SourceFile="C:\Program Files (x86)\Common Files\Merge Modules\Microsoft_VC140_CRT_x86.msm" DiskId="1" Language="0"/>
             <!-- 32 bit directory -->
             <Directory Id="ProgramFilesFolder">
                 <Directory Id="INSTALLFOLDER" Name="GPMDP">
