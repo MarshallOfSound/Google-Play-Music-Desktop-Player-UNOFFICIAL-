@@ -15,14 +15,6 @@
                 <Control Id="NetFrameworkLink" Type="Hyperlink" X="145" Y="90" Height="10" Width="220">
                     <Text><![CDATA[<a href="https://www.microsoft.com/en-us/download/details.aspx?id=17851">Click to Download</a>]]></Text>
                 </Control>
-                <Control Id="VCRuntimePrereqx86" Type="Text" X="145" Y="110" Width="220" Height="30" Transparent="yes" NoPrefix="yes" Text="!(loc.VCRuntimePrereqx86)" />
-                <Control Id="VCRuntimeLinkx86" Type="Hyperlink" X="145" Y="140" Height="10" Width="220">
-                    <Text><![CDATA[<a href="https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe">Click to Download</a>]]></Text>
-                </Control>
-                <Control Id="VCRuntimePrereqx64" Type="Text" X="145" Y="160" Width="220" Height="30" Transparent="yes" NoPrefix="yes" Text="!(loc.VCRuntimePrereqx64)" />
-                <Control Id="VCRuntimeLinkx64" Type="Hyperlink" X="145" Y="190" Height="10" Width="220">
-                    <Text><![CDATA[<a href="https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe">Click to Download</a>]]></Text>
-                </Control>
             </Dialog>
         </UI>
     </Fragment>

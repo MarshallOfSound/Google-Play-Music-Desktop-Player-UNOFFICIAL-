@@ -7,8 +7,8 @@
     <Product Id="*"
              Name="Google Play Music"
              Language="1033"
-             Version="1.0.0.0"
-             Manufacturer="Marshall Of Sound"
+             Version="1.9.2"
+             Manufacturer="MarshallOfSound"
              UpgradeCode="2f8492cc-221c-4815-8e50-891e43989b7f" >
 
         <Package Id="*"
@@ -21,7 +21,7 @@
         
         <!-- ====== Product Prerequisites ====== -->
         <!-- Required on both 32 and 64 bit machines -->
-        <PropertyRef Id="NETFRAMEWORK40FULL"/>
+        <PropertyRef Id="WIX_IS_NETFRAMEWORK_40_OR_LATER_INSTALLED"/>
         <Property Id="VC2012X64">
             <RegistrySearch Id="VC2012x64Key" Key="SOFTWARE\Classes\Installer\Dependencies\{ca67548a-5ebe-413a-b50c-4b9ceb6d66c6}" Name="Installed" Root="HKLM" Type="raw" Win64="no" />
         </Property>
@@ -35,9 +35,9 @@
         <Icon Id="AppIcon" SourceFile="..\Google Play Music\Resources\Icon1.ico"/>
 
         <!--If setup is built using x86 then it will not installed on x64-->
-        <?if $(var.Platform)=x86 ?>
+        <?if $(var.Platform)=x64 ?>
             <Condition Message="Setup can not be installed on x64 machine.">
-                <![CDATA[Installed OR Not VersionNT64]]>
+                <![CDATA[Installed OR VersionNT64]]>
             </Condition>
         <?endif?>
 
@@ -48,6 +48,10 @@
             <ComponentGroupRef Id="Dependencies"/>
         </Feature>
 
+        <Feature Id="VCRedist" Title="Visual C++ 8.0 Runtime" AllowAdvertise="no" Display="hidden" Level="1">
+          <MergeRef Id="VCRedist"/>
+        </Feature>
+
         <UI>
           <UIRef Id="GPMD_BaseUI"/>
             <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER$(var.Suffix)" />
@@ -55,7 +59,8 @@
     </Product>
 
     <Fragment>
-        <Directory Id="TARGETDIR" Name="SourceDir">            
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Merge Id="VCRedist" SourceFile="C:\Program Files (x86)\Common Files\Merge Modules\Microsoft_VC140_CRT_x86.msm" DiskId="1" Language="0"/>
             <!-- 32 bit directory -->
             <Directory Id="ProgramFilesFolder">
                 <Directory Id="INSTALLFOLDER" Name="GPMDP">

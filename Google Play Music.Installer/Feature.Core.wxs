@@ -5,9 +5,6 @@
         <ComponentGroup Id="Google_Play_Music_Core" Directory="$(var.InstallDirectory)" >            
             <Component Guid="{B1BA5B97-6759-46B3-92A5-B457B2593C62}" Id="Google_Play_Music">
                 <File KeyPath="yes" Source="$(var.SourcePath)\$(var.Google Play Music.TargetFileName)" />
-                <File Source="$(var.SourcePath)\Google Play Music.exe.config" />
-                <File Source="$(var.SourcePath)\Google Play Music.application" />
-                <File Source="$(var.SourcePath)\Google Play Music.exe.manifest" />
                 <RemoveFolder Id='RemoveProgramMenuDir' Directory='Google_Play_Music' On='uninstall' />            
             </Component>
         
@@ -84,13 +81,10 @@
                 <File Source="$(var.SourcePath)\cef_100_percent.pak" />
                 <File Source="$(var.SourcePath)\cef_200_percent.pak" />
                 <File Source="$(var.SourcePath)\devtools_resources.pak" />
-                <File Source="$(var.SourcePath)\CefSharp.xml" />
-                <File Source="$(var.SourcePath)\CefSharp.Core.xml" />
             </Component>
 
             <Component Guid="{77978B45-6D82-4FED-826E-DAAE60529961}" Id="CefSharp_WinForms">
                 <File Source="$(var.SourcePath)\CefSharp.WinForms.dll" />
-                <File Source="$(var.SourcePath)\CefSharp.WinForms.xml" />
             </Component>
 
             <Component Guid="{CB384CD3-7925-443D-A8C0-28A76C9BDFF3}" Id="CefSharp_Redist">
@@ -107,47 +101,34 @@
 
             <Component Guid="{808D3DFA-17A4-451B-9518-8A33EC5FD112}" Id="Microsoft_Bcl_Async">
                 <File KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Threading.Tasks.dll" />
-                <File Source="$(var.SourcePath)\Microsoft.Threading.Tasks.xml" />
                 <File Source="$(var.SourcePath)\Microsoft.Threading.Tasks.Extensions.dll" />
-                <File Source="$(var.SourcePath)\Microsoft.Threading.Tasks.Extensions.xml" />
 
                 <File Source="$(var.SourcePath)\Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
-                <File Source="$(var.SourcePath)\Microsoft.Threading.Tasks.Extensions.Desktop.xml" />
             </Component>
 
             <Component Guid="{82710EA7-7C15-4965-A584-3C909B4F00C0}" Id="Microsoft_Bcl_Build">
                 <File KeyPath="yes" Source="$(var.SourcePath)\System.Net.Http.WebRequest.dll" />
-                <File Source="$(var.SourcePath)\System.Net.Http.WebRequest.xml" />
             </Component>
 
             <Component Guid="{A318807A-5B70-4D22-94EF-DA13CB9120C5}" Id="Microsoft_Net_Http">
                 <File KeyPath="yes" Source="$(var.SourcePath)\System.Net.Http.dll" />
-                <File Source="$(var.SourcePath)\System.Net.Http.xml" />
                 <File Source="$(var.SourcePath)\System.Net.Http.Extensions.dll" />
-                <File Source="$(var.SourcePath)\System.Net.Http.Extensions.xml" />
                 <File Source="$(var.SourcePath)\System.Net.Http.Primitives.dll" />
-                <File Source="$(var.SourcePath)\System.Net.Http.Primitives.xml" />
             </Component>
 
             <Component Guid="{0A73F70F-BBFE-43CB-8B2D-439AF31B6982}" Id="Microsoft_Bcl">
                 <File KeyPath="yes" Source="$(var.SourcePath)\System.IO.dll" />
-                <File Source="$(var.SourcePath)\System.IO.xml" />
                 <File Source="$(var.SourcePath)\System.Runtime.dll" />
-                <File Source="$(var.SourcePath)\System.Runtime.xml" />
                 <File Source="$(var.SourcePath)\System.Threading.Tasks.dll" />
-                <File Source="$(var.SourcePath)\System.Threading.Tasks.xml" />
             </Component>
 
             <Component Guid="{9271D975-8BBF-4FC4-98EA-08D4563EBFA3}" Id="Microsoft_WindowsAPICodePack_Core">
                 <File KeyPath="yes" Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.dll" />
-                <File Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.xml" />
             </Component>
 
             <Component Guid="{5E264A8C-3BFD-4D8D-9977-EF956250AFCE}" Id="Microsoft_WindowsAPICodePack_Shell">
                 <File KeyPath="yes" Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.Shell.dll" />
-                <File Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.Shell.xml" />
                 <File Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.ShellExtensions.dll" />
-                <File Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.ShellExtensions.xml" />
             </Component>
 
             <Component Guid="{440038CB-9B4B-4A35-8B76-4F255821A1A9}" Id="GMA_System_MouseKeyHook">

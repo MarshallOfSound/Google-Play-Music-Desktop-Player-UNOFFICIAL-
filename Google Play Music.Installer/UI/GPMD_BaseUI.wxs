@@ -35,7 +35,8 @@
 
       <Publish Dialog="GPMD_ExitDlg" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
 
-      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="GPMD_DependenciesDlg">NOT Installed AND NOT WIX_UPGRADE_DETECTED</Publish>
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="GPMD_DependenciesDlg">NOT Installed AND NOT WIX_UPGRADE_DETECTED AND NOT WIX_IS_NETFRAMEWORK_40_OR_LATER_INSTALLED</Publish>
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">NOT Installed AND NOT WIX_UPGRADE_DETECTED AND WIX_IS_NETFRAMEWORK_40_OR_LATER_INSTALLED = 1</Publish>
       <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">NOT Installed AND WIX_UPGRADE_DETECTED</Publish>
       <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">Installed AND PATCH</Publish>
 
