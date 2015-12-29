@@ -142,4 +142,10 @@
   <data name="mini_player" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\JS\mini-player.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="api_key" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Raw\api_key.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="api_secret" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Raw\api_secret.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
 </root>

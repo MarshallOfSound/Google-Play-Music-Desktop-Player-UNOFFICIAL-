@@ -59,7 +59,25 @@ namespace Google_Play_Music.Properties {
                 resourceCulture = value;
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up your last.fm API KEY
+        /// </summary>
+        internal static string api_key {
+            get {
+                return ResourceManager.GetString("api_key", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up your last.fm API SECRET
+        /// </summary>
+        internal static string api_secret {
+            get {
+                return ResourceManager.GetString("api_secret", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   The code to customize the interface of Google Play Music
         /// </summary>
