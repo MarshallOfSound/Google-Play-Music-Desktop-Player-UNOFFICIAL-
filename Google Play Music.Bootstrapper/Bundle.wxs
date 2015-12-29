@@ -8,7 +8,7 @@
           HelpUrl="https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues" DisableRepair="yes">
     <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLicense">
       <bal:WixStandardBootstrapperApplication LicenseUrl="" SuppressOptionsUI="yes" ShowVersion="yes"
-                                              LogoFile="icon.png" />
+                                              LogoFile="icon.png" SuppressRepair="yes" />
     </BootstrapperApplicationRef>
 
     <Chain>
