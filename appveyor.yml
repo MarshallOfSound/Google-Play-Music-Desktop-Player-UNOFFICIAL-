@@ -17,3 +17,5 @@ matrix:
 artifacts:
   - path: Google Play Music/bin/$(platform)/$(configuration)
     name: GPMDP.Beta.$(platform)
+  - path: Google Play Music.Bootstrapper/bin/$(platform)/$(configuration)/Google_Play_Music.Bootstrapper.exe
+    name: GPMDP.Beta.$(platform).Installer
