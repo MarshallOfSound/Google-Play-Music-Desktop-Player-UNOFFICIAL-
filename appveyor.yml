@@ -1,4 +1,4 @@
-version: 1.9.2
+version: 1.9.2-$(build)
 before_build:
 - cmd: nuget restore && echo %api_key% > "Google Play Music\Resources\Raw\api_key.txt" && echo %api_secret% > "Google Play Music\Resources\Raw\api_secret.txt"
 build:
