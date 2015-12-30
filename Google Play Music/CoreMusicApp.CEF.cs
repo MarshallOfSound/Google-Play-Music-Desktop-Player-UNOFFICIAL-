@@ -17,7 +17,16 @@ namespace Google_Play_Music
             settings.WindowlessRenderingEnabled = true;
             settings.CefCommandLineArgs.Add("enable-smooth-scrolling", "1");
             settings.CefCommandLineArgs.Add("enable-overlay-scrollbar", "1");
-            settings.CefCommandLineArgs.Add("enable-npapi", "1");
+            if (Environment.Is64BitProcess)
+            {
+                settings.CefCommandLineArgs.Add("ppapi-flash-path", "Resources\\pepflashplayer64_20_0_0_267.dll");
+            }
+            else
+            {
+                settings.CefCommandLineArgs.Add("ppapi-flash-path", "Resources\\pepflashplayer32_20_0_0_267.dll");
+            }
+            settings.CefCommandLineArgs.Add("ppapi-flash-version", "20.0.0.267");
+
             Cef.Initialize(settings);
 
             GPMBrowser = new CefSharp.WinForms.ChromiumWebBrowser("https://play.google.com/music/listen")
@@ -29,6 +38,13 @@ namespace Google_Play_Music
             };
             GPMBrowser.RegisterAsyncJsObject("csharpinterface", new JSBound(this));
             GPMBrowser.DragHandler = new GPMDragHandler();
+            GPMBrowser.IsBrowserInitializedChanged += (send, e) =>
+            {
+                if (GPMBrowser.IsBrowserInitialized)
+                {
+                    GPMBrowser.ShowDevTools();
+                }
+            };
 
             GPMBrowser.Dock = DockStyle.Fill;
 

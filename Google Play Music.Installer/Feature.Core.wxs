@@ -32,15 +32,15 @@
           </Component>
         </DirectoryRef>
 
-      <DirectoryRef Id="StartMenuAppData">
-        <Component Id="RemoveOldStartShortcutComponent" Guid="{2E0F60E9-2AA2-4EFD-BBAE-39ABECC993FD}">
-          <RemoveFolder Id="RemoveMicrosoftAppData" Directory="MicrosoftAppData" On="both" />
-          <RemoveFolder Id="RemoveStartMenuAppData" Directory="StartMenuAppData" On="both" />
-          <RemoveFolder Id="RemoveWindowsAppData" Directory="WindowsAppData" On="both" />
-          <RemoveFile Id='RemoveOldStartShortcut' On='both' Name='*Google Play Music*' />
-          <RegistryValue Root="HKCU" Key="Software\Microsoft\GPMDP" Name="oldstart" Type="integer" Value="1" KeyPath="yes"/>
-        </Component>
-      </DirectoryRef>
+        <DirectoryRef Id="StartMenuAppData">
+          <Component Id="RemoveOldStartShortcutComponent" Guid="{2E0F60E9-2AA2-4EFD-BBAE-39ABECC993FD}">
+            <RemoveFolder Id="RemoveMicrosoftAppData" Directory="MicrosoftAppData" On="both" />
+            <RemoveFolder Id="RemoveStartMenuAppData" Directory="StartMenuAppData" On="both" />
+            <RemoveFolder Id="RemoveWindowsAppData" Directory="WindowsAppData" On="both" />
+            <RemoveFile Id='RemoveOldStartShortcut' On='both' Name='*Google Play Music*' />
+            <RegistryValue Root="HKCU" Key="Software\Microsoft\GPMDP" Name="oldstart" Type="integer" Value="1" KeyPath="yes"/>
+          </Component>
+        </DirectoryRef>
 
         <ComponentGroup Id="Locales" Directory="$(var.locales)">
             <Component Guid="{0F8F4110-BEC1-49EE-92F2-E7E58EA162AA}" Id="PAKs">
@@ -101,6 +101,15 @@
         </ComponentGroup>
         
         <ComponentGroup Id="Dependencies" Directory="$(var.InstallDirectory)">
+            <Component Id="FlashDLL" Guid="{69C124BF-B9BD-404C-BACF-CEFC7665A02B}" Directory="$(var.resources)">
+              <?if $(var.Platform)=x86 ?>
+                <File KeyPath="yes" Source="$(var.SourcePath)\Resources\pepflashplayer32_20_0_0_267.dll" Compressed="yes" />
+              <?endif?>
+              <?if $(var.Platform)=x64 ?>
+                <File KeyPath="yes" Source="$(var.SourcePath)\Resources\pepflashplayer64_20_0_0_267.dll" Compressed="yes" />
+              <?endif?>
+            </Component>
+          
             <Component Guid="{719FFB2C-14DD-464C-A88A-0615EFF75DAE}" Id="CefSharp_Common">
                 <File KeyPath="yes" Source="$(var.SourcePath)\CefSharp.dll" />
                 <File Source="$(var.SourcePath)\CefSharp.BrowserSubprocess.exe" />
