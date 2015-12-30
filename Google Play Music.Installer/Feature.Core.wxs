@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <Fragment>
+        <?include Common.wxi ?>
+        <ComponentGroup Id="Google_Play_Music_Core" Directory="$(var.InstallDirectory)" >            
+            <Component Guid="{B1BA5B97-6759-46B3-92A5-B457B2593C62}" Id="Google_Play_Music">
+                <File Id="mainapp.exe" KeyPath="yes" Source="$(var.SourcePath)\$(var.Google Play Music.TargetFileName)" />
+                <File Source="$(var.SourcePath)\Google Play Music.exe.config" />
+                <RemoveFolder Id='RemoveProgramMenuDir' Directory='Google_Play_Music' On='uninstall' />
+                <?if $(var.Platform)=x64 ?>
+                  <util:RemoveFolderEx On="both" Property="INSTALLFOLDER" />
+                <?endif?>
+            </Component>
+        
+            <Component Guid="{28C8EB78-B96F-4C60-84C9-F6D14A5EEF93}" Id="MaterialSkin">
+                <File KeyPath="yes" Source="$(var.SourcePath)\$(var.MaterialSkin.TargetFileName)" />
+            </Component>
+
+            <ComponentRef Id="ApplicationShortcut"/>
+            <ComponentRef Id="RemoveOldStartShortcutComponent"/>
+        </ComponentGroup>
+
+        <DirectoryRef Id="Google_Play_Music">
+          <Component Id="ApplicationShortcut" Guid="{AB0DD132-6F84-4FC0-9D41-90BAD7A414C5}">
+            <Shortcut Id="ApplicationStartMenuShortcut"
+                      Name="Google Play Music Desktop Player"
+                      Description="Google Play Music Desktop Player"
+                      Target="[#mainapp.exe]"
+                      WorkingDirectory="$(var.InstallDirectory)"/>
+            <RegistryValue Root="HKCU" Key="Software\Microsoft\GPMDP" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+          </Component>
+        </DirectoryRef>
+
+      <DirectoryRef Id="StartMenuAppData">
+        <Component Id="RemoveOldStartShortcutComponent" Guid="{2E0F60E9-2AA2-4EFD-BBAE-39ABECC993FD}">
+          <RemoveFolder Id="RemoveMicrosoftAppData" Directory="MicrosoftAppData" On="both" />
+          <RemoveFolder Id="RemoveStartMenuAppData" Directory="StartMenuAppData" On="both" />
+          <RemoveFolder Id="RemoveWindowsAppData" Directory="WindowsAppData" On="both" />
+          <RemoveFile Id='RemoveOldStartShortcut' On='both' Name='*Google Play Music*' />
+          <RegistryValue Root="HKCU" Key="Software\Microsoft\GPMDP" Name="oldstart" Type="integer" Value="1" KeyPath="yes"/>
+        </Component>
+      </DirectoryRef>
+
+        <ComponentGroup Id="Locales" Directory="$(var.locales)">
+            <Component Guid="{0F8F4110-BEC1-49EE-92F2-E7E58EA162AA}" Id="PAKs">
+                <File KeyPath="yes" Source="$(var.SourcePath)\locales\am.pak" />
+                <File Source="$(var.SourcePath)\locales\ar.pak" />
+                <File Source="$(var.SourcePath)\locales\bg.pak" />
+                <File Source="$(var.SourcePath)\locales\bn.pak" />
+                <File Source="$(var.SourcePath)\locales\ca.pak" />
+                <File Source="$(var.SourcePath)\locales\cs.pak" />
+                <File Source="$(var.SourcePath)\locales\da.pak" />
+                <File Source="$(var.SourcePath)\locales\de.pak" />
+                <File Source="$(var.SourcePath)\locales\el.pak" />
+                <File Source="$(var.SourcePath)\locales\en-GB.pak" />
+                <File Source="$(var.SourcePath)\locales\en-US.pak" />
+                <File Source="$(var.SourcePath)\locales\es.pak" />
+                <File Source="$(var.SourcePath)\locales\es-419.pak" />
+                <File Source="$(var.SourcePath)\locales\et.pak" />
+                <File Source="$(var.SourcePath)\locales\fa.pak" />
+                <File Source="$(var.SourcePath)\locales\fi.pak" />
+                <File Source="$(var.SourcePath)\locales\fil.pak" />
+                <File Source="$(var.SourcePath)\locales\fr.pak" />
+                <File Source="$(var.SourcePath)\locales\gu.pak" />
+                <File Source="$(var.SourcePath)\locales\he.pak" />
+                <File Source="$(var.SourcePath)\locales\hi.pak" />
+                <File Source="$(var.SourcePath)\locales\hr.pak" />
+                <File Source="$(var.SourcePath)\locales\hu.pak" />
+                <File Source="$(var.SourcePath)\locales\id.pak" />
+                <File Source="$(var.SourcePath)\locales\it.pak" />
+                <File Source="$(var.SourcePath)\locales\ja.pak" />
+                <File Source="$(var.SourcePath)\locales\kn.pak" />
+                <File Source="$(var.SourcePath)\locales\ko.pak" />
+                <File Source="$(var.SourcePath)\locales\lt.pak" />
+                <File Source="$(var.SourcePath)\locales\lv.pak" />
+                <File Source="$(var.SourcePath)\locales\ml.pak" />
+                <File Source="$(var.SourcePath)\locales\mr.pak" />
+                <File Source="$(var.SourcePath)\locales\ms.pak" />
+                <File Source="$(var.SourcePath)\locales\nb.pak" />
+                <File Source="$(var.SourcePath)\locales\nl.pak" />
+                <File Source="$(var.SourcePath)\locales\pl.pak" />
+                <File Source="$(var.SourcePath)\locales\pt-BR.pak" />
+                <File Source="$(var.SourcePath)\locales\pt-PT.pak" />
+                <File Source="$(var.SourcePath)\locales\ro.pak" />
+                <File Source="$(var.SourcePath)\locales\ru.pak" />
+                <File Source="$(var.SourcePath)\locales\sk.pak" />
+                <File Source="$(var.SourcePath)\locales\sl.pak" />
+                <File Source="$(var.SourcePath)\locales\sr.pak" />
+                <File Source="$(var.SourcePath)\locales\sv.pak" />
+                <File Source="$(var.SourcePath)\locales\sw.pak" />
+                <File Source="$(var.SourcePath)\locales\ta.pak" />
+                <File Source="$(var.SourcePath)\locales\te.pak" />
+                <File Source="$(var.SourcePath)\locales\th.pak" />
+                <File Source="$(var.SourcePath)\locales\tr.pak" />
+                <File Source="$(var.SourcePath)\locales\uk.pak" />
+                <File Source="$(var.SourcePath)\locales\vi.pak" />
+                <File Source="$(var.SourcePath)\locales\zh-CN.pak" />
+                <File Source="$(var.SourcePath)\locales\zh-TW.pak" />
+            </Component>
+        </ComponentGroup>
+        
+        <ComponentGroup Id="Dependencies" Directory="$(var.InstallDirectory)">
+            <Component Guid="{719FFB2C-14DD-464C-A88A-0615EFF75DAE}" Id="CefSharp_Common">
+                <File KeyPath="yes" Source="$(var.SourcePath)\CefSharp.dll" />
+                <File Source="$(var.SourcePath)\CefSharp.BrowserSubprocess.exe" />
+                <File Source="$(var.SourcePath)\CefSharp.BrowserSubprocess.Core.dll" />
+                <File Source="$(var.SourcePath)\CefSharp.Core.dll" />
+                <File Source="$(var.SourcePath)\cef.pak" />
+                <File Source="$(var.SourcePath)\cef_100_percent.pak" />
+                <File Source="$(var.SourcePath)\cef_200_percent.pak" />
+                <File Source="$(var.SourcePath)\devtools_resources.pak" />
+            </Component>
+
+            <Component Guid="{77978B45-6D82-4FED-826E-DAAE60529961}" Id="CefSharp_WinForms">
+                <File Source="$(var.SourcePath)\CefSharp.WinForms.dll" />
+            </Component>
+
+            <Component Guid="{CB384CD3-7925-443D-A8C0-28A76C9BDFF3}" Id="CefSharp_Redist">
+                <File KeyPath="yes" Source="$(var.SourcePath)\libcef.dll" />
+                <File Source="$(var.SourcePath)\d3dcompiler_43.dll" />
+                <File Source="$(var.SourcePath)\d3dcompiler_47.dll" />
+                <File Source="$(var.SourcePath)\ffmpegsumo.dll" />
+                <File Source="$(var.SourcePath)\libEGL.dll" />
+                <File Source="$(var.SourcePath)\libGLESv2.dll" />
+                <File Source="$(var.SourcePath)\icudtl.dat" />
+                <File Source="$(var.SourcePath)\snapshot_blob.bin" />
+                <File Source="$(var.SourcePath)\natives_blob.bin" />
+            </Component>
+
+            <Component Guid="{808D3DFA-17A4-451B-9518-8A33EC5FD112}" Id="Microsoft_Bcl_Async">
+                <File KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Threading.Tasks.dll" />
+                <File Source="$(var.SourcePath)\Microsoft.Threading.Tasks.Extensions.dll" />
+
+                <File Source="$(var.SourcePath)\Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
+            </Component>
+
+            <Component Guid="{82710EA7-7C15-4965-A584-3C909B4F00C0}" Id="Microsoft_Bcl_Build">
+                <File KeyPath="yes" Source="$(var.SourcePath)\System.Net.Http.WebRequest.dll" />
+            </Component>
+
+            <Component Guid="{A318807A-5B70-4D22-94EF-DA13CB9120C5}" Id="Microsoft_Net_Http">
+                <File KeyPath="yes" Source="$(var.SourcePath)\System.Net.Http.dll" />
+                <File Source="$(var.SourcePath)\System.Net.Http.Extensions.dll" />
+                <File Source="$(var.SourcePath)\System.Net.Http.Primitives.dll" />
+            </Component>
+
+            <Component Guid="{0A73F70F-BBFE-43CB-8B2D-439AF31B6982}" Id="Microsoft_Bcl">
+                <File KeyPath="yes" Source="$(var.SourcePath)\System.IO.dll" />
+                <File Source="$(var.SourcePath)\System.Runtime.dll" />
+                <File Source="$(var.SourcePath)\System.Threading.Tasks.dll" />
+            </Component>
+
+            <Component Guid="{9271D975-8BBF-4FC4-98EA-08D4563EBFA3}" Id="Microsoft_WindowsAPICodePack_Core">
+                <File KeyPath="yes" Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.dll" />
+            </Component>
+
+            <Component Guid="{5E264A8C-3BFD-4D8D-9977-EF956250AFCE}" Id="Microsoft_WindowsAPICodePack_Shell">
+                <File KeyPath="yes" Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.Shell.dll" />
+                <File Source="$(var.SourcePath)\Microsoft.WindowsAPICodePack.ShellExtensions.dll" />
+            </Component>
+
+            <Component Guid="{440038CB-9B4B-4A35-8B76-4F255821A1A9}" Id="GMA_System_MouseKeyHook">
+                <File KeyPath="yes" Source="$(var.SourcePath)\Gma.System.MouseKeyHook.dll" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

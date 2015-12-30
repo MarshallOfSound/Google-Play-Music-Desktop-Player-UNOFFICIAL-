@@ -17,14 +17,22 @@ namespace Google_Play_Music
         private string password;
         public static string user_key = null;
 
-        private const string API_KEY = "";
-        private const string API_SECRET = "";
+        private string API_KEY = "";
+        private string API_SECRET = "";
         private const string API_URL = "https://ws.audioscrobbler.com/2.0/?";
 
         public LastFM()
         {
             this.username = Properties.Settings.Default.LastFMUsername;
             this.password = Properties.Settings.Default.LastFMPassword;
+            if (this.API_KEY == "")
+            {
+                this.API_KEY = Properties.Resources.api_key;
+            }
+            if (this.API_SECRET == "")
+            {
+                this.API_SECRET = Properties.Resources.api_secret;
+            }
         }
 
         public LastFM(string username, string password)

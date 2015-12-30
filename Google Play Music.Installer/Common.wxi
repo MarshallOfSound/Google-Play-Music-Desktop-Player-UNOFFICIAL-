@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+    <?define SourcePathx86="..\Google Play Music\bin\x86\Release"?>
+    <?define SourcePathx64="..\Google Play Music\bin\x64\Release"?>
+    <?if $(var.Platform)=x86 ?>
+        <?define Is64=no ?>
+        <?define SourcePath=$(var.SourcePathx86)?>
+        <?define InstallDirectory=INSTALLFOLDER?>
+        <?define Suffix ?>
+        <?define GuidSuffix=A?>
+        <?define locales=locales?>
+    <?else?>
+        <?define Is64=yes ?>
+        <?define SourcePath=$(var.SourcePathx64)?>
+        <?define InstallDirectory=INSTALLFOLDER_X64?>
+        <?define locales=locales_X64?>
+        <?define Suffix=_X64 ?>
+        <?define GuidSuffix=B?>
+    <?endif?>
+
+</Include>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+
+  <String Id="btnNext">Next</String>
+  <String Id="btnBack">Back</String>
+  <String Id="btnCancel">Cancel</String>
+  <String Id="DlgTitle">[ProductName]</String>
+
+  <String Id="WelcomeDlgTitle">Welcome to the Windows Installer Setup for [ProductName]</String>
+  <String Id="WelcomeDescription">The Windows Installer Setup will install [ProductName] on your computer. To continue, click Next.</String>
+
+
+  <String Id="LicenseAgg">End User License Agreement</String>
+  <String Id="LicenseAgg1">Please read the following License agreement carefully</String>
+  <String Id="LicenseRtf" Overridable="yes">Resources\Lang\en-us\EULA_en-us.rtf</String>
+
+  <String Id="DesFolder">Destination Folder</String>
+  <String Id="ClickNext">Click Next to install to the default folder or click Change to choose another.</String>
+
+  <String Id="CompleteMsg">Windows Installer Setup Completed</String>
+  <String Id="CompltedWizard">Windows Installer Setup has successfully installed [ProductName]. Click finish to exit the Setup.</String>
+
+  <String Id="ReadyToInstall">Ready To Install [ProductName]</String>
+
+  <String Id="Interuppted">[ProductName] Setup was interrupted</String>
+  <String Id="InterupptedDes">[ProductName] Setup was interrupted. Your System has not been modified. To install this program at a later time, please run the installation again. Click the finish button to exit Setup.</String>
+
+  <String Id="MaintenanceWelcomeDlgDescription">The Setup Wizard allows you to change the way [ProductName] features are installed on your computer or to remove it from your computer. Click Next to continue or Cancel to exit the Setup Wizard.</String>
+  <String Id="ErrTitle">Error</String>
+  <String Id="InfoTitle">Information</String>
+
+  <String Id="MaintenanceWelcomeDlgTitle">Welcome to the [ProductName] Wizard.</String>
+
+  <String Id="VerifyReadyDlgInstallText">Click Install to begin the installation. Click Back to review or change any of your installation settings. Click Cancel to exit the Wizard.</String>
+  <String Id="ProgressDlgTitle">Installing [ProductName]</String>
+  <String Id="ProgressDlgTitleRepairing">Repairing [ProductName] Wizard</String>
+  <String Id="ProgressDlgTitleChanging">Changing Settings of [ProductName]</String>
+
+  <String Id="DependencyDlgTitle">This program requires these following dependencies to install.</String>
+  <String Id="ExitDialogTitle">Completed the [ProductName] Wizard</String>
+  <String Id="VerifyReadyDlgRemoveTitle">Ready to Remove [ProductName]</String>
+  <String Id="VerifyReadyDlgRepairTitle">Ready to Repair [ProductName]</String>
+  <String Id="MaintenanceTypeDlgTitle">Change, Repair, or Remove [ProductName]</String>
+
+  <String Id="NetFrameworkPrereq">This application requires .NET Framework 4.0. Please install the .NET Framework 4.0, then run this installer again.</String>
+  <String Id="VCRuntimePrereqx86">This setup requires the 2012 Visual C++ Runtime (32-bit) to be installed. Please install the 2013 Visual C++ Runtime (32-bit), then run this installer again.</String>
+  <String Id="VCRuntimePrereqx64">This setup requires the 2012 Visual C++ Runtime (64-bit) to be installed. Please install the 2013 Visual C++ Runtime (64-bit), then run this installer again.</String> 
+  <String Id="ProgressDlgTitleUpdating">Updating [ProductName] Wizard</String>
+  <String Id="ProgressDlgTitleRemoving">Removing [ProductName] Wizard</String>
+  <String Id="DiskCostDlgTitle">Disk Space Requirements</String>
+  <String Id="FilesInUseTitle">Files in Use</String>
+  <String Id="MsiRMFilesInUseTitle">Files in Use</String>
+  <String Id="OutOfDiskDlgTitle">Out of Disk Space</String>
+  <String Id="OutOfRbDiskDlgTitle">Out of Disk Space</String>
+  <String Id="PrepareDlgTitle">Welcome to the [ProductName] Wizard</String>
+  <String Id="ResumeDlgTitle">Resuming the [ProductName] Wizard</String>
+  <String Id="VerifyReadyDlgUpdateTitle">Ready to update [ProductName]</String>
+  <String Id="VerifyReadyDlgChangeTitle">Ready to change [ProductName]</String>
+  <String Id="VerifyReadyDlgUpdateText">Click Update to begin the update process. Click Back to review or change any of your installation settings. Click Cancel to exit the Wizard.</String>
+  <String Id="OutOfDiskDlgDescription" Overridable="yes">Disk space required for the installation exceeds available disk space.</String>
+  <String Id="OutOfDiskDlgText" Overridable="yes">The highlighted volumes do not have enough disk space available for the currently selected features. You can remove some files from the highlighted volumes, install fewer features, or select a different destination drive.</String>
+  <String Id="OutOfRbDiskDlgText2" Overridable="yes">Alternatively, you may choose to disable the installer's rollback functionality. Disabling rollback prevents the installer from restoring your computer's original state should the installation be interrupted in any way. Click Yes if you wish to take the risk of disabling rollback. </String>
+  <String Id="OutOfRbDiskDlgText" Overridable="yes">
+    The highlighted volumes do not have enough disk space available for the currently selected features. You can remove some files from the highlighted volumes, install fewer features, or select a different destination drive.
+  </String>
+  <String Id="OutOfRbDiskDlgDescription" Overridable="yes">
+    Disk space required for the installation exceeds available disk space.
+  </String>
+  <String Id="DiskCostDlgText" Overridable="yes">
+    Highlighted volumes do not have enough disk space available for selected features. You can either remove some files from the highlighted volumes, install fewer features, or select different destination drives.
+  </String>
+  <String Id="DiskCostDlgDescription" Overridable="yes">
+    The disk space required for the installation of the selected features.
+  </String>
+  <String Id="WaitForCostingDlgText" Overridable="yes">
+    Please wait while the installer finishes determining your disk space requirements.
+  </String>
+</WixLocalization>
