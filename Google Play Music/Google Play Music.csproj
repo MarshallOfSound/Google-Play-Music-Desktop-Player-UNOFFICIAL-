@@ -308,16 +308,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\cef.redist.x64.3.2357.1287\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2357.1287\build\cef.redist.x64.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\cef.redist.x64.3.2357.1287\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.2357.1287\build\cef.redist.x64.targets'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x86.3.2357.1287\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.2357.1287\build\cef.redist.x86.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.43.0.0\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.43.0.0\build\CefSharp.Common.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.43.0.0\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.43.0.0\build\CefSharp.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.WinForms.43.0.0\build\CefSharp.WinForms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.43.0.0\build\CefSharp.WinForms.props'))" />
-  </Target>
   <Import Project="..\packages\cef.redist.x86.3.2357.1287\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2357.1287\build\cef.redist.x86.targets')" />
   <Import Project="..\packages\CefSharp.Common.43.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.43.0.0\build\CefSharp.Common.targets')" />
   <PropertyGroup>
