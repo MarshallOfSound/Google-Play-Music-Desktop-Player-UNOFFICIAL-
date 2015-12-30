@@ -72,8 +72,18 @@
 
             <!-- Start Menu Folder -->
             <Directory Id="ProgramMenuFolder">
-                <Directory Id="Google_Play_Music" Name="Google Play Music">
+                <Directory Id="Google_Play_Music" Name="Google Play Music Desktop Player">
                 </Directory>
+            </Directory>
+
+            <!-- Old start menu shortcut folder -->
+            <Directory Id="AppDataFolder">
+              <Directory Id="MicrosoftAppData" Name="Microsoft">
+                <Directory Id="WindowsAppData" Name="Windows">
+                  <Directory Id="StartMenuAppData" Name="Start Menu">
+                  </Directory>
+                </Directory>
+              </Directory>
             </Directory>
         </Directory>
     </Fragment>

@@ -1,17 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
     <Fragment>
         <?include Common.wxi ?>
         <ComponentGroup Id="Google_Play_Music_Core" Directory="$(var.InstallDirectory)" >            
             <Component Guid="{B1BA5B97-6759-46B3-92A5-B457B2593C62}" Id="Google_Play_Music">
-                <File KeyPath="yes" Source="$(var.SourcePath)\$(var.Google Play Music.TargetFileName)" />
-                <RemoveFolder Id='RemoveProgramMenuDir' Directory='Google_Play_Music' On='uninstall' />            
+                <File Id="mainapp.exe" KeyPath="yes" Source="$(var.SourcePath)\$(var.Google Play Music.TargetFileName)" />
+                <File Source="$(var.SourcePath)\Google Play Music.exe.config" />
+                <RemoveFolder Id='RemoveProgramMenuDir' Directory='Google_Play_Music' On='uninstall' />
+                <?if $(var.Platform)=x64 ?>
+                  <util:RemoveFolderEx On="both" Property="INSTALLFOLDER" />
+                <?endif?>
             </Component>
         
             <Component Guid="{28C8EB78-B96F-4C60-84C9-F6D14A5EEF93}" Id="MaterialSkin">
                 <File KeyPath="yes" Source="$(var.SourcePath)\$(var.MaterialSkin.TargetFileName)" />
             </Component>
+
+            <ComponentRef Id="ApplicationShortcut"/>
+            <ComponentRef Id="RemoveOldStartShortcutComponent"/>
         </ComponentGroup>
+
+        <DirectoryRef Id="Google_Play_Music">
+          <Component Id="ApplicationShortcut" Guid="{AB0DD132-6F84-4FC0-9D41-90BAD7A414C5}">
+            <Shortcut Id="ApplicationStartMenuShortcut"
+                      Name="Google Play Music Desktop Player"
+                      Description="Google Play Music Desktop Player"
+                      Target="[#mainapp.exe]"
+                      WorkingDirectory="$(var.InstallDirectory)"/>
+            <RegistryValue Root="HKCU" Key="Software\Microsoft\GPMDP" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+          </Component>
+        </DirectoryRef>
+
+      <DirectoryRef Id="StartMenuAppData">
+        <Component Id="RemoveOldStartShortcutComponent" Guid="{2E0F60E9-2AA2-4EFD-BBAE-39ABECC993FD}">
+          <RemoveFolder Id="RemoveMicrosoftAppData" Directory="MicrosoftAppData" On="both" />
+          <RemoveFolder Id="RemoveStartMenuAppData" Directory="StartMenuAppData" On="both" />
+          <RemoveFolder Id="RemoveWindowsAppData" Directory="WindowsAppData" On="both" />
+          <RemoveFile Id='RemoveOldStartShortcut' On='both' Name='*Google Play Music*' />
+          <RegistryValue Root="HKCU" Key="Software\Microsoft\GPMDP" Name="oldstart" Type="integer" Value="1" KeyPath="yes"/>
+        </Component>
+      </DirectoryRef>
 
         <ComponentGroup Id="Locales" Directory="$(var.locales)">
             <Component Guid="{0F8F4110-BEC1-49EE-92F2-E7E58EA162AA}" Id="PAKs">
