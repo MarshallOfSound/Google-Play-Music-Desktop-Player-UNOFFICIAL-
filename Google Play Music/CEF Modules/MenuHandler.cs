@@ -1,4 +1,5 @@
-﻿using CefSharp;
+﻿using System;
+using CefSharp;
 
 namespace Google_Play_Music
 {
@@ -22,6 +23,11 @@ namespace Google_Play_Music
         public void OnContextMenuDismissed(IWebBrowser browserControl, IBrowser browser, IFrame frame)
         {
             // Do nothing
+        }
+
+        public bool RunContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model, IRunContextMenuCallback callback)
+        {
+            return true; // I guess...?
         }
     }
 }

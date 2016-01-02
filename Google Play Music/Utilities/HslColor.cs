@@ -31,6 +31,11 @@ namespace Google_Play_Music.Utilities
             return false;
         }
 
+        public override int GetHashCode()
+        {
+            return (h + s + l).GetHashCode();
+        }
+
         public bool Equals(HslColor c)
         {
             if ((object)c == null)
