@@ -163,17 +163,17 @@ namespace Google_Play_Music
         // Media Functions
         private void playPause()
         {
-            GPMBrowser.EvaluateScriptAsync("(function() {document.querySelectorAll('[data-id=play-pause]')[0].click()})()");
+            GPMBrowser.EvaluateScriptAsync("(function() {window.GPM.playback.playPause();})()");
         }
 
         private void prevTrack()
         {
-            GPMBrowser.EvaluateScriptAsync("(function() {document.querySelectorAll('[data-id=rewind]')[0].click()})()");
+            GPMBrowser.EvaluateScriptAsync("(function() {window.GPM.playback.rewind();})()");
         }
 
         private void nextTrack()
         {
-            GPMBrowser.EvaluateScriptAsync("(function() {document.querySelectorAll('[data-id=forward]')[0].click()})()");
+            GPMBrowser.EvaluateScriptAsync("(function() {window.GPM.playback.forward();})()");
         }
 
         private void findFocus()

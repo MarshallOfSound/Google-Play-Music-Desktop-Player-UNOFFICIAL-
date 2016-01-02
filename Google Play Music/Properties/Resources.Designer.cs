@@ -59,27 +59,36 @@ namespace Google_Play_Music.Properties {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
-        ///   Looks up your last.fm API KEY
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string api_key {
             get {
                 return ResourceManager.GetString("api_key", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up your last.fm API SECRET
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string api_secret {
             get {
                 return ResourceManager.GetString("api_secret", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   The code to customize the interface of Google Play Music
+        ///   Looks up a localized string similar to var scrobbleTimer;
+        ///
+        ///window.GPM.on(&apos;change:song&apos;, function onSongChange(song) {
+        ///    clearTimeout(scrobbleTimer);
+        ///    csharpinterface.songChangeEvent(song.title, song.album, song.artist, song.art);
+        ///    scrobbleTimer = setTimeout(function scrobbleTimer(songStart) {
+        ///        console.info(&apos;send scrobble&apos;);
+        ///        csharpinterface.songScrobbleRequest(song.title, song.artist, song.album, songStart);
+        ///        console.info(song.title, song.artist, song.album, songStart);
+        ///    }.bind(this, Math.floor(Date.now() [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string custom_interface {
             get {
@@ -88,11 +97,29 @@ namespace Google_Play_Music.Properties {
         }
         
         /// <summary>
-        ///   The code to activate the Google Play Music Dark Theme
+        ///   Looks up a localized string similar to (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require==&quot;function&quot;&amp;&amp;require;if(!u&amp;&amp;a)return a(o,!0);if(i)return i(o,!0);var f=new Error(&quot;Cannot find module &apos;&quot;+o+&quot;&apos;&quot;);throw f.code=&quot;MODULE_NOT_FOUND&quot;,f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require==&quot;function&quot;&amp;&amp;require;for(var o=0;o&lt;r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){window.GMusic=require(&quot;./main&quot;)} [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string dark_theme {
+        internal static string gmusic_min {
             get {
-                return ResourceManager.GetString("dark_theme", resourceCulture);
+                return ResourceManager.GetString("gmusic_min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;use strict&quot;;function _classCallCheck(a,b){if(!(a instanceof b))throw new TypeError(&quot;Cannot call a class as a function&quot;)}var _createClass=function(){function a(a,b){for(var c=0;c&lt;b.length;c++){var d=b[c];d.enumerable=d.enumerable||!1,d.configurable=!0,&quot;value&quot;in d&amp;&amp;(d.writable=!0),Object.defineProperty(a,d.key,d)}}return function(b,c,d){return c&amp;&amp;a(b.prototype,c),d&amp;&amp;a(b,d),b}}();!function a(b,c,d){function e(g,h){if(!c[g]){if(!b[g]){var i=&quot;function&quot;==typeof require&amp;&amp;require;if(!h&amp;&amp;i)return i(g,!0);if(f)retur [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string gmusic_mini_player_min {
+            get {
+                return ResourceManager.GetString("gmusic_mini_player_min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;use strict&quot;;function _classCallCheck(a,b){if(!(a instanceof b))throw new TypeError(&quot;Cannot call a class as a function&quot;)}var _createClass=function(){function a(a,b){for(var c=0;c&lt;b.length;c++){var d=b[c];d.enumerable=d.enumerable||!1,d.configurable=!0,&quot;value&quot;in d&amp;&amp;(d.writable=!0),Object.defineProperty(a,d.key,d)}}return function(b,c,d){return c&amp;&amp;a(b.prototype,c),d&amp;&amp;a(b,d),b}}();!function a(b,c,d){function e(g,h){if(!c[g]){if(!b[g]){var i=&quot;function&quot;==typeof require&amp;&amp;require;if(!h&amp;&amp;i)return i(g,!0);if(f)retur [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string gmusic_theme_min {
+            get {
+                return ResourceManager.GetString("gmusic_theme_min", resourceCulture);
             }
         }
         
@@ -103,15 +130,6 @@ namespace Google_Play_Music.Properties {
             get {
                 object obj = ResourceManager.GetObject("MainIcon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   The code to control the Google Play Music mini player
-        /// </summary>
-        internal static string mini_player {
-            get {
-                return ResourceManager.GetString("mini_player", resourceCulture);
             }
         }
         

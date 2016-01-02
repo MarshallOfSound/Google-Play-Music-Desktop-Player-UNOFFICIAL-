@@ -1,0 +1,26 @@
+{
+  "name": "google-play-music-desktop-player",
+  "version": "1.9.2",
+  "description": "Google Play Music™ Desktop Player\r =========================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-.git"
+  },
+  "author": "Samuel Attard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues"
+  },
+  "homepage": "https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-#readme",
+  "dependencies": {
+    "gmusic.js": "4.0.0",
+    "gmusic-theme.js": "^1.0.8",
+    "gmusic-mini-player.js": "^1.0.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-copy": "^0.8.2"
+  }
+}

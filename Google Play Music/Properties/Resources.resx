@@ -133,19 +133,22 @@
   <data name="PrevTrack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\PrevTrack.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dark_theme" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\JS\dark-theme.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="custom_interface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\JS\custom-interface.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="mini_player" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\JS\mini-player.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="api_key" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Raw\api_key.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="api_secret" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Raw\api_secret.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="gmusic_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\JS\gmusic.min.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="gmusic_theme_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\JS\gmusic-theme.min.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="gmusic_mini_player_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\JS\gmusic-mini-player.min.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

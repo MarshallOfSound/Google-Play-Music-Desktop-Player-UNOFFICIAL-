@@ -1,53 +1,16 @@
-window.nowPlaying = function () {
-    var container = document.getElementsByClassName('now-playing-info-content'),
-		info = {},
-		element;
+var scrobbleTimer;
 
-    if (container.length > 0) {
-        container = container[0];
-        element = container.getElementsByClassName('player-album');
-        if (element.length > 0) {
-            element = element[0];
-            info.album = element.innerText || element.textContent;
-            element = document.getElementById('currently-playing-title');
-            info.title = element.innerText || element.textContent;
-            element = document.getElementById('player-artist');
-            info.artist = element.innerText || element.textContent;
-            info.albumArt = document.getElementById('playerBarArt').src;
-        }
-    }
-    if (!info.title) {
-        return null;
-    } else {
-        return info;
-    }
-};
+window.GPM.on('change:song', function onSongChange(song) {
+    clearTimeout(scrobbleTimer);
+    csharpinterface.songChangeEvent(song.title, song.album, song.artist, song.art);
+    scrobbleTimer = setTimeout(function scrobbleTimer(songStart) {
+        console.info('send scrobble');
+        csharpinterface.songScrobbleRequest(song.title, song.artist, song.album, songStart);
+        console.info(song.title, song.artist, song.album, songStart);
+    }.bind(this, Math.floor(Date.now() / 1000)), Math.min(300000, document.getElementById('sliderBar').max / 2));
+});
 
-var currentPlaying = JSON.stringify(null),
-    lastScrobble = 0,
-    lastScrobbleSong = JSON.stringify(null),
-    songStart = 0;
-setInterval(function () {
-    if (new Date().getTime() - lastScrobble > 10000) {
-        if (document.getElementById('sliderBar') && document.getElementById('sliderBar').value / document.getElementById('sliderBar').max >= 0.5 && currentPlaying !== JSON.stringify(null) && lastScrobbleSong !== currentPlaying) {
-            var tmp = window.nowPlaying();
-            csharpinterface.songScrobbleRequest(tmp.title, tmp.artist, tmp.album, songStart);
-            lastScrobble = new Date().getTime();
-            lastScrobbleSong = JSON.stringify(window.nowPlaying());
-        }
-    }
-    if (JSON.stringify(window.nowPlaying()) != currentPlaying) {
-        songStart = Math.floor(Date.now() / 1000);
-        currentPlaying = JSON.stringify(window.nowPlaying());
-        var tmp = window.nowPlaying(),
-			event = new CustomEvent('song-change', {
-			    'detail': window.nowPlaying()
-			});
-        window.dispatchEvent(event);
-        csharpinterface.songChangeEvent(tmp.title, tmp.album, tmp.artist, tmp.albumArt);
-    }
-}, 20);
-
+// TODO: Clean up this last bit of garbage
 var check = setInterval(function () {
     if (document.querySelectorAll('.nav-item-container[data-action=upload-music]').length !== 0) {
         clearInterval(check);
@@ -85,8 +48,8 @@ var check = setInterval(function () {
         var e = document.getElementById('material-one-right');
         e.innerHTML = '' +
 			'<style>[data-id=prev-history][disabled], [data-id=next-history][disabled] { opacity: 0.3; }</style>' +
-			'<paper-icon-button data-id="prev-history" icon="arrow-back" role="button" tabindex="0" title="Navigate Back" aria-label="Navigate Back" style="color: white" onclick="window.history.back()"></paper-icon-button>' +
-			'<paper-icon-button data-id="next-history" icon="arrow-forward" role="button" tabindex="0" title="Navigate Forward" aria-label="Navigate Forward" style="color: white" onclick="window.history.forward()"></paper-icon-button>' +
+			'<paper-icon-button data-id="prev-history" icon="arrow-back" role="button" tabindex="0" title="Navigate Back" aria-label="Navigate Back" style="color: white; transform: scale(1.2);" onclick="window.history.back()"></paper-icon-button>' +
+			'<paper-icon-button data-id="next-history" icon="arrow-forward" role="button" tabindex="0" title="Navigate Forward" aria-label="Navigate Forward" style="color: white; transform: scale(1.2);" onclick="window.history.forward()"></paper-icon-button>' +
 			e.innerHTML;
 
         // Desktop Settings Trigger
@@ -105,3 +68,16 @@ var check = setInterval(function () {
         document.querySelectorAll('.nav-section.material')[0].insertBefore(d_settings, document.querySelectorAll('.nav-section.material > a')[2])
     }
 }, 10);
+
+csharpinterface.setInitialZoom();
+GPM.mini.on('enable', function (delay) {
+    delay(250);
+    csharpinterface.goMini();
+});
+GPM.mini.on('disable', function (delay) {
+    delay(250);
+    csharpinterface.goBig();
+});
+GPM.mini.on('dragstart', function () {
+    csharpinterface.dragStart();
+});

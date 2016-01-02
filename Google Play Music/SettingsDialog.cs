@@ -34,14 +34,14 @@ namespace Google_Play_Music
                 string command;
                 if (materialCheckBox1.Checked)
                 {
-                    command = "window.turnOnCustom()";
+                    command = "window.theme.enable()";
                     app.Invoke((MethodInvoker)delegate
                     {
                         app.darkTheme();
                     });
                 } else
                 {
-                    command = "window.turnOffCustom()";
+                    command = "window.theme.disable()";
                     app.Invoke((MethodInvoker)delegate
                     {
                         app.lightTheme();
@@ -151,7 +151,7 @@ namespace Google_Play_Music
             string RGB = "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
             app.Invoke((MethodInvoker)delegate
             {
-                app.GPMBrowser.EvaluateScriptAsync("(function() {window.CustomColor = '" + RGB + "'; window.ReDrawTheme();})();");
+                app.GPMBrowser.EvaluateScriptAsync("window.theme.updateTheme({foreSecondary: '" + RGB + "'});");
             });
         }
 
