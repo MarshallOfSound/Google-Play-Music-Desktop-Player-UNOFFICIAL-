@@ -82,14 +82,6 @@ namespace Google_Play_Music
                 Properties.Settings.Default.MiniAlwaysOnTop = materialCheckBox4.Checked;
             };
 
-            materialRaisedButton1.Click += (res, send) =>
-            {
-                Properties.Settings.Default.Reset();
-                Properties.Settings.Default.Save();
-                DialogResult = DialogResult.Abort;
-                Close();
-            };
-
             lastFMUsername.Text = Properties.Settings.Default.LastFMUsername;
             lastFMUsername.GotFocus += (res, send) =>
             {

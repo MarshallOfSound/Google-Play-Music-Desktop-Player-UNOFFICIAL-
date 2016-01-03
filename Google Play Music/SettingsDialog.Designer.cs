@@ -32,7 +32,6 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialCheckBox1 = new MaterialSkin.Controls.MaterialCheckBox();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialCheckBox2 = new MaterialSkin.Controls.MaterialCheckBox();
             this.materialCheckBox3 = new MaterialSkin.Controls.MaterialCheckBox();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
@@ -84,18 +83,6 @@
             this.materialLabel2.Size = new System.Drawing.Size(119, 19);
             this.materialLabel2.TabIndex = 3;
             this.materialLabel2.Text = "General Settings";
-            // 
-            // materialRaisedButton1
-            // 
-            this.materialRaisedButton1.Depth = 0;
-            this.materialRaisedButton1.Location = new System.Drawing.Point(13, 350);
-            this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton1.Name = "materialRaisedButton1";
-            this.materialRaisedButton1.Primary = true;
-            this.materialRaisedButton1.Size = new System.Drawing.Size(249, 38);
-            this.materialRaisedButton1.TabIndex = 4;
-            this.materialRaisedButton1.Text = "Reset and Close Application";
-            this.materialRaisedButton1.UseVisualStyleBackColor = true;
             // 
             // materialCheckBox2
             // 
@@ -224,7 +211,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 400);
+            this.ClientSize = new System.Drawing.Size(600, 360);
             this.Controls.Add(this.materialCheckBox4);
             this.Controls.Add(this.lastFMAuthIndicator);
             this.Controls.Add(this.lastFMPassword);
@@ -232,7 +219,6 @@
             this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.materialCheckBox3);
             this.Controls.Add(this.materialCheckBox2);
-            this.Controls.Add(this.materialRaisedButton1);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialCheckBox1);
             this.Controls.Add(this.materialLabel1);
@@ -253,7 +239,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialCheckBox materialCheckBox1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
         private MaterialSkin.Controls.MaterialCheckBox materialCheckBox2;
         private MaterialSkin.Controls.MaterialCheckBox materialCheckBox3;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;

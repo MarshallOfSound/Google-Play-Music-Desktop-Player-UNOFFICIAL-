@@ -190,35 +190,7 @@ namespace Google_Play_Music
                 {
                     settings = new SettingsDialog(mainForm);
                 }
-                DialogResult test = settings.open(mainForm.Location.X + (mainForm.Size.Width / 2), mainForm.Location.Y + (mainForm.Size.Height / 2));
-                if (test == DialogResult.Abort)
-                {
-                    if (mainForm.mini)
-                    {
-                        mainForm.restoreMiniState();
-                    } else
-                    {
-                        mainForm.restoreMaxiState();
-                    }
-                    settings.Dispose();
-                    mainForm.GPMBrowser.GetBrowser().CloseBrowser(true);
-                    mainForm.Close();
-                    mainForm.Dispose();
-
-                    // mainForm.GPMBrowser.Delete();
-                    Cef.Shutdown();
-                    string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/GPMDP";
-                    System.IO.DirectoryInfo downloadedMessageInfo = new DirectoryInfo(path);
-
-                    foreach (FileInfo file in downloadedMessageInfo.GetFiles())
-                    {
-                        file.Delete();
-                    }
-                    foreach (DirectoryInfo dir in downloadedMessageInfo.GetDirectories())
-                    {
-                        dir.Delete(true);
-                    }
-                }
+                settings.open(mainForm.Location.X + (mainForm.Size.Width / 2), mainForm.Location.Y + (mainForm.Size.Height / 2));
             });
         }
     }
