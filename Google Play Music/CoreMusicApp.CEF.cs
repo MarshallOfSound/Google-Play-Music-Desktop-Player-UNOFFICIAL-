@@ -38,13 +38,6 @@ namespace Google_Play_Music
             };
             GPMBrowser.RegisterAsyncJsObject("csharpinterface", new JSBound(this));
             GPMBrowser.DragHandler = new GPMDragHandler();
-            GPMBrowser.IsBrowserInitializedChanged += (send, e) =>
-            {
-                if (GPMBrowser.IsBrowserInitialized)
-                {
-                    GPMBrowser.ShowDevTools();
-                }
-            };
 
             GPMBrowser.Dock = DockStyle.Fill;
 

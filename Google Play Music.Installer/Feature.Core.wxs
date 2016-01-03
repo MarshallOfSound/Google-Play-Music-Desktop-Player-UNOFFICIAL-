@@ -131,7 +131,6 @@
                 <File KeyPath="yes" Source="$(var.SourcePath)\libcef.dll" />
                 <File Source="$(var.SourcePath)\d3dcompiler_43.dll" />
                 <File Source="$(var.SourcePath)\d3dcompiler_47.dll" />
-                <File Source="$(var.SourcePath)\ffmpegsumo.dll" />
                 <File Source="$(var.SourcePath)\libEGL.dll" />
                 <File Source="$(var.SourcePath)\libGLESv2.dll" />
                 <File Source="$(var.SourcePath)\icudtl.dat" />
