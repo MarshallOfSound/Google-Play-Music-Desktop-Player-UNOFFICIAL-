@@ -46,6 +46,7 @@
             <ComponentGroupRef Id="Google_Play_Music_Core"/>
             <ComponentGroupRef Id="Locales"/>
             <ComponentGroupRef Id="Dependencies"/>
+            <ComponentGroupRef Id="Resources"/>
         </Feature>
 
         <UI>

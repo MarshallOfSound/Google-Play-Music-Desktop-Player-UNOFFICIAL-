@@ -100,16 +100,18 @@
             </Component>
         </ComponentGroup>
         
+        <ComponentGroup Id="Resources" Directory="$(var.resources)">
+          <Component Id="FlashDLL" Guid="{69C124BF-B9BD-404C-BACF-CEFC7665A02B}">
+            <?if $(var.Platform)=x86 ?>
+            <File KeyPath="yes" Source="$(var.SourcePath)\Resources\pepflashplayer32_20_0_0_267.dll" Compressed="yes" />
+            <?endif?>
+            <?if $(var.Platform)=x64 ?>
+            <File KeyPath="yes" Source="$(var.SourcePath)\Resources\pepflashplayer64_20_0_0_267.dll" Compressed="yes" />
+            <?endif?>
+          </Component>
+        </ComponentGroup>
+      
         <ComponentGroup Id="Dependencies" Directory="$(var.InstallDirectory)">
-            <Component Id="FlashDLL" Guid="{69C124BF-B9BD-404C-BACF-CEFC7665A02B}" Directory="$(var.resources)">
-              <?if $(var.Platform)=x86 ?>
-                <File KeyPath="yes" Source="$(var.SourcePath)\Resources\pepflashplayer32_20_0_0_267.dll" Compressed="yes" />
-              <?endif?>
-              <?if $(var.Platform)=x64 ?>
-                <File KeyPath="yes" Source="$(var.SourcePath)\Resources\pepflashplayer64_20_0_0_267.dll" Compressed="yes" />
-              <?endif?>
-            </Component>
-          
             <Component Guid="{719FFB2C-14DD-464C-A88A-0615EFF75DAE}" Id="CefSharp_Common">
                 <File KeyPath="yes" Source="$(var.SourcePath)\CefSharp.dll" />
                 <File Source="$(var.SourcePath)\CefSharp.BrowserSubprocess.exe" />
