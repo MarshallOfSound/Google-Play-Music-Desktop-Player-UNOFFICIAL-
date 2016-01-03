@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
@@ -70,7 +71,7 @@ namespace Google_Play_Music
                 {
                     mainForm.saveMaxiState();
                     mainForm.restoreMiniState();
-                    mainForm.GPMBrowser.EvaluateScriptAsync("document.querySelectorAll('html')[0].setAttribute('class', 'mini'); window.miniButton = true;");
+                    mainForm.GPMBrowser.EvaluateScriptAsync("document.querySelectorAll('html')[0].classList.add('mini'); window.miniButton = true;");
                     TaskEx.Delay(400).Wait();
                     return 1;
                 });
@@ -85,7 +86,7 @@ namespace Google_Play_Music
                 {
                     mainForm.saveMiniState();
                     mainForm.restoreMaxiState();
-                    mainForm.GPMBrowser.EvaluateScriptAsync("window.origHeight = document.body.clientHeight; document.querySelectorAll('html')[0].setAttribute('class', ''); window.miniButton = true; document.body.offsetHeight; document.body.offsetHeight; window.checkHeight = setInterval(function() {console.log('check'); if (window.origHeight < document.body.clientHeight) { clearInterval(window.checkHeight); for (var k = 0; k < 30; k++) { window.dispatchEvent(new Event('resize')); }}}, 10)");
+                    mainForm.GPMBrowser.EvaluateScriptAsync("window.origHeight = document.body.clientHeight; document.querySelectorAll('html')[0].classList.remove('mini'); window.miniButton = true; document.body.offsetHeight; document.body.offsetHeight; window.checkHeight = setInterval(function() {console.log('check'); if (window.origHeight < document.body.clientHeight) { clearInterval(window.checkHeight); for (var k = 0; k < 30; k++) { window.dispatchEvent(new Event('resize')); }}}, 10)");
                     TaskEx.Delay(400).Wait();
                     return 1;
                 });

@@ -1,10 +1,13 @@
 version: 1.9.2-{build}
+install:
+  - ps: Install-Product node $env:nodejs_version
 before_build:
 - cmd: nuget restore && echo %api_key% > "Google Play Music\Resources\Raw\api_key.txt" && echo %api_secret% > "Google Play Music\Resources\Raw\api_secret.txt"
 build:
   verbosity: minimal
 
 environment:
+  nodejs_version: "0.10"
   api_key:
     secure: 8H3ycOrOBgjBUrWwD9HYiUQKXWx4Vp1QkhM7nVcYQQZRLj1UADNwdAv3ZBPlj9Tk
   api_secret:

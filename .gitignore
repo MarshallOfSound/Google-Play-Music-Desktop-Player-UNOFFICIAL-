@@ -56,3 +56,7 @@ packages/
 *ncrunch*
 *crunch*.local.xml
 .vs/
+Google Play Music/node_modules/
+Google Play Music/Resources/JS/gmusic.min.js
+Google Play Music/Resources/JS/gmusic-theme.min.js
+Google Play Music/Resources/JS/gmusic-mini-player.min.js
