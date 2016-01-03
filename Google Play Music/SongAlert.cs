@@ -23,7 +23,13 @@ namespace Google_Play_Music
             Load += new EventHandler(Alert_Loaded);
 
             PictureBox albumArt = new PictureBox();
-            albumArt.Load(url);
+            try
+            {
+                albumArt.Load(url);
+            } catch (Exception)
+            {
+                // Ignore it
+            };
             albumArt.Size = new Size(70, 70);
             albumArt.SizeMode = PictureBoxSizeMode.StretchImage;
             Controls.Add(albumArt);
