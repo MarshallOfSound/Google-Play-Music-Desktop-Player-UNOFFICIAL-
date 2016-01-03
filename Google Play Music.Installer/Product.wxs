@@ -46,6 +46,7 @@
             <ComponentGroupRef Id="Google_Play_Music_Core"/>
             <ComponentGroupRef Id="Locales"/>
             <ComponentGroupRef Id="Dependencies"/>
+            <ComponentGroupRef Id="Resources"/>
         </Feature>
 
         <UI>
@@ -60,6 +61,7 @@
             <Directory Id="ProgramFilesFolder">
                 <Directory Id="INSTALLFOLDER" Name="GPMDP">
                     <Directory Id="locales" Name="locales" />
+                    <Directory Id="resources" Name="Resources" />
                 </Directory>
             </Directory>
 
@@ -67,6 +69,7 @@
             <Directory Id="ProgramFiles64Folder">
                 <Directory Id="INSTALLFOLDER_X64" Name="GPMDP">
                     <Directory Id="locales_X64" Name="locales" />
+                    <Directory Id="resources_X64" Name="Resources" />
                 </Directory>
             </Directory>
 
