@@ -43,6 +43,8 @@ Development
 -----------
 
 To get started just pull the repo and open `Google Play Music.sln` in Visual Studio, pull down all the NuGet dependencies and it should just work.
+To build the installers you need to have a Code Signing certificate installed on your machine.  You can create a self signed one for dev purposes if you want, there are plenty of tutorials.  Just google it :)
+All releases will be signing with my Code Signing Certificate
 
 Contributing
 ------------
