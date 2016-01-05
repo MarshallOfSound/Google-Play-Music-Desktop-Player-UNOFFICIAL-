@@ -72,7 +72,13 @@ namespace Google_Play_Music
                 Properties.Settings.Default.HoverControls = !materialCheckBox3.Checked;
                 app.Invoke((MethodInvoker)delegate
                 {
-                    app.GPMBrowser.EvaluateScriptAsync("(function() {window.hoverControls = " + (!materialCheckBox3.Checked).ToString().ToLower() + "})();");
+                    if (Properties.Settings.Default.HoverControls)
+                    {
+                        app.GPMBrowser.EvaluateScriptAsync("window.GPM.mini.showControlsWhen('hover');");
+                    } else
+                    {
+                        app.GPMBrowser.EvaluateScriptAsync("window.GPM.mini.showControlsWhen('always');");
+                    }
                 });
             };
 
