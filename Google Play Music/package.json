@@ -1,6 +1,6 @@
 {
   "name": "google-play-music-desktop-player",
-  "version": "1.9.2",
+  "version": "2.0.0",
   "description": "Google Play Music™ Desktop Player\r =========================",
   "main": "index.js",
   "scripts": {
