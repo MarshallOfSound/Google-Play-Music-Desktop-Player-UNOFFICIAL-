@@ -18,6 +18,9 @@
                  Platform="$(var.Platform)"
                  AdminImage="yes" />
         <MediaTemplate EmbedCab="yes" CompressionLevel="mszip" />
+        <MajorUpgrade
+          Schedule="afterInstallInitialize" AllowDowngrades="no" 
+          DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit." />
         
         <!-- ====== Product Prerequisites ====== -->
         <!-- Required on both 32 and 64 bit machines -->

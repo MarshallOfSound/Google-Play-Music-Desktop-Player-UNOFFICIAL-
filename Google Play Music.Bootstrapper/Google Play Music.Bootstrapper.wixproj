@@ -57,9 +57,6 @@
     <Content Include="info.rtf" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
-  <PropertyGroup>
-    <PostBuildEvent />
-  </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
 	Other similar extension points exist, see Wix.targets.
@@ -69,9 +66,12 @@
 	</Target>
 	-->
   <Target Name="SignBundleEngine">
-    <Exec Command="Signtool.exe sign /a &quot;@(SignBundleEngine)&quot;" />
+    <Exec Command="Signtool.exe sign /a /t http://timestamp.verisign.com/scripts/timstamp.dll &quot;@(SignBundleEngine)&quot;" IgnoreExitCode="true" />
   </Target>
   <Target Name="SignBundle">
-    <Exec Command="Signtool.exe sign /a &quot;@(SignBundle)&quot;" />
+    <Exec Command="Signtool.exe sign /a /t http://timestamp.verisign.com/scripts/timstamp.dll &quot;@(SignBundle)&quot;" IgnoreExitCode="true" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>"signtool.exe" sign /a /t http://timestamp.verisign.com/scripts/timstamp.dll "$(ProjectDir)bin\$(Platform)\$(Configuration)\$(TargetFileName)" 2>nul 1>nul</PostBuildEvent>
+  </PropertyGroup>
 </Project>

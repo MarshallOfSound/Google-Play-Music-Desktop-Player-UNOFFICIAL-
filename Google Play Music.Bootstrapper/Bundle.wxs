@@ -6,6 +6,7 @@
           UpgradeCode="cd40bffe-ea0f-4e9b-aeaf-2416f44ad40f" Compressed="yes" DisableModify="yes"
           IconSourceFile="..\Google Play Music\Resources\Icons\Icon1.ico"
           HelpUrl="https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues" DisableRepair="yes">
+    <OptionalUpdateRegistration />
     <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLicense">
       <bal:WixStandardBootstrapperApplication LicenseUrl="" SuppressOptionsUI="yes" ShowVersion="yes"
                                               LogoFile="icon.png" SuppressRepair="yes" />

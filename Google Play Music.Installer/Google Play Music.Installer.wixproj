@@ -97,9 +97,9 @@
 	</Target>
 	-->
   <Target Name="SignCabs">
-    <Exec Command="Signtool.exe sign /a &quot;%(SignCabs.FullPath)&quot;" />
+    <Exec Command="Signtool.exe sign /a /t http://timestamp.verisign.com/scripts/timstamp.dll &quot;%(SignCabs.FullPath)&quot;" IgnoreExitCode="true" />
   </Target>
   <Target Name="SignMsi">
-    <Exec Command="signtool.exe sign /a &quot;%(SignMsi.FullPath)&quot;" />
+    <Exec Command="signtool.exe sign /a /t http://timestamp.verisign.com/scripts/timstamp.dll &quot;%(SignMsi.FullPath)&quot;" IgnoreExitCode="true" />
   </Target>
 </Project>
