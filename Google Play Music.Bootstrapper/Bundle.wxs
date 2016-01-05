@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
-	<Bundle Name="Google Play Music Desktop Player" Version="2.0.0" Manufacturer="MarshallOfSound"
+	<Bundle Name="Google Play Music Desktop Player" Version="2.0.1" Manufacturer="MarshallOfSound"
           UpgradeCode="cd40bffe-ea0f-4e9b-aeaf-2416f44ad40f" Compressed="yes" DisableModify="yes"
           IconSourceFile="..\Google Play Music\Resources\Icons\Icon1.ico"
           HelpUrl="https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues" DisableRepair="yes">
