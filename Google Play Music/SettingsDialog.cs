@@ -35,17 +35,17 @@ namespace Google_Play_Music
                 if (materialCheckBox1.Checked)
                 {
                     command = "window.turnOnCustom()";
-                    /*app.Invoke((MethodInvoker)delegate
+                    app.Invoke((MethodInvoker)delegate
                     {
                         app.darkTheme();
-                    });*/
+                    });
                 } else
                 {
                     command = "window.turnOffCustom()";
-                    /*app.Invoke((MethodInvoker)delegate
+                    app.Invoke((MethodInvoker)delegate
                     {
                         app.lightTheme();
-                    });*/
+                    });
                 }
                 app.Invoke((MethodInvoker)delegate
                 {
@@ -82,24 +82,34 @@ namespace Google_Play_Music
                 Properties.Settings.Default.MiniAlwaysOnTop = materialCheckBox4.Checked;
             };
 
-            materialCheckBox5.Checked = Properties.Settings.Default.DarkTheme;
+            materialCheckBox5.Checked = Properties.Settings.Default.UseSystemColor;
             materialCheckBox5.CheckStateChanged += (res, send) =>
             {
-                Properties.Settings.Default.DarkTheme = materialCheckBox5.Checked;
+                Properties.Settings.Default.UseSystemColor = materialCheckBox5.Checked;
+                
 
                 app.Invoke((MethodInvoker)delegate
                 {
-                    if (materialCheckBox5.Checked)
-                        app.darkTheme();
-                    else
-                        app.lightTheme();
-                });
-            };
+                    colorWheel1.Enabled = !materialCheckBox5.Checked;
 
-            materialCheckBox6.Checked = Properties.Settings.Default.UseSystemColor;
-            materialCheckBox6.CheckStateChanged += (res, send) =>
-            {
-                Properties.Settings.Default.UseSystemColor = materialCheckBox6.Checked;
+                    if (materialCheckBox5.Checked)
+                    {
+                        uint col = 0;
+                        bool opaque = false;
+                        NativeMethods.DwmGetColorizationColor(out col, out opaque);
+                        
+                        Color c = Properties.Settings.Default.CustomColor = Utils.FromUInt(col, opaque);
+                        set = ColorMath.RgbToHsl(c);
+                        colorWheel1.Hue = set.H;
+                        colorWheel1.Saturation = set.S;
+                        colorWheel1.Lightness = set.L;
+                        string RGB = "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+                        app.Invoke((MethodInvoker)delegate
+                        {
+                            app.GPMBrowser.EvaluateScriptAsync("(function() {window.CustomColor = '" + RGB + "'; window.ReDrawTheme();})();");
+                        });
+                    }
+                });
             };
 
             materialRaisedButton1.Click += (res, send) =>

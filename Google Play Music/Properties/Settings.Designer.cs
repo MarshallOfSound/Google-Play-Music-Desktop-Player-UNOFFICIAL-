@@ -86,21 +86,6 @@ namespace Google_Play_Music.Properties {
         [System.Configuration.UserScopedSetting()]
         [System.Diagnostics.DebuggerNonUserCode()]
         [System.Configuration.DefaultSettingValue("False")]
-        public bool DarkTheme
-        {
-            get
-            {
-                return (bool)this["DarkTheme"];
-            }
-            set
-            {
-                this["DarkTheme"] = value;
-            }
-        }
-
-        [System.Configuration.UserScopedSetting()]
-        [System.Diagnostics.DebuggerNonUserCode()]
-        [System.Configuration.DefaultSettingValue("False")]
         public bool UseSystemColor
         {
             get { return (bool)this["UseSystemColor"]; }
