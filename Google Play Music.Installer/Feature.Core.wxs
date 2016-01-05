@@ -8,9 +8,7 @@
                 <File Id="mainapp.exe" KeyPath="yes" Source="$(var.SourcePath)\$(var.Google Play Music.TargetFileName)" />
                 <File Source="$(var.SourcePath)\Google Play Music.exe.config" />
                 <RemoveFolder Id='RemoveProgramMenuDir' Directory='Google_Play_Music' On='uninstall' />
-                <?if $(var.Platform)=x64 ?>
-                  <util:RemoveFolderEx On="both" Property="INSTALLFOLDER" />
-                <?endif?>
+                <util:RemoveFolderEx On="both" Property="INSTALLFOLDER" />
             </Component>
         
             <Component Guid="{28C8EB78-B96F-4C60-84C9-F6D14A5EEF93}" Id="MaterialSkin">

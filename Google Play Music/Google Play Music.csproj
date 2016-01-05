@@ -361,7 +361,7 @@
   <Import Project="..\packages\cef.redist.x86.3.2454.1344\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2454.1344\build\cef.redist.x86.targets')" />
   <Import Project="..\packages\CefSharp.Common.45.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.45.0.0\build\CefSharp.Common.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /a /t http://timestamp.verisign.com/scripts/timstamp.dll "$(ProjectDir)bin\$(Platform)\$(Configuration)\$(TargetFileName)" 2>nul 1>nul</PostBuildEvent>
+    <PostBuildEvent>"signtool.exe" sign /a /t http://timestamp.verisign.com/scripts/timstamp.dll "$(ProjectDir)bin\$(Platform)\$(Configuration)\$(TargetFileName)" 2&gt;nul 1&gt;nul</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
