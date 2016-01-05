@@ -89,7 +89,7 @@ namespace Google_Play_Music
 
                     return responseString;
                 }
-                catch (Exception e)
+                catch
                 {
                     return "";
                 }

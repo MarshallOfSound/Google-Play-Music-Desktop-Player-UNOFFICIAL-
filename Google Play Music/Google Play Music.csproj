@@ -235,6 +235,7 @@
     </Compile>
     <Compile Include="Utilities\HslColor.cs" />
     <Compile Include="Utilities\ColorMath.cs" />
+    <Compile Include="Utilities\Utils.cs" />
     <EmbeddedResource Include="CoreMusicApp.resx">
       <DependentUpon>CoreMusicApp.cs</DependentUpon>
     </EmbeddedResource>

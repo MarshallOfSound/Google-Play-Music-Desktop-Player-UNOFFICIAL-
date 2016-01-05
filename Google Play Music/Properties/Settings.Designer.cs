@@ -82,6 +82,30 @@ namespace Google_Play_Music.Properties {
                 this["CustomTheme"] = value;
             }
         }
+
+        [System.Configuration.UserScopedSetting()]
+        [System.Diagnostics.DebuggerNonUserCode()]
+        [System.Configuration.DefaultSettingValue("False")]
+        public bool DarkTheme
+        {
+            get
+            {
+                return (bool)this["DarkTheme"];
+            }
+            set
+            {
+                this["DarkTheme"] = value;
+            }
+        }
+
+        [System.Configuration.UserScopedSetting()]
+        [System.Diagnostics.DebuggerNonUserCode()]
+        [System.Configuration.DefaultSettingValue("False")]
+        public bool UseSystemColor
+        {
+            get { return (bool)this["UseSystemColor"]; }
+            set { this["UseSystemColor"] = value; }
+        }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

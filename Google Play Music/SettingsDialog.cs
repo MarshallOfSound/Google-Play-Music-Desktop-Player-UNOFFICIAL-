@@ -35,17 +35,17 @@ namespace Google_Play_Music
                 if (materialCheckBox1.Checked)
                 {
                     command = "window.turnOnCustom()";
-                    app.Invoke((MethodInvoker)delegate
+                    /*app.Invoke((MethodInvoker)delegate
                     {
                         app.darkTheme();
-                    });
+                    });*/
                 } else
                 {
                     command = "window.turnOffCustom()";
-                    app.Invoke((MethodInvoker)delegate
+                    /*app.Invoke((MethodInvoker)delegate
                     {
                         app.lightTheme();
-                    });
+                    });*/
                 }
                 app.Invoke((MethodInvoker)delegate
                 {
@@ -80,6 +80,26 @@ namespace Google_Play_Music
             materialCheckBox4.CheckStateChanged += (res, send) =>
             {
                 Properties.Settings.Default.MiniAlwaysOnTop = materialCheckBox4.Checked;
+            };
+
+            materialCheckBox5.Checked = Properties.Settings.Default.DarkTheme;
+            materialCheckBox5.CheckStateChanged += (res, send) =>
+            {
+                Properties.Settings.Default.DarkTheme = materialCheckBox5.Checked;
+
+                app.Invoke((MethodInvoker)delegate
+                {
+                    if (materialCheckBox5.Checked)
+                        app.darkTheme();
+                    else
+                        app.lightTheme();
+                });
+            };
+
+            materialCheckBox6.Checked = Properties.Settings.Default.UseSystemColor;
+            materialCheckBox6.CheckStateChanged += (res, send) =>
+            {
+                Properties.Settings.Default.UseSystemColor = materialCheckBox6.Checked;
             };
 
             materialRaisedButton1.Click += (res, send) =>

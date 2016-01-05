@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="ColorMathTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UtilsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

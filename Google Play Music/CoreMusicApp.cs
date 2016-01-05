@@ -34,7 +34,7 @@ namespace Google_Play_Music
 
             skin = MaterialSkinManager.Instance;
             skin.AddFormToManage(this);
-            if (Properties.Settings.Default.CustomTheme)
+            if (Properties.Settings.Default.DarkTheme)
             {
                 darkTheme();
             }

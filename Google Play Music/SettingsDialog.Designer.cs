@@ -41,6 +41,8 @@
             this.colorWheel1 = new Google_Play_Music.ColorWheel();
             this.lastFMAuthIndicator = new MaterialSkin.Controls.MaterialLabel();
             this.materialCheckBox4 = new MaterialSkin.Controls.MaterialCheckBox();
+            this.materialCheckBox5 = new MaterialSkin.Controls.MaterialCheckBox();
+            this.materialCheckBox6 = new MaterialSkin.Controls.MaterialCheckBox();
             this.SuspendLayout();
             // 
             // materialLabel1
@@ -220,6 +222,38 @@
             this.materialCheckBox4.Text = "Mini Player always on top";
             this.materialCheckBox4.UseVisualStyleBackColor = true;
             // 
+            // materialCheckBox5
+            // 
+            this.materialCheckBox5.AutoSize = true;
+            this.materialCheckBox5.Depth = 0;
+            this.materialCheckBox5.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBox5.Location = new System.Drawing.Point(171, 97);
+            this.materialCheckBox5.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBox5.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBox5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBox5.Name = "materialCheckBox5";
+            this.materialCheckBox5.Ripple = true;
+            this.materialCheckBox5.Size = new System.Drawing.Size(104, 30);
+            this.materialCheckBox5.TabIndex = 2;
+            this.materialCheckBox5.Text = "Dark Theme";
+            this.materialCheckBox5.UseVisualStyleBackColor = true;
+            // 
+            // materialCheckBox6
+            // 
+            this.materialCheckBox6.AutoSize = true;
+            this.materialCheckBox6.Depth = 0;
+            this.materialCheckBox6.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBox6.Location = new System.Drawing.Point(448, 291);
+            this.materialCheckBox6.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBox6.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBox6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBox6.Name = "materialCheckBox6";
+            this.materialCheckBox6.Ripple = true;
+            this.materialCheckBox6.Size = new System.Drawing.Size(139, 30);
+            this.materialCheckBox6.TabIndex = 2;
+            this.materialCheckBox6.Text = "Use System Color";
+            this.materialCheckBox6.UseVisualStyleBackColor = true;
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -234,6 +268,8 @@
             this.Controls.Add(this.materialCheckBox2);
             this.Controls.Add(this.materialRaisedButton1);
             this.Controls.Add(this.materialLabel2);
+            this.Controls.Add(this.materialCheckBox6);
+            this.Controls.Add(this.materialCheckBox5);
             this.Controls.Add(this.materialCheckBox1);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.colorWheel1);
@@ -261,5 +297,7 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField lastFMPassword;
         private MaterialSkin.Controls.MaterialLabel lastFMAuthIndicator;
         private MaterialSkin.Controls.MaterialCheckBox materialCheckBox4;
+        private MaterialSkin.Controls.MaterialCheckBox materialCheckBox5;
+        private MaterialSkin.Controls.MaterialCheckBox materialCheckBox6;
     }
 }
