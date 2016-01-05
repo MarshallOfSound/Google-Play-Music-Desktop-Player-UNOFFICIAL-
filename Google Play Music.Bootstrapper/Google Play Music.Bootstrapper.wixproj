@@ -10,6 +10,7 @@
     <OutputType>Bundle</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <SignOutput>true</SignOutput>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -57,7 +58,7 @@
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /t http://timestamp.verisign.com/scripts/timstamp.dll "$(ProjectDir)bin\$(Platform)\$(Configuration)\$(TargetFileName)"</PostBuildEvent>
+    <PostBuildEvent />
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
@@ -67,4 +68,10 @@
 	<Target Name="AfterBuild">
 	</Target>
 	-->
+  <Target Name="SignBundleEngine">
+    <Exec Command="Signtool.exe sign /a &quot;@(SignBundleEngine)&quot;" />
+  </Target>
+  <Target Name="SignBundle">
+    <Exec Command="Signtool.exe sign /a &quot;@(SignBundle)&quot;" />
+  </Target>
 </Project>
