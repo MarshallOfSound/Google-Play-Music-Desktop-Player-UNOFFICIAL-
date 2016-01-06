@@ -99,10 +99,7 @@ namespace Google_Play_Music
                         colorWheel1.Hue = set.H;
                         colorWheel1.Saturation = set.S;
                         colorWheel1.Lightness = set.L;
-                        app.Invoke((MethodInvoker)delegate
-                        {
-                            app.ChangeCustomColor(c);
-                        });
+                        app.ChangeCustomColor(c);
                     }
                 });
             };
@@ -177,6 +174,7 @@ namespace Google_Play_Music
             {
                 app.ChangeCustomColor(c);
             });
+            this.Invalidate();
         }
 
         public DialogResult open(int X, int Y)

@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Google_Play_Music.Utilities;
+using MaterialSkin;
 
 namespace Google_Play_Music
 {
@@ -54,7 +55,7 @@ namespace Google_Play_Music
 
         public static System.Drawing.Color GetSystemThemeColor()
         {
-            if (Environment.OSVersion.Version.Major < 6) return ((int)MaterialSkin.Accent.Lime700).ToColor();
+            if (Environment.OSVersion.Version.Major < 6) return ((int)Accent.Lime700).ToColor();
 
             uint col = 0;
             bool opaque = false;

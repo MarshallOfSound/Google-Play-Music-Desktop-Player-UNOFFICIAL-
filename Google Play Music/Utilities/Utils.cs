@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -7,15 +8,7 @@ namespace Google_Play_Music.Utilities
 {
     public static class Utils
     {
-        public static System.Drawing.Color ToColor(this int argb)
-        {
-            return System.Drawing.Color.FromArgb(
-                (argb & 0xff0000) >> 16,
-                (argb & 0xff00) >> 8,
-                 argb & 0xff);
-        }
-
-        public static System.Drawing.Color ColorFromUInt(uint color, bool opaque)
+        public static Color ColorFromUInt(uint color, bool opaque)
         {
             /*return System.Drawing.Color.FromArgb(
                 (byte)(opaque ? 255 : color >> 24),
@@ -23,7 +16,18 @@ namespace Google_Play_Music.Utilities
                 (byte)color >> 8,
                 (byte)color);*/
 
-            return System.Drawing.Color.FromArgb((int)color);
+            return Color.FromArgb((int)color);
+        }
+
+        public static float Magnitude(this float[] arr)
+        {
+            float sum = 0;
+            foreach(float x in arr)
+            {
+                sum += x * x;
+            }
+
+            return (float)Math.Sqrt(sum);
         }
     }
 }

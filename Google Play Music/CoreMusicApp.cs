@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using Google_Play_Music.Utilities;
 
 namespace Google_Play_Music
 {
@@ -193,10 +194,18 @@ namespace Google_Play_Music
             catch { }
 
             // Change App accent too! Yay!
-            /*List<Accent> accents = new List<Accent>((Accent[])Enum.GetValues(typeof(Accent)));
-            int num = col.ToArgb();
-            Accent closest = accents.Aggregate((x, y) => Math.Abs((int)x - num) < Math.Abs((int)y - num) ? x : y);*/
-            skin.ColorScheme.ChangeAccentColor(col);
+            List<Accent> accents = new List<Accent>((Accent[])Enum.GetValues(typeof(Accent))).ToList();
+            Color sel = col.RemoveAlpha();
+            Accent[] closest = accents.OrderBy((x) =>
+            {
+                Color acc = ((int)x).ToColor();
+                float[] delta = new float[] { acc.R - sel.R, acc.G - sel.G, acc.B - sel.B };
+                float result = delta.Magnitude();
+                return result;
+
+            }).ToArray();
+            skin.ColorScheme.ChangeAccentColor(closest[0]);
+            //skin.ColorScheme.ChangeAccentColor(col);
             this.Invalidate();
         }
 
