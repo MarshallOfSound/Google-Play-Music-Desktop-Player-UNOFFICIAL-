@@ -268,12 +268,21 @@ namespace Google_Play_Music
 
         private void setZoomRatio()
         {
+            // DPI CALCS
+            float dpiX, dpiY;
+            Graphics graphics = this.CreateGraphics();
+            dpiX = graphics.DpiX;
+            dpiY = graphics.DpiY;
+            int ratioX, ratioY;
+            ratioX = (int)dpiX / 96;
+            ratioY = (int)dpiY / 96;
+
             // The mini player must always be a square
             int D = Math.Max(ClientSize.Width, ClientSize.Height);
             ClientSize = new Size(D, D);
             var tmp = Size;
             Size = tmp;
-            double ratio = D / 300.0;
+            double ratio = D / (300.0 * ratioX);
             // Browser zoom level formula is [percentage] = 1.2 ^ [zoom level]
             // So we reverse to get [zoom level] = Log[percentage] / Log[1.2]
             double factor = Math.Log10(ratio) / Math.Log10(1.2);
