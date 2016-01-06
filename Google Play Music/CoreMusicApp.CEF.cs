@@ -17,6 +17,8 @@ namespace Google_Play_Music
             settings.WindowlessRenderingEnabled = true;
             settings.CefCommandLineArgs.Add("enable-smooth-scrolling", "1");
             settings.CefCommandLineArgs.Add("enable-overlay-scrollbar", "1");
+            settings.CefCommandLineArgs.Add("high-dpi-support", "1");
+            settings.CefCommandLineArgs.Add("force-device-scale-factor", "1");
             if (Environment.Is64BitProcess)
             {
                 settings.CefCommandLineArgs.Add("ppapi-flash-path", "Resources\\pepflashplayer64_20_0_0_267.dll");
