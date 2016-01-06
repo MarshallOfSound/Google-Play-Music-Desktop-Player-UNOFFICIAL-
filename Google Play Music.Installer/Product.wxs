@@ -7,7 +7,7 @@
     <Product Id="*"
              Name="Google Play Music Desktop Player"
              Language="1033"
-             Version="2.0.1"
+             Version="2.0.2"
              Manufacturer="MarshallOfSound"
              UpgradeCode="2f8492cc-221c-4815-8e50-891e43989b7f" >
 
