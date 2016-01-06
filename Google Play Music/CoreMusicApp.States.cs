@@ -48,13 +48,21 @@ namespace Google_Play_Music
 
         public void restoreMiniState()
         {
+            // DPI CALCS
+            float dpiX, dpiY;
+            Graphics graphics = this.CreateGraphics();
+            dpiX = graphics.DpiX;
+            dpiY = graphics.DpiY;
+            int ratioX, ratioY;
+            ratioX =  (int)dpiX / 96;
+            ratioY = (int)dpiY / 96;
             mini = true;
             // Mini form settings
             Padding = new Padding(2);
-            ClientSize = new Size(300, 300);
+            ClientSize = new Size(300 * ratioX, 300 * ratioY);
             MaximizeBox = false;
-            MaximumSize = new Size(300, 300);
-            MinimumSize = new Size(100, 100);
+            MaximumSize = new Size(300 * ratioX, 300 * ratioY);
+            MinimumSize = new Size(100 * ratioX, 100 * ratioY);
             handleZoom = true;
             FormBorderStyle = FormBorderStyle.None;
 
@@ -64,7 +72,7 @@ namespace Google_Play_Music
             savedPoint = (onScreen(savedPoint) ? savedPoint : new Point(-1, -1));
             if (savedSize.Height == -1 && savedSize.Width == -1)
             {
-                savedSize = new Size(300, 300);
+                savedSize = new Size(300 * ratioX, 300 * ratioY);
             }
             if (savedPoint.X == -1 && savedPoint.Y == -1)
             {
