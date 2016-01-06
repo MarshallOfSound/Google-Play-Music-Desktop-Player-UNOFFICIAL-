@@ -9,6 +9,8 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Google_Play_Music
 {
@@ -37,13 +39,7 @@ namespace Google_Play_Music
             if (Properties.Settings.Default.CustomTheme)
             {
                 if (Properties.Settings.Default.UseSystemColor)
-                {
-                    uint col = 0;
-                    bool opaque = false;
-                    NativeMethods.DwmGetColorizationColor(out col, out opaque);
-
-                    Properties.Settings.Default.CustomColor = Utilities.Utils.FromUInt(col, opaque);
-                }
+                    Properties.Settings.Default.CustomColor = NativeMethods.GetSystemThemeColor();
 
 
             }
@@ -96,6 +92,8 @@ namespace Google_Play_Music
             const int WM_SIZE = 0x0005;
             const int WM_SYSCOMMAND = 0x0112;
             const int SC_RESTORE = 0xF120;
+            const int WM_DWNCOMPOSITIONCHANGED = 0x31A;
+            const int WM_THEMECHANGED = 0x31E;
 
             if (m.Msg == WM_NCCALCSIZE && m.WParam.ToInt32() == 1)
             {
@@ -158,6 +156,14 @@ namespace Google_Play_Music
                     Size = rolling_size;
                 }
             }
+
+            if (Properties.Settings.Default.CustomTheme && Environment.OSVersion.Version.Major >= 6) // Vista and up
+            {
+                if (m.Msg == WM_DWNCOMPOSITIONCHANGED || m.Msg == WM_THEMECHANGED || m.Msg == 0x320)
+                {
+                    ChangeCustomColor(NativeMethods.GetSystemThemeColor());
+                }
+            }
         }
 
         public void lightTheme()
@@ -172,6 +178,26 @@ namespace Google_Play_Music
             Properties.Settings.Default.CustomTheme = true;
             skin.Theme = MaterialSkinManager.Themes.DARK;
             skin.ColorScheme = new ColorScheme((Primary)0x444444, (Primary)0x444444, (Primary)0x444444, Accent.Lime700, TextShade.WHITE);
+        }
+
+        public void ChangeCustomColor(Color col)
+        {
+            if (!Properties.Settings.Default.CustomTheme) return; // Custom theme stuff only.
+
+            Color c = Properties.Settings.Default.CustomColor = col;
+            string RGB = "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+            try
+            {
+                GPMBrowser.EvaluateScriptAsync("(function() {window.CustomColor = '" + RGB + "'; window.ReDrawTheme();})();");
+            }
+            catch { }
+
+            // Change App accent too! Yay!
+            /*List<Accent> accents = new List<Accent>((Accent[])Enum.GetValues(typeof(Accent)));
+            int num = col.ToArgb();
+            Accent closest = accents.Aggregate((x, y) => Math.Abs((int)x - num) < Math.Abs((int)y - num) ? x : y);*/
+            skin.ColorScheme.ChangeAccentColor(col);
+            this.Invalidate();
         }
 
         // Media Functions

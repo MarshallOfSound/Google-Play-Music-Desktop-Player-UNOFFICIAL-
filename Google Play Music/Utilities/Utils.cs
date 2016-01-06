@@ -5,9 +5,17 @@ using System.Text;
 
 namespace Google_Play_Music.Utilities
 {
-    public class Utils
+    public static class Utils
     {
-        public static System.Drawing.Color FromUInt(uint color, bool opaque)
+        public static System.Drawing.Color ToColor(this int argb)
+        {
+            return System.Drawing.Color.FromArgb(
+                (argb & 0xff0000) >> 16,
+                (argb & 0xff00) >> 8,
+                 argb & 0xff);
+        }
+
+        public static System.Drawing.Color ColorFromUInt(uint color, bool opaque)
         {
             /*return System.Drawing.Color.FromArgb(
                 (byte)(opaque ? 255 : color >> 24),

@@ -94,19 +94,14 @@ namespace Google_Play_Music
 
                     if (materialCheckBox5.Checked)
                     {
-                        uint col = 0;
-                        bool opaque = false;
-                        NativeMethods.DwmGetColorizationColor(out col, out opaque);
-                        
-                        Color c = Properties.Settings.Default.CustomColor = Utils.FromUInt(col, opaque);
+                        Color c = Properties.Settings.Default.CustomColor = NativeMethods.GetSystemThemeColor();
                         set = ColorMath.RgbToHsl(c);
                         colorWheel1.Hue = set.H;
                         colorWheel1.Saturation = set.S;
                         colorWheel1.Lightness = set.L;
-                        string RGB = "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
                         app.Invoke((MethodInvoker)delegate
                         {
-                            app.GPMBrowser.EvaluateScriptAsync("(function() {window.CustomColor = '" + RGB + "'; window.ReDrawTheme();})();");
+                            app.ChangeCustomColor(c);
                         });
                     }
                 });
@@ -178,10 +173,9 @@ namespace Google_Play_Music
         {
             Properties.Settings.Default.CustomColor = ColorMath.HslToRgb(new HslColor(colorWheel1.Hue, colorWheel1.Saturation, colorWheel1.Lightness));
             Color c = Properties.Settings.Default.CustomColor;
-            string RGB = "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
             app.Invoke((MethodInvoker)delegate
             {
-                app.GPMBrowser.EvaluateScriptAsync("(function() {window.CustomColor = '" + RGB + "'; window.ReDrawTheme();})();");
+                app.ChangeCustomColor(c);
             });
         }
 

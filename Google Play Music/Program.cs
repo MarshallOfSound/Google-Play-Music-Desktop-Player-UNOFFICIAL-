@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Google_Play_Music.Utilities;
 
 namespace Google_Play_Music
 {
@@ -49,6 +50,17 @@ namespace Google_Play_Music
         [DllImport("user32")]
         public static extern int RegisterWindowMessage(string message);
         [DllImport("dwmapi.dll", PreserveSig = false)]
-        public static extern void DwmGetColorizationColor(out uint ColorizationColor, [MarshalAs(UnmanagedType.Bool)]out bool ColorizationOpaqueBlend);
+        private static extern void DwmGetColorizationColor(out uint ColorizationColor, [MarshalAs(UnmanagedType.Bool)]out bool ColorizationOpaqueBlend);
+
+        public static System.Drawing.Color GetSystemThemeColor()
+        {
+            if (Environment.OSVersion.Version.Major < 6) return ((int)MaterialSkin.Accent.Lime700).ToColor();
+
+            uint col = 0;
+            bool opaque = false;
+            DwmGetColorizationColor(out col, out opaque);
+
+            return Utils.ColorFromUInt(col, opaque);
+        }
     }
 }

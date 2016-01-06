@@ -16,8 +16,8 @@ namespace UnitTests.Test
         [Test]
         public void FromUInt()
         {
-            Assert.AreEqual(Color.FromArgb(240, 210, 45, 10), Utils.FromUInt(4040305930, true)); // F0D22D0A
-            Assert.AreEqual(Color.FromArgb(15, 50, 125), Utils.FromUInt(995965, false)); // 0F327D
+            Assert.AreEqual(Color.FromArgb(240, 210, 45, 10), Utils.ColorFromUInt(4040305930, true)); // F0D22D0A
+            Assert.AreEqual(Color.FromArgb(15, 50, 125), Utils.ColorFromUInt(995965, false)); // 0F327D
         }
     }
 }

@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace MaterialSkin
 {
 	public class ColorScheme
     {
-        public readonly Color PrimaryColor, DarkPrimaryColor, LightPrimaryColor, AccentColor, TextColor;
-        public readonly Pen PrimaryPen, DarkPrimaryPen, LightPrimaryPen, AccentPen, TextPen;
-        public readonly Brush PrimaryBrush, DarkPrimaryBrush, LightPrimaryBrush, AccentBrush, TextBrush;
+        public Color PrimaryColor, DarkPrimaryColor, LightPrimaryColor, AccentColor, TextColor;
+        public Pen PrimaryPen, DarkPrimaryPen, LightPrimaryPen, AccentPen, TextPen;
+        public Brush PrimaryBrush, DarkPrimaryBrush, LightPrimaryBrush, AccentBrush, TextBrush;
 		
 		/// <summary>
 		/// Defines the Color Scheme to be used for all forms.
@@ -39,6 +40,16 @@ namespace MaterialSkin
             LightPrimaryBrush = new SolidBrush(LightPrimaryColor);
             AccentBrush = new SolidBrush(AccentColor);
             TextBrush = new SolidBrush(TextColor);
+        }
+
+        public void ChangeAccentColor(Accent accent)
+        {
+            ChangeAccentColor(((int)accent).ToColor());
+        }
+
+        public void ChangeAccentColor(Color color)
+        {
+            AccentColor = color;
         }
     }
 
