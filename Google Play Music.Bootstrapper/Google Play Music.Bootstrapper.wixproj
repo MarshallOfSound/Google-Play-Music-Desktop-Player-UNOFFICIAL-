@@ -71,7 +71,7 @@
   <Target Name="SignBundle">
     <Exec Command="Signtool.exe sign /a /t http://timestamp.verisign.com/scripts/timstamp.dll &quot;@(SignBundle)&quot;" IgnoreExitCode="true" />
   </Target>
-  <PropertyGroup>
-    <PostBuildEvent>"signtool.exe" sign /a /t http://timestamp.verisign.com/scripts/timstamp.dll "$(ProjectDir)bin\$(Platform)\$(Configuration)\$(TargetFileName)" 2>nul 1>nul</PostBuildEvent>
-  </PropertyGroup>
+  <Target Name="AfterBuild">
+    <Exec Command="Signtool.exe sign /a /t http://timestamp.verisign.com/scripts/timstamp.dll &quot;$(ProjectDir)bin\$(Platform)\$(Configuration)\$(TargetFileName)&quot;" IgnoreExitCode="true" />
+  </Target>
 </Project>
