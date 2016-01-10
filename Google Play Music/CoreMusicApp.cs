@@ -18,6 +18,7 @@ namespace Google_Play_Music
         private Utilities.Updater updater;
         private Size rolling_size;
         private Size last_size;
+        public SplashScreen splash;
 
         public CoreMusicApp()
         {
@@ -30,6 +31,14 @@ namespace Google_Play_Music
             BackColor = Color.Black;
             // Stop the form disapearing
             MinimumSize = new Size(100, 100);
+
+            // Initially Hide
+            Opacity = 0;
+
+            // Show Splash Screen
+            splash = new SplashScreen();
+            splash.Show();
+            splash.Location = new Point(Location.X + (Width / 2) - (splash.Width / 2), Location.Y + (Height / 2) - (splash.Height / 2));
 
             skin = MaterialSkinManager.Instance;
             skin.AddFormToManage(this);
@@ -72,6 +81,13 @@ namespace Google_Play_Music
             // Check for updates on the Github Release API
             RegisterKeyHooks();
             InitializeUpdater();
+        }
+
+        public void ShowApp()
+        {
+            splash.Close();
+            splash.Dispose();
+            Opacity = 1;
         }
 
         protected override void WndProc(ref Message m)

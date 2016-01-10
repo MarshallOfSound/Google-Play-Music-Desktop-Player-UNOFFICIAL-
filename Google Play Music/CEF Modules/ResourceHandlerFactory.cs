@@ -61,7 +61,9 @@ namespace Google_Play_Music
                 init_GPM_Theme += "window.theme.enable();";
             }
 
-            return controlsOnHoverJS + init_GPM + init_mini + init_GPM_Theme;
+            string show_GPM_app = "csharpinterface.showApp();";
+
+            return controlsOnHoverJS + init_GPM + init_mini + init_GPM_Theme + show_GPM_app;
         }
 
         public bool HasHandlers

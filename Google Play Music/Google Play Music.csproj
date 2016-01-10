@@ -245,6 +245,12 @@
     <Compile Include="SongAlert.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsDialog.resx">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateDialog.resx">
       <DependentUpon>UpdateDialog.cs</DependentUpon>
@@ -329,6 +338,8 @@
     <Content Include="Resources\pepflashplayer64_20_0_0_267.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Splash\SplashDark.png" />
+    <None Include="Resources\Splash\Splash.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Raw\api_key.txt" />
