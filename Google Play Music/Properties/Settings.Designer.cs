@@ -166,5 +166,17 @@ namespace Google_Play_Music.Properties {
                 this["MiniAlwaysOnTop"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool BetaStream {
+            get {
+                return ((bool)(this["BetaStream"]));
+            }
+            set {
+                this["BetaStream"] = value;
+            }
+        }
     }
 }

@@ -250,6 +250,8 @@
     </Compile>
     <Compile Include="Utilities\HslColor.cs" />
     <Compile Include="Utilities\ColorMath.cs" />
+    <Compile Include="Utilities\Updater.cs" />
+    <Compile Include="Utilities\Version.cs" />
     <EmbeddedResource Include="CoreMusicApp.resx">
       <DependentUpon>CoreMusicApp.cs</DependentUpon>
     </EmbeddedResource>

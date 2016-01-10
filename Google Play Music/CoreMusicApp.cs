@@ -7,16 +7,15 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Google_Play_Music
 {
     public partial class CoreMusicApp : MaterialForm
     {
 
-        private const string CURRENT_VERSION = "2.0.2";
+        public static string CURRENT_VERSION = "2.0.2";
         private MaterialSkinManager skin;
+        private Utilities.Updater updater;
         private Size rolling_size;
         private Size last_size;
 
@@ -71,8 +70,8 @@ namespace Google_Play_Music
             };
 
             // Check for updates on the Github Release API
-            checkForUpdates();
             RegisterKeyHooks();
+            InitializeUpdater();
         }
 
         protected override void WndProc(ref Message m)

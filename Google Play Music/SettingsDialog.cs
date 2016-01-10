@@ -12,10 +12,14 @@ namespace Google_Play_Music
     public partial class SettingsDialog : MaterialForm
     {
         CoreMusicApp app;
+        Updater updater;
+
+        private double PROGRESS_MAX_WIDTH = 183.0;
 
         public SettingsDialog(CoreMusicApp main)
         {
             app = main;
+            updater = Updater.Instance(app);
             InitializeComponent();
             Resize_Enabled = false;
 
@@ -129,6 +133,69 @@ namespace Google_Play_Music
                     lastFMUsername.Focus();
                 }
             };
+
+            installUpdateButton.Hide();
+            installUpdateButton.Click += (sender, e) =>
+            {
+                Close();
+                // For some reason we need to delay the closing of the main form by just enough for this one to close first....
+                // #windowsPlz
+                System.Threading.Timer timer = null;
+                timer = new System.Threading.Timer((obj) =>
+                {
+                    timer.Dispose();
+                    Dispose();
+                    updater.Install();
+                },
+                null, 100, System.Threading.Timeout.Infinite);
+            };
+            updater.OnStateChange += UpdateStateChange;
+            UpdateStateChange(null, new UpdateStatusEventArgs(Updater.state, Updater.DownloadProgress));
+
+            downloadProgress.BackColor = Properties.Settings.Default.CustomColor;
+        }
+
+        private void UpdateStateChange(object sender, UpdateStatusEventArgs args)
+        {
+            if (!this.IsHandleCreated)
+            {
+                this.HandleCreated += (send, e) =>
+                {
+                    this.UpdateStateChange(sender, args);
+                };
+                return;
+            }
+            this.Invoke((MethodInvoker)delegate {
+                switch (args.State)
+                {
+                    case State.PENDING:
+                        updateStateText.Text = "Up To Date: " + CoreMusicApp.CURRENT_VERSION;
+                        break;
+                    case State.CHECKING:
+                        updateStateText.Text = "Checking...";
+                        break;
+                    case State.DOWNLOADING:
+                        updateStateText.Text = "Downloading - " + (args.DownloadProgress < 10 ? " " : "") + args.DownloadProgress.ToString() + "%";
+                        downloadProgress.Width = (int)((PROGRESS_MAX_WIDTH / 100.0) * (double)args.DownloadProgress);
+                        break;
+                    case State.READY:
+                        updateStateText.Text = "Ready to Update";
+                        installUpdateButton.Show();
+                        break;
+                }
+                if (args.State != State.READY)
+                {
+                    installUpdateButton.Hide();
+                }
+                if (args.State != State.DOWNLOADING)
+                {
+                    downloadProgress.Width = 0;
+                    downloadProgressBorder.Hide();
+                } else
+                {
+                    downloadProgressBorder.Show();
+                }
+            });
         }
 
         private void focusDefaultInputField(MaterialSingleLineTextField field, string defaultText, bool focus)
@@ -145,6 +212,7 @@ namespace Google_Play_Music
         private void Color_Changed(object sender, EventArgs e)
         {
             Properties.Settings.Default.CustomColor = ColorMath.HslToRgb(new HslColor(colorWheel1.Hue, colorWheel1.Saturation, colorWheel1.Lightness));
+            downloadProgress.BackColor = Properties.Settings.Default.CustomColor;
             Color c = Properties.Settings.Default.CustomColor;
             string RGB = "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
             app.Invoke((MethodInvoker)delegate
