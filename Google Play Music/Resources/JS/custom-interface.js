@@ -70,6 +70,13 @@ var check = setInterval(function () {
 }, 10);
 
 csharpinterface.setInitialZoom();
+GPM.on('change:playback', function (mode) {
+    if (mode === GMusic.Playback.STOPPED || mode === GMusic.Playback.PAUSED) {
+        csharpinterface.setThumbbarToPlay();
+    } else if (mode === GMusic.Playback.PLAYING) {
+        csharpinterface.setThumbbarToPause();
+    }
+});
 GPM.mini.on('enable', function (delay) {
     delay(250);
     csharpinterface.goMini();

@@ -93,6 +93,22 @@ namespace Google_Play_Music
             });
         }
 
+        public void setThumbbarToPlay()
+        {
+            mainForm.Invoke((MethodInvoker)delegate
+            {
+                mainForm.playPauseButton.Icon = Properties.Resources.Play;
+            });
+        }
+
+        public void setThumbbarToPause()
+        {
+            mainForm.Invoke((MethodInvoker)delegate
+            {
+                mainForm.playPauseButton.Icon = Properties.Resources.Pause;
+            });
+        }
+
         // Fired from javascript when a different song has been playing for over half it's duration. (As according to last.fm's scrobbling spec)
         public void songScrobbleRequest(string song, string artist, string album, int timestamp)
         {

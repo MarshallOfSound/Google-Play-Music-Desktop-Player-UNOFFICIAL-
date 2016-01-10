@@ -183,7 +183,7 @@ namespace Google_Play_Music
         // Task Bar Media Controls
         private ThumbnailToolBarButton prevTrackButton;
         private ThumbnailToolBarButton nextTrackButton;
-        private ThumbnailToolBarButton playPauseButton;
+        public ThumbnailToolBarButton playPauseButton;
 
         protected override void OnShown(EventArgs e)
         {
