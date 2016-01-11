@@ -98,11 +98,14 @@ namespace Google_Play_Music
             const int WM_SYSCOMMAND = 0x0112;
             const int SC_RESTORE = 0xF120;
 
-            if (m.Msg == WM_NCCALCSIZE && m.WParam.ToInt32() == 1)
+            if (m.Msg == WM_NCCALCSIZE && m.WParam != IntPtr.Zero)
             {
-                if (!mini)
+                if (!mini && !(
+                        Environment.OSVersion.Version.Major == 6
+                        && Environment.OSVersion.Version.Minor == 1
+                    ))
                 {
-                    m.Result = new IntPtr(0xF0);   // Align client area to all borders (Fake borderless)
+                    m.Result = IntPtr.Zero;
                     return;
                 }
             }

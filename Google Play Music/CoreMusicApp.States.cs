@@ -13,13 +13,23 @@ namespace Google_Play_Music
         public void restoreMaxiState()
         {
             mini = false;
+            FormBorderStyle targetStyle;
+            if (Environment.OSVersion.Version.Major == 6
+                && Environment.OSVersion.Version.Minor == 1)
+            {
+                targetStyle = FormBorderStyle.None;
+            }
+            else
+            {
+                targetStyle = FormBorderStyle.Sizable;
+            }
             // Maxi form settings
             Padding = new Padding(2, 24, 2, 2);
             if (GPMBrowser != null)
             {
                 GPMBrowser.SetZoomLevel(Properties.Settings.Default.MaxiZoomLevel);
             }
-            FormBorderStyle = FormBorderStyle.Sizable;
+            FormBorderStyle = targetStyle;
             MaximumSize = new Size();
             // Force it to be always bigger than the mini player
             MinimumSize = new Size(301, 301);
@@ -41,7 +51,7 @@ namespace Google_Play_Music
 
             FormBorderStyle = FormBorderStyle.None;
             Size = savedSize;
-            FormBorderStyle = FormBorderStyle.Sizable;
+            FormBorderStyle = targetStyle;
 
             TopMost = false;
         }
