@@ -26,7 +26,7 @@ namespace Google_Play_Music
                     string custom_interface = Properties.Resources.custom_interface;
 
                     return ResourceHandler.FromStream(new MemoryStream(Encoding.UTF8.GetBytes(
-                        webClient.DownloadString(request.Url) + ";document.addEventListener('DOMContentLoaded', function () {" +
+                        webClient.DownloadString(request.Url) + ";window.onload=function(){csharpinterface.showApp();};document.addEventListener('DOMContentLoaded', function () {" +
                             "window.OBSERVER = setInterval(function() { if (document.getElementById('material-vslider')) { clearInterval(window.OBSERVER); " +
                             Properties.Resources.gmusic_min + Properties.Resources.gmusic_theme_min + Properties.Resources.gmusic_mini_player_min +
                             this.getInitCode() +
