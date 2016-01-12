@@ -363,13 +363,6 @@
   </PropertyGroup>
   <Import Project="..\packages\Ncapsulate.Node.Shadow.5.3.0\build\Ncapsulate.Node.targets" Condition="Exists('..\packages\Ncapsulate.Node.Shadow.5.3.0\build\Ncapsulate.Node.targets')" />
   <Import Project="..\packages\cef.redist.x64.3.2454.1344\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2454.1344\build\cef.redist.x64.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Ncapsulate.Node.Shadow.5.3.0\build\Ncapsulate.Node.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Ncapsulate.Node.Shadow.5.3.0\build\Ncapsulate.Node.targets'))" />
-    <Error Condition="!Exists('..\packages\Ncapsulate.Grunt.Shadow.0.4.5.3\build\Ncapsulate.Grunt.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Ncapsulate.Grunt.Shadow.0.4.5.3\build\Ncapsulate.Grunt.targets'))" />
-  </Target>
   <Import Project="..\packages\Ncapsulate.Grunt.Shadow.0.4.5.3\build\Ncapsulate.Grunt.targets" Condition="Exists('..\packages\Ncapsulate.Grunt.Shadow.0.4.5.3\build\Ncapsulate.Grunt.targets')" />
   <Import Project="..\packages\cef.redist.x86.3.2454.1344\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2454.1344\build\cef.redist.x86.targets')" />
   <Import Project="..\packages\CefSharp.Common.45.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.45.0.0\build\CefSharp.Common.targets')" />
