@@ -54,7 +54,8 @@ namespace MaterialSkin.Controls
         private const int HTTOP = 12;
         private const int HTTOPLEFT = 13;
         private const int HTTOPRIGHT = 14;
-        private const int BORDER_WIDTH = 7;
+        private int BORDER_WIDTH = 7;
+        private int CUSTOM_BORDER_WIDTH = 2;
         private ResizeDirection resizeDir;
         private ButtonState buttonState = ButtonState.None;
 
@@ -79,9 +80,9 @@ namespace MaterialSkin.Controls
             {HTBOTTOMRIGHT, WMSZ_BOTTOMRIGHT}
         };
 
-        private const int STATUS_BAR_BUTTON_WIDTH = STATUS_BAR_HEIGHT;
-        private const int STATUS_BAR_HEIGHT = 24;
-        private const int ACTION_BAR_HEIGHT = 40;
+        private int STATUS_BAR_BUTTON_WIDTH = 24;
+        private int STATUS_BAR_HEIGHT = 24;
+        private int ACTION_BAR_HEIGHT = 40;
 
         private const uint TPM_LEFTALIGN = 0x0000;
         private const uint TPM_RETURNCMD = 0x0100;
@@ -166,8 +167,17 @@ namespace MaterialSkin.Controls
             DoubleBuffered = true;
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
 
-            // This enables the form to trigger the MouseMove event even when mouse is over another control
-            Application.AddMessageFilter(new MouseMessageFilter());
+            // DPI Adjustments
+            int dpiY = Utilities.DPIMath.ratioY(this);
+            int dpiX = Utilities.DPIMath.ratioX(this);
+            STATUS_BAR_HEIGHT = STATUS_BAR_HEIGHT * dpiY;
+            STATUS_BAR_BUTTON_WIDTH = STATUS_BAR_BUTTON_WIDTH * dpiX;
+            ACTION_BAR_HEIGHT = ACTION_BAR_HEIGHT * dpiY;
+            BORDER_WIDTH = BORDER_WIDTH * dpiX;
+            CUSTOM_BORDER_WIDTH = BORDER_WIDTH * dpiX;
+
+        // This enables the form to trigger the MouseMove event even when mouse is over another control
+        Application.AddMessageFilter(new MouseMessageFilter());
             MouseMessageFilter.MouseMove += OnGlobalMouseMove;
         }
 
@@ -531,7 +541,9 @@ namespace MaterialSkin.Controls
             g.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, actionBarBounds);
 
             //Draw border
-            using (var borderPen = new Pen(SkinManager.GetDividersColor(), 1))
+            Color borderColor = (SkinManager.Theme == MaterialSkinManager.Themes.DARK ? SkinManager.ColorScheme.DarkPrimaryColor : SkinManager.ColorScheme.LightPrimaryColor);
+
+            using (var borderPen = new Pen(borderColor, BORDER_WIDTH))
             {
                 g.DrawLine(borderPen, new Point(0, actionBarBounds.Bottom), new Point(0, Height - 2));
                 g.DrawLine(borderPen, new Point(Width - 1, actionBarBounds.Bottom), new Point(Width - 1, Height - 2));

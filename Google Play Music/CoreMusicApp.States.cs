@@ -12,6 +12,8 @@ namespace Google_Play_Music
 
         public void restoreMaxiState()
         {
+            int ratioX = MaterialSkin.Utilities.DPIMath.ratioX(this);
+            int ratioY = MaterialSkin.Utilities.DPIMath.ratioY(this);
             mini = false;
             FormBorderStyle targetStyle;
             if (Environment.OSVersion.Version.Major == 6
@@ -24,7 +26,7 @@ namespace Google_Play_Music
                 targetStyle = FormBorderStyle.Sizable;
             }
             // Maxi form settings
-            Padding = new Padding(2, 24, 2, 2);
+            Padding = new Padding(2 * ratioX, 24 * ratioY, 2 * ratioX, 2 * ratioY);
             if (GPMBrowser != null)
             {
                 GPMBrowser.SetZoomLevel(Properties.Settings.Default.MaxiZoomLevel);
@@ -32,7 +34,7 @@ namespace Google_Play_Music
             FormBorderStyle = targetStyle;
             MaximumSize = new Size();
             // Force it to be always bigger than the mini player
-            MinimumSize = new Size(301, 301);
+            MinimumSize = new Size(301 * ratioX, 301 * ratioY);
             MaximizeBox = true;
             handleZoom = false;
             // Restore Maxi size and pos
@@ -40,7 +42,7 @@ namespace Google_Play_Music
             Point savedPoint = Properties.Settings.Default.MaxiPoint;
             if (savedSize.Height == -1 && savedSize.Width == -1)
             {
-                savedSize = new Size(1080, 720);
+                savedSize = new Size(1080 * ratioX, 720 * ratioY);
             }
             savedPoint = (onScreen(savedPoint) ? savedPoint : new Point(-1, -1));
             if (savedPoint.X == -1 && savedPoint.Y == -1)
@@ -58,17 +60,11 @@ namespace Google_Play_Music
 
         public void restoreMiniState()
         {
-            // DPI CALCS
-            float dpiX, dpiY;
-            Graphics graphics = this.CreateGraphics();
-            dpiX = graphics.DpiX;
-            dpiY = graphics.DpiY;
-            int ratioX, ratioY;
-            ratioX =  (int)dpiX / 96;
-            ratioY = (int)dpiY / 96;
+            int ratioX = MaterialSkin.Utilities.DPIMath.ratioX(this);
+            int ratioY = MaterialSkin.Utilities.DPIMath.ratioY(this);
             mini = true;
             // Mini form settings
-            Padding = new Padding(2);
+            Padding = new Padding(2 * ratioX, 2 * ratioY, 2 * ratioX, 2 * ratioY);
             ClientSize = new Size(300 * ratioX, 300 * ratioY);
             MaximizeBox = false;
             MaximumSize = new Size(300 * ratioX, 300 * ratioY);

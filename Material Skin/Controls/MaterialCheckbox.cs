@@ -41,15 +41,23 @@ namespace MaterialSkin.Controls
         private readonly AnimationManager animationManager;
         private readonly AnimationManager rippleAnimationManager;
 
-        private const int CHECKBOX_SIZE = 18;
-        private const int CHECKBOX_SIZE_HALF = CHECKBOX_SIZE / 2;
-        private const int CHECKBOX_INNER_BOX_SIZE = CHECKBOX_SIZE - 4;
+        private int CHECKBOX_SIZE = 18;
+        private int CHECKBOX_SIZE_HALF = 18 / 2;
+        private int CHECKBOX_INNER_BOX_SIZE = 18 - 4;
 
         private int boxOffset;
         private Rectangle boxRectangle;
 
         public MaterialCheckBox()
         {
+            // DPI Adjustments
+            Form tmp = new Form();
+            int dpiY = Utilities.DPIMath.ratioY(tmp);
+            int dpiX = Utilities.DPIMath.ratioX(tmp);
+            tmp.Dispose();
+            CHECKBOX_SIZE = CHECKBOX_SIZE * dpiX;
+            CHECKBOX_SIZE_HALF = CHECKBOX_SIZE_HALF * dpiX;
+            CHECKBOX_INNER_BOX_SIZE = CHECKBOX_INNER_BOX_SIZE * dpiX;
             animationManager = new AnimationManager
             {
                 AnimationType = AnimationType.EaseInOut,
