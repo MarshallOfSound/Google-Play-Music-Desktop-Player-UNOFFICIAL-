@@ -20,12 +20,11 @@ Requirements
 ------------
 
 * Windows Vista or later (Might work on XP, I've never tried)
-* [Adobe Flash Player][2]
 
-Using Flash Player is not my choice and this app is in no way based on flash.  However flash is required to play the music because Google's support for HTML5 Audio relies on the MP3 codec and some third party DRM library.  Both of which require licenses and can't be open sourced.  So until Google figures out an open source solution to the DRM media problem, we are stuck with Flash.
+**Note: **
+Internally this player does use flash to play the music. Using Flash Player is not my choice and this app is in no way based on flash.  However flash is required to play the music because Google's support for HTML5 Audio relies on the MP3 codec and some third party DRM library.  Both of which require licenses and can't be open sourced.  So until Google figures out an open source solution to the DRM media problem, we are stuck with Flash.
 
-[2]: http://get.adobe.com/flashplayer/
-[3]: https://wix.codeplex.com/releases/view/618180
+I have made this as small impact as possible by distributing a PPAPI version of flash with the installers.  This is the same technique used by Google Chrome.
 
 Features
 --------
@@ -54,7 +53,9 @@ If you think you can add something cool or fix a problem, fork the repo and make
 
 Dev Requirements
 ----------------
-* [WiX v3.10.1][3]
+* [WiX v3.10.1][2]
+
+[2]: https://wix.codeplex.com/releases/view/618180
 
 Credit
 -----------
