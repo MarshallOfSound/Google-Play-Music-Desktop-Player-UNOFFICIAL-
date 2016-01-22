@@ -112,7 +112,10 @@ namespace Google_Play_Music
             else if (m.Msg == WM_SIZING && currently_sizing)
             {
                 currently_sizing = false;
-                if (!mini)
+                if (!mini && !(
+                        Environment.OSVersion.Version.Major == 6
+                        && Environment.OSVersion.Version.Minor == 1
+                    ))
                 {
                     ReleaseCapture();
                     return;
