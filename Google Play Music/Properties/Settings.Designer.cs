@@ -178,5 +178,29 @@ namespace Google_Play_Music.Properties {
                 this["BetaStream"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PublishPlaybackInformation {
+            get {
+                return ((bool)(this["PublishPlaybackInformation"]));
+            }
+            set {
+                this["PublishPlaybackInformation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("%USERPROFILE%\\gpm-status.json")]
+        public string PublishPlaybackInformationPath {
+            get {
+                return ((string)(this["PublishPlaybackInformationPath"]));
+            }
+            set {
+                this["PublishPlaybackInformationPath"] = value;
+            }
+        }
     }
 }

@@ -41,5 +41,11 @@
     <Setting Name="BetaStream" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="PublishPlaybackInformation" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PublishPlaybackInformationPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%USERPROFILE%\gpm-status.json</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

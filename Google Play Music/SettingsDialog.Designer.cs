@@ -43,6 +43,8 @@
             this.updateStateText = new MaterialSkin.Controls.MaterialLabel();
             this.downloadProgressBorder = new MaterialSkin.Controls.MaterialDivider();
             this.installUpdateButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.publishPlaybackInformation = new MaterialSkin.Controls.MaterialCheckBox();
+            this.publishPlaybackInformationPath = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.colorWheel1 = new Google_Play_Music.ColorWheel();
             this.SuspendLayout();
             // 
@@ -50,12 +52,12 @@
             // 
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel1.Location = new System.Drawing.Point(411, 72);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(171, 18);
+            this.materialLabel1.Size = new System.Drawing.Size(176, 19);
             this.materialLabel1.TabIndex = 1;
             this.materialLabel1.Text = "Custom Theme Highlight";
             // 
@@ -63,7 +65,7 @@
             // 
             this.materialCheckBox1.AutoSize = true;
             this.materialCheckBox1.Depth = 0;
-            this.materialCheckBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.materialCheckBox1.Font = new System.Drawing.Font("Roboto", 10F);
             this.materialCheckBox1.Location = new System.Drawing.Point(13, 97);
             this.materialCheckBox1.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox1.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -79,12 +81,12 @@
             // 
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel2.Location = new System.Drawing.Point(12, 71);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(117, 18);
+            this.materialLabel2.Size = new System.Drawing.Size(119, 19);
             this.materialLabel2.TabIndex = 3;
             this.materialLabel2.Text = "General Settings";
             // 
@@ -92,7 +94,7 @@
             // 
             this.materialCheckBox2.AutoSize = true;
             this.materialCheckBox2.Depth = 0;
-            this.materialCheckBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.materialCheckBox2.Font = new System.Drawing.Font("Roboto", 10F);
             this.materialCheckBox2.Location = new System.Drawing.Point(13, 134);
             this.materialCheckBox2.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox2.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -108,7 +110,7 @@
             // 
             this.materialCheckBox3.AutoSize = true;
             this.materialCheckBox3.Depth = 0;
-            this.materialCheckBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.materialCheckBox3.Font = new System.Drawing.Font("Roboto", 10F);
             this.materialCheckBox3.Location = new System.Drawing.Point(13, 171);
             this.materialCheckBox3.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox3.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -124,12 +126,12 @@
             // 
             this.materialLabel3.AutoSize = true;
             this.materialLabel3.Depth = 0;
-            this.materialLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(12, 248);
+            this.materialLabel3.Location = new System.Drawing.Point(12, 311);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(115, 18);
+            this.materialLabel3.Size = new System.Drawing.Size(120, 19);
             this.materialLabel3.TabIndex = 7;
             this.materialLabel3.Text = "Last.fm Account";
             // 
@@ -137,7 +139,7 @@
             // 
             this.lastFMUsername.Depth = 0;
             this.lastFMUsername.Hint = "";
-            this.lastFMUsername.Location = new System.Drawing.Point(12, 270);
+            this.lastFMUsername.Location = new System.Drawing.Point(12, 333);
             this.lastFMUsername.MaxLength = 32767;
             this.lastFMUsername.MouseState = MaterialSkin.MouseState.HOVER;
             this.lastFMUsername.Name = "lastFMUsername";
@@ -155,7 +157,7 @@
             // 
             this.lastFMPassword.Depth = 0;
             this.lastFMPassword.Hint = "";
-            this.lastFMPassword.Location = new System.Drawing.Point(12, 299);
+            this.lastFMPassword.Location = new System.Drawing.Point(12, 362);
             this.lastFMPassword.MaxLength = 32767;
             this.lastFMPassword.MouseState = MaterialSkin.MouseState.HOVER;
             this.lastFMPassword.Name = "lastFMPassword";
@@ -174,12 +176,12 @@
             // 
             this.lastFMAuthIndicator.AutoSize = true;
             this.lastFMAuthIndicator.Depth = 0;
-            this.lastFMAuthIndicator.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.lastFMAuthIndicator.Font = new System.Drawing.Font("Roboto", 11F);
             this.lastFMAuthIndicator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lastFMAuthIndicator.Location = new System.Drawing.Point(29, 325);
+            this.lastFMAuthIndicator.Location = new System.Drawing.Point(29, 388);
             this.lastFMAuthIndicator.MouseState = MaterialSkin.MouseState.HOVER;
             this.lastFMAuthIndicator.Name = "lastFMAuthIndicator";
-            this.lastFMAuthIndicator.Size = new System.Drawing.Size(124, 18);
+            this.lastFMAuthIndicator.Size = new System.Drawing.Size(131, 19);
             this.lastFMAuthIndicator.TabIndex = 10;
             this.lastFMAuthIndicator.Text = "Not Authenticated";
             // 
@@ -187,8 +189,8 @@
             // 
             this.materialCheckBox4.AutoSize = true;
             this.materialCheckBox4.Depth = 0;
-            this.materialCheckBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.materialCheckBox4.Location = new System.Drawing.Point(12, 208);
+            this.materialCheckBox4.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBox4.Location = new System.Drawing.Point(13, 208);
             this.materialCheckBox4.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox4.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBox4.MouseState = MaterialSkin.MouseState.HOVER;
@@ -213,7 +215,7 @@
             // updateStateText
             // 
             this.updateStateText.Depth = 0;
-            this.updateStateText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.updateStateText.Font = new System.Drawing.Font("Roboto", 11F);
             this.updateStateText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.updateStateText.Location = new System.Drawing.Point(405, 298);
             this.updateStateText.MouseState = MaterialSkin.MouseState.HOVER;
@@ -245,6 +247,40 @@
             this.installUpdateButton.Text = "Install Update";
             this.installUpdateButton.UseVisualStyleBackColor = true;
             // 
+            // publishPlaybackInformation
+            // 
+            this.publishPlaybackInformation.AutoSize = true;
+            this.publishPlaybackInformation.Depth = 0;
+            this.publishPlaybackInformation.Font = new System.Drawing.Font("Roboto", 10F);
+            this.publishPlaybackInformation.Location = new System.Drawing.Point(13, 245);
+            this.publishPlaybackInformation.Margin = new System.Windows.Forms.Padding(0);
+            this.publishPlaybackInformation.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.publishPlaybackInformation.MouseState = MaterialSkin.MouseState.HOVER;
+            this.publishPlaybackInformation.Name = "publishPlaybackInformation";
+            this.publishPlaybackInformation.Ripple = true;
+            this.publishPlaybackInformation.Size = new System.Drawing.Size(241, 30);
+            this.publishPlaybackInformation.TabIndex = 16;
+            this.publishPlaybackInformation.Text = "Store Playback Information in File:";
+            this.publishPlaybackInformation.UseVisualStyleBackColor = true;
+            // 
+            // publishPlaybackInformationPath
+            // 
+            this.publishPlaybackInformationPath.Depth = 0;
+            this.publishPlaybackInformationPath.Hint = "";
+            this.publishPlaybackInformationPath.Location = new System.Drawing.Point(44, 278);
+            this.publishPlaybackInformationPath.MaxLength = 32767;
+            this.publishPlaybackInformationPath.MouseState = MaterialSkin.MouseState.HOVER;
+            this.publishPlaybackInformationPath.Name = "publishPlaybackInformationPath";
+            this.publishPlaybackInformationPath.PasswordChar = '\0';
+            this.publishPlaybackInformationPath.SelectedText = "";
+            this.publishPlaybackInformationPath.SelectionLength = 0;
+            this.publishPlaybackInformationPath.SelectionStart = 0;
+            this.publishPlaybackInformationPath.Size = new System.Drawing.Size(251, 23);
+            this.publishPlaybackInformationPath.TabIndex = 17;
+            this.publishPlaybackInformationPath.TabStop = false;
+            this.publishPlaybackInformationPath.Text = "%USERPROFILE%\\gpm-status.json";
+            this.publishPlaybackInformationPath.UseSystemPasswordChar = false;
+            // 
             // colorWheel1
             // 
             this.colorWheel1.Hue = ((byte)(0));
@@ -261,7 +297,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 360);
+            this.ClientSize = new System.Drawing.Size(600, 423);
+            this.Controls.Add(this.publishPlaybackInformationPath);
+            this.Controls.Add(this.publishPlaybackInformation);
             this.Controls.Add(this.installUpdateButton);
             this.Controls.Add(this.updateStateText);
             this.Controls.Add(this.downloadProgress);
@@ -278,6 +316,7 @@
             this.Controls.Add(this.colorWheel1);
             this.Controls.Add(this.downloadProgressBorder);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(0, 0);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsDialog";
@@ -304,5 +343,7 @@
         private MaterialSkin.Controls.MaterialLabel updateStateText;
         private MaterialSkin.Controls.MaterialDivider downloadProgressBorder;
         private MaterialSkin.Controls.MaterialRaisedButton installUpdateButton;
+        private MaterialSkin.Controls.MaterialCheckBox publishPlaybackInformation;
+        private MaterialSkin.Controls.MaterialSingleLineTextField publishPlaybackInformationPath;
     }
 }
