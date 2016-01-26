@@ -57,6 +57,13 @@ namespace Google_Play_Music
             // Setup the Web Browser
             InitializeCEF();
 
+            FormClosing += (send, ev) =>
+            {
+                // Update PlayStatus when the app gets closed.
+                PlayStatus.Instance.information.isPlaying = false;
+                PlayStatus.Instance.Update();
+            };
+
             // Don't forget to save all our settings
             FormClosed += (send, ev) =>
             {

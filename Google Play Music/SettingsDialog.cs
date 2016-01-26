@@ -92,6 +92,23 @@ namespace Google_Play_Music
                 Properties.Settings.Default.MiniAlwaysOnTop = materialCheckBox4.Checked;
             };
 
+            publishPlaybackInformation.Checked = Properties.Settings.Default.PublishPlaybackInformation;
+            publishPlaybackInformation.CheckStateChanged += (res, send) =>
+            {
+                publishPlaybackInformationPath.Enabled = publishPlaybackInformation.Checked;
+            };
+
+            publishPlaybackInformationPath.Enabled = publishPlaybackInformation.Checked;
+
+            FormClosing += (send, ev) =>
+            {
+                Properties.Settings.Default.PublishPlaybackInformation = publishPlaybackInformation.Checked;
+                Properties.Settings.Default.PublishPlaybackInformationPath = publishPlaybackInformationPath.Text;
+                PlayStatus.Instance.UpdateSettings();
+                PlayStatus.Instance.Update();
+            };
+
+
             lastFMUsername.Text = Properties.Settings.Default.LastFMUsername;
             lastFMUsername.GotFocus += (res, send) =>
             {
@@ -251,5 +268,6 @@ namespace Google_Play_Music
                 lastFMAuthIndicator.Text = "Logging in...";
             }
         }
+
     }
 }
