@@ -22,6 +22,8 @@ namespace Google_Play_Music
 
         public CoreMusicApp()
         {
+            PlaybackAPI.Instance.UpdateApplicationStatus(true);
+
             restoreMaxiState();
             rolling_size = this.ClientSize;
             last_size = this.ClientSize;
@@ -56,6 +58,12 @@ namespace Google_Play_Music
 
             // Setup the Web Browser
             InitializeCEF();
+
+            // Update PlaybackAPI to reflect the closed application
+            FormClosing += (send, ev) =>
+            {
+                PlaybackAPI.Instance.UpdateApplicationStatus(false);
+            };
 
             // Don't forget to save all our settings
             FormClosed += (send, ev) =>
