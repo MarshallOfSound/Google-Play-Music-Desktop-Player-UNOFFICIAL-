@@ -10,7 +10,7 @@ namespace Google_Play_Music
 
     class PlaybackAPI
     {
-        private const string PLAYBACK_INFORMATION_FILE_PATH = "%APPDATA%\\Google Play Music Desktop Player\\playback-information.json";
+        private const string PLAYBACK_INFORMATION_FILE_PATH = "%APPDATA%\\GPMDP\\playback-information.json";
 
         public bool isActive { get; private set; } = true;
         public bool isPlaying { get; private set; } = false;

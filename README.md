@@ -36,6 +36,7 @@ Features
 * Dark theme
 * Task bar media controls (media controls embedded into the taskbar)
 * Smooth scrolling and overlay scrollbars for a nicer User Experience
+* [Interface for external applications](docs/PlaybackAPI.md)
 * More coming soon....
 
 Development
