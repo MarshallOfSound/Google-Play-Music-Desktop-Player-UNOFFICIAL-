@@ -73,8 +73,10 @@ csharpinterface.setInitialZoom();
 GPM.on('change:playback', function (mode) {
     if (mode === GMusic.Playback.STOPPED || mode === GMusic.Playback.PAUSED) {
         csharpinterface.setThumbbarToPlay();
+        csharpinterface.setPlaybackStatus(false);
     } else if (mode === GMusic.Playback.PLAYING) {
         csharpinterface.setThumbbarToPause();
+        csharpinterface.setPlaybackStatus(true);
     }
 });
 GPM.mini.on('enable', function (delay) {

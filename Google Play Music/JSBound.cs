@@ -93,6 +93,11 @@ namespace Google_Play_Music
             });
         }
 
+        public void setPlaybackStatus(bool isPlaying)
+        {
+            PlaybackAPI.Instance.UpdatePlaybackStatus(isPlaying);
+        }
+
         public void setThumbbarToPlay()
         {
             mainForm.Invoke((MethodInvoker)delegate
@@ -135,6 +140,8 @@ namespace Google_Play_Music
         // Fired from javascript when a different song starts playing
         public void songChangeEvent(string song, string album, string artist, string url)
         {
+            PlaybackAPI.Instance.UpdateCurrentSong(song, album, artist, url);
+
             mainForm.Invoke((MethodInvoker)delegate
             {
                 // Update the title to show the current song
