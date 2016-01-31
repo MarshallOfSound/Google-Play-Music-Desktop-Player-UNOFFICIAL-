@@ -115,7 +115,7 @@ namespace Google_Play_Music.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;use strict&quot;;function _classCallCheck(a,b){if(!(a instanceof b))throw new TypeError(&quot;Cannot call a class as a function&quot;)}var _createClass=function(){function a(a,b){for(var c=0;c&lt;b.length;c++){var d=b[c];d.enumerable=d.enumerable||!1,d.configurable=!0,&quot;value&quot;in d&amp;&amp;(d.writable=!0),Object.defineProperty(a,d.key,d)}}return function(b,c,d){return c&amp;&amp;a(b.prototype,c),d&amp;&amp;a(b,d),b}}();!function a(b,c,d){function e(g,h){if(!c[g]){if(!b[g]){var i=&quot;function&quot;==typeof require&amp;&amp;require;if(!h&amp;&amp;i)return i(g,!0);if(f)retur [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &quot;use strict&quot;;function _classCallCheck(a,b){if(!(a instanceof b))throw new TypeError(&quot;Cannot call a class as a function&quot;)}function _typeof(a){return a&amp;&amp;&quot;undefined&quot;!=typeof Symbol&amp;&amp;a.constructor===Symbol?&quot;symbol&quot;:typeof a}var _createClass=function(){function a(a,b){for(var c=0;c&lt;b.length;c++){var d=b[c];d.enumerable=d.enumerable||!1,d.configurable=!0,&quot;value&quot;in d&amp;&amp;(d.writable=!0),Object.defineProperty(a,d.key,d)}}return function(b,c,d){return c&amp;&amp;a(b.prototype,c),d&amp;&amp;a(b,d),b}}();!function a(b,c,d){function e(g, [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string gmusic_theme_min {
             get {
