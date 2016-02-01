@@ -1,4 +1,4 @@
-version: 2.0.2-{build}
+version: 2.1.1-{build}
 install:
   - ps: Install-Product node $env:nodejs_version
 before_build:
