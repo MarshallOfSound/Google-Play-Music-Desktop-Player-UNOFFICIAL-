@@ -140,7 +140,7 @@ namespace Google_Play_Music
         // Fired from javascript when a different song starts playing
         public void songChangeEvent(string song, string album, string artist, string url)
         {
-            PlaybackAPI.Instance.UpdateCurrentSong(song, album, artist, url);
+            PlaybackAPI.Instance.UpdateCurrentSong(song, artist, album, url);
 
             mainForm.Invoke((MethodInvoker)delegate
             {
