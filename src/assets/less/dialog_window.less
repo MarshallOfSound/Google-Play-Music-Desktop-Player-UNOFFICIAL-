@@ -17,6 +17,7 @@
   .window-main {
     flex: 1;
     position: relative;
+    overflow: hidden;
 
     > .row {
       flex: 1;
@@ -47,6 +48,22 @@
         display: inline-block;
         margin: 0.3em;
         cursor: pointer;
+      }
+    }
+
+    .eq-slide-con {
+      display: flex;
+
+      label {
+        position: static;
+        margin-top: 12px;
+        -webkit-column-width: 50px;
+      }
+
+      .eq-slide {
+        margin-top: 16px;
+        flex: 1;
+        margin-left: 16px;
       }
     }
   }

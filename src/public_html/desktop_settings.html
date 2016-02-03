@@ -63,13 +63,21 @@
               <div class="color-square brown"></div>
             </div>
           </div>
-          <div id="mini" class="col s12">Mini Player Settings</div>
-          <div id="lastfm" class="col s12">Last.FM Settings</div>
-          <div id="hotkeys" class="col s12">Hotkey Settings</div>
-          <div id="audio" class="col s12">
+          <div id="mini" class="col s12 settings-box">Mini Player Settings</div>
+          <div id="lastfm" class="col s12 settings-box">Last.FM Settings</div>
+          <div id="hotkeys" class="col s12 settings-box">Hotkey Settings</div>
+          <div id="audio" class="col s12 settings-box">
             <div class="input-field col s12">
               <select id="audioOutputSelect"></select>
               <label>Audio Output Device</label>
+            </div>
+            <div class="input-field col s12" style="margin-top: 0">
+              <span>Equalizer</span>
+              <div class="eq-slide-con"><label>60Hz</label><div class="eq-slide"></div></div>
+              <div class="eq-slide-con"><label>230Hz</label><div class="eq-slide"></div></div>
+              <div class="eq-slide-con"><label>910Hz</label><div class="eq-slide"></div></div>
+              <div class="eq-slide-con"><label>4kHz</label><div class="eq-slide"></div></div>
+              <div class="eq-slide-con"><label>14kHz</label><div class="eq-slide"></div></div>
             </div>
           </div>
         </div>
@@ -79,6 +87,7 @@
   <script>window._module = window.module; window.module = undefined;</script>
   <script src="../assets/util/jquery.min.js"></script>
   <script src="../assets/util/materialize.min.js"></script>
+  <script src="../assets/util/nouislider.min.js"></script>
   <script>
   window.module = window._module;
   require('../inject/generic');

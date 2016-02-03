@@ -1,5 +1,6 @@
 import './themeSettings';
 import './audioSelection';
+import './audioEQ';
 
 document.body.classList.add(process.platform);
 
@@ -18,7 +19,9 @@ const redrawTheme = () => {
   const back = `[theme] .theme-back{background:${color} !important;}`;
   const checkbox = `[theme] input[type=checkbox]:checked + label::after{background:${color}` +
                     `!important;border-color:${color} !important;}`;
-  style.html(text + back + checkbox);
+  const slider = `[theme] .range-label{background:${color};border:none}
+                  [theme] .noUi-horizontal .noUi-handle{background:transparent}`;
+  style.html(text + back + checkbox + slider);
 };
 
 redrawTheme();
