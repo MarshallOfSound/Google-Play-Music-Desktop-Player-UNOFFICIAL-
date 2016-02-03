@@ -1,0 +1,58 @@
+/* COLORPICKER 1 EXAMPLE */
+#colorPicker
+{
+    width:          30px;
+    height:         30px;
+}
+
+#colorPicker .track {
+    background:     #EFEFEF url(../img/colors.png) no-repeat 50% 50%;
+    height:         150px;
+    width:          150px;
+    padding:        10px;
+    cursor:         crosshair;
+    display:        none;
+    border:         1px solid #ccc;
+    z-index:        10;
+    border-radius: 150px;
+
+}
+
+#colorPicker .color {
+    width:          25px;
+    height:         25px;
+    padding:        1px;
+    border:         1px solid #ccc;
+    display:        block;
+    position:       relative;
+    z-index:        11;
+    background-color: #EFEFEF;
+    -webkit-border-radius: 27px;
+    -moz-border-radius: 27px;
+    border-radius: 27px;
+    cursor: pointer;
+}
+
+#colorPicker .colorInner {
+    width:          25px;
+    height:         25px;
+    -webkit-border-radius: 27px;
+    -moz-border-radius: 27px;
+    border-radius: 27px;
+}
+
+#colorPicker .dropdown {
+    list-style: none;
+    display: none;
+    width: 27px;
+    position: absolute;
+    top: 28px;
+    border: 1px solid #ccc;
+    left: 0;
+    z-index: 1000;
+}
+
+#colorPicker .dropdown li{
+    height: 25px;
+    cursor: pointer;
+}

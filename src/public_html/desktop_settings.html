@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+  <title>Nucleus Player</title>
+  <link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <section class="window-border">
+    <header class="title-bar">
+      <div class="drag-handle"></div>
+      <div class="controls">
+        <div id="min" class="control">
+          <img src="../assets/img/control_bar/min.png" />
+        </div>
+        <div id="max" class="control">
+          <img src="../assets/img/control_bar/max.png" />
+        </div>
+        <div id="close" class="control">
+          <img src="../assets/img/control_bar/close.png" />
+        </div>
+      </div>
+    </header>
+    <main class="dialog">
+      <div class="window-title">
+        Settings
+      </div>
+      <div class="window-main">
+        <div class="row">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s3"><a href="#theme" class="theme-text orange-text">Theme</a></li>
+              <li class="tab col s3"><a href="#mini" class="theme-text orange-text">Mini Player</a></li>
+              <li class="tab col s3"><a href="#lastfm" class="theme-text orange-text">Last.FM</a></li>
+              <li class="tab col s3"><a href="#hotkeys" class="theme-text orange-text">Hotkeys</a></li>
+              <li class="tab col s3"><a href="#audio" class="theme-text orange-text">Audio</a></li>
+            </ul>
+          </div>
+          <div id="theme" class="col s12 settings-box">
+            <div>
+              <p>
+                <input type="checkbox" class="filled-in" id="theme-state" checked="checked" />
+                <label for="theme-state">Theme Enabled</label>
+              </p>
+            </div>
+            <div class="color-square-wrapper">
+              <h5 class="theme-text">Choose your theme highlight color</h5>
+              <div class="color-square red"></div>
+              <div class="color-square cyan"></div>
+              <div class="color-square purple"></div>
+              <div class="color-square lime"></div>
+              <div class="color-square blue"></div>
+              <div class="color-square pink"></div>
+              <div class="color-square teal"></div>
+              <div class="color-square green"></div>
+              <div class="color-square orange"></div>
+              <div class="color-square deep-purple"></div>
+              <div class="color-square light-green"></div>
+              <div class="color-square yellow"></div>
+              <div class="color-square indigo"></div>
+              <div class="color-square amber"></div>
+              <div class="color-square deep-orange"></div>
+              <div class="color-square light-blue"></div>
+              <div class="color-square brown"></div>
+            </div>
+          </div>
+          <div id="mini" class="col s12">Mini Player Settings</div>
+          <div id="lastfm" class="col s12">Last.FM Settings</div>
+          <div id="hotkeys" class="col s12">Hotkey Settings</div>
+          <div id="audio" class="col s12">
+            <div class="input-field col s12">
+              <select id="audioOutputSelect"></select>
+              <label>Audio Output Device</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+  <script>window._module = window.module; window.module = undefined;</script>
+  <script src="../assets/util/jquery.min.js"></script>
+  <script src="../assets/util/materialize.min.js"></script>
+  <script>
+  window.module = window._module;
+  require('../inject/generic');
+  require('../inject/settings');
+  </script>
+</body>
+</html>

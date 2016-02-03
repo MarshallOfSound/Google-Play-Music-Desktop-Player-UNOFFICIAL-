@@ -1,88 +1,76 @@
-Google Play Music™ Desktop Player
-=========================
+# Nucleus-Player
 
 [![Join the chat at https://gitter.im/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Github All Releases](https://img.shields.io/github/downloads/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/total.svg)](https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases)
-[![Build status](https://ci.appveyor.com/api/projects/status/clg5vclqyltff7hg/branch/master?svg=true)](https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial/branch/master)
- [![GitHub version](https://badge.fury.io/gh/MarshallOfSound%2FGoogle-Play-Music-Desktop-Player-UNOFFICIAL-.svg)](https://badge.fury.io/gh/MarshallOfSound%2FGoogle-Play-Music-Desktop-Player-UNOFFICIAL-) [![Code Climate](https://codeclimate.com/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/badges/gpa.svg)](https://codeclimate.com/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-) <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ" title="Help me out by donating to this project"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>  
+ [![GitHub version](https://badge.fury.io/gh/MarshallOfSound%2FGoogle-Play-Music-Desktop-Player-UNOFFICIAL-.svg)](https://badge.fury.io/gh/MarshallOfSound%2FGoogle-Play-Music-Desktop-Player-UNOFFICIAL-)  [![Code Climate](https://codeclimate.com/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/badges/gpa.svg)](https://codeclimate.com/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-) <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ" title="Help me out by donating to this project"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>  
+ Windows: [![Build status](https://ci.appveyor.com/api/projects/status/clg5vclqyltff7hg/branch/master?svg=true)](https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial/branch/master)  
+ Max OSX: [![Build Status](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-.svg?branch=dev/3.0.0)](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-)
 
-![](https://www.samuel.ninja/img/gpmdp_screen.gif)
 
-Run Google Play Music as a stand alone Windows Desktop app.  Never again will you have to hunt through your tabs to pause your music, or stop listening to your favourite song because Chrome is guzzling up all your RAM..
+A beautiful cross platform Desktop Player for Google Play Music
 
-Developed by [Samuel Attard][1].
+## WARNING
 
-No affiliation with Google. Google Play is a trademark of Google Inc.
+This repository is not usable in it's current state, it is currently in rapid
+development and therefore I can not guarantee the stability of master, force
+pushes may occur and breaking changes may happen all the time.  Stay on your
+toes :)
 
-[1]: https://www.samuelattard.com
+## FAQ
 
-Requirements
-------------
+### So what is this???
 
-* Windows Vista or later (Might work on XP, I've never tried)
+This project is designed to close the gap between the existing Desktop Player
+options for Google Play Music.  At the moment they are fragments, different,
+support a plethora of different features and are extremely prone to bugs.  This
+repo is designed to be as low maintenance and as cross-platform as possible.
 
-**Note:**  
-Internally this player does use flash to play the music. Using Flash Player is not my choice and this app is in no way based on flash.  However flash is required to play the music because Google's support for HTML5 Audio relies on the MP3 codec and some third party DRM library.  Both of which require licenses and can't be open sourced.  So until Google figures out an open source solution to the DRM media problem, we are stuck with Flash.
+### What OS's do you support?
 
-I have made this as small impact as possible by distributing a PPAPI version of flash with the installers.  This is the same technique used by Google Chrome.
+All the major ones, we have automatic CI running for [Mac OSX (Travis CI)][1]
+and [Windows (Appveyor)][2].  The application can also be built for Linux
+platforms but we do
+not currently have CI set up targeting those platforms.
 
-Features
---------
+[1]: https://travis-ci.org/MarshallOfSound/Nucleus-Player
+[2]: https://ci.appveyor.com/project/MarshallOfSound/nucleus-player
 
-* Supports media keys (play, pause, next, previous)
-* [last.fm](https://www.last.fm) scrobbling and now playing support!
-* Desktop notifications on track change
-* A simplistic mini player
-* Dark theme
-* Task bar media controls (media controls embedded into the taskbar)
-* Smooth scrolling and overlay scrollbars for a nicer User Experience
-* [Interface for external applications](docs/PlaybackAPI.md)
-* More coming soon....
+### When will this hit a proper release target?
 
-Development
------------
+There is currently an [issue][3] that outlines the tasks left to complete before
+a minimum first release can be reached.
 
-To get started just pull the repo and open `Google Play Music.sln` in Visual Studio, pull down all the NuGet dependencies and it should just work.
-To build the installers you need to have a Code Signing certificate installed on your machine.  You can create a self signed one for dev purposes if you want, there are plenty of tutorials.  Just google it :)
-All releases will be signing with my Code Signing Certificate
+[3]: https://github.com/MarshallOfSound/Nucleus-Player/issues/1
 
-Contributing
-------------
+### How can I get involved?
 
-If you find something wrong (theming issues, app crashes) please report them as an issue.  
-If you think you can add something cool or fix a problem, fork the repo and make a pull request :D
+Fork the repo, take a look at the issue mentioned above and tackle one of the
+release criteria. When you get it working, write some epic tests and PR it in
+to the main repo.
 
-Dev Requirements
-----------------
-* [WiX v3.10.1][2]
+## Development Guide
 
-[2]: https://wix.codeplex.com/releases/view/618180
+### Getting Started
 
-Credit
------------
+So to get started we need to clone the repo and install all the dependencies
 
-IgnaceMaes for the Material Skin used in this project --> [Check it out here](https://github.com/IgnaceMaes/MaterialSkin)
+```bash
+git clone https://github.com/[Your Username Here]/Nucleus-Player.git
+npm install
+```
 
-License
--------
+From there to run the app for development you simply run in two separate
+terminals.
 
-The MIT License (MIT)
+```bash
+npm run watch
+```
 
-Copyright (c) 2015 Samuel Attard
+**AND**
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
+```bash
+npm start
+```
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+The first command runs an initial build of the source code and then starts a
+watch task to rebuild it on change.  The second command starts the app.

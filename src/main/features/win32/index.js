@@ -1,0 +1,2 @@
+import './notificationPolyfill';
+import './thumbbarButtons';

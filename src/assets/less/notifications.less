@@ -1,0 +1,57 @@
+.notification-html {
+  height: 6em;
+  width: 32em;
+}
+
+.notification-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+
+  .notification-image {
+    height: 100%;
+    width: auto;
+  }
+
+  .notification-text {
+    flex: 1;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+
+    .notification-title {
+      font-size: 1.3em;
+    }
+
+    .notification-body {
+      flex: 1;
+      font-size: 1em;
+    }
+  }
+
+  .notification-close {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    height: 2em;
+    width: 2em;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    background: #FFF;
+    border-radius: 100%;
+    transition: all 0.2s linear;
+
+    img {
+      height: 80%;
+      width: 80%;
+      margin: 0 auto;
+      -webkit-filter: contrast(0.5);
+    }
+
+    &:hover {
+      background: #DDD;
+      box-shadow: 0 0 10px #DDD inset;
+    }
+  }
+}
