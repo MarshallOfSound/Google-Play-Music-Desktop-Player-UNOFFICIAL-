@@ -3,7 +3,7 @@ environment:
   nodejs_version: "4.2.2"
   GITHUB_KEY:
     secure: eZcSozzDKzRJhSoXL7LS9w1jqFLdkiRT4H57JoWGpKj/kS6NC/DP3ColwKkvSeFn
-  NUCLEUS_CERT_PASS:
+  SIGN_CERT_PASS:
     secure: UEVPxVtsn5UnAi3PhhkUSA==
 
 platform:
@@ -30,5 +30,5 @@ build_script:
 - cmd: npm run release:win
 
 artifacts:
-  - path: 'dist\build\installer32\Nucleus PlayerSetup.exe'
-  - path: 'dist\build\installer64\Nucleus PlayerSetup.exe'
+  - path: 'dist\build\installer32\Google Play Music Desktop PlayerSetup.exe'
+  - path: 'dist\build\installer64\Google Play Music Desktop PlayerSetup.exe'

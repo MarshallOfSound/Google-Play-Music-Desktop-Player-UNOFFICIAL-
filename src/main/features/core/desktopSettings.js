@@ -9,10 +9,10 @@ Emitter.on('window:settings', () => {
     frame: false,
     show: false,
     nodeIntegration: true,
-    icon: path.resolve('./build/assets/img/main.png'),
+    icon: path.resolve(`${__dirname}/../../../assets/img/main.png`),
     title: 'Settings',
     'web-preferences': {
-      preload: path.resolve('./build/inject/generic.js'),
+      preload: path.resolve(`${__dirname}/../../../inject/generic.js`),
     },
   });
   desktopSettings.loadURL(`file://${__dirname}/../../../public_html/desktop_settings.html`);

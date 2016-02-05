@@ -8,6 +8,8 @@ const concat = require('gulp-concat');
 const packager = require('electron-packager');
 const spawn = require('child_process').spawn;
 
+const grunt = require('gulp-grunt');
+
 const paths = {
   internalScripts: ['src/**/*.js'],
   externalScripts: ['node_modules/gmusic.js/dist/gmusic.min.js',
@@ -26,12 +28,13 @@ const packageJSON = require('./package.json');
 const defaultPackageConf = {
   dir: '.',
   name: packageJSON.productName,
+  'build-version': packageJSON.version,
   version: packageJSON.dependencies['electron-prebuilt'].substr(1),
   platform: 'all',
   arch: 'all',
-  'app-bundle-id': 'nucleus.player',
+  'app-bundle-id': packageJSON.name,
   'app-version': packageJSON.version,
-  icon: './build/img/main',
+  icon: './build/assets/img/main',
   out: './dist/',
   overwrite: true,
   prune: true,
@@ -45,8 +48,8 @@ const cleanGlob = (glob) => {
   };
 };
 
-gulp.task('clean', cleanGlob('./build'));
-gulp.task('clean-dist', cleanGlob('./dist/Nucleus Player-win32-ia32'));
+gulp.task('clean', cleanGlob(['./build', './dist']));
+gulp.task('clean-dist', cleanGlob('./dist/**/*'));
 gulp.task('clean-external', cleanGlob('./build/external.js'));
 gulp.task('clean-material', cleanGlob('./build/assets/material'));
 gulp.task('clean-utility', cleanGlob('./build/assets/util'));
@@ -114,31 +117,41 @@ gulp.task('watch', ['build'], () => {
   gulp.watch(paths.less, ['less']);
 });
 
-gulp.task('package-win', ['clean-dist', 'build'], (done) => {
+gulp.task('package:win', ['clean-dist', 'build'], (done) => {
   packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), done);
 });
 
-gulp.task('package-darwin', ['clean-dist', 'build'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'darwin' }), () => {
-    const child = spawn('zip', ['-r', '-y', 'Nucleus\ Player.zip', 'Nucleus\ Player.app'], {
-      cwd: './dist/Nucleus Player-darwin-x64',
+gulp.task('make:win', ['package:win'], (done) => {
+  grunt.tasks()['grunt-build:win32'](done);
+});
+
+gulp.task('package:darwin', ['clean-dist', 'build'], (done) => {
+  packager(_.extend({}, defaultPackageConf, { platform: 'darwin' }), done);
+});
+
+gulp.task('make:darwin', ['package:darwin'], (done) => {
+  const pathEscapedName = packageJSON.productName.replace(/ /gi, '\ ');
+  const child = spawn('zip', ['-r', '-y',
+    `${pathEscapedName}.zip`,
+    `${pathEscapedName}.app`],
+    {
+      cwd: `./dist/${packageJSON.productName}-darwin-x64`,
     });
 
-    console.log('Zipping "Nucleus Player.app"'); // eslint-disable-line
+  console.log(`Zipping "${packageJSON.productName}.app"`); // eslint-disable-line
 
-    // spit stdout to screen
-    child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
+  // spit stdout to screen
+  child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
 
 
-    // Send stderr to the main console
-    child.stderr.on('data', (data) => {
-      process.stdout.write(data.toString());
-    });
+  // Send stderr to the main console
+  child.stderr.on('data', (data) => {
+    process.stdout.write(data.toString());
+  });
 
-    child.on('close', (code) => {
-      console.log('Finished zipping with code ' + code); // eslint-disable-line
-      done();
-    });
+  child.on('close', (code) => {
+    console.log('Finished zipping with code ' + code); // eslint-disable-line
+    done();
   });
 });
 
@@ -146,4 +159,4 @@ gulp.task('package-darwin', ['clean-dist', 'build'], (done) => {
 gulp.task('default', ['watch', 'transpile', 'images']);
 gulp.task('build', ['external', 'materialize-js', 'utility-js', 'transpile', 'images', 'less',
                     'fonts', 'html']);
-gulp.task('package', ['package-win', 'package-darwin']);
+gulp.task('package', ['package:win', 'package:darwin']);

@@ -7,51 +7,59 @@ import EmitterClass from './main/utils/Emitter';
 import SettingsClass from './main/utils/Settings';
 import WindowManagerClass from './main/utils/WindowManager';
 
-configureApp(app);
-global.Emitter = new EmitterClass();
-global.WindowManager = new WindowManagerClass();
-global.Settings = new SettingsClass();
+import { handleStartupEvent } from './squirrel';
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let mainWindow = null;
-
-// Quit when all windows are closed.
-app.on('window-all-closed', () => {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
-    app.quit();
+(() => {
+  if (handleStartupEvent()) {
+    return;
   }
-});
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-app.on('ready', () => {
-  // mainWindow = new BrowserWindow(require('./lib/configureBrowser')(electron, app));
-  mainWindow = new BrowserWindow(generateBrowserConfig());
-  global.mainWindowID = WindowManager.add(mainWindow, 'main');
+  configureApp(app);
+  global.Emitter = new EmitterClass();
+  global.WindowManager = new WindowManagerClass();
+  global.Settings = new SettingsClass();
 
-  const position = Settings.get('position');
-  let size = Settings.get('size');
-  size = size || [1200, 800];
+  // Keep a global reference of the window object, if you don't, the window will
+  // be closed automatically when the JavaScript object is garbage collected.
+  let mainWindow = null;
 
-  if (position) {
-    mainWindow.setPosition(...position);
-  } else {
-    mainWindow.center();
-  }
-  mainWindow.setSize(...size);
-
-  // and load the index.html of the app.
-  mainWindow.loadURL(`file://${__dirname}/public_html/index.html`);
-  require('./main/features');
-
-  // Emitted when the window is closed.
-  mainWindow.on('closed', () => {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null;
+  // Quit when all windows are closed.
+  app.on('window-all-closed', () => {
+    // On OS X it is common for applications and their menu bar
+    // to stay active until the user quits explicitly with Cmd + Q
+    if (process.platform !== 'darwin') {
+      app.quit();
+    }
   });
-});
+
+  // This method will be called when Electron has finished
+  // initialization and is ready to create browser windows.
+  app.on('ready', () => {
+    // mainWindow = new BrowserWindow(require('./lib/configureBrowser')(electron, app));
+    mainWindow = new BrowserWindow(generateBrowserConfig());
+    global.mainWindowID = WindowManager.add(mainWindow, 'main');
+
+    const position = Settings.get('position');
+    let size = Settings.get('size');
+    size = size || [1200, 800];
+
+    if (position) {
+      mainWindow.setPosition(...position);
+    } else {
+      mainWindow.center();
+    }
+    mainWindow.setSize(...size);
+
+    // and load the index.html of the app.
+    mainWindow.loadURL(`file://${__dirname}/public_html/index.html`);
+    require('./main/features');
+
+    // Emitted when the window is closed.
+    mainWindow.on('closed', () => {
+      // Dereference the window object, usually you would store windows
+      // in an array if your app supports multi windows, this is the time
+      // when you should delete the corresponding element.
+      mainWindow = null;
+    });
+  });
+})();

@@ -16,12 +16,12 @@ export default () => {
     y: Settings.get('Y'),
     show: false,
     frame: false,
-    icon: path.resolve('./build/assets/img/main.png'),
+    icon: path.resolve(`${__dirname}/../assets/img/main.png`),
     fullscreen: false,
     title: 'Nucleus Player',
     nodeIntegration: true,
     'web-preferences': {
-      preload: path.resolve('./build/inject/generic.js'),
+      preload: path.resolve(`${__dirname}/../inject/generic.js`),
     },
   };
 
