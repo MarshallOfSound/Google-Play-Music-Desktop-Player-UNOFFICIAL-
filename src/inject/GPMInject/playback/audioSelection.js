@@ -13,7 +13,17 @@ Emitter.on('audiooutput:fetch', () => {
     });
 });
 
+export const setAudioDevice = (id) => {
+  let count = 0;
+  return new Promise((resolve, reject) => {
+    const trySet = setInterval(() => {
+      document.querySelectorAll('audio')[0].setSinkId(id)
+        .then(() => { clearInterval(trySet); resolve(); })
+        .catch(() => { count++; if (count > 10000) { reject(); } }); // eslint-disable-line
+    }, 50);
+  });
+};
 
 Emitter.on('audiooutput:set', (event, deviceId) => {
-  document.querySelectorAll('audio')[0].setSinkId(deviceId);
+  setAudioDevice(deviceId);
 });

@@ -1,57 +1,80 @@
+import _ from 'lodash';
+
+import { setAudioDevice } from './audioSelection';
+
 window.wait(() => {
   const waitForAudio = setInterval(() => {
     if (document.querySelector('audio')) {
       clearInterval(waitForAudio);
-      const context = new AudioContext();
-      window.audioFilterContext = context;
-      const mediaElement = document.querySelector('audio');
-      const sourceNode = context.createMediaElementSource(mediaElement);
-      window.audioSourceNode = sourceNode;
 
-      const GAIN_DB = -40.0;
-      // These are the EQ levels that the android EQ uses
-      const BAND_SPLITS = [60, 230, 910, 4000, 14000];
+      // DEV: We do this here so that we can set the output device before hooking the context
+      navigator.mediaDevices.enumerateDevices()
+        .then((devices) => {
+          return new Promise((resolve) => {
+            let set = false;
+            _.forEach(devices, (device) => {
+              if (device.label === Settings.get('audiooutput')) {
+                set = true;
+                setAudioDevice(device.deviceId)
+                  .then(resolve);
+              }
+            });
+            if (!set) resolve();
+          });
+        })
+        .then(() => {
+          // TODO: Uncomment this so that the equalizer works
+          const context = new AudioContext();
+          window.audioFilterContext = context;
+          const mediaElement = document.querySelector('audio');
+          const sourceNode = context.createMediaElementSource(mediaElement);
+          window.audioSourceNode = sourceNode;
 
-      const bands = [];
+          const GAIN_DB = -40.0;
+          // These are the EQ levels that the android EQ uses
+          const BAND_SPLITS = [60, 230, 910, 4000, 14000];
 
-      const sum = context.createGain();
-      const mBand = context.createGain();
+          const bands = [];
 
-      BAND_SPLITS.forEach((UPPER_BAND, index) => {
-        const band = context.createBiquadFilter();
-        band.type = (index !== BAND_SPLITS.length - 1 ? 'highshelf' : 'lowshelf');
-        band.frequency.value = UPPER_BAND;
-        band.gain.value = GAIN_DB;
+          const sum = context.createGain();
+          const mBand = context.createGain();
 
-        const invert = context.createGain();
-        invert.gain.value = -1.0;
-        sourceNode.connect(band);
-        band.connect(invert);
-        invert.connect(mBand);
+          BAND_SPLITS.forEach((UPPER_BAND, index) => {
+            const band = context.createBiquadFilter();
+            band.type = (index !== BAND_SPLITS.length - 1 ? 'highshelf' : 'lowshelf');
+            band.frequency.value = UPPER_BAND;
+            band.gain.value = GAIN_DB;
 
-        const gain = context.createGain();
-        band.connect(gain);
-        gain.connect(sum);
+            const invert = context.createGain();
+            invert.gain.value = -1.0;
+            sourceNode.connect(band);
+            band.connect(invert);
+            invert.connect(mBand);
 
-        bands.push(gain);
-      });
+            const gain = context.createGain();
+            band.connect(gain);
+            gain.connect(sum);
 
-      sourceNode.connect(mBand);
+            bands.push(gain);
+          });
 
-      const mGain = context.createGain();
-      mBand.connect(mGain);
+          sourceNode.connect(mBand);
 
-      mGain.connect(sum);
+          const mGain = context.createGain();
+          mBand.connect(mGain);
 
-      sum.connect(context.destination);
+          mGain.connect(sum);
 
-      // TODO: remove
-      window.bands = bands;
-      window.mBand = mBand;
+          sum.connect(context.destination);
 
-      Emitter.on('eq:change', (event, details) => {
-        bands[details.index].gain.value = details.value;
-      });
+          // TODO: remove
+          window.bands = bands;
+          window.mBand = mBand;
+
+          Emitter.on('eq:change', (event, details) => {
+            bands[details.index].gain.value = details.value;
+          });
+        });
     }
   }, 10);
 });

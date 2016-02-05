@@ -8,3 +8,13 @@ const _save = () => {
 
 mainWindow.on('move', _save);
 mainWindow.on('resize', _save);
+
+Emitter.on('eq:change', (event, details) => {
+  const eq = Settings.get('eq', [1, 1, 1, 1, 1, 1]);
+  eq[details.index] = details.value;
+  Settings.set('eq', eq);
+});
+
+Emitter.on('audiooutput:set', (event, name) => {
+  Settings.set('audiooutput', name);
+});
