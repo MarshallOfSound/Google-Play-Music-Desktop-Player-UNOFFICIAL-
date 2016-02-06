@@ -17,7 +17,7 @@
     "test": "npm run lint",
     "test-unit": "electron-mocha ./test -r test/support/prerun.js",
     "start": "electron .",
-    "watch": "npm run build && gulp watch"
+    "watch": "gulp watch"
   },
   "author": "Samuel Attard",
   "license": "ISC",
