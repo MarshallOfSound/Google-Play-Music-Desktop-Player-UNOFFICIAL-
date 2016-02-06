@@ -30,5 +30,4 @@ build_script:
 - cmd: npm run release:win
 
 artifacts:
-  - path: 'dist\build\installer32\Google Play Music Desktop PlayerSetup.exe'
-  - path: 'dist\build\installer64\Google Play Music Desktop PlayerSetup.exe'
+  - path: 'dist\win32\Google Play Music Desktop PlayerSetup.exe'
