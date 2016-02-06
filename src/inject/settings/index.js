@@ -23,7 +23,10 @@ const redrawTheme = () => {
                     `!important;border-color:${color} !important;}`;
   const slider = `[theme] .range-label{background:${color};border:none}
                   [theme] .noUi-horizontal .noUi-handle{background:transparent}`;
-  style.html(text + back + checkbox + slider);
+  const input = `[theme] .input-field input[type=text]:focus + label {color:${color};}
+                  [theme] .input-field input[type=text]:focus {border-bottom-color:${color};
+                                                              box-shadow: 0 1px 0 0 ${color};}`;
+  style.html(text + back + checkbox + slider + input);
 };
 
 redrawTheme();
