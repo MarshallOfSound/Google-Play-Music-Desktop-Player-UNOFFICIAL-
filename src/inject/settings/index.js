@@ -1,6 +1,7 @@
 import './themeSettings';
 import './audioSelection';
 import './audioEQ';
+import './hotkeys';
 
 document.body.classList.add(process.platform);
 

@@ -65,7 +65,40 @@
           </div>
           <div id="mini" class="col s12 settings-box">Mini Player Settings</div>
           <div id="lastfm" class="col s12 settings-box">Last.FM Settings</div>
-          <div id="hotkeys" class="col s12 settings-box">Hotkey Settings</div>
+          <div id="hotkeys" class="col s12 settings-box">
+            <span>Default media keys will continue to work regardless of these settings.  These settings are in addition to the defaults</span>
+            <span>Use the <i>"Escape"</i> key to reset the hotkey</span>
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Not Set" id="playPause" type="text">
+                <label for="first_name">Play / Pause</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Not Set" id="stop" type="text">
+                <label for="last_name">Stop</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Not Set" id="previousTrack" type="text">
+                <label for="first_name">Previous Track</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Not Set" id="nextTrack" type="text">
+                <label for="last_name">Next Track</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Not Set" id="thumbsUp" type="text">
+                <label for="first_name">Thumbs Up Current Song</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Not Set" id="thumbsDown" type="text">
+                <label for="last_name">Thumbs Down Current Song</label>
+              </div>
+            </div>
+          </div>
           <div id="audio" class="col s12 settings-box">
             <div class="input-field col s12">
               <select id="audioOutputSelect"></select>
