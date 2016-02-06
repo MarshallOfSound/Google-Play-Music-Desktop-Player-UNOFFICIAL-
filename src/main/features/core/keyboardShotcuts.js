@@ -13,6 +13,10 @@ globalShortcut.register('MediaNextTrack', () => {
   Emitter.sendToGooglePlayMusic('playback:nextTrack');
 });
 
+globalShortcut.register('MediaStop', () => {
+  Emitter.sendToGooglePlayMusic('playback:stop');
+});
+
 const customHotkeys = Settings.get('hotkeys', {
   playPause: null,
   stop: null,
