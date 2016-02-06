@@ -3,3 +3,4 @@ import './persistAppState';
 import './controlBar';
 import './customTheme';
 import './desktopSettings';
+import './errorHandler';
