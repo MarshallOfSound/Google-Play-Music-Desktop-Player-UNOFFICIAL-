@@ -1,5 +1,6 @@
 import fs from 'fs';
 import mkdirp from 'mkdirp';
+import initalSettings from './initialSettings';
 
 class Settings {
   constructor(jsonPrefix, wipeOldData) {
@@ -7,13 +8,14 @@ class Settings {
       (process.platform === 'darwin' ? process.env.HOME + '/Library/Preferences' : '/var/local')) +
       '/Nucleus';
     this.PATH = `${DIR}/${(jsonPrefix || '')}.settings.json`;
-    this.data = {};
+    this.data = initalSettings;
     this.lastSync = 0;
 
     if (fs.existsSync(this.PATH) && !wipeOldData) {
       this._load();
     } else {
       mkdirp(DIR);
+      this._save(true);
     }
     this.coupled = true;
   }
@@ -26,7 +28,7 @@ class Settings {
     if (!this.coupled) {
       this._load();
     }
-    return this.data[key] || defaultValue;
+    return typeof this.data[key] === 'undefined' ? defaultValue : this.data[key];
   }
 
   set(key, value) {

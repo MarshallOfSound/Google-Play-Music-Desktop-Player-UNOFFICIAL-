@@ -6,3 +6,9 @@ $('.color-square').click((e) => {
 $('#theme-state').change((e) => {
   Emitter.fire('theme:updateState', { state: $(e.currentTarget).is(':checked') });
 });
+
+if (Settings.get('theme', false)) {
+  $('#theme-state').attr('checked', true);
+} else {
+  $('#theme-state').removeAttr('checked');
+}

@@ -74,3 +74,11 @@ html, body {
     }
   }
 }
+
+.lean-overlay {
+  height: calc(~"100vh - " (@border-width * 2 + @title-bar-height));
+  width: calc(~"100vw - " ((@border-width - 0.05em) * 2));
+  margin: (@border-width - 0.05em);
+  margin-top: @border-width + @title-bar-height;
+  top: 0;
+}

@@ -12,5 +12,10 @@ Emitter.on('window:maximize', (event, windowID) => {
 });
 
 Emitter.on('window:close', (event, windowID) => {
+  if (windowID === 1 && Settings.get('minToTray', true)) {
+    WindowManager.getByInternalID(windowID).minimize();
+    WindowManager.getByInternalID(windowID).setSkipTaskbar(true);
+    return;
+  }
   WindowManager.getByInternalID(windowID).close();
 });

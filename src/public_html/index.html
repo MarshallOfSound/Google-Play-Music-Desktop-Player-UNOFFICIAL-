@@ -30,7 +30,23 @@
       <webview src="https://play.google.com/music/listen" class="embedded-player" preload="../inject/GPMInject" nodeintegration></webview>
     </main>
   </section>
+  <div id="confirmTray" class="modal">
+    <div class="modal-content">
+      <h4>Just a heads up</h4>
+      <p>Closing the main player window (what you just tried to do) will actually minimize the player to the System Tray.
+         If you want to change this behaviour it can be changed in the "Desktop Settings" window.
+       </p>
+    </div>
+    <div class="modal-footer">
+      <a href="javascript:void(0)" id="confirmTrayButton" class="modal-action modal-close waves-effect waves-green btn-flat">Alright</a>
+      <a href="javascript:void(0)" id="confirmTrayNeverButton" class="modal-action modal-close waves-effect waves-orange btn-flat">Don't tell me this again</a>
+    </div>
+  </div>
+  <script>window._module = window.module; window.module = undefined;</script>
+  <script src="../assets/util/jquery.min.js"></script>
+  <script src="../assets/util/materialize.min.js"></script>
   <script>
+  window.module = window._module;
   document.body.classList.add(process.platform);
   </script>
 </body>

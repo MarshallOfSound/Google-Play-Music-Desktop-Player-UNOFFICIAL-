@@ -4,3 +4,4 @@ import './controlBar';
 import './customTheme';
 import './desktopSettings';
 import './errorHandler';
+import './tray';

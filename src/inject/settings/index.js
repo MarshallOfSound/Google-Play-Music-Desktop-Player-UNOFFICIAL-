@@ -2,6 +2,7 @@ import './themeSettings';
 import './audioSelection';
 import './audioEQ';
 import './hotkeys';
+import './tray';
 
 document.body.classList.add(process.platform);
 
