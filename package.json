@@ -53,6 +53,7 @@
     "gulp-less": "^3.0.5",
     "gulp-rename": "^1.2.2",
     "jquery": "^2.2.0",
+    "material-design-icons-iconfont": "^2.0.4",
     "materialize-css": "^0.97.5",
     "mocha": "^2.3.4",
     "mocha-sinon": "^1.1.5",

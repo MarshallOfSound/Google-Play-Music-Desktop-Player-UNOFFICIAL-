@@ -20,7 +20,9 @@ const paths = {
                     'node_modules/materialize-css/extras/noUiSlider/nouislider.min.js'],
   html: 'src/public_html/**/*.html',
   less: 'src/assets/less/**/*.less',
-  fonts: 'node_modules/materialize-css/dist/font/**/*',
+  fonts: ['node_modules/materialize-css/dist/font/**/*',
+          '!node_modules/materialize-css/dist/font/material-design-icons/*',
+          'node_modules/material-design-icons-iconfont/dist/fonts/**/*'],
   images: ['src/assets/icons/**/*', 'src/assets/img/**/*'],
 };
 
