@@ -6,7 +6,7 @@ class Settings {
   constructor(jsonPrefix, wipeOldData) {
     const DIR = (process.env.APPDATA ||
       (process.platform === 'darwin' ? process.env.HOME + '/Library/Preferences' : '/var/local')) +
-      '/Nucleus';
+      '/GPMDP_STORE';
     this.PATH = `${DIR}/${(jsonPrefix || '')}.settings.json`;
     this.data = initalSettings;
     this.lastSync = 0;
