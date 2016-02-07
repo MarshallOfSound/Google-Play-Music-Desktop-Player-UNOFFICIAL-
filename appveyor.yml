@@ -5,6 +5,11 @@ environment:
     secure: eZcSozzDKzRJhSoXL7LS9w1jqFLdkiRT4H57JoWGpKj/kS6NC/DP3ColwKkvSeFn
   SIGN_CERT_PASS:
     secure: UEVPxVtsn5UnAi3PhhkUSA==
+  GPMDP_LASTFM_API_KEY:
+    secure: fUSv2FRL2zURkC40MqqZct2FCODoi1ep1W1wtPAEqf3PzTvOfKRNDJdC721w8NM7
+  GPMDP_LASTFM_API_SECRET:
+    secure: 9XmaZrxycp9P4P53I3gNPhlMv299Q5NSE2LaKxw7p6zlO6ZdDhrotByHb0zlqEHW
+
 
 platform:
   - x64

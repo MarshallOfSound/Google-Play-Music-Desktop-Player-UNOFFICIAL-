@@ -1,5 +1,5 @@
-export const LASTFM_API_KEY = '';
-export const LASTFM_API_SECRET = '';
+export const LASTFM_API_KEY = process.env.GPMDP_LASTFM_API_KEY;
+export const LASTFM_API_SECRET = process.env.GPMDP_LASTFM_API_SECRET;
 
 if (LASTFM_API_KEY === '' || LASTFM_API_SECRET === '') {
   console.error('####################################'); // eslint-disable-line
