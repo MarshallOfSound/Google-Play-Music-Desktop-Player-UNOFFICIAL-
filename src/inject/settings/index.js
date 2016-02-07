@@ -3,6 +3,7 @@ import './audioSelection';
 import './audioEQ';
 import './hotkeys';
 import './tray';
+import './lastFM';
 
 document.body.classList.add(process.platform);
 
@@ -26,7 +27,8 @@ const redrawTheme = () => {
   const input = `[theme] .input-field input[type=text]:focus + label {color:${color};}
                   [theme] .input-field input[type=text]:focus {border-bottom-color:${color};
                                                               box-shadow: 0 1px 0 0 ${color};}`;
-  style.html(text + back + checkbox + slider + input);
+  const button = `[theme] .btn{background:${color}}`;
+  style.html(text + back + checkbox + slider + input + button);
 };
 
 redrawTheme();

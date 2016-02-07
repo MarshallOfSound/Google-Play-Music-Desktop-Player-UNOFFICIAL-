@@ -5,3 +5,4 @@ import './customTheme';
 import './desktopSettings';
 import './errorHandler';
 import './tray';
+import './lastFM';
