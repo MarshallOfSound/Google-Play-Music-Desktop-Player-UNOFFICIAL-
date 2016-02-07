@@ -53,6 +53,7 @@ import { handleStartupEvent } from './squirrel';
     // and load the index.html of the app.
     mainWindow.loadURL(`file://${__dirname}/public_html/index.html`);
     require('./main/features');
+    require('./old_win32');
 
     // Emitted when the window is closed.
     mainWindow.on('closed', () => {
