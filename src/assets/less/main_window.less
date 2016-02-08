@@ -64,6 +64,7 @@ html, body {
   .embedded-player-container {
     flex: 1;
     background: @grey;
+    position: relative;
 
     .embedded-player {
       height: calc(~"100vh -" (@title-bar-height + @border-width * 2));
@@ -81,4 +82,13 @@ html, body {
   margin: (@border-width - 0.05em);
   margin-top: @border-width + @title-bar-height;
   top: 0;
+}
+
+.drag-handle-large {
+  position: absolute;
+  top: 10px;
+  left: 7px;
+  height: 60%;
+  width: calc(~"100% - 14px");
+  display: block;
 }

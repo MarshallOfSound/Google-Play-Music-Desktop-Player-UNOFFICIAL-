@@ -1,0 +1,23 @@
+@import "_colors.less";
+@import "_variables.less";
+
+[mini] {
+  .window-border {
+    border-top-width: @border-width;
+
+    .title-bar {
+      display: none;
+    }
+
+    .drag-handle-large {
+      display: block !important;
+      -webkit-app-region: drag;
+    }
+
+    .embedded-player-container {
+      .embedded-player {
+        height: calc(~"100vh -" (@border-width * 2));
+      }
+    }
+  }
+}

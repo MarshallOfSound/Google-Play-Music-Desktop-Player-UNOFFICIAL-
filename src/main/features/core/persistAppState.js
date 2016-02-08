@@ -1,9 +1,20 @@
 const mainWindows = WindowManager.getAll('main');
 const mainWindow = mainWindows[0];
 
+let mini = false;
+Emitter.on('mini', (event, state) => {
+  mini = state.state;
+});
+
 const _save = () => {
-  Settings.set('position', mainWindow.getPosition());
-  Settings.set('size', mainWindow.getSize());
+  if (!mini) {
+    Settings.set('position', mainWindow.getPosition());
+    Settings.set('size', mainWindow.getSize());
+  } else {
+    const dimension = Math.max(...mainWindow.getSize());
+    mainWindow.setSize(dimension, dimension);
+    Emitter.sendToGooglePlayMusic('set:zoom', dimension / 310);
+  }
 };
 
 mainWindow.on('move', _save);
