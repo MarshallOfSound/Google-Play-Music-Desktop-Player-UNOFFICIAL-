@@ -6,3 +6,4 @@ import './desktopSettings';
 import './errorHandler';
 import './tray';
 import './lastFM';
+import './autoUpdater';
