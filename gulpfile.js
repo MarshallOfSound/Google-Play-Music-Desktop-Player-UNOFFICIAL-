@@ -7,6 +7,7 @@ const cssmin = require('gulp-cssmin');
 const concat = require('gulp-concat');
 const packager = require('electron-packager');
 const spawn = require('child_process').spawn;
+const replace = require('gulp-replace');
 
 const grunt = require('gulp-grunt');
 
@@ -88,6 +89,9 @@ gulp.task('transpile', ['clean-internal'], () => {
       presets: ['es2015'],
     }))
     .on('error', (err) => { console.error(err); }) // eslint-disable-line
+    .pipe(replace(/process\.env\.(.+)\;/gi, (envCall, envKey) => {
+      return `'${process.env[envKey]}'`;
+    }))
     .pipe(gulp.dest('./build/'));
 });
 
