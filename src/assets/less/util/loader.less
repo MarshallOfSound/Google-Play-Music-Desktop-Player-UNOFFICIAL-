@@ -9,10 +9,15 @@
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 1;
+  opacity: 0;
   transition: opacity 0.4s linear;
   max-height: 100vh;
   overflow: hidden;
+
+  [loading] & {
+    opacity: 1;
+    z-index: 10;
+  }
 
   &:before {
     content:'';

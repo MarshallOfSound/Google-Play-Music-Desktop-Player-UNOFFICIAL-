@@ -72,6 +72,10 @@ html, body {
       transition: opacity 0.4s linear;
       position: relative;
       z-index: 2;
+
+      [loading] & {
+        opacity: 0;
+      }
     }
   }
 }
