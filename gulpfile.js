@@ -52,7 +52,8 @@ const cleanGlob = (glob) => {
 };
 
 gulp.task('clean', cleanGlob(['./build', './dist']));
-gulp.task('clean-dist', cleanGlob('./dist/**/*'));
+gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
+gulp.task('clean-dist-darwin', cleanGlob(`./dist/${packageJSON.productName}-darwin-ia32`));
 gulp.task('clean-external', cleanGlob('./build/external.js'));
 gulp.task('clean-material', cleanGlob('./build/assets/material'));
 gulp.task('clean-utility', cleanGlob('./build/assets/util'));
@@ -123,7 +124,7 @@ gulp.task('watch', ['build'], () => {
   gulp.watch(paths.less, ['less']);
 });
 
-gulp.task('package:win', ['clean-dist', 'build'], (done) => {
+gulp.task('package:win', ['clean-dist-win', 'build'], (done) => {
   packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), done);
 });
 
@@ -131,7 +132,7 @@ gulp.task('make:win', ['package:win'], (done) => {
   grunt.tasks()['grunt-build:win32'](done);
 });
 
-gulp.task('package:darwin', ['clean-dist', 'build'], (done) => {
+gulp.task('package:darwin', ['clean-dist-darwin', 'build'], (done) => {
   packager(_.extend({}, defaultPackageConf, { platform: 'darwin' }), done);
 });
 
