@@ -7,6 +7,7 @@ const cssmin = require('gulp-cssmin');
 const concat = require('gulp-concat');
 const packager = require('electron-packager');
 const spawn = require('child_process').spawn;
+const exec = require('child_process').exec;
 const replace = require('gulp-replace');
 
 const grunt = require('gulp-grunt');
@@ -125,11 +126,25 @@ gulp.task('watch', ['build'], () => {
 });
 
 gulp.task('package:win', ['clean-dist-win', 'build'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), done);
+  packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), () => {
+    setTimeout(() => {
+      exec(`signtool sign /a /fd sha1 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe"`, {}, () => {
+        exec(`signtool sign /a /fd sha256 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe"`, {}, () => {
+          done();
+        });
+      });
+    }, 1000);
+  });
 });
 
 gulp.task('make:win', ['package:win'], (done) => {
-  grunt.tasks()['grunt-build:win32'](done);
+  grunt.tasks()['grunt-build:win32'](() => {
+    exec(`signtool sign /a /fd sha1 /tr "http://timestamp.geotrust.com/tsa" /v "dist/win32/${packageJSON.productName}Setup.exe"`, {}, () => {
+      exec(`signtool sign /a /fd sha256 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/win32/${packageJSON.productName}Setup.exe"`, {}, () => {
+        done();
+      });
+    });
+  });
 });
 
 gulp.task('package:darwin', ['clean-dist-darwin', 'build'], (done) => {
