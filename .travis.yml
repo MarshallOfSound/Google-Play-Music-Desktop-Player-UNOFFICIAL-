@@ -15,4 +15,5 @@ install:
 
 script:
   - npm run test
+  - ./sig/import.sh
   - npm run package:darwin
