@@ -32,7 +32,6 @@ test_script:
 
 build_script:
 - cmd: npm run make:win
-- cmd: npm run release:win
 
 artifacts:
   - path: 'dist\win32\Google Play Music Desktop PlayerSetup.exe'
