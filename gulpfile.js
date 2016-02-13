@@ -148,7 +148,7 @@ gulp.task('make:win', ['package:win'], (done) => {
 });
 
 gulp.task('package:darwin', ['clean-dist-darwin', 'build'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'darwin' }), done);
+  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', sign: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' }), done);
 });
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {

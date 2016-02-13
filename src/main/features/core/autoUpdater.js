@@ -17,9 +17,10 @@ try {
   });
 
   autoUpdater.on('update-not-available', () => {
+    Emitter.sendToAll('update:available');
     setTimeout(() => {
       autoUpdater.checkForUpdates();
-    }, 300);
+    }, 300000);
   });
 
   let update = false;

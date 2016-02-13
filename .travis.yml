@@ -16,4 +16,3 @@ install:
 script:
   - npm run test
   - npm run package:darwin
-  - npm run release:darwin
