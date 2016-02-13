@@ -59,6 +59,7 @@
     "mocha": "^2.3.4",
     "mocha-sinon": "^1.1.5",
     "nucleus-player-releaser": "^1.0.1",
+    "request": "^2.69.0",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0"
   }
