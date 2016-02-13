@@ -1,0 +1,24 @@
+{
+  "name": "gpmdp-site",
+  "version": "0.0.0",
+  "description": "The site for GPMDP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://marshallofsound@github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-.git"
+  },
+  "author": "Samuel Attard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues"
+  },
+  "homepage": "https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.0.5",
+    "uikit": "^2.24.3"
+  }
+}
