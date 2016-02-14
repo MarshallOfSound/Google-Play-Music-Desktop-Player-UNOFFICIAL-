@@ -1,4 +1,5 @@
-# Nucleus-Player
+Google Play Music™ Desktop Player
+=========================
 
 [![Join the chat at https://gitter.im/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Github All Releases](https://img.shields.io/github/downloads/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/total.svg)](https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases)
@@ -6,71 +7,116 @@
  Windows: [![Build status](https://ci.appveyor.com/api/projects/status/clg5vclqyltff7hg/branch/master?svg=true)](https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial/branch/master)  
  Max OSX: [![Build Status](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-.svg?branch=dev/3.0.0)](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-)
 
+![](http://samuel.ninja/img/gpmdp_screen.gif)
 
-A beautiful cross platform Desktop Player for Google Play Music
+Run Google Play Music as a stand alone Desktop app.  Never again will you have to hunt through your tabs to pause your music, or stop listening to your favourite song because Chrome is guzzling up all your RAM..
 
-## WARNING
+Developed by [Samuel Attard][1].
 
-This repository is not usable in it's current state, it is currently in rapid
-development and therefore I can not guarantee the stability of master, force
-pushes may occur and breaking changes may happen all the time.  Stay on your
-toes :)
+No affiliation with Google. Google Play is a trademark of Google Inc.
 
-## FAQ
+[1]: https://www.samuelattard.com
 
-### So what is this???
+Download
+---------
+Head over to our website http://www.googleplaymusicdesktopplayer.com to download the latest release for your platform.
 
-This project is designed to close the gap between the existing Desktop Player
-options for Google Play Music.  At the moment they are fragments, different,
-support a plethora of different features and are extremely prone to bugs.  This
-repo is designed to be as low maintenance and as cross-platform as possible.
+OS Support
+------------
 
-### What OS's do you support?
+* Windows 7 or later
+* Mac OSX 10.8.0 or later
+* Ubuntu 14.04 or later
 
-All the major ones, we have automatic CI running for [Mac OSX (Travis CI)][1]
-and [Windows (Appveyor)][2].  The application can also be built for Linux
-platforms but we do
-not currently have CI set up targeting those platforms.
+**Note: We do not current have automated builds for Ubuntu (PR's are welcome)**
 
-[1]: https://travis-ci.org/MarshallOfSound/Nucleus-Player
-[2]: https://ci.appveyor.com/project/MarshallOfSound/nucleus-player
+Features
+--------
 
-### When will this hit a proper release target?
+* Supports media keys (play, pause, stop, next, previous)
+* [last.fm](https://www.last.fm) Scrobbling and Now Playing support!
+* Desktop notifications on track change
+* A simplistic mini player
+* Customizable Dark theme
+* Task bar media controls (media controls embedded into the taskbar) *Windows only*
+* Smooth scrolling and overlay scrollbars for a nicer User Experience
+* [Interface for external applications](docs/PlaybackAPI.md)
+* HTML5 Audio Support - No more Adobe Flash Player :+1:
+* Built in audio equalizer - Make it sounds how you like it
+* Minimize to task bar for background music playing
+* Customizable hotkeys, no worries if you don't have media keys.  Choose your own shortcuts
+* Choose your audio output device from within the player
+* And a whole lot more coming soon!
 
-There is currently an [issue][3] that outlines the tasks left to complete before
-a minimum first release can be reached.
+Development
+-----------
 
-[3]: https://github.com/MarshallOfSound/Nucleus-Player/issues/1
-
-### How can I get involved?
-
-Fork the repo, take a look at the issue mentioned above and tackle one of the
-release criteria. When you get it working, write some epic tests and PR it in
-to the main repo.
-
-## Development Guide
-
-### Getting Started
-
-So to get started we need to clone the repo and install all the dependencies
+To get started just pull the repo and run the following
 
 ```bash
-git clone https://github.com/[Your Username Here]/Nucleus-Player.git
 npm install
-```
-
-From there to run the app for development you simply run in two separate
-terminals.
-
-```bash
-npm run watch
-```
-
-**AND**
-
-```bash
 npm start
 ```
 
-The first command runs an initial build of the source code and then starts a
-watch task to rebuild it on change.  The second command starts the app.
+To build the installers / release packages you need to run, you can only build a platforms installer from that platform.
+```bash
+# Windows
+npm run make:win
+
+# Mac OSX
+npm run make:darwin
+```
+
+All releases will be signing with my Code Signing Certificates (Authenticode on Windows and Codesign on OSX)
+
+Contributing
+------------
+
+If you find something wrong (theming issues, app crashes) please report them as an issue.  
+If you think you can add something cool or fix a problem, fork the repo and make a pull request :D
+
+**NOTE:** Some of the functionality in this app has been extracted into smaller submodules. In particular
+* Google Play Music Interaction - https://github.com/gmusic-utils/gmusic.js
+* Theming - https://github.com/gmusic-utils/gmusic-theme.js
+* Mini Player - https://github.com/MarshallOfSound/gmusic-mini-player.js
+
+Dev Requirements
+----------------
+* Node.js (Recommend `4.2.x`)
+
+Continuous Integration
+------------------------
+
+We run tests and generate signed installers on two CI platforms
+* Windows --> [AppVeyor][2]
+* OSX --> [Travis CI][3]
+
+You can download the latest signed installers for Windows from the artifacts section of AppVeyor  
+You can download the latest signed package for OSX from the URL at the bottom of the build log on Travis CI
+
+[2]: https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial
+[3]: https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
+
+License
+-------
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Samuel Attard
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
