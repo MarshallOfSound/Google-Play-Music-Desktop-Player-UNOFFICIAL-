@@ -14,7 +14,4 @@ install:
   - npm install
 
 script:
-  - npm run test
-  - ./sig/import.sh
-  - npm run make:darwin
-  - node ./sig/publish.js
+  - npm run test && ./sig/import.sh && npm run make:darwin && node ./sig/publish.js
