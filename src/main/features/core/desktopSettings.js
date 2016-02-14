@@ -14,9 +14,6 @@ export const showDesktopSettings = () => {
     nodeIntegration: true,
     icon: path.resolve(`${__dirname}/../../../assets/img/main.png`),
     title: 'Settings',
-    'web-preferences': {
-      preload: path.resolve(`${__dirname}/../../../inject/generic.js`),
-    },
   });
   desktopSettings.loadURL(`file://${__dirname}/../../../public_html/desktop_settings.html`);
 

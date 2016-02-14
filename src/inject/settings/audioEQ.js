@@ -29,3 +29,9 @@ _.forEach(sliders, (slider, index) => {
     });
   });
 });
+
+document.querySelector('.reset-eq').addEventListener('click', () => {
+  _.forEach(sliders, (slider) => {
+    slider.noUiSlider.set(100);
+  });
+});
