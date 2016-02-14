@@ -13,5 +13,9 @@ install:
   - nvm use 4.2.2
   - npm install
 
+branches:
+  except:
+    - website
+
 script:
   - npm run test && ./sig/import.sh && npm run make:darwin && node ./sig/publish.js

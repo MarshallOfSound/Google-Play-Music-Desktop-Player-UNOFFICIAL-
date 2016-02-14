@@ -10,6 +10,9 @@ environment:
   GPMDP_LASTFM_API_SECRET:
     secure: 9XmaZrxycp9P4P53I3gNPhlMv299Q5NSE2LaKxw7p6zlO6ZdDhrotByHb0zlqEHW
 
+branches:
+  except:
+  - website
 
 platform:
   - x64
