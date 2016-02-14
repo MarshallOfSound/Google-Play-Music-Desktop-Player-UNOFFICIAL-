@@ -6,6 +6,7 @@ import generateBrowserConfig from './main/configureBrowser';
 import EmitterClass from './main/utils/Emitter';
 import SettingsClass from './main/utils/Settings';
 import WindowManagerClass from './main/utils/WindowManager';
+import PlaybackAPIClass from './main/utils/PlaybackAPI';
 
 import { handleStartupEvent } from './squirrel';
 
@@ -18,6 +19,7 @@ import { handleStartupEvent } from './squirrel';
   global.Emitter = new EmitterClass();
   global.WindowManager = new WindowManagerClass();
   global.Settings = new SettingsClass();
+  global.PlaybackAPI = new PlaybackAPIClass();
 
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
@@ -61,6 +63,7 @@ import { handleStartupEvent } from './squirrel';
       // in an array if your app supports multi windows, this is the time
       // when you should delete the corresponding element.
       mainWindow = null;
+      PlaybackAPI.reset();
     });
   });
 })();

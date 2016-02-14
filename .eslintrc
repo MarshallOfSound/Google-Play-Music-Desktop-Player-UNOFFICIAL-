@@ -5,6 +5,7 @@
     "Settings": true,
     "Emitter": true,
     "WindowManager": true,
+    "PlaybackAPI": true,
     "GPM": true,
     "$": true
   },
