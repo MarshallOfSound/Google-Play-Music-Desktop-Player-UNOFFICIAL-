@@ -7,6 +7,10 @@ const MINI_SIZE = 310;
 let oldSize;
 
 window.wait(() => {
+  if (Settings.get('miniAlwaysShowSongInfo', false)) {
+    document.body.setAttribute('controls', 'controls');
+  }
+
   window.GPM.mini.on('enable', () => {
     Emitter.fire('mini', { state: true });
     oldSize = remote.getCurrentWindow().getSize();
@@ -14,6 +18,7 @@ window.wait(() => {
     mainWindow.setMaximumSize(MINI_SIZE, MINI_SIZE);
     webContents.executeJavaScript('document.body.setAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
+    remote.getCurrentWindow().setAlwaysOnTop(Settings.get('miniAlwaysOnTop', false));
   });
 
   window.GPM.mini.on('disable', () => {
@@ -22,6 +27,7 @@ window.wait(() => {
     mainWindow.setSize(...oldSize);
     webContents.executeJavaScript('document.body.removeAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
+    remote.getCurrentWindow().setAlwaysOnTop(false);
   });
 });
 
@@ -33,4 +39,15 @@ Emitter.on('set:zoom', (event, factor) => {
   nextZoom = setTimeout(() => {
     remote.getCurrentWebContents().setZoomFactor(factor);
   }, 5);
+});
+
+Emitter.on('miniAlwaysShowSongInfo', (event, state) => {
+  if (state.state) {
+    document.body.setAttribute('controls', 'controls');
+  } else {
+    document.body.removeAttribute('controls');
+  }
+});
+Emitter.on('miniAlwaysOnTop', (event, state) => {
+  remote.getCurrentWindow().setAlwaysOnTop(state.state);
 });

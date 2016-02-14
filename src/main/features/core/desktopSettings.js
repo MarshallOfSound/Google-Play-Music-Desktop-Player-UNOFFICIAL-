@@ -28,4 +28,15 @@ Emitter.on('window:settings', () => {
 
 Emitter.on('settings:set', (event, details) => {
   Settings.set(details.key, details.value);
+  // DEV: React to settings change
+  switch (details.key) {
+    case 'miniAlwaysShowSongInfo':
+      Emitter.sendToGooglePlayMusic('miniAlwaysShowSongInfo', { state: details.value });
+      break;
+    case 'miniAlwaysOnTop':
+      Emitter.sendToGooglePlayMusic('miniAlwaysOnTop', { state: details.value });
+      break;
+    default:
+      break;
+  }
 });

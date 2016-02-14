@@ -4,6 +4,7 @@ import './audioEQ';
 import './hotkeys';
 import './tray';
 import './lastFM';
+import './mini'
 
 document.body.classList.add(process.platform);
 
