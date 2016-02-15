@@ -1,10 +1,13 @@
 import _ from 'lodash';
 
-const hide = (elementSelector) => {
+const hide = (elementSelector, kill = false) => {
   const nodeList = document.querySelectorAll(elementSelector);
   _.forEach(nodeList, (node) => {
     const element = node;
     element.style.display = 'none';
+    if (kill) {
+      element.remove();
+    }
   });
 };
 
@@ -31,6 +34,9 @@ window.wait(() => {
   // Settings options that won't work
   hide('[data-action="upload-music"]');
   hide('[data-action="help-and-feedback"]');
+
+  hide('.upload-dialog-bg', true);
+  hide('.upload-dialog', true);
 
   const dSettings = document.createElement('a');
   dSettings.setAttribute('data-type', 'desktopsettings');

@@ -14,6 +14,16 @@ const waitForBody = setInterval(() => {
       document.body.setAttribute('theme', 'on');
     }
     require('electron').remote.getCurrentWindow().show();
+
+    document.addEventListener('dragover', (event) => {
+      event.preventDefault();
+      return false;
+    }, false);
+
+    document.addEventListener('drop', (event) => {
+      event.preventDefault();
+      return false;
+    }, false);
   }
 }, 10);
 
