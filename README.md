@@ -49,9 +49,9 @@ Features
 
 Integrating with GPMDP from External Applications
 -------------------------------------------------
-There are two methods you can use to integrate with GPMDP from an external application.
-1. [JSON Interface](docs/PlaybackAPI.md)
-2. [Web Socket Interface](docs/PlaybackAPI_WebSocket.md)
+There are two methods you can use to integrate with GPMDP from an external application.  
+1. [JSON Interface](docs/PlaybackAPI.md)  
+2. [Web Socket Interface](docs/PlaybackAPI_WebSocket.md)  
 
 Both are documented in the [Docs](docs) folder.  For one time read access you should
 probably use the `JSON` interface.  For an application that requires continuous
