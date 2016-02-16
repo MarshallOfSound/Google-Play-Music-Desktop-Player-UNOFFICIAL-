@@ -23,7 +23,10 @@ window.wait(() => {
 
   window.GPM.mini.on('disable', () => {
     Emitter.fire('mini', { state: false });
-    mainWindow.setMaximumSize(0, 0);
+    // DEV: Set max size to be massive
+    //      Same reason as specified in Electron src
+    //        --> https://github.com/atom/electron/blob/master/atom/browser/native_window_views.cc
+    mainWindow.setMaximumSize(99999999, 999999999);
     mainWindow.setSize(...oldSize);
     webContents.executeJavaScript('document.body.removeAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
