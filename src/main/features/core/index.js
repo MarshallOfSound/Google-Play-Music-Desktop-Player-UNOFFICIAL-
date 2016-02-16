@@ -7,3 +7,4 @@ import './errorHandler';
 import './tray';
 import './lastFM';
 import './autoUpdater';
+import './websocketAPI';

@@ -5,6 +5,7 @@ import './hotkeys';
 import './tray';
 import './lastFM';
 import './mini';
+import './general';
 
 document.body.classList.add(process.platform);
 

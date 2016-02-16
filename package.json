@@ -27,7 +27,8 @@
     "lodash": "^4.0.0",
     "md5": "^2.0.0",
     "mkdirp": "^0.5.1",
-    "semver": "^5.1.0"
+    "semver": "^5.1.0",
+    "ws": "^1.0.1"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",

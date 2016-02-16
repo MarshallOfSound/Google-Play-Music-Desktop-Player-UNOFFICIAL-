@@ -17,6 +17,8 @@ class PlaybackAPI {
       this._save();
     }
 
+    this._ev = {};
+
     this._hook();
   }
 
@@ -28,6 +30,10 @@ class PlaybackAPI {
     Emitter.on('playback:isPlaying', this.setPlaying.bind(this, true));
     Emitter.on('playback:isPaused', this.setPlaying.bind(this, false));
     Emitter.on('playback:isStopped', this.setPlaying.bind(this, false));
+
+    Emitter.on('change:playback-time', (event, timeObj) => {
+      this.setTime(timeObj.current, timeObj.total);
+    });
   }
 
   reset() {
@@ -39,12 +45,21 @@ class PlaybackAPI {
         album: null,
         albumArt: null,
       },
+      time: {
+        current: 0,
+        total: 0,
+      },
     };
     this._save();
   }
 
+  _save() {
+    fs.writeFileSync(this.PATH, JSON.stringify(this.data));
+  }
+
   setPlaying(isPlaying) {
     this.data.playing = isPlaying;
+    this._fire('change:state', isPlaying);
     this._save();
   }
 
@@ -55,11 +70,42 @@ class PlaybackAPI {
       album,
       albumArt,
     };
+    this._fire('change:song', this.data.song);
     this._save();
   }
 
-  _save() {
-    fs.writeFileSync(this.PATH, JSON.stringify(this.data));
+  setTime(current, total) {
+    const totalTime = total || this.data.time.total;
+    this.data.time = {
+      current,
+      total: totalTime,
+    };
+    this._fire('change:time', this.data.time);
+    this._save();
+  }
+
+  isPlaying() {
+    return this.data.playing;
+  }
+
+  currentSong() {
+    return this.data.playing ? this.data.song : null;
+  }
+
+  currentTime() {
+    return this.data.time;
+  }
+
+  on(what, fn) {
+    this._ev[what] = this._ev[what] || [];
+    this._ev[what].push(fn);
+  }
+
+  _fire(what, arg) {
+    this._ev[what] = this._ev[what] || [];
+    this._ev[what].forEach((fn) => {
+      fn(arg);
+    });
   }
 }
 
