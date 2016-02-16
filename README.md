@@ -40,13 +40,24 @@ Features
 * Customizable Dark theme
 * Task bar media controls (media controls embedded into the taskbar) *Windows only*
 * Smooth scrolling and overlay scrollbars for a nicer User Experience
-* [Interface for external applications](docs/PlaybackAPI.md)
 * HTML5 Audio Support - No more Adobe Flash Player :+1:
 * Built in audio equalizer - Make it sounds how you like it
 * Minimize to task bar for background music playing
 * Customizable hotkeys, no worries if you don't have media keys.  Choose your own shortcuts
 * Choose your audio output device from within the player
 * And a whole lot more coming soon!
+
+Integrating with GPMDP from External Applications
+-------------------------------------------------
+There are two methods you can use to integrate with GPMDP from an external application.
+1. [JSON Interface](docs/PlaybackAPI.md)
+2. [Web Socket Interface](docs/PlaybackAPI_WebSocket.md)
+
+Both are documented in the [Docs](docs) folder.  For one time read access you should
+probably use the `JSON` interface.  For an application that requires continuous
+updates as to the state of GPMDP or needs to control GPMDP you should use theme
+`Web Socket` interface.
+
 
 Development
 -----------
