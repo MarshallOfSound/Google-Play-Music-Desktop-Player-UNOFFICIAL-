@@ -13,7 +13,7 @@ class WindowManager {
     const newID = Symbol();
     this.windows[newID] = window;
     this.IDMap[window.id] = newID;
-    window.on('close', () => {
+    window.on('closed', () => {
       delete this.windows[newID];
     });
     window.on('focus', () => {
