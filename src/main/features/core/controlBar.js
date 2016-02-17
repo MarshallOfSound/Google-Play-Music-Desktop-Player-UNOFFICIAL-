@@ -17,7 +17,7 @@ Emitter.on('window:close', (event, windowID) => {
 
 const mainWindow = WindowManager.getAll('main')[0];
 mainWindow.on('close', (event) => {
-  if (Settings.get('minToTray', true)) {
+  if (Settings.get('minToTray', true) && !global.quiting) {
     mainWindow.minimize();
     mainWindow.setSkipTaskbar(true);
     event.preventDefault();

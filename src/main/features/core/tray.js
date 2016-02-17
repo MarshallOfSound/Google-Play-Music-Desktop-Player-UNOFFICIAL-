@@ -11,7 +11,7 @@ const contextMenu = Menu.buildFromTemplate([
   { label: 'Show', click: () => { mainWindow.setSkipTaskbar(false); mainWindow.show(); } },
   { label: 'Settings', click: () => { showDesktopSettings(); } },
   { type: 'separator' },
-  { label: 'Quit', click: () => { app.quit(); } },
+  { label: 'Quit', click: () => { global.quiting = true; app.quit(); } },
 ]);
 appIcon.setToolTip('Google Play Music');
 appIcon.setContextMenu(contextMenu);
