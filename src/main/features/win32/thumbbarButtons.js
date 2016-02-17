@@ -25,6 +25,6 @@ browser.once('focus', () => {
   resetThumbbarButtons(false);
 });
 
-Emitter.on('playback:isStopped', resetThumbbarButtons.bind(this, false));
-Emitter.on('playback:isPaused', resetThumbbarButtons.bind(this, false));
-Emitter.on('playback:isPlaying', resetThumbbarButtons.bind(this, true));
+PlaybackAPI.on('change:state', (newState) => {
+  resetThumbbarButtons(newState);
+});
