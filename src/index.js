@@ -66,4 +66,8 @@ import { handleStartupEvent } from './squirrel';
       PlaybackAPI.reset();
     });
   });
+
+  app.on('before-quit', () => {
+    global.quiting = true;
+  });
 })();
