@@ -8,3 +8,4 @@ import './tray';
 import './lastFM';
 import './autoUpdater';
 import './websocketAPI';
+import './lyrics';

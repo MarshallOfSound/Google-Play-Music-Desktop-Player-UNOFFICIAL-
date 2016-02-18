@@ -49,6 +49,7 @@ class PlaybackAPI {
         current: 0,
         total: 0,
       },
+      songLyrics: null,
     };
     this._save();
   }
@@ -70,7 +71,15 @@ class PlaybackAPI {
       album,
       albumArt,
     };
+    this.data.songLyrics = null;
     this._fire('change:song', this.data.song);
+    this._fire('change:lyrics', this.data.songLyrics);
+    this._save();
+  }
+
+  setPlaybackSongLyrics(lyricString) {
+    this.data.songLyrics = lyricString;
+    this._fire('change:lyrics', this.data.songLyrics);
     this._save();
   }
 
