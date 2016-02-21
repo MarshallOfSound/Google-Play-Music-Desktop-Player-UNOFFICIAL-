@@ -1,4 +1,4 @@
-import { shell } from 'electron';
+import { remote } from 'electron';
 
 Emitter.on('error', (event, details) => {
   const toast = document.createElement('paper-toast');
@@ -28,7 +28,7 @@ ${details.error.stack.replace(/(?:\r\n|\r|\n)/g, '%0A')}%0A
 \`\`\`
 %0A
 This issue was created automatically inside the \`uncaughtException\` handler`;
-    shell.openExternal(`https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues/new?title=${title}&body=${body}`); // eslint-disable-line
+    remote.shell.openExternal(`https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues/new?title=${title}&body=${body}`); // eslint-disable-line
     toast.hide();
   });
   toast.appendChild(issueButton);
