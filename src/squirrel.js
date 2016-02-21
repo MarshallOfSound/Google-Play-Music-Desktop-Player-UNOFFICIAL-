@@ -1,11 +1,22 @@
 import { app } from 'electron';
+import path from 'path';
+import { spawn } from 'child_process';
 
-export const handleStartupEvent = () => {
+const run = (args, done) => {
+  const updateExe = path.resolve(path.dirname(process.execPath), '..', 'Update.exe');
+  spawn(updateExe, args, {
+    detached: true,
+  }).on('close', done);
+};
+
+const handleStartupEvent = () => {
   if (process.platform !== 'win32') {
     return false;
   }
 
   const squirrelCommand = process.argv[1];
+
+  const target = path.basename(process.execPath);
 
   switch (squirrelCommand) {
     case '--squirrel-install':
@@ -17,18 +28,13 @@ export const handleStartupEvent = () => {
       // - Add your .exe to the PATH
       // - Write to the registry for things like file associations and
       //   explorer context menus
-
-      // Always quit when done
-      app.quit();
-
+      run(['--createShortcut=' + target + ''], app.quit);
       return true;
     case '--squirrel-uninstall':
       // Undo anything you did in the --squirrel-install and
       // --squirrel-updated handlers
 
-      // Always quit when done
-      app.quit();
-
+      run(['--removeShortcut=' + target + ''], app.quit);
       return true;
     case '--squirrel-obsolete':
       // This is called on the outgoing version of your app before
@@ -40,3 +46,5 @@ export const handleStartupEvent = () => {
       return false;
   }
 };
+
+export default handleStartupEvent;

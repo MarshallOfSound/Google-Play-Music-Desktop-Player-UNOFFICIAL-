@@ -43,6 +43,13 @@ const defaultPackageConf = {
   overwrite: true,
   prune: true,
   ignore: 'dist/.*',
+  'version-string': {
+    CompanyName: 'Samuel Attard',
+    LegalCopyright: 'Copyright © 2016 Samuel Attard, All rights reserved.',
+    FileDescription: 'Google Play Music Desktop Player by Samuel Attard',
+    ProductName: 'Google Play Music Desktop Player',
+    InternalName: 'Google Play Music Desktop Player',
+  },
 };
 
 const cleanGlob = (glob) => {
@@ -139,7 +146,7 @@ gulp.task('package:win', ['clean-dist-win', 'build'], (done) => {
 
 gulp.task('make:win', ['package:win'], (done) => {
   grunt.tasks()['grunt-build:win32'](() => {
-    exec(`vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd sha1 /tr "http://timestamp.geotrust.com/tsa" /v "dist/win32/${packageJSON.productName}Setup.exe"`, {}, () => {
+    exec(`vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd sha1 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/win32/${packageJSON.productName}Setup.exe"`, {}, () => {
       exec(`vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd sha256 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/win32/${packageJSON.productName}Setup.exe"`, {}, () => {
         done();
       });

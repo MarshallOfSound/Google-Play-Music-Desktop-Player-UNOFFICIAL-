@@ -8,7 +8,7 @@ import SettingsClass from './main/utils/Settings';
 import WindowManagerClass from './main/utils/WindowManager';
 import PlaybackAPIClass from './main/utils/PlaybackAPI';
 
-import { handleStartupEvent } from './squirrel';
+import handleStartupEvent from './squirrel';
 
 (() => {
   if (handleStartupEvent()) {
