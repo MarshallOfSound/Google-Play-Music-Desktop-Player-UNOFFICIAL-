@@ -41,7 +41,7 @@ Data received in the `song` channel will have a payload in the format
   "title": "Song Title",
   "artist": "Song Artist",
   "album": "Song Album",
-  "albumArt": "URL poiting to the Album Art"
+  "albumArt": "URL pointing to the Album Art"
 }
 ```
 
