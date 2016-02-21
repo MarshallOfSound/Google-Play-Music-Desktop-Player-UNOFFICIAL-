@@ -16,14 +16,28 @@ import { handleStartupEvent } from './squirrel';
   }
 
   configureApp(app);
-  global.Emitter = new EmitterClass();
-  global.WindowManager = new WindowManagerClass();
-  global.Settings = new SettingsClass();
-  global.PlaybackAPI = new PlaybackAPIClass();
 
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
   let mainWindow = null;
+
+  // DEV: Make the app single instance
+  const shouldQuit = app.makeSingleInstance(() => {
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.focus();
+    }
+  });
+
+  if (shouldQuit) {
+    app.quit();
+    return;
+  }
+
+  global.Emitter = new EmitterClass();
+  global.WindowManager = new WindowManagerClass();
+  global.Settings = new SettingsClass();
+  global.PlaybackAPI = new PlaybackAPIClass();
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
