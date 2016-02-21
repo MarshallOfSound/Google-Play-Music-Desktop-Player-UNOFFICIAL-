@@ -19,3 +19,11 @@ branches:
 
 script:
   - npm run test && ./sig/import.sh && npm run make:darwin && node ./sig/publish.js
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/92deafd1eb3a9871497b
+    on_success: change
+    on_failure: always
+    on_start: never
