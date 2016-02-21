@@ -21,6 +21,11 @@ PlaybackAPI.on('change:time', (timeObj) => {
     }
   }
 });
+PlaybackAPI.on('change:lyrics', (newLyrics) => {
+  if (server && server.broadcast) {
+    server.broadcast('lyrics', newLyrics);
+  }
+});
 
 const enableAPI = () => {
   try {
@@ -53,6 +58,7 @@ const enableAPI = () => {
       if (PlaybackAPI.currentSong()) {
         ws.channel('song', PlaybackAPI.currentSong());
         ws.channel('time', PlaybackAPI.currentTime());
+        ws.channel('lyrics', PlaybackAPI.currentSongLyrics());
       }
     });
   } else {

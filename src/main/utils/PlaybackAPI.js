@@ -101,6 +101,10 @@ class PlaybackAPI {
     return this.data.playing ? this.data.song : null;
   }
 
+  currentSongLyrics() {
+    return this.data.playing ? this.data.songLyrics : null;
+  }
+
   currentTime() {
     return this.data.time;
   }
