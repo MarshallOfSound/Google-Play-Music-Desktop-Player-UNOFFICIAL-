@@ -29,3 +29,7 @@ Emitter.on('eq:change', (event, details) => {
 Emitter.on('audiooutput:set', (event, name) => {
   Settings.set('audiooutput', name);
 });
+
+Emitter.on('welcomed', (event, version) => {
+  Settings.set('welcomed', version);
+});
