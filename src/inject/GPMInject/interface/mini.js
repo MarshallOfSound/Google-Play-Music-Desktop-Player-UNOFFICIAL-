@@ -4,6 +4,7 @@ const mainWindow = remote.getCurrentWindow();
 const webContents = mainWindow.webContents;
 const MINI_SIZE = 310;
 
+let mini = false;
 let oldSize;
 
 window.wait(() => {
@@ -19,6 +20,7 @@ window.wait(() => {
     webContents.executeJavaScript('document.body.setAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
     remote.getCurrentWindow().setAlwaysOnTop(Settings.get('miniAlwaysOnTop', false));
+    mini = true;
   });
 
   window.GPM.mini.on('disable', () => {
@@ -31,6 +33,7 @@ window.wait(() => {
     webContents.executeJavaScript('document.body.removeAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
     remote.getCurrentWindow().setAlwaysOnTop(false);
+    mini = false;
   });
 });
 
@@ -52,5 +55,7 @@ Emitter.on('miniAlwaysShowSongInfo', (event, state) => {
   }
 });
 Emitter.on('miniAlwaysOnTop', (event, state) => {
-  remote.getCurrentWindow().setAlwaysOnTop(state.state);
+  if (mini) {
+    remote.getCurrentWindow().setAlwaysOnTop(state.state);
+  }
 });
