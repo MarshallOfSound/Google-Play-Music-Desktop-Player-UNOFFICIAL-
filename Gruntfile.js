@@ -19,6 +19,7 @@ module.exports = (grunt) => {
         // DEV: When in master we should change this to point to github raw url
         iconUrl: 'https://www.samuelattard.com/img/gpmdp_setup.ico',
         setupIcon: 'build/assets/img/main.ico',
+        loadingGif: 'build/assets/img/installing.gif',
         // DEV: After initial 3.0.0 release this should be uncommented
         // TODO: Read DEV above ^^
         // remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
