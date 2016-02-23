@@ -84,4 +84,18 @@ This channel is sent on average every 100 - 200 milliseconds.  You **will** rece
 
 ## Controlling the application
 
-### *Coming Soon*
+### All Powerful Controller
+
+You can use **ANY** method from the `gmusic-utils` library --> https://github.com/gmusic-utils/gmusic.js
+
+All you need to do is send a message to the websocket with a stringified JSON object in the form.
+
+```js
+{
+  "namespace": "playback",
+  "method": "setPlaybackTime",
+  "arguments": [10000]
+}
+```
+ Detailed object requirements
+| Attribute |

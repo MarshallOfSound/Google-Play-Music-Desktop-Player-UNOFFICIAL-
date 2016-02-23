@@ -54,6 +54,28 @@ const enableAPI = () => {
         });
       };
 
+      ws.on('message', (data) => {
+        try {
+          const command = JSON.parse(data);
+          if (command.namespace && command.method) {
+            const args = command.arguments || [];
+            if (!Array.isArray(args)) {
+              throw Error('Bad arguments');
+            }
+            Emitter.sendToGooglePlayMusic('execute:gmusic', {
+              namespace: command.namespace,
+              method: command.method,
+              args,
+            });
+          } else {
+            throw Error('Bad command');
+          }
+        } catch (err) {
+          console.log('WebSocketAPI Error: Invalid message recieved'); // eslint-disable-line
+          console.log(data); // eslint-disable-line
+        }
+      });
+
       ws.channel('playState', PlaybackAPI.isPlaying());
       if (PlaybackAPI.currentSong()) {
         ws.channel('song', PlaybackAPI.currentSong());

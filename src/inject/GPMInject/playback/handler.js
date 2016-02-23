@@ -39,4 +39,11 @@ window.wait(() => {
       lastScrobble = currentSong;
     }
   });
+
+  Emitter.on('execute:gmusic', (event, cmd) => {
+    if (window.GPM && GPM[cmd.namespace] && GPM[cmd.namespace][cmd.method]
+      && typeof GPM[cmd.namespace][cmd.method] === 'function') {
+      GPM[cmd.namespace][cmd.method].apply(GPM, cmd.args || []);
+    }
+  });
 });
