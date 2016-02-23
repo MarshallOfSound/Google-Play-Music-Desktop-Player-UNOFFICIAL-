@@ -22,3 +22,9 @@ appIcon.on('double-click', () => {
 
 // DEV: Keep the icon in the global scope or it gets garbage collected........
 global.appIcon = appIcon;
+
+app.on('before-quit', () => {
+  appIcon.destroy();
+  delete global.appIcon;
+  appIcon = null;
+});
