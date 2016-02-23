@@ -35,7 +35,7 @@ class Emitter {
       if (details && details.event) {
         if (view.isLoading()) {
           let once = false;
-          view.addEventListener('dom-ready', () => {
+          view.addEventListener('did-stop-loading', () => {
             if (!once) {
               once = true;
               view.send(details.event, details.details);
