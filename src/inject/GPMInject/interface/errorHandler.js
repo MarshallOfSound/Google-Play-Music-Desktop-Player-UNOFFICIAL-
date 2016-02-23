@@ -12,7 +12,7 @@ Emitter.on('error', (event, details) => {
   issueButton.style.marginLeft = '10px';
   issueButton.style.cursor = 'pointer';
   issueButton.addEventListener('click', (e) => {
-    const title = 'Uncaught Exception: ' + details.error.message;
+    const title = 'Uncaught Exception: ' + details.error.message.split(/\n/g)[0].substring(0, 100);
     const body = `
 An uncaught exception was reported.  %0A
 %23%23%23%23 Info:%0A
@@ -22,9 +22,10 @@ An uncaught exception was reported.  %0A
 **Time:** ${new Date()}%0A
 %0A
 %23%23%23%23 Error:%0A
-*${details.error.message}*%0A
+*${details.error.message.split(/\n/g)[0].substring(0, 100)}*%0A
 \`\`\`js%0A
-${details.error.stack.replace(/(?:\r\n|\r|\n)/g, '%0A')}%0A
+${details.error.stack.replace(/(?:\r\n|\r|\n)/g, '%0A').substring(0, 1200)}
+${details.error.stack.length > 1200 ? '%0A...Some of the stack is missing' : ''}%0A
 \`\`\`
 %0A
 This issue was created automatically inside the \`uncaughtException\` handler`;
