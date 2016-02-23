@@ -10,6 +10,7 @@ PlaybackAPI.on('change:song', (song) => {
       let lyrics = (/('|")lyricbox('|")>.+<\/script>(.+)<!--/g.exec(html)[3]);
       lyrics = lyrics.replace(/<br \/>/gi, '\n');
       lyrics = decoder.decode(lyrics);
+      PlaybackAPI.setPlaybackSongLyrics(lyrics);
     })
     .catch(() => {
       console.log('Lyrics parsing failed'); // eslint-disable-line
