@@ -5,6 +5,7 @@ Emitter.on('update:available', () => {
 });
 
 window.addEventListener('load', () => {
+  if (!window.$) return;
   $('#confirmUpdateButton').click(() => {
     Emitter.fire('update:trigger');
   });
