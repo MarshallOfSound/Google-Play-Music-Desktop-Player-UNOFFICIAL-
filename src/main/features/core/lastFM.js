@@ -81,6 +81,13 @@ export const getLastFMSession = () => {
   });
 };
 
+const resetLastFM = () => {
+  Settings.set('lastFMKey', null);
+  Settings.set('lastFMUser', null);
+  delete global.lastFMSession;
+  getLastFMSession();
+};
+
 export const updateNowPlaying = (track, artist, album) => {
   if (Settings.get('lastFMKey')) {
     getLastFMSession()
@@ -89,8 +96,10 @@ export const updateNowPlaying = (track, artist, album) => {
           track,
           artist,
           album,
-        });
-      });
+        })
+        .on('error', resetLastFM);
+      })
+      .catch(resetLastFM);
   }
 };
 
@@ -103,8 +112,10 @@ export const updateScrobble = (track, artist, album, timestamp) => {
           artist,
           album,
           timestamp,
-        });
-      });
+        })
+        .on('error', resetLastFM);
+      })
+      .catch(resetLastFM);
   }
 };
 
