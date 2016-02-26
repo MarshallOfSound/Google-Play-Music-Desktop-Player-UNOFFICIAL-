@@ -16,8 +16,9 @@ class Settings {
     if (fs.existsSync(this.PATH) && !wipeOldData) {
       this._load();
     } else {
-      mkdirp(DIR);
-      this._save(true);
+      mkdirp(DIR, () => {
+        this._save(true);
+      });
     }
     this.coupled = true;
   }
@@ -48,7 +49,7 @@ class Settings {
     const now = (new Date).getTime();
     // During some save events (like resize) we need to queue the disk writes
     // so that we don't blast the disk every millisecond
-    if (now - this.lastSync > 250 || force) {
+    if ((now - this.lastSync > 250 || force) && fs.existsSync(this.PATH)) {
       fs.writeFileSync(this.PATH, JSON.stringify(this.data));
     } else {
       if (this.saving) clearTimeout(this.saving);
