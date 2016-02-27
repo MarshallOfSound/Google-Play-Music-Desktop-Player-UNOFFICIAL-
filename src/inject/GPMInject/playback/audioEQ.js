@@ -15,8 +15,15 @@ window.wait(() => {
             _.forEach(devices, (device) => {
               if (device.label === Settings.get('audiooutput')) {
                 set = true;
-                setAudioDevice(device.deviceId)
-                  .then(resolve);
+                let once = true;
+                console.log('Found Device');
+                document.querySelector('audio').addEventListener('playing', () => {
+                  if (!once) return;
+                  once = false;
+                  console.log('Play Start');
+                  setAudioDevice(device.deviceId)
+                    .then(resolve);
+                });
               }
             });
             if (!set) resolve();
