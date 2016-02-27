@@ -62,15 +62,15 @@ $(function() {
       });
 
       $('#downloadWin32').click(function() {
-        if (win64) {
-          window.location = win64;
+        if (win32) {
+          window.location = win32;
         } else {
           alert('Something went wrong, please try again in a few minutes');
         }
       });
       $('#downloadWin64').click(function() {
-        if (win32) {
-          window.location = win32;
+        if (win64) {
+          window.location = win64;
         } else {
           alert('Something went wrong, please try again in a few minutes');
         }
