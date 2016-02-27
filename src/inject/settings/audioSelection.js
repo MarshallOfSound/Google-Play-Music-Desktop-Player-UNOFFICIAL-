@@ -7,10 +7,24 @@ Emitter.on('audiooutput:list', (event, d) => {
   $('#audioOutputSelect option').remove();
   devices.forEach((device) => {
     if (device.kind === 'audiooutput') {
+      let label = device.label;
+      if (!label) {
+        switch (device.deviceId) {
+          case 'default':
+            label = 'System Default';
+            break;
+          case 'communications':
+            label = 'System Default Communications';
+            break;
+          default:
+            label = 'Unknown Device';
+            break;
+        }
+      }
       const opt = $('<option></option>');
       opt.attr('value', device.deviceId);
-      opt.text(device.label === '' ? 'Default Device' : device.label);
-      if (device.label === Settings.get('audiooutput')) {
+      opt.text(label);
+      if (label === Settings.get('audiooutput')) {
         opt.attr('selected', true);
       }
       $('#audioOutputSelect').append(opt);

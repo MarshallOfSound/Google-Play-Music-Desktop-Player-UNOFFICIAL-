@@ -62,6 +62,7 @@ class Emitter {
         event,
         details,
       });
+      ipcRenderer.send(event, details);
     } else {
       this.q.push(this.fireAtAll.bind(this, event, details));
     }
