@@ -1,3 +1,5 @@
+'use strict';
+
 const _ = require('lodash');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
@@ -29,11 +31,16 @@ const paths = {
 };
 
 const packageJSON = require('./package.json');
+let version = packageJSON.dependencies['electron-prebuilt'];
+if (version.substr(0, 1) !== '0') {
+  version = version.substr(1);
+}
+
 const defaultPackageConf = {
   dir: '.',
   name: packageJSON.productName,
   'build-version': packageJSON.version,
-  version: packageJSON.dependencies['electron-prebuilt'].substr(1),
+  version,
   platform: 'all',
   arch: 'all',
   'app-bundle-id': packageJSON.name,
