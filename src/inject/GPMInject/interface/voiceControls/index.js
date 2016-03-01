@@ -8,6 +8,15 @@ window.wait(() => {
                   ['Let\'s', 'can you', 'can you please', 'please'] // Command prefix
                 );
 
+  Emitter.on('speech:toggle', (event, details) => {
+    if (details.state) {
+      speech.enable();
+    } else {
+      speech.disable();
+    }
+  });
+  if (Settings.get('speechRecognition', false)) speech.enable();
+
   // Play Playlist Handlers
   speech.registerHandler(['play playlist', 'play the playlist'], playPlaylist);
 

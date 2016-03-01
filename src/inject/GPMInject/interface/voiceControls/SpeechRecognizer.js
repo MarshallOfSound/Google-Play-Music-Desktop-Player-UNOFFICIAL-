@@ -6,6 +6,7 @@ export default class SpeechRecognizer {
   constructor(hotwords = [], prefixes = []) {
     this.hotwords = hotwords;
     this.prefixes = prefixes;
+    this.enabled = false;
     this.speech = new window.webkitSpeechRecognition(); // eslint-disable-line
 
     this.speech.onresult = this._onSpeech.bind(this);
@@ -13,14 +14,23 @@ export default class SpeechRecognizer {
     this.speech.onerror = () => this.speech.stop();
     this.speech.onnomatch = () => this.speech.stop();
     this.speech.onend = () => {
-      if (Settings.get('speechControl', true)) {
+      if (this.enabled) {
         this.speech.start();
       }
     };
 
-    this.speech.start();
-
     this._handlers = {};
+  }
+
+  enable() {
+    this.speech.stop();
+    this.speech.start();
+    this.enabled = true;
+  }
+
+  disable() {
+    this.enabled = false;
+    this.speech.stop();
   }
 
   _onSpeech(event) {

@@ -36,6 +36,9 @@ Emitter.on('settings:set', (event, details) => {
     case 'miniAlwaysOnTop':
       Emitter.sendToGooglePlayMusic('miniAlwaysOnTop', { state: details.value });
       break;
+    case 'speechRecognition':
+      Emitter.sendToGooglePlayMusic('speech:toggle', { state: details.value });
+      break;
     default:
       break;
   }
