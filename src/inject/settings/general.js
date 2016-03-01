@@ -9,7 +9,10 @@ if (Settings.get('playbackAPI', false)) {
 }
 
 $('#voice-controls').change((e) => {
-  Emitter.fire('settings:set', { key: 'speechRecognition', value: $(e.currentTarget).is(':checked') });
+  Emitter.fire('settings:set', {
+    key: 'speechRecognition',
+    value: $(e.currentTarget).is(':checked'),
+  });
 });
 
 if (Settings.get('speechRecognition', false)) {
