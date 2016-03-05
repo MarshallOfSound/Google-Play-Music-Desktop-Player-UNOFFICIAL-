@@ -1,5 +1,6 @@
 os:
   - osx
+  - linux
 
 cache:
   directories:
@@ -18,7 +19,9 @@ branches:
     - website
 
 script:
-  - npm run test && ./sig/import.sh && npm run make:darwin && node ./sig/publish.js
+  - npm run test
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./sig/import.sh && npm run make:darwin && node ./sig/publish-mac.js; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run make:linux && echo Success #&& node ./sig/publish-linux.js
 
 notifications:
   webhooks:
