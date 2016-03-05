@@ -39,8 +39,8 @@ $(function() {
     type: 'get',
     url: 'https://api.github.com/repos/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases/latest',
     success: function(release) {
-      var win32,
-        win64;
+      var win,
+        osx;
 
       $('[dl-latest]').each(function(index, item) {
         $(item).text('Download Latest - ' + release.tag_name);
@@ -54,23 +54,23 @@ $(function() {
       });
 
       release.assets.forEach(function(asset) {
-        if (/x64/g.test(asset.name)) {
-          win64 = asset.browser_download_url;
-        } else if (/x86/g.test(asset.name)) {
-          win32 = asset.browser_download_url;
+        if (/\.zip$/g.test(asset.name)) {
+          osx = asset.browser_download_url;
+        } else if (/\.exe$/g.test(asset.name)) {
+          win = asset.browser_download_url;
         }
       });
 
-      $('#downloadWin32').click(function() {
-        if (win32) {
-          window.location = win32;
+      $('#downloadWin').click(function() {
+        if (win) {
+          window.location = win;
         } else {
           alert('Something went wrong, please try again in a few minutes');
         }
       });
-      $('#downloadWin64').click(function() {
-        if (win64) {
-          window.location = win64;
+      $('#downloadMac').click(function() {
+        if (osx) {
+          window.location = osx;
         } else {
           alert('Something went wrong, please try again in a few minutes');
         }
