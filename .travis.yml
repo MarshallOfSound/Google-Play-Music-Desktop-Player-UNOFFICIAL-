@@ -21,7 +21,7 @@ branches:
 script:
   - npm run test
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./sig/import.sh && npm run make:darwin && node ./sig/publish-mac.js; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run make:linux && echo Success #&& node ./sig/publish-linux.js
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run make:linux && echo Success; fi #&& node ./sig/publish-linux.js; fi
 
 notifications:
   webhooks:
