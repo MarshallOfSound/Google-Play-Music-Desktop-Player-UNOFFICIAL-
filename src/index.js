@@ -26,7 +26,9 @@ import handleStartupEvent from './squirrel';
     if (mainWindow) {
       if (mainWindow.isMinimized()) mainWindow.restore();
       mainWindow.focus();
+      mainWindow.show();
       mainWindow.setSkipTaskbar(false);
+      if (app.dock && app.dock.show) app.dock.show();
     }
   });
 

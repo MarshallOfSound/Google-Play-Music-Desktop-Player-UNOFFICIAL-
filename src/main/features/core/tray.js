@@ -17,7 +17,13 @@ appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray.png`
 
 const setContextMenu = () => {
   const contextMenu = Menu.buildFromTemplate([
-    { label: 'Show', click: () => { mainWindow.setSkipTaskbar(false); mainWindow.show(); } },
+    { label: 'Show',
+      click: () => {
+        mainWindow.setSkipTaskbar(false);
+        mainWindow.show();
+        if (app.dock && app.dock.show) app.dock.show();
+      },
+    },
     {
       label: 'Audio Device',
       submenu: audioDeviceMenu,
@@ -34,6 +40,7 @@ appIcon.setToolTip('Google Play Music');
 appIcon.on('double-click', () => {
   mainWindow.setSkipTaskbar(false);
   mainWindow.show();
+  if (app.dock && app.dock.show) app.dock.show();
 });
 
 // DEV: Keep the icon in the global scope or it gets garbage collected........
