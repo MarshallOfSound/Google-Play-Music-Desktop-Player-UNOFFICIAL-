@@ -13,7 +13,11 @@ let audioDeviceMenu = [
   },
 ];
 
-appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray.png`));
+if (process.platform === 'darwin') {
+  appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/macTemplate.png`));
+} else {
+  appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray.png`));
+}
 
 const setContextMenu = () => {
   const contextMenu = Menu.buildFromTemplate([
