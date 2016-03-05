@@ -35,7 +35,7 @@ Features
 
 * Supports media keys (play, pause, stop, next, previous)
 * [last.fm](https://www.last.fm) Scrobbling and Now Playing support!
-* Hands free voice controls!
+* Hands free [Voice Controls](docs/VoiceControls.md)!
 * Desktop notifications on track change
 * A simplistic mini player
 * Customizable Dark theme
