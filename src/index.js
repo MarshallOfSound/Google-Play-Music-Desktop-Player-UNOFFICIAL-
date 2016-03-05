@@ -58,6 +58,9 @@ import handleStartupEvent from './squirrel';
     mainWindow = new BrowserWindow(generateBrowserConfig());
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
+    // Required for 'darwin'
+    mainWindow.setFullScreenable(true);
+
     const position = Settings.get('position');
     let size = Settings.get('size');
     size = size || [1200, 800];
