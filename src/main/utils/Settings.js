@@ -2,7 +2,7 @@ import fs from 'fs';
 import mkdirp from 'mkdirp';
 import initalSettings from './initialSettings';
 
-var os = require('os');
+const os = require('os');
 
 const environment = process.env;
 
