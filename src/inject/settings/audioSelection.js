@@ -43,3 +43,16 @@ $('#audioOutputSelect').on('change', (e) => {
   }).label;
   Emitter.fire('audiooutput:set', label);
 });
+
+let currentSelected = Settings.get('audiooutput');
+setInterval(() => {
+  if (currentSelected !== Settings.get('audiooutput')) {
+    currentSelected = Settings.get('audiooutput');
+    $('#audioOutputSelect option').each((index, opt) => {
+      if ($(opt).text() === currentSelected) {
+        $('#audioOutputSelect').val($(opt).attr('value'));
+        $('#audioOutputSelect').material_select();
+      }
+    });
+  }
+}, 500);

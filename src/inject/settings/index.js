@@ -1,6 +1,6 @@
 import './themeSettings';
 import './audioSelection';
-import './audioEQ';
+// import './audioEQ';
 import './hotkeys';
 import './tray';
 import './lastFM';

@@ -22,5 +22,14 @@ export const setAudioDevice = (id, count = 0) => {
 };
 
 Emitter.on('audiooutput:set', (event, deviceId) => {
-  setAudioDevice(deviceId);
+  let once = true;
+  if (document.querySelector('audio').paused) {
+    document.querySelector('audio').addEventListener('playing', () => {
+      if (!once) return;
+      once = false;
+      setAudioDevice(deviceId);
+    });
+  } else {
+    setAudioDevice(deviceId);
+  }
 });

@@ -78,3 +78,4 @@ Emitter.on('audiooutput:list', (event, devices) => {
 });
 
 Emitter.sendToGooglePlayMusic('audiooutput:fetch');
+Emitter.on('audiooutput:set', () => Emitter.sendToGooglePlayMusic('audiooutput:fetch'));
