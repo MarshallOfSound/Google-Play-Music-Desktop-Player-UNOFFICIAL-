@@ -69,6 +69,7 @@ const cleanGlob = (glob) => {
 gulp.task('clean', cleanGlob(['./build', './dist']));
 gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
 gulp.task('clean-dist-darwin', cleanGlob(`./dist/${packageJSON.productName}-darwin-ia32`));
+gulp.task('clean-dist-linux', cleanGlob(`./dist/${packageJSON.productName}-linux-ia32`));
 gulp.task('clean-external', cleanGlob('./build/external.js'));
 gulp.task('clean-material', cleanGlob('./build/assets/material'));
 gulp.task('clean-utility', cleanGlob('./build/assets/util'));
@@ -191,8 +192,16 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
   });
 });
 
+gulp.task('package:linux', ['clean-dist-linux', 'build'], (done) => {
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux'}), done);
+});
+
+gulp.task('make:linux', ['package:linux'], (done) => {
+  
+});
+
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['watch', 'transpile', 'images']);
 gulp.task('build', ['external', 'materialize-js', 'utility-js', 'transpile', 'images', 'less',
                     'fonts', 'html']);
-gulp.task('package', ['package:win', 'package:darwin']);
+gulp.task('package', ['package:win', 'package:darwin', 'package:linux']);
