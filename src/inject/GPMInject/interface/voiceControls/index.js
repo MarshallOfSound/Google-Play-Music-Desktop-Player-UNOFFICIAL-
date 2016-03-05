@@ -58,6 +58,16 @@ window.wait(() => {
     })
   );
 
+  speech.registerHandler(['this song is great', 'this song rules', 'this song is epic',
+                          'this song is awesome', 'this song rocks',
+                          'the song is great', 'the song rules', 'the song is epic',
+                          'the song is awesome', 'the song rocks'], () =>
+    new Promise((resolve) => {
+      GPM.rating.setRating(5);
+      resolve();
+    })
+  );
+
   // Shuffle Handlers
   speech.registerHandler(['mixitup', 'mix it up',
                           'shuffle', 'shake', 'random'], () =>
