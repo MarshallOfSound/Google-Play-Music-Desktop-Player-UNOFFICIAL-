@@ -1,0 +1,71 @@
+@import "_colors.less";
+@import "_variables.less";
+
+.dialog {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  -webkit-user-select: none;
+
+  .window-title {
+    padding: 4px 8px;
+    background: @orange;
+    color: @grey;
+    line-height: 2.4em;
+  }
+
+  .window-main {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+
+    > .row {
+      flex: 1;
+      flex-direction: column;
+      display: flex;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+    }
+
+    .tabs {
+      overflow: hidden;
+      background: transparent;
+    }
+    .settings-box {
+      padding-top: 14px;
+      flex: 1;
+      overflow: auto;
+      padding: 0 40px;
+    }
+
+    .color-square-wrapper {
+      text-align: center;
+
+      .color-square {
+        width: 4em;
+        height: 4em;
+        display: inline-block;
+        margin: 0.3em;
+        cursor: pointer;
+      }
+    }
+
+    .eq-slide-con {
+      display: flex;
+
+      label {
+        position: static;
+        margin-top: 12px;
+        -webkit-column-width: 50px;
+      }
+
+      .eq-slide {
+        margin-top: 16px;
+        flex: 1;
+        margin-left: 16px;
+      }
+    }
+  }
+}

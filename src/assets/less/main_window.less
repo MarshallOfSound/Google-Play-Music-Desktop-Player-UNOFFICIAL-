@@ -1,0 +1,98 @@
+@import "_colors.less";
+@import "_variables.less";
+
+.fill-parent {
+  height: 100%;
+  width: 100%;
+}
+
+html, body {
+  .fill-parent;
+  margin: 0;
+  padding: 0;
+}
+
+.window-border {
+  .fill-parent;
+  border: @border-width solid @orange;
+  border-top-width: 0;
+  display: flex;
+  flex-direction: column;
+
+  .title-bar {
+    height: @title-bar-height + @border-width;
+    background: @orange;
+    display: flex;
+
+    .drag-handle {
+      height: 100%;
+      flex: 1;
+      -webkit-app-region: drag;
+    }
+
+    .controls {
+      height: 100%;
+      float: right;
+      padding-right: 0.2em;
+      -webkit-user-select: none;
+
+      .control {
+        height: 100%;
+        padding: 4px 10px;
+        transition: background 0.2s linear;
+        background: rgba(255, 255, 255, 0);
+        float: left;
+        cursor: pointer;
+
+        img {
+          height: 100%;
+          -webkit-filter: invert(1);
+          -webkit-user-drag: none;
+        }
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+  }
+
+  .drag-handle-large {
+    display: none;
+  }
+
+  .embedded-player-container {
+    flex: 1;
+    background: @grey;
+    position: relative;
+
+    .embedded-player {
+      height: calc(~"100vh -" (@title-bar-height + @border-width * 2));
+      display: block;
+      transition: opacity 0.4s linear;
+      position: relative;
+      z-index: 2;
+
+      [loading] & {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.lean-overlay {
+  height: calc(~"100vh - " (@border-width * 2 + @title-bar-height));
+  width: calc(~"100vw - " ((@border-width - 0.05em) * 2));
+  margin: (@border-width - 0.05em);
+  margin-top: @border-width + @title-bar-height;
+  top: 0;
+}
+
+.drag-handle-large {
+  position: absolute;
+  top: 10px;
+  left: 7px;
+  height: 60%;
+  width: calc(~"100% - 14px");
+  display: block;
+}

@@ -1,0 +1,29 @@
+os:
+  - osx
+
+cache:
+  directories:
+  - node_modules
+  - $HOME/.electron
+
+install:
+  - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh | bash
+  - source ~/.bashrc
+  - nvm install 4.2.2
+  - nvm use 4.2.2
+  - npm install
+
+branches:
+  except:
+    - website
+
+script:
+  - npm run test && ./sig/import.sh && npm run make:darwin && node ./sig/publish.js
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/92deafd1eb3a9871497b
+    on_success: always
+    on_failure: always
+    on_start: never

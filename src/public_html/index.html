@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <title>Google Play Music Desktop Player</title>
+  <link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
+</head>
+<body loading>
+  <section class="window-border">
+    <header class="title-bar">
+      <div class="drag-handle"></div>
+      <div class="controls">
+        <div id="min" class="control">
+          <img src="../assets/img/control_bar/min.png" />
+        </div>
+        <div id="max" class="control">
+          <img src="../assets/img/control_bar/max.png" />
+        </div>
+        <div id="close" class="control">
+          <img src="../assets/img/control_bar/close.png" />
+        </div>
+      </div>
+    </header>
+    <main class="embedded-player-container">
+      <div class="drag-handle-large"></div>
+      <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+      </div>
+      <webview src="https://play.google.com/music/listen" class="embedded-player" preload="../inject/GPMInject" nodeintegration></webview>
+    </main>
+  </section>
+  <div id="confirmTray" class="modal">
+    <div class="modal-content">
+      <h4>Just a heads up</h4>
+      <p>Closing the main player window (what you just tried to do) will actually minimize the player to the System Tray.
+         If you want to change this behaviour it can be changed in the "Desktop Settings" window.
+       </p>
+    </div>
+    <div class="modal-footer">
+      <a href="javascript:void(0)" id="confirmTrayButton" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+      <a href="javascript:void(0)" id="confirmTrayNeverButton" class="modal-action modal-close waves-effect waves-orange btn-flat">Don't tell me this again</a>
+    </div>
+  </div>
+  <div id="confirmUninstall" class="modal">
+    <div class="modal-content">
+      <h4>So heres the thing...</h4>
+      <p>We just found out an old version of GPMDP is still installed on your system.  If you just updated this is perfectly normal.
+         We are now going to try to uninstall the old version.  This "might" require admin permissions, please grant these so we can clean
+         up our mess.
+       </p>
+    </div>
+    <div class="modal-footer">
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+  </div>
+  <div id="confirmUpdate" class="modal">
+    <div class="modal-content">
+      <h4>Update Available</h4>
+      <p>Woo hoo, it looks like there is a brand new update available for Google Play Music Desktop Player.  This update should bring a whole load of new
+        features, bugfixes and cool new things.  We reccomend updating as fast as possible to allow you to enjoy the best feature filled, bug free experience.
+       </p>
+       <p>We hope you like the new update!
+       </p>
+    </div>
+    <div class="modal-footer">
+      <a href="javascript:void(0)" id="confirmUpdateButton" class="modal-action modal-close waves-effect waves-green btn" style="margin-right: 6px">Let's do this!!</a>
+      <a href="javascript:void(0)" id="waitUpdateButton" class="modal-action modal-close waves-effect waves-orange btn-flat red-text">Not right now</a>
+    </div>
+  </div>
+  <div id="welcome" class="modal">
+    <div class="modal-content">
+      <h4>Welcome to Version <span data-app-version></span></h4>
+      <p data-app-changes></p>
+       <p>We hope you like the new update!</p>
+    </div>
+    <div class="modal-footer">
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn" style="margin-right: 6px">Let's go!!</a>
+    </div>
+  </div>
+  <script>window._module = window.module; window.module = undefined;</script>
+  <script src="../assets/util/jquery.min.js"></script>
+  <script src="../assets/util/materialize.min.js"></script>
+  <script>
+  window.module = window._module;
+  document.body.classList.add(process.platform);
+  </script>
+</body>
+</html>

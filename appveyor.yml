@@ -1,30 +1,40 @@
-version: 2.1.1-{build}
-install:
-  - ps: Install-Product node $env:nodejs_version
-before_build:
-- cmd: nuget restore && echo %api_key% > "Google Play Music\Resources\Raw\api_key.txt" && echo %api_secret% > "Google Play Music\Resources\Raw\api_secret.txt"
-build:
-  verbosity: minimal
-
+version: 1.0.{build}
 environment:
-  nodejs_version: "0.10"
-  api_key:
-    secure: 8H3ycOrOBgjBUrWwD9HYiUQKXWx4Vp1QkhM7nVcYQQZRLj1UADNwdAv3ZBPlj9Tk
-  api_secret:
-    secure: Tqo5IfQiiiJxFoGOoaNSR7IniW9lVRArtQU1OtW5tzGth/BiovS4Xyxh/PyKv8ct
+  nodejs_version: "4.2.2"
+  GITHUB_KEY:
+    secure: eZcSozzDKzRJhSoXL7LS9w1jqFLdkiRT4H57JoWGpKj/kS6NC/DP3ColwKkvSeFn
+  SIGN_CERT_PASS:
+    secure: UEVPxVtsn5UnAi3PhhkUSA==
+  GPMDP_LASTFM_API_KEY:
+    secure: t4Ka6QT10/i0FMX4cVi4BaNeGKfi76T/iEKZ3PEsnUPrQ2lK6cmlGSA01NfHvUze
+  GPMDP_LASTFM_API_SECRET:
+    secure: RIfJtcbYwHBG7uGI8TQS9JzO37zPNuyO3yPPayVKb8vVISfxrFXH4rYT9dzmGaAx
+
+branches:
+  except:
+  - website
 
 platform:
-  - x86
   - x64
 
-configuration:
-  - Release
+cache:
+  - node_modules
+  - '%USERPROFILE%\.electron'
 
-matrix:
-  fast_finish: true
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
+  - npm upgrade
+
+test_script:
+  # Output useful info for debugging.
+  - node --version
+  - npm --version
+  # run tests
+  - npm test
+
+build_script:
+- cmd: npm run make:win
 
 artifacts:
-  - path: Google Play Music/bin/$(platform)/$(configuration)
-    name: GPMDP.Beta.$(platform)
-  - path: Google Play Music.Bootstrapper/bin/$(platform)/$(configuration)/Google Play Music Desktop Player $(platform).exe
-    name: GPMDP.Beta.$(platform).Installer
+  - path: 'dist\win32\Google Play Music Desktop PlayerSetup.exe'

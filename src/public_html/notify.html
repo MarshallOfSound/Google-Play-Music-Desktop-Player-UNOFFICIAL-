@@ -1,0 +1,46 @@
+<!doctype html>
+<html class="notification-html">
+<head>
+  <title>Google Play Music Desktop Player - Notification</title>
+  <link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <section class="notification-content">
+    <img class="notification-image" />
+    <div class="notification-text">
+      <div class="notification-title">
+        <span></span>
+      </div>
+      <div class="notification-body">
+        <span></span>
+      </div>
+    </div>
+    <div id="close" class="notification-close">
+      <img src="../assets/img/control_bar/close.png" />
+    </div>
+  </section>
+  <script>
+  const remote = require('electron').remote;
+  const browser = remote.getCurrentWindow();
+  const userScreen = remote.screen;
+  const screenSize = userScreen.getPrimaryDisplay().workAreaSize;
+
+  browser.setSize(document.body.clientWidth, document.body.clientHeight);
+  browser.setPosition(screenSize.width - browser.getSize()[0] - 10,
+                          screenSize.height - browser.getSize()[1] - 10);
+  document.querySelector('.notification-image').addEventListener('load', () => {
+    browser.show();
+  });
+  const waitForNotifyData = setInterval(() => {
+    if (window.NOTIFY_DATA) {
+      clearInterval(waitForNotifyData);
+      document.querySelector('.notification-title > span').textContent = window.NOTIFY_DATA.title;
+      document.querySelector('.notification-body > span').textContent = window.NOTIFY_DATA.body;
+      document.querySelector('.notification-image').src = window.NOTIFY_DATA.icon;
+      document.querySelector('#close').addEventListener('click',
+                Emitter.fire.bind(Emitter, 'window:close', remote.getCurrentWindow().id));
+    }
+  }, 10);
+  </script>
+</body>
+</html>

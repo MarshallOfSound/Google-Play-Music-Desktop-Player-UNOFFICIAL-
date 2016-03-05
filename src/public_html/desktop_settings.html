@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+  <title>Google Play Music Desktop Player</title>
+  <link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <section class="window-border">
+    <header class="title-bar">
+      <div class="drag-handle"></div>
+      <div class="controls">
+        <div id="min" class="control">
+          <img src="../assets/img/control_bar/min.png" />
+        </div>
+        <div id="max" class="control">
+          <img src="../assets/img/control_bar/max.png" />
+        </div>
+        <div id="close" class="control">
+          <img src="../assets/img/control_bar/close.png" />
+        </div>
+      </div>
+    </header>
+    <main class="dialog">
+      <div class="window-title">
+        Settings
+      </div>
+      <div class="window-main">
+        <div class="row">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s3"><a href="#general" class="theme-text orange-text">General</a></li>
+              <li class="tab col s3"><a href="#mini" class="theme-text orange-text">Mini Player</a></li>
+              <li class="tab col s3"><a href="#lastfm" class="theme-text orange-text">Last.FM</a></li>
+              <li class="tab col s3"><a href="#hotkeys" class="theme-text orange-text">Hotkeys</a></li>
+              <li class="tab col s3"><a href="#audio" class="theme-text orange-text">Audio</a></li>
+            </ul>
+          </div>
+          <div id="general" class="col s12 settings-box">
+            <div>
+              <p>
+                <input type="checkbox" class="filled-in" id="min-to-tray" />
+                <label for="min-to-tray">Minimize to Tray</label>
+              </p>
+              <p>
+                <input type="checkbox" class="filled-in" id="theme-state" />
+                <label for="theme-state">Theme Enabled</label>
+              </p>
+            </div>
+            <div class="color-square-wrapper">
+              <h5 class="theme-text">Choose your theme highlight color</h5>
+              <div class="color-square red"></div>
+              <div class="color-square cyan"></div>
+              <div class="color-square purple"></div>
+              <div class="color-square lime"></div>
+              <div class="color-square blue"></div>
+              <div class="color-square pink"></div>
+              <div class="color-square teal"></div>
+              <div class="color-square green"></div>
+              <div class="color-square orange"></div>
+              <div class="color-square deep-purple"></div>
+              <div class="color-square light-green"></div>
+              <div class="color-square yellow"></div>
+              <div class="color-square indigo"></div>
+              <div class="color-square amber"></div>
+              <div class="color-square deep-orange"></div>
+              <div class="color-square light-blue"></div>
+              <div class="color-square brown"></div>
+            </div>
+            <div>
+              <p>
+                <input type="checkbox" class="filled-in" id="voice-controls" />
+                <label for="voice-controls">Enable Voice Controls <i>Hands free voice controls for GPMDP, this is experimental</i></label>
+              </p>
+              <p>
+                <input type="checkbox" class="filled-in" id="playback-api" />
+                <label for="playback-api">Enable Playback API <i>This allows other applications to interface with GPMDP</i></label>
+              </p>
+            </div>
+          </div>
+          <div id="mini" class="col s12 settings-box">
+            <div>
+              <p>
+                <input type="checkbox" class="filled-in" id="mini-always-on-top" />
+                <label for="mini-always-on-top">Always on top</label>
+              </p>
+              <p>
+                <input type="checkbox" class="filled-in" id="mini-always-show-song-info" />
+                <label for="mini-always-show-song-info">Show song information always</label>
+              </p>
+            </div>
+          </div>
+          <div id="lastfm" class="col s12 settings-box">
+            <h5>Last.FM Status: <span class="last-fm-status-text">Not Authorized</span></h5>
+            <a class="waves-effect waves-light btn lastfm-button"><i class="material-icons left">exit_to_app</i>Log in to Last.FM</a>
+          </div>
+          <div id="hotkeys" class="col s12 settings-box">
+            <span>Default media keys will continue to work regardless of these settings.  These settings are in addition to the defaults</span>
+            <span>Use the <i>"Escape"</i> key to reset the hotkey</span>
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Not Set" id="playPause" type="text">
+                <label for="first_name">Play / Pause</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Not Set" id="stop" type="text">
+                <label for="last_name">Stop</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Not Set" id="previousTrack" type="text">
+                <label for="first_name">Previous Track</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Not Set" id="nextTrack" type="text">
+                <label for="last_name">Next Track</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Not Set" id="thumbsUp" type="text">
+                <label for="first_name">Thumbs Up Current Song</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Not Set" id="thumbsDown" type="text">
+                <label for="last_name">Thumbs Down Current Song</label>
+              </div>
+            </div>
+          </div>
+          <div id="audio" class="col s12 settings-box">
+            <div class="input-field col s12">
+              <select id="audioOutputSelect"></select>
+              <label>Audio Output Device</label>
+            </div>
+            <div class="input-field col s12" style="margin-top: 0">
+              <span>Equalizer <a class="waves-effect waves-light btn reset-eq" style="position:absolute;right:0;top:-8px">Reset</a></span>
+              <div class="eq-slide-con"><label>60Hz</label><div class="eq-slide"></div></div>
+              <div class="eq-slide-con"><label>230Hz</label><div class="eq-slide"></div></div>
+              <div class="eq-slide-con"><label>910Hz</label><div class="eq-slide"></div></div>
+              <div class="eq-slide-con"><label>4kHz</label><div class="eq-slide"></div></div>
+              <div class="eq-slide-con"><label>14kHz</label><div class="eq-slide"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+  <script>window._module = window.module; window.module = undefined;</script>
+  <script src="../assets/util/jquery.min.js"></script>
+  <script src="../assets/util/materialize.min.js"></script>
+  <script src="../assets/util/nouislider.min.js"></script>
+  <script>
+  window.module = window._module;
+  require('../inject/generic');
+  require('../inject/settings');
+  </script>
+</body>
+</html>

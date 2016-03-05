@@ -3,12 +3,13 @@ Google Play Music™ Desktop Player
 
 [![Join the chat at https://gitter.im/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Github All Releases](https://img.shields.io/github/downloads/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/total.svg)](https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases)
-[![Build status](https://ci.appveyor.com/api/projects/status/clg5vclqyltff7hg/branch/master?svg=true)](https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial/branch/master)
- [![GitHub version](https://badge.fury.io/gh/MarshallOfSound%2FGoogle-Play-Music-Desktop-Player-UNOFFICIAL-.svg)](https://badge.fury.io/gh/MarshallOfSound%2FGoogle-Play-Music-Desktop-Player-UNOFFICIAL-) [![Code Climate](https://codeclimate.com/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/badges/gpa.svg)](https://codeclimate.com/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-) <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ" title="Help me out by donating to this project"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>  
+ [![GitHub version](https://badge.fury.io/gh/MarshallOfSound%2FGoogle-Play-Music-Desktop-Player-UNOFFICIAL-.svg)](https://badge.fury.io/gh/MarshallOfSound%2FGoogle-Play-Music-Desktop-Player-UNOFFICIAL-)  [![Code Climate](https://codeclimate.com/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/badges/gpa.svg)](https://codeclimate.com/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-) <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ" title="Help me out by donating to this project"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>  
+ Windows: [![Build status](https://ci.appveyor.com/api/projects/status/clg5vclqyltff7hg/branch/master?svg=true)](https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial/branch/master)  
+ Max OSX: [![Build Status](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-.svg?branch=dev/3.0.0)](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-)
 
-![](https://www.samuel.ninja/img/gpmdp_screen.gif)
+![](http://samuel.ninja/img/gpmdp_screen.gif)
 
-Run Google Play Music as a stand alone Windows Desktop app.  Never again will you have to hunt through your tabs to pause your music, or stop listening to your favourite song because Chrome is guzzling up all your RAM..
+Run Google Play Music as a stand alone Desktop app.  Never again will you have to hunt through your tabs to pause your music, or stop listening to your favourite song because Chrome is guzzling up all your RAM..
 
 Developed by [Samuel Attard][1].
 
@@ -16,35 +17,68 @@ No affiliation with Google. Google Play is a trademark of Google Inc.
 
 [1]: https://www.samuelattard.com
 
-Requirements
+Download
+---------
+Head over to our website http://www.googleplaymusicdesktopplayer.com to download the latest release for your platform.
+
+OS Support
 ------------
 
-* Windows Vista or later (Might work on XP, I've never tried)
+* Windows 7 or later
+* Mac OSX 10.8.0 or later
+* Ubuntu 14.04 or later
 
-**Note:**  
-Internally this player does use flash to play the music. Using Flash Player is not my choice and this app is in no way based on flash.  However flash is required to play the music because Google's support for HTML5 Audio relies on the MP3 codec and some third party DRM library.  Both of which require licenses and can't be open sourced.  So until Google figures out an open source solution to the DRM media problem, we are stuck with Flash.
-
-I have made this as small impact as possible by distributing a PPAPI version of flash with the installers.  This is the same technique used by Google Chrome.
+**Note: We do not current have automated builds for Ubuntu (PR's are welcome)**
 
 Features
 --------
 
-* Supports media keys (play, pause, next, previous)
-* [last.fm](https://www.last.fm) scrobbling and now playing support!
+* Supports media keys (play, pause, stop, next, previous)
+* [last.fm](https://www.last.fm) Scrobbling and Now Playing support!
 * Desktop notifications on track change
 * A simplistic mini player
-* Dark theme
-* Task bar media controls (media controls embedded into the taskbar)
+* Customizable Dark theme
+* Task bar media controls (media controls embedded into the taskbar) *Windows only*
 * Smooth scrolling and overlay scrollbars for a nicer User Experience
-* [Interface for external applications](docs/PlaybackAPI.md)
-* More coming soon....
+* HTML5 Audio Support - No more Adobe Flash Player :+1:
+* Built in audio equalizer - Make it sounds how you like it
+* Minimize to task bar for background music playing
+* Customizable hotkeys, no worries if you don't have media keys.  Choose your own shortcuts
+* Choose your audio output device from within the player
+* And a whole lot more coming soon!
+
+Integrating with GPMDP from External Applications
+-------------------------------------------------
+There are two methods you can use to integrate with GPMDP from an external application.  
+1. [JSON Interface](docs/PlaybackAPI.md)  
+2. [Web Socket Interface](docs/PlaybackAPI_WebSocket.md)  
+
+Both are documented in the [Docs](docs) folder.  For one time read access you should
+probably use the `JSON` interface.  For an application that requires continuous
+updates as to the state of GPMDP or needs to control GPMDP you should use theme
+`Web Socket` interface.
+
 
 Development
 -----------
 
-To get started just pull the repo and open `Google Play Music.sln` in Visual Studio, pull down all the NuGet dependencies and it should just work.
-To build the installers you need to have a Code Signing certificate installed on your machine.  You can create a self signed one for dev purposes if you want, there are plenty of tutorials.  Just google it :)
-All releases will be signing with my Code Signing Certificate
+To get started just pull the repo and run the following
+
+```bash
+npm install
+npm start
+```
+
+To build the installers / release packages you need to run, you can only build a platforms installer from that platform.
+```bash
+# Windows
+npm run make:win
+
+# Mac OSX
+npm run make:darwin
+```
+
+All releases will be signing with my Code Signing Certificates (Authenticode on Windows and Codesign on OSX)
 
 Contributing
 ------------
@@ -52,16 +86,27 @@ Contributing
 If you find something wrong (theming issues, app crashes) please report them as an issue.  
 If you think you can add something cool or fix a problem, fork the repo and make a pull request :D
 
+**NOTE:** Some of the functionality in this app has been extracted into smaller submodules. In particular
+* Google Play Music Interaction - https://github.com/gmusic-utils/gmusic.js
+* Theming - https://github.com/gmusic-utils/gmusic-theme.js
+* Mini Player - https://github.com/MarshallOfSound/gmusic-mini-player.js
+
 Dev Requirements
 ----------------
-* [WiX v3.10.1][2]
+* Node.js (Recommend `4.2.x`)
 
-[2]: https://wix.codeplex.com/releases/view/618180
+Continuous Integration
+------------------------
 
-Credit
------------
+We run tests and generate signed installers on two CI platforms
+* Windows --> [AppVeyor][2]
+* OSX --> [Travis CI][3]
 
-IgnaceMaes for the Material Skin used in this project --> [Check it out here](https://github.com/IgnaceMaes/MaterialSkin)
+You can download the latest signed installers for Windows from the artifacts section of AppVeyor  
+You can download the latest signed package for OSX from the URL at the bottom of the build log on Travis CI
+
+[2]: https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial
+[3]: https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
 
 License
 -------
