@@ -37,7 +37,7 @@ window.wait(() => {
   );
 
   // Track Navigation Handlers
-  speech.registerHandler(['next', 'forward', 'fast forward'], () =>
+  speech.registerHandler(['next', 'next track', 'forward', 'fast forward'], () =>
     new Promise((resolve) => {
       GPM.playback.forward();
       resolve();
@@ -120,7 +120,7 @@ window.wait(() => {
 
   // Volume Controls
   speech.registerHandler(['turn it up', 'bring it up', 'turn the volume up',
-                          'make it louder', 'i can\'t here it'], () =>
+                          'make it louder', 'i can\'t here it', 'i can\'t hear it'], () =>
     new Promise((resolve) => {
       GPM.volume.increaseVolume();
       resolve();
