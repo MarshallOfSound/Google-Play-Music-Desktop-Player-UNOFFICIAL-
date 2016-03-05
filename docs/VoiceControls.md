@@ -1,5 +1,8 @@
 # Hands Free Voice Controls
 
+**NOTE:** By default these voice controls are disabled as they use an as yet unknown
+amount of internet.  You can turn them on in the "general" section of Settings.
+
 Google Play Music Desktop Player has implemented the `webkitSpeechRecognition`
 API to pick up what you say and uses a cool JS command parser that I wrote myself
 to translate that into a single action or a complex series of actions.
@@ -59,7 +62,7 @@ You commands don't have to sound robotic either, you can use basic grammar betwe
 > This song is great  
 > This song is epic  
 > This song is awesome  
-> This song rocks
+> This song rocks  
 > This song rules
 
 ### Shuffle and play random song from Queue
@@ -90,10 +93,10 @@ You commands don't have to sound robotic either, you can use basic grammar betwe
 > Load Settings  
 
 ### Increase volume at 5% increments
-> Turn it up
-> Bring it up
-> Turn the volume up
-> Make it louder
+> Turn it up  
+> Bring it up  
+> Turn the volume up  
+> Make it louder  
 > I can't hear it
 
 ### Decrease volume at 5% increments
@@ -127,5 +130,5 @@ by *percent*.
 > Party is over
 
 ### Undo the volume change caused by setting to 100% or muting
-> Reset the volume
+> Reset the volume  
 > Normalize
