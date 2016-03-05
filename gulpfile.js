@@ -105,7 +105,7 @@ gulp.task('transpile', ['clean-internal'], () => {
       presets: ['es2015'],
     }))
     .on('error', (err) => { console.error(err); }) // eslint-disable-line
-    .pipe(replace(/process\.env\.(.+)\;/gi, (envCall, envKey) => {
+    .pipe(replace(/process\.env\.([^\.]+)\;/gi, (envCall, envKey) => {
       return `'${process.env[envKey]}'`;
     }))
     .pipe(gulp.dest('./build/'));

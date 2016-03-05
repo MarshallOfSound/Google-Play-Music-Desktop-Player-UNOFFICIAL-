@@ -1,2 +1,4 @@
 import './core';
-require(`./${process.platform}`);
+if (process.platform === 'darwin' || process.platform === 'win32') {
+  require(`./${process.platform}`);
+}

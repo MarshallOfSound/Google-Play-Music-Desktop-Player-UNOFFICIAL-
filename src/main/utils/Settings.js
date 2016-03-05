@@ -1,14 +1,10 @@
 import fs from 'fs';
 import mkdirp from 'mkdirp';
 import initalSettings from './initialSettings';
-
-const environment = process.env;
+import DIR from './appdir';
 
 class Settings {
   constructor(jsonPrefix, wipeOldData) {
-    const DIR = (environment.APPDATA ||
-      (process.platform === 'darwin' ? environment.HOME + '/Library/Preferences' : '/var/local')) +
-      '/GPMDP_STORE';
     this.PATH = `${DIR}/${(jsonPrefix || '')}.settings.json`;
     this.data = initalSettings;
     this.lastSync = 0;
