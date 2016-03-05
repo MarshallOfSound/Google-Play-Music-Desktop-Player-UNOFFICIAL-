@@ -9,3 +9,4 @@ import './lastFM';
 import './autoUpdater';
 import './websocketAPI';
 import './lyrics';
+import './applicationMenu';
