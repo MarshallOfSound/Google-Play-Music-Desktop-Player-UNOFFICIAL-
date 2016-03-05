@@ -42,6 +42,7 @@ class Settings {
   }
 
   _load() {
+    if (!fs.existsSync(this.PATH)) return;
     this.data = JSON.parse(fs.readFileSync(this.PATH, 'utf8'));
   }
 
