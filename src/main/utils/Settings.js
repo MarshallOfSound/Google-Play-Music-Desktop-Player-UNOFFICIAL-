@@ -2,12 +2,14 @@ import fs from 'fs';
 import mkdirp from 'mkdirp';
 import initalSettings from './initialSettings';
 
+var os = require('os');
+
 const environment = process.env;
 
 class Settings {
   constructor(jsonPrefix, wipeOldData) {
     const DIR = (environment.APPDATA ||
-      (process.platform === 'darwin' ? environment.HOME + '/Library/Preferences' : '/var/local')) +
+      (process.platform === 'darwin' ? environment.HOME + '/Library/Preferences' : os.homedir())) +
       '/GPMDP_STORE';
     this.PATH = `${DIR}/${(jsonPrefix || '')}.settings.json`;
     this.data = initalSettings;
