@@ -8,7 +8,7 @@ export const showDesktopSettings = () => {
   }
   const desktopSettings = new BrowserWindow({
     width: 800,
-    height: 400,
+    height: 480,
     frame: false,
     show: false,
     nodeIntegration: true,
