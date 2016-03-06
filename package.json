@@ -1,4 +1,8 @@
 {
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-"
+  },
   "name": "google-play-music-desktop-player",
   "productName": "Google Play Music Desktop Player",
   "version": "3.0.0",
@@ -10,8 +14,12 @@
     "lint": "eslint ./src/ ./test/",
     "make:win": "gulp make:win",
     "make:darwin": "gulp make:darwin",
+    "make:linux": "gulp make:linux",
+    "make:deb": "gulp make:deb",
+    "make:rpm": "gulp make:rpm",
     "package:darwin": "gulp package:darwin",
     "package:win": "gulp package:win",
+    "package:linux": "gulp package:linux",
     "release:win": "release-nucleus --nucleus-path=./ --release-type=win",
     "release:darwin": "release-nucleus --nucleus-path=./ --release-type=darwin",
     "test": "npm run lint",
@@ -20,7 +28,7 @@
     "watch": "gulp watch"
   },
   "author": "Samuel Attard",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "electron-prebuilt": "0.36.7",
     "html-entities": "^1.2.0",
@@ -65,5 +73,9 @@
     "request": "^2.69.0",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0"
+  },
+  "optionalDependencies": {
+    "electron-installer-debian": "^0.2.0",
+    "electron-installer-redhat": "^0.2.0"
   }
 }
