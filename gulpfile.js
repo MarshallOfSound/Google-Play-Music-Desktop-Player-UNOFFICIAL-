@@ -4,7 +4,6 @@ const _ = require('lodash');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const clean = require('gulp-clean');
-const debian = require('electron-installer-debian');
 const less = require('gulp-less');
 const cssmin = require('gulp-cssmin');
 const concat = require('gulp-concat');
@@ -211,6 +210,8 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
       count++;
     }
   };
+
+  const debian = require('electron-installer-debian');
 
   const defaults = {
     bin: packageJSON.productName,
