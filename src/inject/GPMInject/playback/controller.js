@@ -31,3 +31,11 @@ Emitter.on('playback:thumbsUp', () => {
 Emitter.on('playback:thumbsDown', () => {
   window.GPM.rating.setRating(1);
 });
+
+Emitter.on('playback:increaseVolume', () => {
+  window.GPM.volume.increaseVolume();
+});
+
+Emitter.on('playback:decreaseVolume', () => {
+  window.GPM.volume.decreaseVolume();
+});
