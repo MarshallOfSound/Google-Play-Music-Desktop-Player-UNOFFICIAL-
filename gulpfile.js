@@ -215,7 +215,7 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
 
   const defaults = {
     bin: packageJSON.productName,
-    dest: 'dist/installers',
+    dest: 'dist/installers/debian',
     depends: ['libappindicator1'],
     maintainer: 'Samuel Attard <samuel.r.attard@gmail.com>',
     homepage: 'http://www.googleplaymusicdesktopplayer.com',
@@ -257,7 +257,7 @@ gulp.task('rpm:linux', ['package:linux'], (done) => {
 
   const defaults = {
     bin: packageJSON.productName,
-    dest: 'dist/installers',
+    dest: 'dist/installers/fedora',
     depends: ['libappindicator1'],
     maintainer: 'Samuel Attard <samuel.r.attard@gmail.com>',
     homepage: 'http://www.googleplaymusicdesktopplayer.com',
@@ -314,7 +314,7 @@ gulp.task('make:deb', ['deb:linux'], (done) => {
     `installers.zip`,
     `.`],
     {
-      cwd: `./dist/installers`,
+      cwd: `./dist/installers/debian`,
     });
 
   console.log(`Zipping the linux Installers`); // eslint-disable-line
@@ -339,7 +339,7 @@ gulp.task('make:rpm', ['deb:redhat'], (done) => {
     `installers.zip`,
     `.`],
     {
-      cwd: `./dist/installers`,
+      cwd: `./dist/installers/rpm`,
     });
 
   console.log(`Zipping the linux Installers`); // eslint-disable-line
