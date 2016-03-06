@@ -3,6 +3,8 @@ machine:
     version: 4.3.1
 
 dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get install rpm fakeroot dpkg
   cache_directories:
     - "~/.electron"
 
