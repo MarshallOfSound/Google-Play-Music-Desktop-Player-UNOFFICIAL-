@@ -14,7 +14,8 @@ if (maxButton) {
 }
 if (closeButton) {
   closeButton.addEventListener('click', () => {
-    if (document.getElementById('confirmTray') && window.$ && Settings.get('warnMinToTray', true)) {
+    if (document.getElementById('confirmTray') && window.$ && Settings.get('warnMinToTray', true) &&
+        Settings.get('minToTray', true)) {
       if ($('#confirmTray').data('open')) {
         return;
       }
