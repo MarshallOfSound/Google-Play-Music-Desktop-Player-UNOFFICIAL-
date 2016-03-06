@@ -30,6 +30,9 @@ const paths = {
   images: ['src/assets/icons/**/*', 'src/assets/img/**/*'],
 };
 
+var repo_website = 'http://www.googleplaymusicdesktopplayer.com';
+var repo_author = 'Samuel Attard <samuel.r.attard@gmail.com>';
+
 const packageJSON = require('./package.json');
 let version = packageJSON.dependencies['electron-prebuilt'];
 if (version.substr(0, 1) !== '0') {
@@ -199,6 +202,51 @@ gulp.task('package:linux', ['clean-dist-linux', 'build'], (done) => {
   packager(_.extend({}, defaultPackageConf, { platform: 'linux' }), done);
 });
 
+<<<<<<< 85927e4c4988878901bc2e1a04266ca0efd05542
+=======
+gulp.task('rpm:linux', ['package:linux'], (done) => {
+  let count = 0;
+  const next = (err) => {
+    if (err) {
+      done(err);
+    } else if (count > 0) {
+      done();
+    } else {
+      count++;
+    }
+  };
+
+  const redhat = require('electron-installer-redhat');
+
+  const defaults = {
+    bin: packageJSON.productName,
+    dest: 'dist/installers',
+    depends: ['libappindicator1'],
+    maintainer: repo_author,
+    homepage: repo_website,
+    icon: 'build/assets/img/main.png',
+  };
+
+  redhat(_.extend({}, defaults, {
+    src: `dist/${packageJSON.productName}-linux-ia32`,
+    arch: 'i386',
+  }), (err) => {
+    console.log('32bit redhat package built');
+    if (err) return next(err);
+    next();
+  });
+
+  redhat(_.extend({}, defaults, {
+    src: `dist/${packageJSON.productName}-linux-x64`,
+    arch: 'amd64',
+  }), (err) => {
+    console.log('64bit redhat package built');
+    if (err) return next(err);
+    next();
+  });
+});
+
+>>>>>>> added support for rpm
 gulp.task('deb:linux', ['package:linux'], (done) => {
   let count = 0;
   const next = (err) => {
@@ -217,8 +265,13 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
     bin: packageJSON.productName,
     dest: 'dist/installers',
     depends: ['libappindicator1'],
+<<<<<<< 85927e4c4988878901bc2e1a04266ca0efd05542
     maintainer: 'Samuel Attard <samuel.r.attard@gmail.com>',
     homepage: 'http://www.googleplaymusicdesktopplayer.com',
+=======
+    maintainer: repo_author,
+    homepage: repo_website,
+>>>>>>> added support for rpm
     icon: 'build/assets/img/main.png',
   };
 
@@ -226,7 +279,11 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
     src: `dist/${packageJSON.productName}-linux-ia32`,
     arch: 'i386',
   }), (err) => {
+<<<<<<< 85927e4c4988878901bc2e1a04266ca0efd05542
     console.log('32bit package built');
+=======
+    console.log('32bit deb package built');
+>>>>>>> added support for rpm
     if (err) return next(err);
     next();
   });
@@ -235,13 +292,73 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
     src: `dist/${packageJSON.productName}-linux-x64`,
     arch: 'amd64',
   }), (err) => {
+<<<<<<< 85927e4c4988878901bc2e1a04266ca0efd05542
     console.log('64bit package built');
+=======
+    console.log('64bit deb package built');
+>>>>>>> added support for rpm
     if (err) return next(err);
     next();
   });
 });
 
+<<<<<<< 85927e4c4988878901bc2e1a04266ca0efd05542
 gulp.task('make:linux', ['deb:linux'], (done) => {
+=======
+gulp.task('make:deb', ['deb:linux'], (done) => {
+
+  // Zip Linux x86
+  const child = spawn('zip', ['-r', '-y',
+    `installers.zip`,
+    `.`],
+    {
+      cwd: `./dist/installers`,
+    });
+
+  console.log(`Zipping the linux Installers`); // eslint-disable-line
+
+  // spit stdout to screen
+  child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
+
+  // Send stderr to the main console
+  child.stderr.on('data', (data) => {
+    process.stdout.write(data.toString());
+  });
+
+  child.on('close', (code) => {
+    console.log('Finished zipping with code ' + code); // eslint-disable-line
+    done();
+  });
+});
+
+gulp.task('make:rpm', ['deb:redhat'], (done) => {
+
+  // Zip Linux x86
+  const child = spawn('zip', ['-r', '-y',
+    `installers.zip`,
+    `.`],
+    {
+      cwd: `./dist/installers`,
+    });
+
+  console.log(`Zipping the linux Installers`); // eslint-disable-line
+
+  // spit stdout to screen
+  child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
+
+  // Send stderr to the main console
+  child.stderr.on('data', (data) => {
+    process.stdout.write(data.toString());
+  });
+
+  child.on('close', (code) => {
+    console.log('Finished zipping with code ' + code); // eslint-disable-line
+    done();
+  });
+});
+
+gulp.task('make:linux', ['deb:linux', 'rpm:linux'], (done) => {
+>>>>>>> added support for rpm
   // Zip Linux x86
   const child = spawn('zip', ['-r', '-y',
     `installers.zip`,
