@@ -38,7 +38,6 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-register": "^6.4.3",
     "chai": "^3.4.1",
-    "electron-installer-debian": "^0.2.0",
     "electron-mocha": "^0.8.0",
     "electron-packager": "^5.2.0",
     "eslint": "^1.10.3",
@@ -68,5 +67,8 @@
     "request": "^2.69.0",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0"
+  },
+  "optionalDependencies": {
+    "electron-installer-debian": "^0.2.0"
   }
 }
