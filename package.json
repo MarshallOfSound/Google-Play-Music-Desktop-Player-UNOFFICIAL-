@@ -22,7 +22,7 @@
     "watch": "gulp watch"
   },
   "author": "Samuel Attard",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "electron-prebuilt": "0.36.7",
     "html-entities": "^1.2.0",
