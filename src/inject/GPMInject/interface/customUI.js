@@ -38,6 +38,8 @@ window.wait(() => {
   hide('.upload-dialog-bg', true);
   hide('.upload-dialog', true);
 
+  setInterval(() => hide('.goog-menu.now-playing-menu > .goog-menuitem:nth-child(3)'), 500);
+
   const dSettings = document.createElement('a');
   dSettings.setAttribute('data-type', 'desktopsettings');
   dSettings.setAttribute('class', 'nav-item-container tooltip');
