@@ -64,12 +64,16 @@ setContextMenu();
 
 appIcon.setToolTip('Google Play Music');
 
+
+// Iconified     -> show, to foreground
+// In background -> to foreground
+// In foreground -> iconify
 appIcon.on('click', () => {
-  if (mainWindow.isVisible() && !mainWindow.isMinimized()) {
-    // hide
-    if (process.platform !== 'darwin') {
-      mainWindow.minimize();
-      mainWindow.setSkipTaskbar(true);
+  if (process.platform === 'darwin') {
+    // Special code for OS-X - Not tested!
+    if (!mainWindow.isVisible()) {
+      mainWindow.setSkipTaskbar(false);
+      mainWindow.show();
     } else {
       if (PlaybackAPI.isPlaying()) {
         Emitter.sendToGooglePlayMusic('playback:playPause');
@@ -77,9 +81,15 @@ appIcon.on('click', () => {
       mainWindow.hide();
     }
   } else {
-    // show
-    mainWindow.setSkipTaskbar(false);
-    mainWindow.show();
+    // Windows, Linux
+    if (mainWindow.isMinimized() || !mainWindow.isFocused()) {
+      // Window in tray, or not focused
+      mainWindow.setSkipTaskbar(false);
+      mainWindow.show();
+    } else {
+      mainWindow.minimize();
+      mainWindow.setSkipTaskbar(true);
+    }
   }
 });
 
