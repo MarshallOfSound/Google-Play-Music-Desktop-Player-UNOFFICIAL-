@@ -32,7 +32,7 @@ OS Support
 * Fedora
 * Debian
 
-**Note: We do not current have automated builds for Ubuntu (PR's are welcome)**
+**Note: We do not currently have automated builds for Ubuntu (PR's are welcome)**
 
 Features
 --------
