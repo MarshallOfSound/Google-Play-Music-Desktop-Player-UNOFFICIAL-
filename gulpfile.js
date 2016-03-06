@@ -200,17 +200,6 @@ gulp.task('package:linux', ['clean-dist-linux', 'build'], (done) => {
 });
 
 gulp.task('deb:linux', ['package:linux'], (done) => {
-  let count = 0;
-  const next = (err) => {
-    if (err) {
-      done(err);
-    } else if (count > 0) {
-      done();
-    } else {
-      count++;
-    }
-  };
-
   const debian = require('electron-installer-debian');
 
   const defaults = {
@@ -227,32 +216,20 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
     arch: 'i386',
   }), (err) => {
     console.log('32bit deb package built');
-    if (err) return next(err);
-    next();
-  });
+    if (err) return done(err);
 
-  debian(_.extend({}, defaults, {
-    src: `dist/${packageJSON.productName}-linux-x64`,
-    arch: 'amd64',
-  }), (err) => {
-    console.log('64bit deb package built');
-    if (err) return next(err);
-    next();
+    debian(_.extend({}, defaults, {
+      src: `dist/${packageJSON.productName}-linux-x64`,
+      arch: 'amd64',
+    }), (err) => {
+      console.log('64bit deb package built');
+      if (err) return done(err);
+      done();
+    });
   });
 });
 
 gulp.task('rpm:linux', ['package:linux'], (done) => {
-  let count = 0;
-  const next = (err) => {
-    if (err) {
-      done(err);
-    } else if (count > 0) {
-      done();
-    } else {
-      count++;
-    }
-  };
-
   const redhat  = require('electron-installer-redhat');
 
   const defaults = {
@@ -269,17 +246,16 @@ gulp.task('rpm:linux', ['package:linux'], (done) => {
     arch: 'i386',
   }), (err) => {
     console.log('32bit rpm package built');
-    if (err) return next(err);
-    next();
-  });
+    if (err) return done(err);
 
-  redhat(_.extend({}, defaults, {
-    src: `dist/${packageJSON.productName}-linux-x64`,
-    arch: 'amd64',
-  }), (err) => {
-    console.log('64bit rpm package built');
-    if (err) return next(err);
-    next();
+    redhat(_.extend({}, defaults, {
+      src: `dist/${packageJSON.productName}-linux-x64`,
+      arch: 'amd64',
+    }), (err) => {
+      console.log('64bit rpm package built');
+      if (err) return done(err);
+      done();
+    });
   });
 });
 
@@ -333,16 +309,16 @@ gulp.task('make:deb', ['deb:linux'], (done) => {
   });
 });
 
-gulp.task('make:rpm', ['deb:redhat'], (done) => {
+gulp.task('make:rpm', ['rpm:linux'], (done) => {
   // Zip Linux x86
   const child = spawn('zip', ['-r', '-y',
     `installers.zip`,
     `.`],
     {
-      cwd: `./dist/installers/rpm`,
+      cwd: `./dist/installers/fedora`,
     });
 
-  console.log(`Zipping the linux Installers`); // eslint-disable-line
+  console.log(`Zipping the RPM Installers`); // eslint-disable-line
 
   // spit stdout to screen
   child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
