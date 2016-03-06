@@ -19,13 +19,15 @@ Emitter.on('window:close', (event, windowID) => {
 
 const mainWindow = WindowManager.getAll('main')[0];
 mainWindow.on('close', (event) => {
-  if (Settings.get('minToTray', true) && !global.quiting) {
+  if ((Settings.get('minToTray', true) || process.platform === 'darwin') && !global.quiting) {
     if (process.platform !== 'darwin') {
       mainWindow.minimize();
       mainWindow.setSkipTaskbar(true);
     } else {
+      if (PlaybackAPI.isPlaying()) {
+        Emitter.sendToGooglePlayMusic('playback:playPause');
+      }
       mainWindow.hide();
-      if (app.dock && app.dock.hide) app.dock.hide();
     }
     event.preventDefault();
     return;

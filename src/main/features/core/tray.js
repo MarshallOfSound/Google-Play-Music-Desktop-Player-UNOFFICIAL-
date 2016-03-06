@@ -25,7 +25,6 @@ const setContextMenu = () => {
       click: () => {
         mainWindow.setSkipTaskbar(false);
         mainWindow.show();
-        if (app.dock && app.dock.show) app.dock.show();
       },
     },
     {
@@ -44,7 +43,6 @@ appIcon.setToolTip('Google Play Music');
 appIcon.on('double-click', () => {
   mainWindow.setSkipTaskbar(false);
   mainWindow.show();
-  if (app.dock && app.dock.show) app.dock.show();
 });
 
 // DEV: Keep the icon in the global scope or it gets garbage collected........
