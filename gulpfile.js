@@ -69,6 +69,10 @@ const cleanGlob = (glob) => {
 gulp.task('clean', cleanGlob(['./build', './dist']));
 gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
 gulp.task('clean-dist-darwin', cleanGlob(`./dist/${packageJSON.productName}-darwin-ia32`));
+gulp.task('clean-dist-linux', cleanGlob([
+  `./dist/${packageJSON.productName}-linux-ia32`,
+  `./dist/${packageJSON.productName}-linux-x64`
+]));
 gulp.task('clean-external', cleanGlob('./build/external.js'));
 gulp.task('clean-material', cleanGlob('./build/assets/material'));
 gulp.task('clean-utility', cleanGlob('./build/assets/util'));
@@ -191,8 +195,61 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
   });
 });
 
+gulp.task('package:linux', ['clean-dist-linux', 'build'], (done) => {
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux'}), done);
+});
+
+gulp.task('make:linux', ['package:linux'], (done) => {
+  const pathEscapedName = packageJSON.productName.replace(/ /gi, '\ ');
+  
+  // Zip Linux x86
+  const child = spawn('zip', ['-r', '-y',
+    `${pathEscapedName}-linux-ia32.zip`,
+    `.`],
+    {
+      cwd: `./dist/${packageJSON.productName}-linux-ia32`,
+    });
+
+  console.log(`Zipping "${packageJSON.productName}-linux-ia32"`); // eslint-disable-line
+
+  // spit stdout to screen
+  child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
+
+  // Send stderr to the main console
+  child.stderr.on('data', (data) => {
+    process.stdout.write(data.toString());
+  });
+
+  child.on('close', (code) => {
+    console.log('Finished zipping with code ' + code); // eslint-disable-line
+  });
+  
+  // Zip Linux x64
+  const child2 = spawn('zip', ['-r', '-y',
+    `${pathEscapedName}-linux-x64.zip`,
+    `.`],
+    {
+      cwd: `./dist/${packageJSON.productName}-linux-x64`,
+    });
+
+  console.log(`Zipping "${packageJSON.productName}-linux-x64"`); // eslint-disable-line
+
+  // spit stdout to screen
+  child2.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
+
+  // Send stderr to the main console
+  child2.stderr.on('data', (data) => {
+    process.stdout.write(data.toString());
+  });
+
+  child2.on('close', (code) => {
+    console.log('Finished zipping with code ' + code); // eslint-disable-line
+    done();
+  });
+});
+
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['watch', 'transpile', 'images']);
 gulp.task('build', ['external', 'materialize-js', 'utility-js', 'transpile', 'images', 'less',
                     'fonts', 'html']);
-gulp.task('package', ['package:win', 'package:darwin']);
+gulp.task('package', ['package:win', 'package:darwin', 'package:linux']);

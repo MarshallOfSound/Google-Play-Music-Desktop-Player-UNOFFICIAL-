@@ -1,12 +1,14 @@
 import fs from 'fs';
 import mkdirp from 'mkdirp';
 
+const os = require('os');
+
 const environment = process.env;
 
 class PlaybackAPI {
   constructor() {
     const DIR = (environment.APPDATA ||
-      (process.platform === 'darwin' ? environment.HOME + '/Library/Preferences' : '/var/local')) +
+      (process.platform === 'darwin' ? environment.HOME + '/Library/Preferences' : os.homedir())) +
       '/GPMDP_STORE';
     this.PATH = `${DIR}/playback.json`;
 

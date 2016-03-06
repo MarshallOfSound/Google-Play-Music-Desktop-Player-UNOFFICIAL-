@@ -5,7 +5,7 @@ const osVersion = os.release().split('.');
 if (osVersion[0] && parseInt(osVersion[0], 10) > 7) {
   // If we are above windows 7 we can use the system notifications but with
   // the silent flag forced on
-  require('../darwin/silent_Notification');
+  require('../silent_Notification');
 } else {
   const NOTIFICATIONS = [];
 
