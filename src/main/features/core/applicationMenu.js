@@ -21,9 +21,9 @@ const template = [
         role: 'paste',
       },
       {
-        label: "Select All",
-        accelerator: "CmdOrCtrl+A",
-        role: "selectall"
+        label: 'Select All',
+        accelerator: 'CmdOrCtrl+A',
+        role: 'selectall',
       },
     ],
   },
