@@ -215,7 +215,7 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
 
   const defaults = {
     bin: packageJSON.productName,
-    dest: 'dist/installers',
+    dest: 'dist/installers/debian',
     depends: ['libappindicator1'],
     maintainer: 'Samuel Attard <samuel.r.attard@gmail.com>',
     homepage: 'http://www.googleplaymusicdesktopplayer.com',
@@ -226,7 +226,7 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
     src: `dist/${packageJSON.productName}-linux-ia32`,
     arch: 'i386',
   }), (err) => {
-    console.log('32bit package built');
+    console.log('32bit deb package built');
     if (err) return next(err);
     next();
   });
@@ -235,19 +235,111 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
     src: `dist/${packageJSON.productName}-linux-x64`,
     arch: 'amd64',
   }), (err) => {
-    console.log('64bit package built');
+    console.log('64bit deb package built');
     if (err) return next(err);
     next();
   });
 });
 
-gulp.task('make:linux', ['deb:linux'], (done) => {
+gulp.task('rpm:linux', ['package:linux'], (done) => {
+  let count = 0;
+  const next = (err) => {
+    if (err) {
+      done(err);
+    } else if (count > 0) {
+      done();
+    } else {
+      count++;
+    }
+  };
+
+  const redhat  = require('electron-installer-redhat');
+
+  const defaults = {
+    bin: packageJSON.productName,
+    dest: 'dist/installers/fedora',
+    depends: ['libappindicator1'],
+    maintainer: 'Samuel Attard <samuel.r.attard@gmail.com>',
+    homepage: 'http://www.googleplaymusicdesktopplayer.com',
+    icon: 'build/assets/img/main.png',
+  };
+
+  redhat(_.extend({}, defaults, {
+    src: `dist/${packageJSON.productName}-linux-ia32`,
+    arch: 'i386',
+  }), (err) => {
+    console.log('32bit rpm package built');
+    if (err) return next(err);
+    next();
+  });
+
+  redhat(_.extend({}, defaults, {
+    src: `dist/${packageJSON.productName}-linux-x64`,
+    arch: 'amd64',
+  }), (err) => {
+    console.log('64bit rpm package built');
+    if (err) return next(err);
+    next();
+  });
+});
+
+gulp.task('make:linux', ['deb:linux', 'rpm:linux'], (done) => {
   // Zip Linux x86
   const child = spawn('zip', ['-r', '-y',
     `installers.zip`,
     `.`],
     {
       cwd: `./dist/installers`,
+    });
+
+  console.log(`Zipping the linux Installers`); // eslint-disable-line
+
+  // spit stdout to screen
+  child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
+
+  // Send stderr to the main console
+  child.stderr.on('data', (data) => {
+    process.stdout.write(data.toString());
+  });
+
+  child.on('close', (code) => {
+    console.log('Finished zipping with code ' + code); // eslint-disable-line
+    done();
+  });
+});
+
+gulp.task('make:deb', ['deb:linux'], (done) => {
+  // Zip Linux x86
+  const child = spawn('zip', ['-r', '-y',
+    `installers.zip`,
+    `.`],
+    {
+      cwd: `./dist/installers/debian`,
+    });
+
+  console.log(`Zipping the linux Installers`); // eslint-disable-line
+
+  // spit stdout to screen
+  child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
+
+  // Send stderr to the main console
+  child.stderr.on('data', (data) => {
+    process.stdout.write(data.toString());
+  });
+
+  child.on('close', (code) => {
+    console.log('Finished zipping with code ' + code); // eslint-disable-line
+    done();
+  });
+});
+
+gulp.task('make:rpm', ['deb:redhat'], (done) => {
+  // Zip Linux x86
+  const child = spawn('zip', ['-r', '-y',
+    `installers.zip`,
+    `.`],
+    {
+      cwd: `./dist/installers/rpm`,
     });
 
   console.log(`Zipping the linux Installers`); // eslint-disable-line
