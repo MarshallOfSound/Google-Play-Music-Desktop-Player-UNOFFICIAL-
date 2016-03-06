@@ -22,7 +22,7 @@ script:
   - npm run test
   - npm run build
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]] && [[ $TRAVIS_PULL_REQUEST == "false" ]]; then ./sig/import.sh && npm run make:darwin && node ./sig/publish-mac.js; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run make:linux && echo Success; fi #&& node ./sig/publish-linux.js; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ $TRAVIS_PULL_REQUEST == "false" ]]; then npm run make:linux && node ./sig/publish-linux.js; fi
 
 notifications:
   webhooks:
