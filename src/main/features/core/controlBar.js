@@ -1,5 +1,3 @@
-import { app } from 'electron';
-
 Emitter.on('window:minimize', (event, windowID) => {
   WindowManager.getByInternalID(windowID).minimize();
 });
