@@ -4,6 +4,7 @@ const _ = require('lodash');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const clean = require('gulp-clean');
+const debian = require('electron-installer-debian');
 const less = require('gulp-less');
 const cssmin = require('gulp-cssmin');
 const concat = require('gulp-concat');
@@ -199,18 +200,58 @@ gulp.task('package:linux', ['clean-dist-linux', 'build'], (done) => {
   packager(_.extend({}, defaultPackageConf, { platform: 'linux'}), done);
 });
 
-gulp.task('make:linux', ['package:linux'], (done) => {
+gulp.task('deb:linux', ['package:linux'], (done) => {
+  let count = 0;
+  const next = (err) => {
+    if (err) {
+      done(err);
+    } else if  (count > 0) {
+      done();
+    } else {
+      count++;
+    }
+  };
+
+  const defaults = {
+    bin: packageJSON.productName,
+    dest: 'dist/installers',
+    depends: ['libappindicator1'],
+    maintainer: 'Samuel Attard <samuel.r.attard@gmail.com>',
+    homepage: 'http://www.googleplaymusicdesktopplayer.com',
+    icon: 'build/assets/img/main.png',
+  };
+
+  debian(_.extend({}, defaults, {
+    src: `dist/${packageJSON.productName}-linux-ia32`,
+    arch: 'i386',
+  }), (err) => {
+    console.log('32bit package built');
+    if (err) return next(err);
+    next();
+  });
+
+  debian(_.extend({}, defaults, {
+    src: `dist/${packageJSON.productName}-linux-x64`,
+    arch: 'amd64',
+  }), (err) => {
+    console.log('64bit package built');
+    if (err) return next(err);
+    next();
+  });
+});
+
+gulp.task('make:linux', (done) => {
   const pathEscapedName = packageJSON.productName.replace(/ /gi, '\ ');
-  
+
   // Zip Linux x86
   const child = spawn('zip', ['-r', '-y',
-    `${pathEscapedName}-linux-ia32.zip`,
+    `installers.zip`,
     `.`],
     {
-      cwd: `./dist/${packageJSON.productName}-linux-ia32`,
+      cwd: `./dist/installers`,
     });
 
-  console.log(`Zipping "${packageJSON.productName}-linux-ia32"`); // eslint-disable-line
+  console.log(`Zipping the linux Installers`); // eslint-disable-line
 
   // spit stdout to screen
   child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
@@ -222,29 +263,6 @@ gulp.task('make:linux', ['package:linux'], (done) => {
 
   child.on('close', (code) => {
     console.log('Finished zipping with code ' + code); // eslint-disable-line
-  });
-  
-  // Zip Linux x64
-  const child2 = spawn('zip', ['-r', '-y',
-    `${pathEscapedName}-linux-x64.zip`,
-    `.`],
-    {
-      cwd: `./dist/${packageJSON.productName}-linux-x64`,
-    });
-
-  console.log(`Zipping "${packageJSON.productName}-linux-x64"`); // eslint-disable-line
-
-  // spit stdout to screen
-  child2.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
-
-  // Send stderr to the main console
-  child2.stderr.on('data', (data) => {
-    process.stdout.write(data.toString());
-  });
-
-  child2.on('close', (code) => {
-    console.log('Finished zipping with code ' + code); // eslint-disable-line
-    done();
   });
 });
 
