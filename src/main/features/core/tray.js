@@ -27,6 +27,29 @@ const setContextMenu = () => {
         mainWindow.show();
       },
     },
+    { type: 'separator' },
+    {
+      label: 'Play / Pause',
+      click: () => Emitter.sendToGooglePlayMusic('playback:playPause'),
+    },
+    {
+      label: 'Previous Track',
+      click: () => Emitter.sendToGooglePlayMusic('playback:previousTrack'),
+    },
+    {
+      label: 'Next Track',
+      click: () => Emitter.sendToGooglePlayMusic('playback:nextTrack'),
+    },
+    { type: 'separator' },
+    {
+      label: 'Thumbs Up',
+      click: () => Emitter.sendToGooglePlayMusic('playback:thumbsUp'),
+    },
+    {
+      label: 'Thumbs Down',
+      click: () => Emitter.sendToGooglePlayMusic('playback:thumbsDown'),
+    },
+    { type: 'separator' },
     {
       label: 'Audio Device',
       submenu: audioDeviceMenu,
@@ -40,9 +63,24 @@ const setContextMenu = () => {
 setContextMenu();
 
 appIcon.setToolTip('Google Play Music');
-appIcon.on('double-click', () => {
-  mainWindow.setSkipTaskbar(false);
-  mainWindow.show();
+
+appIcon.on('click', () => {
+  if (mainWindow.isVisible() && !mainWindow.isMinimized()) {
+    // hide
+    if (process.platform !== 'darwin') {
+      mainWindow.minimize();
+      mainWindow.setSkipTaskbar(true);
+    } else {
+      if (PlaybackAPI.isPlaying()) {
+        Emitter.sendToGooglePlayMusic('playback:playPause');
+      }
+      mainWindow.hide();
+    }
+  } else {
+    // show
+    mainWindow.setSkipTaskbar(false);
+    mainWindow.show();
+  }
 });
 
 // DEV: Keep the icon in the global scope or it gets garbage collected........
