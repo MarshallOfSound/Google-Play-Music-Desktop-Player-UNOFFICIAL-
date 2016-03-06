@@ -32,8 +32,6 @@ OS Support
 * Fedora
 * Debian
 
-**Note: We do not current have automated builds for Ubuntu (PR's are welcome)**
-
 Features
 --------
 
@@ -70,6 +68,7 @@ To get started just pull the repo and run the following
 
 ```bash
 npm install
+npm run build
 npm start
 ```
 
@@ -81,10 +80,10 @@ npm run make:win
 # Mac OSX
 npm run make:darwin
 
-# Ubuntu
+# Ubuntu (Requires the 'dpkg' package)
 npm run make:deb
 
-# Fedora
+# Fedora (Requires the 'rpm' package)
 npm run make:rpm
 ```
 
@@ -103,27 +102,30 @@ If you think you can add something cool or fix a problem, fork the repo and make
 
 Dev Requirements
 ----------------
-* Node.js (Recommend `4.2.x`)
+* Node.js (Recommend `4.3.x`)
 
 Continuous Integration
 ------------------------
 
-We run tests and generate signed installers on two CI platforms
+We run tests and generate signed installers on three CI platforms
 * Windows --> [AppVeyor][2]
 * OSX --> [Travis CI][3]
+* Linux --> [Circle CI][4]
 
 You can download the latest signed installers for Windows from the artifacts section of AppVeyor  
 You can download the latest signed package for OSX from the URL at the bottom of the build log on Travis CI
+You can download the latest linux (debian and fedora) builds from the artifacts section on Circle CI
 
 [2]: https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial
 [3]: https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
+[4]: https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
 
 License
 -------
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Samuel Attard
+Copyright (c) 2016 Samuel Attard
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
