@@ -17,7 +17,6 @@ export default () => {
     show: false,
     frame: false,
     icon: path.resolve(`${__dirname}/../assets/img/main.png`),
-    fullscreen: false,
     title: 'Nucleus Player',
     nodeIntegration: true,
     'web-preferences': {
