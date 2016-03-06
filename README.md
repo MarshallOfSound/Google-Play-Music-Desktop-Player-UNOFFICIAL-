@@ -27,6 +27,9 @@ OS Support
 * Windows 7 or later
 * Mac OSX 10.8.0 or later
 * Ubuntu 14.04 or later
+* Mint
+* Fedora
+* Debian
 
 **Note: We do not current have automated builds for Ubuntu (PR's are welcome)**
 
@@ -76,6 +79,12 @@ npm run make:win
 
 # Mac OSX
 npm run make:darwin
+
+# Ubuntu
+npm run make:deb
+
+# Fedora
+npm run make:rpm
 ```
 
 All releases will be signing with my Code Signing Certificates (Authenticode on Windows and Codesign on OSX)
