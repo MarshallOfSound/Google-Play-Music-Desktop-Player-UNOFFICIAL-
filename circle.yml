@@ -1,0 +1,17 @@
+machine:
+  node:
+    version: 4.3.1
+
+dependencies:
+  cache_directories:
+    - "~/.electron"
+
+test:
+  override:
+    - npm run test
+  post:
+    - npm run make:linux
+
+general:
+  artifacts:
+    - "dist"
