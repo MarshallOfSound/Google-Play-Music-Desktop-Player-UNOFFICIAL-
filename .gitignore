@@ -1,7 +1,4 @@
 node_modules/
 build/
-dist/*
-!dist/installers/
-!dist/installers/*
-dist/installers/installers.zip
+dist/
 .settings.json

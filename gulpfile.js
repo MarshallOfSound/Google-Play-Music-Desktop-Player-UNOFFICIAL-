@@ -30,8 +30,8 @@ const paths = {
   images: ['src/assets/icons/**/*', 'src/assets/img/**/*'],
 };
 
-var repo_website = 'http://www.googleplaymusicdesktopplayer.com';
-var repo_author = 'Samuel Attard <samuel.r.attard@gmail.com>';
+const repo_website = 'http://www.googleplaymusicdesktopplayer.com';
+const repo_author = 'Samuel Attard <samuel.r.attard@gmail.com>';
 
 const packageJSON = require('./package.json');
 let version = packageJSON.dependencies['electron-prebuilt'];
