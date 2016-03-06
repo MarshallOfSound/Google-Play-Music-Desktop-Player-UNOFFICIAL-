@@ -72,7 +72,7 @@ gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-i
 gulp.task('clean-dist-darwin', cleanGlob(`./dist/${packageJSON.productName}-darwin-ia32`));
 gulp.task('clean-dist-linux', cleanGlob([
   `./dist/${packageJSON.productName}-linux-ia32`,
-  `./dist/${packageJSON.productName}-linux-x64`
+  `./dist/${packageJSON.productName}-linux-x64`,
 ]));
 gulp.task('clean-external', cleanGlob('./build/external.js'));
 gulp.task('clean-material', cleanGlob('./build/assets/material'));
@@ -167,7 +167,7 @@ gulp.task('make:win', ['package:win'], (done) => {
 });
 
 gulp.task('package:darwin', ['clean-dist-darwin', 'build'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', sign: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' }), done);
+  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', sign: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' }), done); // eslint-disable-line
 });
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {
@@ -197,7 +197,7 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
 });
 
 gulp.task('package:linux', ['clean-dist-linux', 'build'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'linux'}), done);
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux' }), done);
 });
 
 gulp.task('deb:linux', ['package:linux'], (done) => {
@@ -205,7 +205,7 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
   const next = (err) => {
     if (err) {
       done(err);
-    } else if  (count > 0) {
+    } else if (count > 0) {
       done();
     } else {
       count++;
@@ -241,8 +241,6 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
 });
 
 gulp.task('make:linux', ['deb:linux'], (done) => {
-  const pathEscapedName = packageJSON.productName.replace(/ /gi, '\ ');
-
   // Zip Linux x86
   const child = spawn('zip', ['-r', '-y',
     `installers.zip`,
@@ -263,6 +261,7 @@ gulp.task('make:linux', ['deb:linux'], (done) => {
 
   child.on('close', (code) => {
     console.log('Finished zipping with code ' + code); // eslint-disable-line
+    done();
   });
 });
 

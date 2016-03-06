@@ -6,7 +6,7 @@ const path = require('path');
 
 console.log('Uploading ZIP artifact'); // eslint-disable-line
 
-const req = request.post(`http://linux.googleplaymusicdesktopplayer.com/upload/${process.env.TRAVIS_COMMIT}/${process.env.TRAVIS_BUILD_NUMBER}`, (err, resp, body) => {
+const req = request.post(`http://ip-linux.googleplaymusicdesktopplayer.com/upload/${process.env.TRAVIS_COMMIT}/${process.env.TRAVIS_BUILD_NUMBER}`, (err, resp, body) => {
   if (err) {
     console.log('Upload failed with error!'); // eslint-disable-line
     console.log(err); // eslint-disable-line
