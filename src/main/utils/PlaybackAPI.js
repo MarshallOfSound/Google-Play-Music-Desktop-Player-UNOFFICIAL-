@@ -1,14 +1,9 @@
 import fs from 'fs';
-import mkdirp from 'mkdirp';
-import config_dir from './config_dir';
-
-const os = require('os');
-
-const environment = process.env;
+import configDir from './configDir';
 
 class PlaybackAPI {
   constructor() {
-    this.PATH = `${config_dir}/playback.json`;
+    this.PATH = `${configDir}/playback.json`;
 
     this.reset();
 

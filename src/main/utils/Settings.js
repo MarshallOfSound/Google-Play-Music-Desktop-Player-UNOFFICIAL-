@@ -1,15 +1,10 @@
 import fs from 'fs';
-import mkdirp from 'mkdirp';
 import initalSettings from './initialSettings';
-import config_dir from './config_dir';
-
-const os = require('os');
-
-const environment = process.env;
+import configDir from './configDir';
 
 class Settings {
   constructor(jsonPrefix, wipeOldData) {
-    this.PATH = `${config_dir}/${(jsonPrefix || '')}.settings.json`;
+    this.PATH = `${configDir}/${(jsonPrefix || '')}.settings.json`;
     this.data = initalSettings;
     this.lastSync = 0;
 

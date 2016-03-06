@@ -12,7 +12,7 @@ switch (process.platform) {
     DIR = os.homedir() + '/.GPMDP_STORE';
     break;
   case 'darwin':
-    DIR = environment.HOME + '/Library/Preferences/GPMDP_STORE'
+    DIR = environment.HOME + '/Library/Preferences/GPMDP_STORE';
     break;
   default:
     DIR = environment.APPDATA + '/GPMDP_STORE';
