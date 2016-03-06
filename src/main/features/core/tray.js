@@ -86,6 +86,7 @@ appIcon.on('click', () => {
       // Window in tray, or not focused
       mainWindow.setSkipTaskbar(false);
       mainWindow.show();
+      mainWindow.focus();
     } else {
       mainWindow.minimize();
       mainWindow.setSkipTaskbar(true);
