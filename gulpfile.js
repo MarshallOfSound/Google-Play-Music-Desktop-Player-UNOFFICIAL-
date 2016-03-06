@@ -240,7 +240,7 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
   });
 });
 
-gulp.task('make:linux', (done) => {
+gulp.task('make:linux', ['deb:linux'], (done) => {
   const pathEscapedName = packageJSON.productName.replace(/ /gi, '\ ');
 
   // Zip Linux x86
