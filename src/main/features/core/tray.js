@@ -61,28 +61,9 @@ function toggleMainWindow() {
       }
     }
   } else { // Windows, Linux
-    const wasMinimized = win.isMinimized();
-
-    if (wasMinimized || !win.isFocused()) {
+    if (win.isMinimized()) {
       win.setSkipTaskbar(false);
-      win.show();
-
-      win.focus(); // if not minimized, try to focus it
-
-      if (!wasMinimized && !win.isFocused()) {
-        // Failed to focus the window !
-
-        // The window is in a weird glitch state caused
-        // by "closing" it with the cross button
-
-        // Since we can't give it focus, assume it's in the
-        // foreground and user actually wanted to hide it.
-        if (Settings.get('minToTray', true)) {
-          win.minimize();
-          win.setSkipTaskbar(true);
-        }
-      }
-
+      win.restore();
     } else {
       // Hide to tray, if configured
       if (Settings.get('minToTray', true)) {
@@ -94,10 +75,8 @@ function toggleMainWindow() {
 }
 
 appIcon.setToolTip('Google Play Music');
-appIcon.on('click', toggleMainWindow);
-
-/* does not work if the 'click' handler is present */
 //appIcon.on('double-click', toggleMainWindow);
+appIcon.on('click', toggleMainWindow);
 
 
 // DEV: Keep the icon in the global scope or it gets garbage collected........
