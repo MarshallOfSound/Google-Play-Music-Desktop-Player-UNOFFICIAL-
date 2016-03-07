@@ -53,4 +53,32 @@ window.wait(() => {
     return false;
   });
   document.querySelectorAll('.nav-section.material')[0].insertBefore(dSettings, document.querySelectorAll('.nav-section.material > a')[2]); // eslint-disable-line
+
+  // Back button
+  const back = document.createElement('paper-icon-button');
+  back.setAttribute('onclick', 'history.back()');
+  back.setAttribute('icon', 'arrow-back');
+  back.setAttribute('id', 'back-button');
+  back.setAttribute('class', 'x-scope paper-icon-button-0');
+  document.querySelector('#material-one-middle > sj-search-box').insertBefore(back, null);
+
+  style('#back-button', {
+      'position': 'absolute',
+      'right': '3px',
+      'top': '1px',
+      'width': '46px',
+      'height': '46px',
+      'opacity': '0',
+      'transition': 'opacity 0.2s ease-in-out'
+  });
+
+  // Ideally we should listen for the URL change
+  // 'hashchange' does not seem to work :(
+  setInterval(() => {
+    if (location.href.indexOf('https://play.google.com/music/listen#/now') === 0) {
+      back.style.opacity = 0;
+    } else {
+      back.style.opacity = 1;
+    }
+  }, 250);
 });
