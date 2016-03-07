@@ -27,6 +27,29 @@ const setContextMenu = () => {
         mainWindow.show();
       },
     },
+    { type: 'separator' },
+    {
+      label: 'Play / Pause',
+      click: () => Emitter.sendToGooglePlayMusic('playback:playPause'),
+    },
+    {
+      label: 'Previous Track',
+      click: () => Emitter.sendToGooglePlayMusic('playback:previousTrack'),
+    },
+    {
+      label: 'Next Track',
+      click: () => Emitter.sendToGooglePlayMusic('playback:nextTrack'),
+    },
+    { type: 'separator' },
+    {
+      label: 'Thumbs Up',
+      click: () => Emitter.sendToGooglePlayMusic('playback:thumbsUp'),
+    },
+    {
+      label: 'Thumbs Down',
+      click: () => Emitter.sendToGooglePlayMusic('playback:thumbsDown'),
+    },
+    { type: 'separator' },
     {
       label: 'Audio Device',
       submenu: audioDeviceMenu,
