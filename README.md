@@ -5,7 +5,7 @@ Google Play Music™ Desktop Player
 [![Github All Releases](https://img.shields.io/github/downloads/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/total.svg)](https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases)
  [![GitHub version](https://badge.fury.io/gh/MarshallOfSound%2FGoogle-Play-Music-Desktop-Player-UNOFFICIAL-.svg)](https://badge.fury.io/gh/MarshallOfSound%2FGoogle-Play-Music-Desktop-Player-UNOFFICIAL-)  [![Code Climate](https://codeclimate.com/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/badges/gpa.svg)](https://codeclimate.com/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-) <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ" title="Help me out by donating to this project"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>  
  Windows: [![Build status](https://ci.appveyor.com/api/projects/status/clg5vclqyltff7hg/branch/master?svg=true)](https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial/branch/master)  
- Max OSX: [![Build Status](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-.svg?branch=master)](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-)  
+ Max OS X: [![Build Status](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-.svg?branch=master)](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-)  
  Linux: [![Circle CI](https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/tree/master.svg?style=svg)](https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/tree/master)
 
 ![](http://samuel.ninja/img/gpmdp_screen.gif)
@@ -26,7 +26,7 @@ OS Support
 ------------
 
 * Windows 7 or later
-* Mac OSX 10.8.0 or later
+* Mac OS X 10.8.0 or later
 * Ubuntu 14.04 or later
 * Mint
 * Fedora
@@ -77,7 +77,7 @@ To build the installers / release packages you need to run, you can only build a
 # Windows
 npm run make:win
 
-# Mac OSX
+# Mac OS X
 npm run make:darwin
 
 # Ubuntu (Requires the 'dpkg' package)
@@ -87,7 +87,7 @@ npm run make:deb
 npm run make:rpm
 ```
 
-All releases will be signing with my Code Signing Certificates (Authenticode on Windows and Codesign on OSX)
+All releases will be signing with my Code Signing Certificates (Authenticode on Windows and Codesign on OS X)
 
 Contributing
 ------------
@@ -109,11 +109,11 @@ Continuous Integration
 
 We run tests and generate signed installers on three CI platforms
 * Windows --> [AppVeyor][2]
-* OSX --> [Travis CI][3]
+* OS X --> [Travis CI][3]
 * Linux --> [Circle CI][4]
 
 You can download the latest signed installers for Windows from the artifacts section of AppVeyor  
-You can download the latest signed package for OSX from the URL at the bottom of the build log on Travis CI
+You can download the latest signed package for OS X from the URL at the bottom of the build log on Travis CI
 You can download the latest linux (debian and fedora) builds from the artifacts section on Circle CI
 
 [2]: https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial
