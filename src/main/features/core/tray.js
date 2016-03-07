@@ -75,7 +75,7 @@ function toggleMainWindow() {
 }
 
 appIcon.setToolTip('Google Play Music');
-//appIcon.on('double-click', toggleMainWindow);
+// appIcon.on('double-click', toggleMainWindow);
 appIcon.on('click', toggleMainWindow);
 
 
