@@ -61,7 +61,7 @@ function toggleMainWindow() {
 appIcon.setToolTip('Google Play Music');
 
 switch (process.platform) {
-  case 'darwin': // actually means OS-X
+  case 'darwin': // <- actually means OS-X
     // No toggle action, use the context menu.
     break;
   case 'linux':
@@ -71,6 +71,9 @@ switch (process.platform) {
     break;
   case 'win32': // <- it's win32 also on 64-bit Windows
     appIcon.on('double-click', toggleMainWindow);
+    break;
+  default:
+    // impossible case to satisfy Linters
 }
 
 
