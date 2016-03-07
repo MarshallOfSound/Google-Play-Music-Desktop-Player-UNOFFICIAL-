@@ -13,5 +13,7 @@ if (webview) {
     setTimeout(() => {
       document.body.removeAttribute('loading');
     }, 400);
+
+    webview.openDevTools();
   });
 }
