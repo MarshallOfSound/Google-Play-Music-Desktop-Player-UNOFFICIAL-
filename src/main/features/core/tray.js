@@ -39,11 +39,63 @@ const setContextMenu = () => {
 };
 setContextMenu();
 
+
+/**
+ * Toggle the main window (on tray click).
+ * If in background, bring to foreground.
+ */
+function toggleMainWindow() {
+  // the mainWindow variable will be GC'd
+  // we must find the window ourselves
+  const win = WindowManager.getAll('main')[0];
+
+  if (process.platform === 'darwin') { // OS-X - Not tested!
+    if (!win.isVisible()) {
+      // Show
+      win.setSkipTaskbar(false);
+      win.show();
+    } else {
+      // Hide to tray, if configured
+      if (Settings.get('minToTray', true)) {
+        win.hide();
+      }
+    }
+  } else { // Windows, Linux
+    const wasMinimized = win.isMinimized();
+
+    if (wasMinimized || !win.isFocused()) {
+      win.setSkipTaskbar(false);
+      win.show();
+
+      win.focus(); // if not minimized, try to focus it
+
+      if (!wasMinimized && !win.isFocused()) {
+        // Failed to focus the window !
+
+        // The window is in a weird glitch state caused
+        // by "closing" it with the cross button
+
+        // Since we can't give it focus, assume it's in the
+        // foreground and user actually wanted to hide it.
+        if (Settings.get('minToTray', true)) {
+          win.minimize();
+          win.setSkipTaskbar(true);
+        }
+      }
+
+    } else {
+      // Hide to tray, if configured
+      if (Settings.get('minToTray', true)) {
+        win.minimize();
+        win.setSkipTaskbar(true);
+      }
+    }
+  }
+}
+
 appIcon.setToolTip('Google Play Music');
-appIcon.on('double-click', () => {
-  mainWindow.setSkipTaskbar(false);
-  mainWindow.show();
-});
+appIcon.on('click', toggleMainWindow);
+appIcon.on('double-click', toggleMainWindow);
 
 // DEV: Keep the icon in the global scope or it gets garbage collected........
 global.appIcon = appIcon;
