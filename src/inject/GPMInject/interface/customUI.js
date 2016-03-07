@@ -63,7 +63,7 @@ window.wait(() => {
 
   // Back button
   const back = document.createElement('paper-icon-button');
-  back.setAttribute('onclick', 'history.back()');
+  back.addEventListener('click', () => history.back());
   back.setAttribute('icon', 'arrow-back');
   back.setAttribute('id', 'backButton');
   back.setAttribute('class', 'x-scope paper-icon-button-0');
