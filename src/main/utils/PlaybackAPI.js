@@ -57,7 +57,9 @@ class PlaybackAPI {
   }
 
   _save() {
-    fs.writeFileSync(this.PATH, JSON.stringify(this.data));
+    if (Settings.get('enableJSONApi', true)) {
+      fs.writeFileSync(this.PATH, JSON.stringify(this.data));
+    }
   }
 
   setPlaying(isPlaying) {
