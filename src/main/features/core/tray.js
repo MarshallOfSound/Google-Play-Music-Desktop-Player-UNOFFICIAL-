@@ -95,7 +95,10 @@ function toggleMainWindow() {
 
 appIcon.setToolTip('Google Play Music');
 appIcon.on('click', toggleMainWindow);
-appIcon.on('double-click', toggleMainWindow);
+
+/* does not work if the 'click' handler is present */
+//appIcon.on('double-click', toggleMainWindow);
+
 
 // DEV: Keep the icon in the global scope or it gets garbage collected........
 global.appIcon = appIcon;
