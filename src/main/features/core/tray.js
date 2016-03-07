@@ -40,43 +40,38 @@ const setContextMenu = () => {
 setContextMenu();
 
 
-/**
- * Toggle the main window (on tray click).
- * If in background, bring to foreground.
- */
+// Tray icon toggle action (windows, linux)
 function toggleMainWindow() {
   // the mainWindow variable will be GC'd
   // we must find the window ourselves
   const win = WindowManager.getAll('main')[0];
 
-  if (process.platform === 'darwin') { // OS-X - Not tested!
-    if (!win.isVisible()) {
-      // Show
-      win.setSkipTaskbar(false);
-      win.show();
-    } else {
-      // Hide to tray, if configured
-      if (Settings.get('minToTray', true)) {
-        win.hide();
-      }
-    }
-  } else { // Windows, Linux
-    if (win.isMinimized()) {
-      win.setSkipTaskbar(false);
-      win.restore();
-    } else {
-      // Hide to tray, if configured
-      if (Settings.get('minToTray', true)) {
-        win.minimize();
-        win.setSkipTaskbar(true);
-      }
+  if (win.isMinimized()) {
+    win.setSkipTaskbar(false);
+    win.show();
+  } else {
+    // Hide to tray, if configured
+    if (Settings.get('minToTray', true)) {
+      win.minimize();
+      win.setSkipTaskbar(true);
     }
   }
 }
 
 appIcon.setToolTip('Google Play Music');
-// appIcon.on('double-click', toggleMainWindow);
-appIcon.on('click', toggleMainWindow);
+
+switch (process.platform) {
+  case 'darwin': // actually means OS-X
+    // No toggle action, use the context menu.
+    break;
+  case 'linux':
+  case 'freebsd': // <- for the hipsters
+  case 'sunos':   // <- in case someone runs this in a museum
+    appIcon.on('click', toggleMainWindow);
+    break;
+  case 'win32': // <- it's win32 also on 64-bit Windows
+    appIcon.on('double-click', toggleMainWindow);
+}
 
 
 // DEV: Keep the icon in the global scope or it gets garbage collected........
