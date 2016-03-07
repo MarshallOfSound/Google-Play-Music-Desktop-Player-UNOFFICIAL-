@@ -21,7 +21,17 @@ const style = (elementSelector, styleObject) => {
   });
 };
 
+const cssRule = (css) => {
+  const style = document.createElement('style');
+  style.type = 'text/css';
+  style.appendChild(document.createTextNode(css));
+  document.head.appendChild(style);
+};
+
 window.wait(() => {
+  // Restore original text color on buttons in the Profile dialog (dark theme sets it to white).
+  cssRule('.gmusic-theme .material div.gb_ob a.gb_Ca.gb_nb {color: #666 !important}');
+
   // Top left account control buttons
   hide('#material-one-right #gb > div > div > div:not(:last-child)');
   style('#material-one-right #gb > div > div > div:last-child',
