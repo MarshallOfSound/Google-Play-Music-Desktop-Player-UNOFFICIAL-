@@ -16,7 +16,6 @@ window.wait(() => {
     Emitter.fire('mini', { state: true });
     oldSize = remote.getCurrentWindow().getSize();
     mainWindow.setSize(MINI_SIZE, MINI_SIZE);
-    mainWindow.setMaximumSize(MINI_SIZE, MINI_SIZE);
     webContents.executeJavaScript('document.body.setAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
     remote.getCurrentWindow().setAlwaysOnTop(Settings.get('miniAlwaysOnTop', false));
