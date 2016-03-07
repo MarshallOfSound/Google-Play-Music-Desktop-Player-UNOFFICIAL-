@@ -51,7 +51,7 @@ class Settings {
     // During some save events (like resize) we need to queue the disk writes
     // so that we don't blast the disk every millisecond
     if ((now - this.lastSync > 250 || force)) {
-      fs.writeFileSync(this.PATH, JSON.stringify(this.data));
+      fs.writeFileSync(this.PATH, JSON.stringify(this.data, null, 4));
     } else {
       if (this.saving) clearTimeout(this.saving);
       this.saving = setTimeout(this._save.bind(this), 275);
