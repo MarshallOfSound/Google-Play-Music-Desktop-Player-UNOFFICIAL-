@@ -70,13 +70,13 @@ window.wait(() => {
   document.querySelector('#material-one-middle > sj-search-box').insertBefore(back, null);
 
   style('#backButton', {
-      position: 'absolute',
-      right: '3px',
-      top: '1px',
-      width: '46px',
-      height: '46px',
-      opacity: '0',
-      transition: 'opacity 0.2s ease-in-out'
+    position: 'absolute',
+    right: '3px',
+    top: '1px',
+    width: '46px',
+    height: '46px',
+    opacity: '0',
+    transition: 'opacity 0.2s ease-in-out',
   });
 
   // Make sure the clearSearch button is above the arrow
