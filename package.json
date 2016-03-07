@@ -1,8 +1,4 @@
 {
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-"
-  },
   "name": "google-play-music-desktop-player",
   "productName": "Google Play Music Desktop Player",
   "version": "3.0.0",
@@ -12,22 +8,29 @@
     "build": "gulp build",
     "clean": "gulp clean",
     "lint": "eslint ./src/ ./test/",
-    "make:win": "gulp make:win",
     "make:darwin": "gulp make:darwin",
-    "make:linux": "gulp make:linux",
     "make:deb": "gulp make:deb",
+    "make:linux": "gulp make:linux",
     "make:rpm": "gulp make:rpm",
+    "make:win": "gulp make:win",
     "package:darwin": "gulp package:darwin",
-    "package:win": "gulp package:win",
     "package:linux": "gulp package:linux",
-    "release:win": "release-nucleus --nucleus-path=./ --release-type=win",
-    "release:darwin": "release-nucleus --nucleus-path=./ --release-type=darwin",
+    "package:win": "gulp package:win",
     "test": "npm run lint",
     "test-unit": "electron-mocha ./test -r test/support/prerun.js",
     "start": "electron .",
     "watch": "gulp watch"
   },
-  "author": "Samuel Attard",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-"
+  },
+  "author": {
+    "name": "Samuel Attard",
+    "email": "samuel.r.attard@gmail.com",
+    "url": "https://www.samuelattard.com"
+  },
+  "homepage": "http://www.googleplaymusicdesktopplayer.com",
   "license": "MIT",
   "dependencies": {
     "electron-prebuilt": "0.36.10",
@@ -69,7 +72,6 @@
     "materialize-css": "^0.97.5",
     "mocha": "^2.3.4",
     "mocha-sinon": "^1.1.5",
-    "nucleus-player-releaser": "^1.0.1",
     "request": "^2.69.0",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0"
