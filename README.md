@@ -10,7 +10,7 @@ Google Play Music™ Desktop Player
 
 ![](http://samuel.ninja/img/gpmdp_screen.gif)
 
-Run Google Play Music as a stand alone Desktop app.  Never again will you have to hunt through your tabs to pause your music, or stop listening to your favourite song because Chrome is guzzling up all your RAM..
+Run Google Play Music as a standalone desktop app.  Never again will you have to hunt through your tabs to pause your music, or stop listening to your favourite song because Chrome is guzzling up all your RAM..
 
 Developed by [Samuel Attard][1].
 
@@ -113,7 +113,7 @@ We run tests and generate signed installers on three CI platforms
 * Linux --> [Circle CI][4]
 
 You can download the latest signed installers for Windows from the artifacts section of AppVeyor  
-You can download the latest signed package for OS X from the URL at the bottom of the build log on Travis CI
+You can download the latest signed package for OS X from the URL at the bottom of the build log on Travis CI  
 You can download the latest linux (debian and fedora) builds from the artifacts section on Circle CI
 
 [2]: https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial
