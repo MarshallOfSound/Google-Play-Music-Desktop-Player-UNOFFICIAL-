@@ -7,7 +7,7 @@ module.exports = (grunt) => {
       // This is what Github does with atom so it kinda makes sense :)
       ia32: {
         appDirectory: `dist/${packageJSON.productName}-win32-ia32`,
-        outputDirectory: 'dist/win32',
+        outputDirectory: 'dist/installers/win32',
         authors: packageJSON.author,
         exe: `${packageJSON.productName}.exe`,
         description: packageJSON.productName,

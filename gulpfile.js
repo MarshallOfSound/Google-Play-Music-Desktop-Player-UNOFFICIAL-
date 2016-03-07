@@ -49,7 +49,7 @@ const defaultPackageConf = {
   out: './dist/',
   overwrite: true,
   prune: true,
-  ignore: 'dist/.*',
+  ignore: /(?!node_modules).*\/(vendor|dist|sig|docs|src|.cert.pfx|.eslintignore|.eslintrc|.gitignore|.travis.yml|appveyor.yml|circle.yml|Gruntfile.js|gulpfile.js|ISSUE_TEMPLATE.md|LICENSE|MR_CHANGELOG.html|README.md)(\/|$)/g, // eslint-disable-line
   'version-string': {
     CompanyName: 'Samuel Attard',
     LegalCopyright: 'Copyright © 2016 Samuel Attard, All rights reserved.',
@@ -221,16 +221,16 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
     debian(_.extend({}, defaults, {
       src: `dist/${packageJSON.productName}-linux-x64`,
       arch: 'amd64',
-    }), (err) => {
+    }), (err2) => {
       console.log('64bit deb package built');
-      if (err) return done(err);
+      if (err2) return done(err2);
       done();
     });
   });
 });
 
 gulp.task('rpm:linux', ['package:linux'], (done) => {
-  const redhat  = require('electron-installer-redhat');
+  const redhat = require('electron-installer-redhat');
 
   const defaults = {
     bin: packageJSON.productName,
@@ -251,9 +251,9 @@ gulp.task('rpm:linux', ['package:linux'], (done) => {
     redhat(_.extend({}, defaults, {
       src: `dist/${packageJSON.productName}-linux-x64`,
       arch: 'amd64',
-    }), (err) => {
+    }), (err2) => {
       console.log('64bit rpm package built');
-      if (err) return done(err);
+      if (err2) return done(err2);
       done();
     });
   });
