@@ -21,11 +21,11 @@ const style = (elementSelector, styleObject) => {
   });
 };
 
-const cssRule = (css) => {
-  const style = document.createElement('style');
-  style.type = 'text/css';
-  style.appendChild(document.createTextNode(css));
-  document.head.appendChild(style);
+const cssRule = (styles) => {
+  const tag = document.createElement('style');
+  tag.type = 'text/css';
+  tag.appendChild(document.createTextNode(styles));
+  document.head.appendChild(tag);
 };
 
 window.wait(() => {
