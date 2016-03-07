@@ -34,7 +34,14 @@ window.wait(() => {
   // Settings options that won't work
   hide('[data-action="upload-music"]');
   hide('[data-action="help-and-feedback"]');
+  hide('[data-action="send-gift"]');
 
+  // Temp Fix: Hiding the entire account details bubble
+  hide('[aria-label="Account Information"]');
+  hide('[class="gb_ab"]');
+  hide('[class="gb_bb"]');
+
+  // Hide Upload Dialog
   hide('.upload-dialog-bg', true);
   hide('.upload-dialog', true);
 
