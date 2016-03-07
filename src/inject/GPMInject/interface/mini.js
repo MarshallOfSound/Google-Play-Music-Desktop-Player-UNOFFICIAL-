@@ -16,6 +16,7 @@ window.wait(() => {
     Emitter.fire('mini', { state: true });
     oldSize = remote.getCurrentWindow().getSize();
     mainWindow.setSize(MINI_SIZE, MINI_SIZE);
+    mainWindow.setTitle('GPMDP - Mini Player');
     webContents.executeJavaScript('document.body.setAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
     remote.getCurrentWindow().setAlwaysOnTop(Settings.get('miniAlwaysOnTop', false));
@@ -29,6 +30,7 @@ window.wait(() => {
     //        --> https://github.com/atom/electron/blob/master/atom/browser/native_window_views.cc
     mainWindow.setMaximumSize(99999999, 999999999);
     mainWindow.setSize(...oldSize);
+    mainWindow.setTitle('Google Play Music Desktop Player');
     webContents.executeJavaScript('document.body.removeAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
     remote.getCurrentWindow().setAlwaysOnTop(false);
