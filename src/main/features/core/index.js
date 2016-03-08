@@ -1,4 +1,4 @@
-import './keyboardShotcuts';
+import './keyboardShortcuts';
 import './persistAppState';
 import './controlBar';
 import './customTheme';
