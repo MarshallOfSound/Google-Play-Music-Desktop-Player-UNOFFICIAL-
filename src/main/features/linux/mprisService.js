@@ -1,22 +1,13 @@
 const mpris = require('mpris-service');
 
-
 class MprisService {
+
     constructor() {
         this.player = mpris({
             name: 'gpmdp',
             identity: 'Google Play Music Desktop Player',
             supportedInterfaces: ['player']
         });
-
-        // DEV: Remove after feature completion
-        //var events = ['raise', 'quit', 'next', 'previous', 'pause', 'playpause', 'stop', 'play', 'seek', 'position', 'open', 'volume'];
-
-        //events.forEach( (eventName) => {
-        //    player.on(eventName, () => {
-        //        console.log("Event:", eventName, arguments);
-        //    });
-        //});
 
         this.listeners();
     }
@@ -52,6 +43,7 @@ class MprisService {
 
     updateMetadata(newSong) {
         this.player.metadata = {
+            // This is required in MPRIS, but no uuid for each track is given by gmusic library.
             //'mpris:trackid': player.objectPath('track/0'),
             //'mpris:length' : newSong.length, // 
             //'mpris:artUrl' : newSong.art, //
@@ -63,15 +55,6 @@ class MprisService {
     
     updatePlaybackStatus(status) {
         this.player.playbackStatus = status;
-    }
-    
+    }   
 }
-
 const mprisService = new MprisService();
-
-
-// Listen for dbus signals
-
-
-// Publish now playing info 
-
