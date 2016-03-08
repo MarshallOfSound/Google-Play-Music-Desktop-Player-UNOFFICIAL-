@@ -15,7 +15,7 @@ export default () => {
     x: Settings.get('X'),
     y: Settings.get('Y'),
     show: false,
-    frame: false,
+    frame: (process.platform !== 'win32'),
     icon: path.resolve(`${__dirname}/../assets/img/main.png`),
     title: 'Nucleus Player',
     nodeIntegration: true,

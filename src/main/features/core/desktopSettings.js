@@ -9,7 +9,7 @@ export const showDesktopSettings = () => {
   const desktopSettings = new BrowserWindow({
     width: 800,
     height: 480,
-    frame: false,
+    frame: (process.platform !== 'win32'),
     show: false,
     nodeIntegration: true,
     icon: path.resolve(`${__dirname}/../../../assets/img/main.png`),

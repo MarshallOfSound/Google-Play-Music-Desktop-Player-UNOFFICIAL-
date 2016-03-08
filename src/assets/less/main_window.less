@@ -12,6 +12,20 @@ html, body {
   padding: 0;
 }
 
+// Only use the custom borders on windows
+.darwin, .linux, .freebsd, .sunos, .win32 {
+  .window-border {
+    border: 0;
+    > header {
+      display: none;
+    }
+
+    .embedded-player {
+      height: 100vh !important;
+    }
+  }
+}
+
 .window-border {
   .fill-parent;
   border: @border-width solid @orange;

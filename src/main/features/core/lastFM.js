@@ -29,7 +29,7 @@ const authLastFMToken = (token) => {
       height: 720,
       center: true,
       show: false,
-      frame: false,
+      frame: (process.platform !== 'win32'),
       nodeIntegration: false,
       icon: path.resolve(`${__dirname}/../../../assets/img/main.png`),
       title: 'Last.FM',
