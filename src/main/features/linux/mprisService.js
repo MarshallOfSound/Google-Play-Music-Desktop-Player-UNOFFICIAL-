@@ -11,10 +11,11 @@ class MprisService {
             desktopEntry: 'google-play-music-desktop-player'
         });
 
-        this.listeners();
+        this._listeners();
     }
 
-    listeners() {
+    _listeners() {
+
         this.player.on('play', () => {
             if (!PlaybackAPI.isPlaying()) {
                 Emitter.sendToGooglePlayMusic('playback:playPause');
@@ -23,6 +24,9 @@ class MprisService {
 
         this.player.on('playpause', () => {
            Emitter.sendToGooglePlayMusic('playback:playPause');
+           if (PlaybackAPI.isPlaying()) {
+                this._updatePlaybackStatus('Playing');
+           }
         });
 
         this.player.on('next', () => {
@@ -35,27 +39,28 @@ class MprisService {
 
         this.player.on('stop', () => {
            Emitter.sendToGooglePlayMusic('playback:stop');
-           this.updatePlaybackStatus('Stopped');
+           this._updatePlaybackStatus('Stopped');
         });
 
         PlaybackAPI.on('change:song', (newSong) => {
-            this.updateMetadata(newSong);             
+            this._updateMetadata(newSong);             
         });
     }
 
-    updateMetadata(newSong) {
+    _updateMetadata(newSong) {
         this.player.metadata = {
             // This is required in MPRIS, but no uuid for each track is given by gmusic library.
             //'mpris:trackid': player.objectPath('track/0'),
             //'mpris:length' : newSong.length, // 
             //'mpris:artUrl' : newSong.art, //
-            'xesam:title': newSong.title, //
-            'xesam:album': newSong.album, //
+            //'xesam:asText': newSong.lyrics // 
+            'xesam:title': newSong.title,
+            'xesam:album': newSong.album,
             'xesam:artist': newSong.artist
         };
     }
     
-    updatePlaybackStatus(status) {
+    _updatePlaybackStatus(status) {
         this.player.playbackStatus = status;
     }   
 }
