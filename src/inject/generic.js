@@ -15,6 +15,8 @@ const waitForBody = setInterval(() => {
     }
     require('electron').remote.getCurrentWindow().show();
 
+    document.body.classList.toggle('native-frame', Settings.get('nativeFrame'));
+
     document.addEventListener('dragover', (event) => {
       event.preventDefault();
       return false;

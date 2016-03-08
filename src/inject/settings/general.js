@@ -20,3 +20,16 @@ if (Settings.get('speechRecognition', false)) {
 } else {
   $('#voice-controls').removeAttr('checked');
 }
+
+$('#native-frame').change((e) => {
+  Emitter.fire('settings:set', {
+    key: 'nativeFrame',
+    value: $(e.currentTarget).is(':checked'),
+  });
+});
+
+if (Settings.get('nativeFrame')) {
+  $('#native-frame').attr('checked', true);
+} else {
+  $('#native-frame').removeAttr('checked');
+}
