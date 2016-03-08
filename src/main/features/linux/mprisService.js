@@ -1,4 +1,4 @@
-const mpris = require('mpris-service');
+import mpris from 'mpris-service';
 
 class MprisService {
 
@@ -6,7 +6,9 @@ class MprisService {
         this.player = mpris({
             name: 'gpmdp',
             identity: 'Google Play Music Desktop Player',
-            supportedInterfaces: ['player']
+            canRaise: true,
+            supportedInterfaces: ['player'],
+            desktopEntry: 'google-play-music-desktop-player'
         });
 
         this.listeners();
