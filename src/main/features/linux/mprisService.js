@@ -1,41 +1,77 @@
 const mpris = require('mpris-service');
 
-var player = mpris({
-    name: 'gpmdp',
-    identity: 'Google Play Music Desktop Player',
-    supportedInterfaces: ['player']
-});
 
-var events = ['raise', 'quit', 'next', 'previous', 'pause', 'playpause', 'stop', 'play', 'seek', 'position', 'open', 'volume'];
+class MprisService {
+    constructor() {
+        this.player = mpris({
+            name: 'gpmdp',
+            identity: 'Google Play Music Desktop Player',
+            supportedInterfaces: ['player']
+        });
 
-events.forEach( (eventName) => {
-    console.log("Registering: " + eventName);
-    player.on(eventName, () => {
-        console.log("Event:", eventName, arguments);
-    });
-});
+        // DEV: Remove after feature completion
+        //var events = ['raise', 'quit', 'next', 'previous', 'pause', 'playpause', 'stop', 'play', 'seek', 'position', 'open', 'volume'];
 
-player.on('play', () => {
-   Emitter.sendToGooglePlayMusic('playback:play');
-});
+        //events.forEach( (eventName) => {
+        //    player.on(eventName, () => {
+        //        console.log("Event:", eventName, arguments);
+        //    });
+        //});
 
-player.on('volume', () => {
-   Emitter.sendToGooglePlayMusic('playback:play');
-});
+        this.listeners();
+    }
 
-player.on('playpause', () => {
-   Emitter.sendToGooglePlayMusic('playback:playPause');
-});
+    listeners() {
+        this.player.on('play', () => {
+            if (!PlaybackAPI.isPlaying()) {
+                Emitter.sendToGooglePlayMusic('playback:playPause');
+            }
+        });
 
-player.on('next', () => {
-   Emitter.sendToGooglePlayMusic('playback:nextTrack');
-});
+        this.player.on('playpause', () => {
+           Emitter.sendToGooglePlayMusic('playback:playPause');
+        });
+
+        this.player.on('next', () => {
+           Emitter.sendToGooglePlayMusic('playback:nextTrack');
+        });
+
+        this.player.on('previous', () => {
+           Emitter.sendToGooglePlayMusic('playback:previousTrack');
+        });
+
+        this.player.on('stop', () => {
+           Emitter.sendToGooglePlayMusic('playback:stop');
+           this.updatePlaybackStatus('Stopped');
+        });
+
+        PlaybackAPI.on('change:song', (newSong) => {
+            this.updateMetadata(newSong);             
+        });
+    }
+
+    updateMetadata(newSong) {
+        this.player.metadata = {
+            //'mpris:trackid': player.objectPath('track/0'),
+            //'mpris:length' : newSong.length, // 
+            //'mpris:artUrl' : newSong.art, //
+            'xesam:title': newSong.title, //
+            'xesam:album': newSong.album, //
+            'xesam:artist': newSong.artist
+        };
+    }
+    
+    updatePlaybackStatus(status) {
+        this.player.playbackStatus = status;
+    }
+    
+}
+
+const mprisService = new MprisService();
 
 
-player.on('previous', () => {
-   Emitter.sendToGooglePlayMusic('playback:previousTrack');
-});
+// Listen for dbus signals
 
-player.on('stop', () => {
-   Emitter.sendToGooglePlayMusic('playback:stop');
-});
+
+// Publish now playing info 
+
