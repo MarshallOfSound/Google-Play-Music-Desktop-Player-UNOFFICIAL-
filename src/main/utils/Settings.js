@@ -1,4 +1,4 @@
-import app from 'app';
+import { app } from 'electron';
 import fs from 'fs';
 import mkdirp from 'mkdirp';
 import initalSettings from './initialSettings';
