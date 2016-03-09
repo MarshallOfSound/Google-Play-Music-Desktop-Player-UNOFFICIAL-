@@ -17,11 +17,13 @@ export default function (fileName) {
 
   const OLD_PATH = `${OLD_DIR}/${fileName}.json`;
 
+  if (!fs.existsSync(DIR)) {
+    mkdirp.sync(DIR);
+  }
+
   if (fs.existsSync(OLD_PATH)) {
     fs.renameSync(OLD_PATH, PATH);
     fs.rmdir(OLD_DIR, () => {});
-  } else if (!fs.existsSync(DIR)) {
-    mkdirp.sync(DIR);
   }
 
   return PATH;
