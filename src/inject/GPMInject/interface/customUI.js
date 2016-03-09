@@ -1,3 +1,4 @@
+import { remote } from 'electron';
 import _ from 'lodash';
 
 const hide = (elementSelector, kill = false) => {
@@ -42,6 +43,15 @@ window.wait(() => {
   hide('[data-action="upload-music"]');
   hide('[data-action="help-and-feedback"]');
   hide('[data-action="send-gift"]');
+
+  const shopButton = document.querySelector('[data-type="shop"]');
+  if (shopButton) {
+    shopButton.addEventListener('click', (e) => {
+      remote.shell.openExternal('https://play.google.com/store/music?feature=music_general');
+      e.preventDefault();
+      return false;
+    });
+  }
 
   hide('.upload-dialog-bg', true);
   hide('.upload-dialog', true);
