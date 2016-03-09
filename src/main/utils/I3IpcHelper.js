@@ -8,7 +8,7 @@ class I3IpcHelper {
 
   _hasI3Msg(callback) {
     if (this.isI3()) {
-      exec('command -v i3-msg', error => {
+      exec('command -v i3-msg', (error) => {
         // we'll get a non 0 exit code if the command doesn't exist
         // this should work on any POSIX compatible shell
         callback(error === null);
