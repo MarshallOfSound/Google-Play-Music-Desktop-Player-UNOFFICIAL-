@@ -7,12 +7,15 @@ const MINI_SIZE = 310;
 let mini = false;
 let oldSize;
 
+const I3IpcHelper = remote.getGlobal('I3IpcHelper');
+
 window.wait(() => {
   if (Settings.get('miniAlwaysShowSongInfo', false)) {
     document.body.setAttribute('controls', 'controls');
   }
 
   window.GPM.mini.on('enable', () => {
+    I3IpcHelper.setFloating(true);
     Emitter.fire('mini', { state: true });
     oldSize = remote.getCurrentWindow().getSize();
     mainWindow.setSize(MINI_SIZE, MINI_SIZE);
@@ -24,6 +27,7 @@ window.wait(() => {
   });
 
   window.GPM.mini.on('disable', () => {
+    I3IpcHelper.setFloating(false);
     Emitter.fire('mini', { state: false });
     // DEV: Set max size to be massive
     //      Same reason as specified in Electron src

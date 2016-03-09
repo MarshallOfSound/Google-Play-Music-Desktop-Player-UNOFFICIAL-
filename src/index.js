@@ -7,6 +7,7 @@ import EmitterClass from './main/utils/Emitter';
 import SettingsClass from './main/utils/Settings';
 import WindowManagerClass from './main/utils/WindowManager';
 import PlaybackAPIClass from './main/utils/PlaybackAPI';
+import I3IpcHelperClass from './main/utils/I3IpcHelper';
 
 import handleStartupEvent from './squirrel';
 
@@ -41,6 +42,7 @@ import handleStartupEvent from './squirrel';
   global.WindowManager = new WindowManagerClass();
   global.Settings = new SettingsClass();
   global.PlaybackAPI = new PlaybackAPIClass();
+  global.I3IpcHelper = new I3IpcHelperClass();
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
