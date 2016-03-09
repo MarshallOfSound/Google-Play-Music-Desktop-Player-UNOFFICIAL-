@@ -26,7 +26,7 @@ OS Support
 ------------
 
 * Windows 7 or later
-* Mac OS X 10.8.0 or later
+* Mac OS X 10.9.0 or later
 * Ubuntu 14.04 or later
 * Mint
 * Fedora
