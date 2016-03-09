@@ -1,28 +1,11 @@
-import { app } from 'electron';
 import fs from 'fs';
-import mkdirp from 'mkdirp';
-
-const os = require('os');
-
-const environment = process.env;
+import createJSON from './_jsonCreator';
 
 class PlaybackAPI {
   constructor() {
-    const DIR = app.getPath('userData');
-    this.PATH = `${DIR}/playback.json`;
-    const OLD_DIR = (environment.APPDATA ||
-      (process.platform === 'darwin' ? environment.HOME + '/Library/Preferences' : os.homedir())) +
-      '/GPMDP_STORE';
-    const OLD_PATH = `${OLD_DIR}/playback.json`;
-
+    this.PATH = createJSON('playback');
     this.reset();
-    if (fs.existsSync(OLD_PATH)) {
-      fs.renameSync(OLD_PATH, this.PATH);
-      fs.rmdir(OLD_DIR, function () {});
-    } else if (!fs.existsSync(this.PATH)) {
-      mkdirp(DIR);
-      this._save();
-    }
+    this._save();
 
     this._ev = {};
 
