@@ -41,6 +41,7 @@ window.wait(() => {
   // Settings options that won't work
   hide('[data-action="upload-music"]');
   hide('[data-action="help-and-feedback"]');
+  hide('[data-action="send-gift"]');
 
   hide('.upload-dialog-bg', true);
   hide('.upload-dialog', true);
