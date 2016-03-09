@@ -9,6 +9,7 @@ export const showDesktopSettings = () => {
   const desktopSettings = new BrowserWindow({
     width: 800,
     height: 540,
+    autoHideMenuBar: true,
     frame: Settings.get('nativeFrame'),
     show: false,
     nodeIntegration: true,

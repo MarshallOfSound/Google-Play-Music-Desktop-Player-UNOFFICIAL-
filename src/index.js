@@ -54,7 +54,6 @@ import handleStartupEvent from './squirrel';
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   app.on('ready', () => {
-    // mainWindow = new BrowserWindow(require('./lib/configureBrowser')(electron, app));
     mainWindow = new BrowserWindow(generateBrowserConfig());
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 

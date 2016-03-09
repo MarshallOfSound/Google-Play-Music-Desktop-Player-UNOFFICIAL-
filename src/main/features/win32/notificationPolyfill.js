@@ -13,6 +13,7 @@ class Notification {
       y: 0,
       useContentSize: true,
       show: false,
+      autoHideMenuBar: true,
       frame: false,
       resizable: false,
       skipTaskbar: true,

@@ -29,6 +29,7 @@ const authLastFMToken = (token) => {
       height: 720,
       center: true,
       show: false,
+      autoHideMenuBar: true,
       frame: Settings.get('nativeFrame'),
       nodeIntegration: false,
       icon: path.resolve(`${__dirname}/../../../assets/img/main.png`),
