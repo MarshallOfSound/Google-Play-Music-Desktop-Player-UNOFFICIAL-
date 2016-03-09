@@ -45,7 +45,7 @@ class Settings {
 
   _load() {
     const userSettings = JSON.parse(fs.readFileSync(this.PATH, 'utf8'));
-    this.data = _.defaults(userSettings, initalSettings);
+    this.data = _.extend({}, initalSettings, userSettings);
   }
 
   _save(force) {
