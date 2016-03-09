@@ -1,8 +1,8 @@
+import app from 'app';
 import fs from 'fs';
 import mkdirp from 'mkdirp';
 
 const os = require('os');
-const app = require('app');
 
 const environment = process.env;
 

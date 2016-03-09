@@ -1,9 +1,9 @@
+import app from 'app';
 import fs from 'fs';
 import mkdirp from 'mkdirp';
 import initalSettings from './initialSettings';
 
 const os = require('os');
-const app = require('app');
 
 const environment = process.env;
 
