@@ -7,9 +7,10 @@ class I3IpcHelper {
   }
 
   _hasI3Msg(callback) {
-    if(this.isI3()) {
+    if (this.isI3()) {
       exec('command -v i3-msg', error => {
-        //we'll get a non 0 exit code if the command doesn't exist this should work on any POSIX compatible shell
+        // we'll get a non 0 exit code if the command doesn't exist
+        // this should work on any POSIX compatible shell
         callback(error === null);
       });
     }
@@ -22,12 +23,12 @@ class I3IpcHelper {
   }
 
   _escapeShellArg(str) {
-    return str.replace(/'/, "\\'").replace(/"/, "\\\"");
+    return str.replace(/'/g, "\\'").replace(/"/g, '\\\"');
   }
 
   setFloating(mode) {
     this._hasI3Msg(hasMsg => {
-      if(hasMsg) {
+      if (hasMsg) {
         const title = this._escapeShellArg(this._getWindowTitleRegex());
         const floatingMode = mode ? 'enable' : 'disable';
         exec(`i3-msg '[title="${title}"] floating ${floatingMode}'`, () => {});

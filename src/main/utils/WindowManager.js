@@ -67,10 +67,10 @@ class WindowManager {
   }
 
   getWindowManagerName() {
-    if(process.platform === 'linux') {
+    if (process.platform === 'linux') {
       return process.env.XDG_CURRENT_DESKTOP;
     }
-    return 'unknown';
+    return undefined;
   }
 
 }
