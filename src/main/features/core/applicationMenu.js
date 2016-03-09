@@ -147,5 +147,22 @@ if (process.platform === 'darwin') {
   );
 }
 
+if (global.DEV_MODE) {
+  template[4].submenu.push(
+    {
+      type: 'separator',
+    }, {
+      label: 'Toggle Developer Tools',
+      accelerator: (() => {
+        if (process.platform === 'darwin') return 'Alt+Command+I';
+        return 'Ctrl+Shift+I';
+      })(),
+      click: (item, focusedWindow) => {
+        if (focusedWindow) focusedWindow.toggleDevTools();
+      },
+    }
+  );
+}
+
 const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);

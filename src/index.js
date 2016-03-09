@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from 'electron';
+import { argv } from 'yargs';
 
 import configureApp from './main/configureApp';
 import generateBrowserConfig from './main/configureBrowser';
@@ -14,6 +15,8 @@ import handleStartupEvent from './squirrel';
   if (handleStartupEvent()) {
     return;
   }
+
+  global.DEV_MODE = argv.development || argv.dev;
 
   configureApp(app);
 

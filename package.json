@@ -18,7 +18,7 @@
     "package:win": "gulp package:win",
     "test": "npm run lint",
     "test-unit": "electron-mocha ./test -r test/support/prerun.js",
-    "start": "electron .",
+    "start": "electron . --dev",
     "watch": "gulp watch"
   },
   "repository": {
@@ -41,7 +41,8 @@
     "mkdirp": "^0.5.1",
     "node-fetch": "^1.3.3",
     "semver": "^5.1.0",
-    "ws": "^1.0.1"
+    "ws": "^1.0.1",
+    "yargs": "^4.2.0"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
