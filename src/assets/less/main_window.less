@@ -12,8 +12,8 @@ html, body {
   padding: 0;
 }
 
-// Only use the custom borders on windows
-.darwin, .linux, .freebsd, .sunos {
+// Hide custom frame when native frame is used
+.native-frame {
   .window-border {
     border: 0;
     > header {

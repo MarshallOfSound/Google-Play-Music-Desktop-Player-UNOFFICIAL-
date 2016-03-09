@@ -1,4 +1,5 @@
 import fs from 'fs';
+import _ from 'lodash';
 import mkdirp from 'mkdirp';
 import initalSettings from './initialSettings';
 
@@ -43,7 +44,8 @@ class Settings {
   }
 
   _load() {
-    this.data = JSON.parse(fs.readFileSync(this.PATH, 'utf8'));
+    const userSettings = JSON.parse(fs.readFileSync(this.PATH, 'utf8'));
+    this.data = _.extend({}, initalSettings, userSettings);
   }
 
   _save(force) {
