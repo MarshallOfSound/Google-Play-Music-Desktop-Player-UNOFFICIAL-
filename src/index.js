@@ -42,7 +42,6 @@ import handleStartupEvent from './squirrel';
   global.WindowManager = new WindowManagerClass();
   global.Settings = new SettingsClass();
   global.PlaybackAPI = new PlaybackAPIClass();
-  global.I3IpcHelper = new I3IpcHelperClass();
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
@@ -84,6 +83,10 @@ import handleStartupEvent from './squirrel';
       mainWindow = null;
       PlaybackAPI.reset();
     });
+
+    // setup i3 listener
+    const I3IpcHelper = new I3IpcHelperClass();
+    I3IpcHelper.setupEventListener();
   });
 
   app.on('before-quit', () => {

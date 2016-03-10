@@ -36,6 +36,12 @@ class I3IpcHelper {
     });
   }
 
+  setupEventListener() {
+    Emitter.on('mini', (event, eventArguments) => {
+      this.setFloating(eventArguments.state);
+    });
+  }
+
 }
 
 export default I3IpcHelper;
