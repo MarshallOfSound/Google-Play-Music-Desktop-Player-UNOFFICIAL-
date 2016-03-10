@@ -1,3 +1,5 @@
+import { remote } from 'electron';
+
 const webview = document.querySelector('webview');
 
 if (webview) {
@@ -12,6 +14,10 @@ if (webview) {
   webview.addEventListener('dom-ready', () => {
     setTimeout(() => {
       document.body.removeAttribute('loading');
+      webview.focus();
+      remote.getCurrentWindow().on('focus', () => {
+        webview.focus();
+      });
     }, 400);
   });
 }
