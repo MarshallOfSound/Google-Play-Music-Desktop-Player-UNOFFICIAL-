@@ -65,6 +65,14 @@ class WindowManager {
       this.windows[windowID].close();
     }
   }
+
+  getWindowManagerName() {
+    if (process.platform === 'linux') {
+      return process.env.XDG_CURRENT_DESKTOP;
+    }
+    return undefined;
+  }
+
 }
 
 export default WindowManager;
