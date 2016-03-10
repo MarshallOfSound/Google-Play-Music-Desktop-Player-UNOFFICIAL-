@@ -21,6 +21,11 @@ window.wait(() => {
     remote.getCurrentWebContents().setZoomFactor(1);
     remote.getCurrentWindow().setAlwaysOnTop(Settings.get('miniAlwaysOnTop', false));
     mini = true;
+    // close menu if expanded
+    const closeBtn = document.getElementById('left-nav-close-button');
+    if (closeBtn !== null) {
+      closeBtn.click();
+    }
   });
 
   window.GPM.mini.on('disable', () => {
