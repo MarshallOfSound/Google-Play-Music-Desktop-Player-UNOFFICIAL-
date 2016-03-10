@@ -6,7 +6,7 @@ applications to determine the currently played song and playback status.
 The interface is provided through a file that is continuously updated,
 allowing external applications to watch the file to always have the
 current playback information. The file is JSON-formatted and located at
-`%APPDATA%\GPMDP_STORE\playback.json`
+`%APPDATA%\GPMDP_STORE\playback.json` on Windows or at `~/GPMDP_STORE/playback.json` on Linux.
 
 ## Data Format
 
