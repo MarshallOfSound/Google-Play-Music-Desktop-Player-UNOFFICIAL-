@@ -49,7 +49,7 @@ const defaultPackageConf = {
   out: './dist/',
   overwrite: true,
   prune: true,
-  ignore: /^(?!.*node_modules).*\/(vendor|dist|sig|docs|src|.cert.pfx|.eslintignore|.eslintrc|.gitignore|.travis.yml|appveyor.yml|circle.yml|Gruntfile.js|gulpfile.js|ISSUE_TEMPLATE.md|LICENSE|MR_CHANGELOG.html|README.md)(\/|$)/g, // eslint-disable-line
+  ignore: /^(?!.*node_modules).*\/(vendor|dist|sig|docs|src|.cert.pfx|.eslintignore|.eslintrc|.gitignore|.travis.yml|appveyor.yml|circle.yml|Gruntfile.js|gulpfile.js|ISSUE_TEMPLATE.md|LICENSE|README.md)(\/|$)/g, // eslint-disable-line
   'version-string': {
     CompanyName: 'Samuel Attard',
     LegalCopyright: 'Copyright © 2016 Samuel Attard, All rights reserved.',
