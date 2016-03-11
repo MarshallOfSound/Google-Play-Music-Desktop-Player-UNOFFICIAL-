@@ -1,6 +1,6 @@
 version: 1.0.{build}
 environment:
-  nodejs_version: "4.2.2"
+  nodejs_version: "4.4.0"
   GITHUB_KEY:
     secure: eZcSozzDKzRJhSoXL7LS9w1jqFLdkiRT4H57JoWGpKj/kS6NC/DP3ColwKkvSeFn
   SIGN_CERT_PASS:
@@ -28,6 +28,7 @@ install:
 
 test_script:
   # Output useful info for debugging.
+  - npm i -g npm
   - node --version
   - npm --version
   # run tests

@@ -102,7 +102,8 @@ If you think you can add something cool or fix a problem, fork the repo and make
 
 Dev Requirements
 ----------------
-* Node.js (Recommend `4.3.x`)
+* Node.js (Recommend `4.4.x`)
+* NPM (3.x.x)
 
 Continuous Integration
 ------------------------
