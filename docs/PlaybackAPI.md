@@ -42,6 +42,10 @@ All attributes are `0` of no song is playing.  If a song is paused the variables
     "album": "Tattoos",
     "albumArt": "https://lh6.ggpht.com/J9gNObbLJ_R71OHy-F6ENINYlnjf6Hjx_dw4RV0GLSTH1zrDEFSeRcW_Kf2fTws0swmOXwot=s90-c-e100"
   },
+  "rating": {
+    "liked": false,
+    "disliked": false,
+  },
   "time": {
     "current": 4908,
     "total": 217000
@@ -57,6 +61,10 @@ All attributes are `0` of no song is playing.  If a song is paused the variables
     "artist": null,
     "album": null,
     "albumArt": null
+  },
+  "rating": {
+    "liked": false,
+    "disliked": false,
   },
   "time": {
     "current": 0,

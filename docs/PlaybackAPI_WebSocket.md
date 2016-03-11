@@ -82,6 +82,19 @@ song.
 
 This channel is sent on average every 100 - 200 milliseconds.  You **will** receive a lot of data.
 
+### Rating
+
+This data is sent when the song first starts playing and when the user changes his rating / rates a song.
+
+Data received in the `rating` channel will have a payload in the format
+
+```js
+"payload": {
+  "liked": Boolean,
+  "disliked": Boolean
+}
+```
+
 ## Controlling the application
 
 ### All Powerful Controller
