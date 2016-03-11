@@ -8,10 +8,11 @@ module.exports = (grunt) => {
       ia32: {
         appDirectory: `dist/${packageJSON.productName}-win32-ia32`,
         outputDirectory: 'dist/installers/win32',
-        authors: packageJSON.author,
+        authors: packageJSON.author.name,
         exe: `${packageJSON.productName}.exe`,
         description: packageJSON.productName,
         title: packageJSON.productName,
+        owners: packageJSON.author.name,
         name: 'GPMDP_3',
         noMsi: true,
         certificateFile: '.cert.pfx',
