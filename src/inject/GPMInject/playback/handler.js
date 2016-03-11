@@ -24,6 +24,10 @@ window.wait(() => {
     Emitter.fire('change:song', song);
   });
 
+  window.GPM.on('change:rating', (rating) => {
+    Emitter.fire('change:rating', rating);
+  });
+
   window.GPM.on('change:playback-time', (playbackInfo) => {
     Emitter.fire('change:playback-time', playbackInfo);
     if (playbackInfo.current >= playbackInfo.total / 2
