@@ -23,7 +23,7 @@ module.exports = (grunt) => {
         loadingGif: 'build/assets/img/installing.gif',
         // DEV: After initial 3.0.0 release this should be uncommented
         // TODO: Read DEV above ^^
-        // remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
+        remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
       },
     },
   });
