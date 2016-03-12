@@ -40,6 +40,13 @@ const template = [
           if (focusedWindow) focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
         },
       },
+      {
+        label: 'Go to URL',
+        accelerator: 'CmdOrCtrl+Shift+G',
+        click: () => {
+          Emitter.sendToWindowsOfName('main', 'gotourl');
+        },
+      },
     ],
   },
   {
