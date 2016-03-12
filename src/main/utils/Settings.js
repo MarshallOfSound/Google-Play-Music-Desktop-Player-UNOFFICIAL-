@@ -1,6 +1,6 @@
 import fs from 'fs';
 import _ from 'lodash';
-import initalSettings from './initialSettings';
+import initalSettings from './_initialSettings';
 import createJSON from './_jsonCreator';
 
 class Settings {
