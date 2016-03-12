@@ -21,6 +21,11 @@ PlaybackAPI.on('change:time', (timeObj) => {
     }
   }
 });
+PlaybackAPI.on('change:rating', (ratingObj) => {
+  if (server && server.broadcast) {
+    server.broadcast('rating', ratingObj);
+  }
+});
 PlaybackAPI.on('change:lyrics', (newLyrics) => {
   if (server && server.broadcast) {
     server.broadcast('lyrics', newLyrics);
