@@ -15,6 +15,9 @@ if (webview) {
     setTimeout(() => {
       document.body.removeAttribute('loading');
       webview.focus();
+      window.addEventListener('beforeunload', () => {
+        remote.getCurrentWindow().removeAllListeners();
+      });
       remote.getCurrentWindow().on('focus', () => {
         webview.focus();
       });
