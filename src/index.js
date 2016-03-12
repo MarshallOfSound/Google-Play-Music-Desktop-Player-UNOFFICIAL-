@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, screen } from 'electron';
 import { argv } from 'yargs';
 
 import configureApp from './main/configureApp';
@@ -62,15 +62,25 @@ import handleStartupEvent from './squirrel';
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
     const position = Settings.get('position');
+    let inBounds = false;
+    screen.getAllDisplays().forEach((display) => {
+      if (position[0] >= display.workArea.x &&
+          position[0] <= display.workArea.x + display.workArea.width &&
+          position[1] >= display.workArea.y &&
+          position[1] <= display.workArea.y + display.workArea.height) {
+        inBounds = true;
+      }
+    });
+
     let size = Settings.get('size');
     size = size || [1200, 800];
 
-    if (position) {
+    mainWindow.setSize(...size);
+    if (position && inBounds) {
       mainWindow.setPosition(...position);
     } else {
       mainWindow.center();
     }
-    mainWindow.setSize(...size);
 
     // and load the index.html of the app.
     mainWindow.loadURL(`file://${__dirname}/public_html/index.html`);
