@@ -26,12 +26,13 @@ if (webview) {
       webview.addEventListener('did-navigate', savePage);
       webview.addEventListener('did-navigate-in-page', savePage);
 
+      const focusWebview = () => {
+        document.querySelector('webview::shadow object').focus();
+      };
       window.addEventListener('beforeunload', () => {
-        remote.getCurrentWindow().removeAllListeners();
+        remote.getCurrentWindow().removeListener('focus', focusWebview);
       });
-      remote.getCurrentWindow().on('focus', () => {
-        webview.focus();
-      });
+      remote.getCurrentWindow().on('focus', focusWebview);
     }, 400);
   });
 }
