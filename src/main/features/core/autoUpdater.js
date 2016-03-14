@@ -9,7 +9,7 @@ if (process.platform === 'darwin') {
 const setUpAutoUpdate = () => {
   if (global.DEV_MODE) return;
   try {
-    autoUpdater.setFeedURL(`http://update.googleplaymusicdesktopplayer.com/update/${platform}/${app.getVersion()}`);
+    autoUpdater.setFeedURL(`https://update.gpmdp.xyz/update/${platform}/${app.getVersion()}`);
 
     autoUpdater.on('error', () => {
       // Ignore it, errors happen
@@ -54,7 +54,7 @@ const setUpAutoUpdate = () => {
 };
 
 const checkUpdateServer = () => {
-  http.get('http://update.googleplaymusicdesktopplayer.com', () => {
+  http.get('https://update.gpmdp.xyz', () => {
     setUpAutoUpdate();
   }).on('error', () => {
     console.log('################### !! Update server down !! ##################'); // eslint-disable-line
