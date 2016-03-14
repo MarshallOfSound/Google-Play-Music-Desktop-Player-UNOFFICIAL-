@@ -13,6 +13,10 @@ const _save = () => {
     Settings.set('position', mainWindow.getPosition());
     Settings.set('size', mainWindow.getSize());
   } else {
+    Settings.set('mini-position', mainWindow.getPosition());
+    Settings.set('mini-size', mainWindow.getSize());
+
+    // Keep the mini-player square.
     const dimension = Math.max(...mainWindow.getSize());
     if (resizeTimer) clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => mainWindow.setSize(dimension, dimension), 100);

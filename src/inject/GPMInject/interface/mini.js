@@ -5,7 +5,6 @@ const webContents = mainWindow.webContents;
 const MINI_SIZE = 310;
 
 let mini = false;
-let oldSize;
 
 window.wait(() => {
   if (Settings.get('miniAlwaysShowSongInfo', false)) {
@@ -14,8 +13,13 @@ window.wait(() => {
 
   window.GPM.mini.on('enable', () => {
     Emitter.fire('mini', { state: true });
-    oldSize = remote.getCurrentWindow().getSize();
-    mainWindow.setSize(MINI_SIZE, MINI_SIZE);
+
+	// Restore the mini size/position from settings, otherwise use default size and regular position.
+    const miniSize = Settings.get('mini-size', [MINI_SIZE, MINI_SIZE]);
+    const miniPosition = Settings.get('mini-position', mainWindow.getPosition());
+    mainWindow.setSize(...miniSize);
+    mainWindow.setPosition(...miniPosition);
+
     mainWindow.setMaximumSize(MINI_SIZE, MINI_SIZE);
     webContents.executeJavaScript('document.body.setAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
@@ -29,7 +33,13 @@ window.wait(() => {
     //      Same reason as specified in Electron src
     //        --> https://github.com/atom/electron/blob/master/atom/browser/native_window_views.cc
     mainWindow.setMaximumSize(99999999, 999999999);
-    mainWindow.setSize(...oldSize);
+
+    // Restore the regular size/position from settings.
+    const regularSize = Settings.get('size');
+    const regularPosition = Settings.get('position');
+    mainWindow.setSize(...regularSize);
+    mainWindow.setPosition(...regularPosition);
+
     webContents.executeJavaScript('document.body.removeAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
     remote.getCurrentWindow().setAlwaysOnTop(false);
