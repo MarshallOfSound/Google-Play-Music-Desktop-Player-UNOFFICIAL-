@@ -18,7 +18,7 @@ export default () => {
     autoHideMenuBar: true,
     frame: Settings.get('nativeFrame'),
     icon: path.resolve(`${__dirname}/../assets/img/main.png`),
-    title: 'Nucleus Player',
+    title: 'Google Play Music Desktop Player',
     nodeIntegration: true,
     'web-preferences': {
       preload: path.resolve(`${__dirname}/../inject/generic.js`),
