@@ -8,6 +8,7 @@ const less = require('gulp-less');
 const cssmin = require('gulp-cssmin');
 const concat = require('gulp-concat');
 const packager = require('electron-packager');
+const path = require('path');
 const spawn = require('child_process').spawn;
 const exec = require('child_process').exec;
 const replace = require('gulp-replace');
@@ -144,15 +145,28 @@ gulp.task('watch', ['build'], () => {
 });
 
 gulp.task('package:win', ['clean-dist-win', 'build'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), () => {
-    setTimeout(() => {
-      exec(`vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd sha1 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe"`, {}, () => {
-        exec(`vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd sha256 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe"`, {}, () => {
-          done();
-        });
+  (new Promise((resolve) => {
+    console.log('Rebuilding ll-keyboard-hook-win'); // eslint-disable-line
+    const build = spawn((process.platform === 'win32' ? 'rebuild_ia32.bat' : 'rebuild.sh'), {
+      cwd: path.resolve(`${__dirname}/vendor`),
+    });
+
+    build.on('exit', () => {
+      console.log('Rebuild complete');  // eslint-disable-line
+      resolve();
+    });
+  }))
+    .then(() => {
+      packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), () => {
+        setTimeout(() => {
+          exec(`vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd sha1 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe"`, {}, () => {
+            exec(`vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd sha256 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe"`, {}, () => {
+              done();
+            });
+          });
+        }, 1000);
       });
-    }, 1000);
-  });
+    });
 });
 
 gulp.task('make:win', ['package:win'], (done) => {
