@@ -16,7 +16,7 @@
     "package:darwin": "gulp package:darwin",
     "package:linux": "gulp package:linux",
     "package:win": "gulp package:win",
-    "postinstall": "./node_modules/.bin/electron-rebuild",
+    "postinstall": ".rebuild",
     "test": "npm run lint",
     "test-unit": "electron-mocha ./test -r test/support/prerun.js",
     "start": "electron . --dev",
