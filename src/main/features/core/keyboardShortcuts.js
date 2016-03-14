@@ -1,19 +1,25 @@
 import _ from 'lodash';
 import { globalShortcut } from 'electron';
 
-globalShortcut.register('MediaPreviousTrack', () => {
+let keyRegisterFn = globalShortcut.register;
+if (process.platform === 'win32') {
+  console.log('Using custom module');
+  keyRegisterFn = require('ll-keyboard-hook-win').on;
+}
+
+keyRegisterFn('MediaPreviousTrack', () => {
   Emitter.sendToGooglePlayMusic('playback:previousTrack');
 });
 
-globalShortcut.register('MediaPlayPause', () => {
+keyRegisterFn('MediaPlayPause', () => {
   Emitter.sendToGooglePlayMusic('playback:playPause');
 });
 
-globalShortcut.register('MediaNextTrack', () => {
+keyRegisterFn('MediaNextTrack', () => {
   Emitter.sendToGooglePlayMusic('playback:nextTrack');
 });
 
-globalShortcut.register('MediaStop', () => {
+keyRegisterFn('MediaStop', () => {
   Emitter.sendToGooglePlayMusic('playback:stop');
 });
 
