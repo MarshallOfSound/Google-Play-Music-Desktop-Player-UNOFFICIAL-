@@ -96,6 +96,9 @@ window.wait(() => {
   // Hide icon if search box has query
   cssRule('sj-search-box[has-query] #backButton {opacity: 0 !important}');
 
+  // Hide the upload music button in settings
+  cssRule('.music-sources-card.settings-card {display: none !important}');
+
   // Ideally we should listen for the URL change
   // 'hashchange' does not seem to work :(
   setInterval(() => {
