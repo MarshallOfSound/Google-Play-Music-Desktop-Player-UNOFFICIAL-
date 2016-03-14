@@ -22,7 +22,7 @@ mainWindow.on('close', (event) => {
       mainWindow.minimize();
       mainWindow.setSkipTaskbar(true);
     } else {
-      if (PlaybackAPI.isPlaying()) {
+      if (PlaybackAPI.isPlaying() && !Settings.get('minToTray', true)) {
         Emitter.sendToGooglePlayMusic('playback:playPause');
       }
       mainWindow.hide();
