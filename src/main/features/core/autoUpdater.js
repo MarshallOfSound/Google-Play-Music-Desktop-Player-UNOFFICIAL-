@@ -1,5 +1,5 @@
 import { app, autoUpdater } from 'electron';
-import http from 'http';
+import https from 'https';
 
 let platform = 'win';
 if (process.platform === 'darwin') {
@@ -54,7 +54,7 @@ const setUpAutoUpdate = () => {
 };
 
 const checkUpdateServer = () => {
-  http.get('https://update.gpmdp.xyz', () => {
+  https.get('https://update.gpmdp.xyz', () => {
     setUpAutoUpdate();
   }).on('error', () => {
     console.log('################### !! Update server down !! ##################'); // eslint-disable-line
