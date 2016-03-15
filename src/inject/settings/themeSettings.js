@@ -12,3 +12,7 @@ if (Settings.get('theme', false)) {
 } else {
   $('#theme-state').removeAttr('checked');
 }
+
+$('#color_wheel_trigger').click(() => {
+  Emitter.fire('window:color_wheel');
+});

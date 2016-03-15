@@ -22,9 +22,34 @@ export const showDesktopSettings = () => {
   WindowManager.forceFocus(desktopSettings);
 };
 
+export const showColorWheel = () => {
+  if (WindowManager.getAll('color_wheel').length > 0) {
+    WindowManager.getAll('color_wheel')[0].show();
+    return;
+  }
+  const colorWheel = new BrowserWindow({
+    width: 400,
+    height: 400,
+    autoHideMenuBar: true,
+    frame: Settings.get('nativeFrame'),
+    show: false,
+    nodeIntegration: true,
+    icon: path.resolve(`${__dirname}/../../../assets/img/main.png`),
+    title: 'Color Wheel',
+  });
+  colorWheel.loadURL(`file://${__dirname}/../../../public_html/color_wheel.html`);
+
+  WindowManager.add(colorWheel, 'color_wheel');
+  WindowManager.forceFocus(colorWheel);
+};
+
 Emitter.on('window:settings', () => {
   // const mainWindow = WindowManager.getAll('main')[0];
   showDesktopSettings();
+});
+
+Emitter.on('window:color_wheel', () => {
+  showColorWheel();
 });
 
 Emitter.on('settings:set', (event, details) => {

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <title>Color Picker</title>
+  <link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <section class="window-border">
+    <header class="title-bar">
+      <div class="drag-handle"></div>
+      <div class="controls">
+        <div id="min" class="control">
+          <img src="../assets/img/control_bar/min.png" />
+        </div>
+        <div id="max" class="control">
+          <img src="../assets/img/control_bar/max.png" />
+        </div>
+        <div id="close" class="control">
+          <img src="../assets/img/control_bar/close.png" />
+        </div>
+      </div>
+    </header>
+    <main class="dialog">
+      <div class="window-title">
+        Color Picker
+      </div>
+      <div class="window-main">
+        <div class="row">
+          <div id="color_wheel_container">
+            <div></div>
+          </div>
+          <input />
+        </div>
+      </div>
+    </main>
+  </section>
+  <script>window._module = window.module; window.module = undefined;</script>
+  <script src="../assets/util/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+  <script>
+  window.module = window._module;
+  require('pretty-colorwheel');
+  require('../inject/generic');
+
+  const cw = Raphael.colorwheel($("#color_wheel_container > div")[0],240,200);
+  cw.input($(".window-main input")[0]);
+  cw.color(Settings.get('themeColor'));
+  cw.ondrag(() => {}, () => {
+    Emitter.fire('theme:updateColor', cw.color().hex);
+  })
+  </script>
+</body>
+</html>

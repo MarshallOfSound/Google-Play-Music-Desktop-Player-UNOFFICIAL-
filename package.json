@@ -41,6 +41,7 @@
     "md5": "^2.0.0",
     "mkdirp": "^0.5.1",
     "node-fetch": "^1.3.3",
+    "pretty-colorwheel": "^1.0.1",
     "semver": "^5.1.0",
     "ws": "^1.0.1",
     "yargs": "^4.2.0"
