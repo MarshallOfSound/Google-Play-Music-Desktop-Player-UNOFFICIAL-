@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import { globalShortcut } from 'electron';
 
-let keyRegisterFn = globalShortcut.register;
+// ↓ Without the lambda it crashes - Electron bug ?
+let keyRegisterFn = (...args) => globalShortcut.register(...args);
 if (process.platform === 'win32') {
   console.log('Using custom module');
   keyRegisterFn = require('ll-keyboard-hook-win').on;
