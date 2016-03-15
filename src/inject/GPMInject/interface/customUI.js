@@ -102,9 +102,17 @@ function installBackButton() {
   backBtn.setAttribute('class', 'x-scope paper-icon-button-0');
   document.querySelector('#material-one-middle > sj-search-box').insertBefore(backBtn, null);
 
+  const canBack = () => {
+    const isHomePage = (location.href.indexOf(listenNowURL) === 0);
+    const searching = (document.querySelector('sj-search-box input').value !== '');
+
+    return !(isHomePage || searching);
+  };
+
   backBtn.addEventListener('click', () => {
     const testJs = 'document.querySelector("webview").canGoBack()';
     remote.getCurrentWindow().webContents.executeJavaScript(testJs, false, (canGoBack) => {
+      if (!canBack()) return null;
       if (canGoBack) return history.back();
       location.href = listenNowURL;
     });
@@ -126,14 +134,10 @@ function installBackButton() {
   // Hide Back button if search box has query
   cssRule('sj-search-box[has-query] #backButton {opacity: 0 !important}');
 
-  // Ideally we should listen for the URL change
-  // 'hashchange' does not seem to work :(
-  setInterval(() => {
-    const isHomePage = (location.href.indexOf(listenNowURL) === 0);
-    const searching = (document.querySelector('sj-search-box input').value !== '');
-    // Hide back btn if nowhere to go, or searching
-    backBtn.style.opacity = (isHomePage || searching) ? 0 : 1;
-  }, 250);
+  window.addEventListener('popstate', () => {
+    backBtn.style.opacity = (!canBack()) ? 0 : 1;
+  });
+  if (canBack()) backBtn.style.opacity = 1;
 }
 
 
