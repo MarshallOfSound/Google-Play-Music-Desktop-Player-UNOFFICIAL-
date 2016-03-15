@@ -42,12 +42,14 @@
   require('pretty-colorwheel');
   require('../inject/generic');
 
+  const input = $(".window-main input");
+
   const cw = Raphael.colorwheel($("#color_wheel_container > div")[0],240,200);
-  cw.input($(".window-main input")[0]);
+  cw.input(input.get(0));
   cw.color(Settings.get('themeColor'));
-  cw.ondrag(() => {}, () => {
-    Emitter.fire('theme:updateColor', cw.color().hex);
-  })
+  cw.onchange((color) => {
+    Emitter.fire('theme:updateColor', color.hex);
+  });
   </script>
 </body>
 </html>
