@@ -63,14 +63,16 @@ import handleStartupEvent from './squirrel';
 
     const position = Settings.get('position');
     let inBounds = false;
-    screen.getAllDisplays().forEach((display) => {
-      if (position[0] >= display.workArea.x &&
-          position[0] <= display.workArea.x + display.workArea.width &&
-          position[1] >= display.workArea.y &&
-          position[1] <= display.workArea.y + display.workArea.height) {
-        inBounds = true;
-      }
-    });
+    if (position) {
+      screen.getAllDisplays().forEach((display) => {
+        if (position[0] >= display.workArea.x &&
+            position[0] <= display.workArea.x + display.workArea.width &&
+            position[1] >= display.workArea.y &&
+            position[1] <= display.workArea.y + display.workArea.height) {
+          inBounds = true;
+        }
+      });
+    }
 
     let size = Settings.get('size');
     size = size || [1200, 800];
