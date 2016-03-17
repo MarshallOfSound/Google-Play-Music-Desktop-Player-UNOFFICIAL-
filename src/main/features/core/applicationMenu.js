@@ -87,6 +87,12 @@ const template = [
     role: 'help',
     submenu: [
       {
+        label: 'About',
+        click: () => {
+          Emitter.sendToWindowsOfName('main', 'about');
+        },
+      },
+      {
         label: 'Issues',
         click: () => shell.openExternal('https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues'),
       },
