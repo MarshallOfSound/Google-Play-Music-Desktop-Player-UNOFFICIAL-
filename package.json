@@ -81,6 +81,7 @@
     "sinon-chai": "^2.8.0"
   },
   "optionalDependencies": {
+    "dbus": "^0.2.17",
     "electron-installer-debian": "^0.2.0",
     "electron-installer-redhat": "^0.2.0",
     "ll-keyboard-hook-win": "^2.0.1"
