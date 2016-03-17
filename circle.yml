@@ -4,7 +4,7 @@ machine:
 
 dependencies:
   pre:
-    - sudo apt-get update; sudo apt-get install rpm fakeroot dpkg
+    - sudo apt-get update; sudo apt-get install rpm fakeroot dpkg libdbus-1-dev libglib2.0-dev
     - npm i -g npm
   cache_directories:
     - "~/.electron"
