@@ -15,8 +15,8 @@ try {
           case 'Stop': Emitter.sendToGooglePlayMusic('playback:stop'); return;
           default: return;
         }
-        iface.GrabMediaPlayerKeys(0, 'org.gnome.SettingsDaemon.MediaKeys'); // eslint-disable-line
       });
+      iface.GrabMediaPlayerKeys(0, 'org.gnome.SettingsDaemon.MediaKeys'); // eslint-disable-line
     }
   });
 } catch (e) {
