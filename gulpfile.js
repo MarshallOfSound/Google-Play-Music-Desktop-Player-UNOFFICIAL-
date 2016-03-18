@@ -52,11 +52,11 @@ const defaultPackageConf = {
   prune: true,
   ignore: /^(?!.*node_modules).*\/(vendor|dist|sig|docs|src|.cert.pfx|.eslintignore|.eslintrc|.gitignore|.travis.yml|appveyor.yml|circle.yml|Gruntfile.js|gulpfile.js|ISSUE_TEMPLATE.md|LICENSE|README.md)(\/|$)/g, // eslint-disable-line
   'version-string': {
-    CompanyName: 'Samuel Attard',
-    LegalCopyright: 'Copyright © 2016 Samuel Attard, All rights reserved.',
-    FileDescription: 'Google Play Music Desktop Player by Samuel Attard',
-    ProductName: 'Google Play Music Desktop Player',
-    InternalName: 'Google Play Music Desktop Player',
+    CompanyName: packageJSON.author.name,
+    LegalCopyright: `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
+    FileDescription: packageJSON.productName,
+    ProductName: packageJSON.productName,
+    InternalName: packageJSON.productName,
   },
 };
 
