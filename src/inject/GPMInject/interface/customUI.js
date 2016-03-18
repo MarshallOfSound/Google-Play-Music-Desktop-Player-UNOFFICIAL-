@@ -134,10 +134,10 @@ function installBackButton() {
   // Hide Back button if search box has query
   cssRule('sj-search-box[has-query] #backButton {opacity: 0 !important}');
 
-  window.addEventListener('popstate', () => {
-    backBtn.style.opacity = (!canBack()) ? 0 : 1;
-  });
-  if (canBack()) backBtn.style.opacity = 1;
+  const correctButtonVis = () => backBtn.style.opacity = (!canBack()) ? 0 : 1;
+  window.addEventListener('popstate', correctButtonVis);
+  document.querySelector('sj-search-box input').addEventListener('input', correctButtonVis);
+  correctButtonVis();
 }
 
 
