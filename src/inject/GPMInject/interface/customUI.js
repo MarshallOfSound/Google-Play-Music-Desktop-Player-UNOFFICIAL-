@@ -109,13 +109,19 @@ function installBackButton() {
     return !(isHomePage || searching);
   };
 
-  backBtn.addEventListener('click', () => {
+  const attemptBack = () => {
     const testJs = 'document.querySelector("webview").canGoBack()';
     remote.getCurrentWindow().webContents.executeJavaScript(testJs, false, (canGoBack) => {
       if (!canBack()) return null;
       if (canGoBack) return history.back();
       location.href = listenNowURL;
     });
+  };
+  backBtn.addEventListener('click', attemptBack);
+  window.addEventListener('keyup', (e) => {
+    if (e.which === 8 && document.activeElement.value === undefined) {
+      attemptBack();
+    }
   });
 
   style('#backButton', {
