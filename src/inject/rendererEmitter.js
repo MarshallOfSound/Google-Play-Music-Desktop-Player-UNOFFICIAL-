@@ -34,12 +34,12 @@ class Emitter {
       }
       if (details && details.event) {
         if (view.isLoading()) {
-          let once = false;
+          let waitForPageLoad = 0;
           view.addEventListener('did-stop-loading', () => {
-            if (!once && !view.isLoading()) {
-              once = true;
+            if (waitForPageLoad > 1 && !view.isLoading()) {
               view.send(details.event, details.details);
             }
+            waitForPageLoad++;
           });
         } else {
           view.send(details.event, details.details);
