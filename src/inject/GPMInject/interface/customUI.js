@@ -37,17 +37,24 @@ const cssRule = (styles) => {
 
 
 // --- UI modifications ---
-
-/** Change the Shop button to open Shop in external browser */
-function fixShopButton() {
-  const shopButton = document.querySelector('[data-type="shop"]');
-  if (shopButton) {
-    shopButton.addEventListener('click', (e) => {
-      remote.shell.openExternal('https://play.google.com/store/music?feature=music_general');
+function _redirectButton(button, URL, reverseURLChange) {
+  if (button) {
+    button.addEventListener('click', (e) => {
+      remote.shell.openExternal(URL);
+      if (reverseURLChange) setImmediate(history.back);
       e.preventDefault();
       return false;
     });
   }
+}
+
+/** Change the Shop button to open Shop in external browser */
+function fixShopButton() {
+  _redirectButton(document.querySelector('[data-type="shop"]'), 'https://play.google.com/store/music?feature=music_general');
+}
+
+function handleSubscribeButton() {
+  _redirectButton(document.querySelector('.sub[data-type="sub"]'), 'https://play.google.com/music/listen#/sulp', true);
 }
 
 /** Hide buttons & elements that don't work */
@@ -155,6 +162,7 @@ function installBackButton() {
 window.wait(() => {
   hideNotWorkingStuff();
   fixShopButton();
+  handleSubscribeButton();
   installDesktopSettingsButton();
   installBackButton();
 });
