@@ -28,7 +28,9 @@ $(() => {
                       [theme] .input-field input[type=text]:focus {border-bottom-color:${color};
                                                                   box-shadow: 0 1px 0 0 ${color};}`;
       const button = `[theme] .btn{background:${color}}`;
-      style.html(text + back + checkbox + slider + input + button);
+      const switch_ = `.switch label input[type=checkbox]:checked+.lever{background:#aaa}`;
+      const toggle_ = `.switch label input[type=checkbox]:checked+.lever:after{background:${color}}`; // eslint-disable-line
+      style.html(text + back + checkbox + slider + input + button + switch_ + toggle_);
     };
 
     redrawTheme();

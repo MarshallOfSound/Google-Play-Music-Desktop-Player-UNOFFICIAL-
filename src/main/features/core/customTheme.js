@@ -9,3 +9,9 @@ Emitter.on('theme:updateState', (event, state) => {
   Emitter.sendToGooglePlayMusic('theme:updateState', state);
   Emitter.sendToAll('theme:updateState', state);
 });
+
+Emitter.on('theme:updateType', (event, newType) => {
+  Settings.set('themeType', newType);
+  Emitter.sendToGooglePlayMusic('theme:updateType', newType);
+  Emitter.sendToAll('theme:updateType', newType);
+});

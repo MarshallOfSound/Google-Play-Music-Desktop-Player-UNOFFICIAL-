@@ -12,8 +12,15 @@ Emitter.on('theme:updateState', (event, state) => {
   }
 });
 
+Emitter.on('theme:updateType', (event, type) => {
+  window.GPMTheme.updateTheme({
+    type,
+  });
+});
+
 window.wait(() => {
   window.GPMTheme.updateTheme({
+    type: Settings.get('themeType', 'FULL'),
     foreSecondary: Settings.get('themeColor'),
   });
   if (Settings.get('theme')) {

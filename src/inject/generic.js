@@ -10,9 +10,7 @@ require(`./${process.platform}`);
 const waitForBody = setInterval(() => {
   if (document.body) {
     clearInterval(waitForBody);
-    if (Settings.get('theme')) {
-      document.body.setAttribute('theme', 'on');
-    }
+    require('./windowThemeHandler');
     require('electron').remote.getCurrentWindow().show();
 
     document.body.classList.toggle('native-frame', Settings.get('nativeFrame'));
@@ -28,11 +26,3 @@ const waitForBody = setInterval(() => {
     }, false);
   }
 }, 10);
-
-Emitter.on('theme:updateState', (event, state) => {
-  if (!state.state) {
-    document.body.removeAttribute('theme');
-  } else {
-    document.body.setAttribute('theme', 'on');
-  }
-});
