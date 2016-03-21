@@ -26,12 +26,14 @@ if (Settings.get('themeType', 'FULL') === 'FULL') {
 
 const style = $('<style></style>');
 $('body').append(style);
-const redrawTheme = () => {
-  const color = Settings.get('themeColor');
+const redrawTheme = (customColor) => {
+  const color = customColor || Settings.get('themeColor');
   const border = `[theme][light] .window-border{border-color:${color}}`;
   const titleBar = `[theme][light] .title-bar{background:${color}}`;
   const header = `[theme][light] .dialog .window-title{background:${color}}`;
   style.html(border + titleBar + header);
 };
 redrawTheme();
-Emitter.on('theme:updateColor', redrawTheme);
+Emitter.on('theme:updateColor', (event, customColor) => {
+  redrawTheme(customColor);
+});
