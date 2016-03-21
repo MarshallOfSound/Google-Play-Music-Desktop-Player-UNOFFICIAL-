@@ -1,4 +1,6 @@
 import _ from 'lodash';
+import { remote } from 'electron';
+
 import '../generic';
 
 // DEV: Hold all Emitter events until the GPM external assets have been loaded.
@@ -11,6 +13,9 @@ window.wait = (fn) => {
     waitingQueue.push(fn);
   }
 };
+
+// DEV: Polyfill window.open to be shell.openExternal
+window.open = (url) => remote.shell.openExternal(url);
 
 require('./playback');
 require('./interface');
