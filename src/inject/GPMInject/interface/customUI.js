@@ -95,16 +95,20 @@ function installDesktopSettingsButton() {
 /** Create the back button. */
 function installBackButton() {
   const listenNowURL = 'https://play.google.com/music/listen#/now';
+  const searchBox = (document.querySelector('#material-one-middle > sj-search-box')
+    || document.querySelector('#material-one-middle'));
+  const searchInput = (document.querySelector('sj-search-box input')
+    || document.querySelector('#material-one-middle > input'));
 
   const backBtn = document.createElement('paper-icon-button');
   backBtn.setAttribute('icon', 'arrow-back');
   backBtn.setAttribute('id', 'backButton');
   backBtn.setAttribute('class', 'x-scope paper-icon-button-0');
-  document.querySelector('#material-one-middle > sj-search-box').insertBefore(backBtn, null);
+  searchBox.insertBefore(backBtn, null);
 
   const canBack = () => {
     const isHomePage = (location.href.indexOf(listenNowURL) === 0);
-    const searching = (document.querySelector('sj-search-box input').value !== '');
+    const searching = (searchInput.value !== '');
 
     return !(isHomePage || searching);
   };
@@ -142,7 +146,7 @@ function installBackButton() {
 
   const correctButtonVis = () => backBtn.style.opacity = (!canBack()) ? 0 : 1;
   window.addEventListener('popstate', correctButtonVis);
-  document.querySelector('sj-search-box input').addEventListener('input', correctButtonVis);
+  searchInput.addEventListener('input', correctButtonVis);
   correctButtonVis();
 }
 
