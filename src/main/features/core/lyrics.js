@@ -12,7 +12,7 @@ PlaybackAPI.on('change:song', (song) => {
       lyrics = decoder.decode(lyrics);
       PlaybackAPI.setPlaybackSongLyrics(lyrics);
     })
-    .catch(() => {
-      console.log('Lyrics parsing failed'); // eslint-disable-line
+    .catch((e) => {
+      Logger.verbose('Lyrics parsing failed', e);
     });
 });

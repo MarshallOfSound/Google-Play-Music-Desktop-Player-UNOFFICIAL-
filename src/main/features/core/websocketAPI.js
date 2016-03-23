@@ -76,8 +76,7 @@ const enableAPI = () => {
             throw Error('Bad command');
           }
         } catch (err) {
-          console.log('WebSocketAPI Error: Invalid message recieved'); // eslint-disable-line
-          console.log(data); // eslint-disable-line
+          Logger.error('WebSocketAPI Error: Invalid message recieved', { err, data });
         }
       });
 

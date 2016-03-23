@@ -1,5 +1,7 @@
 import { app, BrowserWindow, screen } from 'electron';
 import { argv } from 'yargs';
+import winston from 'winston';
+import path from 'path';
 
 import configureApp from './main/configureApp';
 import generateBrowserConfig from './main/configureBrowser';
@@ -18,6 +20,19 @@ import handleStartupEvent from './squirrel';
   }
 
   global.DEV_MODE = argv.development || argv.dev;
+
+  // Initialize the logger with some default logging levels.
+  const logFileName = path.resolve(app.getPath('userData'), 'gpmdc.log');
+  const defaultFileLogLevel = 'info';
+  const defaultConsoleLogLevel = global.DEV_MODE ? 'silly' : 'warn';
+  global.Logger = new (winston.Logger)({
+    transports: [
+      new (winston.transports.File)({ filename: logFileName, level: defaultFileLogLevel }),
+      new (winston.transports.Console)({ level: defaultConsoleLogLevel }),
+    ],
+  });
+
+  Logger.log('info', 'Application started.');
 
   configureApp(app);
 
@@ -45,6 +60,10 @@ import handleStartupEvent from './squirrel';
   global.WindowManager = new WindowManagerClass();
   global.Settings = new SettingsClass();
   global.PlaybackAPI = new PlaybackAPIClass();
+
+  // Replace the logger's levels with those from settings.
+  Logger.transports.console.level = Settings.get('consoleLogLevel', defaultFileLogLevel);
+  Logger.transports.file.level = Settings.get('fileLogLevel', defaultConsoleLogLevel);
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
@@ -104,6 +123,7 @@ import handleStartupEvent from './squirrel';
   });
 
   app.on('before-quit', () => {
+    Logger.log('info', 'Application exiting...');
     global.quiting = true;
   });
 })();

@@ -11,19 +11,23 @@ const setUpAutoUpdate = () => {
   try {
     autoUpdater.setFeedURL(`https://update.gpmdp.xyz/update/${platform}/${app.getVersion()}`);
 
-    autoUpdater.on('error', () => {
+    autoUpdater.on('error', (error) => {
       // Ignore it, errors happen
+      Logger.debug('Auto updater error.', error);
     });
 
     autoUpdater.on('checking-for-update', () => {
       // Do something
+      Logger.debug('Auto updater - checking for update...');
     });
 
     autoUpdater.on('update-available', () => {
       // Do something
+      Logger.info('Auto updater - update available.');
     });
 
     autoUpdater.on('update-not-available', () => {
+      Logger.silly('Auto updater - update not available.');
       setTimeout(() => {
         autoUpdater.checkForUpdates();
       }, 300000);
@@ -31,12 +35,15 @@ const setUpAutoUpdate = () => {
 
     let update = false;
     autoUpdater.on('update-downloaded', () => {
+      Logger.info('Auto updater - update downloaded.');
       Emitter.sendToAll('update:available');
       update = true;
     });
 
     Emitter.on('update:trigger', () => {
+      Logger.info('Auto updater - update triggered.');
       if (update) {
+        Logger.info('Auto updater - quitting to install.');
         autoUpdater.quitAndInstall();
       }
     });
@@ -49,7 +56,7 @@ const setUpAutoUpdate = () => {
 
     autoUpdater.checkForUpdates();
   } catch (e) {
-    Settings.set('woahError', e);
+    Logger.error('Failed to setup auto update.', e);
   }
 };
 
@@ -57,7 +64,7 @@ const checkUpdateServer = () => {
   https.get('https://update.gpmdp.xyz', () => {
     setUpAutoUpdate();
   }).on('error', () => {
-    console.log('################### !! Update server down !! ##################'); // eslint-disable-line
+    Logger.error('################### !! Update server down !! ##################');
     setTimeout(checkUpdateServer, 120000);
   });
 };

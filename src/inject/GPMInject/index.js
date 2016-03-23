@@ -35,7 +35,7 @@ const waitForExternal = setInterval(() => {
       try {
         fn();
       } catch (e) {
-        console.error(e); // eslint-disable-line
+        Logger.error('Emitter fn() threw exception.', e);
       }
     });
 

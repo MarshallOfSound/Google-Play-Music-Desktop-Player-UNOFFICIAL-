@@ -1,5 +1,5 @@
 process.on('uncaughtException', (error) => {
-  console.error(error);
+  Logger.error('Uncaught Exception', error);
   if (global.DEV_MODE) return;
   Emitter.sendToGooglePlayMusic('error', {
     error: {
