@@ -3,6 +3,10 @@ import { remote } from 'electron';
 
 import '../generic';
 
+// Initialize the global Logger to forward to the main process.
+window.Logger = remote.getGlobal('Logger');
+Logger.debug('Renderer process logger initialized.');
+
 // DEV: Hold all Emitter events until the GPM external assets have been loaded.
 Emitter.ready = false;
 const waitingQueue = [];

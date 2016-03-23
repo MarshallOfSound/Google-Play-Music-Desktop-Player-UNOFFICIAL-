@@ -22,17 +22,23 @@ import handleStartupEvent from './squirrel';
   global.DEV_MODE = argv.development || argv.dev;
 
   // Initialize the logger with some default logging levels.
-  const logFileName = path.resolve(app.getPath('userData'), 'gpmdc.log');
   const defaultFileLogLevel = 'info';
-  const defaultConsoleLogLevel = global.DEV_MODE ? 'silly' : 'warn';
+  const defaultConsoleLogLevel = global.DEV_MODE ? 'debug' : 'error';
   global.Logger = new (winston.Logger)({
     transports: [
-      new (winston.transports.File)({ filename: logFileName, level: defaultFileLogLevel }),
-      new (winston.transports.Console)({ level: defaultConsoleLogLevel }),
+      new (winston.transports.File)({
+        filename: path.resolve(app.getPath('userData'), 'gpmdc.log'),
+        level: defaultFileLogLevel,
+        maxsize: 5000000,
+        maxfiles: 2,
+      }),
+      new (winston.transports.Console)({
+        level: defaultConsoleLogLevel,
+      }),
     ],
   });
 
-  Logger.log('info', 'Application started.');
+  Logger.info('Application started.');
 
   configureApp(app);
 
@@ -62,8 +68,8 @@ import handleStartupEvent from './squirrel';
   global.PlaybackAPI = new PlaybackAPIClass();
 
   // Replace the logger's levels with those from settings.
-  Logger.transports.console.level = Settings.get('consoleLogLevel', defaultFileLogLevel);
-  Logger.transports.file.level = Settings.get('fileLogLevel', defaultConsoleLogLevel);
+  Logger.transports.console.level = Settings.get('consoleLogLevel', defaultConsoleLogLevel);
+  Logger.transports.file.level = Settings.get('fileLogLevel', defaultFileLogLevel);
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
@@ -123,7 +129,7 @@ import handleStartupEvent from './squirrel';
   });
 
   app.on('before-quit', () => {
-    Logger.log('info', 'Application exiting...');
+    Logger.info('Application exiting...');
     global.quiting = true;
   });
 })();
