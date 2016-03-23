@@ -157,6 +157,31 @@ function installBackButton() {
   correctButtonVis();
 }
 
+function handleZoom() {
+  let zoom = Settings.get('zoom', 1);
+  remote.getCurrentWebContents().setZoomFactor(zoom);
+  window.addEventListener('keyup', (e) => {
+    if (!e.ctrlKey) return;
+    const webContents = remote.getCurrentWebContents();
+    if (e.which === 189) {
+      // Zoom out
+      zoom -= 0.1;
+    } else if (e.which === 187) {
+      // Zoom in
+      zoom += 0.1;
+    } else if (e.which === 48) {
+      zoom = 1;
+    } else {
+      return;
+    }
+    webContents.setZoomFactor(zoom);
+    Emitter.fire('settings:set', {
+      key: 'zoom',
+      value: zoom,
+    });
+  });
+}
+
 
 // Modify the GUI after everything is sufficiently loaded
 window.wait(() => {
@@ -165,4 +190,5 @@ window.wait(() => {
   handleSubscribeButton();
   installDesktopSettingsButton();
   installBackButton();
+  handleZoom();
 });
