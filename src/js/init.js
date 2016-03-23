@@ -23,7 +23,7 @@ $(function() {
 
       count = Math.round(count / 100) * 100;
 
-      $('[download-counter]').text($('[download-counter]').text() + ', with over ' + count + ' downloads, together we can only make it better')
+      $('[download-counter]').text($('[download-counter]').text() + ', with over ' + count.toLocaleString() + ' downloads, together we can only make it better')
     }
   });
   // Fetch issue count from github
