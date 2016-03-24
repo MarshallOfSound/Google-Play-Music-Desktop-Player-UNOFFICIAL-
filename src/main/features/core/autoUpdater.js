@@ -27,7 +27,7 @@ const setUpAutoUpdate = () => {
     });
 
     autoUpdater.on('update-not-available', () => {
-      Logger.silly('Auto updater - update not available.');
+      Logger.debug('Auto updater - update not available.');
       setTimeout(() => {
         autoUpdater.checkForUpdates();
       }, 300000);

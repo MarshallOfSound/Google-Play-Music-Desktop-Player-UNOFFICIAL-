@@ -38,28 +38,40 @@ const userHotkeys = Settings.get('hotkeys', {});
 
 const customHotkeys = _.extend(customHotkeysTemplate, userHotkeys);
 
-
-_.forIn(customHotkeys, (value, key) => {
-  if (value) {
-    globalShortcut.register(value, () => {
-      Emitter.sendToGooglePlayMusic(`playback:${key}`);
-    });
+const _unregisterHotkey = (accelerator) => {
+  try {
+    if (accelerator && globalShortcut.isRegistered(accelerator)) {
+      globalShortcut.unregister(accelerator);
+    }
+  } catch (e) {
+    Logger.error('Exception unregistering hotkey.', { accelerator, e });
   }
-});
+};
+
+const _registerHotkeyIfSet = (accelerator, action) => {
+  if (accelerator) {
+    try {
+      const success = globalShortcut.register(accelerator, () => {
+        Emitter.sendToGooglePlayMusic(`playback:${action}`);
+      });
+      if (!success) {
+        Logger.error('Failed to register hotkey.', { accelerator, action });
+      }
+    } catch (e) {
+      Logger.error('Exception registering hotkey.', { accelerator, action, e });
+    }
+  }
+};
+
+_.forIn(customHotkeys, _registerHotkeyIfSet);
 
 Emitter.on('hotkey:set', (event, details) => {
   const key = details.action;
 
   if (customHotkeys[key] || customHotkeys[key] === null) {
-    if (customHotkeys[key] && globalShortcut.isRegistered(customHotkeys[key])) {
-      globalShortcut.unregister(customHotkeys[key]);
-    }
     customHotkeys[key] = details.accelerator;
-    if (customHotkeys[key]) {
-      globalShortcut.register(customHotkeys[key], () => {
-        Emitter.sendToGooglePlayMusic(`playback:${key}`);
-      });
-    }
+    _unregisterHotkey(customHotkeys[key]);
+    _registerHotkeyIfSet(customHotkeys[key], key);
     Settings.set('hotkeys', customHotkeys);
   }
 });
