@@ -60,6 +60,12 @@ probably use the `JSON` interface.  For an application that requires continuous
 updates as to the state of GPMDP or needs to control GPMDP you should use theme
 `Web Socket` interface.
 
+Issues
+-------
+If you have any bugs / issues please check the
+[FAQ](https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/wiki/FAQ)
+first before raising an issue
+
 
 Development
 -----------
