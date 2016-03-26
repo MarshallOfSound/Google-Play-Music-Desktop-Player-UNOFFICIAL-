@@ -4,6 +4,7 @@ Emitter.on('error', (event, details) => {
   const toast = document.createElement('paper-toast');
   toast.setAttribute('text', `An uncaught error has occurred inside GPMDP.`);
   toast.duration = 0;
+  toast.noCancelOnOutsideClick = false;
   const issueButton = document.createElement('a');
   issueButton.innerHTML = 'Click here to report this as an issue on GitHub';
   issueButton.style.color = '#E53935';
