@@ -66,7 +66,7 @@ export default class SpeechRecognizer {
     if (matchedFn) {
       matchedFn(fnArg)
         .catch((error) => {
-          console.info(error);
+          Logger.info(error);
         })
         .then((unusedCommand) => {
           if (unusedCommand === undefined) {
@@ -85,7 +85,7 @@ export default class SpeechRecognizer {
           }
         });
     } else {
-      console.warn(`Command: "${command}" did not match any registered handlers`);
+      Logger.warn(`Command: "${command}" did not match any registered handlers`);
     }
   }
 
@@ -95,7 +95,7 @@ export default class SpeechRecognizer {
 
     _.forEach(actions, (actionString) => {
       if (this._handlers[actionString.toLowerCase()]) {
-        console.error(`The action "${action.toLowerCase()}" already has a handler registered`); // eslint-disable-line
+        Logger.error(`The action "${action.toLowerCase()}" already has a handler registered`); // eslint-disable-line
       } else {
         _.forEach(this.prefixes.concat(['']), (prefix) => {
           this._handlers[(prefix.toLowerCase() + ' ' + actionString.toLowerCase()).trim()] = fn;

@@ -43,6 +43,7 @@
     "node-fetch": "^1.3.3",
     "pretty-colorwheel": "^1.0.1",
     "semver": "^5.1.0",
+    "winston": "^2.2.0",
     "ws": "^1.0.1",
     "yargs": "^4.2.0"
   },
