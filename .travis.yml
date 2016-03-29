@@ -3,7 +3,6 @@ os:
 
 cache:
   directories:
-  - node_modules
   - $HOME/.electron
 
 install:
@@ -12,6 +11,7 @@ install:
   - nvm install 4.4.1
   - nvm use 4.4.1
   - npm i -g npm
+  - rm -rf node_modules
   - npm install
 
 branches:
