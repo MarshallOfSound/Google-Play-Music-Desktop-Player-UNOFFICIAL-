@@ -11,6 +11,7 @@ const packager = require('electron-packager');
 const path = require('path');
 const spawn = require('child_process').spawn;
 const exec = require('child_process').exec;
+const rebuild = require('./vendor/rebuild');
 const replace = require('gulp-replace');
 
 const grunt = require('gulp-grunt');
@@ -145,17 +146,8 @@ gulp.task('watch', ['build'], () => {
 });
 
 gulp.task('package:win', ['clean-dist-win', 'build'], (done) => {
-  (new Promise((resolve) => {
-    console.log('Rebuilding ll-keyboard-hook-win'); // eslint-disable-line
-    const build = spawn((process.platform === 'win32' ? 'rebuild_ia32.bat' : 'rebuild.sh'), {
-      cwd: path.resolve(`${__dirname}/vendor`),
-    });
-
-    build.on('exit', () => {
-      console.log('Rebuild complete');  // eslint-disable-line
-      resolve();
-    });
-  }))
+  console.log('Rebuilding ll-keyboard-hook-win'); // eslint-disable-line
+    rebuild('rebuild_ia32.bat')
     .then(() => {
       packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), () => {
         setTimeout(() => {
@@ -210,7 +202,15 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
 });
 
 gulp.task('package:linux', ['clean-dist-linux', 'build'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'linux' }), done);
+  rebuild('./rebuild.sh')
+  .then(() => {
+    packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }), () => {
+      rebuild('./rebuild_ia32.sh')
+      .then(() => {
+        packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }), done);
+      })
+    });
+  });
 });
 
 gulp.task('deb:linux', ['package:linux'], (done) => {
