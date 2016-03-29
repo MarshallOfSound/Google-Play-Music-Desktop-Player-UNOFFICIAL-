@@ -11,3 +11,4 @@ import './websocketAPI';
 import './lyrics';
 import './applicationMenu';
 import './windowTitleInfo';
+import './notifier';
