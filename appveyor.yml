@@ -23,12 +23,12 @@ cache:
 
 install:
   - ps: Install-Product node $env:nodejs_version
+  - npm i -g npm
   - npm install
   - npm upgrade
 
 test_script:
   # Output useful info for debugging.
-  - npm i -g npm
   - node --version
   - npm --version
   # run tests
