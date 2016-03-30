@@ -13,12 +13,6 @@ let audioDeviceMenu = [
   },
 ];
 
-if (process.platform === 'darwin') {
-  appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/macTemplate.png`));
-} else {
-  appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray.png`));
-}
-
 const setContextMenu = () => {
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Show',
@@ -60,8 +54,6 @@ const setContextMenu = () => {
   ]);
   appIcon.setContextMenu(contextMenu);
 };
-setContextMenu();
-
 
 // Tray icon toggle action (windows, linux)
 function toggleMainWindow() {
@@ -81,33 +73,39 @@ function toggleMainWindow() {
   }
 }
 
-appIcon.setToolTip('Google Play Music');
+if (Settings.get('showTray', true)) {
+  if (process.platform === 'darwin') {
+    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/macTemplate.png`));
+  } else {
+    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray.png`));
+  }
 
-switch (process.platform) {
-  case 'darwin': // <- actually means OS-X
-    // No toggle action, use the context menu.
-    break;
-  case 'linux':
-  case 'freebsd': // <- for the hipsters
-  case 'sunos':   // <- in case someone runs this in a museum
-    appIcon.on('click', toggleMainWindow);
-    break;
-  case 'win32': // <- it's win32 also on 64-bit Windows
-    appIcon.on('double-click', toggleMainWindow);
-    break;
-  default:
-    // impossible case to satisfy Linters
+  setContextMenu();
+  appIcon.setToolTip('Google Play Music');
+  switch (process.platform) {
+    case 'darwin': // <- actually means OS-X
+      // No toggle action, use the context menu.
+      break;
+    case 'linux':
+    case 'freebsd': // <- for the hipsters
+    case 'sunos':   // <- in case someone runs this in a museum
+      appIcon.on('click', toggleMainWindow);
+      break;
+    case 'win32': // <- it's win32 also on 64-bit Windows
+      appIcon.on('double-click', toggleMainWindow);
+      break;
+    default:
+      // impossible case to satisfy Linters
+  }
+  // DEV: Keep the icon in the global scope or it gets garbage collected........
+  global.appIcon = appIcon;
+
+  app.on('before-quit', () => {
+    appIcon.destroy();
+    delete global.appIcon;
+    appIcon = null;
+  });
 }
-
-
-// DEV: Keep the icon in the global scope or it gets garbage collected........
-global.appIcon = appIcon;
-
-app.on('before-quit', () => {
-  appIcon.destroy();
-  delete global.appIcon;
-  appIcon = null;
-});
 
 Emitter.on('audiooutput:list', (event, devices) => {
   audioDeviceMenu = [];
@@ -138,7 +136,9 @@ Emitter.on('audiooutput:list', (event, devices) => {
       });
     }
   });
-  setContextMenu();
+  if (appIcon) {
+    setContextMenu();
+  }
 });
 
 Emitter.sendToGooglePlayMusic('audiooutput:fetch');
