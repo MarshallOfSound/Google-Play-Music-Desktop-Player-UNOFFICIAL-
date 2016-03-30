@@ -1,6 +1,6 @@
 import { app } from 'electron';
 import mpris from 'mpris-service';
-import _ from 'underscore';
+import _ from 'lodash';
 
 function mprisService() {
   const mainWindow = WindowManager.getAll('main')[0];
