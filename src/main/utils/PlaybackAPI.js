@@ -7,6 +7,10 @@ class PlaybackAPI {
     this.PATH = createJSON('playback');
     this.reset();
     this._save();
+    if (Settings.get('enableJSONApi', true)) {
+      // DEV: Handle windows users running as admin...
+      fs.chmodSync(this.PATH, '777');
+    }
 
     this._ev = {};
 

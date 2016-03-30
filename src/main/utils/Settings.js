@@ -13,6 +13,8 @@ class Settings {
       this._load();
     } else {
       this._save(true);
+      // DEV: Handle windows users running as admin...
+      fs.chmodSync(this.PATH, '777');
     }
     this.coupled = true;
   }
