@@ -17,6 +17,7 @@ $(function() {
 
       releases.forEach(function(release) {
         release.assets.forEach(function(asset) {
+          if (asset.name === 'RELEASES') return;
           count += asset.download_count;
         });
       });
@@ -24,6 +25,7 @@ $(function() {
       count = Math.round(count / 100) * 100;
 
       $('[download-counter]').text($('[download-counter]').text() + ', with over ' + count.toLocaleString() + ' downloads, together we can only make it better')
+        .after($('<h6><small><i>The download counter used to be a little off here, sorry!</i></small></h6>'));
     }
   });
   // Fetch issue count from github
