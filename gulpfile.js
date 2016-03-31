@@ -223,6 +223,7 @@ gulp.task('deb:linux', ['package:linux'], (done) => {
     maintainer: 'Samuel Attard <samuel.r.attard@gmail.com>',
     homepage: 'http://www.googleplaymusicdesktopplayer.com',
     icon: 'build/assets/img/main.png',
+    categories: ['AudioVideo', 'Audio'],
   };
 
   debian(_.extend({}, defaults, {
@@ -253,6 +254,7 @@ gulp.task('rpm:linux', ['package:linux'], (done) => {
     maintainer: 'Samuel Attard <samuel.r.attard@gmail.com>',
     homepage: 'http://www.googleplaymusicdesktopplayer.com',
     icon: 'build/assets/img/main.png',
+    categories: ['AudioVideo', 'Audio'],
   };
 
   redhat(_.extend({}, defaults, {
