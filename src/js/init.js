@@ -41,15 +41,28 @@ $(function() {
     type: 'get',
     url: 'https://api.github.com/repos/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases/latest',
     success: function(release) {
-      var win,
-        osx,
-        lin32,
-        lin64;
+      var platforms = {
+          'Win': /x86\.exe$/g,
+          'Mac': /\.zip$/g,
+          'Deb32': /i386\.deb/g,
+          'Deb64': /amd64\.deb/g,
+          'Fed32': /i386\.rpm/g,
+          'Fed64': /amd64\.rpm/g,
+        },
+        downloads = {};
+
+      $('#triggerLinux').click(function() {
+        $('#downloadModal').closeModal();
+        $('#downloadLinuxModal').openModal({
+          dismissable: true,
+        });
+      });
 
       $('[dl-latest]').each(function(index, item) {
         $(item).text('Download Latest - ' + release.tag_name);
         $(item).click(function(e) {
           e.preventDefault();
+          $('#downloadLinuxModal').closeModal();
           $('#downloadModal').openModal({
             dismissable: true,
           });
@@ -58,45 +71,25 @@ $(function() {
       });
 
       release.assets.forEach(function(asset) {
-        if (/\.zip$/g.test(asset.name)) {
-          osx = asset.browser_download_url;
-        } else if (/\.exe$/g.test(asset.name)) {
-          win = asset.browser_download_url;
-        } else if (/amd64\.deb/g.test(asset.name)) {
-          lin64 = asset.browser_download_url;
-        } else if (/i386\.deb/g.test(asset.name)) {
-          lin32 = asset.browser_download_url;
+        for (var key in platforms) {
+          if (platforms.hasOwnProperty(key)) {
+            if (platforms[key].test(asset.name)) {
+              downloads[key] = asset.browser_download_url;
+              return;
+            }
+          }
         }
       });
 
-      $('#downloadWin').click(function() {
-        if (win) {
-          window.location = win;
-        } else {
-          alert('Something went wrong, please try again in a few minutes');
+      for (var key in downloads) {
+        if (downloads.hasOwnProperty(key)) {
+          (function(key) {
+            $('#download' + key).click(function() {
+              window.location = downloads[key];
+            });
+          })(key);
         }
-      });
-      $('#downloadMac').click(function() {
-        if (osx) {
-          window.location = osx;
-        } else {
-          alert('Something went wrong, please try again in a few minutes');
-        }
-      });
-      $('#downloadLin32').click(function() {
-        if (osx) {
-          window.location = lin32;
-        } else {
-          alert('Something went wrong, please try again in a few minutes');
-        }
-      });
-      $('#downloadLin64').click(function() {
-        if (osx) {
-          window.location = lin64;
-        } else {
-          alert('Something went wrong, please try again in a few minutes');
-        }
-      });
+      }
     }
   });
 });
