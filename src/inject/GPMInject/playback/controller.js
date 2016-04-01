@@ -1,3 +1,5 @@
+import { remote } from 'electron';
+
 let mode;
 window.wait(() => {
   mode = window.GMusic.Playback.STOPPED;
@@ -25,10 +27,20 @@ Emitter.on('playback:stop', () => {
 });
 
 Emitter.on('playback:thumbsUp', () => {
+  if (!remote.getGlobal('PlaybackAPI').data.song.title) return;
+  new Notification('You just liked', { // eslint-disable-line
+    body: remote.getGlobal('PlaybackAPI').data.song.title,
+    icon: remote.getGlobal('PlaybackAPI').data.song.albumArt,
+  });
   window.GPM.rating.setRating(5);
 });
 
 Emitter.on('playback:thumbsDown', () => {
+  if (!remote.getGlobal('PlaybackAPI').data.song.title) return;
+  new Notification('You just dis-liked', { // eslint-disable-line
+    body: remote.getGlobal('PlaybackAPI').data.song.title,
+    icon: remote.getGlobal('PlaybackAPI').data.song.albumArt,
+  });
   window.GPM.rating.setRating(1);
 });
 
