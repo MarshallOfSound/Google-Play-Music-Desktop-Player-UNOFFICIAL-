@@ -63,6 +63,8 @@ const setContextMenu = () => {
 setContextMenu();
 
 
+let wasMaximized = Settings.get('maximized', false);
+
 // Tray icon toggle action (windows, linux)
 function toggleMainWindow() {
   // the mainWindow variable will be GC'd
@@ -72,7 +74,11 @@ function toggleMainWindow() {
   if (win.isMinimized()) {
     win.setSkipTaskbar(false);
     win.show();
+    if (wasMaximized) {
+      win.maximize();
+    }
   } else {
+    wasMaximized = win.isMaximized();
     // Hide to tray, if configured
     if (Settings.get('minToTray', true)) {
       win.minimize();

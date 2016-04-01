@@ -10,8 +10,13 @@ let resizeTimer;
 
 const _save = () => {
   if (!mini) {
-    Settings.set('position', mainWindow.getPosition());
-    Settings.set('size', mainWindow.getSize());
+    if (mainWindow.isMaximized()) {
+      Settings.set('maximized', true);
+    } else {
+      Settings.set('maximized', false);
+      Settings.set('position', mainWindow.getPosition());
+      Settings.set('size', mainWindow.getSize());
+    }
   } else {
     Settings.set('mini-position', mainWindow.getPosition());
     Settings.set('mini-size', mainWindow.getSize());
@@ -32,7 +37,9 @@ mainWindow.on('maximize', (ev) => {
     ev.preventDefault();
     return false;
   }
+  _save();
 });
+mainWindow.on('unmaximize', _save);
 
 Emitter.on('eq:change', (event, details) => {
   const eq = Settings.get('eq', [1, 1, 1, 1, 1, 1]);

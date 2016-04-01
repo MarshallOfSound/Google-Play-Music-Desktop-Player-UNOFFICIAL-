@@ -109,6 +109,10 @@ import handleStartupEvent from './squirrel';
       mainWindow.center();
     }
 
+    if (Settings.get('maximized', false)) {
+      mainWindow.maximize();
+    }
+
     // and load the index.html of the app.
     mainWindow.loadURL(`file://${__dirname}/public_html/index.html`);
     require('./main/features');
