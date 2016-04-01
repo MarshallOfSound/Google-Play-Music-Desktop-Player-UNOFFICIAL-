@@ -37,7 +37,7 @@ Emitter.on('playback:thumbsUp', () => {
 
 Emitter.on('playback:thumbsDown', () => {
   if (!remote.getGlobal('PlaybackAPI').data.song.title) return;
-  new Notification('You just dis-liked', { // eslint-disable-line
+  new Notification('You just disliked', { // eslint-disable-line
     body: remote.getGlobal('PlaybackAPI').data.song.title,
     icon: remote.getGlobal('PlaybackAPI').data.song.albumArt,
   });
