@@ -83,6 +83,7 @@
     "sinon-chai": "^2.8.0"
   },
   "optionalDependencies": {
+    "mouse-forward-back": "^1.0.1",
     "dbus": "MarshallOfSound/node-dbus#linux-only",
     "mpris-service": "MarshallOfSound/mpris-service",
     "electron-installer-debian": "^0.2.0",
