@@ -45,6 +45,7 @@
     "semver": "^5.1.0",
     "winston": "^2.2.0",
     "ws": "^1.0.1",
+    "xss": "^0.2.10",
     "yargs": "^4.2.0"
   },
   "devDependencies": {
