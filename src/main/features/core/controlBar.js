@@ -12,7 +12,10 @@ Emitter.on('window:maximize', (event, windowID) => {
 });
 
 Emitter.on('window:close', (event, windowID) => {
-  WindowManager.getByInternalID(windowID).close();
+  const winToClose = WindowManager.getByInternalID(windowID);
+  if (winToClose) {
+    winToClose.close();
+  }
 });
 
 const mainWindow = WindowManager.getAll('main')[0];
