@@ -5,3 +5,4 @@ import './fakeActivity';
 import './mini';
 import './mouseButtonNavigation';
 import './voiceControls';
+import './shortcuts';
