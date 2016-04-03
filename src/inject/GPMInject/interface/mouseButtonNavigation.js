@@ -10,10 +10,20 @@ const handleAppCommand = (e, cmd) => {
   }
 };
 
+const handleSwipeCommand = (e, direction) => {
+  if (direction === 'left') {
+    remote.getCurrentWebContents.goBack();
+  } else if (direction === 'right') {
+    remote.getCurrentWebContents().goForward();
+  }
+};
+
 window.addEventListener('beforeunload', () => {
   bWindow.removeListener('app-command', handleAppCommand);
+  bWindow.removeListener('swipe', handleSwipeCommand);
 });
 bWindow.on('app-command', handleAppCommand);
+bWindow.on('swipe', handleSwipeCommand);
 
 if (process.platform === 'linux') {
   const mouse = require('mouse-forward-back');
