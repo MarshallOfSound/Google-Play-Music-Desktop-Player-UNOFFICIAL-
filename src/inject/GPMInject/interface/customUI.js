@@ -101,10 +101,10 @@ function installDesktopSettingsButton() {
 
 /* eslint-disable max-len, no-multi-str */
 function installNowPlayingButton(text, id, callback) {
-  const ripple = '<paper-ripple style="-webkit-user-select: none;"> \
-                  <div id="background" class="style-scope paper-ripple" style="-webkit-user-select: none;"></div> \
-                  <div id="waves" class="style-scope paper-ripple" style="-webkit-user-select: none;"></div> \
-                  </paper-ripple>';
+  const ripple = `<paper-ripple style="-webkit-user-select: none;">
+                  <div id="background" class="style-scope paper-ripple" style="-webkit-user-select: none;"></div>
+                  <div id="waves" class="style-scope paper-ripple" style="-webkit-user-select: none;"></div>
+                  </paper-ripple>`;
   const content = document.createElement('div');
   content.setAttribute('class', 'goog-menuitem-content');
   content.innerHTML = `${ripple} ${text}`;
@@ -122,7 +122,7 @@ function installNowPlayingButton(text, id, callback) {
     // DEV: Hacky but smooth way to close menu when clicked.
     setTimeout(() => {
       document.querySelector('.goog-menu.song-menu').style.display = 'none';
-    }, 250);
+    }, 150);
     callback(e);
   });
 }
