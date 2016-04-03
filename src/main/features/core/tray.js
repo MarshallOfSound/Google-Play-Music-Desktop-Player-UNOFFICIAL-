@@ -1,4 +1,4 @@
-import { app, Menu, Tray } from 'electron';
+import { app, Menu, Tray, shell } from 'electron';
 import path from 'path';
 
 import { showDesktopSettings } from './desktopSettings';
@@ -53,6 +53,30 @@ const setContextMenu = () => {
     {
       label: 'Audio Device',
       submenu: audioDeviceMenu,
+    },
+    {
+      label: 'Help',
+      role: 'help',
+      submenu: [
+        {
+          label: 'About',
+          click: () => {
+            Emitter.sendToWindowsOfName('main', 'about');
+          },
+        },
+        {
+          label: 'Issues',
+          click: () => shell.openExternal('https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues'),
+        },
+        {
+          label: 'Donate',
+          click: () => shell.openExternal('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ'),
+        },
+        {
+          label: 'Learn More',
+          click: () => shell.openExternal('http://www.googleplaymusicdesktopplayer.com'),
+        },
+      ],
     },
     { label: 'Settings', click: () => { showDesktopSettings(); } },
     { type: 'separator' },
