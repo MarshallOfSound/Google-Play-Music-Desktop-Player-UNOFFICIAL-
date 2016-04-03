@@ -12,7 +12,7 @@ PlaybackAPI.on('change:song', (song) => {
       lyrics = lyrics.replace(/<br \/>/gi, '\n');
       lyrics = decoder.decode(lyrics);
       lyrics = xss(lyrics, {
-        whiteList: ['br', 'i', 'b', 'strong', 'em'],
+        whiteList: { br: [], i: [], b: [], strong: [], em: [] },
         stripIgnoreTag: true,
         stripIgnoreTagBody: ['script'],
       });
