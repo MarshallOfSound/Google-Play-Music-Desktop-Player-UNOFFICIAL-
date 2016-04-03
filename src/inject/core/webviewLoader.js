@@ -13,6 +13,7 @@ if (webview) {
   });
 
   const savePage = (url) => {
+    if (!/https?:\/\/play\.google\.com\/music/g.test(url)) return;
     Emitter.fire('settings:set', {
       key: 'lastPage',
       value: url.url,
