@@ -37,7 +37,10 @@ const template = [
           return 'F11';
         })(),
         click: (item, focusedWindow) => {
-          if (focusedWindow) focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
+          if (focusedWindow) {
+            focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
+            focusedWindow.send('window:fullscreen', { state: focusedWindow.isFullScreen() });
+          }
         },
       },
       {

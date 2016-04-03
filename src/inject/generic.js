@@ -13,7 +13,15 @@ const waitForBody = setInterval(() => {
     require('./windowThemeHandler');
     require('electron').remote.getCurrentWindow().show();
 
-    document.body.classList.toggle('native-frame', Settings.get('nativeFrame'));
+    const nativeFrameAtLaunch = Settings.get('nativeFrame');
+
+    document.body.classList.toggle('native-frame', nativeFrameAtLaunch);
+
+    Emitter.on('window:fullscreen', (event, state) => {
+      if (nativeFrameAtLaunch) return;
+      if (state.state) document.body.classList.add('native-frame');
+      if (!state.state) document.body.classList.remove('native-frame');
+    });
 
     document.addEventListener('dragover', (event) => {
       event.preventDefault();
