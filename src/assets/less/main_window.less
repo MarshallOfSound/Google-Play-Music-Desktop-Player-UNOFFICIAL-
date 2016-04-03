@@ -30,10 +30,14 @@ html, body {
   }
 
   #lyrics_back {
-    top: 0;
+    top: 100vh;
     left: 0;
     width: 100vw;
     height: 100vh;
+
+    &.vis {
+      top: 0;
+    }
   }
 }
 
@@ -143,17 +147,19 @@ html, body {
 
 #lyrics_back {
   position: fixed;
-  top: @title-bar-height + @border-width;
+  top: 100vh;
   left: @border-width * 0.9;
   width: calc(~"100vw -" (@border-width * 1.8));
   height: calc(~"100vh -" (@title-bar-height + @border-width * 1.8));
-  z-index: -99999999;
+  z-index: 999999999;
   opacity: 0;
   background: rgba(0, 0, 0, 0.98);
 
+
   &.vis {
-    z-index: 99999999;
+    top: @title-bar-height + @border-width;
     opacity: 1;
+    transition: all .15s ease-in-out;
   }
 
   #lyrics {

@@ -99,6 +99,51 @@ function installDesktopSettingsButton() {
   document.querySelectorAll('.nav-section.material')[0].insertBefore(dSettings, document.querySelectorAll('.nav-section.material > a')[2]); // eslint-disable-line
 }
 
+/* eslint-disable max-len, no-multi-str */
+function installNowPlayingButton(text, id, callback) {
+  const ripple = `<paper-ripple style="-webkit-user-select: none;">
+                  <div id="background" class="style-scope paper-ripple" style="-webkit-user-select: none;"></div>
+                  <div id="waves" class="style-scope paper-ripple" style="-webkit-user-select: none;"></div>
+                  </paper-ripple>`;
+  const content = document.createElement('div');
+  content.setAttribute('class', 'goog-menuitem-content');
+  content.innerHTML = `${ripple} ${text}`;
+
+  const button = document.createElement('div');
+  button.setAttribute('class', 'goog-menuitem');
+  button.setAttribute('role', 'menuitem');
+  button.setAttribute('id', id);
+  button.appendChild(content);
+
+  const nowPlayingMenu = document.querySelector('.goog-menu.song-menu');
+  nowPlayingMenu.appendChild(button);
+
+  button.addEventListener('click', (e) => {
+    // DEV: Hacky but smooth way to close menu when clicked.
+    setTimeout(() => {
+      document.querySelector('.goog-menu.song-menu').style.display = 'none';
+    }, 150);
+    callback(e);
+  });
+}
+/* eslint-enable max-len */
+
+function installNowPlayingSeperator() {
+  const seperator = document.createElement('div');
+  seperator.setAttribute('role', 'menuitem');
+  seperator.setAttribute('class', 'goog-menuseparator');
+
+  const nowPlayingMenu = document.querySelector('.goog-menu.song-menu');
+  nowPlayingMenu.appendChild(seperator);
+}
+
+function installNowPlayingMenu() {
+  installNowPlayingSeperator();
+  installNowPlayingButton('Show Lyrics (Beta)', ':gpmdplyrics', () => {
+    Emitter.fireAtMain('lyrics:show');
+  });
+}
+
 /** Create the back button. */
 function installBackButton() {
   const listenNowURL = 'https://play.google.com/music/listen#/now';
@@ -191,4 +236,5 @@ window.wait(() => {
   installDesktopSettingsButton();
   installBackButton();
   handleZoom();
+  installNowPlayingMenu();
 });
