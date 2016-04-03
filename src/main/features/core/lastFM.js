@@ -31,10 +31,10 @@ const authLastFMToken = (token) => {
       show: false,
       autoHideMenuBar: true,
       frame: Settings.get('nativeFrame'),
-      nodeIntegration: false,
       icon: path.resolve(`${__dirname}/../../../assets/img/main.png`),
       title: 'Last.FM',
-      'web-preferences': {
+      webPreferences: {
+        nodeIntegration: false,
         preload: path.resolve(`${__dirname}/../../../inject/lastFM.js`),
       },
     });

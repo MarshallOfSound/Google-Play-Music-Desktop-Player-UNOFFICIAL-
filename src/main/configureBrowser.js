@@ -19,8 +19,8 @@ export default () => {
     frame: Settings.get('nativeFrame'),
     icon: path.resolve(`${__dirname}/../assets/img/main.png`),
     title: 'Google Play Music Desktop Player',
-    nodeIntegration: true,
-    'web-preferences': {
+    webPreferences: {
+      nodeIntegration: true,
       preload: path.resolve(`${__dirname}/../inject/generic.js`),
     },
   };

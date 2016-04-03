@@ -19,8 +19,8 @@ class Notification {
       skipTaskbar: true,
       alwaysOnTop: true,
       backgroundColor: '#FFF',
-      nodeIntegration: true,
-      'web-preferences': {
+      webPreferences: {
+        nodeIntegration: true,
         preload: path.resolve('./build/inject/generic.js'),
       },
     });
