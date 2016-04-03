@@ -7,7 +7,7 @@ PlaybackAPI.on('change:song', (song) => {
   fetch(`http://lyrics.wikia.com/wiki/${song.artist}:${song.title}`)
     .then((data) => data.text())
     .then((html) => {
-      let lyrics = (/('|")lyricbox('|")>.+<\/script>(.+)<!--/g.exec(html)[3]);
+      let lyrics = (/('|")lyricbox('|")>(.+<\/script>)?(.+)<!--/g.exec(html)[4]);
       lyrics = lyrics.replace(/<br \/>/gi, '\n');
       lyrics = decoder.decode(lyrics);
       PlaybackAPI.setPlaybackSongLyrics(lyrics);
