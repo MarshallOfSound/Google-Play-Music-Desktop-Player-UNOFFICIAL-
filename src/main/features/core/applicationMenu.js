@@ -50,6 +50,13 @@ const template = [
           Emitter.sendToWindowsOfName('main', 'gotourl');
         },
       },
+      {
+        label: 'Show Lyrics (Beta)',
+        accelerator: 'CmdOrCtrl+Shift+L',
+        click: () => {
+          Emitter.sendToWindowsOfName('main', 'lyrics:show');
+        },
+      },
     ],
   },
   {

@@ -28,6 +28,13 @@ html, body {
       height: 100vh !important;
     }
   }
+
+  #lyrics_back {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
 }
 
 .window-border {
@@ -131,5 +138,44 @@ html, body {
   padding: 14px;
   > div {
     margin: 0 auto;
+  }
+}
+
+#lyrics_back {
+  position: fixed;
+  top: @title-bar-height + @border-width;
+  left: @border-width * 0.9;
+  width: calc(~"100vw -" (@border-width * 1.8));
+  height: calc(~"100vh -" (@title-bar-height + @border-width * 1.8));
+  z-index: -99999999;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.98);
+
+  &.vis {
+    z-index: 99999999;
+    opacity: 1;
+  }
+
+  #lyrics {
+    color: white;
+    text-align: center;
+    padding: 24px;
+    display: flex;
+    height: 100%;
+    width: 100%;
+
+    h1 {
+      font-size: 42px;
+      text-align: center;
+      align-self: center;
+      width: 100%;
+    }
+    p {
+      text-align: center;
+      width: 100%;
+      font-size: 26px;
+      line-height: 1.6em;
+      overflow: auto;
+    }
   }
 }
