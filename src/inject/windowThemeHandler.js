@@ -32,6 +32,7 @@ const redrawTheme = (customColor) => {
   const titleBar = `[theme][light] .title-bar{background:${color}}`;
   const header = `[theme][light] .dialog .window-title{background:${color}}`;
   style.html(border + titleBar + header);
+  document.body.setAttribute('loaded', 'loaded');
 };
 redrawTheme();
 Emitter.on('theme:updateColor', (event, customColor) => {

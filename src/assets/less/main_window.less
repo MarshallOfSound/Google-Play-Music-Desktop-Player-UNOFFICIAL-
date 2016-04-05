@@ -14,6 +14,7 @@ html, body {
   .fill-parent;
   margin: 0;
   padding: 0;
+  background: #fff;
 }
 
 // Hide custom frame when native frame is used
@@ -47,13 +48,17 @@ html, body {
   border-top-width: 0;
   display: flex;
   flex-direction: column;
-  transition: border 0.3s ease;
+  [loaded] & {
+    transition: border 0.3s ease;
+  }
 
   .title-bar {
     height: @title-bar-height + @border-width;
     background: @orange;
     display: flex;
-    transition: background 0.3s ease;
+    [loaded] & {
+      transition: background 0.3s ease;
+    }
 
     .drag-handle {
       height: 100%;

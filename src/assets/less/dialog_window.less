@@ -12,7 +12,9 @@
     background: @orange;
     color: @grey;
     line-height: 2.4em;
-    transition: background 0.3s ease;
+    [loaded] & {
+      transition: background 0.3s ease;
+    }
   }
 
   .window-main {
