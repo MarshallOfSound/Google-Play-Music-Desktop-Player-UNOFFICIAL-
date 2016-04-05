@@ -4,7 +4,10 @@ import { globalShortcut } from 'electron';
 // ↓ Without the lambda it crashes - Electron bug ?
 let keyRegisterFn = (...args) => globalShortcut.register(...args);
 if (process.platform === 'win32') {
-  keyRegisterFn = require('ll-keyboard-hook-win').on;
+  const hook = require('ll-keyboard-hook-win');
+  keyRegisterFn = (key, fn) => {
+    hook.on('down', key, fn);
+  };
 }
 
 keyRegisterFn('MediaPreviousTrack', () => {
