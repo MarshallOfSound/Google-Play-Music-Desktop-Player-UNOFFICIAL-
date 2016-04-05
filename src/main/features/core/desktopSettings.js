@@ -12,7 +12,9 @@ export const showDesktopSettings = () => {
     autoHideMenuBar: true,
     frame: Settings.get('nativeFrame'),
     show: false,
-    nodeIntegration: true,
+    webPreferences: {
+      nodeIntegration: true,
+    },
     icon: path.resolve(`${__dirname}/../../../assets/img/main.png`),
     title: 'Settings',
   });
@@ -33,7 +35,9 @@ export const showColorWheel = () => {
     autoHideMenuBar: true,
     frame: Settings.get('nativeFrame'),
     show: false,
-    nodeIntegration: true,
+    webPreferences: {
+      nodeIntegration: true,
+    },
     icon: path.resolve(`${__dirname}/../../../assets/img/main.png`),
     title: 'Color Wheel',
   });
