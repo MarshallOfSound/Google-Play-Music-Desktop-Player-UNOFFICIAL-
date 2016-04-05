@@ -11,7 +11,7 @@ const waitForBody = setInterval(() => {
   if (document.body) {
     clearInterval(waitForBody);
     require('./windowThemeHandler');
-    require('electron').remote.getCurrentWindow().show();
+    setTimeout(() => require('electron').remote.getCurrentWindow().show(), 100);
 
     const nativeFrameAtLaunch = Settings.get('nativeFrame');
 
