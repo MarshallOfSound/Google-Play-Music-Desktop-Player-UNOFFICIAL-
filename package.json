@@ -62,7 +62,7 @@
     "gmusic.js": "^4.0.3",
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
-    "grunt-electron-installer": "^1.2.0",
+    "grunt-electron-installer": "^2.0.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.1",
     "gulp-clean": "^0.3.1",
