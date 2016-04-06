@@ -167,7 +167,7 @@ html, body {
     transition: all .15s ease-in-out;
   }
 
-  #lyrics {
+  #lyrics_container {
     color: white;
     text-align: center;
     padding: 24px;
@@ -175,18 +175,37 @@ html, body {
     height: 100%;
     width: 100%;
 
-    h1 {
-      font-size: 42px;
-      text-align: center;
-      align-self: center;
+    #lyrics {
+      height: 100%;
       width: 100%;
+      display: flex;
+      
+      h1 {
+        font-size: 42px;
+        text-align: center;
+        align-self: center;
+        width: 100%;
+        padding: 12px 0;
+      }
+      
+      p {
+        text-align: center;
+        width: 100%;
+        font-size: 26px;
+        line-height: 1.6em;
+        overflow: auto;
+        padding: 12px 0;
+      }
     }
-    p {
-      text-align: center;
-      width: 100%;
-      font-size: 26px;
-      line-height: 1.6em;
-      overflow: auto;
+    
+    #shadow {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: calc(100% + 100px);
+      height: 100%;
+      box-shadow: 50px 0 20px 66px black inset;
+      pointer-events: none;
     }
   }
 }
