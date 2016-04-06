@@ -140,9 +140,9 @@ class PlaybackAPI {
 
   _setPauseAfter(mode) {
     if (mode) {
-      Emitter.sendToGooglePlayMusic('toast:pauseAfter', null);
+      Emitter.sendToGooglePlayMusic('pauseAfter:show', null);
     } else {
-      Emitter.sendToGooglePlayMusic('toastHide:pauseAfter', null);
+      Emitter.sendToGooglePlayMusic('pauseAfter:hide', null);
     }
     this.data.pauseAfter = mode;
     this._fire('change:pauseAfter', this.data.pauseAfter);
