@@ -5,3 +5,4 @@ import './webviewLoader';
 import './updateAvailable';
 import './appDetails';
 import './lyrics';
+import './pauseAfter';
