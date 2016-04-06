@@ -174,7 +174,7 @@ class PlaybackAPI {
   }
 
   currentPauseAfter() {
-    return this.data.pauseAfter
+    return this.data.pauseAfter;
   }
 
   on(what, fn) {

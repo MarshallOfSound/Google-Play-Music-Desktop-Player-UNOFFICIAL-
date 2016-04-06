@@ -21,6 +21,6 @@ Emitter.on('toast:pauseAfter', () => {
   document.body.appendChild(toast);
   toast.show();
   Emitter.on('toastHide:pauseAfter', () => {
-    toast.hide()
-  })
+    toast.hide();
+  });
 });
