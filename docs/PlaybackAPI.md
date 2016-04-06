@@ -17,6 +17,8 @@ The file contains a single JSON object with the following attributes:
 - **song**: (object) A song object in the format below.
 - **time**: (object) A time object in the format below.
 - **songLyrics**: (string) The full lyrics of the current song, or null if we could not find the lyrics
+- **shuffle**: (string) The current shuffle mode *(Values can be found [here](https://github.com/gmusic-utils/gmusic.js#playbackgetshuffle))*
+- **repeat**: (string) The current repeat mode *(Values can be found [here](https://github.com/gmusic-utils/gmusic.js#playbackgetrepeat))*
 
 ##### Song Object
 All attributes are `null` if no song is playing.  If a song is paused the variables are set correctly.
@@ -50,7 +52,9 @@ All attributes are `0` of no song is playing.  If a song is paused the variables
     "current": 4908,
     "total": 217000
   },
-  "songLyrics": "Lyrics here :)"
+  "songLyrics": "Lyrics here :)",
+  "shuffle": "ALL_SHUFFLE",
+  "repeat": "LIST_REPEAT"
 }
 
 // Not Playing (Stopped)

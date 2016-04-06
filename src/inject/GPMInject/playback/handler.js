@@ -33,6 +33,23 @@ window.wait(() => {
     Emitter.fire('change:rating', rating);
   });
 
+  window.GPM.on('change:shuffle', (mode) => {
+    console.log(mode);
+    Emitter.fire('change:shuffle', mode);
+  });
+  // DEV: Set inital shuffle value
+  setTimeout(() => {
+    Emitter.fire('change:shuffle', window.GPM.playback.getShuffle());
+  }, 100);
+
+  window.GPM.on('change:repeat', (mode) => {
+    Emitter.fire('change:repeat', mode);
+  });
+  // DEV: Set inital repeat value
+  setTimeout(() => {
+    Emitter.fire('change:repeat', window.GPM.playback.getRepeat());
+  }, 100);
+
   window.GPM.on('change:playback-time', (playbackInfo) => {
     Emitter.fire('change:playback-time', playbackInfo);
     if (playbackInfo.current >= playbackInfo.total / 2

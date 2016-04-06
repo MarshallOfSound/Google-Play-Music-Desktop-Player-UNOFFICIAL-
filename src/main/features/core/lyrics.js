@@ -16,7 +16,7 @@ PlaybackAPI.on('change:song', (song) => {
         stripIgnoreTag: true,
         stripIgnoreTagBody: ['script'],
       });
-      PlaybackAPI.setPlaybackSongLyrics(lyrics);
+      PlaybackAPI._setPlaybackSongLyrics(lyrics);
     })
     .catch((e) => {
       Logger.verbose('Lyrics parsing failed', e);

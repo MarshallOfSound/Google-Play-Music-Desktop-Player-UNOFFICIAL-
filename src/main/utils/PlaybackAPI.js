@@ -19,15 +19,15 @@ class PlaybackAPI {
 
   _hook() {
     Emitter.on('change:song', (event, details) => {
-      this.setPlaybackSong(details.title, details.artist, details.album, details.art);
+      this._setPlaybackSong(details.title, details.artist, details.album, details.art);
     });
 
-    Emitter.on('playback:isPlaying', this.setPlaying.bind(this, true));
-    Emitter.on('playback:isPaused', this.setPlaying.bind(this, false));
-    Emitter.on('playback:isStopped', this.setPlaying.bind(this, false));
+    Emitter.on('playback:isPlaying', this._setPlaying.bind(this, true));
+    Emitter.on('playback:isPaused', this._setPlaying.bind(this, false));
+    Emitter.on('playback:isStopped', this._setPlaying.bind(this, false));
 
     Emitter.on('change:playback-time', (event, timeObj) => {
-      this.setTime(timeObj.current, timeObj.total);
+      this._setTime(timeObj.current, timeObj.total);
     });
     // we throttle this function because of a bug in gmusic.js
     // ratings are received multiple times here in a couple of ms
@@ -35,6 +35,13 @@ class PlaybackAPI {
     Emitter.on('change:rating', _.throttle((event, details) => {
       this._setRating(details);
     }, 500));
+
+    Emitter.on('change:shuffle', _.throttle((event, mode) => {
+      this._setShuffle(mode);
+    }), 20);
+    Emitter.on('change:repeat', _.throttle((event, mode) => {
+      this._setRepeat(mode);
+    }), 20);
   }
 
   reset() {
@@ -55,6 +62,8 @@ class PlaybackAPI {
         total: 0,
       },
       songLyrics: null,
+      shuffle: null,
+      repeat: null,
     };
     this._save();
   }
@@ -65,13 +74,13 @@ class PlaybackAPI {
     }
   }
 
-  setPlaying(isPlaying) {
+  _setPlaying(isPlaying) {
     this.data.playing = isPlaying;
     this._fire('change:state', isPlaying);
     this._save();
   }
 
-  setPlaybackSong(title, artist, album, albumArt) {
+  _setPlaybackSong(title, artist, album, albumArt) {
     this.data.song = {
       title,
       artist,
@@ -97,13 +106,25 @@ class PlaybackAPI {
     this.data.rating.disliked = false;
   }
 
-  setPlaybackSongLyrics(lyricString) {
+  _setPlaybackSongLyrics(lyricString) {
     this.data.songLyrics = lyricString;
     this._fire('change:lyrics', this.data.songLyrics);
     this._save();
   }
 
-  setTime(current, total) {
+  _setShuffle(mode) {
+    this.data.shuffle = mode;
+    this._fire('change:shuffle', this.data.shuffle);
+    this._save();
+  }
+
+  _setRepeat(mode) {
+    this.data.repeat = mode;
+    this._fire('change:repeat', this.data.repeat);
+    this._save();
+  }
+
+  _setTime(current, total) {
     const totalTime = total || this.data.time.total;
     this.data.time = {
       current,
@@ -115,6 +136,14 @@ class PlaybackAPI {
 
   isPlaying() {
     return this.data.playing;
+  }
+
+  currentRepeat() {
+    return this.data.repeat;
+  }
+
+  currentShuffle() {
+    return this.data.shuffle;
   }
 
   currentSong() {

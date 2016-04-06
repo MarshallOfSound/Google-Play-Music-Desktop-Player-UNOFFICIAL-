@@ -31,6 +31,16 @@ PlaybackAPI.on('change:lyrics', (newLyrics) => {
     server.broadcast('lyrics', newLyrics);
   }
 });
+PlaybackAPI.on('change:shuffle', (newShuffle) => {
+  if (server && server.broadcast) {
+    server.broadcast('shuffle', newShuffle);
+  }
+});
+PlaybackAPI.on('change:repeat', (newRepeat) => {
+  if (server && server.broadcast) {
+    server.broadcast('repeat', newRepeat);
+  }
+});
 
 const enableAPI = () => {
   try {
@@ -81,6 +91,8 @@ const enableAPI = () => {
       });
 
       ws.channel('playState', PlaybackAPI.isPlaying());
+      ws.channel('shuffle', PlaybackAPI.currentShuffle());
+      ws.channel('repeat', PlaybackAPI.currentRepeat());
       if (PlaybackAPI.currentSong()) {
         ws.channel('song', PlaybackAPI.currentSong());
         ws.channel('time', PlaybackAPI.currentTime());

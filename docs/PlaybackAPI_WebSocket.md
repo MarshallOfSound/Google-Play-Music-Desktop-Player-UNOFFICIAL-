@@ -95,6 +95,26 @@ Data received in the `rating` channel will have a payload in the format
 }
 ```
 
+### Shuffle
+
+Data received in the `shuffle` channel with have a payload in the format
+
+```js
+"payload": "ALL_SHUFFLE"
+```
+
+*Possible shuffle values can be found [here](https://github.com/gmusic-utils/gmusic.js#playbackgetshuffle)*
+
+### Repeat
+
+Data received in the `repeat` channel will have a payload in the format
+
+```js
+"payload": "LIST_REPEAT"
+```
+
+*Possible repeat values can be found [here](https://github.com/gmusic-utils/gmusic.js#playbackgetrepeat)*
+
 ## Controlling the application
 
 ### All Powerful Controller
