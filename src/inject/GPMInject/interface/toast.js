@@ -1,4 +1,4 @@
-window.showToast = function (text, buttonText, buttonColor, buttonEventFunction, postCreationFunction, dismissable) { // eslint-disable-line
+window.showToast = function (text, dismissable, buttonText, buttonColor, buttonEventFunction, postCreationFunction) { // eslint-disable-line
   const toast = document.createElement('paper-toast');
   toast.setAttribute('text', text);
   toast.duration = 0;

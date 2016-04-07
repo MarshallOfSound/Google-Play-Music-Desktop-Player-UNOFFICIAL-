@@ -1,7 +1,7 @@
 import { remote } from 'electron';
 
 Emitter.on('error', (event, details) => {
-  window.showToast(`An uncaught error has occurred inside GPMDP.`,
+  window.showToast(`An uncaught error has occurred inside GPMDP.`, false,
   'Click here to report this as an issue on GitHub', '#E53935',
   (buttonEvent, toast) => {
     const title = 'Uncaught Exception: ' + details.error.message.split(/\n/g)[0].substring(0, 100);
@@ -25,5 +25,5 @@ This issue was created automatically inside the \`uncaughtException\` handler`;
     toast.hide();
     buttonEvent.preventDefault();
     return false;
-  }, () => {}, false);
+  }, () => {});
 });

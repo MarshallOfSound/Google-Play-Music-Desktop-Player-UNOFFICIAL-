@@ -1,9 +1,7 @@
-import { remote } from 'electron';
-
 let pauseAfter = false;
 
 window.addEventListener('load', () => {
-  remote.getGlobal('PlaybackAPI').on('change:song', () => {
+  GPM.on('change:song', () => {
     if (pauseAfter) {
       GPM.playback.playPause();
       Emitter.fireAtGoogle('pauseAfter:hide', null);
@@ -13,7 +11,7 @@ window.addEventListener('load', () => {
 
 Emitter.on('pauseAfter:show', () => {
   if (!pauseAfter) {
-    window.showToast(`Pausing after this song.`,
+    window.showToast(`Pausing after this song.`, true,
     `Don\'t pause after this song`, Settings.get('themeColor'),
     (event) => {
       Emitter.fireAtGoogle('pauseAfter:hide', null);
@@ -26,6 +24,6 @@ Emitter.on('pauseAfter:show', () => {
         pauseAfter = false;
         toast.hide();
       });
-    }, false);
+    });
   }
 });
