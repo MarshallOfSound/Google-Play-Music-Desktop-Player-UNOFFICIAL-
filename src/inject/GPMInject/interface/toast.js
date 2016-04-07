@@ -1,27 +1,21 @@
-import { remote } from 'electron';
-
-Emitter.on('pauseAfter:show', () => {
+window.showToast = function (text, buttonText, buttonColor, buttonEventFunction, postCreationFunction, dismissable) { // eslint-disable-line
   const toast = document.createElement('paper-toast');
-  toast.setAttribute('text', `Pausing after this song.`);
+  toast.setAttribute('text', text);
   toast.duration = 0;
-  toast.noCancelOnOutsideClick = true;
-  const disableButton = document.createElement('a');
-  disableButton.innerHTML = 'Don\'t pause after this song';
-  disableButton.style.color = '#E53935';
-  disableButton.style.margin = '0';
-  disableButton.style.marginBottom = '102px';
-  disableButton.style.padding = '0';
-  disableButton.style.marginLeft = '10px';
-  disableButton.style.cursor = 'pointer';
-  disableButton.addEventListener('click', (e) => {
-    remote.getGlobal('PlaybackAPI')._setPauseAfter(false);
-    e.preventDefault();
-    return false;
+  toast.noCancelOnOutsideClick = dismissable;
+  toast.style.marginBottom = '102px';
+  const button = document.createElement('a');
+  button.innerHTML = buttonText;
+  button.style.color = buttonColor;
+  button.style.margin = '0';
+  button.style.padding = '0';
+  button.style.marginLeft = '10px';
+  button.style.cursor = 'pointer';
+  button.addEventListener('click', (event) => {
+    buttonEventFunction(event, toast, button);
   });
-  toast.appendChild(disableButton);
+  toast.appendChild(button);
   document.body.appendChild(toast);
   toast.show();
-  Emitter.on('pauseAfter:hide', () => {
-    toast.hide();
-  });
-});
+  postCreationFunction(toast, button);
+};

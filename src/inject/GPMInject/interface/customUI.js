@@ -140,7 +140,7 @@ function installNowPlayingSeperator() {
 function installNowPlayingMenu() {
   installNowPlayingSeperator();
   installNowPlayingButton('Pause after this song', ':gpmdppause', () => {
-    remote.getGlobal('PlaybackAPI')._setPauseAfter(true);
+    Emitter.fireAtGoogle('pauseAfter:show');
   });
   installNowPlayingSeperator();
   installNowPlayingButton('Show Lyrics (Beta)', ':gpmdplyrics', () => {
