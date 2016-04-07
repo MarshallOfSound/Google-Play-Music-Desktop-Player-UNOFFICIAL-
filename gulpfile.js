@@ -8,7 +8,6 @@ const less = require('gulp-less');
 const cssmin = require('gulp-cssmin');
 const concat = require('gulp-concat');
 const packager = require('electron-packager');
-const path = require('path');
 const spawn = require('child_process').spawn;
 const exec = require('child_process').exec;
 const rebuild = require('./vendor/rebuild');
@@ -147,7 +146,7 @@ gulp.task('watch', ['build'], () => {
 
 gulp.task('package:win', ['clean-dist-win', 'build'], (done) => {
   console.log('Rebuilding ll-keyboard-hook-win'); // eslint-disable-line
-    rebuild('rebuild_ia32.bat')
+  rebuild('rebuild_ia32.bat')
     .then(() => {
       packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), () => {
         setTimeout(() => {
@@ -208,7 +207,7 @@ gulp.task('package:linux', ['clean-dist-linux', 'build'], (done) => {
       rebuild('./rebuild_ia32.sh')
       .then(() => {
         packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }), done);
-      })
+      });
     });
   });
 });
