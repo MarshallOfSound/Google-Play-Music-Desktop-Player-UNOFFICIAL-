@@ -34,7 +34,7 @@ window.addEventListener('load', () => {
       animate = true;
       jumped = true;
     }
-    if (!animate || !timeObj.total) return;
+    if (!animate || !timeObj.total || !$('#lyrics p').get(0)) return;
     const lyricsP = $('#lyrics p');
     const maxHeight = parseInt(lyricsP.get(0).scrollHeight, 10);
     const viewPortHeight = parseInt(lyricsP.innerHeight(), 10);
