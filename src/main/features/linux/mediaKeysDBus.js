@@ -19,6 +19,21 @@ try {
       iface.GrabMediaPlayerKeys(0, 'org.gnome.SettingsDaemon.MediaKeys'); // eslint-disable-line
     }
   });
+  session.getInterface('org.mate.SettingsDaemon', '/org/mate/SettingsDaemon/MediaKeys',
+  'org.mate.SettingsDaemon.MediaKeys', (err, iface) => {
+    if (!err) {
+      iface.on('MediaPlayerKeyPressed', (n, keyName) => {
+        switch (keyName) {
+          case 'Next': Emitter.sendToGooglePlayMusic('playback:nextTrack'); return;
+          case 'Previous': Emitter.sendToGooglePlayMusic('playback:previousTrack'); return;
+          case 'Play': Emitter.sendToGooglePlayMusic('playback:playPause'); return;
+          case 'Stop': Emitter.sendToGooglePlayMusic('playback:stop'); return;
+          default: return;
+        }
+      });
+      iface.GrabMediaPlayerKeys(0, 'org.mate.SettingsDaemon.MediaKeys'); // eslint-disable-line
+    }
+  });
 } catch (e) {
   // do nothing.
 }
