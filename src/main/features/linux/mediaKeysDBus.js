@@ -1,7 +1,8 @@
 import DBus from 'dbus';
 
-function registerBindings(desktopEnv, session){
-  session.getInterface('org.'+desktopEnv+'.SettingsDaemon', '/org/'+desktopEnv+'/SettingsDaemon/MediaKeys','org.'+desktopEnv+'.SettingsDaemon.MediaKeys', (err, iface) => {
+function registerBindings(desktopEnv, session) {
+  session.getInterface('org.' + desktopEnv + '.SettingsDaemon', '/org/' + desktopEnv + '/SettingsDaemon/MediaKeys',
+  'org.' + desktopEnv + '.SettingsDaemon.MediaKeys', (err, iface) => {
     if (!err) {
       iface.on('MediaPlayerKeyPressed', (n, keyName) => {
         switch (keyName) {
@@ -12,7 +13,7 @@ function registerBindings(desktopEnv, session){
           default: return;
         }
       });
-      iface.GrabMediaPlayerKeys(0, 'org.'+desktopEnv+'.SettingsDaemon.MediaKeys'); // eslint-disable-line
+      iface.GrabMediaPlayerKeys(0, 'org.' + desktopEnv + '.SettingsDaemon.MediaKeys'); // eslint-disable-line
     }
   });
 }
