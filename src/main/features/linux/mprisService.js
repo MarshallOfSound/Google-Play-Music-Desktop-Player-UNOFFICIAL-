@@ -53,7 +53,7 @@ function mprisService() {
       'xesam:asText': (newSong.lyrics || ''),
       'xesam:title': newSong.title,
       'xesam:album': newSong.album,
-      'xesam:artist': newSong.artist,
+      'xesam:artist': [newSong.artist],
     };
   });
 
