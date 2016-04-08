@@ -1,11 +1,9 @@
 import DBus from 'dbus';
 
-try {
-  const dbus = new DBus();
-  const session = dbus.getBus('session');
-
-  session.getInterface('org.gnome.SettingsDaemon', '/org/gnome/SettingsDaemon/MediaKeys',
-  'org.gnome.SettingsDaemon.MediaKeys', (err, iface) => {
+function registerBindings(desktopEnv, session) {
+  session.getInterface(`org.${desktopEnv}.SettingsDaemon`,
+  `/org/${desktopEnv}/SettingsDaemon/MediaKeys`,
+  `org.${desktopEnv}.SettingsDaemon.MediaKeys`, (err, iface) => {
     if (!err) {
       iface.on('MediaPlayerKeyPressed', (n, keyName) => {
         switch (keyName) {
@@ -16,9 +14,17 @@ try {
           default: return;
         }
       });
-      iface.GrabMediaPlayerKeys(0, 'org.gnome.SettingsDaemon.MediaKeys'); // eslint-disable-line
+      iface.GrabMediaPlayerKeys(0, `org.${desktopEnv}.SettingsDaemon.MediaKeys`); // eslint-disable-line
     }
   });
+}
+
+try {
+  const dbus = new DBus();
+  const session = dbus.getBus('session');
+
+  registerBindings('gnome', session);
+  registerBindings('mate', session);
 } catch (e) {
   // do nothing.
 }
