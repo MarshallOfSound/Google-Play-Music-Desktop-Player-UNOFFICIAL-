@@ -49,7 +49,7 @@ function mprisService() {
 
   PlaybackAPI.on('change:song', (newSong) => {
     player.metadata = _songInfo = {
-      'mpris:artUrl': newSong.albumArt,
+      'mpris:artUrl': newSong.albumArt.replace('=s90', '=s300'),
       'xesam:asText': (newSong.lyrics || ''),
       'xesam:title': newSong.title,
       'xesam:album': newSong.album,
