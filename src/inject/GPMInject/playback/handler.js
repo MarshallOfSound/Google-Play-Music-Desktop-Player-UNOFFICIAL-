@@ -34,7 +34,6 @@ window.wait(() => {
   });
 
   window.GPM.on('change:shuffle', (mode) => {
-    console.log(mode);
     Emitter.fire('change:shuffle', mode);
   });
   // DEV: Set inital shuffle value
