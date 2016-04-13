@@ -72,7 +72,7 @@ const attemptPromiseSequence = (seq) => {
 
 PlaybackAPI.on('change:song', (song) => {
   const promises = [attemptLyricsWikia(`${song.artist}:${song.title}`)];
-  let bracketed = song.title.match(/\(.+?\)/g);
+  let bracketed = song.title.match(/\(.+?\)/g) || [];
 
   // DEV: Attempt to find lyrics from wikia
   let title = song.title;
@@ -89,7 +89,7 @@ PlaybackAPI.on('change:song', (song) => {
     attemptMetroLyrics(`${lowerTitle.replace(/ /g, '-')}-lyrics-${lowerArtist.replace(/ /g, '-')}`)
   );
 
-  const dashed = lowerAlbum.match(/- [^-]+/g);
+  const dashed = lowerAlbum.match(/- [^-]+/g) || [];
   dashed.push('');
 
   let album = lowerAlbum;
@@ -97,7 +97,7 @@ PlaybackAPI.on('change:song', (song) => {
     album = album.replace(dash, '').trim();
     title = lowerTitle;
 
-    bracketed = title.match(/\(.+?\)/g);
+    bracketed = title.match(/\(.+?\)/g) || [];
     bracketed.push('');
     _.forEachRight(bracketed, (bracket) => {
       title = title.replace(bracket, '').trim();
