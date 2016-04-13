@@ -12,7 +12,8 @@ if (webview) {
     }
   });
 
-  const savePage = (url) => {
+  const savePage = (param) => {
+    const url = param.url || param;
     if (!/https?:\/\/play\.google\.com\/music/g.test(url)) return;
     Emitter.fire('settings:set', {
       key: 'lastPage',
