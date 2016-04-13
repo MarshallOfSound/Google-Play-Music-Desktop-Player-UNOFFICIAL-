@@ -26,6 +26,36 @@ const attemptLyricsWikia = (path) => {
   });
 };
 
+const attemptMetroLyrics = (path) => {
+  return new Promise((resolve, reject) => {
+    fetch(`http://www.metrolyrics.com/${path}.html`)
+      .then((data) => data.text())
+      .then((html) => {
+        const lyricsChunk = (/('|")lyrics-body('|")>([\s\S]+)('|")lyrics-bottom('|")/gm.exec(html)[3]); // eslint-disable-line
+        let lyrics = '';
+        const paraRegexp = /<p class=('|")verse('|")>([\s\S]+?)<\/p>/g;
+        let paragraph = paraRegexp.exec(lyricsChunk);
+        while (paragraph) {
+          lyrics += paragraph[3] + '{{PARA}}';
+          paragraph = paraRegexp.exec(lyricsChunk);
+        }
+        lyrics = lyrics.replace(/\r?\n|\r/g, '');
+        lyrics = lyrics.replace(/<br ?\/?>/gi, '\n');
+        lyrics = lyrics.replace(/\{\{PARA\}\}/gi, '\n\n');
+        lyrics = decoder.decode(lyrics);
+        lyrics = xss(lyrics, {
+          whiteList: { br: [], i: [], b: [], strong: [], em: [] },
+          stripIgnoreTag: true,
+          stripIgnoreTagBody: ['script'],
+        });
+        resolve(lyrics);
+      })
+      .catch(() => {
+        reject();
+      });
+  });
+};
+
 const attemptPromiseSequence = (seq) => {
   return new Promise((resolve, reject) => {
     seq[0].then(resolve).catch(() => {
@@ -42,12 +72,39 @@ const attemptPromiseSequence = (seq) => {
 
 PlaybackAPI.on('change:song', (song) => {
   const promises = [attemptLyricsWikia(`${song.artist}:${song.title}`)];
-  const bracketed = song.title.match(/\(.+?\)/g);
+  let bracketed = song.title.match(/\(.+?\)/g);
 
+  // DEV: Attempt to find lyrics from wikia
   let title = song.title;
   _.forEachRight(bracketed, (bracket) => {
-    title = title.replace(bracket, '');
+    title = title.replace(bracket, '').trim();
     promises.push(attemptLyricsWikia(`${song.artist}:${title}`));
+  });
+
+  // DEV: Attempt to find lyrics from metro
+  const lowerTitle = song.title.toLowerCase().replace(/'/g, '');
+  const lowerArtist = song.artist.toLowerCase().replace(/'/g, '');
+  const lowerAlbum = song.album.toLowerCase().replace(/'/g, '');
+  promises.push(
+    attemptMetroLyrics(`${lowerTitle.replace(/ /g, '-')}-lyrics-${lowerArtist.replace(/ /g, '-')}`)
+  );
+
+  const dashed = lowerAlbum.match(/- [^-]+/g);
+  dashed.push('');
+
+  let album = lowerAlbum;
+  _.forEachRight(dashed, (dash) => {
+    album = album.replace(dash, '').trim();
+    title = lowerTitle;
+
+    bracketed = title.match(/\(.+?\)/g);
+    bracketed.push('');
+    _.forEachRight(bracketed, (bracket) => {
+      title = title.replace(bracket, '').trim();
+      promises.push(
+        attemptMetroLyrics(`${title.replace(/ /g, '-')}-lyrics-${album.replace(/ /g, '-')}`)
+      );
+    });
   });
 
   attemptPromiseSequence(promises)
