@@ -42,9 +42,6 @@ class PlaybackAPI {
     Emitter.on('change:repeat', _.throttle((event, mode) => {
       this._setRepeat(mode);
     }), 20);
-    Emitter.on('change:pauseAfter', _.throttle((event, mode) => {
-      this._setPauseAfter(mode);
-    }), 20);
   }
 
   reset() {
@@ -67,7 +64,6 @@ class PlaybackAPI {
       songLyrics: null,
       shuffle: null,
       repeat: null,
-      pauseAfter: false,
     };
     this._save();
   }
@@ -138,17 +134,6 @@ class PlaybackAPI {
     this._save();
   }
 
-  _setPauseAfter(mode) {
-    if (mode) {
-      Emitter.sendToGooglePlayMusic('pauseAfter:show', null);
-    } else {
-      Emitter.sendToGooglePlayMusic('pauseAfter:hide', null);
-    }
-    this.data.pauseAfter = mode;
-    this._fire('change:pauseAfter', this.data.pauseAfter);
-    this._save();
-  }
-
   isPlaying() {
     return this.data.playing;
   }
@@ -171,10 +156,6 @@ class PlaybackAPI {
 
   currentTime() {
     return this.data.time;
-  }
-
-  currentPauseAfter() {
-    return this.data.pauseAfter;
   }
 
   on(what, fn) {
