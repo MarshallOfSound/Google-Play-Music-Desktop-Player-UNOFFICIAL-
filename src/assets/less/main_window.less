@@ -179,7 +179,7 @@ html, body {
       height: 100%;
       width: 100%;
       display: flex;
-      
+
       h1 {
         font-size: 42px;
         text-align: center;
@@ -187,7 +187,7 @@ html, body {
         width: 100%;
         padding: 12px 0;
       }
-      
+
       p {
         text-align: center;
         width: 100%;
@@ -197,12 +197,12 @@ html, body {
         padding: 12px 0;
       }
     }
-    
+
     #shadow {
       position: absolute;
       top: 0;
-      right: 0;
-      width: calc(100% + 100px);
+      left: @border-width * 0.9;
+      width: calc(~"100% -" (@border-width * 1.8));
       height: 100%;
       box-shadow: 50px 0 20px 66px black inset;
       pointer-events: none;
