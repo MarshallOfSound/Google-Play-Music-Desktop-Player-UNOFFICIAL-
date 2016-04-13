@@ -70,9 +70,11 @@ const attemptPromiseSequence = (seq) => {
   });
 };
 
+const bracketedRegex = () => /[\(|\[].+?[\)|\]]/g;
+
 PlaybackAPI.on('change:song', (song) => {
   const promises = [attemptLyricsWikia(`${song.artist}:${song.title}`)];
-  let bracketed = song.title.match(/\(.+?\)/g) || [];
+  let bracketed = song.title.match(bracketedRegex()) || [];
 
   // DEV: Attempt to find lyrics from wikia
   let title = song.title;
@@ -97,7 +99,7 @@ PlaybackAPI.on('change:song', (song) => {
     album = album.replace(dash, '').trim();
     title = lowerTitle;
 
-    bracketed = title.match(/\(.+?\)/g) || [];
+    bracketed = title.match(bracketedRegex()) || [];
     bracketed.push('');
     _.forEachRight(bracketed, (bracket) => {
       title = title.replace(bracket, '').trim();
