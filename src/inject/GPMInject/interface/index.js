@@ -6,3 +6,5 @@ import './mini';
 import './mouseButtonNavigation';
 import './voiceControls';
 import './shortcuts';
+import './toast';
+import './pauseAfter';
