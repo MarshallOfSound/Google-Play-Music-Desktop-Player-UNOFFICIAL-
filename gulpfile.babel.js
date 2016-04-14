@@ -1,19 +1,17 @@
-'use strict';
+import gulp from 'gulp';
 
-const _ = require('lodash');
-const gulp = require('gulp');
-const babel = require('gulp-babel');
-const clean = require('gulp-clean');
-const less = require('gulp-less');
-const cssmin = require('gulp-cssmin');
-const concat = require('gulp-concat');
-const packager = require('electron-packager');
-const spawn = require('child_process').spawn;
-const exec = require('child_process').exec;
-const rebuild = require('./vendor/rebuild');
-const replace = require('gulp-replace');
+import _ from 'lodash';
+import babel from 'gulp-babel';
+import clean from 'gulp-clean';
+import concat from 'gulp-concat';
+import cssmin from 'gulp-cssmin';
+import { createWindowsInstaller as electronInstaller } from 'electron-winstaller';
+import less from 'gulp-less';
+import packager from 'electron-packager';
+import rebuild from './vendor/rebuild';
+import replace from 'gulp-replace';
 
-const grunt = require('gulp-grunt');
+import { spawn, exec } from 'child_process';
 
 const paths = {
   internalScripts: ['src/**/*.js'],
@@ -58,6 +56,27 @@ const defaultPackageConf = {
     ProductName: packageJSON.productName,
     InternalName: packageJSON.productName,
   },
+};
+
+const winstallerConfig = {
+  appDirectory: `dist/${packageJSON.productName}-win32-ia32`,
+  outputDirectory: 'dist/installers/win32',
+  authors: packageJSON.author.name,
+  exe: `${packageJSON.productName}.exe`,
+  description: packageJSON.productName,
+  title: packageJSON.productName,
+  owners: packageJSON.author.name,
+  name: 'GPMDP_3',
+  noMsi: true,
+  certificateFile: '.cert.pfx',
+  certificatePassword: process.env.SIGN_CERT_PASS,
+  // DEV: When in master we should change this to point to github raw url
+  iconUrl: 'https://www.samuelattard.com/img/gpmdp_setup.ico',
+  setupIcon: 'build/assets/img/main.ico',
+  loadingGif: 'build/assets/img/installing.gif',
+  // DEV: After initial 3.0.0 release this should be uncommented
+  // TODO: Read DEV above ^^
+  remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
 };
 
 const cleanGlob = (glob) => {
@@ -106,9 +125,7 @@ gulp.task('html', ['clean-html'], () => {
 
 gulp.task('transpile', ['clean-internal'], () => {
   gulp.src(paths.internalScripts)
-    .pipe(babel({
-      presets: ['es2015'],
-    }))
+    .pipe(babel())
     .on('error', (err) => { console.error(err); }) // eslint-disable-line
     .pipe(replace(/process\.env\.(.+)\;/gi, (envCall, envKey) => {
       return `'${process.env[envKey]}'`;
@@ -161,13 +178,14 @@ gulp.task('package:win', ['clean-dist-win', 'build'], (done) => {
 });
 
 gulp.task('make:win', ['package:win'], (done) => {
-  grunt.tasks()['grunt-build:win32'](() => {
-    exec(`vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd sha1 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/win32/${packageJSON.productName}Setup.exe"`, {}, () => {
-      exec(`vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd sha256 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/win32/${packageJSON.productName}Setup.exe"`, {}, () => {
-        done();
+  electronInstaller(winstallerConfig)
+    .then(() => {
+      exec(`vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd sha1 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/win32/${packageJSON.productName}Setup.exe"`, {}, () => {
+        exec(`vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd sha256 /tr "http://timestamp.geotrust.com/tsa" /v /as "dist/win32/${packageJSON.productName}Setup.exe"`, {}, () => {
+          done();
+        });
       });
     });
-  });
 });
 
 gulp.task('package:darwin', ['clean-dist-darwin', 'build'], (done) => {
