@@ -34,7 +34,7 @@
   "homepage": "http://www.googleplaymusicdesktopplayer.com",
   "license": "MIT",
   "dependencies": {
-    "electron-prebuilt": "0.37.4",
+    "electron-prebuilt": "0.37.5",
     "html-entities": "^1.2.0",
     "lastfm": "^0.9.2",
     "lodash": "^4.0.0",
