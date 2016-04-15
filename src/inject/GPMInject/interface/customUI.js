@@ -177,10 +177,20 @@ function installBackButton() {
       location.href = listenNowURL;
     });
   };
+  const attemptForward = () => {
+    const testJs = 'document.querySelector("webview").canGoForward()';
+    remote.getCurrentWindow().webContents.executeJavaScript(testJs, false, (canGoForward) => {
+      if (canGoForward) return history.forward();
+    });
+  };
+
   backBtn.addEventListener('click', attemptBack);
   window.addEventListener('keyup', (e) => {
-    if (e.which === 8 && document.activeElement.value === undefined) {
+    if ((e.which === 8 && document.activeElement.value === undefined)
+      || (e.which === 37 && e.altKey)) {
       attemptBack();
+    } else if (e.which === 39 && e.altKey) {
+      attemptForward();
     }
   });
 
