@@ -135,7 +135,7 @@ gulp.task('transpile', ['clean-internal'], () => {
 
 gulp.task('fonts', ['clean-fonts'], () => {
   return gulp.src(paths.fonts)
-    .pipe(gulp.dest('./build/assets/font'));
+    .pipe(gulp.dest('./build/assets/fonts'));
 });
 
 gulp.task('less', ['clean-less'], () => {
