@@ -72,8 +72,8 @@ Emitter.on('hotkey:set', (event, details) => {
   const key = details.action;
 
   if (customHotkeys[key] || customHotkeys[key] === null) {
-    customHotkeys[key] = details.accelerator;
     _unregisterHotkey(customHotkeys[key]);
+    customHotkeys[key] = details.accelerator;
     _registerHotkeyIfSet(customHotkeys[key], key);
     Settings.set('hotkeys', customHotkeys);
   }
