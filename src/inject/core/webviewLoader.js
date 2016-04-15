@@ -35,6 +35,6 @@ if (webview) {
         remote.getCurrentWindow().removeListener('focus', focusWebview);
       });
       remote.getCurrentWindow().on('focus', focusWebview);
-    }, 400);
+    }, 700);
   });
 }
