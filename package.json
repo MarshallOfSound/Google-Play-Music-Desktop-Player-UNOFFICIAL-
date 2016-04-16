@@ -84,6 +84,7 @@
     "mocha-sinon": "^1.1.5",
     "pre-commit": "^1.1.2",
     "request": "^2.69.0",
+    "run-sequence": "^1.1.5",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0"
   },
@@ -96,6 +97,8 @@
     "ll-keyboard-hook-win": "^3.0.0"
   },
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   }
 }

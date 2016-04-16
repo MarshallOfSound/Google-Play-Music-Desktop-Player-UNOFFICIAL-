@@ -12,6 +12,7 @@ import less from 'gulp-less';
 import packager from 'electron-packager';
 import rebuild from './vendor/rebuild';
 import replace from 'gulp-replace';
+import { runSequence as run } from 'run-sequence';
 
 import { spawn, exec } from 'child_process';
 
@@ -287,24 +288,7 @@ const debianDefaults = {
   categories: ['AudioVideo', 'Audio'],
 };
 gulp.task('deb:linux', ['package:linux'], (done) => {
-  const debian = require('electron-installer-debian');
-
-  debian(_.extend({}, debianDefaults, {
-    src: `dist/${packageJSON.productName}-linux-ia32`,
-    arch: 'i386',
-  }), (err) => {
-    console.log('32bit deb package built');
-    if (err) return done(err);
-
-    debian(_.extend({}, debianDefaults, {
-      src: `dist/${packageJSON.productName}-linux-x64`,
-      arch: 'amd64',
-    }), (err2) => {
-      console.log('64bit deb package built');
-      if (err2) return done(err2);
-      done();
-    });
-  });
+  run('deb:linux:32', 'deb:linux:64', done);
 });
 
 gulp.task('deb:linux:32', ['package:linux:32'], (done) => {
@@ -343,24 +327,7 @@ const redhatDefaults = {
 };
 
 gulp.task('rpm:linux', ['package:linux'], (done) => {
-  const redhat = require('electron-installer-redhat');
-
-  redhat(_.extend({}, redhatDefaults, {
-    src: `dist/${packageJSON.productName}-linux-ia32`,
-    arch: 'i386',
-  }), (err) => {
-    console.log('32bit rpm package built');
-    if (err) return done(err);
-
-    redhat(_.extend({}, redhatDefaults, {
-      src: `dist/${packageJSON.productName}-linux-x64`,
-      arch: 'amd64',
-    }), (err2) => {
-      console.log('64bit rpm package built');
-      if (err2) return done(err2);
-      done();
-    });
-  });
+  run('rpm:linux:32', 'rpm:linux:64', done);
 });
 
 gulp.task('rpm:linux:32', ['package:linux:32'], (done) => {
@@ -389,31 +356,34 @@ gulp.task('rpm:linux:64', ['package:linux:64'], (done) => {
   });
 });
 
-gulp.task('make:linux', ['deb:linux', 'rpm:linux'], (done) => {
+gulp.task('make:linux', (done) => {
   // Zip Linux x86
-  const child = spawn('zip', ['-r', '-y',
-    'installers.zip',
-    '.',
-  ], {
-    cwd: './dist/installers',
-  });
+  run('deb:linux', 'rpm:linux', (doneZipping) => {
+    const child = spawn('zip', ['-r', '-y',
+      'installers.zip',
+      '.',
+    ], {
+      cwd: './dist/installers',
+    });
 
-  console.log('Zipping the linux Installers');
+    console.log('Zipping the linux Installers');
 
-  // spit stdout to screen
-  child.stdout.on('data', (data) => {
-    process.stdout.write(data.toString());
-  });
+    // spit stdout to screen
+    child.stdout.on('data', (data) => {
+      process.stdout.write(data.toString());
+    });
 
-  // Send stderr to the main console
-  child.stderr.on('data', (data) => {
-    process.stdout.write(data.toString());
-  });
+    // Send stderr to the main console
+    child.stderr.on('data', (data) => {
+      process.stdout.write(data.toString());
+    });
 
-  child.on('close', (code) => {
-    console.log(`Finished zipping with code ${code}`);
-    done();
-  });
+    child.on('close', (code) => {
+      console.log(`Finished zipping with code ${code}`);
+      doneZipping();
+    });
+  },
+  done);
 });
 
 gulp.task('make:deb', ['deb:linux'], (done) => {
