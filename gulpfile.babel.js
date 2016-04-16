@@ -12,7 +12,7 @@ import less from 'gulp-less';
 import packager from 'electron-packager';
 import rebuild from './vendor/rebuild';
 import replace from 'gulp-replace';
-import { runSequence as run } from 'run-sequence';
+import run from 'run-sequence';
 
 import { spawn, exec } from 'child_process';
 
@@ -356,34 +356,35 @@ gulp.task('rpm:linux:64', ['package:linux:64'], (done) => {
   });
 });
 
+gulp.task('zip:linux', (done) => {
+  const child = spawn('zip', ['-r', '-y',
+    'installers.zip',
+    '.',
+  ], {
+    cwd: './dist/installers',
+  });
+
+  console.log('Zipping the linux Installers');
+
+  // spit stdout to screen
+  child.stdout.on('data', (data) => {
+    process.stdout.write(data.toString());
+  });
+
+  // Send stderr to the main console
+  child.stderr.on('data', (data) => {
+    process.stdout.write(data.toString());
+  });
+
+  child.on('close', (code) => {
+    console.log(`Finished zipping with code ${code}`);
+    done();
+  });
+});
+
 gulp.task('make:linux', (done) => {
   // Zip Linux x86
-  run('deb:linux', 'rpm:linux', (doneZipping) => {
-    const child = spawn('zip', ['-r', '-y',
-      'installers.zip',
-      '.',
-    ], {
-      cwd: './dist/installers',
-    });
-
-    console.log('Zipping the linux Installers');
-
-    // spit stdout to screen
-    child.stdout.on('data', (data) => {
-      process.stdout.write(data.toString());
-    });
-
-    // Send stderr to the main console
-    child.stderr.on('data', (data) => {
-      process.stdout.write(data.toString());
-    });
-
-    child.on('close', (code) => {
-      console.log(`Finished zipping with code ${code}`);
-      doneZipping();
-    });
-  },
-  done);
+  run('deb:linux', 'rpm:linux', 'zip:linux', done);
 });
 
 gulp.task('make:deb', ['deb:linux'], (done) => {
