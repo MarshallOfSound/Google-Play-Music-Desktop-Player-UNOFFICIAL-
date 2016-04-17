@@ -1,7 +1,7 @@
 {
   "name": "google-play-music-desktop-player",
   "productName": "Google Play Music Desktop Player",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "An electron wrapper for Google Play Music",
   "main": "build/index.js",
   "scripts": {
@@ -90,6 +90,8 @@
     "ll-keyboard-hook-win": "^3.0.0"
   },
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   }
 }
