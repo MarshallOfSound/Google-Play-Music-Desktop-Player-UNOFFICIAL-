@@ -146,12 +146,12 @@ class PlaybackAPI {
     return this.data.shuffle;
   }
 
-  currentSong() {
-    return this.data.playing ? this.data.song : null;
+  currentSong(force) {
+    return (this.data.playing || force) ? this.data.song : null;
   }
 
-  currentSongLyrics() {
-    return this.data.playing ? this.data.songLyrics : null;
+  currentSongLyrics(force) {
+    return (this.data.playing || force) ? this.data.songLyrics : null;
   }
 
   currentTime() {

@@ -93,10 +93,10 @@ const enableAPI = () => {
       ws.channel('playState', PlaybackAPI.isPlaying());
       ws.channel('shuffle', PlaybackAPI.currentShuffle());
       ws.channel('repeat', PlaybackAPI.currentRepeat());
-      if (PlaybackAPI.currentSong()) {
-        ws.channel('song', PlaybackAPI.currentSong());
+      if (PlaybackAPI.currentSong(true)) {
+        ws.channel('song', PlaybackAPI.currentSong(true));
         ws.channel('time', PlaybackAPI.currentTime());
-        ws.channel('lyrics', PlaybackAPI.currentSongLyrics());
+        ws.channel('lyrics', PlaybackAPI.currentSongLyrics(true));
       }
     });
   } else {
