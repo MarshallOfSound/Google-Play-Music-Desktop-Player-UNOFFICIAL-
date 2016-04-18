@@ -3,4 +3,5 @@ export default {
   enableJSONApi: true,
   nativeFrame: (process.platform !== 'win32'),
   enableWindowTitleInfo: false,
+  showTray: true,
 };
