@@ -20,8 +20,6 @@ const handleStartupEvent = () => {
 
   switch (squirrelCommand) {
     case '--squirrel-install':
-    case '--squirrel-updated':
-
       // Optionally do things such as:
       //
       // - Install desktop and start menu shortcuts
@@ -29,6 +27,9 @@ const handleStartupEvent = () => {
       // - Write to the registry for things like file associations and
       //   explorer context menus
       run(['--createShortcut=' + target + ''], app.quit);
+      return true;
+    case '--squirrel-updated':
+      app.quit();
       return true;
     case '--squirrel-uninstall':
       // Undo anything you did in the --squirrel-install and
