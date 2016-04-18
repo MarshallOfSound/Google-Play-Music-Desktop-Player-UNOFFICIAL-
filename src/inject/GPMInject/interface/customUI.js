@@ -163,10 +163,7 @@ function installBackButton() {
   searchBox.insertBefore(backBtn, null);
 
   const canBack = () => {
-    const isHomePage = (location.href.indexOf(listenNowURL) === 0);
-    const searching = (searchInput.value !== '');
-
-    return !(isHomePage || searching);
+    return !(location.href.indexOf(listenNowURL) === 0);
   };
 
   const attemptBack = () => {
@@ -187,9 +184,9 @@ function installBackButton() {
   backBtn.addEventListener('click', attemptBack);
   window.addEventListener('keyup', (e) => {
     if ((e.which === 8 && document.activeElement.value === undefined)
-      || (e.which === 37 && e.altKey)) {
+      || (e.which === 37 && e.altKey && document.activeElement.value === undefined)) {
       attemptBack();
-    } else if (e.which === 39 && e.altKey) {
+    } else if (e.which === 39 && e.altKey && document.activeElement.value === undefined) {
       attemptForward();
     }
   });
