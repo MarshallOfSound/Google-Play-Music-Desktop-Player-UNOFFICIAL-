@@ -51,7 +51,7 @@ const setUpAutoUpdate = () => {
     Emitter.on('update:wait', () => {
       setTimeout(() => {
         Emitter.sendToAll('update:available');
-      }, 12000);
+      }, 1200000);
     });
 
     autoUpdater.checkForUpdates();
