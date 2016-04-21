@@ -15,7 +15,7 @@ export const showDesktopSettings = () => {
     webPreferences: {
       nodeIntegration: true,
     },
-    icon: path.resolve(`${__dirname}/../../../assets/img/main.png`),
+    icon: path.resolve(`${__dirname}/../../../assets/img/main.${(process.platform === 'win32' ? 'ico' : 'png')}`), // eslint-disable-line
     title: 'Settings',
   });
   desktopSettings.loadURL(`file://${__dirname}/../../../public_html/desktop_settings.html`);
@@ -38,7 +38,7 @@ export const showColorWheel = () => {
     webPreferences: {
       nodeIntegration: true,
     },
-    icon: path.resolve(`${__dirname}/../../../assets/img/main.png`),
+    icon: path.resolve(`${__dirname}/../../../assets/img/main.${(process.platform === 'win32' ? 'ico' : 'png')}`), // eslint-disable-line
     title: 'Color Wheel',
   });
   colorWheel.loadURL(`file://${__dirname}/../../../public_html/color_wheel.html`);

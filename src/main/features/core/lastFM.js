@@ -31,7 +31,7 @@ const authLastFMToken = (token) => {
       show: false,
       autoHideMenuBar: true,
       frame: Settings.get('nativeFrame'),
-      icon: path.resolve(`${__dirname}/../../../assets/img/main.png`),
+      icon: path.resolve(`${__dirname}/../../../assets/img/main.${(process.platform === 'win32' ? 'ico' : 'png')}`), // eslint-disable-line
       title: 'Last.FM',
       webPreferences: {
         nodeIntegration: false,
