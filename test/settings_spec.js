@@ -1,10 +1,6 @@
 // Pre-run
 import chai from 'chai';
 import chaiFs from 'chai-fs';
-import fs from 'fs';
-import mkdirp from 'mkdirp';
-import os from 'os';
-import path from 'path';
 
 const expect = chai.expect;
 
