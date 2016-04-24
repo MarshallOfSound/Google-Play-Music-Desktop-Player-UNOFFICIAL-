@@ -5,8 +5,8 @@ import createJSON from './_jsonCreator';
 
 class Settings {
   constructor(jsonPrefix, wipeOldData) {
-    this.PATH = createJSON('.settings');
-    this.data = initalSettings;
+    this.PATH = createJSON(`${jsonPrefix || ''}.settings`);
+    this.data = Object.assign({}, initalSettings);
     this.lastSync = 0;
 
     if (fs.existsSync(this.PATH) && !wipeOldData) {
@@ -47,12 +47,18 @@ class Settings {
     // During some save events (like resize) we need to queue the disk writes
     // so that we don't blast the disk every millisecond
     if ((now - this.lastSync > 250 || force)) {
-      fs.writeFileSync(this.PATH, JSON.stringify(this.data, null, 4));
+      if (this.data) fs.writeFileSync(this.PATH, JSON.stringify(this.data, null, 4));
+      if (this.saving) clearTimeout(this.saving);
     } else {
       if (this.saving) clearTimeout(this.saving);
       this.saving = setTimeout(this._save.bind(this), 275);
     }
     this.lastSync = now;
+  }
+
+  destroy() {
+    this.data = null;
+    fs.unlinkSync(this.PATH);
   }
 }
 
