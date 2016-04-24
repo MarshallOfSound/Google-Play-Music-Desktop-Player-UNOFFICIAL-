@@ -16,6 +16,7 @@ dependencies:
 test:
   override:
     - npm run test
+    - npm run test-unit
   post:
     - npm run make:linux
 
