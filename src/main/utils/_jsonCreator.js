@@ -23,7 +23,7 @@ export default function (fileName) {
 
   if (fs.existsSync(OLD_PATH)) {
     fs.renameSync(OLD_PATH, PATH);
-    fs.rmdir(OLD_DIR, () => {});
+    fs.rmdirSync(OLD_DIR);
   }
 
   return PATH;

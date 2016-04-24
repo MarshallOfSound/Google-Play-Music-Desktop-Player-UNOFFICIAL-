@@ -18,7 +18,8 @@
     "package:win": "gulp package:win && npm run postinstall",
     "postinstall": "node vendor/rebuild.js --instant",
     "test": "npm run lint",
-    "test-unit": "electron-mocha ./test -r test/support/prerun.js",
+    "pretest-unit": "npm run build",
+    "test-unit": "electron-mocha ./test --compilers js:babel-core/register",
     "start": "electron . --dev",
     "watch": "gulp watch"
   },
@@ -52,6 +53,7 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-register": "^6.4.3",
     "chai": "^3.4.1",
+    "chai-fs": "^0.1.0",
     "electron-mocha": "^0.8.0",
     "electron-packager": "^6.0.0",
     "electron-rebuild": "^1.1.3",
