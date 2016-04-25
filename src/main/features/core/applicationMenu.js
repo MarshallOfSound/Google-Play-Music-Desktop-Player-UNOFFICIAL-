@@ -57,6 +57,20 @@ const template = [
           Emitter.sendToWindowsOfName('main', 'lyrics:show');
         },
       },
+      {
+        label: 'Navigate Back',
+        accelerator: 'CmdOrCtrl+Left',
+        click: () => {
+          Emitter.sendToWindowsOfName('main', 'navigate:back');
+        },
+      },
+      {
+        label: 'Navigate Forward',
+        accelerator: 'CmdOrCtrl+Right',
+        click: () => {
+          Emitter.sendToWindowsOfName('main', 'navigate:forward');
+        },
+      },
     ],
   },
   {
