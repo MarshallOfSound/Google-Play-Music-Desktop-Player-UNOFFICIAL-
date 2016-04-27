@@ -8,27 +8,27 @@ const decoder = new Entities();
 
 const attemptLyricsMusixmatch = (path) => {
   return new Promise((resolve, reject) => {
-	  fetch(`https://www.musixmatch.com/search/${path}`) //the lyrics urls aren't always very straightforward...
-        .then((data) => data.text())
-        .then((html) => {
-          let search_return = JSON.parse(/__mxmProps = ({.+})<\/script>/.exec(html)[1])
-          fetch(search_return['allResults']['bestMatch']['shareURI'])
-            .then((data) => data.text())
-            .then((html) => {
-              let lyrics_return = JSON.parse(/__mxmState = ({.+});<\/script>/.exec(html)[1])
-              if ( lyrics_return['page']['lyrics']['lyrics']['instrumental'] ) {
-                resolve('INSTRUMENTAL');
-              } else {
-                resolve(lyrics_return['page']['lyrics']['lyrics']['body']);
-              }
-            })
-            .catch(() => {
-              reject();
-            });
-        })
-        .catch(() => {
-          reject();
-        });
+    fetch(`https://www.musixmatch.com/search/${path}`) // the lyrics urls aren't always very straightforward...
+      .then((data) => data.text())
+      .then((searchHtml) => {
+        const searchReturn = JSON.parse(/__mxmProps = ({.+})<\/script>/.exec(searchHtml)[1]);
+        fetch(searchReturn.allResults.bestMatch.shareURI)
+          .then((data) => data.text())
+          .then((lyricsHtml) => {
+            const lyricsReturn = JSON.parse(/__mxmState = ({.+});<\/script>/.exec(lyricsHtml)[1]);
+            if (lyricsReturn.page.lyrics.lyrics.instrumental) {
+              resolve('INSTRUMENTAL');
+            } else {
+              resolve(lyricsReturn.page.lyrics.lyrics.body);
+            }
+          })
+          .catch(() => {
+            reject();
+          });
+      })
+      .catch(() => {
+        reject();
+      });
   });
 };
 
@@ -103,7 +103,7 @@ PlaybackAPI.on('change:song', (song) => {
   const promises = [attemptLyricsWikia(`${song.artist}:${song.title}`)];
   let bracketed = song.title.match(bracketedRegex()) || [];
 
-  //DEV: Attempt to find lyrics from musixmatch
+  // DEV: Attempt to find lyrics from musixmatch
   promises.push(
     attemptLyricsMusixmatch(`${song.artist} ${song.title}`)
   );
