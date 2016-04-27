@@ -2,20 +2,33 @@ import _ from 'lodash';
 import { AllHtmlEntities as Entities } from 'html-entities';
 import fetch from 'node-fetch';
 import xss from 'xss';
-import WebSocket from 'ws';
+import JSON from 'JSON';
 
 const decoder = new Entities();
 
 const attemptLyricsMusixmatch = (path) => {
   return new Promise((resolve, reject) => {
-    let ws = new WebSocket('ws://localhost:5670/');
-    ws.on('open', function open() {
-      ws.send(`${path}`);
-    });
-    ws.on('message', function(data, flags) {
-      resolve(`${data}`);
-      ws.close();
-    });
+	  fetch(`https://www.musixmatch.com/search/${path}`) //the lyrics urls aren't always very straightforward...
+        .then((data) => data.text())
+        .then((html) => {
+          let search_return = JSON.parse(/__mxmProps = ({.+})<\/script>/.exec(html)[1])
+          fetch(search_return['allResults']['bestMatch']['shareURI'])
+            .then((data) => data.text())
+            .then((html) => {
+              let lyrics_return = JSON.parse(/__mxmState = ({.+});<\/script>/.exec(html)[1])
+              if ( lyrics_return['page']['lyrics']['lyrics']['instrumental'] ) {
+                resolve('INSTRUMENTAL');
+              } else {
+                resolve(lyrics_return['page']['lyrics']['lyrics']['body']);
+              }
+            })
+            .catch(() => {
+              reject();
+            });
+        })
+        .catch(() => {
+          reject();
+        });
   });
 };
 
