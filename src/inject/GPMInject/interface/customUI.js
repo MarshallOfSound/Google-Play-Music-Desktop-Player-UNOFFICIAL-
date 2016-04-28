@@ -151,8 +151,8 @@ function installNowPlayingMenu() {
 function handleZoom() {
   let zoom = Settings.get('zoom', 1);
   remote.getCurrentWebContents().setZoomFactor(zoom);
-  window.addEventListener('keyup', (e) => {
-    if (!e.ctrlKey) return;
+  window.addEventListener('keydown', (e) => {
+    if (!(e.ctrlKey || e.metaKey) || e.repeat) return;
     const webContents = remote.getCurrentWebContents();
     if (e.which === 189) {
       // Zoom out
