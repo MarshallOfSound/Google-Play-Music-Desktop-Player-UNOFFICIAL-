@@ -29,13 +29,9 @@ const attemptMusiXmatch = (path) => {
             });
             resolve(lyrics);
           })
-          .catch(() => {
-            reject();
-          });
+          .catch(reject);
       })
-      .catch(() => {
-        reject();
-      });
+      .catch(reject);
   });
 };
 
