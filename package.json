@@ -19,7 +19,7 @@
     "postinstall": "node vendor/rebuild.js --instant",
     "test": "npm run lint",
     "pretest-unit": "npm run build",
-    "test-unit": "electron-mocha ./test --compilers js:babel-core/register",
+    "test-unit": "electron-mocha ./test --compilers js:babel-core/register --timeout 4000",
     "start": "electron . --dev",
     "watch": "gulp watch"
   },
@@ -78,6 +78,7 @@
     "materialize-css": "^0.97.5",
     "mocha": "^2.3.4",
     "mocha-sinon": "^1.1.5",
+    "mocha-testdata": "^1.2.0",
     "pre-commit": "^1.1.2",
     "request": "^2.69.0",
     "sinon": "^1.17.2",

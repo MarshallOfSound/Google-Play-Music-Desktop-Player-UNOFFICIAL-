@@ -1,5 +1,6 @@
 // Pre-run
 import chai from 'chai';
+import { givenAsync } from 'mocha-testdata';
 
 chai.should();
 
@@ -10,27 +11,20 @@ global.PlaybackAPI = {
 
 // Actual Test Imports
 const resolveLyrics = require('../build/main/features/core/lyrics').resolveLyrics;
+import { validSongs, invalidSongs } from './testdata/lyrics';
 
 describe('Lyrics', () => {
-  it('should resolve when given a valid song object', (done) => {
-    resolveLyrics({
-      title: 'Out of the Woods',
-      artist: 'Taylor Swift',
-      album: '1989',
-    })
+  givenAsync(...validSongs).it('should resolve when given a valid song object', (done, song) => {
+    resolveLyrics(song)
       .then((lyrics) => {
         lyrics.should.be.a('string');
         done();
       })
-      .catch(() => done(new Error('Failed to fetch lyrics in this test')));
+      .catch(() => done(new Error(`Failed to fetch lyrics for song: ${song.title}`)));
   });
 
-  it('should fail when given an invalid song object', (done) => {
-    resolveLyrics({
-      title: 'Out of the Sticks',
-      artist: 'Swiftlor Taytay',
-      album: '1782',
-    })
+  givenAsync(...invalidSongs).it('should fail when given an invalid song object', (done, song) => {
+    resolveLyrics(song)
       .then((lyrics) => {
         lyrics.should.be.equal(null);
         done();
@@ -38,12 +32,8 @@ describe('Lyrics', () => {
       .catch(() => done());
   });
 
-  it('should not contain any script tags when resolved', (done) => {
-    resolveLyrics({
-      title: 'Never Gonna Give You Up',
-      artist: 'Rick Astley',
-      album: 'Whenever You Need Somebody',
-    })
+  givenAsync(...validSongs).it('should not contain any script tags when resolved', (done, song) => {
+    resolveLyrics(song)
       .then((lyrics) => {
         /<script/g.test(lyrics).should.be.equal(false);
         done();
