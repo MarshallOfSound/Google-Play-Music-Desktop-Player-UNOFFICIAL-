@@ -44,6 +44,7 @@ const setUpAutoUpdate = () => {
       Logger.info('Auto updater - update triggered.');
       if (update) {
         Logger.info('Auto updater - quitting to install.');
+        global.quiting = true;
         autoUpdater.quitAndInstall();
       }
     });
