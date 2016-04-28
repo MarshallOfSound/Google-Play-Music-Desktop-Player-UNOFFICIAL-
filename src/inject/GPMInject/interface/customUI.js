@@ -17,7 +17,7 @@ const hide = (elementSelector, kill = false) => {
 };
 
 /** Set CSS style by a selector */
-const style = (elementSelector, styleObject) => {
+export const style = (elementSelector, styleObject) => {
   const nodeList = document.querySelectorAll(elementSelector);
   _.forEach(nodeList, (node) => {
     const element = node;
@@ -28,7 +28,7 @@ const style = (elementSelector, styleObject) => {
 };
 
 /** Inject a CSS rule to the page (in a <style> tag) */
-const cssRule = (styles) => {
+export const cssRule = (styles) => {
   const tag = document.createElement('style');
   tag.type = 'text/css';
   tag.appendChild(document.createTextNode(styles));
@@ -148,71 +148,6 @@ function installNowPlayingMenu() {
   });
 }
 
-/** Create the back button. */
-function installBackButton() {
-  const listenNowURL = 'https://play.google.com/music/listen#/now';
-  const searchBox = (document.querySelector('#material-one-middle > sj-search-box')
-    || document.querySelector('#material-one-middle'));
-  const searchInput = (document.querySelector('sj-search-box input')
-    || document.querySelector('#material-one-middle > input'));
-
-  const backBtn = document.createElement('paper-icon-button');
-  backBtn.setAttribute('icon', 'arrow-back');
-  backBtn.setAttribute('id', 'backButton');
-  backBtn.setAttribute('class', 'x-scope paper-icon-button-0');
-  searchBox.insertBefore(backBtn, null);
-
-  const canBack = () => {
-    return !(location.href.indexOf(listenNowURL) === 0);
-  };
-
-  const attemptBack = () => {
-    const testJs = 'document.querySelector("webview").canGoBack()';
-    remote.getCurrentWindow().webContents.executeJavaScript(testJs, false, (canGoBack) => {
-      if (!canBack()) return null;
-      if (canGoBack) return history.back();
-      location.href = listenNowURL;
-    });
-  };
-  const attemptForward = () => {
-    const testJs = 'document.querySelector("webview").canGoForward()';
-    remote.getCurrentWindow().webContents.executeJavaScript(testJs, false, (canGoForward) => {
-      if (canGoForward) return history.forward();
-    });
-  };
-
-  backBtn.addEventListener('click', attemptBack);
-  window.addEventListener('keyup', (e) => {
-    if ((e.which === 8 && document.activeElement.value === undefined)
-      || (e.which === 37 && e.altKey && document.activeElement.value === undefined)) {
-      attemptBack();
-    } else if (e.which === 39 && e.altKey && document.activeElement.value === undefined) {
-      attemptForward();
-    }
-  });
-
-  style('#backButton', {
-    position: 'absolute',
-    right: '3px',
-    top: '1px',
-    width: '46px',
-    height: '46px',
-    opacity: '0',
-    transition: 'opacity 0.2s ease-in-out',
-  });
-
-  // Make sure the clearSearch button is above the arrow
-  style('sj-search-box #clearButton', { 'z-index': 10 });
-
-  // Hide Back button if search box has query
-  cssRule('sj-search-box[has-query] #backButton {opacity: 0 !important}');
-
-  const correctButtonVis = () => backBtn.style.opacity = (!canBack()) ? 0 : 1;
-  window.addEventListener('popstate', correctButtonVis);
-  searchInput.addEventListener('input', correctButtonVis);
-  correctButtonVis();
-}
-
 function handleZoom() {
   let zoom = Settings.get('zoom', 1);
   remote.getCurrentWebContents().setZoomFactor(zoom);
@@ -245,7 +180,6 @@ window.wait(() => {
   fixShopButton();
   handleSubscribeButton();
   installDesktopSettingsButton();
-  installBackButton();
   handleZoom();
   installNowPlayingMenu();
 });
