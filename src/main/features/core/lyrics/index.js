@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 // Lyrics Sources
+import attemptMusiXmatch from './source_musiXmatch';
 import attemptLyricsWikia from './source_lyricsWikia';
 import attemptMetroLyrics from './source_metroLyrics';
 
@@ -23,6 +24,11 @@ const bracketedRegex = () => /[\(|\[].+?[\)|\]]/g;
 PlaybackAPI.on('change:song', (song) => {
   const promises = [attemptLyricsWikia(`${song.artist}:${song.title}`)];
   let bracketed = song.title.match(bracketedRegex()) || [];
+
+  // DEV: Attempt to find lyrics from musixmatch
+  promises.push(
+    attemptMusiXmatch(`${song.artist} ${song.title}`)
+  );
 
   // DEV: Attempt to find lyrics from wikia
   let title = song.title;
