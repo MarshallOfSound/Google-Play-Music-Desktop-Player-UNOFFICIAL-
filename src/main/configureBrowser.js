@@ -1,7 +1,5 @@
 import { screen } from 'electron';
 import path from 'path';
-import os from 'os';
-import semver from 'semver';
 
 export default () => {
   const screenSize = screen.getPrimaryDisplay().workAreaSize;
@@ -25,16 +23,5 @@ export default () => {
     },
   };
 
-  // DEV: OS specific options
-  if (process.platform === 'darwin') {
-    if (semver.satisfies(os.release(), '>=14.0.0')) {
-      // baseConfig.frame = true;
-      // baseConfig.titleBarStyle = 'hidden-inset';
-    }
-  } else if (process.platform === 'win32') {
-    // baseConfig['web-preferences'] = {
-    //   preload: path.resolve('./build/js/inject/windowsNotifications.js'),
-    // };
-  }
   return baseConfig;
 };
