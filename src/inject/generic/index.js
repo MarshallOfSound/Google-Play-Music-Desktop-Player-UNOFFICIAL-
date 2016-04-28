@@ -1,7 +1,7 @@
-import './rendererEmitter';
+import '../rendererEmitter';
 import './core';
 
-import SettingsController from '../main/utils/Settings';
+import SettingsController from '../../main/utils/Settings';
 global.Settings = new SettingsController();
 Settings.uncouple();
 
