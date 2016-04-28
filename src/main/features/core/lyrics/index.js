@@ -20,7 +20,7 @@ const attemptPromiseSequence = (seq) => {
 
 const bracketedRegex = () => /[\(|\[].+?[\)|\]]/g;
 
-PlaybackAPI.on('change:song', (song) => {
+export const resolveLyrics = (song) => {
   const promises = [attemptLyricsWikia(`${song.artist}:${song.title}`)];
   let bracketed = song.title.match(bracketedRegex()) || [];
 
@@ -57,7 +57,11 @@ PlaybackAPI.on('change:song', (song) => {
     });
   });
 
-  attemptPromiseSequence(promises)
+  return attemptPromiseSequence(promises);
+};
+
+PlaybackAPI.on('change:song', (song) => {
+  resolveLyrics(song)
     .then((lyrics) => {
       PlaybackAPI._setPlaybackSongLyrics(lyrics);
     })
