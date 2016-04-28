@@ -4,7 +4,7 @@ import xss from 'xss';
 
 const decoder = new Entities();
 
-export const attemptMetroLyrics = (path) => {
+const attemptMetroLyrics = (path) => {
   return new Promise((resolve, reject) => {
     fetch(`http://www.metrolyrics.com/${path}.html`)
       .then((data) => data.text())
@@ -33,3 +33,5 @@ export const attemptMetroLyrics = (path) => {
       });
   });
 };
+
+export default attemptMetroLyrics;
