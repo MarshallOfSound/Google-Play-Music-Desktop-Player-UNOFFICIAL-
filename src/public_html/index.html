@@ -30,6 +30,8 @@
       <webview src="https://play.google.com/music/listen" class="embedded-player" preload="../inject/GPMInject" nodeintegration></webview>
     </main>
   </section>
+
+  <!-- Lyrics Container -->
   <div id="lyrics_back">
     <div id="lyrics_container">
       <div id="lyrics">
@@ -38,6 +40,9 @@
       <div id="shadow"></div>
     </div>
   </div>
+  <!-- End Lyrics Container -->
+
+  <!-- Confirm Minimize to Tray Modal -->
   <div id="confirmTray" class="modal">
     <div class="modal-content">
       <h4>Just a heads up</h4>
@@ -50,6 +55,9 @@
       <a href="javascript:void(0)" id="confirmTrayNeverButton" class="modal-action modal-close waves-effect waves-orange btn-flat">Don't tell me this again</a>
     </div>
   </div>
+  <!-- End Modal -->
+
+  <!-- Confirm uninstall of 2.X Modal -->
   <div id="confirmUninstall" class="modal">
     <div class="modal-content">
       <h4>So heres the thing...</h4>
@@ -62,6 +70,9 @@
       <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
     </div>
   </div>
+  <!-- End Modal -->
+
+  <!-- Confirm restart and update Modal -->
   <div id="confirmUpdate" class="modal">
     <div class="modal-content">
       <h4>Update Available</h4>
@@ -76,6 +87,9 @@
       <a href="javascript:void(0)" id="waitUpdateButton" class="modal-action modal-close waves-effect waves-orange btn-flat red-text">Not right now</a>
     </div>
   </div>
+  <!-- End Modal -->
+
+  <!-- Welcome to a new version Modal -->
   <div id="welcome" class="modal">
     <div class="modal-content">
       <h4>Welcome to Version <span data-app-version></span></h4>
@@ -86,6 +100,9 @@
       <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn" style="margin-right: 6px">Let's go!!</a>
     </div>
   </div>
+  <!-- End Modal -->
+
+  <!-- Go to GPM URL Modal -->
   <div id="goToURL" class="modal">
     <div class="modal-content">
       <h4>Enter to Google Play Music URL to navigate to:</h4>
@@ -97,6 +114,9 @@
       <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn" style="margin-right: 6px">Let's go!!</a>
     </div>
   </div>
+  <!-- End Modal -->
+
+  <!-- About GPMDP Modal -->
   <div id="about" class="modal">
     <div class="modal-content">
       <h4>About <span data-app-name></span></h4>
@@ -106,6 +126,8 @@
       <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn">Close</a>
     </div>
   </div>
+  <!-- End Modal -->
+
   <script>window._module = window.module; window.module = undefined;</script>
   <script src="../assets/util/jquery.min.js"></script>
   <script src="../assets/util/materialize.min.js"></script>
