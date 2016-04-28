@@ -28,9 +28,7 @@ const attemptMetroLyrics = (path) => {
         });
         resolve(lyrics);
       })
-      .catch(() => {
-        reject();
-      });
+      .catch(reject);
   });
 };
 

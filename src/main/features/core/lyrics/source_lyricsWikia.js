@@ -19,9 +19,7 @@ const attemptLyricsWikia = (path) => {
         });
         resolve(lyrics);
       })
-      .catch(() => {
-        reject();
-      });
+      .catch(reject);
   });
 };
 
