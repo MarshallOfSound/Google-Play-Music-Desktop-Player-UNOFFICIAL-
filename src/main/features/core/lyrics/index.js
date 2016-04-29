@@ -25,11 +25,6 @@ export const resolveLyrics = (song) => {
   const promises = [attemptLyricsWikia(`${song.artist}:${song.title}`)];
   let bracketed = song.title.match(bracketedRegex()) || [];
 
-  // DEV: Attempt to find lyrics from musixmatch
-  promises.push(
-    attemptMusiXmatch(`${song.artist} ${song.title}`)
-  );
-
   // DEV: Attempt to find lyrics from wikia
   let title = song.title;
   _.forEachRight(bracketed, (bracket) => {
@@ -62,6 +57,12 @@ export const resolveLyrics = (song) => {
       );
     });
   });
+
+  // DEV: Attempt to find lyrics from musixmatch
+  // DEV: Last resort as the fetch is quite slow
+  promises.push(
+    attemptMusiXmatch(`${song.artist} ${song.title}`)
+  );
 
   return attemptPromiseSequence(promises);
 };
