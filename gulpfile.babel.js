@@ -1,3 +1,5 @@
+/* eslint arrow-body-style: 0 */
+
 import gulp from 'gulp';
 
 import _ from 'lodash';
@@ -79,12 +81,10 @@ const winstallerConfig = {
   remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
 };
 
-const cleanGlob = (glob) => {
-  return () => {
-    return gulp.src(glob, { read: false })
+const cleanGlob = (glob) =>
+  () =>
+    gulp.src(glob, { read: false })
       .pipe(clean({ force: true }));
-  };
-};
 
 gulp.task('clean', cleanGlob(['./build', './dist']));
 gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
@@ -127,7 +127,7 @@ gulp.task('transpile', ['clean-internal'], () => {
   gulp.src(paths.internalScripts)
     .pipe(babel())
     .on('error', (err) => { console.error(err); }) // eslint-disable-line
-    .pipe(replace(/process\.env\.(.+)\;/gi, (envCall, envKey) => {
+    .pipe(replace(/process\.env\.(.+);/gi, (envCall, envKey) => {
       return `'${process.env[envKey]}'`;
     }))
     .pipe(gulp.dest('./build/'));
@@ -193,7 +193,7 @@ gulp.task('package:darwin', ['clean-dist-darwin', 'build'], (done) => {
 });
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {
-  const pathEscapedName = packageJSON.productName.replace(/ /gi, '\ ');
+  const pathEscapedName = packageJSON.productName.replace(/ /gi, ' ');
   const child = spawn('zip', ['-r', '-y',
     `${pathEscapedName}.zip`,
     `${pathEscapedName}.app`],
@@ -295,10 +295,10 @@ gulp.task('rpm:linux', ['package:linux'], (done) => {
 gulp.task('make:linux', ['deb:linux', 'rpm:linux'], (done) => {
   // Zip Linux x86
   const child = spawn('zip', ['-r', '-y',
-    `installers.zip`,
-    `.`],
+    'installers.zip',
+    '.'],
     {
-      cwd: `./dist/installers`,
+      cwd: './dist/installers',
     });
 
   console.log(`Zipping the linux Installers`); // eslint-disable-line
@@ -320,10 +320,10 @@ gulp.task('make:linux', ['deb:linux', 'rpm:linux'], (done) => {
 gulp.task('make:deb', ['deb:linux'], (done) => {
   // Zip Linux x86
   const child = spawn('zip', ['-r', '-y',
-    `installers.zip`,
-    `.`],
+    'installers.zip',
+    '.'],
     {
-      cwd: `./dist/installers/debian`,
+      cwd: './dist/installers/debian',
     });
 
   console.log(`Zipping the linux Installers`); // eslint-disable-line
@@ -345,10 +345,10 @@ gulp.task('make:deb', ['deb:linux'], (done) => {
 gulp.task('make:rpm', ['rpm:linux'], (done) => {
   // Zip Linux x86
   const child = spawn('zip', ['-r', '-y',
-    `installers.zip`,
-    `.`],
+    'installers.zip',
+    '.'],
     {
-      cwd: `./dist/installers/fedora`,
+      cwd: './dist/installers/fedora',
     });
 
   console.log(`Zipping the RPM Installers`); // eslint-disable-line

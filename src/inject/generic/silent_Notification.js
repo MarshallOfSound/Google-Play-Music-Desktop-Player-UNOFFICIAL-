@@ -17,14 +17,14 @@ class SilentNotification {
     this.silent = true;
 
     Object.defineProperty(this, 'onclick', {
-      get: () => { return this._notification.onclick; },
+      get: () => this._notification.onclick,
       set: (fn) => { this._notification.onclick = fn; },
       configurable: true,
       enumerable: true,
     });
 
     Object.defineProperty(this, 'onerror', {
-      get: () => { return this._notification.onerror; },
+      get: () => this._notification.onerror,
       set: (fn) => { this._notification.onerror = fn; },
       configurable: true,
       enumerable: true,

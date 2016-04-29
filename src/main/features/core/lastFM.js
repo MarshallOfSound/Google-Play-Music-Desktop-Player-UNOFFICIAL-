@@ -10,8 +10,8 @@ const lastfm = new LastFmNode({
   useragent: 'GPMDP',
 });
 
-const getLastFMToken = () => {
-  return new Promise((resolve, reject) => {
+const getLastFMToken = () =>
+  new Promise((resolve, reject) => {
     lastfm.request('auth.getToken')
       .on('success', (json) => {
         resolve(json.token);
@@ -20,10 +20,9 @@ const getLastFMToken = () => {
         reject();
       });
   });
-};
 
-const authLastFMToken = (token) => {
-  return new Promise((resolve, reject) => {
+const authLastFMToken = (token) =>
+  new Promise((resolve, reject) => {
     const authWindow = new BrowserWindow({
       width: 1280,
       height: 720,
@@ -48,10 +47,9 @@ const authLastFMToken = (token) => {
       }
     });
   });
-};
 
-export const getLastFMSession = () => {
-  return new Promise((resolve, reject) => {
+export const getLastFMSession = () =>
+  new Promise((resolve, reject) => {
     if (global.lastFMSession && Settings.get('lastFMKey')) {
       resolve(global.lastFMSession);
     } else if (Settings.get('lastFMKey')) {
@@ -62,9 +60,7 @@ export const getLastFMSession = () => {
       resolve(global.lastFMSession);
     } else {
       getLastFMToken()
-        .then((token) => {
-          return authLastFMToken(token);
-        })
+        .then((token) => authLastFMToken(token))
         .then((token) => {
           lastfm.session({
             token,
@@ -80,7 +76,6 @@ export const getLastFMSession = () => {
         .catch(reject);
     }
   });
-};
 
 const resetLastFM = () => {
   Settings.set('lastFMKey', null);

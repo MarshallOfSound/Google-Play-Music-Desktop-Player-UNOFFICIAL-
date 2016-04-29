@@ -4,8 +4,8 @@ import xss from 'xss';
 
 const decoder = new Entities();
 
-const attemptLyricsWikia = (path) => {
-  return new Promise((resolve, reject) => {
+const attemptLyricsWikia = (path) =>
+  new Promise((resolve, reject) => {
     fetch(`http://lyrics.wikia.com/wiki/${path}`)
       .then((data) => data.text())
       .then((html) => {
@@ -21,6 +21,5 @@ const attemptLyricsWikia = (path) => {
       })
       .catch(reject);
   });
-};
 
 export default attemptLyricsWikia;

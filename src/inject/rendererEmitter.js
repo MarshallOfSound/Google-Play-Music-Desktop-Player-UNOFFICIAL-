@@ -3,9 +3,7 @@ import { ipcRenderer, remote } from 'electron';
 class Emitter {
   constructor() {
     let ready = true;
-    this.__defineGetter__('ready', () => {
-      return ready;
-    });
+    this.__defineGetter__('ready', () => ready);
     this.__defineSetter__('ready', (newValue) => {
       ready = newValue;
       if (newValue) {

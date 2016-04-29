@@ -11,8 +11,8 @@ window.addEventListener('load', () => {
 
 Emitter.on('pauseAfter:show', () => {
   if (!pauseAfter) {
-    window.showToast(`Pausing after this song.`, true,
-    `Don\'t pause after this song`, Settings.get('themeColor'),
+    window.showToast('Pausing after this song.', true,
+    'Don\'t pause after this song', Settings.get('themeColor'),
     (event) => {
       Emitter.fireAtGoogle('pauseAfter:hide', null);
       event.preventDefault();

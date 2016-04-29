@@ -17,9 +17,7 @@ class WindowManager {
       delete this.windows[newID];
     });
     window.on('focus', () => {
-      const focusIndex = _.findLastIndex(this.focus, (win) => {
-        return win !== null;
-      });
+      const focusIndex = _.findLastIndex(this.focus, (win) => win !== null);
       if (focusIndex && focusIndex >= 0 && this.focus[focusIndex].id !== window.id) {
         this.focus[focusIndex].focus();
       }

@@ -26,7 +26,7 @@ const handleStartupEvent = () => {
       // - Add your .exe to the PATH
       // - Write to the registry for things like file associations and
       //   explorer context menus
-      run(['--createShortcut=' + target + ''], app.quit);
+      run([`--createShortcut=${target}`], app.quit);
       return true;
     case '--squirrel-updated':
       app.quit();
@@ -35,7 +35,7 @@ const handleStartupEvent = () => {
       // Undo anything you did in the --squirrel-install and
       // --squirrel-updated handlers
 
-      run(['--removeShortcut=' + target + ''], app.quit);
+      run([`--removeShortcut=${target}`], app.quit);
       return true;
     case '--squirrel-obsolete':
       // This is called on the outgoing version of your app before

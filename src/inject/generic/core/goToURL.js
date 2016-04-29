@@ -1,5 +1,5 @@
 const parseURL = (url) => {
-  if (!/https\:\/\/play\.google\.com\/music\/listen/g.test(url)) return;
+  if (!/https:\/\/play\.google\.com\/music\/listen/g.test(url)) return;
   document.querySelector('webview').executeJavaScript(`window.location = "${url}"`);
 };
 

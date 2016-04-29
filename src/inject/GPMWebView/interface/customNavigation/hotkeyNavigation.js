@@ -14,9 +14,7 @@ window.wait(() => {
   backBtn.setAttribute('class', 'x-scope paper-icon-button-0');
   searchBox.insertBefore(backBtn, null);
 
-  const canBack = () => {
-    return !(location.href.indexOf(listenNowURL) === 0);
-  };
+  const canBack = () => !(location.href.indexOf(listenNowURL) === 0);
 
   const attemptBack = () => {
     const testJs = 'document.querySelector("webview").canGoBack()';
@@ -59,7 +57,7 @@ window.wait(() => {
   // Hide Back button if search box has query
   cssRule('sj-search-box[has-query] #backButton {opacity: 0 !important}');
 
-  const correctButtonVis = () => backBtn.style.opacity = (!canBack()) ? 0 : 1;
+  const correctButtonVis = () => { backBtn.style.opacity = (!canBack()) ? 0 : 1; };
   window.addEventListener('popstate', correctButtonVis);
   searchInput.addEventListener('input', correctButtonVis);
   correctButtonVis();

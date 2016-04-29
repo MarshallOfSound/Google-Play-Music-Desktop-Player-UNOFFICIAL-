@@ -62,10 +62,9 @@ class Emitter {
     });
   }
 
-  executeOnWindow(windowID, fn) {
+  executeOnWindow(windowID, fn, ...args) {
     let fnString = fn.toString();
-    fnString = `(${fnString}).apply(window, ` +
-              JSON.stringify(Array.prototype.slice.call(arguments, 2)) + ')';
+    fnString = `(${fnString}).apply(window, ${JSON.stringify(args)})`;
     this.sendToWindow(windowID, 'execute', {
       fn: fnString,
     });

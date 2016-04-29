@@ -11,8 +11,8 @@ export default function (fileName) {
 
   const PATH = `${DIR}/${fileName}.json`;
 
-  const OLD_DIR = (environment.APPDATA ||
-    (process.platform === 'darwin' ? environment.HOME + '/Library/Preferences' : os.homedir())) +
+  const OLD_DIR = (environment.APPDATA || // eslint-disable-line
+    (process.platform === 'darwin' ? environment.HOME + '/Library/Preferences' : os.homedir())) + // eslint-disable-line
     '/GPMDP_STORE';
 
   const OLD_PATH = `${OLD_DIR}/${fileName}.json`;

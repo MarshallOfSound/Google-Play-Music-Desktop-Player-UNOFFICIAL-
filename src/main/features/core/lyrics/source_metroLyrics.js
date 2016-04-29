@@ -4,8 +4,8 @@ import xss from 'xss';
 
 const decoder = new Entities();
 
-const attemptMetroLyrics = (path) => {
-  return new Promise((resolve, reject) => {
+const attemptMetroLyrics = (path) =>
+  new Promise((resolve, reject) => {
     fetch(`http://www.metrolyrics.com/${path}.html`)
       .then((data) => data.text())
       .then((html) => {
@@ -14,7 +14,7 @@ const attemptMetroLyrics = (path) => {
         const paraRegexp = /<p class=('|")verse('|")>([\s\S]+?)<\/p>/g;
         let paragraph = paraRegexp.exec(lyricsChunk);
         while (paragraph) {
-          lyrics += paragraph[3] + '{{PARA}}';
+          lyrics += `${paragraph[3]}{{PARA}}`;
           paragraph = paraRegexp.exec(lyricsChunk);
         }
         lyrics = lyrics.replace(/\r?\n|\r/g, '');
@@ -30,6 +30,5 @@ const attemptMetroLyrics = (path) => {
       })
       .catch(reject);
   });
-};
 
 export default attemptMetroLyrics;

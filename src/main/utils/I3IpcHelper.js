@@ -19,11 +19,11 @@ class I3IpcHelper {
 
   _getWindowTitleRegex() {
     const title = WindowManager.get(global.mainWindowID).getTitle();
-    return '^' + title + '$';
+    return `^${title}$`;
   }
 
   _escapeShellArg(str) {
-    return str.replace(/'/g, "\\'").replace(/"/g, '\\\"');
+    return str.replace(/'/g, "\\'").replace(/"/g, '\\"');
   }
 
   setFloating(mode) {

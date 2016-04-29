@@ -9,8 +9,8 @@ window.wait(() => {
 
       // DEV: We do this here so that we can set the output device before hooking the context
       navigator.mediaDevices.enumerateDevices()
-        .then((devices) => {
-          return new Promise((resolve) => {
+        .then((devices) =>
+          new Promise((resolve) => {
             let set = false;
             _.forEach(devices, (device) => {
               if (device.label === Settings.get('audiooutput')) {
@@ -25,8 +25,8 @@ window.wait(() => {
               }
             });
             if (!set) resolve();
-          });
-        })
+          })
+        )
         .then(() => {
           // TODO: Uncomment this so that the equalizer works
           // DEV: This doesn't work with audio selection so let's disable it

@@ -25,7 +25,7 @@ class Notification {
       },
     });
 
-    this.window.loadURL(`file://${path.resolve(__dirname + '/../../../public_html/notify.html')}`);
+    this.window.loadURL(`file://${path.resolve(`${__dirname}/../../../public_html/notify.html`)}`);
 
     const windowID = WindowManager.add(this.window, 'notify');
     Emitter.executeOnWindow(windowID, (opts) => {

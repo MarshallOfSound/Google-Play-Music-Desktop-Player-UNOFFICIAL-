@@ -98,7 +98,7 @@ export default class SpeechRecognizer {
         Logger.error(`The action "${action.toLowerCase()}" already has a handler registered`); // eslint-disable-line
       } else {
         _.forEach(this.prefixes.concat(['']), (prefix) => {
-          this._handlers[(prefix.toLowerCase() + ' ' + actionString.toLowerCase()).trim()] = fn;
+          this._handlers[(`${prefix.toLowerCase()} ${actionString.toLowerCase()}`).trim()] = fn;
         });
       }
     });

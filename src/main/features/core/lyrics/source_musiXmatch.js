@@ -4,8 +4,8 @@ import xss from 'xss';
 
 const decoder = new Entities();
 
-const attemptMusiXmatch = (path) => {
-  return new Promise((resolve, reject) => {
+const attemptMusiXmatch = (path) =>
+  new Promise((resolve, reject) => {
     fetch(`https://www.musixmatch.com/search/${path}`) // the lyrics urls aren't always very straightforward...
       .then((data) => data.text())
       .then((searchHtml) => {
@@ -32,6 +32,5 @@ const attemptMusiXmatch = (path) => {
       })
       .catch(reject);
   });
-};
 
 export default attemptMusiXmatch;

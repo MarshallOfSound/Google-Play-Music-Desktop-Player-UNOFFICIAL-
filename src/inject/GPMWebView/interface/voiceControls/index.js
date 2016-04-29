@@ -22,7 +22,7 @@ window.wait(() => {
 
   // Play / Pause Handlers
   let playing = false;
-  GPM.on('change:playback', (mode) => playing = (mode === 2));
+  GPM.on('change:playback', (mode) => { playing = (mode === 2); });
   speech.registerHandler(['pause', 'pours', 'paws', 'Paul\'s'], () =>
     new Promise((resolve) => {
       if (playing) GPM.playback.playPause();
@@ -143,7 +143,7 @@ window.wait(() => {
       if (targetVol) {
         GPM.volume.setVolume(Math.min(Math.max(0, targetVol), 100));
       }
-      resolve(num.replace(new RegExp(targetVol.toString() + '%', 'g'), '').trim());
+      resolve(num.replace(new RegExp(`${targetVol.toString()}%`, 'g'), '').trim());
     })
   );
 

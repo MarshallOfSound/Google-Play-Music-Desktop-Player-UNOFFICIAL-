@@ -10,12 +10,8 @@ _.forEach(sliders, (slider, index) => {
       max: 200,
     },
     format: {
-      to: (value) => {
-        return value;
-      },
-      from: (value) => {
-        return value;
-      },
+      to: (value) => value,
+      from: (value) => value,
     },
   });
   slider.noUiSlider.on('update', (e) => {

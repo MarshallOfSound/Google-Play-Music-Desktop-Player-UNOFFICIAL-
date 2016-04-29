@@ -5,8 +5,8 @@ import attemptMusiXmatch from './source_musiXmatch';
 import attemptLyricsWikia from './source_lyricsWikia';
 import attemptMetroLyrics from './source_metroLyrics';
 
-const attemptPromiseSequence = (seq) => {
-  return new Promise((resolve, reject) => {
+const attemptPromiseSequence = (seq) =>
+  new Promise((resolve, reject) => {
     seq[0].then(resolve).catch(() => {
       if (seq.length <= 1) {
         reject();
@@ -17,7 +17,6 @@ const attemptPromiseSequence = (seq) => {
       }
     });
   });
-};
 
 const bracketedRegex = () => /[\(|\[].+?[\)|\]]/g;
 

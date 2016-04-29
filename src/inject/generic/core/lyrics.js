@@ -10,11 +10,11 @@ window.addEventListener('load', () => {
 
   remote.getGlobal('PlaybackAPI').on('change:lyrics', (lyrics) => {
     if (!lyrics) {
-      $('#lyrics').html(`<h1>Loading lyrics...</h1>`);
+      $('#lyrics').html('<h1>Loading lyrics...</h1>');
       $('#lyrics p').stop();
       animate = false;
       noLyricsTimer = setTimeout(() => {
-        $('#lyrics').html(`<h1>Sorry, we could not find any lyrics for this song</h1>`);
+        $('#lyrics').html('<h1>Sorry, we could not find any lyrics for this song</h1>');
       }, 4000);
     } else {
       clearTimeout(noLyricsTimer);
@@ -52,7 +52,7 @@ window.addEventListener('load', () => {
     animate = false;
   });
 
-  window.addEventListener('resize', () => animate = true);
+  window.addEventListener('resize', () => { animate = true; });
   $('#lyrics_back').click(() => $('#lyrics_back').removeClass('vis'));
 });
 

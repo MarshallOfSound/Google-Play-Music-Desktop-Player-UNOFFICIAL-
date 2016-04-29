@@ -70,14 +70,10 @@ $('#hotkeys input')
   if (ACCELERATOR_KEYS[e.which]) {
     input.data('a', null);
   } else if (MODIFIER_KEYS[e.which]) {
-    _.remove(m, (val) => {
-      return val === MODIFIER_KEYS[e.which];
-    });
+    _.remove(m, (val) => val === MODIFIER_KEYS[e.which]);
     input.data('m', m);
   } else if (ACTION_KEYS[e.which]) {
-    _.remove(ac, (val) => {
-      return val === ACTION_KEYS[e.which];
-    });
+    _.remove(ac, (val) => val === ACTION_KEYS[e.which]);
     input.data('ac', ac);
   } else if (e.which === 27) {
     input.data('reset', true);

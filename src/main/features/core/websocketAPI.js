@@ -3,42 +3,22 @@ import { Server as WebSocketServer } from 'ws';
 let server;
 let oldTime = {};
 
-PlaybackAPI.on('change:song', (newSong) => {
-  if (server && server.broadcast) {
-    server.broadcast('song', newSong);
-  }
+const changeEvents = ['song', 'state', 'rating', 'lyrics', 'shuffle', 'repeat'];
+
+changeEvents.forEach((channel) => {
+  PlaybackAPI.on(`change:${channel}`, (newValue) => {
+    if (server && server.broadcast) {
+      server.broadcast(channel, newValue);
+    }
+  });
 });
-PlaybackAPI.on('change:state', (newState) => {
-  if (server && server.broadcast) {
-    server.broadcast('playState', newState);
-  }
-});
+
 PlaybackAPI.on('change:time', (timeObj) => {
   if (server && server.broadcast) {
     if (JSON.stringify(timeObj) !== JSON.stringify(oldTime)) {
       oldTime = timeObj;
       server.broadcast('time', timeObj);
     }
-  }
-});
-PlaybackAPI.on('change:rating', (ratingObj) => {
-  if (server && server.broadcast) {
-    server.broadcast('rating', ratingObj);
-  }
-});
-PlaybackAPI.on('change:lyrics', (newLyrics) => {
-  if (server && server.broadcast) {
-    server.broadcast('lyrics', newLyrics);
-  }
-});
-PlaybackAPI.on('change:shuffle', (newShuffle) => {
-  if (server && server.broadcast) {
-    server.broadcast('shuffle', newShuffle);
-  }
-});
-PlaybackAPI.on('change:repeat', (newRepeat) => {
-  if (server && server.broadcast) {
-    server.broadcast('repeat', newRepeat);
   }
 });
 

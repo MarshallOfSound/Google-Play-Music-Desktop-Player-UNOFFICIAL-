@@ -38,9 +38,7 @@ Emitter.fireAtGoogle('audiooutput:fetch');
 
 $('#audioOutputSelect').on('change', (e) => {
   Emitter.fireAtGoogle('audiooutput:set', $(e.currentTarget).val());
-  const label = _.find(devices, (device) => {
-    return device.deviceId === $(e.currentTarget).val();
-  }).label;
+  const label = _.find(devices, (device) => device.deviceId === $(e.currentTarget).val()).label;
   Emitter.fire('audiooutput:set', label);
 });
 

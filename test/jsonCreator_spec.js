@@ -26,7 +26,7 @@ describe('JSONCreator', () => {
 
   describe('when an old JSON file exists', () => {
     // Old path var
-    const oldPath = (process.env.APPDATA ||
+    const oldPath = (process.env.APPDATA || // eslint-disable-line
       (process.platform === 'darwin' ? process.env.HOME + '/Library/Preferences' : os.homedir())) + // eslint-disable-line
       '/GPMDP_STORE';
 
