@@ -7,8 +7,11 @@ chai.should();
 // Actual Test Imports
 import { validSongs, invalidSongs } from '../testdata/lyrics';
 
-export default (source, format, name) => {
-  describe(`with the ${name} Source`, () => {
+export default (source, format, name, timeout) => {
+  describe(`with the ${name} Source`, function lyricsSourceTestScope() {
+    if (timeout) {
+      this.timeout(timeout);
+    }
     givenAsync(...validSongs).it('should resolve when given a valid song object', (done, song) => {
       source(format(song))
         .then((lyrics) => {

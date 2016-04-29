@@ -9,6 +9,11 @@ let validSongArray = [
     artist: 'Rick Astley',
     album: 'Whenever You Need Somebody',
   },
+  {
+    title: 'One Call Away',
+    artist: 'Charlie Puth',
+    album: 'Nine Track Mind',
+  },
 ];
 
 let invalidSongArray = [
