@@ -11,5 +11,8 @@
   },
   "env": {
     "mocha": true
+  },
+  "rules": {
+    "max-len": [1, 120]
   }
 }
