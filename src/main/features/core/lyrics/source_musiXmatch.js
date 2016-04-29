@@ -1,7 +1,6 @@
 import { AllHtmlEntities as Entities } from 'html-entities';
 import fetch from 'node-fetch';
 import xss from 'xss';
-import JSON from 'JSON';
 
 const decoder = new Entities();
 
