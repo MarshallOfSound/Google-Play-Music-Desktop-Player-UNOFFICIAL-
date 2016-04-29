@@ -19,7 +19,7 @@
     "postinstall": "node vendor/rebuild.js --instant",
     "test": "npm run lint",
     "pretest-unit": "npm run build",
-    "test-unit": "electron-mocha ./test --compilers js:babel-core/register --timeout 4000",
+    "test-unit": "electron-mocha ./test --recursive --compilers js:babel-core/register --timeout 10000",
     "start": "electron . --dev",
     "watch": "gulp watch"
   },
