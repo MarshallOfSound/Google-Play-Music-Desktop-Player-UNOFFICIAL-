@@ -10,10 +10,16 @@ global.PlaybackAPI = {
 };
 
 // Actual Test Imports
-const resolveLyrics = require('../build/main/features/core/lyrics').resolveLyrics;
-import { validSongs, invalidSongs } from './testdata/lyrics';
+const resolveLyrics = require('../../build/main/features/core/lyrics').resolveLyrics;
 
-describe('Lyrics', () => {
+import attemptLyricsWikia from '../../build/main/features/core/lyrics/source_lyricsWikia';
+import attemptMetroLyrics from '../../build/main/features/core/lyrics/source_metroLyrics';
+import attemptMusiXmatch from '../../build/main/features/core/lyrics/source_musiXmatch';
+
+import lyricsSourceSpec from './_lyricsSource_spec';
+import { validSongs, invalidSongs } from '../testdata/lyrics';
+
+describe('Lyrics Resolver', () => {
   givenAsync(...validSongs).it('should resolve when given a valid song object', (done, song) => {
     resolveLyrics(song)
       .then((lyrics) => {
@@ -40,4 +46,10 @@ describe('Lyrics', () => {
       })
       .catch(() => done(new Error('Failed to fetch lyrics in this test')));
   });
+
+  lyricsSourceSpec(attemptLyricsWikia, (song) => `${song.artist}:${song.title}`, 'Lyrics Wikia');
+  lyricsSourceSpec(attemptMetroLyrics, (song) =>
+    `${song.title.toLowerCase().replace(/ /g, '-')}-lyrics-${song.artist.toLowerCase().replace(/ /g, '-')}`
+  , 'Metro Lyrics');
+  lyricsSourceSpec(attemptMusiXmatch, (song) => `${song.artist} ${song.title}`, 'MusiXmatch');
 });
