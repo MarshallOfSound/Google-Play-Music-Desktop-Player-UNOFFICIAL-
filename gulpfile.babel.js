@@ -256,8 +256,8 @@ const generateGulpLinuxDistroTask = (prefix, name, arch) => {
   });
 };
 
-generateGulpLinuxDistroTask('rpm', 'fedora', '32');
-generateGulpLinuxDistroTask('rpm', 'fedora', '64');
+generateGulpLinuxDistroTask('rpm', 'redhat', '32');
+generateGulpLinuxDistroTask('rpm', 'redhat', '64');
 generateGulpLinuxDistroTask('deb', 'debian', '32');
 generateGulpLinuxDistroTask('deb', 'debian', '64');
 
@@ -294,7 +294,7 @@ const zipTask = (makeName, deps, cwd, what) => {
 
 zipTask('linux', ['deb:linux', 'rpm:linux'], './dist/installers', 'all the Linux Installers');
 zipTask('linux:deb', ['deb:linux'], './dist/installers/debian', 'the Debian Packages');
-zipTask('linux:rpm', ['rpm:linux'], './dist/installers/fedora', 'the Fedora Packages');
+zipTask('linux:rpm', ['rpm:linux'], './dist/installers/redhat', 'the Redhat (Fedora) Packages');
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['watch', 'transpile', 'images']);
