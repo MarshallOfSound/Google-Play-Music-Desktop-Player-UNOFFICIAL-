@@ -12,6 +12,7 @@ import less from 'gulp-less';
 import packager from 'electron-packager';
 import rebuild from './vendor/rebuild';
 import replace from 'gulp-replace';
+import runSequence from 'run-sequence';
 
 import { spawn, exec } from 'child_process';
 
@@ -227,9 +228,7 @@ gulp.task('package:linux:64', ['clean-dist-linux-64', 'build'], (done) => {
 });
 
 gulp.task('package:linux', (done) => {
-  gulp.run('package:linux:32', () =>
-    gulp.run('package:linux:64', done)
-  );
+  runSequence('package:linux:32', 'package:linux:64', done);
 });
 
 const generateGulpLinuxDistroTask = (prefix, name, arch) => {
@@ -263,15 +262,11 @@ generateGulpLinuxDistroTask('deb', 'debian', '32');
 generateGulpLinuxDistroTask('deb', 'debian', '64');
 
 gulp.task('rpm:linux', (done) => {
-  gulp.run('rpm:linux:32', () =>
-    gulp.run('rpm:linux:64', done)
-  );
+  runSequence('rpm:linux:32', 'rpm:linux:64', done);
 });
 
 gulp.task('deb:linux', (done) => {
-  gulp.run('deb:linux:32', () =>
-    gulp.run('deb:linux:64', done)
-  );
+  runSequence('deb:linux:32', 'deb:linux:64', done);
 });
 
 const zipTask = (makeName, deps, cwd, what) => {
@@ -295,7 +290,11 @@ const zipTask = (makeName, deps, cwd, what) => {
   });
 };
 
-zipTask('linux', ['deb:linux', 'rpm:linux'], './dist/installers', 'all the Linux Installers');
+gulp.task('make:linux', (done) => {
+  runSequence('deb:linux', 'rpm:linux', 'make:linux:both', done);
+});
+
+zipTask('linux:both', [], './dist/installers', 'all the Linux Installers');
 zipTask('linux:deb', ['deb:linux'], './dist/installers/debian', 'the Debian Packages');
 zipTask('linux:rpm', ['rpm:linux'], './dist/installers/redhat', 'the Redhat (Fedora) Packages');
 
