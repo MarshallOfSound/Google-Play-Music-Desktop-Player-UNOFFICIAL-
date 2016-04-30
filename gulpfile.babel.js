@@ -226,13 +226,14 @@ gulp.task('package:linux:64', ['clean-dist-linux-64', 'build'], (done) => {
     });
 });
 
-gulp.task('package:linux', () => {
-  gulp.run('package:linux:32');
-  gulp.run('package:linux:64');
+gulp.task('package:linux', (done) => {
+  gulp.run('package:linux:32', () =>
+    gulp.run('package:linux:64', done)
+  );
 });
 
 const generateGulpLinuxDistroTask = (prefix, name, arch) => {
-  gulp.task(`${prefix}:linux:${arch}`, ['package:linux'], (done) => {
+  gulp.task(`${prefix}:linux:${arch}`, [`package:linux:${arch}`], (done) => {
     const tool = require(`electron-installer-${name}`);
 
     const defaults = {
@@ -261,14 +262,16 @@ generateGulpLinuxDistroTask('rpm', 'redhat', '64');
 generateGulpLinuxDistroTask('deb', 'debian', '32');
 generateGulpLinuxDistroTask('deb', 'debian', '64');
 
-gulp.task('rpm:linux', () => {
-  gulp.run('rpm:linux:32');
-  gulp.run('rpm:linux:64');
+gulp.task('rpm:linux', (done) => {
+  gulp.run('rpm:linux:32', () =>
+    gulp.run('rpm:linux:64', done)
+  );
 });
 
-gulp.task('deb:linux', () => {
-  gulp.run('deb:linux:32');
-  gulp.run('deb:linux:64');
+gulp.task('deb:linux', (done) => {
+  gulp.run('deb:linux:32', () =>
+    gulp.run('deb:linux:64', done)
+  );
 });
 
 const zipTask = (makeName, deps, cwd, what) => {
