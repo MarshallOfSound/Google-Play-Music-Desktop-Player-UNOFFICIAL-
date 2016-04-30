@@ -1,7 +1,9 @@
 import { app, BrowserWindow, screen } from 'electron';
 import { argv } from 'yargs';
-import winston from 'winston';
 import path from 'path';
+import ua from 'universal-analytics';
+import uuid from 'uuid';
+import winston from 'winston';
 
 import configureApp from './main/configureApp';
 import generateBrowserConfig from './main/configureBrowser';
@@ -66,6 +68,15 @@ import handleStartupEvent from './squirrel';
   global.WindowManager = new WindowManagerClass();
   global.Settings = new SettingsClass();
   global.PlaybackAPI = new PlaybackAPIClass();
+
+  // UA for GA
+  // This is for user reporting
+  Settings.set('uuid', Settings.get('uuid', uuid.v4()));
+  const user = ua('UA-44220619-5', Settings.get('uuid'));
+  setInterval((function sendPageView() {
+    user.pageview('/').send();
+    return sendPageView;
+  }()), 60000 * 25);
 
   // Replace the logger's levels with those from settings.
   Logger.transports.console.level = Settings.get('consoleLogLevel', defaultConsoleLogLevel);
