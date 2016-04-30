@@ -39,7 +39,6 @@ if (version.substr(0, 1) !== '0') {
 }
 
 const defaultPackageConf = {
-  asar: true,
   dir: '.',
   name: packageJSON.productName,
   'build-version': packageJSON.version,
