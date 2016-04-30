@@ -29,7 +29,7 @@ const handleStartupEvent = () => {
       run([`--createShortcut=${target}`], app.quit);
       return true;
     case '--squirrel-updated':
-      app.quit();
+      run([`--createShortcut=${target}`], app.quit);
       return true;
     case '--squirrel-uninstall':
       // Undo anything you did in the --squirrel-install and
