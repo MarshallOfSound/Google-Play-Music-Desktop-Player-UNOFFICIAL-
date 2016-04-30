@@ -80,7 +80,8 @@
     "mocha-testdata": "^1.2.0",
     "pre-commit": "^1.1.2",
     "pre-flight": "^1.0.0",
-    "request": "^2.69.0"
+    "request": "^2.69.0",
+    "run-sequence": "^1.1.5"
   },
   "optionalDependencies": {
     "mouse-forward-back": "^1.0.1",
