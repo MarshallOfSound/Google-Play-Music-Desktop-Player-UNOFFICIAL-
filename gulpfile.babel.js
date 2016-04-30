@@ -38,6 +38,7 @@ if (version.substr(0, 1) !== '0') {
 }
 
 const defaultPackageConf = {
+  asar: true,
   dir: '.',
   name: packageJSON.productName,
   'build-version': packageJSON.version,
@@ -89,10 +90,8 @@ const cleanGlob = (glob) =>
 gulp.task('clean', cleanGlob(['./build', './dist']));
 gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
 gulp.task('clean-dist-darwin', cleanGlob(`./dist/${packageJSON.productName}-darwin-ia32`));
-gulp.task('clean-dist-linux', cleanGlob([
-  `./dist/${packageJSON.productName}-linux-ia32`,
-  `./dist/${packageJSON.productName}-linux-x64`,
-]));
+gulp.task('clean-dist-linux-32', cleanGlob(`./dist/${packageJSON.productName}-linux-ia32`));
+gulp.task('clean-dist-linux-64', cleanGlob(`./dist/${packageJSON.productName}-linux-x64`));
 gulp.task('clean-external', cleanGlob('./build/external.js'));
 gulp.task('clean-material', cleanGlob('./build/assets/material'));
 gulp.task('clean-utility', cleanGlob('./build/assets/util'));
@@ -194,20 +193,15 @@ gulp.task('package:darwin', ['clean-dist-darwin', 'build'], (done) => {
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {
   const pathEscapedName = packageJSON.productName.replace(/ /gi, ' ');
-  const child = spawn('zip', ['-r', '-y',
-    `${pathEscapedName}.zip`,
-    `${pathEscapedName}.app`],
+  const child = spawn('zip', ['-r', '-y', `${pathEscapedName}.zip`, `${pathEscapedName}.app`],
     {
       cwd: `./dist/${packageJSON.productName}-darwin-x64`,
     });
 
   console.log(`Zipping "${packageJSON.productName}.app"`); // eslint-disable-line
 
-  // spit stdout to screen
   child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
 
-
-  // Send stderr to the main console
   child.stderr.on('data', (data) => {
     process.stdout.write(data.toString());
   });
@@ -218,154 +212,89 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
   });
 });
 
-gulp.task('package:linux', ['clean-dist-linux', 'build'], (done) => {
+gulp.task('package:linux:32', ['clean-dist-linux-32', 'build'], (done) => {
+  rebuild('./rebuild_ia32.sh')
+    .then(() => {
+      packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }), done);
+    });
+});
+
+gulp.task('package:linux:64', ['clean-dist-linux-64', 'build'], (done) => {
   rebuild('./rebuild.sh')
-  .then(() => {
-    packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }), () => {
-      rebuild('./rebuild_ia32.sh')
-      .then(() => {
-        packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }), done);
-      });
+    .then(() => {
+      packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }), done);
     });
-  });
 });
 
-gulp.task('deb:linux', ['package:linux'], (done) => {
-  const debian = require('electron-installer-debian');
+gulp.task('package:linux', () => {
+  gulp.run('package:linux:32');
+  gulp.run('package:linux:64');
+});
 
-  const defaults = {
-    bin: packageJSON.productName,
-    dest: 'dist/installers/debian',
-    depends: ['libappindicator1'],
-    maintainer: 'Samuel Attard <samuel.r.attard@gmail.com>',
-    homepage: 'http://www.googleplaymusicdesktopplayer.com',
-    icon: 'build/assets/img/main.png',
-    categories: ['AudioVideo', 'Audio'],
-  };
+const generateGulpLinuxDistroTask = (prefix, name, arch) => {
+  gulp.task(`${prefix}:linux:${arch}`, ['package:linux'], (done) => {
+    const tool = require(`electron-installer-${name}`);
 
-  debian(_.extend({}, defaults, {
-    src: `dist/${packageJSON.productName}-linux-ia32`,
-    arch: 'i386',
-  }), (err) => {
-    console.log('32bit deb package built');
-    if (err) return done(err);
+    const defaults = {
+      bin: packageJSON.productName,
+      dest: `dist/installers/${name}`,
+      depends: ['libappindicator1'],
+      maintainer: `${packageJSON.author.name} <${packageJSON.author.email}>`,
+      homepage: packageJSON.homepage,
+      icon: 'build/assets/img/main.png',
+      categories: ['AudioVideo', 'Audio'],
+    };
 
-    debian(_.extend({}, defaults, {
-      src: `dist/${packageJSON.productName}-linux-x64`,
-      arch: 'amd64',
-    }), (err2) => {
-      console.log('64bit deb package built');
-      if (err2) return done(err2);
+    tool(_.extend({}, defaults, {
+      src: `dist/${packageJSON.productName}-linux-${arch === '32' ? 'ia32' : 'x64'}`,
+      arch: arch === '32' ? 'i386' : 'amd64',
+    }), (err) => {
+      console.log(`${arch}bit ${prefix} package built`); // eslint-disable-line
+      if (err) return done(err);
       done();
     });
   });
+};
+
+generateGulpLinuxDistroTask('rpm', 'fedora', '32');
+generateGulpLinuxDistroTask('rpm', 'fedora', '64');
+generateGulpLinuxDistroTask('deb', 'debian', '32');
+generateGulpLinuxDistroTask('deb', 'debian', '64');
+
+gulp.task('rpm:linux', () => {
+  gulp.run('rpm:linux:32');
+  gulp.run('rpm:linux:64');
 });
 
-gulp.task('rpm:linux', ['package:linux'], (done) => {
-  const redhat = require('electron-installer-redhat');
+gulp.task('deb:linux', () => {
+  gulp.run('deb:linux:32');
+  gulp.run('deb:linux:64');
+});
 
-  const defaults = {
-    bin: packageJSON.productName,
-    dest: 'dist/installers/fedora',
-    depends: ['libappindicator1'],
-    maintainer: 'Samuel Attard <samuel.r.attard@gmail.com>',
-    homepage: 'http://www.googleplaymusicdesktopplayer.com',
-    icon: 'build/assets/img/main.png',
-    categories: ['AudioVideo', 'Audio'],
-  };
+const zipTask = (makeName, deps, cwd, what) => {
+  gulp.task(`make:${makeName}`, deps, (done) => {
+    const child = spawn('zip', ['-r', '-y', 'installers.zip', '.'], { cwd });
 
-  redhat(_.extend({}, defaults, {
-    src: `dist/${packageJSON.productName}-linux-ia32`,
-    arch: 'i386',
-  }), (err) => {
-    console.log('32bit rpm package built');
-    if (err) return done(err);
+    console.log(`Zipping ${what}`); // eslint-disable-line
 
-    redhat(_.extend({}, defaults, {
-      src: `dist/${packageJSON.productName}-linux-x64`,
-      arch: 'amd64',
-    }), (err2) => {
-      console.log('64bit rpm package built');
-      if (err2) return done(err2);
+    // spit stdout to screen
+    child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
+
+    // Send stderr to the main console
+    child.stderr.on('data', (data) => {
+      process.stdout.write(data.toString());
+    });
+
+    child.on('close', (code) => {
+      console.log(`Finished zipping ${what} with code: ${code}`); // eslint-disable-line
       done();
     });
   });
-});
+};
 
-gulp.task('make:linux', ['deb:linux', 'rpm:linux'], (done) => {
-  // Zip Linux x86
-  const child = spawn('zip', ['-r', '-y',
-    'installers.zip',
-    '.'],
-    {
-      cwd: './dist/installers',
-    });
-
-  console.log(`Zipping the linux Installers`); // eslint-disable-line
-
-  // spit stdout to screen
-  child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
-
-  // Send stderr to the main console
-  child.stderr.on('data', (data) => {
-    process.stdout.write(data.toString());
-  });
-
-  child.on('close', (code) => {
-    console.log('Finished zipping with code ' + code); // eslint-disable-line
-    done();
-  });
-});
-
-gulp.task('make:deb', ['deb:linux'], (done) => {
-  // Zip Linux x86
-  const child = spawn('zip', ['-r', '-y',
-    'installers.zip',
-    '.'],
-    {
-      cwd: './dist/installers/debian',
-    });
-
-  console.log(`Zipping the linux Installers`); // eslint-disable-line
-
-  // spit stdout to screen
-  child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
-
-  // Send stderr to the main console
-  child.stderr.on('data', (data) => {
-    process.stdout.write(data.toString());
-  });
-
-  child.on('close', (code) => {
-    console.log('Finished zipping with code ' + code); // eslint-disable-line
-    done();
-  });
-});
-
-gulp.task('make:rpm', ['rpm:linux'], (done) => {
-  // Zip Linux x86
-  const child = spawn('zip', ['-r', '-y',
-    'installers.zip',
-    '.'],
-    {
-      cwd: './dist/installers/fedora',
-    });
-
-  console.log(`Zipping the RPM Installers`); // eslint-disable-line
-
-  // spit stdout to screen
-  child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
-
-  // Send stderr to the main console
-  child.stderr.on('data', (data) => {
-    process.stdout.write(data.toString());
-  });
-
-  child.on('close', (code) => {
-    console.log('Finished zipping with code ' + code); // eslint-disable-line
-    done();
-  });
-});
+zipTask('linux', ['deb:linux', 'rpm:linux'], './dist/installers', 'all the Linux Installers');
+zipTask('linux:deb', ['deb:linux'], './dist/installers/debian', 'the Debian Packages');
+zipTask('linux:rpm', ['rpm:linux'], './dist/installers/fedora', 'the Fedora Packages');
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['watch', 'transpile', 'images']);
