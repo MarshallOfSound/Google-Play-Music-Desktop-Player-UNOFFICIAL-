@@ -76,7 +76,7 @@ import handleStartupEvent from './squirrel';
   setInterval((function sendPageView() {
     user.pageview('/').send();
     return sendPageView;
-  }()), 60000 * 25);
+  }()), 60000 * 5);
 
   // Replace the logger's levels with those from settings.
   Logger.transports.console.level = Settings.get('consoleLogLevel', defaultConsoleLogLevel);
