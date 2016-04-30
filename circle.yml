@@ -18,7 +18,8 @@ test:
     - npm run test
     - npm run test-unit
   post:
-    - npm run make:linux
+    - case $CIRCLE_NODE_INDEX in 0) npm run make:deb:32 ;; 1) npm run make:deb:64 ;; 2) npm run make:rpm:32 ;; 3) npm run make:rpm:64 ;; esac:
+        parallel: true
 
 general:
   artifacts:
