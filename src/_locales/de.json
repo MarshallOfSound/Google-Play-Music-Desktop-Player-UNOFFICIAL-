@@ -36,7 +36,7 @@
   "lyrics-no-song-message": "Aktuell spielt kein Titel",
 
   "message-pausing-after-song": "Pausieren nach diesem Titel.",
-  "message-pausing-after-song-button": "Nicht nach nach diesem Titel pausieren",
+  "message-pausing-after-song-button": "Nicht nach diesem Titel pausieren",
   "message-uncaught-error": "Es gab einen Fehler innerhalb von GPMDP.",
   "message-uncaught-error-button": "Klicke um den Fehler bei GitHub zu melden",
 
