@@ -189,14 +189,13 @@ function installBackButton() {
    separate keypress, which also eats the keyup event of the key it
    is modifying.
    */
-  let isHoldingCmdKey = false;
+  const holdingKeyMap = {};
 
   window.addEventListener('keydown', (e) => {
-    if (e.which === 91 || e.which === 93) {
-      isHoldingCmdKey = true;
-    }
+    holdingKeyMap[e.which] = true;
 
-    if (isHoldingCmdKey && document.activeElement.value === undefined) {
+    if ((holdingKeyMap[91] === true || holdingKeyMap[93] === true)
+      && document.activeElement.value === undefined) {
       if (e.which === 37) {
         attemptBack();
       } else if (e.which === 39) {
@@ -213,9 +212,7 @@ function installBackButton() {
       attemptForward();
     }
 
-    if (e.which === 91 || e.which === 93) {
-      isHoldingCmdKey = false;
-    }
+    holdingKeyMap[e.which] = false;
   });
 
   style('#backButton', {
