@@ -23,9 +23,9 @@ const localeLinks = {
 };
 
 export default class TranslationProvider {
-  constructor() {
+  constructor(customLocale) {
     let locale = eApp.getLocale();
-    locale = localeLinks[locale] || locale || 'en-US';
+    locale = customLocale || localeLinks[locale] || locale || 'en-US';
     let localePath = path.resolve(`${__dirname}/${locale}.json`);
     if (!fs.existsSync(localePath)) {
       localePath = path.resolve(`${__dirname}/en-US.json`);
@@ -35,6 +35,8 @@ export default class TranslationProvider {
   }
 
   query(key) {
-    return this.t[key] || 'No Translation Key Found';
+    return this.t[key] || TranslationProvider.UNKNOWN;
   }
 }
+
+TranslationProvider.UNKNOWN = 'No Translation Key Found';
