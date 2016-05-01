@@ -22,40 +22,40 @@
     </header>
     <main class="dialog">
       <div class="window-title">
-        Settings
+        <span is="translation-key">title-settings</span>
       </div>
       <div class="window-main">
         <div class="row">
           <div class="col s12">
             <ul class="tabs">
-              <li class="tab col s3"><a href="#general" class="theme-text orange-text">General</a></li>
-              <li class="tab col s3"><a href="#mini" class="theme-text orange-text">Mini Player</a></li>
-              <li class="tab col s3"><a href="#lastfm" class="theme-text orange-text">Last.FM</a></li>
-              <li class="tab col s3"><a href="#hotkeys" class="theme-text orange-text">Hotkeys</a></li>
-              <li class="tab col s3"><a href="#audio" class="theme-text orange-text">Audio</a></li>
+              <li class="tab col s3"><a href="#general" class="theme-text orange-text"><span is="translation-key">title-settings-general</span></a></li>
+              <li class="tab col s3"><a href="#mini" class="theme-text orange-text"><span is="translation-key">title-settings-mini</span></a></li>
+              <li class="tab col s3"><a href="#lastfm" class="theme-text orange-text"><span is="translation-key">title-settings-lastfm</span></a></li>
+              <li class="tab col s3"><a href="#hotkeys" class="theme-text orange-text"><span is="translation-key">title-settings-hotkeys</span></a></li>
+              <li class="tab col s3"><a href="#audio" class="theme-text orange-text"><span is="translation-key">title-settings-audio</span></a></li>
             </ul>
           </div>
           <div id="general" class="col s12 settings-box">
             <div>
               <p>
                 <input type="checkbox" class="filled-in" id="min-to-tray" />
-                <label for="min-to-tray">Minimize to Tray</label>
+                <label for="min-to-tray"><span is="translation-key">settings-option-min-to-tray</span></label>
               </p>
               <p>
                 <input type="checkbox" class="filled-in" id="theme-state" />
-                <label for="theme-state">Custom Theme</label>
+                <label for="theme-state"><span is="translation-key">settings-option-custom-theme</span></label>
               </p>
               <div class="switch" id="themeStyleSwitch">
                 <label>
-                  Light
+                  <span is="translation-key">settings-option-custom-theme-light</span>
                   <input type="checkbox">
                   <span class="lever"></span>
-                  Dark
+                  <span is="translation-key">settings-option-custom-theme-dark</span>
                 </label>
               </div>
             </div>
             <div class="color-square-wrapper">
-              <h5 class="theme-text">Choose your theme highlight color</h5>
+              <h5 class="theme-text"><span is="translation-key">settings-option-custom-theme-choose-color</span></h5>
               <div class="color-square red"></div>
               <div class="color-square cyan"></div>
               <div class="color-square purple"></div>
@@ -66,20 +66,24 @@
               <div class="color-square green"></div>
               <div class="color-square orange"></div>
               <div class="color-square deep-purple"></div>
-              <h5 class="theme-text"><small>Or choose a <a href="#" id="color_wheel_trigger" style="text-decoration: underline">Custom Color</a></small></h5>
+              <h5 class="theme-text">
+                <small>
+                  <span is="translation-key">settings-option-custom-theme-choose-custom</span> <a href="#" id="color_wheel_trigger" style="text-decoration: underline"><span is="translation-key">settings-option-custom-theme-custom-color</span></a>
+                </small>
+              </h5>
             </div>
             <div>
               <p>
                 <input type="checkbox" class="filled-in" id="voice-controls" />
-                <label for="voice-controls">Enable Voice Controls <i>Hands free voice controls for GPMDP, this is experimental</i></label>
+                <label for="voice-controls"><span is="translation-key">settings-option-enable-voice</span> <i><span is="translation-key">settings-option-enable-voice-details</span></i></label>
               </p>
               <p>
                 <input type="checkbox" class="filled-in" id="playback-api" />
-                <label for="playback-api">Enable Playback API <i>This allows other applications to interface with GPMDP</i></label>
+                <label for="playback-api"><span is="translation-key">settings-option-enable-api</span> <i><span is="translation-key">settings-option-enable-api-details</span></i></label>
               </p>
               <p>
                 <input type="checkbox" class="filled-in" id="native-frame" />
-                <label for="native-frame">Use system window borders <i>Requires restart.</i></label>
+                <label for="native-frame"><span is="translation-key">settings-option-enable-system-borders</span> <i><span is="translation-key">settings-option-enable-system-borders-details</span></i></label>
               </p>
             </div>
           </div>
@@ -87,66 +91,66 @@
             <div>
               <p>
                 <input type="checkbox" class="filled-in" id="mini-always-on-top" />
-                <label for="mini-always-on-top">Always on top</label>
+                <label for="mini-always-on-top"><span is="translation-key">settings-option-mini-ontop</span></label>
               </p>
               <p>
                 <input type="checkbox" class="filled-in" id="mini-always-show-song-info" />
-                <label for="mini-always-show-song-info">Always show song information</label>
+                <label for="mini-always-show-song-info"><span is="translation-key">settings-option-mini-always-show</span></label>
               </p>
             </div>
           </div>
           <div id="lastfm" class="col s12 settings-box">
-            <h5>Last.FM Status: <span class="last-fm-status-text">Not Authorized</span></h5>
-            <a class="waves-effect waves-light btn lastfm-button"><i class="material-icons left">exit_to_app</i>Log in to Last.FM</a>
+            <h5>Last.FM Status: <span class="last-fm-status-text"><span is="translation-key">lastfm-login-not-authorized</span></span></h5>
+            <a class="waves-effect waves-light btn lastfm-button"><i class="material-icons left">exit_to_app</i><span is="translation-key">lastfm-login-button-text</span></a>
           </div>
           <div id="hotkeys" class="col s12 settings-box">
-            <span>Default media keys will continue to work regardless of these settings.  These settings are in addition to the defaults.</span>
-            <span>Use the <i>"Escape"</i> key to reset the hotkey.</span>
+            <span is="translation-key">settings-option-hotkey-explanation</span>
+            <span is="translation-key">settings-option-hotkey-explanation-2</span>
             <div class="row">
               <div class="input-field col s6">
                 <input placeholder="Not Set" id="playPause" type="text">
-                <label for="first_name">Play / Pause</label>
+                <label for="first_name"><span is="translation-key">playback-label-play-pause</span></label>
               </div>
               <div class="input-field col s6">
                 <input placeholder="Not Set" id="stop" type="text">
-                <label for="last_name">Stop</label>
+                <label for="last_name"><span is="translation-key">playback-label-stop</span></label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s6">
                 <input placeholder="Not Set" id="previousTrack" type="text">
-                <label for="first_name">Previous Track</label>
+                <label for="first_name"><span is="translation-key">playback-label-previous-track</span></label>
               </div>
               <div class="input-field col s6">
                 <input placeholder="Not Set" id="nextTrack" type="text">
-                <label for="last_name">Next Track</label>
+                <label for="last_name"><span is="translation-key">playback-label-next-track</span></label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s6">
                 <input placeholder="Not Set" id="thumbsUp" type="text">
-                <label for="first_name">Thumbs Up Current Song</label>
+                <label for="first_name"><span is="translation-key">playback-label-thumbs-up</span></label>
               </div>
               <div class="input-field col s6">
                 <input placeholder="Not Set" id="thumbsDown" type="text">
-                <label for="last_name">Thumbs Down Current Song</label>
+                <label for="last_name"><span is="translation-key">playback-label-thumbs-down</span></label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s6">
                 <input placeholder="Not Set" id="decreaseVolume" type="text">
-                <label for="first_name">Decrease Volume</label>
+                <label for="first_name"><span is="translation-key">playback-label-volume-down</span></label>
               </div>
               <div class="input-field col s6">
                 <input placeholder="Not Set" id="increaseVolume" type="text">
-                <label for="last_name">Increase Volume</label>
+                <label for="last_name"><span is="translation-key">playback-label-volume-up</span></label>
               </div>
             </div>
           </div>
           <div id="audio" class="col s12 settings-box">
             <div class="input-field col s12">
               <select id="audioOutputSelect"></select>
-              <label>Audio Output Device</label>
+              <label><span is="translation-key">tray-label-audio-device</span></label>
             </div>
             <!-- This doesn't work with audio selection so let's disable it -->
             <!--<div class="input-field col s12" style="margin-top: 0">

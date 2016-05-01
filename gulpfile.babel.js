@@ -30,6 +30,7 @@ const paths = {
           '!node_modules/materialize-css/dist/font/material-design-icons/*',
           'node_modules/material-design-icons-iconfont/dist/fonts/**/*'],
   images: ['src/assets/icons/**/*', 'src/assets/img/**/*'],
+  locales: ['src/_locales/*.json'],
 };
 
 const packageJSON = require('./package.json');
@@ -100,6 +101,7 @@ gulp.task('clean-internal', cleanGlob(['./build/*.js', './build/**/*.js', '!./bu
 gulp.task('clean-fonts', cleanGlob('./build/assets/fonts'));
 gulp.task('clean-less', cleanGlob('./build/assets/css'));
 gulp.task('clean-images', cleanGlob('./build/assets/img'));
+gulp.task('clean-locales', cleanGlob('./build/_locales/*.json'));
 
 gulp.task('external', ['clean-external'], () => {
   return gulp.src(paths.externalScripts)
@@ -132,6 +134,11 @@ gulp.task('transpile', ['clean-internal'], () => {
     .pipe(gulp.dest('./build/'));
 });
 
+gulp.task('locales', ['clean-locales'], () => {
+  return gulp.src(paths.locales)
+    .pipe(gulp.dest('./build/_locales'));
+});
+
 gulp.task('fonts', ['clean-fonts'], () => {
   return gulp.src(paths.fonts)
     .pipe(gulp.dest('./build/assets/fonts'));
@@ -158,6 +165,7 @@ gulp.task('watch', ['build'], () => {
   gulp.watch(paths.html, ['html']);
   gulp.watch(paths.images, ['images']);
   gulp.watch(paths.less, ['less']);
+  gulp.watch(paths.locales, ['locales']);
 });
 
 gulp.task('package:win', ['clean-dist-win', 'build'], (done) => {
@@ -300,5 +308,5 @@ zipTask('linux:rpm', ['rpm:linux'], './dist/installers/redhat', 'the Redhat (Fed
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['watch', 'transpile', 'images']);
 gulp.task('build', ['external', 'materialize-js', 'utility-js', 'transpile', 'images', 'less',
-                    'fonts', 'html']);
+                    'fonts', 'html', 'locales']);
 gulp.task('package', ['package:win', 'package:darwin', 'package:linux']);

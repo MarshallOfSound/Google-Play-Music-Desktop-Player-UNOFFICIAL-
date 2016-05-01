@@ -89,7 +89,7 @@ function installDesktopSettingsButton() {
   dSettings.setAttribute('class', 'nav-item-container tooltip');
   dSettings.setAttribute('href', '');
   dSettings.setAttribute('no-focus', '');
-  dSettings.innerHTML = '<iron-icon icon="settings" alt="" class="x-scope iron-icon-1"></iron-icon>Desktop settings'; // eslint-disable-line
+  dSettings.innerHTML = '<iron-icon icon="settings" alt="" class="x-scope iron-icon-1"></iron-icon><span is="translation-key">label-desktop-settings</span>'; // eslint-disable-line
   dSettings.addEventListener('click', (e) => {
     Emitter.fire('window:settings');
     e.preventDefault();
@@ -100,14 +100,14 @@ function installDesktopSettingsButton() {
 }
 
 /* eslint-disable max-len, no-multi-str */
-function installNowPlayingButton(text, id, callback) {
+function installNowPlayingButton(textKey, id, callback) {
   const ripple = `<paper-ripple style="-webkit-user-select: none;">
                   <div id="background" class="style-scope paper-ripple" style="-webkit-user-select: none;"></div>
                   <div id="waves" class="style-scope paper-ripple" style="-webkit-user-select: none;"></div>
                   </paper-ripple>`;
   const content = document.createElement('div');
   content.setAttribute('class', 'goog-menuitem-content');
-  content.innerHTML = `${ripple} ${text}`;
+  content.innerHTML = `${ripple} <span is="translation-key">${textKey}</span>`;
 
   const button = document.createElement('div');
   button.setAttribute('class', 'goog-menuitem');
@@ -139,11 +139,11 @@ function installNowPlayingSeperator() {
 
 function installNowPlayingMenu() {
   installNowPlayingSeperator();
-  installNowPlayingButton('Pause after this song', ':gpmdppause', () => {
+  installNowPlayingButton('label-pause-after-song', ':gpmdppause', () => {
     Emitter.fireAtGoogle('pauseAfter:show');
   });
   installNowPlayingSeperator();
-  installNowPlayingButton('Show Lyrics (Beta)', ':gpmdplyrics', () => {
+  installNowPlayingButton('label-show-lyrics', ':gpmdplyrics', () => {
     Emitter.fireAtMain('lyrics:show');
   });
 }

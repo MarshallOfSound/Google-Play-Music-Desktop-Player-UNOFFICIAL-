@@ -8,7 +8,7 @@ const mainWindow = WindowManager.getAll('main')[0];
 
 let audioDeviceMenu = [
   {
-    label: 'Loading Devices...',
+    label: TranslationProvider.query('label-loading-devices'),
     enabled: false,
   },
 ];
@@ -21,7 +21,7 @@ if (process.platform === 'darwin') {
 
 const setContextMenu = () => {
   const contextMenu = Menu.buildFromTemplate([
-    { label: 'Show',
+    { label: TranslationProvider.query('tray-label-show'),
       click: () => {
         mainWindow.setSkipTaskbar(false);
         mainWindow.show();
@@ -29,58 +29,58 @@ const setContextMenu = () => {
     },
     { type: 'separator' },
     {
-      label: 'Play / Pause',
+      label: TranslationProvider.query('playback-label-play-pause'),
       click: () => Emitter.sendToGooglePlayMusic('playback:playPause'),
     },
     {
-      label: 'Previous Track',
+      label: TranslationProvider.query('playback-label-previous-track'),
       click: () => Emitter.sendToGooglePlayMusic('playback:previousTrack'),
     },
     {
-      label: 'Next Track',
+      label: TranslationProvider.query('playback-label-next-track'),
       click: () => Emitter.sendToGooglePlayMusic('playback:nextTrack'),
     },
     { type: 'separator' },
     {
-      label: 'Thumbs Up',
+      label: TranslationProvider.query('playback-label-thumbs-up'),
       click: () => Emitter.sendToGooglePlayMusic('playback:thumbsUp'),
     },
     {
-      label: 'Thumbs Down',
+      label: TranslationProvider.query('playback-label-thumbs-down'),
       click: () => Emitter.sendToGooglePlayMusic('playback:thumbsDown'),
     },
     { type: 'separator' },
     {
-      label: 'Audio Device',
+      label: TranslationProvider.query('tray-label-audio-device'),
       submenu: audioDeviceMenu,
     },
     {
-      label: 'Help',
+      label: TranslationProvider.query('label-help'),
       role: 'help',
       submenu: [
         {
-          label: 'About',
+          label: TranslationProvider.query('label-about'),
           click: () => {
             Emitter.sendToWindowsOfName('main', 'about');
           },
         },
         {
-          label: 'Issues',
+          label: TranslationProvider.query('label-issues'),
           click: () => shell.openExternal('https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues'),
         },
         {
-          label: 'Donate',
+          label: TranslationProvider.query('label-donate'),
           click: () => shell.openExternal('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ'),
         },
         {
-          label: 'Learn More',
+          label: TranslationProvider.query('label-learn-more'),
           click: () => shell.openExternal('http://www.googleplaymusicdesktopplayer.com'),
         },
       ],
     },
-    { label: 'Settings', click: () => { showDesktopSettings(); } },
+    { label: TranslationProvider.query('label-desktop-settings'), click: () => { showDesktopSettings(); } },
     { type: 'separator' },
-    { label: 'Quit', click: () => { global.quiting = true; app.quit(); } },
+    { label: TranslationProvider.query('label-quit'), click: () => { global.quiting = true; app.quit(); } },
   ]);
   appIcon.setContextMenu(contextMenu);
 };
@@ -147,13 +147,13 @@ Emitter.on('audiooutput:list', (event, devices) => {
       if (!label) {
         switch (device.deviceId) {
           case 'default':
-            label = 'System Default';
+            label = TranslationProvider.query('audio-device-default');
             break;
           case 'communications':
-            label = 'System Default Communications';
+            label = TranslationProvider.query('audio-device-communications');
             break;
           default:
-            label = 'Unknown Device';
+            label = TranslationProvider.query('audio-device-unknown');
             break;
         }
       }

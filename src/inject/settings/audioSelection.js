@@ -11,13 +11,13 @@ Emitter.on('audiooutput:list', (event, d) => {
       if (!label) {
         switch (device.deviceId) {
           case 'default':
-            label = 'System Default';
+            label = TranslationProvider.query('audio-device-default');
             break;
           case 'communications':
-            label = 'System Default Communications';
+            label = TranslationProvider.query('audio-device-communications');
             break;
           default:
-            label = 'Unknown Device';
+            label = TranslationProvider.query('audio-device-unknown');
             break;
         }
       }

@@ -1,3 +1,4 @@
+import '../generic/translations';
 import './themeSettings';
 import './audioSelection';
 // import './audioEQ';

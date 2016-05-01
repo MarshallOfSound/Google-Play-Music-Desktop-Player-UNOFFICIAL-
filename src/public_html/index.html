@@ -35,7 +35,7 @@
   <div id="lyrics_back">
     <div id="lyrics_container">
       <div id="lyrics">
-        <h1>No song is currently playing</h1>
+        <h1><span is="translation-key">lyrics-no-song-message</span></h1>
       </div>
       <div id="shadow"></div>
     </div>
@@ -45,14 +45,16 @@
   <!-- Confirm Minimize to Tray Modal -->
   <div id="confirmTray" class="modal">
     <div class="modal-content">
-      <h4>Just a heads up</h4>
-      <p>Closing the main player window (what you just tried to do) will actually minimize the player to the System Tray.
-         If you want to change this behaviour it can be changed in the "Desktop Settings" window.
-       </p>
+      <h4 is="translation-key-h4">modal-confirmTray-title</h4>
+      <p is="translation-key-p">modal-confirmTray-content</p>
     </div>
     <div class="modal-footer">
-      <a href="javascript:void(0)" id="confirmTrayButton" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
-      <a href="javascript:void(0)" id="confirmTrayNeverButton" class="modal-action modal-close waves-effect waves-orange btn-flat">Don't tell me this again</a>
+      <a href="javascript:void(0)" id="confirmTrayButton" class="modal-action modal-close waves-effect waves-green btn-flat">
+        <span is="translation-key">button-text-ok</span>
+      </a>
+      <a href="javascript:void(0)" id="confirmTrayNeverButton" class="modal-action modal-close waves-effect waves-orange btn-flat">
+        <span is="translation-key">button-text-dont-tell-me-again</span>
+      </a>
     </div>
   </div>
   <!-- End Modal -->
@@ -60,14 +62,13 @@
   <!-- Confirm uninstall of 2.X Modal -->
   <div id="confirmUninstall" class="modal">
     <div class="modal-content">
-      <h4>So heres the thing...</h4>
-      <p>We just found out an old version of GPMDP is still installed on your system.  If you just updated this is perfectly normal.
-         We are now going to try to uninstall the old version.  This "might" require admin permissions, please grant these so we can clean
-         up our mess.
-       </p>
+      <h4 is="translation-key-h4">modal-confirmUninstall-title</h4>
+      <p is="translation-key-p">modal-confirmUninstall-content</p>
     </div>
     <div class="modal-footer">
-      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">
+        <span is="translation-key">button-text-ok</span>
+      </a>
     </div>
   </div>
   <!-- End Modal -->
@@ -75,16 +76,16 @@
   <!-- Confirm restart and update Modal -->
   <div id="confirmUpdate" class="modal">
     <div class="modal-content">
-      <h4>Update Available</h4>
-      <p>Woo hoo, it looks like there is a brand new update available for Google Play Music Desktop Player.  This update should bring a whole load of new
-        features, bugfixes and cool new things.  We recommend updating as fast as possible to allow you to enjoy the best feature filled, bug free experience.
-       </p>
-       <p>We hope you like the new update!
-       </p>
+      <h4 is="translation-key-h4">modal-confirmUpdate-title</h4>
+      <p is="translation-key-p">modal-confirmUpdate-content</p>
     </div>
     <div class="modal-footer">
-      <a href="javascript:void(0)" id="confirmUpdateButton" class="modal-action modal-close waves-effect waves-green btn" style="margin-right: 6px">Let's do this!!</a>
-      <a href="javascript:void(0)" id="waitUpdateButton" class="modal-action modal-close waves-effect waves-orange btn-flat red-text">Not right now</a>
+      <a href="javascript:void(0)" id="confirmUpdateButton" class="modal-action modal-close waves-effect waves-green btn" style="margin-right: 6px">
+        <span is="translation-key">button-text-lets-do-this</span>
+      </a>
+      <a href="javascript:void(0)" id="waitUpdateButton" class="modal-action modal-close waves-effect waves-orange btn-flat red-text">
+        <span is="translation-key">button-text-not-now</span>
+      </a>
     </div>
   </div>
   <!-- End Modal -->
@@ -92,12 +93,14 @@
   <!-- Welcome to a new version Modal -->
   <div id="welcome" class="modal">
     <div class="modal-content">
-      <h4>Welcome to Version <span data-app-version></span></h4>
+      <h4><span is="translation-key">modal-welcome-title</span> <span data-app-version></span></h4>
       <p data-app-changes></p>
-       <p>We hope you like the new update!</p>
+       <p is="translation-key-p">modal-welcome-content</p>
     </div>
     <div class="modal-footer">
-      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn" style="margin-right: 6px">Let's go!!</a>
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn" style="margin-right: 6px">
+        <span is="translation-key">button-text-lets-go</span>
+      </a>
     </div>
   </div>
   <!-- End Modal -->
@@ -105,13 +108,15 @@
   <!-- Go to GPM URL Modal -->
   <div id="goToURL" class="modal">
     <div class="modal-content">
-      <h4>Enter to Google Play Music URL to navigate to:</h4>
+      <h4 is="translation-key-h4">modal-goToURL-title</h4>
       <p>
         <input type="text" placeholder="E.g. https://play.google.com/music/listen" />
       </p>
     </div>
     <div class="modal-footer">
-      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn" style="margin-right: 6px">Let's go!!</a>
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn" style="margin-right: 6px">
+        <span is="translation-key">button-text-lets-go</span>
+      </a>
     </div>
   </div>
   <!-- End Modal -->
@@ -119,11 +124,13 @@
   <!-- About GPMDP Modal -->
   <div id="about" class="modal">
     <div class="modal-content">
-      <h4>About <span data-app-name></span></h4>
-      <p>Version: <span data-app-version></span></p>
+      <h4><span is="translation-key">label-about</span> <span data-app-name></span></h4>
+      <p><span is="translation-key">label-version</span>: <span data-app-version></span></p>
     </div>
     <div class="modal-footer">
-      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn">Close</a>
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn">
+        <span is="translation-key">button-text-close</span>
+      </a>
     </div>
   </div>
   <!-- End Modal -->

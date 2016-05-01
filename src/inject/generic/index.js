@@ -9,6 +9,7 @@ require(`./${process.platform}`);
 
 document.addEventListener('DOMContentLoaded', () => {
   require('./windowThemeHandler');
+  require('./translations');
   setTimeout(() => require('electron').remote.getCurrentWindow().show(), 100);
 
   const nativeFrameAtLaunch = Settings.get('nativeFrame');

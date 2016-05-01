@@ -1,4 +1,5 @@
 import './rendererEmitter';
+import './generic/translations';
 import { remote } from 'electron';
 
 let warnOnce = true;
@@ -19,8 +20,7 @@ const waitForBody = setInterval(() => {
       }
       if (window.location.href.split('api_key').length === 1 && warnOnce) {
         warnOnce = false;
-        alert(`You appear to have left the authorization process,
-                if this is a mistake, please try authorizing again`);
+        alert(TranslationProvider.query('lastfm-login-error'));
         Emitter.fire('lastfm:auth_result', { result: false });
         remote.getCurrentWindow().close();
       }

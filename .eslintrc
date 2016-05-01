@@ -6,6 +6,7 @@
     "Emitter": true,
     "WindowManager": true,
     "PlaybackAPI": true,
+    "TranslationProvider": true,
     "GPM": true,
     "$": true
   },
