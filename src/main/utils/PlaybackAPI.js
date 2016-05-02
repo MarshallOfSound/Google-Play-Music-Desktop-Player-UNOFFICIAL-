@@ -81,11 +81,12 @@ class PlaybackAPI {
   }
 
   _setPlaybackSong(title, artist, album, albumArt) {
+    const fullSizeAlbumArt = albumArt.replace(/=s90-c-e100$/g, '');
     this.data.song = {
       title,
       artist,
       album,
-      albumArt,
+      albumArt: fullSizeAlbumArt,
     };
     this._resetRating();
     this.data.songLyrics = null;
