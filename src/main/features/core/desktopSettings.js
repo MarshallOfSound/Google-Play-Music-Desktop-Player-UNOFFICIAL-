@@ -1,6 +1,12 @@
 import { BrowserWindow } from 'electron';
 import path from 'path';
 
+var AutoLaunch = require('auto-launch');
+ 
+var appLauncher = new AutoLaunch({
+	name: 'Google Play Music Desktop Player'
+});
+
 export const showDesktopSettings = () => {
   if (WindowManager.getAll('settings').length > 0) {
     WindowManager.getAll('settings')[0].show();
@@ -68,6 +74,10 @@ Emitter.on('settings:set', (event, details) => {
       break;
     case 'speechRecognition':
       Emitter.sendToGooglePlayMusic('speech:toggle', { state: details.value });
+      break;
+    case 'startOnBoot':
+      if(details.value == true) appLauncher.enable();
+      else appLauncher.disable();
       break;
     default:
       break;
