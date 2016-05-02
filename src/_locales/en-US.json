@@ -78,6 +78,8 @@
 
   "settings-option-min-to-tray": "Minimize to Tray",
 
+  "settings-option-start-on-boot": "Start automatically on Bootup.",
+
   "settings-option-mini-always-show": "Always show song information",
   "settings-option-mini-ontop": "Always on top",
 
