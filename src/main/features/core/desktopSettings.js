@@ -1,9 +1,9 @@
 import { BrowserWindow } from 'electron';
 import path from 'path';
 
-var AutoLaunch = require('auto-launch');
+import AutoLaunch from 'auto-launch';
  
-var appLauncher = new AutoLaunch({
+const appLauncher = new AutoLaunch({
 	name: 'Google Play Music Desktop Player'
 });
 
