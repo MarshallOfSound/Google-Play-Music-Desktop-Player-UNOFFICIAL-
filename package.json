@@ -93,8 +93,8 @@
   },
   "optionalDependencies": {
     "mouse-forward-back": "^1.0.1",
-    "dbus": "MarshallOfSound/node-dbus#linux-only",
-    "mpris-service": "MarshallOfSound/mpris-service",
+    "dbus": "GPMDP/node-dbus#linux-only",
+    "mpris-service": "GPMDP/mpris-service",
     "electron-installer-debian": "^0.2.0",
     "electron-installer-redhat": "^0.2.0",
     "ll-keyboard-hook-win": "^3.0.0"
