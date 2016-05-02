@@ -24,6 +24,7 @@ global.Settings = {
 };
 global.Emitter = new Emitter();
 global.PlaybackAPI = new PlaybackAPI();
+global.API_PORT = 4202; // Travis has something running on 5672
 
 describe('WebSocketAPI', () => {
   beforeEach(() => {
@@ -31,8 +32,8 @@ describe('WebSocketAPI', () => {
     require('../build/main/features/core/websocketAPI');
   });
 
-  it('should start a WebSocket server on port 5672', (done) => {
-    const ws = new WebSocket('ws://localhost:5672');
+  it(`should start a WebSocket server on port ${global.API_PORT}`, (done) => {
+    const ws = new WebSocket(`ws://localhost:${global.API_PORT}`);
     ws.on('open', done);
     ws.on('error', () => done(new Error('Failed to connect to the WebSocket')));
   });
@@ -42,7 +43,7 @@ describe('WebSocketAPI', () => {
     let spy;
 
     beforeEach(() => {
-      ws = new WebSocket('ws://localhost:5672');
+      ws = new WebSocket(`ws://localhost:${global.API_PORT}`);
       spy = sinon.spy();
     });
 
