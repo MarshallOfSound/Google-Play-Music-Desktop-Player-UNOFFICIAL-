@@ -24,7 +24,7 @@ PlaybackAPI.on('change:time', (timeObj) => {
 
 const enableAPI = () => {
   try {
-    server = new WebSocketServer({ port: 5672 });
+    server = new WebSocketServer({ port: global.API_PORT || process['env'].GPMDP_API_PORT || 5672 }); // eslint-disable-line
   } catch (e) {
     // Do nothing
   }
