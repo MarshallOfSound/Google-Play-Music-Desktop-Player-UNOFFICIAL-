@@ -76,8 +76,10 @@ Emitter.on('settings:set', (event, details) => {
       Emitter.sendToGooglePlayMusic('speech:toggle', { state: details.value });
       break;
     case 'startOnBoot':
-      if(details.value == true) appLauncher.enable();
-      else appLauncher.disable();
+      if(details.value == true) 
+        appLauncher.enable();
+      else 
+        appLauncher.disable();
       break;
     default:
       break;
