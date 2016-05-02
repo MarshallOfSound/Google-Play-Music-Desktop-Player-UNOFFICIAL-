@@ -3,5 +3,5 @@ export default {
   enableJSONApi: true,
   nativeFrame: (process.platform !== 'win32'),
   enableWindowTitleInfo: false,
-  startOnBoot: false,
+  auto-launch: false,
 };
