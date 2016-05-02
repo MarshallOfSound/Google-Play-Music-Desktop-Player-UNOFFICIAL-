@@ -1,9 +1,12 @@
+import fs from 'fs';
+import path from 'path';
 import { Server as WebSocketServer } from 'ws';
 
 let server;
 let oldTime = {};
 
 const changeEvents = ['song', 'state', 'rating', 'lyrics', 'shuffle', 'repeat'];
+const API_VERSION = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/../../../../package.json`))).apiVersion;
 
 changeEvents.forEach((channel) => {
   PlaybackAPI.on(`change:${channel}`, (newValue) => {
@@ -70,6 +73,7 @@ const enableAPI = () => {
         }
       });
 
+      ws.channel('API_VERSION', API_VERSION);
       ws.channel('playState', PlaybackAPI.isPlaying());
       ws.channel('shuffle', PlaybackAPI.currentShuffle());
       ws.channel('repeat', PlaybackAPI.currentRepeat());

@@ -2,6 +2,7 @@
   "name": "google-play-music-desktop-player",
   "productName": "Google Play Music Desktop Player",
   "version": "3.2.4",
+  "apiVersion": "1.0.0",
   "description": "An electron wrapper for Google Play Music",
   "main": "build/index.js",
   "scripts": {

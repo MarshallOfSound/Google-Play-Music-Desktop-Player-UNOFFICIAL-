@@ -1,5 +1,5 @@
-Web Socket Playback Information API
------------------------------------
+Web Socket Playback Information API *(1.0.0)*
+-------------------------------------------
 
 Google Play Music Desktop Player provides an interface for external
 applications to determine the currently played song and playback status.
@@ -20,6 +20,21 @@ All messages are sent from the Web Socket Server in the following format
 ```
 
 ## Channels
+
+### API_VERSION
+
+Data recieved in the `API_VERSION` channel will have a payload in the format
+
+```js
+"payload": String
+```
+
+The String will be a [semver](http://semver.org/) compliant version string for the WebSocketAPI.
+You should use this to determine if your app is designed to handle the current
+API syntax.
+
+*As per semver any breaking change will result in a MAJOR version bump to the API
+but **NOT** to the app*
 
 ### PlayState
 
