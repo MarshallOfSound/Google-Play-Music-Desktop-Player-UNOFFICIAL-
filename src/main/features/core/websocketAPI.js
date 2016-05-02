@@ -8,7 +8,7 @@ const changeEvents = ['song', 'state', 'rating', 'lyrics', 'shuffle', 'repeat'];
 changeEvents.forEach((channel) => {
   PlaybackAPI.on(`change:${channel}`, (newValue) => {
     if (server && server.broadcast) {
-      server.broadcast(channel, newValue);
+      server.broadcast(channel === 'state' ? 'playState' : channel, newValue);
     }
   });
 });
