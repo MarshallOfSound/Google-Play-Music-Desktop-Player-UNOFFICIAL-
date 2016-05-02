@@ -62,8 +62,8 @@ class PlaybackAPI {
         total: 0,
       },
       songLyrics: null,
-      shuffle: null,
-      repeat: null,
+      shuffle: 'NO_SHUFFLE',
+      repeat: 'NO_REPEAT',
     };
     this._save();
   }

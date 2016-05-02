@@ -25,7 +25,7 @@
     "postinstall": "node vendor/rebuild.js --instant",
     "test": "npm run lint",
     "pretest-unit": "npm run build",
-    "test-unit": "electron-mocha ./test --recursive --compilers js:babel-core/register --timeout 10000",
+    "test-unit": "electron-mocha ./test/webSocketAPI_spec.js --recursive --compilers js:babel-core/register --timeout 10000",
     "prestart": "pre-flight",
     "start": "electron . --dev",
     "watch": "gulp watch"
@@ -89,7 +89,10 @@
     "pre-commit": "^1.1.2",
     "pre-flight": "^1.0.0",
     "request": "^2.69.0",
-    "run-sequence": "^1.1.5"
+    "run-sequence": "^1.1.5",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
+    "sinon-mocha": "0.0.3"
   },
   "optionalDependencies": {
     "mouse-forward-back": "^1.0.1",
