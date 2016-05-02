@@ -1,5 +1,5 @@
 {
-  "audio-device-communications": "System Default Communications",
+  "audio-device-communications": "Standard Audiogeräte",
   "audio-device-default": "Standardeinstellung",
   "audio-device-unknown": "Unbekanntes Gerät",
 
@@ -59,7 +59,7 @@
   "playback-label-volume-down": "Leiser",
   "playback-label-volume-up": "Lauter",
 
-  "settings-option-custom-theme": "Eigenes Thema",
+  "settings-option-custom-theme": "Eigenes Farbschema",
   "settings-option-custom-theme-choose-color": "Wähle deinen Farbakzent",
   "settings-option-custom-theme-choose-custom": "Oder wähle eine",
   "settings-option-custom-theme-custom-color": "Eigene Farbe",
