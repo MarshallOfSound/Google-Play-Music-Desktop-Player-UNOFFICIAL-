@@ -5,7 +5,7 @@ $('#start-on-boot').change((e) => {
   });
 });
 
-if (Settings.get('startOnBoot', true)) {
+if (Settings.get('startOnBoot', false)) {
   $('#start-on-boot').attr('checked', 'cheked');
 } else {
   $('#start-on-boot').removeAttr('checked');
