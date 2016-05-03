@@ -111,7 +111,7 @@ function toggleMainWindow() {
   }
 }
 
-appIcon.setToolTip('Google Play Music');
+appIcon.setToolTip('Google Play Music Desktop Player');
 
 switch (process.platform) {
   case 'darwin': // <- actually means OS-X
