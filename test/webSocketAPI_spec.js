@@ -26,6 +26,8 @@ global.Emitter = new Emitter();
 global.PlaybackAPI = new PlaybackAPI();
 global.API_PORT = 4202; // Travis has something running on 5672
 
+const INITIAL_DATA_COUNT = 7;
+
 describe('WebSocketAPI', () => {
   beforeEach(() => {
     global.PlaybackAPI.reset();
@@ -49,9 +51,14 @@ describe('WebSocketAPI', () => {
 
     const wait = (fn) =>
       (done) => {
-        ws.on('open', () => setTimeout(() => {
-          fn(done);
-        }, 50));
+        ws.on('open', () => {
+          const checker = setInterval(() => {
+            if (spy.callCount >= INITIAL_DATA_COUNT) {
+              clearInterval(checker);
+              fn(done);
+            }
+          }, 10);
+        });
         ws.on('message', (msg) => spy(JSON.parse(msg)));
       };
 
@@ -61,7 +68,7 @@ describe('WebSocketAPI', () => {
     }));
 
     it('should send the player control states on connect', wait((done) => {
-      spy.should.have.callCount(7); // eslint-disable-line
+      spy.should.have.callCount(INITIAL_DATA_COUNT); // eslint-disable-line
       spy.getCall(1).args[0].channel.should.be.equal('playState');
       spy.getCall(2).args[0].channel.should.be.equal('shuffle');
       spy.getCall(3).args[0].channel.should.be.equal('repeat');
@@ -72,7 +79,7 @@ describe('WebSocketAPI', () => {
     }));
 
     it('should send the correct initial player control values', wait((done) => {
-      spy.should.have.callCount(7); // eslint-disable-line
+      spy.should.have.callCount(INITIAL_DATA_COUNT); // eslint-disable-line
       // playState
       spy.getCall(1).args[0].payload.should.be.equal(false);
       // shuffle
@@ -99,15 +106,28 @@ describe('WebSocketAPI', () => {
     describe('when PlaybackAPI values change', () => {
       beforeEach((done) => {
         ws.on('open', () => {
-          setTimeout(() => {
-            spy = sinon.spy();
-            done();
-          }, 50);
+          spy = sinon.spy();
+          ws.on('message', (msg) => spy(JSON.parse(msg)));
+
+          const checker = setInterval(() => {
+            if (spy.callCount === INITIAL_DATA_COUNT) {
+              spy = sinon.spy();
+              ws.on('message', (msg) => spy(JSON.parse(msg)));
+              clearInterval(checker);
+              done();
+            }
+          }, 1);
         });
       });
 
       const waitForResponse = (tests) => {
-        setTimeout(tests, 50);
+        const i = spy.callCount;
+        const checker = setInterval(() => {
+          if (spy.callCount > i) {
+            clearInterval(checker);
+            tests();
+          }
+        }, 10);
       };
 
       const shouldUpdateTest = (channel, updateMethodName, newValueArgs, expectedValue) => {
@@ -138,6 +158,11 @@ describe('WebSocketAPI', () => {
         });
       shouldUpdateTest('time', '_setTime', [100, 101], { current: 100, total: 101 });
       shouldUpdateTest('lyrics', '_setPlaybackSongLyrics', 'LA LA LA DOO WOP');
+    });
+
+    afterEach(() => {
+      ws.close();
+      ws = null;
     });
   });
 });
