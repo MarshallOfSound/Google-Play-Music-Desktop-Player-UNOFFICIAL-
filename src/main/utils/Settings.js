@@ -37,8 +37,19 @@ class Settings {
     }
   }
 
-  _load() {
-    const userSettings = JSON.parse(fs.readFileSync(this.PATH, 'utf8'));
+  _load(retryCount = 5) {
+    let userSettings;
+    try {
+      userSettings = JSON.parse(fs.readFileSync(this.PATH, 'utf8'));
+    } catch (e) {
+      if (retryCount > 0) {
+        setTimeout(this._load.bind(this, retryCount - 1), 10);
+        Logger.error('Failed to load settings JSON file, retyring in 10 milliseconds');
+        return;
+      }
+      userSettings = {};
+      Logger.error('Failed to load settings JSON file, giving up and resetting');
+    }
     this.data = _.extend({}, initalSettings, userSettings);
   }
 
