@@ -196,7 +196,10 @@ gulp.task('make:win', ['package:win'], (done) => {
 });
 
 gulp.task('package:darwin', ['clean-dist-darwin', 'build'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', 'osx-sign': { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
+  rebuild('./rebuild_null.sh')
+    .then(() => {
+      packager(_.extend({}, defaultPackageConf, { platform: 'darwin', 'osx-sign': { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
+    });
 });
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {

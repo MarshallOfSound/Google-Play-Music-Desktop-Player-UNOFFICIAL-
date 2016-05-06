@@ -1,3 +1,5 @@
 #!/bin/sh
 
-echo Nothing to rebuild on linux / darwin
+cd ..
+cd node_modules
+.bin/electron-rebuild --arch=ia32 -f
