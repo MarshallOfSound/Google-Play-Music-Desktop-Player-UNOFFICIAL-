@@ -1,3 +1,4 @@
 cd ..
 cd node_modules
-.bin\electron-rebuild.cmd --which-module="ll-keyboard-hook-win" --arch=ia32 -f
+rmdir /Q /S nslog\build 2>nul
+.bin\electron-rebuild.cmd --arch=ia32 -f
