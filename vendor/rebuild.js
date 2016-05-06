@@ -32,9 +32,15 @@ module.exports = (override_name) =>
       console.error(data.toString()); // eslint-disable-line
     });
 
-    build.on('exit', () => {
-      console.log('Rebuild complete');  // eslint-disable-line
-      resolve();
+    build.on('exit', (code) => {
+      if (code === 0) {
+        console.log('Rebuild complete');  // eslint-disable-line
+        resolve();
+      } else {
+        console.error('Rebuild failed');
+        process.exit(1);
+        reject();
+      }
     });
 
     build.on('error', (err) => {
