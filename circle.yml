@@ -9,7 +9,7 @@ dependencies:
     - sudo apt-get update
     - sudo apt-get install rpm fakeroot dpkg libdbus-1-dev libglib2.0-dev libexpat1-dev libx32gcc-4.8-dev libc6-dev-i386
     - sudo apt-get install gcc-4.8-multilib g++-4.8-multilib libdbus-1-dev:i386 libexpat1-dev:i386 build-essential g++
-    - sudo apt-get install libx11-dev libx11-dev:i386 libavahi-compat-libdnssd-dev
+    - sudo apt-get install libx11-dev libx11-dev:i386 libavahi-compat-libdnssd-dev libavahi-compat-libdnssd-dev:i386
     - npm i -g npm
     - rm -rf node_modules
   cache_directories:
