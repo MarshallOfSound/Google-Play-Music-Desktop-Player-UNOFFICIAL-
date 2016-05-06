@@ -4,6 +4,7 @@ machine:
   environment:
     XUNIT_FILE: $CIRCLE_TEST_REPORTS/xunit.xml
 
+
 dependencies:
   pre:
     - sudo apt-get update
