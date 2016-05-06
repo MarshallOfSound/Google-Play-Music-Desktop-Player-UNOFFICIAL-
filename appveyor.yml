@@ -25,6 +25,8 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - npm i -g npm
   - rd /S /Q "node_modules"
+  - appveyor DownloadFile https://www.samuelattard.com/files/bonjoursdksetup.exe
+  - bonjoursdksetup.exe /quiet
   - npm install
 
 test_script:
