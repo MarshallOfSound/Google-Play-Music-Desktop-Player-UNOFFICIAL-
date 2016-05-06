@@ -1,6 +1,8 @@
 machine:
   node:
     version: 4.4.1
+  environment:
+    XUNIT_FILE: $CIRCLE_TEST_REPORTS/xunit.xml
 
 dependencies:
   pre:
