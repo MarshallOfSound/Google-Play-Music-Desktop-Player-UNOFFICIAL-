@@ -7,10 +7,11 @@ machine:
 
 dependencies:
   pre:
+    - sudo dpkg --add-architecture i386
     - sudo apt-get update
-    - sudo apt-get install rpm fakeroot dpkg libdbus-1-dev libglib2.0-dev libexpat1-dev libx32gcc-4.9-dev libc6-dev-i386
-    - sudo apt-get install gcc-4.9-multilib g++-4.9-multilib libdbus-1-dev:i386 libexpat1-dev:i386 build-essential g++
-    - sudo apt-get install libx11-dev libx11-dev:i386
+    - sudo apt-get install g++ g++-multilib lib32z1 lib32ncurses5 lib32bz2-1.0
+    - sudo apt-get install rpm fakeroot dpkg libdbus-1-dev libx11-dev
+    - sudo apt-get install libdbus-1-dev:i386 libexpat1-dev:i386 libx11-dev:i386 libc6-dev-i386
     - case $CIRCLE_NODE_INDEX in 0) sudo apt-get install libavahi-compat-libdnssd-dev:i386 ;; 1) sudo apt-get install libavahi-compat-libdnssd-dev ;; 2) sudo apt-get install libavahi-compat-libdnssd-dev:i386 ;; 3) sudo apt-get install libavahi-compat-libdnssd-dev ;; esac:
         parallel: true
     - npm i -g npm
