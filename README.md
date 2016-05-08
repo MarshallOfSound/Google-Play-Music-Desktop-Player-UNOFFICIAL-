@@ -107,6 +107,7 @@ If you think you can add something cool or fix a problem, fork the repo and make
 * Google Play Music Interaction - https://github.com/gmusic-utils/gmusic.js
 * Theming - https://github.com/gmusic-utils/gmusic-theme.js
 * Mini Player - https://github.com/GPMDP/gmusic-mini-player.js
+* Electron Chromecast - https://github.com/GPMDP/electron-chromecast
 
 Dev Requirements
 ----------------
