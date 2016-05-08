@@ -1,28 +1,28 @@
-'use strict';
+'use strict'; // eslint-disable-line
 
 const spawn = require('child_process').spawn;
 
 console.log('Rebuilding native modules for electron'); // eslint-disable-line
 
-let script_name;
+let scriptName;
 
 switch (process.platform) {
   case 'win32':
-    script_name = 'rebuild.bat';
+    scriptName = 'rebuild.bat';
     break;
   case 'darwin':
-    script_name = './rebuild_null.sh'
+    scriptName = './rebuild_null.sh';
     break;
   default:
-    script_name = './rebuild.sh';
+    scriptName = './rebuild.sh';
     break;
 }
 
 let a = 0;
 
-module.exports = (override_name) =>
+module.exports = (overrideName) =>
   new Promise((resolve, reject) => {
-    const build = spawn(override_name || script_name, {
+    const build = spawn(overrideName || scriptName, {
       cwd: __dirname,
     });
 
@@ -49,7 +49,7 @@ module.exports = (override_name) =>
         if (retry && a === 0) {
           a++;
           console.info('Retrying in 60 seconds');
-          const tID = setTimeout(() => {
+          global.tID = setTimeout(() => {
             module.exports();
           }, 60000);
         } else {

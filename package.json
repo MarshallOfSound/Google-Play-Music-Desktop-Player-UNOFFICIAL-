@@ -8,7 +8,7 @@
   "scripts": {
     "build": "gulp build",
     "clean": "gulp clean",
-    "lint": "eslint ./src/ ./test/",
+    "lint": "eslint ./src/ ./test/ ./vendor/",
     "make:darwin": "gulp make:darwin",
     "make:linux": "gulp make:linux",
     "make:deb": "gulp make:linux:deb",
