@@ -18,6 +18,8 @@ switch (process.platform) {
     break;
 }
 
+let a = 0;
+
 module.exports = (override_name) =>
   new Promise((resolve, reject) => {
     const build = spawn(override_name || script_name, {
@@ -38,8 +40,22 @@ module.exports = (override_name) =>
         resolve();
       } else {
         console.error('Rebuild failed');
-        process.exit(1);
-        reject();
+        let retry = false;
+        process.argv.forEach((arg) => {
+          if (arg === '--retry') {
+            retry = true;
+          }
+        });
+        if (retry && a === 0) {
+          a++;
+          console.info('Retrying in 60 seconds');
+          const tID = setTimeout(() => {
+            module.exports();
+          }, 60000);
+        } else {
+          process.exit(1);
+          reject();
+        }
       }
     });
 
