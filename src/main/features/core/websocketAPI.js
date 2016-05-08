@@ -45,7 +45,7 @@ const enableAPI = () => {
       name: os.hostname(),
       txtRecord: {
         API_VERSION,
-      }
+      },
     });
     ad.start();
     server.broadcast = (channel, data) => {
