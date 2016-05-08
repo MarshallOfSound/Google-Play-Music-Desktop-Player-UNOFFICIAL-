@@ -15,6 +15,7 @@ dependencies:
     - sudo apt-get install libdbus-1-dev:i386 libexpat1-dev:i386 libx11-dev:i386 libc6-dev-i386
     - sudo apt-get install g++
     - sudo apt-get install libavahi-compat-libdnssd-dev
+    - sudo apt-get install gcc-4.8-multilib g++-4.8-multilib
     - npm i -g npm
     - rm -rf node_modules
   cache_directories:
