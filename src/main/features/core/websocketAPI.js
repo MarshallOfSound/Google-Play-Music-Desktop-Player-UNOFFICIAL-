@@ -1,4 +1,6 @@
 import fs from 'fs';
+import mdns from 'mdns';
+import os from 'os';
 import path from 'path';
 import { Server as WebSocketServer } from 'ws';
 
@@ -7,6 +9,8 @@ let oldTime = {};
 
 const changeEvents = ['song', 'state', 'rating', 'lyrics', 'shuffle', 'repeat'];
 const API_VERSION = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/../../../../package.json`))).apiVersion;
+
+let ad;
 
 changeEvents.forEach((channel) => {
   PlaybackAPI.on(`change:${channel}`, (newValue) => {
@@ -33,6 +37,17 @@ const enableAPI = () => {
   }
 
   if (server) {
+    if (ad) {
+      ad.stop();
+      ad = null;
+    }
+    ad = mdns.createAdvertisement(mdns.tcp('GPMDP'), 5672, {
+      name: os.hostname(),
+      txtRecord: {
+        API_VERSION,
+      }
+    });
+    ad.start();
     server.broadcast = (channel, data) => {
       server.clients.forEach((client) => {
         client.channel(channel, data);
@@ -92,12 +107,17 @@ const enableAPI = () => {
 };
 
 Emitter.on('playbackapi:toggle', (event, state) => {
-  if (server) {
+  if (!state.state && server) {
     server.close();
     server = null;
   }
   if (state.state) {
-    enableAPI();
+    if (!server) {
+      enableAPI();
+    }
+  } else if (ad) {
+    ad.stop();
+    ad = null;
   }
   Settings.set('playbackAPI', state.state);
 });
