@@ -57,7 +57,7 @@ There are two methods you can use to integrate with GPMDP from an external appli
 
 Both are documented in the [Docs](docs) folder.  For one time read access you should
 probably use the `JSON` interface.  For an application that requires continuous
-updates as to the state of GPMDP or needs to control GPMDP you should use theme
+updates as to the state of GPMDP or needs to control GPMDP you should use the
 `Web Socket` interface.
 
 Issues
@@ -95,6 +95,8 @@ npm run make:rpm
 
 All releases will be signing with my Code Signing Certificates (Authenticode on Windows and Codesign on OS X)
 
+Please see the [development FAQ](https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/wiki/Development-FAQ) for additional requirements for building.
+
 Contributing
 ------------
 
@@ -104,7 +106,7 @@ If you think you can add something cool or fix a problem, fork the repo and make
 **NOTE:** Some of the functionality in this app has been extracted into smaller submodules. In particular
 * Google Play Music Interaction - https://github.com/gmusic-utils/gmusic.js
 * Theming - https://github.com/gmusic-utils/gmusic-theme.js
-* Mini Player - https://github.com/MarshallOfSound/gmusic-mini-player.js
+* Mini Player - https://github.com/GPMDP/gmusic-mini-player.js
 
 Dev Requirements
 ----------------
