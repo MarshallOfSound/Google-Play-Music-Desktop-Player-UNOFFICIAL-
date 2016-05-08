@@ -37,6 +37,7 @@ install:
   - msiexec /i bonjourcore2.msi /qn
   - appveyor DownloadFile https://www.samuelattard.com/files/bonjoursdksetup.exe
   - bonjoursdksetup.exe /quiet
+  - npm cache clean
   - npm install
 
 test_script:
