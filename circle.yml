@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 4.4.1
+    version: 4.4.4
   environment:
     XUNIT_FILE: $CIRCLE_TEST_REPORTS/xunit.xml
 
