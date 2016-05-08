@@ -1,6 +1,6 @@
 version: 1.0.{build}
 environment:
-  nodejs_version: "4.4.4"
+  nodejs_version: "6.1.0"
   GITHUB_KEY:
     secure: eZcSozzDKzRJhSoXL7LS9w1jqFLdkiRT4H57JoWGpKj/kS6NC/DP3ColwKkvSeFn
   SIGN_CERT_PASS:
@@ -23,12 +23,6 @@ cache:
   - node_modules
   - '%USERPROFILE%\.electron'
 
-init:
-- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-
-on_finish:
-- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm i -g npm
@@ -38,7 +32,6 @@ install:
   - appveyor DownloadFile https://www.samuelattard.com/files/bonjoursdksetup.exe
   - bonjoursdksetup.exe /quiet
   - npm cache clean
-  - ps: Install-Product node 6.0.0
   - npm install
 
 test_script:
