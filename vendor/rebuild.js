@@ -2,8 +2,6 @@
 
 const spawn = require('child_process').spawn;
 
-console.log('Rebuilding native modules for electron'); // eslint-disable-line
-
 let scriptName;
 
 switch (process.platform) {
@@ -22,6 +20,7 @@ let a = 0;
 
 module.exports = (overrideName) =>
   new Promise((resolve, reject) => {
+    console.log('Rebuilding native modules for electron'); // eslint-disable-line
     const build = spawn(overrideName || scriptName, {
       cwd: __dirname,
     });
