@@ -1,3 +1,4 @@
+import './devtools';
 import './goToURL';
 import './uninstall';
 import './updateAvailable';
