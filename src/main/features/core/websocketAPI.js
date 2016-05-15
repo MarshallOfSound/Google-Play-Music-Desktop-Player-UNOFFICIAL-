@@ -30,24 +30,21 @@ PlaybackAPI.on('change:time', (timeObj) => {
 });
 
 const enableAPI = () => {
-  try {
-    server = new WebSocketServer({ port: global.API_PORT || process['env'].GPMDP_API_PORT || 5672 }); // eslint-disable-line
-  } catch (e) {
-    // Do nothing
-  }
-
-  if (server) {
+  server = new WebSocketServer({ port: global.API_PORT || process['env'].GPMDP_API_PORT || 5672 }, () => { // eslint-disable-line
     if (ad) {
       ad.stop();
       ad = null;
     }
+
     ad = mdns.createAdvertisement(mdns.tcp('GPMDP'), 5672, {
       name: os.hostname(),
       txtRecord: {
         API_VERSION,
       },
     });
+
     ad.start();
+
     server.broadcast = (channel, data) => {
       server.clients.forEach((client) => {
         client.channel(channel, data);
@@ -98,12 +95,15 @@ const enableAPI = () => {
         ws.channel('lyrics', PlaybackAPI.currentSongLyrics(true));
       }
     });
-  } else {
+  });
+
+  server.on('error', () => {
     Emitter.sendToWindowsOfName('main', 'error', {
       title: 'Could not start Playback API',
       message: 'The playback API attempted (and failed) to start on port 5672.  Another application is probably using this port',  // eslint-disable-line
     });
-  }
+    server = null;
+  });
 };
 
 Emitter.on('playbackapi:toggle', (event, state) => {
