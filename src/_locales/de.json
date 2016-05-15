@@ -1,6 +1,6 @@
 {
-  "audio-device-communications": "Standard Audiogeräte",
-  "audio-device-default": "Standardeinstellung",
+  "audio-device-communications": "Standardkommunikationsgerät",
+  "audio-device-default": "Standardgerät",
   "audio-device-unknown": "Unbekanntes Gerät",
 
   "button-test-ok": "OK",
@@ -43,12 +43,12 @@
   "modal-confirmTray-title": "Ein kurzer Hinweis",
   "modal-confirmTray-content": "Das Hauptfenster zu schließen (was du gerade versucht hast) wird den Player in den Infobereich minimieren. Um dieses Verhalten zu ändern gehe in die \"Desktop-Einstellungen\".",
   "modal-confirmUpdate-title": "Aktualisierung verfügbar",
-  "modal-confirmUpdate-content": "Woo hoo, es sieht so aus, als gäbe es eine Aktualisierung für Google Play Music Desktop Player.  Diese Aktualisierung bringt neue Extras, Fehlerbehebungen und Weiteres.  Für das beste Erlebnis empfehlen wir so schnell wie möglich zu aktualisieren. <br/>Wir hoffen dir gefällt diese Aktualisierung!",
+  "modal-confirmUpdate-content": "Woo hoo, es sieht so aus, als gäbe es eine Aktualisierung für Google Play Music Desktop Player.  Diese Aktualisierung bringt neue Extras, Fehlerbehebungen und Weiteres.  Für das beste Erlebnis empfehlen wir so schnell wie möglich zu aktualisieren. <br/>Wir hoffen, dir gefällt diese Aktualisierung!",
   "modal-confirmUninstall-title": "Hier ist das Problem...",
   "modal-confirmUninstall-content": "Wir haben gerade herausgefunden, dass noch eine alte Version von GPMDP installiert ist.  Wenn du gerade aktualisiert hast, ist es normal.  Wir versuchen nun die alte Version zu löschen.  Dies \"könnte\" Administrationsrechte benötigen. Bitte gib uns diese, damit wir aufräumen können.",
   "modal-goToURL-title": "Gib die Google Play Music URL um dort hin zu gehen:",
   "modal-welcome-title": "Willkommen zur Version",
-  "modal-welcome-content": "Wir hoffen dir gefällt diese Aktualisierung!",
+  "modal-welcome-content": "Wir hoffen, dir gefällt diese Aktualisierung!",
 
   "playback-label-next-track": "Nächster Titel",
   "playback-label-play-pause": "Abspielen / Pausieren",
@@ -60,20 +60,20 @@
   "playback-label-volume-up": "Lauter",
 
   "settings-option-custom-theme": "Eigenes Farbschema",
-  "settings-option-custom-theme-choose-color": "Wähle deinen Farbakzent",
+  "settings-option-custom-theme-choose-color": "Wähle deine Akzentfarbe",
   "settings-option-custom-theme-choose-custom": "Oder wähle eine",
-  "settings-option-custom-theme-custom-color": "Eigene Farbe",
+  "settings-option-custom-theme-custom-color": "eigene Farbe",
   "settings-option-custom-theme-dark": "Dunkel",
   "settings-option-custom-theme-light": "Hell",
 
   "settings-option-enable-api": "Aktiviere die Playback API",
   "settings-option-enable-api-details": "Dies erlaubt es anderen Applikationen mit GPMDP zu interagieren",
-  "settings-option-enable-system-borders": "Benutze Fensterumrandung des Systems",
+  "settings-option-enable-system-borders": "Benutze Fensterrahmenthema des Systems",
   "settings-option-enable-system-borders-details": "Erfordert einen Neustart",
   "settings-option-enable-voice": "Aktiviere Sprachsteuerung",
   "settings-option-enable-voice-details": "Sprachsteuerung für GPMDP, dies ist experimentell",
 
-  "settings-option-hotkey-explanation": "Die grundlegenden Mediatasten werden dennoch funktionieren.  Diese Einstellungen kommen zu den Standardeinstellungen hinzu.",
+  "settings-option-hotkey-explanation": "Die grundlegenden Medientasten werden dennoch funktionieren.  Diese Einstellungen kommen zu den Standardeinstellungen hinzu.",
   "settings-option-hotkey-explanation-2": "Zum Zurücksetzen der Tastenkombination benutze die <i>\"Escape\"</i>-Taste.",
 
   "settings-option-min-to-tray": "In den Infobereich minimieren",
