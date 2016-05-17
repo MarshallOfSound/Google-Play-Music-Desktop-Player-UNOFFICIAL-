@@ -164,6 +164,11 @@ class PlaybackAPI {
     this._ev[what].push(fn);
   }
 
+  unbind(what, fn) {
+    this._ev[what] = this._ev[what] || [];
+    this._ev[what] = this._ev[what].filter((testFn) => fn !== testFn);
+  }
+
   _fire(what, arg) {
     this._ev[what] = this._ev[what] || [];
     this._ev[what].forEach((fn) => {

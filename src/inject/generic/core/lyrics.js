@@ -8,7 +8,8 @@ window.addEventListener('load', () => {
   let noLyricsTimer;
   let jumpDetect;
 
-  remote.getGlobal('PlaybackAPI').on('change:lyrics', (lyrics) => {
+  // Handle new lyrics strings
+  const lyricsHandler = (lyrics) => {
     if (!lyrics) {
       $('#lyrics').html('<h1><span is="translation-key">lyrics-loading-message</span></h1>');
       $('#lyrics p').stop();
@@ -22,13 +23,13 @@ window.addEventListener('load', () => {
       $('#lyrics').html(`<p>${lyricsHTML}</p>`);
       animate = true;
     }
-  });
-
-  remote.getGlobal('PlaybackAPI').on('change:state', (isPlaying) => {
+  };
+  // Handle playing and pausing
+  const stateHandler = (isPlaying) => {
     if (!isPlaying) return $('#lyrics p').stop() && setTimeout(() => (animate = true), 10);
-  });
-
-  remote.getGlobal('PlaybackAPI').on('change:time', (timeObj) => {
+  };
+  // Handle time progression of a song
+  const timeHandler = (timeObj) => {
     let jumped = false;
     if (timeObj.current < jumpDetect || timeObj.current - jumpDetect > 1000) {
       animate = true;
@@ -50,6 +51,16 @@ window.addEventListener('load', () => {
       }, timeObj.total - timeObj.current - actualWaitTime - waitTime, 'linear');
     }, actualWaitTime);
     animate = false;
+  };
+
+  remote.getGlobal('PlaybackAPI').on('change:lyrics', lyricsHandler);
+  remote.getGlobal('PlaybackAPI').on('change:state', stateHandler);
+  remote.getGlobal('PlaybackAPI').on('change:time', timeHandler);
+
+  window.addEventListener('beforeunload', () => {
+    remote.getGlobal('PlaybackAPI').unbind('change:lyrics', lyricsHandler);
+    remote.getGlobal('PlaybackAPI').unbind('change:state', stateHandler);
+    remote.getGlobal('PlaybackAPI').unbind('change:time', timeHandler);
   });
 
   window.addEventListener('resize', () => { animate = true; });
