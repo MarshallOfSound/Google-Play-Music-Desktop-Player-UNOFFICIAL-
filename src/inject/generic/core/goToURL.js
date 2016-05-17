@@ -1,4 +1,20 @@
+import { remote } from 'electron';
+
 const parseURL = (url) => {
+  if (url === 'DEV_MODE') {
+    const ok = confirm('You have instructed GPMDP to start in Dev Mode the next ' + // eslint-disable-line
+            'time it launches.  Please be careful and only continue if you know ' +
+            'what you are doing or have been told what to do by a project maintainer.');
+    if (!ok) return;
+    Emitter.fire('settings:set', {
+      key: 'START_IN_DEV_MODE',
+      value: true,
+    });
+    // Give Settings time to flush to the FS
+    setTimeout(() => {
+      remote.app.quit();
+    }, 500);
+  }
   if (!/https:\/\/play\.google\.com\/music\/listen/g.test(url)) return;
   document.querySelector('webview').executeJavaScript(`window.location = "${url}"`);
 };
