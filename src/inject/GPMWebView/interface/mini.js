@@ -11,6 +11,11 @@ window.wait(() => {
     document.body.setAttribute('controls', 'controls');
   }
 
+  if (Settings.get('miniReplaceWithThumbs', false)) {
+    const player = document.querySelector('#player');
+    player.setAttribute('thumbs', 'thumbs');
+  }
+
   window.GPM.mini.on('enable', () => {
     Emitter.fire('mini', { state: true });
 
@@ -64,8 +69,18 @@ Emitter.on('miniAlwaysShowSongInfo', (event, state) => {
     document.body.removeAttribute('controls');
   }
 });
+
 Emitter.on('miniAlwaysOnTop', (event, state) => {
   if (mini) {
     remote.getCurrentWindow().setAlwaysOnTop(state.state);
+  }
+});
+
+Emitter.on('miniReplaceWithThumbs', (event, state) => {
+  const player = document.querySelector('#player');
+  if (state.state) {
+    player.setAttribute('thumbs', 'thumbs');
+  } else {
+    player.removeAttribute('thumbs');
   }
 });

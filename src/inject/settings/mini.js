@@ -23,3 +23,16 @@ if (Settings.get('miniAlwaysShowSongInfo', false)) {
 } else {
   $('#mini-always-show-song-info').removeAttr('checked');
 }
+
+$('#mini-replace-with-thumbs').change((e) => {
+  Emitter.fire('settings:set', {
+    key: 'miniReplaceWithThumbs',
+    value: $(e.currentTarget).is(':checked'),
+  });
+});
+
+if (Settings.get('miniReplaceWithThumbs', false)) {
+  $('#mini-replace-with-thumbs').attr('checked', 'checked');
+} else {
+  $('#mini-replace-with-thumbs').removeAttr('checked');
+}

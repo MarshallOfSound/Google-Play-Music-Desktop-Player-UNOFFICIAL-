@@ -82,6 +82,7 @@
 
   "settings-option-mini-always-show": "Always show song information",
   "settings-option-mini-ontop": "Always on top",
+  "settings-option-mini-replace-with-thumbs": "Replace shuffle/repeat buttons with thumbs up/down",
 
   "title-color-picker": "Color Picker",
   "title-settings": "Settings",
