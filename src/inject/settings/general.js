@@ -8,6 +8,19 @@ if (Settings.get('playbackAPI', false)) {
   $('#playback-api').removeAttr('checked');
 }
 
+$('#json-api').change((e) => {
+  Emitter.fire('settings:set', {
+    key: 'enableJSON_API',
+    value: $(e.currentTarget).is(':checked'),
+  });
+});
+
+if (Settings.get('enableJSON_API', false)) {
+  $('#json-api').attr('checked', true);
+} else {
+  $('#json-api').removeAttr('checked');
+}
+
 $('#voice-controls').change((e) => {
   Emitter.fire('settings:set', {
     key: 'speechRecognition',

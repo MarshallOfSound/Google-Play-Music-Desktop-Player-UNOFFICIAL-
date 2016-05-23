@@ -67,6 +67,7 @@
   "settings-option-custom-theme-light": "Hell",
 
   "settings-option-enable-api": "Aktiviere die Playback API",
+  "settings-option-enable-api-json": "Aktiviere die JSON API",
   "settings-option-enable-api-details": "Dies erlaubt es anderen Applikationen mit GPMDP zu interagieren",
   "settings-option-enable-system-borders": "Benutze Fensterrahmenthema des Systems",
   "settings-option-enable-system-borders-details": "Erfordert einen Neustart",

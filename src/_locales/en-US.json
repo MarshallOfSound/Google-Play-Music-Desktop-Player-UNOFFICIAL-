@@ -67,6 +67,7 @@
   "settings-option-custom-theme-light": "Light",
 
   "settings-option-enable-api": "Enable Playback API",
+  "settings-option-enable-api-json": "Enable JSON API",
   "settings-option-enable-api-details": "This allows other applications to interface with GPMDP",
   "settings-option-enable-system-borders": "Use system window borders",
   "settings-option-enable-system-borders-details": "Requires restart",

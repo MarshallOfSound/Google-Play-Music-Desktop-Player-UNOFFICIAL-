@@ -69,7 +69,7 @@ class PlaybackAPI {
   }
 
   _save() {
-    if (Settings.get('enableJSONApi', true)) {
+    if (Settings.get('enableJSON_API', true)) {
       fs.writeFileSync(this.PATH, JSON.stringify(this.data, null, 4));
     }
   }
