@@ -22,6 +22,10 @@ global.Settings = {
     return def;
   },
 };
+// Moch the required WindowManager API
+global.WindowManager = {
+  getAll: () => [],
+};
 global.Emitter = new Emitter();
 global.PlaybackAPI = new PlaybackAPI();
 global.API_PORT = 4202; // Travis has something running on 5672

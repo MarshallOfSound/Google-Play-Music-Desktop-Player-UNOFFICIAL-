@@ -1,5 +1,3 @@
-import { remote } from 'electron';
-
 window.addEventListener('load', () => {
   if (!window.$) return;
   if (!$('#lyrics').length) return;
@@ -53,15 +51,9 @@ window.addEventListener('load', () => {
     animate = false;
   };
 
-  remote.getGlobal('PlaybackAPI').on('change:lyrics', lyricsHandler);
-  remote.getGlobal('PlaybackAPI').on('change:state', stateHandler);
-  remote.getGlobal('PlaybackAPI').on('change:time', timeHandler);
-
-  window.addEventListener('beforeunload', () => {
-    remote.getGlobal('PlaybackAPI').unbind('change:lyrics', lyricsHandler);
-    remote.getGlobal('PlaybackAPI').unbind('change:state', stateHandler);
-    remote.getGlobal('PlaybackAPI').unbind('change:time', timeHandler);
-  });
+  Emitter.on('PlaybackAPI:change:lyrics', (e, arg) => lyricsHandler(arg));
+  Emitter.on('PlaybackAPI:change:state', (e, arg) => stateHandler(arg));
+  Emitter.on('PlaybackAPI:change:time', (e, arg) => timeHandler(arg));
 
   window.addEventListener('resize', () => { animate = true; });
   $('#lyrics_back').click(() => $('#lyrics_back').removeClass('vis'));

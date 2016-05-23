@@ -174,6 +174,7 @@ class PlaybackAPI {
     this._ev[what].forEach((fn) => {
       fn(arg);
     });
+    Emitter.sendToWindowsOfName('main', `PlaybackAPI:${what}`, arg);
   }
 }
 

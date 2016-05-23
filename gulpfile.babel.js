@@ -83,10 +83,12 @@ const winstallerConfig = {
   remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
 };
 
-const cleanGlob = (glob) =>
-  () =>
-    gulp.src(glob, { read: false })
+const cleanGlob = (glob) => {
+  return () => {
+    return gulp.src(glob, { read: false })
       .pipe(clean({ force: true }));
+  };
+};
 
 gulp.task('clean', cleanGlob(['./build', './dist']));
 gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
