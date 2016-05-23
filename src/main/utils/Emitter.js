@@ -16,7 +16,7 @@ class Emitter {
     });
   }
 
-  _send(window, event, details) {
+  _send(window, event, details = {}) {
     if (window.webContents.isLoading()) {
       let once = false;
       window.webContents.on('did-stop-loading', () => {
@@ -26,7 +26,7 @@ class Emitter {
         }
       });
     } else {
-      window.webContents.send(event, details || {});
+      window.webContents.send(event, details);
     }
   }
 
