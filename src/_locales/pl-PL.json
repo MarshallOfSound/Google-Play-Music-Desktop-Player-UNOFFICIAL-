@@ -67,6 +67,7 @@
   "settings-option-custom-theme-light": "Jasny",
 
   "settings-option-enable-api": "Włącz API odtwarzania",
+  "settings-option-enable-api-json": "Włącz API JSON",
   "settings-option-enable-api-details": "To pozwala innym aplikacjom współpracować z GPMDP",
   "settings-option-enable-system-borders": "Użyj systemowych ramek okna aplikacji",
   "settings-option-enable-system-borders-details": "Wymaga ponownego uruchomienia",
