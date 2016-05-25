@@ -44,6 +44,7 @@ const enableAPI = () => {
     });
 
     ad.start();
+    ad.on('error', () => {});
 
     server.broadcast = (channel, data) => {
       server.clients.forEach((client) => {
