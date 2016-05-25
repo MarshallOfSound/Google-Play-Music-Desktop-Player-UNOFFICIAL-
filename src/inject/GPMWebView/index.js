@@ -23,7 +23,7 @@ window.open = (url) => remote.shell.openExternal(url);
 
 require('./playback');
 require('./interface');
-if (global.DEV_MODE) {
+if (remote.getGlobal('DEV_MODE')) {
   require('electron-chromecast');
 }
 
