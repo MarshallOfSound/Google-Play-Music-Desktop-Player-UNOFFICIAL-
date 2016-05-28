@@ -69,6 +69,12 @@ const enableAPI = () => {
         try {
           const command = JSON.parse(data);
           if (command.namespace && command.method) {
+            if (command.namespace === 'connect' && command.method === 'connect' && command.arguments.length === 1) {
+              Emitter.sendToGooglePlayMusic('register_controller', {
+                name: command.arguments[0],
+              });
+              return;
+            }
             const args = command.arguments || [];
             if (!Array.isArray(args)) {
               throw Error('Bad arguments');

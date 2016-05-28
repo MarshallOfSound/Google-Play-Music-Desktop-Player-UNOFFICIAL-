@@ -132,6 +132,20 @@ Data received in the `repeat` channel will have a payload in the format
 
 ## Controlling the application
 
+### Be Polite
+
+If your app is going to be using the controller detailed below you should inform the user that you are
+now controlling the app.  This is done by sending a message to websocket with a stringified JSON object
+in the form.
+
+```js
+{
+  "namespace": "connect",
+  "method": "connect",
+  "arguments": ["Name of Device / App"]
+}
+```
+
 ### All Powerful Controller
 
 You can use **ANY** method from the `gmusic-utils` library --> https://github.com/gmusic-utils/gmusic.js
