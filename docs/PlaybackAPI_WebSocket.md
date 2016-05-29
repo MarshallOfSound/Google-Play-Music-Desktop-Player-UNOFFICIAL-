@@ -189,6 +189,7 @@ All you need to do is send a message to the websocket with a stringified JSON ob
 
  GPMDP have also *"extended"* the standard `gmusic.js` library with some extra namespaces.
 
- | Namespace | Method | Arguments |
- |-----------|--------|-----------|
- | `playlists` | `play` | A single argument which must be a `Playlist` object returned from the `playlist` namespace. |
+
+| Namespace | Method | Arguments |
+|-----------|--------|-----------|
+| `playlists` | `play` | A single argument which must be a `Playlist` object returned from the `playlist` namespace. |
