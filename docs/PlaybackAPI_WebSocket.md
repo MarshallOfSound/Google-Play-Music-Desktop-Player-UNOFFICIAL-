@@ -192,4 +192,5 @@ All you need to do is send a message to the websocket with a stringified JSON ob
 
 | Namespace | Method | Arguments |
 |-----------|--------|-----------|
-| `playlists` | `play` | A single argument which must be a `Playlist` object returned from the `playlist` namespace. |
+| `playlists` | `play` | One Argument<br />- A `Playlist` object returned from the `playlist` namespace. |
+| `playlists` | `playWithTrack` | Two arguments<br />-A `Playlist` object returned from the `playlist` namespace.<br />-A `Track` object from the `tracks` property of the supplied `playlist` |

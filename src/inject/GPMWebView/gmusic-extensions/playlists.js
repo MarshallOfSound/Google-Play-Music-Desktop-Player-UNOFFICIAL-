@@ -58,15 +58,26 @@ class GMusicPlaylistController {
       hook: function() { // eslint-disable-line
         that.emitter = this;
       },
-      play: function(playlist) { // eslint-disable-line
+      _navigate: function(playlist, cb) { // eslint-disable-line
         window.location.hash = `/pl/${escape(playlist.id)}`;
         const waitForPage = setInterval(() => {
           const info = document.querySelector('.material-container-details');
           if (info && info.querySelector('.title').innerText === playlist.name) {
             clearInterval(waitForPage);
-            info.querySelector('[data-id="play"]').click();
+            if (cb && typeof cb === 'function') cb();
           }
         }, 10);
+      },
+      play: function(playlist, cb) { // eslint-disable-line
+        this.playlists._navigate(playlist, () => {
+          document.querySelector('.material-container-details [data-id="play"]').click();
+        });
+      },
+      playWithTrack: function(playlist, track) { // eslint-disable-line
+        this.playlists._navigate(playlist, () => {
+          const songPlayButton = document.querySelector(`.song-row[data-id="${track.id}"] [data-id="play"]`);
+          if (songPlayButton) songPlayButton.click();
+        });
       },
     };
   }
