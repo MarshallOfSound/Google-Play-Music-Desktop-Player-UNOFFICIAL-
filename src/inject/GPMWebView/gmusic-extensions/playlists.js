@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 class Track {
   constructor(trackArr) {
     this.id = trackArr[0];
@@ -24,20 +22,14 @@ class Playlist {
 class GMusicPlaylistController {
   constructor() {
     this.emitter = null;
-    this._playlists = _.cloneDeep(window.APPCONTEXT.Go.h[0].Hi);
+    this._playlists = window.APPCONTEXT.Go.h[0].Hi;
     this._watchPlaylistObject();
   }
 
   _watchPlaylistObject() {
-    setInterval(() => {
-      const current = window.APPCONTEXT.Go.h[0].Hi;
-      if (!_.isEqual(this._playlists, current)) {
-        this._playlists = _.cloneDeep(current);
-        if (this.emitter) {
-          this.emitter.emit('change:playlists', this.getAll());
-        }
-      }
-    }, 1000);
+    window.APPCONTEXT.Go.h[0].addEventListener('E', () => {
+      this.emitter.emit('change:playlists', this.getAll());
+    });
   }
 
   getAll() {

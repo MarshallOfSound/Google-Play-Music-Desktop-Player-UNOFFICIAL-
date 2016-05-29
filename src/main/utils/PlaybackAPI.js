@@ -42,9 +42,9 @@ class PlaybackAPI {
     Emitter.on('change:repeat', _.throttle((event, mode) => {
       this._setRepeat(mode);
     }), 20);
-    Emitter.on('change:playlists', (event, playlists) => {
+    Emitter.on('change:playlists', _.throttle((event, playlists) => {
       this._setPlaylists(playlists);
-    });
+    }), 20);
   }
 
   reset() {
