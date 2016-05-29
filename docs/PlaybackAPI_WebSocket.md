@@ -130,7 +130,46 @@ Data received in the `repeat` channel will have a payload in the format
 
 *Possible repeat values can be found [here](https://github.com/gmusic-utils/gmusic.js#playbackgetrepeat)*
 
+
+### Playlists *(Beta)*
+
+Data recieved in the `playlists` channel will have a payload in the format
+
+```js
+"payload": [ // 0 -> Many playlists
+  {
+    "id": String,      // You can assume this be be unique
+    "name": String,    // The user defined name of the playlist
+    "tracks": [ // 0 -> Many tracks
+      {
+        "id": String,  // This ID can be dynamic (you have been warned)
+        "title": String,
+        "artist": String,
+        "album": String,
+        "albumArt": String,
+        "duration": Number, // Duration of song in milliseconds
+        "playCount": Number // Number of times the user has played this song
+      }
+    ]
+  }
+]
+```
+
 ## Controlling the application
+
+### Be Polite
+
+If your app is going to be using the controller detailed below you should inform the user that you are
+now controlling the app.  This is done by sending a message to websocket with a stringified JSON object
+in the form.
+
+```js
+{
+  "namespace": "connect",
+  "method": "connect",
+  "arguments": ["Name of Device / App"]
+}
+```
 
 ### All Powerful Controller
 
@@ -145,5 +184,13 @@ All you need to do is send a message to the websocket with a stringified JSON ob
   "arguments": [10000]
 }
 ```
- Detailed object requirements
-| Attribute |
+
+ #### Additional commands
+
+ GPMDP have also *"extended"* the standard `gmusic.js` library with some extra namespaces.
+
+
+| Namespace | Method | Arguments |
+|-----------|--------|-----------|
+| `playlists` | `play` | One Argument<br />- A `Playlist` object returned from the `playlist` namespace. |
+| `playlists` | `playWithTrack` | Two arguments<br />-A `Playlist` object returned from the `playlist` namespace.<br />-A `Track` object from the `tracks` property of the supplied `playlist` |

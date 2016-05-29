@@ -2,12 +2,12 @@ import fs from 'fs';
 import mdns from 'mdns';
 import os from 'os';
 import path from 'path';
-import { Server as WebSocketServer } from 'ws';
+import WebSocket, { Server as WebSocketServer } from 'ws';
 
 let server;
 let oldTime = {};
 
-const changeEvents = ['song', 'state', 'rating', 'lyrics', 'shuffle', 'repeat'];
+const changeEvents = ['song', 'state', 'rating', 'lyrics', 'shuffle', 'repeat', 'playlists'];
 const API_VERSION = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/../../../../package.json`))).apiVersion;
 
 let ad;
@@ -44,9 +44,11 @@ const enableAPI = () => {
     });
 
     ad.start();
+    ad.on('error', () => {});
 
     server.broadcast = (channel, data) => {
       server.clients.forEach((client) => {
+        if (client.readyState !== WebSocket.OPEN) return;
         client.channel(channel, data);
       });
     };
@@ -68,6 +70,12 @@ const enableAPI = () => {
         try {
           const command = JSON.parse(data);
           if (command.namespace && command.method) {
+            if (command.namespace === 'connect' && command.method === 'connect' && command.arguments.length === 1) {
+              Emitter.sendToGooglePlayMusic('register_controller', {
+                name: command.arguments[0],
+              });
+              return;
+            }
             const args = command.arguments || [];
             if (!Array.isArray(args)) {
               throw Error('Bad arguments');
@@ -89,6 +97,7 @@ const enableAPI = () => {
       ws.channel('playState', PlaybackAPI.isPlaying());
       ws.channel('shuffle', PlaybackAPI.currentShuffle());
       ws.channel('repeat', PlaybackAPI.currentRepeat());
+      ws.channel('playlists', PlaybackAPI.getPlaylists());
       if (PlaybackAPI.currentSong(true)) {
         ws.channel('song', PlaybackAPI.currentSong(true));
         ws.channel('time', PlaybackAPI.currentTime());

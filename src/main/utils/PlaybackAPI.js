@@ -42,6 +42,9 @@ class PlaybackAPI {
     Emitter.on('change:repeat', _.throttle((event, mode) => {
       this._setRepeat(mode);
     }), 20);
+    Emitter.on('change:playlists', _.throttle((event, playlists) => {
+      this._setPlaylists(playlists);
+    }), 20);
   }
 
   reset() {
@@ -64,6 +67,9 @@ class PlaybackAPI {
       songLyrics: null,
       shuffle: 'NO_SHUFFLE',
       repeat: 'NO_REPEAT',
+    };
+    this._private_data = {
+      playlists: [],
     };
     this._save();
   }
@@ -93,6 +99,11 @@ class PlaybackAPI {
     this._fire('change:song', this.data.song);
     this._fire('change:lyrics', this.data.songLyrics);
     this._save();
+  }
+
+  _setPlaylists(playlists) {
+    this._private_data.playlists = playlists;
+    this._fire('change:playlists', this._private_data.playlists);
   }
 
   _setRating(rating) {
@@ -157,6 +168,10 @@ class PlaybackAPI {
 
   currentTime() {
     return this.data.time;
+  }
+
+  getPlaylists() {
+    return this._private_data.playlists;
   }
 
   on(what, fn) {
