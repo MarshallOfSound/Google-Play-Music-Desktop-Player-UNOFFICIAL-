@@ -10,6 +10,9 @@ window.wait(() => {
   if (Settings.get('miniAlwaysShowSongInfo', false)) {
     document.body.setAttribute('controls', 'controls');
   }
+  if (Settings.get('miniUseScrollVolume', false)) {
+    window.GPM.mini.setScrollVolume(true);
+  }
 
   window.GPM.mini.on('enable', () => {
     Emitter.fire('mini', { state: true });
@@ -68,4 +71,8 @@ Emitter.on('miniAlwaysOnTop', (event, state) => {
   if (mini) {
     remote.getCurrentWindow().setAlwaysOnTop(state.state);
   }
+});
+Emitter.on('miniUseScrollVolume', (event, state) => {
+  console.log(state.state); // eslint-disable-line
+  window.GPM.mini.setScrollVolume(state.state);
 });
