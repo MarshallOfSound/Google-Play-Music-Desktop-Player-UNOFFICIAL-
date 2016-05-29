@@ -2,7 +2,7 @@ import fs from 'fs';
 import mdns from 'mdns';
 import os from 'os';
 import path from 'path';
-import { Server as WebSocketServer } from 'ws';
+import WebSocket, { Server as WebSocketServer } from 'ws';
 
 let server;
 let oldTime = {};
@@ -48,6 +48,7 @@ const enableAPI = () => {
 
     server.broadcast = (channel, data) => {
       server.clients.forEach((client) => {
+        if (client.readyState !== WebSocket.OPEN) return;
         client.channel(channel, data);
       });
     };
