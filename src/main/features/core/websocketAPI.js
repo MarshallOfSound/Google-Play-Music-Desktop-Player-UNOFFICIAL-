@@ -7,7 +7,7 @@ import WebSocket, { Server as WebSocketServer } from 'ws';
 let server;
 let oldTime = {};
 
-const changeEvents = ['song', 'state', 'rating', 'lyrics', 'shuffle', 'repeat'];
+const changeEvents = ['song', 'state', 'rating', 'lyrics', 'shuffle', 'repeat', 'playlists'];
 const API_VERSION = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/../../../../package.json`))).apiVersion;
 
 let ad;
@@ -97,6 +97,7 @@ const enableAPI = () => {
       ws.channel('playState', PlaybackAPI.isPlaying());
       ws.channel('shuffle', PlaybackAPI.currentShuffle());
       ws.channel('repeat', PlaybackAPI.currentRepeat());
+      ws.channel('playlists', PlaybackAPI.getPlaylists());
       if (PlaybackAPI.currentSong(true)) {
         ws.channel('song', PlaybackAPI.currentSong(true));
         ws.channel('time', PlaybackAPI.currentTime());

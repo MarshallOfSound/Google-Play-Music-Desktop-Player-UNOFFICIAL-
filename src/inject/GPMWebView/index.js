@@ -33,8 +33,10 @@ const waitForExternal = setInterval(() => {
   if (document.querySelector('#material-vslider')) {
     clearInterval(waitForExternal);
     require('../../assets/external.js');
+    require('./gmusic-extensions');
 
     window.GPM = new window.GMusic(window);
+    window.GPM.playlists.hook();
     window.GPMTheme = new window.GMusicTheme();
 
     Emitter.ready = true;
