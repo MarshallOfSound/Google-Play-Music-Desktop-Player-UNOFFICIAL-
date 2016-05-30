@@ -1,17 +1,17 @@
 window.addEventListener('load', () => {
   if (!window.$) return;
   if (!$('#lyrics').length) return;
-  let animate = false;
-  let animationTimer;
+  // let animate = false;
+  // let animationTimer;
   let noLyricsTimer;
-  let jumpDetect;
+  // let jumpDetect;
 
   // Handle new lyrics strings
   const lyricsHandler = (lyrics) => {
     if (!lyrics) {
       $('#lyrics').html('<h1><span is="translation-key">lyrics-loading-message</span></h1>');
-      $('#lyrics p').stop();
-      animate = false;
+      // $('#lyrics p').stop();
+      // animate = false;
       noLyricsTimer = setTimeout(() => {
         $('#lyrics').html('<h1><span is="translation-key">lyrics-failed-message</span></h1>');
       }, 4000);
@@ -19,15 +19,16 @@ window.addEventListener('load', () => {
       clearTimeout(noLyricsTimer);
       const lyricsHTML = lyrics.replace(/\n/g, '<br />');
       $('#lyrics').html(`<p>${lyricsHTML}</p>`);
-      animate = true;
+      // animate = true;
     }
   };
   // Handle playing and pausing
-  const stateHandler = (isPlaying) => {
+  /* const stateHandler = (isPlaying) => {
     if (!isPlaying) return $('#lyrics p').stop() && setTimeout(() => (animate = true), 10);
-  };
+  }; */
   // Handle time progression of a song
-  const timeHandler = (timeObj) => {
+  /*
+    const timeHandler = (timeObj) => {
     let jumped = false;
     if (timeObj.current < jumpDetect || timeObj.current - jumpDetect > 1000) {
       animate = true;
@@ -49,13 +50,13 @@ window.addEventListener('load', () => {
       }, timeObj.total - timeObj.current - actualWaitTime - waitTime, 'linear');
     }, actualWaitTime);
     animate = false;
-  };
+  };*/
 
   Emitter.on('PlaybackAPI:change:lyrics', (e, arg) => lyricsHandler(arg));
-  Emitter.on('PlaybackAPI:change:state', (e, arg) => stateHandler(arg));
-  Emitter.on('PlaybackAPI:change:time', (e, arg) => timeHandler(arg));
+  // Emitter.on('PlaybackAPI:change:state', (e, arg) => stateHandler(arg));
+  // Emitter.on('PlaybackAPI:change:time', (e, arg) => timeHandler(arg));
 
-  window.addEventListener('resize', () => { animate = true; });
+  // window.addEventListener('resize', () => { animate = true; });
   $('#lyrics_back').click(() => $('#lyrics_back').removeClass('vis'));
 });
 
