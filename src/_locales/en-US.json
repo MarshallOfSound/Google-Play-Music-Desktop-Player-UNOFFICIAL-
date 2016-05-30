@@ -83,6 +83,7 @@
 
   "settings-option-mini-always-show": "Always show song information",
   "settings-option-mini-ontop": "Always on top",
+  "settings-option-mini-use-scroll-volume": "Use the scroll wheel to adjust volume",
 
   "title-color-picker": "Color Picker",
   "title-settings": "Settings",
