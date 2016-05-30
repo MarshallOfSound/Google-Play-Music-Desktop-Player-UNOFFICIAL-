@@ -22,12 +22,13 @@ class Playlist {
 class GMusicPlaylistController {
   constructor() {
     this.emitter = null;
-    this._playlists = window.APPCONTEXT.Go.h[0].Hi;
+    this._playlists = Object.assign({}, window.APPCONTEXT.Go.h[0].Hi);
     this._watchPlaylistObject();
   }
 
   _watchPlaylistObject() {
     window.APPCONTEXT.Go.h[0].addEventListener('E', () => {
+      this._playlists = Object.assign({}, this._playlists, window.APPCONTEXT.Go.h[0].Hi);
       this.emitter.emit('change:playlists', this.getAll());
     });
   }
