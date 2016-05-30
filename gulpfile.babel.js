@@ -19,6 +19,7 @@ import { spawn, exec } from 'child_process';
 const paths = {
   internalScripts: ['src/**/*.js'],
   externalScripts: ['node_modules/gmusic.js/dist/gmusic.min.js',
+                    'node_modules/gmusic-ui.js/dist/gmusic-ui.min.js',
                     'node_modules/gmusic-theme.js/dist/gmusic-theme.min.js',
                     'node_modules/gmusic-mini-player.js/dist/gmusic-mini-player.min.js'],
   utilityScripts: ['node_modules/jquery/dist/jquery.min.js',
