@@ -73,6 +73,5 @@ Emitter.on('miniAlwaysOnTop', (event, state) => {
   }
 });
 Emitter.on('miniUseScrollVolume', (event, state) => {
-  console.log(state.state); // eslint-disable-line
   window.GPM.mini.setScrollVolume(state.state);
 });
