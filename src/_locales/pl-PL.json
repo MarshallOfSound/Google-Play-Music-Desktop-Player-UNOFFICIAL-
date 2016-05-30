@@ -26,7 +26,7 @@
 
   "lastfm-login-authorized": "Zalogowany",
   "lastfm-login-authorizing": "W trakcie logowania",
-  "lastfm-login-button-text": "Zaloguj się do Last.FM",  
+  "lastfm-login-button-text": "Zaloguj się do Last.FM",
   "lastfm-login-error": "Wygląda na to, że przerwałeś proces logowania - jeśli to pomyłka, spróbuj jeszcze raz",
   "lastfm-login-not-authorized": "Nie zalogowany",
   "lastfm-logout-button-text": "Wyloguj się z Last.FM",
@@ -82,6 +82,7 @@
 
   "settings-option-mini-always-show": "Zawsze pokazuj informacje o utworze",
   "settings-option-mini-ontop": "Zawsze na wierzchu",
+  "settings-option-mini-use-scroll-volume": "",
 
   "title-color-picker": "Wybierz kolor",
   "title-settings": "Ustawienia",
