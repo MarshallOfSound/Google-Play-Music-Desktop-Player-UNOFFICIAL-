@@ -32,7 +32,11 @@ if (window.$ && window.$.ajax) {
     const border = `[theme][light] .window-border{border-color:${color}}`;
     const titleBar = `[theme][light] .title-bar{background:${color}}`;
     const header = `[theme][light] .dialog .window-title{background:${color}}`;
-    style.html(border + titleBar + header);
+    const lyricsProgress = `\
+[theme][full] #lyrics_bar{background:${color} !important}\
+[theme][light] #lyrics_progress{background:${color} !important}\
+[theme][full] #lyrics_progress{background:#222326 !important}`; // @darkprimary
+    style.html(border + titleBar + header + lyricsProgress);
     document.body.setAttribute('loaded', 'loaded');
   };
   redrawTheme();
