@@ -42,6 +42,7 @@
 
   "modal-confirmTray-title": "Chcieliśmy tylko uprzedzić",
   "modal-confirmTray-content": "Zamknięcie głównego okna aplikacji (czyli to, co właśnie próbowałeś zrobić) w rzeczywistości zminimalizuje odtwarzacz do systemowego paska narzędzi. Możesz zmienić to ustawienie w oknie Ustawień Aplikacji.",
+  "modal-confirmOpenPort-content": "",
   "modal-confirmUpdate-title": "Dostępna aktualizacja",
   "modal-confirmUpdate-content": "Hurra, wygląda na to, że dostępna jest nowa wersja Google Play Music Desktop Player. Ta aktualizacja powinna przynieść całe mnóstwo nowych funkcji i poprawek. Rekomendujemy zaktualizowanie aplikacji najszybciej jak to możliwe, żeby zapewnić najlepsze wrażenia z korzystania z niej.<br />Mamy nadzieję, że polubisz nową wersję!",
   "modal-confirmUninstall-title": "Jest taka sprawa...",

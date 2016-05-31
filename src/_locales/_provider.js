@@ -25,17 +25,19 @@ const localeLinks = {
 export default class TranslationProvider {
   constructor(customLocale) {
     let locale = eApp.getLocale();
+    const _tPath = path.resolve(`${__dirname}/en-US.json`);
     locale = customLocale || localeLinks[locale] || locale || 'en-US';
     let localePath = path.resolve(`${__dirname}/${locale}.json`);
     if (!fs.existsSync(localePath)) {
-      localePath = path.resolve(`${__dirname}/en-US.json`);
+      localePath = _tPath;
     }
 
+    this._t = JSON.parse(fs.readFileSync(_tPath, 'utf8'));
     this.t = JSON.parse(fs.readFileSync(localePath, 'utf8'));
   }
 
   query(key) {
-    return this.t[key] || TranslationProvider.UNKNOWN;
+    return this.t[key] || this._t[key] || TranslationProvider.UNKNOWN;
   }
 }
 

@@ -1,6 +1,8 @@
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
+import runas from 'runas';
+import { spawnSync } from 'child_process';
 import WebSocket, { Server as WebSocketServer } from 'ws';
 
 let server;
@@ -39,6 +41,28 @@ PlaybackAPI.on('change:time', (timeObj) => {
 });
 
 const enableAPI = () => {
+  let portOpen = true;
+  if (process.platform === 'win32') {
+    const testOutput = spawnSync(
+      'netsh',
+      ['advfirewall', 'firewall', 'show', 'rule', 'name=GPMDP\ PlaybackAPI'] // eslint-disable-line
+    ).stdout.toString().trim();
+    portOpen = testOutput !== 'No rules match the specified criteria.';
+  }
+  if (!portOpen) {
+    Emitter.once('openport:confirm', () => {
+      runas(
+        'netsh',
+        [
+          'advfirewall', 'firewall', 'add', 'rule', 'name=GPMDP\ PlaybackAPI', // eslint-disable-line
+          'dir=in', 'action=allow', 'protocol=TCP', 'localport=5672',
+        ],
+        {
+          admin: true,
+        });
+    });
+    Emitter.sendToWindowsOfName('main', 'openport:request');
+  }
   server = new WebSocketServer({ port: global.API_PORT || process['env'].GPMDP_API_PORT || 5672 }, () => { // eslint-disable-line
     if (ad) {
       ad.stop();
