@@ -9,7 +9,7 @@ environment:
     secure: t4Ka6QT10/i0FMX4cVi4BaNeGKfi76T/iEKZ3PEsnUPrQ2lK6cmlGSA01NfHvUze
   GPMDP_LASTFM_API_SECRET:
     secure: RIfJtcbYwHBG7uGI8TQS9JzO37zPNuyO3yPPayVKb8vVISfxrFXH4rYT9dzmGaAx
-  BONJOUR_SDK_HOME: "C:\Program Files\Bonjour SDK"
+  BONJOUR_SDK_HOME: 'C:\\Program Files\\Bonjour SDK'
 
 branches:
   except:
