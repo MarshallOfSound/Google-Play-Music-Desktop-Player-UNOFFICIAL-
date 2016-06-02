@@ -26,6 +26,10 @@ global.Settings = {
 global.WindowManager = {
   getAll: () => [],
 };
+// Moch the required Logger API
+global.Logger = {
+  error: () => {},
+};
 global.Emitter = new Emitter();
 global.PlaybackAPI = new PlaybackAPI();
 global.API_PORT = 4202; // Travis has something running on 5672
