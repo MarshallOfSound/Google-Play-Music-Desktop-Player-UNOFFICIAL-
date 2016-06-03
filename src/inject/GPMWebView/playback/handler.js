@@ -68,6 +68,9 @@ window.wait(() => {
   window.GPM.on('change:playlists', (playlists) => {
     Emitter.fire('change:playlists', playlists);
   });
+  window.GPM.on('change:queue', (queue) => {
+    Emitter.fire('change:queue', queue);
+  });
 
   Emitter.on('execute:gmusic', (event, cmd) => {
     if (window.GPM && GPM[cmd.namespace] && GPM[cmd.namespace][cmd.method]

@@ -76,7 +76,7 @@
     "eslint-plugin-import": "^1.7.0",
     "gmusic-mini-player.js": "^1.1.0",
     "gmusic-theme.js": "^1.1.5",
-    "gmusic-ui.js": "^1.0.7",
+    "gmusic-ui.js": "^1.1.0",
     "gmusic.js": "^5.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",

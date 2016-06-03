@@ -45,6 +45,9 @@ class PlaybackAPI {
     Emitter.on('change:playlists', _.throttle((event, playlists) => {
       this._setPlaylists(playlists);
     }), 20);
+    Emitter.on('change:queue', _.throttle((event, queue) => {
+      this._setQueue(queue);
+    }), 20);
   }
 
   reset() {
@@ -70,6 +73,7 @@ class PlaybackAPI {
     };
     this._private_data = {
       playlists: [],
+      queue: [],
     };
     this._save();
   }
@@ -104,6 +108,11 @@ class PlaybackAPI {
   _setPlaylists(playlists) {
     this._private_data.playlists = playlists;
     this._fire('change:playlists', this._private_data.playlists);
+  }
+
+  _setQueue(queue) {
+    this._private_data.queue = queue;
+    this._fire('change:queue', this._private_data.queue);
   }
 
   _setRating(rating) {
@@ -172,6 +181,10 @@ class PlaybackAPI {
 
   getPlaylists() {
     return this._private_data.playlists;
+  }
+
+  getQueue() {
+    return this._private_data.queue;
   }
 
   on(what, fn) {

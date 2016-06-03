@@ -18,7 +18,7 @@ try {
   }
 }
 
-const changeEvents = ['song', 'state', 'rating', 'lyrics', 'shuffle', 'repeat', 'playlists'];
+const changeEvents = ['song', 'state', 'rating', 'lyrics', 'shuffle', 'repeat', 'playlists', 'queue'];
 const API_VERSION = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/../../../../package.json`))).apiVersion;
 
 let ad;
@@ -135,6 +135,7 @@ const enableAPI = () => {
       ws.channel('shuffle', PlaybackAPI.currentShuffle());
       ws.channel('repeat', PlaybackAPI.currentRepeat());
       ws.channel('playlists', PlaybackAPI.getPlaylists());
+      ws.channel('queue', PlaybackAPI.getQueue());
       if (PlaybackAPI.currentSong(true)) {
         ws.channel('song', PlaybackAPI.currentSong(true));
         ws.channel('time', PlaybackAPI.currentTime());
