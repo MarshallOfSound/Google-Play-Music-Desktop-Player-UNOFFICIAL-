@@ -19,6 +19,7 @@ import { spawn, exec } from 'child_process';
 const paths = {
   internalScripts: ['src/**/*.js'],
   externalScripts: ['node_modules/gmusic.js/dist/gmusic.min.js',
+                    'node_modules/gmusic-ui.js/dist/gmusic-ui.min.js',
                     'node_modules/gmusic-theme.js/dist/gmusic-theme.min.js',
                     'node_modules/gmusic-mini-player.js/dist/gmusic-mini-player.min.js'],
   utilityScripts: ['node_modules/jquery/dist/jquery.min.js',
@@ -257,9 +258,14 @@ const generateGulpLinuxDistroTask = (prefix, name, arch) => {
       categories: ['AudioVideo', 'Audio'],
     };
 
+    let pkg_arch = 'i386';
+    if (arch === '64') {
+      pkg_arch = (prefix === 'rpm' ? 'x86_64' : 'amd64');
+    }
+
     tool(_.extend({}, defaults, {
       src: `dist/${packageJSON.productName}-linux-${arch === '32' ? 'ia32' : 'x64'}`,
-      arch: arch === '32' ? 'i386' : 'amd64',
+      arch: pkg_arch,
     }), (err) => {
       console.log(`${arch}bit ${prefix} package built`); // eslint-disable-line
       if (err) return done(err);

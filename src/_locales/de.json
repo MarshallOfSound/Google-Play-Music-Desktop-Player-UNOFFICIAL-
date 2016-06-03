@@ -42,6 +42,7 @@
 
   "modal-confirmTray-title": "Ein kurzer Hinweis",
   "modal-confirmTray-content": "Das Hauptfenster zu schließen (was du gerade versucht hast) wird den Player in den Infobereich minimieren. Um dieses Verhalten zu ändern gehe in die \"Desktop-Einstellungen\".",
+  "modal-confirmOpenPort-content": "",
   "modal-confirmUpdate-title": "Aktualisierung verfügbar",
   "modal-confirmUpdate-content": "Woo hoo, es sieht so aus, als gäbe es eine Aktualisierung für Google Play Music Desktop Player.  Diese Aktualisierung bringt neue Extras, Fehlerbehebungen und Weiteres.  Für das beste Erlebnis empfehlen wir so schnell wie möglich zu aktualisieren. <br/>Wir hoffen, dir gefällt diese Aktualisierung!",
   "modal-confirmUninstall-title": "Hier ist das Problem...",
@@ -83,6 +84,7 @@
 
   "settings-option-mini-always-show": "Immer Titelinformationen anzeigen",
   "settings-option-mini-ontop": "Immer oben",
+  "settings-option-mini-use-scroll-volume": "",
 
   "title-color-picker": "Farbauswahl",
   "title-settings": "Einstellungen",

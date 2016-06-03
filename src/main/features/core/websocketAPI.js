@@ -1,11 +1,22 @@
 import fs from 'fs';
-import mdns from 'mdns';
 import os from 'os';
 import path from 'path';
+import runas from 'runas';
+import { spawnSync } from 'child_process';
 import WebSocket, { Server as WebSocketServer } from 'ws';
 
 let server;
 let oldTime = {};
+
+let mdns;
+try {
+  mdns = require('mdns');
+} catch (e) {
+  Logger.error('Failed to load bonjour with error: %j', e);
+  if (process.platform === 'win32') {
+    Emitter.sendToWindowsOfName('main', 'bonjour-install');
+  }
+}
 
 const changeEvents = ['song', 'state', 'rating', 'lyrics', 'shuffle', 'repeat', 'playlists'];
 const API_VERSION = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/../../../../package.json`))).apiVersion;
@@ -30,21 +41,47 @@ PlaybackAPI.on('change:time', (timeObj) => {
 });
 
 const enableAPI = () => {
+  let portOpen = true;
+  if (process.platform === 'win32') {
+    const testOutput = spawnSync(
+      'netsh',
+      ['advfirewall', 'firewall', 'show', 'rule', 'name=GPMDP\ PlaybackAPI'] // eslint-disable-line
+    ).stdout.toString().trim();
+    portOpen = testOutput !== 'No rules match the specified criteria.';
+  }
+  if (!portOpen) {
+    Emitter.once('openport:confirm', () => {
+      runas(
+        'netsh',
+        [
+          'advfirewall', 'firewall', 'add', 'rule', 'name=GPMDP\ PlaybackAPI', // eslint-disable-line
+          'dir=in', 'action=allow', 'protocol=TCP', 'localport=5672',
+        ],
+        {
+          admin: true,
+        });
+    });
+    Emitter.sendToWindowsOfName('main', 'openport:request');
+  }
   server = new WebSocketServer({ port: global.API_PORT || process['env'].GPMDP_API_PORT || 5672 }, () => { // eslint-disable-line
     if (ad) {
       ad.stop();
       ad = null;
     }
 
-    ad = mdns.createAdvertisement(mdns.tcp('GPMDP'), 5672, {
-      name: os.hostname(),
-      txtRecord: {
-        API_VERSION,
-      },
-    });
+    try {
+      ad = mdns.createAdvertisement(mdns.tcp('GPMDP'), 5672, {
+        name: os.hostname(),
+        txtRecord: {
+          API_VERSION,
+        },
+      });
 
-    ad.start();
-    ad.on('error', () => {});
+      ad.start();
+    } catch (e) {
+      Logger.error('Could not initialize bonjour service with error: %j', e);
+    }
+    if (ad) ad.on('error', () => {});
 
     server.broadcast = (channel, data) => {
       server.clients.forEach((client) => {

@@ -42,6 +42,7 @@
 
   "modal-confirmTray-title": "Just a heads up",
   "modal-confirmTray-content": "Closing the main player window (what you just tried to do) will actually minimize the player to the System Tray. If you want to change this behaviour it can be changed in the \"Desktop Settings\" window.",
+  "modal-confirmOpenPort-content": "The PlaybackAPI failed to start because Windows Firewall is blocking it.  We can unblock it for you if you want, be warned, this may require admin privileges",
   "modal-confirmUpdate-title": "Update Available",
   "modal-confirmUpdate-content": "Woo hoo, it looks like there is a brand new update available for Google Play Music Desktop Player.  This update should bring a whole load of new features, bugfixes and cool new things.  We recommend updating as fast as possible to allow you to enjoy the best feature filled, bug free experience.<br />We hope you like the new update!",
   "modal-confirmUninstall-title": "So heres the thing...",
@@ -83,6 +84,7 @@
 
   "settings-option-mini-always-show": "Always show song information",
   "settings-option-mini-ontop": "Always on top",
+  "settings-option-mini-use-scroll-volume": "Use the scroll wheel to adjust volume",
 
   "title-color-picker": "Color Picker",
   "title-settings": "Settings",

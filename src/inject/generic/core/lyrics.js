@@ -28,6 +28,7 @@ window.addEventListener('load', () => {
   };
   // Handle time progression of a song
   const timeHandler = (timeObj) => {
+    $('#lyrics_bar').width(`${(timeObj.total === 0 ? 0 : timeObj.current / timeObj.total) * 100}%`);
     let jumped = false;
     if (timeObj.current < jumpDetect || timeObj.current - jumpDetect > 1000) {
       animate = true;

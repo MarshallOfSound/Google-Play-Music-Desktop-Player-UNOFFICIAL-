@@ -23,6 +23,7 @@ dependencies:
 
 test:
   override:
+    - sleep 5
     - npm run test
     - npm run test-unit
   post:
