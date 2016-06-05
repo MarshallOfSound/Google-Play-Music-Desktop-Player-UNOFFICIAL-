@@ -41,20 +41,21 @@ if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1') {
 }
 
 const defaultPackageConf = {
-  dir: '.',
-  name: packageJSON.productName,
-  'build-version': packageJSON.version,
-  version,
-  platform: 'all',
-  arch: 'all',
   'app-bundle-id': packageJSON.name,
+  'app-category-type': 'public.app-category.music',
+  'app-copyright': `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
   'app-version': packageJSON.version,
+  arch: 'all',
+  'build-version': packageJSON.version,
+  dir: '.',
   icon: './build/assets/img/main',
+  ignore: /^(?!.*node_modules).*\/(vendor|dist|sig|docs|src|.cert.pfx|.eslintignore|.eslintrc|.gitignore|.travis.yml|appveyor.yml|circle.yml|Gruntfile.js|gulpfile.js|ISSUE_TEMPLATE.md|LICENSE|README.md)(\/|$)/g, // eslint-disable-line
+  name: packageJSON.productName,
   out: './dist/',
   overwrite: true,
+  platform: 'all',
   prune: true,
-  ignore: /^(?!.*node_modules).*\/(vendor|dist|sig|docs|src|.cert.pfx|.eslintignore|.eslintrc|.gitignore|.travis.yml|appveyor.yml|circle.yml|Gruntfile.js|gulpfile.js|ISSUE_TEMPLATE.md|LICENSE|README.md)(\/|$)/g, // eslint-disable-line
-  'app-copyright': `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
+  version,
   'version-string': {
     CompanyName: packageJSON.author.name,
     FileDescription: packageJSON.productName,
