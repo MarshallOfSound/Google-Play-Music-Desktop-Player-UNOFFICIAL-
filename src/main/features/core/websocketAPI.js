@@ -2,6 +2,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import runas from 'runas';
+import uuid from 'uuid';
 import { spawnSync } from 'child_process';
 import WebSocket, { Server as WebSocketServer } from 'ws';
 
@@ -22,6 +23,8 @@ const changeEvents = ['song', 'state', 'rating', 'lyrics', 'shuffle', 'repeat', 
 const API_VERSION = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/../../../../package.json`))).apiVersion;
 
 let ad;
+let authCode = Math.floor(Math.random() * 9999);
+authCode = '0000'.substr(0, 4 - authCode.length) + authCode;
 
 changeEvents.forEach((channel) => {
   PlaybackAPI.on(`change:${channel}`, (newValue) => {
@@ -107,13 +110,36 @@ const enableAPI = () => {
         try {
           const command = JSON.parse(data);
           if (command.namespace && command.method) {
-            if (command.namespace === 'connect' && command.method === 'connect' && command.arguments.length === 1) {
-              Emitter.sendToGooglePlayMusic('register_controller', {
-                name: command.arguments[0],
-              });
+            const args = command.arguments || [];
+            // Attempt to handle client connectection and authorization
+            if (command.namespace === 'connect' && command.method === 'connect') {
+              if (Settings.get('authorized_devices', []).indexOf(args[1]) > -1) {
+                Emitter.sendToGooglePlayMusic('register_controller', {
+                  name: args[0],
+                });
+                ws.authorized = true;
+              } else if (args[1] === authCode) {
+                const code = uuid.v4();
+                Settings.set('authorized_devices', Settings.get('authorized_devices', []).concat([code]));
+                Emitter.sendToWindowsOfName('main', 'hide:code_controller');
+                ws.json({
+                  channel: 'connect',
+                  payload: code,
+                });
+              } else {
+                authCode = Math.floor(Math.random() * 9999).toString();
+                authCode = '0000'.substr(0, 4 - authCode.length) + authCode;
+                Emitter.sendToWindowsOfName('main', 'show:code_controller', {
+                  authCode,
+                });
+                ws.json({
+                  channel: 'connect',
+                  payload: 'CODE_REQUIRED',
+                });
+              }
               return;
             }
-            const args = command.arguments || [];
+            // Attempt to execute the globa magical controller
             if (!Array.isArray(args)) {
               throw Error('Bad arguments');
             }
@@ -126,6 +152,7 @@ const enableAPI = () => {
             throw Error('Bad command');
           }
         } catch (err) {
+          console.log(err);
           Logger.error('WebSocketAPI Error: Invalid message recieved', { err, data });
         }
       });

@@ -1,3 +1,4 @@
+import './APICode';
 import './devtools';
 import './goToURL';
 import './uninstall';
