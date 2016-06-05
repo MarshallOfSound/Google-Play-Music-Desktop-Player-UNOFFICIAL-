@@ -159,7 +159,7 @@ Data recieved in the `playlists` channel will have a payload in the format
 
 ### Be Polite
 
-If your app is going to be using the controller detailed below you should inform the user that you are
+If your app is going to be using the controller detailed below you **must** inform the user that you are
 now controlling the app.  This is done by sending a message to websocket with a stringified JSON object
 in the form.
 
@@ -168,6 +168,44 @@ in the form.
   "namespace": "connect",
   "method": "connect",
   "arguments": ["Name of Device / App"]
+}
+```
+
+This command will trigger a response
+
+```js
+{
+  "channel": "connect",
+  "payload": "CODE_REQUIRED"
+}
+```
+
+A UI will popup in GPMDP containing a 4 digit code.  You must instruct your user to provide this 4 digit code to you and you must then send it in the following form
+
+```js
+{
+  "namespace": "connect",
+  "method": "connect",
+  "arguments": ["Name of Device / App", "0000"]
+}
+```
+
+If the code is incorrect the `CODE_REQUIRED` message will be sent to you again.  If it is correct however you will recieve a **permanent** authorization code in the following form
+
+```js
+{
+  "channel": "connect",
+  "payload": "RANDOM_STRING_OF_CHARS_HERE"
+}
+```
+
+As soon as you recieve that message (and whenever you want to connect to the WebSocketAPI) you must simply send one message in the form.
+
+```js
+{
+  "namespace": "connect",
+  "method": "connect",
+  "arguments": ["Name of Device / App", "RANDOM_STRING_OF_CHARS_HERE"]
 }
 ```
 
