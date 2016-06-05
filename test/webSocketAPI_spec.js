@@ -34,7 +34,7 @@ global.Emitter = new Emitter();
 global.PlaybackAPI = new PlaybackAPI();
 global.API_PORT = 4202; // Travis has something running on 5672
 
-const INITIAL_DATA_COUNT = 8;
+const INITIAL_DATA_COUNT = 9;
 
 describe('WebSocketAPI', () => {
   beforeEach(() => {
@@ -81,9 +81,10 @@ describe('WebSocketAPI', () => {
       spy.getCall(2).args[0].channel.should.be.equal('shuffle');
       spy.getCall(3).args[0].channel.should.be.equal('repeat');
       spy.getCall(4).args[0].channel.should.be.equal('playlists');
-      spy.getCall(5).args[0].channel.should.be.equal('song');
-      spy.getCall(6).args[0].channel.should.be.equal('time');
-      spy.getCall(7).args[0].channel.should.be.equal('lyrics');
+      spy.getCall(5).args[0].channel.should.be.equal('queue');
+      spy.getCall(6).args[0].channel.should.be.equal('song');
+      spy.getCall(7).args[0].channel.should.be.equal('time');
+      spy.getCall(8).args[0].channel.should.be.equal('lyrics');
       done();
     }));
 
@@ -97,20 +98,22 @@ describe('WebSocketAPI', () => {
       spy.getCall(3).args[0].payload.should.be.equal('NO_REPEAT');
       // playlists
       spy.getCall(4).args[0].payload.should.be.deep.equal([]);
+      // queue
+      spy.getCall(5).args[0].payload.should.be.deep.equal([]);
       // song
-      spy.getCall(5).args[0].payload.should.have.property('title');
-      spy.getCall(5).args[0].payload.should.have.property('artist');
-      spy.getCall(5).args[0].payload.should.have.property('album');
-      expect(spy.getCall(5).args[0].payload.title).to.be.equal(null);
-      expect(spy.getCall(5).args[0].payload.artist).to.be.equal(null);
-      expect(spy.getCall(5).args[0].payload.album).to.be.equal(null);
+      spy.getCall(6).args[0].payload.should.have.property('title');
+      spy.getCall(6).args[0].payload.should.have.property('artist');
+      spy.getCall(6).args[0].payload.should.have.property('album');
+      expect(spy.getCall(6).args[0].payload.title).to.be.equal(null);
+      expect(spy.getCall(6).args[0].payload.artist).to.be.equal(null);
+      expect(spy.getCall(6).args[0].payload.album).to.be.equal(null);
       // time
-      spy.getCall(6).args[0].payload.should.have.property('current');
-      spy.getCall(6).args[0].payload.should.have.property('total');
-      spy.getCall(6).args[0].payload.current.should.be.equal(0);
-      spy.getCall(6).args[0].payload.total.should.be.equal(0);
+      spy.getCall(7).args[0].payload.should.have.property('current');
+      spy.getCall(7).args[0].payload.should.have.property('total');
+      spy.getCall(7).args[0].payload.current.should.be.equal(0);
+      spy.getCall(7).args[0].payload.total.should.be.equal(0);
       // lyrics
-      expect(spy.getCall(7).args[0].payload).to.be.equal(null);
+      expect(spy.getCall(8).args[0].payload).to.be.equal(null);
       done();
     }));
 
@@ -162,6 +165,10 @@ describe('WebSocketAPI', () => {
       shouldUpdateTest('playlists', '_setPlaylists',
         [{ id: 1, name: 'TEST_PLAYLIST', tracks: [] }],
         { id: 1, name: 'TEST_PLAYLIST', tracks: [] }
+      );
+      shouldUpdateTest('queue', '_setQueue',
+        [{ id: 1, title: 'Song 1' }],
+        { id: 1, title: 'Song 1' }
       );
       shouldUpdateTest('song', '_setPlaybackSong',
         ['songTitle', 'songArtist', 'songAlbum', 'songArt'],
