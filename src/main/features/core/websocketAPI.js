@@ -143,6 +143,7 @@ const enableAPI = () => {
             if (!Array.isArray(args)) {
               throw Error('Bad arguments');
             }
+            if (!ws.authorized) return;
             Emitter.sendToGooglePlayMusic('execute:gmusic', {
               namespace: command.namespace,
               method: command.method,
