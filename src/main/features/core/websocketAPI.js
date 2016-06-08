@@ -34,6 +34,16 @@ changeEvents.forEach((channel) => {
   });
 });
 
+const settingsChangeEvents = ['themeColor', 'theme', 'themeType'];
+
+settingsChangeEvents.forEach((channel) => {
+  Settings.onChange(channel, (newValue) => {
+    if (server && server.broadcast) {
+      server.broadcast(`settings:${channel}`, newValue);
+    }
+  });
+});
+
 PlaybackAPI.on('change:time', (timeObj) => {
   if (server && server.broadcast) {
     if (JSON.stringify(timeObj) !== JSON.stringify(oldTime)) {
@@ -158,6 +168,7 @@ const enableAPI = () => {
         }
       });
 
+      // Send initial PlaybackAPI Values
       ws.channel('API_VERSION', API_VERSION);
       ws.channel('playState', PlaybackAPI.isPlaying());
       ws.channel('shuffle', PlaybackAPI.currentShuffle());
@@ -168,6 +179,11 @@ const enableAPI = () => {
         ws.channel('song', PlaybackAPI.currentSong(true));
         ws.channel('time', PlaybackAPI.currentTime());
         ws.channel('lyrics', PlaybackAPI.currentSongLyrics(true));
+      }
+      if (!Settings.__TEST__) {
+        settingsChangeEvents.forEach((channel) => {
+          ws.channel(`settings:${channel}`, Settings.get(channel));
+        });
       }
     });
   });

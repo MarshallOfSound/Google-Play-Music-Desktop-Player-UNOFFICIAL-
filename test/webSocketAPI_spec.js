@@ -21,6 +21,8 @@ global.Settings = {
     }
     return def;
   },
+  onChange: () => {},
+  __TEST__: true,
 };
 // Moch the required WindowManager API
 global.WindowManager = {
