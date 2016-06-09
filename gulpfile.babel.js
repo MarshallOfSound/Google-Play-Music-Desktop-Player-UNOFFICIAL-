@@ -59,6 +59,8 @@ const defaultPackageConf = {
       () => /^\/node_modules\/.*\.pdb/g,
       // Ignore native module obj files
       () => /^\/node_modules\/.*\.obj/g,
+      // Ignore symlinks in the bin directory
+      () => /^\/node_modules\/.bin/g,
       // Ignore root dev FileDescription
       () => /^\/(vendor|dist|sig|docs|src|test|.cert.pfx|.editorconfig|.eslintignore|.eslintrc|.gitignore|.travis.yml|appveyor.yml|circle.yml|CONTRIBUTING.md|Gruntfile.js|gulpfile.js|ISSUE_TEMPLATE.md|LICENSE|README.md)(\/|$)/g, // eslint-disable-line
     ];
