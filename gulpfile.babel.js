@@ -49,7 +49,26 @@ const defaultPackageConf = {
   'build-version': packageJSON.version,
   dir: '.',
   icon: './build/assets/img/main',
-  ignore: /^(?!.*node_modules).*\/(vendor|dist|sig|docs|src|.cert.pfx|.eslintignore|.eslintrc|.gitignore|.travis.yml|appveyor.yml|circle.yml|Gruntfile.js|gulpfile.js|ISSUE_TEMPLATE.md|LICENSE|README.md)(\/|$)/g, // eslint-disable-line
+  ignore: (path) => {
+    const tests = [
+      // Ignore git directory
+      () => /^\/\.git\/.*/g,
+      // Ignore electron-prebuilt
+      () => /^\/node_modules\/electron-prebuilt\//g,
+      // Ignore debug files
+      () => /^\/node_modules\/.*\.pdb/g,
+      // Ignore native module obj files
+      () => /^\/node_modules\/.*\.obj/g,
+      // Ignore root dev FileDescription
+      () => /^\/(vendor|dist|sig|docs|src|test|.cert.pfx|.editorconfig|.eslintignore|.eslintrc|.gitignore|.travis.yml|appveyor.yml|circle.yml|CONTRIBUTING.md|Gruntfile.js|gulpfile.js|ISSUE_TEMPLATE.md|LICENSE|README.md)(\/|$)/g, // eslint-disable-line
+    ];
+    for (let i = 0; i < tests.length; i++) {
+      if (tests[i]().test(path)) {
+        return true;
+      }
+    }
+    return false;
+  },
   name: packageJSON.productName,
   out: './dist/',
   overwrite: true,
@@ -82,7 +101,7 @@ const winstallerConfig = {
   loadingGif: 'build/assets/img/installing.gif',
   // DEV: After initial 3.0.0 release this should be uncommented
   // TODO: Read DEV above ^^
-  remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
+  // remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
 };
 
 const cleanGlob = (glob) => {
