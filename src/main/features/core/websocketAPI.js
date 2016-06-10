@@ -1,3 +1,4 @@
+import { app } from 'electron';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
@@ -211,6 +212,13 @@ Emitter.on('playbackapi:toggle', (event, state) => {
     ad = null;
   }
   Settings.set('playbackAPI', state.state);
+});
+
+app.on('will-quit', () => {
+  if (server) {
+    server.close();
+    server = null;
+  }
 });
 
 if (Settings.get('playbackAPI', false)) {
