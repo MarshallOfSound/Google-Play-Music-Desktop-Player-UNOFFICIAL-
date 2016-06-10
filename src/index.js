@@ -43,9 +43,13 @@ import handleStartupEvent from './squirrel';
     return;
   }
 
-  global.Settings = new SettingsClass();
+  if (process.env.TEST_SPEC) {
+    global.Settings = new SettingsClass('.test', true);
+  } else {
+    global.Settings = new SettingsClass();
+  }
 
-  global.DEV_MODE = argv.development || argv.dev;
+  global.DEV_MODE = process.env.TEST_SPEC || argv.development || argv.dev;
   if (Settings.get('START_IN_DEV_MODE', false)) {
     global.DEV_MODE = true;
     Settings.set('START_IN_DEV_MODE', false);

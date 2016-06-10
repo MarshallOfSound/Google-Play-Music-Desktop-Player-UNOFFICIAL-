@@ -2,7 +2,11 @@ import '../rendererEmitter';
 import './core';
 
 import SettingsController from '../../main/utils/Settings';
-global.Settings = new SettingsController();
+if (process.env.TEST_SPEC) {
+  global.Settings = new SettingsController('.test', true);
+} else {
+  global.Settings = new SettingsController();
+}
 Settings.uncouple();
 
 require(`./${process.platform}`);

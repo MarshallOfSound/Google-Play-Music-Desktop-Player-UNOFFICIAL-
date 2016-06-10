@@ -8,6 +8,9 @@ import signIn from './_signIn';
 chai.should();
 chai.use(chaiAsPromised);
 
+process.on('unhandledRejection', console.error.bind(console));
+process.on('uncaughtException', console.error.bind(console));
+
 let appPath;
 if (process.platform === 'win32') {
   appPath = path.resolve(
@@ -20,25 +23,43 @@ if (process.platform === 'win32') {
       '../../dist/Google Play Music Desktop Player-win32-x64/Google Play Music Desktop Player.exe'
     );
   }
+} else if (process.platform === 'darwin') {
+  appPath = path.resolve(
+    __dirname,
+    '../../dist/Google Play Music Desktop Player-darwin-x64',
+    'Google Play Music Desktop Player.app/Contents/MacOS/Google Play Music Desktop Player'
+  );
 }
 
-const harness = (name, fn) => {
+export const harness = (name, fn, handleFirstStart = true) => {
   describe('When GPMDP launches', function describeWrap() {
     this.timeout(100000);
     global.app = null;
 
-    beforeEach(() => {
+    before(() => {
       app = new Application({
         path: appPath,
+        env: {
+          TEST_SPEC: true,
+        },
       });
-      return app.start();
+      return app.start()
+        .then(() => {
+          chaiAsPromised.transferPromiseness = app.transferPromiseness;
+          return app;
+        });
     });
 
-    beforeEach(() => {
-      chaiAsPromised.transferPromiseness = app.transferPromiseness;
-    });
+    if (handleFirstStart) {
+      before(() =>
+        app.client.windowByIndex(0)
+          .waitUntilWindowLoaded()
+          .waitForVisible('#welcome .modal-close')
+          .click('#welcome .modal-close')
+      );
+    }
 
-    beforeEach((done) =>
+    before((done) =>
       app.client.windowByIndex(1)
         .waitUntilWindowLoaded()
         .getWindowCount().should.eventually.equal(2)
@@ -46,7 +67,7 @@ const harness = (name, fn) => {
           setTimeout(() => {
             app.webContents.getURL()
               .then((url) => {
-                if (/u=/gi.test(url)) {
+                if (/#/gi.test(url)) {
                   done();
                 } else {
                   signIn(done);
@@ -58,12 +79,10 @@ const harness = (name, fn) => {
 
     describe(name, fn);
 
-    afterEach(() => {
+    after(() => {
       if (app && app.isRunning()) {
         return app.stop();
       }
     });
   });
 };
-
-export default harness;

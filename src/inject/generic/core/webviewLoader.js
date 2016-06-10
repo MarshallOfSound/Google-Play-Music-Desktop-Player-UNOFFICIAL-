@@ -1,6 +1,9 @@
 import { remote } from 'electron';
 
 const webview = document.querySelector('webview');
+if (process.env.TEST_SPEC) {
+  webview.setAttribute('partition', '__TEST__');
+}
 
 if (webview) {
   let once = true;
