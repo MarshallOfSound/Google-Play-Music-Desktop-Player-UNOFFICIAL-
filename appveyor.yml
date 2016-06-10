@@ -46,7 +46,6 @@ test_script:
   - npm --version
   # run tests
   - npm test
-  - npm run test-unit
   - npm run test-spec
 
 build_script:
