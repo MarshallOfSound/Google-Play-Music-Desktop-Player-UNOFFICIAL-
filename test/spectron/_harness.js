@@ -29,6 +29,17 @@ if (process.platform === 'win32') {
     '../../dist/Google Play Music Desktop Player-darwin-x64',
     'Google Play Music Desktop Player.app/Contents/MacOS/Google Play Music Desktop Player'
   );
+} else {
+  appPath = path.resolve(
+    __dirname,
+    '../../dist/Google Play Music Desktop Player-linux-ia32/Google Play Music Desktop Player'
+  );
+  if (!fs.existsSync(appPath)) {
+    appPath = path.resolve(
+      __dirname,
+      '../../dist/Google Play Music Desktop Player-linux-x64/Google Play Music Desktop Player'
+    );
+  }
 }
 
 export const harness = (name, fn, handleSignIn = true, handleFirstStart = true) => {
