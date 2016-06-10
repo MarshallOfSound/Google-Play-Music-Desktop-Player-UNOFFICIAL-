@@ -8,7 +8,7 @@ chai.use(chaiFs);
 chai.should();
 
 // Actual Test Imports
-import TranslationProvider from '../build/_locales/_provider';
+import TranslationProvider from '../../build/_locales/_provider';
 
 describe('Translations', () => {
   let provider;

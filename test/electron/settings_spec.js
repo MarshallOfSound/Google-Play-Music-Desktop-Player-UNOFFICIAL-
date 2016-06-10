@@ -8,8 +8,8 @@ chai.use(chaiFs);
 chai.should();
 
 // Actual Test Imports
-import Settings from '../build/main/utils/Settings';
-import initialSettings from '../build/main/utils/_initialSettings';
+import Settings from '../../build/main/utils/Settings';
+import initialSettings from '../../build/main/utils/_initialSettings';
 
 describe('Settings', () => {
   let settings;

@@ -10,11 +10,11 @@ global.PlaybackAPI = {
 };
 
 // Actual Test Imports
-const resolveLyrics = require('../../build/main/features/core/lyrics').resolveLyrics;
+const resolveLyrics = require('../../../build/main/features/core/lyrics').resolveLyrics;
 
-import attemptLyricsWikia from '../../build/main/features/core/lyrics/source_lyricsWikia';
-import attemptMetroLyrics from '../../build/main/features/core/lyrics/source_metroLyrics';
-// import attemptMusiXmatch from '../../build/main/features/core/lyrics/source_musiXmatch';
+import attemptLyricsWikia from '../../../build/main/features/core/lyrics/source_lyricsWikia';
+import attemptMetroLyrics from '../../../build/main/features/core/lyrics/source_metroLyrics';
+// import attemptMusiXmatch from '../../../build/main/features/core/lyrics/source_musiXmatch';
 
 import lyricsSourceSpec from './_lyricsSource_spec';
 import { validSongs, invalidSongs } from '../testdata/lyrics';

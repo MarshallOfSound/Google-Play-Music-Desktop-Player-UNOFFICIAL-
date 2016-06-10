@@ -1,7 +1,11 @@
 import { remote } from 'electron';
 
 if (remote.getGlobal('DEV_MODE')) {
-  require('devtron').install();
+  try {
+    require('devtron').install();
+  } catch (e) {
+    // Who cares
+  }
 
   window.addEventListener('load', () => {
     const webview = document.querySelector('webview');
