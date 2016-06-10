@@ -6,4 +6,4 @@ harness('on first load', () => {
       .windowByIndex(0)
       .waitForVisible('#welcome').should.eventually.be.ok
   );
-}, false);
+}, false, false);

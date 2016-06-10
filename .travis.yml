@@ -21,8 +21,8 @@ branches:
 script:
   - npm run test
   - npm run test-unit
-  - npm run test-spec
   - if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then ./sig/import.sh && npm run make:darwin && node ./sig/publish-mac.js; fi
+  - npm run test-spec
 
 notifications:
   webhooks:

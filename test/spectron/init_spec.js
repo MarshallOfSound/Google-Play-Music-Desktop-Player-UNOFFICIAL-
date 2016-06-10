@@ -26,4 +26,4 @@ harness('when initializing', () => {
       .browserWindow.getBounds().should.eventually.have.property('width').and.be.above(0)
       .browserWindow.getBounds().should.eventually.have.property('height').and.be.above(0)
   );
-});
+}, false);

@@ -10,8 +10,8 @@ chai.use(chaiSinon);
 chai.should();
 
 // Test Classes
-import Emitter from '../build/main/utils/Emitter';
-import PlaybackAPI from '../build/main/utils/PlaybackAPI';
+import Emitter from '../../build/main/utils/Emitter';
+import PlaybackAPI from '../../build/main/utils/PlaybackAPI';
 
 // Moch the required Settings API
 global.Settings = {
@@ -41,7 +41,7 @@ const INITIAL_DATA_COUNT = 9;
 describe('WebSocketAPI', () => {
   beforeEach(() => {
     global.PlaybackAPI.reset();
-    require('../build/main/features/core/websocketAPI');
+    require('../../build/main/features/core/websocketAPI');
   });
 
   it(`should start a WebSocket server on port ${global.API_PORT}`, (done) => {

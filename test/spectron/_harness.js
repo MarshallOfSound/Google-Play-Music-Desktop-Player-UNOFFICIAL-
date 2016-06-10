@@ -31,7 +31,7 @@ if (process.platform === 'win32') {
   );
 }
 
-export const harness = (name, fn, handleFirstStart = true) => {
+export const harness = (name, fn, handleSignIn = true, handleFirstStart = true) => {
   describe('When GPMDP launches', function describeWrap() {
     this.timeout(100000);
     global.app = null;
@@ -64,6 +64,9 @@ export const harness = (name, fn, handleFirstStart = true) => {
         .waitUntilWindowLoaded()
         .getWindowCount().should.eventually.equal(2)
         .then(() => {
+          if (!handleSignIn) {
+            return done();
+          }
           setTimeout(() => {
             app.webContents.getURL()
               .then((url) => {
