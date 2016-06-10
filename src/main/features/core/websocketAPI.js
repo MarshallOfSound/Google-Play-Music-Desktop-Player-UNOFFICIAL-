@@ -2,13 +2,17 @@ import { app } from 'electron';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import runas from 'runas';
 import uuid from 'uuid';
 import { spawnSync } from 'child_process';
 import WebSocket, { Server as WebSocketServer } from 'ws';
 
 let server;
 let oldTime = {};
+
+let runas = () => {};
+if (process.platform === 'win32') {
+  runas = require('runas');
+}
 
 let mdns;
 try {
