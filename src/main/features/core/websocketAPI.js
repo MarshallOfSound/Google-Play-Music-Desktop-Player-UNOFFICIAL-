@@ -77,7 +77,10 @@ const enableAPI = () => {
     });
     Emitter.sendToWindowsOfName('main', 'openport:request');
   }
-  server = new WebSocketServer({ port: global.API_PORT || process['env'].GPMDP_API_PORT || 5672 }, () => { // eslint-disable-line
+  server = new WebSocketServer({
+    host: process['env'].GPMDP_API_HOST || '0.0.0.0', // eslint-disable-line
+    port: global.API_PORT || process['env'].GPMDP_API_PORT || 5672, // eslint-disable-line
+  }, () => {
     if (ad) {
       ad.stop();
       ad = null;
