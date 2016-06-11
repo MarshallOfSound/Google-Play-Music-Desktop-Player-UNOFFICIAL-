@@ -6,7 +6,11 @@ machine:
 
 
 dependencies:
+  cache_directories:
+    - "~/.electron"
+    - "~/.apt-cache"
   pre:
+    - sudo rm -rf /var/cache/apt/archives && sudo ln -s ~/.apt-cache /var/cache/apt/archives && mkdir -p ~/.apt-cache/partial
     - sudo dpkg --add-architecture i386
     - sudo apt-get update
     - sudo apt-get remove --purge docker-engine
@@ -18,8 +22,6 @@ dependencies:
     - sudo apt-get install gcc-4.8-multilib g++-4.8-multilib libnotify4
     - npm i -g npm
     - rm -rf node_modules
-  cache_directories:
-    - "~/.electron"
 
 test:
   override:
