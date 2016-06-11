@@ -35,7 +35,8 @@ test:
     - case $CIRCLE_NODE_INDEX in 0) npm run make:deb:32 ;; 1) npm run make:deb:64 ;; 2) npm run make:rpm:32 ;; 3) npm run make:rpm:64 ;; esac:
         parallel: true
     - npm run test-unit
-    - sudo npm run test-spec
+    - case $CIRCLE_NODE_INDEX in 0) npm -v ;; 1) npm run test-spec ;; 2) npm -v ;; 3) npm run test-spec ;; esac:
+        parallel: true
 
 general:
   artifacts:
