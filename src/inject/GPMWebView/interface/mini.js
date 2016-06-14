@@ -20,7 +20,8 @@ window.wait(() => {
 	// Restore the mini size/position from settings, otherwise use default size and regular position.
     const miniSize = Settings.get('mini-size', [MINI_SIZE, MINI_SIZE]);
     const miniPosition = Settings.get('mini-position', mainWindow.getPosition());
-    mainWindow.setSize(...miniSize);
+    mainWindow.setContentSize(...miniSize);
+    mainWindow.setSize(...mainWindow.getSize());
     mainWindow.setPosition(...miniPosition);
 
     mainWindow.setMaximumSize(MINI_SIZE, MINI_SIZE);

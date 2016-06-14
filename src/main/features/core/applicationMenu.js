@@ -86,6 +86,25 @@ const template = [
         role: 'minimize',
       },
       {
+        type: 'separator',
+      },
+      {
+        label: 'Full Size Player',
+        type: 'radio',
+        checked: true,
+        accelerator: 'CmdOrCtrl+Shift+L',
+        click: () => Emitter.sendToGooglePlayMusic('playback:miniDisable'),
+      },
+      {
+        label: 'Mini Player',
+        type: 'radio',
+        accelerator: 'CmdOrCtrl+Shift+M',
+        click: () => Emitter.sendToGooglePlayMusic('playback:miniEnable'),
+      },
+      {
+        type: 'separator',
+      },
+      {
         label: 'Close',
         accelerator: 'CmdOrCtrl+W',
         role: 'close',
