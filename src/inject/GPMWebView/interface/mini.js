@@ -25,6 +25,7 @@ window.wait(() => {
     mainWindow.setPosition(...miniPosition);
 
     mainWindow.setMaximumSize(MINI_SIZE, MINI_SIZE);
+    mainWindow.setMinimumSize(50, 50);
     webContents.executeJavaScript('document.body.setAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
     remote.getCurrentWindow().setAlwaysOnTop(Settings.get('miniAlwaysOnTop', false));
@@ -37,6 +38,7 @@ window.wait(() => {
     //      Same reason as specified in Electron src
     //        --> https://github.com/atom/electron/blob/master/atom/browser/native_window_views.cc
     mainWindow.setMaximumSize(99999999, 999999999);
+    mainWindow.setMinimumSize(200, 200);
 
     // Restore the regular size/position from settings.
     const regularSize = Settings.get('size');
