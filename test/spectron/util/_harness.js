@@ -1,7 +1,6 @@
 import { Application } from 'spectron';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import fs from 'fs';
 import path from 'path';
 import signIn from './_signIn';
 
@@ -15,31 +14,18 @@ let appPath;
 if (process.platform === 'win32') {
   appPath = path.resolve(
     __dirname,
-    '../../dist/Google Play Music Desktop Player-win32-ia32/Google Play Music Desktop Player.exe'
+    '../../../node_modules/electron-prebuilt/dist/electron.exe'
   );
-  if (!fs.existsSync(appPath)) {
-    appPath = path.resolve(
-      __dirname,
-      '../../dist/Google Play Music Desktop Player-win32-x64/Google Play Music Desktop Player.exe'
-    );
-  }
 } else if (process.platform === 'darwin') {
   appPath = path.resolve(
     __dirname,
-    '../../dist/Google Play Music Desktop Player-darwin-x64',
-    'Google Play Music Desktop Player.app/Contents/MacOS/Google Play Music Desktop Player'
+    '../../../node_modules/electron-prebuilt/dist/electron.app/Contents/MacOS/electron'
   );
 } else {
   appPath = path.resolve(
     __dirname,
-    '../../dist/Google Play Music Desktop Player-linux-ia32/Google Play Music Desktop Player'
+    '../../../node_modules/electron-prebuilt/dist/electron'
   );
-  if (!fs.existsSync(appPath)) {
-    appPath = path.resolve(
-      __dirname,
-      '../../dist/Google Play Music Desktop Player-linux-x64/Google Play Music Desktop Player'
-    );
-  }
 }
 
 export const harness = (name, fn, handleSignIn = true, handleFirstStart = true) => {
@@ -53,6 +39,7 @@ export const harness = (name, fn, handleSignIn = true, handleFirstStart = true) 
         env: {
           TEST_SPEC: true,
         },
+        args: ['.'],
       });
       return app.start()
         .then(() => {

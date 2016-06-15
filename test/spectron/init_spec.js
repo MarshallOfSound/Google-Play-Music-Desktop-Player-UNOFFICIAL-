@@ -1,4 +1,4 @@
-import { harness } from './_harness';
+import { harness } from './util/_harness';
 
 harness('when initializing', () => {
   it('should load an initial window', () =>

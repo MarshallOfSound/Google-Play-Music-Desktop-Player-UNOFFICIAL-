@@ -1,4 +1,4 @@
-import { harness } from './_harness';
+import { harness } from './util/_harness';
 
 harness('on first load', () => {
   it('should display the welcome modal', () =>
