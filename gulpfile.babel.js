@@ -8,11 +8,13 @@ import clean from 'gulp-clean';
 import concat from 'gulp-concat';
 import cssmin from 'gulp-cssmin';
 import { createWindowsInstaller as electronInstaller } from 'electron-winstaller';
+import header from 'gulp-header';
 import less from 'gulp-less';
 import packager from 'electron-packager';
 import rebuild from './vendor/rebuild';
 import replace from 'gulp-replace';
 import runSequence from 'run-sequence';
+import uglify from 'gulp-uglify';
 
 import { spawn, exec } from 'child_process';
 
@@ -101,9 +103,7 @@ const winstallerConfig = {
   iconUrl: 'https://www.samuelattard.com/img/gpmdp_setup.ico',
   setupIcon: 'build/assets/img/main.ico',
   loadingGif: 'build/assets/img/installing.gif',
-  // DEV: After initial 3.0.0 release this should be uncommented
-  // TODO: Read DEV above ^^
-  // remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
+  remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
 };
 
 const cleanGlob = (glob) => {
@@ -150,7 +150,7 @@ gulp.task('html', ['clean-html'], () => {
 });
 
 gulp.task('transpile', ['clean-internal'], () => {
-  gulp.src(paths.internalScripts)
+  return gulp.src(paths.internalScripts)
     .pipe(babel())
     .on('error', (err) => { console.error(err); }) // eslint-disable-line
     .pipe(replace(/process\.env\.(.+);/gi, (envCall, envKey) => {
@@ -170,7 +170,7 @@ gulp.task('fonts', ['clean-fonts'], () => {
 });
 
 gulp.task('less', ['clean-less'], () => {
-  gulp.src(paths.less)
+  return gulp.src(paths.less)
     .pipe(less())
     .on('error', (err) => { console.error(err); }) // eslint-disable-line
     .pipe(cssmin())
@@ -184,6 +184,22 @@ gulp.task('images', ['clean-images'], () => {
     .pipe(gulp.dest('./build/assets/img/'));
 });
 
+gulp.task('build-release', ['build'], () => {
+  return gulp.src('./build/**/*.js')
+    .pipe(uglify())
+    .pipe(header(
+`/*!
+${packageJSON.productName}
+Version: v${packageJSON.version}
+API Version: v${packageJSON.apiVersion}
+Compiled: ${new Date().toUTCString()}
+Copyright (C) ${(new Date()).getFullYear()} ${packageJSON.author.name}
+This software may be modified and distributed under the terms of the MIT license.
+ */\n`
+    ))
+    .pipe(gulp.dest('./build'));
+});
+
 // Rerun the task when a file changes
 gulp.task('watch', ['build'], () => {
   gulp.watch(paths.internalScripts, ['transpile']);
@@ -193,7 +209,7 @@ gulp.task('watch', ['build'], () => {
   gulp.watch(paths.locales, ['locales']);
 });
 
-gulp.task('package:win', ['clean-dist-win', 'build'], (done) => {
+gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
   console.log('Rebuilding ll-keyboard-hook-win'); // eslint-disable-line
   rebuild('rebuild_ia32.bat')
     .then(() => {
@@ -220,7 +236,7 @@ gulp.task('make:win', ['package:win'], (done) => {
     });
 });
 
-gulp.task('package:darwin', ['clean-dist-darwin', 'build'], (done) => {
+gulp.task('package:darwin', ['clean-dist-darwin', 'build-release'], (done) => {
   rebuild('./rebuild_null.sh')
     .then(() => {
       packager(_.extend({}, defaultPackageConf, { platform: 'darwin', 'osx-sign': { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
@@ -248,14 +264,14 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
   });
 });
 
-gulp.task('package:linux:32', ['clean-dist-linux-32', 'build'], (done) => {
+gulp.task('package:linux:32', ['clean-dist-linux-32', 'build-release'], (done) => {
   rebuild('./rebuild_ia32.sh')
     .then(() => {
       packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }), done);
     });
 });
 
-gulp.task('package:linux:64', ['clean-dist-linux-64', 'build'], (done) => {
+gulp.task('package:linux:64', ['clean-dist-linux-64', 'build-release'], (done) => {
   rebuild('./rebuild.sh')
     .then(() => {
       packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }), done);
