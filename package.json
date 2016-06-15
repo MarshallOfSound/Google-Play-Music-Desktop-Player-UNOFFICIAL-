@@ -45,7 +45,7 @@
   "license": "MIT",
   "dependencies": {
     "auto-launch": "^2.0.1",
-    "electron-chromecast": "^1.0.3",
+    "electron-chromecast": "^1.0.6",
     "electron-prebuilt": "1.2.2",
     "html-entities": "^1.2.0",
     "lastfm": "^0.9.2",
