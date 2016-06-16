@@ -92,13 +92,13 @@ const template = [
         label: 'Full Size Player',
         type: 'radio',
         checked: true,
-        accelerator: 'CmdOrCtrl+Shift+L',
+        accelerator: 'CmdOrCtrl+Shift+Alt+L',
         click: () => Emitter.sendToGooglePlayMusic('playback:miniDisable'),
       },
       {
         label: 'Mini Player',
         type: 'radio',
-        accelerator: 'CmdOrCtrl+Shift+M',
+        accelerator: 'CmdOrCtrl+Shift+Alt+M',
         click: () => Emitter.sendToGooglePlayMusic('playback:miniEnable'),
       },
       {
