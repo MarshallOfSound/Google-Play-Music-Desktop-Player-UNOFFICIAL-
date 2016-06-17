@@ -14,7 +14,6 @@ const resolveLyrics = require('../../../build/main/features/core/lyrics').resolv
 
 import attemptLyricsWikia from '../../../build/main/features/core/lyrics/source_lyricsWikia';
 import attemptMetroLyrics from '../../../build/main/features/core/lyrics/source_metroLyrics';
-// import attemptMusiXmatch from '../../../build/main/features/core/lyrics/source_musiXmatch';
 
 import lyricsSourceSpec from './_lyricsSource_spec';
 import { validSongs, invalidSongs } from '../testdata/lyrics';
@@ -51,7 +50,4 @@ describe('Lyrics Resolver', () => {
   lyricsSourceSpec(attemptMetroLyrics, (song) =>
     `${song.title.toLowerCase().replace(/ /g, '-')}-lyrics-${song.artist.toLowerCase().replace(/ /g, '-')}`
   , 'Metro Lyrics');
-
-  // deV: MusiXmatch is dodgy at the best of time, can't run effective tests
-  // lyricsSourceSpec(attemptMusiXmatch, (song) => `${song.artist} ${song.title}`, 'MusiXmatch', 40000);
 });
