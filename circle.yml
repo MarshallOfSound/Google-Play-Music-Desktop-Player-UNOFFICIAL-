@@ -1,24 +1,39 @@
 machine:
   node:
-    version: 4.4.1
+    version: 6.1.0
+  environment:
+    XUNIT_FILE: $CIRCLE_TEST_REPORTS/xunit.xml
+
 
 dependencies:
-  pre:
-    - sudo apt-get update
-    - sudo apt-get install rpm fakeroot dpkg libdbus-1-dev libglib2.0-dev libexpat1-dev libx32gcc-4.8-dev libc6-dev-i386
-    - sudo apt-get install gcc-4.8-multilib g++-4.8-multilib libdbus-1-dev:i386 libexpat1-dev:i386 build-essential g++
-    - sudo apt-get install libx11-dev libx11-dev:i386
-    - npm i -g npm
-    - rm -rf node_modules
   cache_directories:
     - "~/.electron"
+    - "~/.apt-cache"
+  pre:
+    - sudo rm -rf /var/cache/apt/archives && sudo ln -s ~/.apt-cache /var/cache/apt/archives && mkdir -p ~/.apt-cache/partial
+    - sudo dpkg --add-architecture i386
+    - sudo apt-get update
+    - sudo apt-get remove --purge docker-engine
+    - sudo apt-get install g++-multilib lib32z1 lib32ncurses5 lib32bz2-1.0
+    - sudo apt-get install rpm fakeroot dpkg libdbus-1-dev libx11-dev
+    - sudo apt-get install libdbus-1-dev:i386 libexpat1-dev:i386 libx11-dev:i386 libc6-dev-i386
+    - sudo apt-get install g++
+    - sudo apt-get install libavahi-compat-libdnssd-dev
+    - sudo apt-get install gcc-4.8-multilib g++-4.8-multilib libnotify4
+    - npm i -g npm
+    - rm -rf node_modules
 
 test:
   override:
+    - sleep 5
     - npm run test
-    - npm run test-unit
   post:
-    - npm run make:linux
+    - sudo apt-get remove --purge libavahi-compat-libdnssd-dev
+    - sudo apt-get autoremove
+    - case $CIRCLE_NODE_INDEX in 0) sudo apt-get install libavahi-compat-libdnssd-dev:i386 ;; 1) sudo apt-get install libavahi-compat-libdnssd-dev ;; 2) sudo apt-get install libavahi-compat-libdnssd-dev:i386 ;; 3) sudo apt-get install libavahi-compat-libdnssd-dev ;; esac:
+        parallel: true
+    - case $CIRCLE_NODE_INDEX in 0) npm run make:linux ;; 1) npm run make:linux ;; 2) npm run make:linux ;; 3) npm run make:linux ;; esac:
+        parallel: true
 
 general:
   artifacts:
