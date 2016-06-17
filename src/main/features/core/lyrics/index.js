@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 // Lyrics Sources
+import attemptLyricsFreak from './source_lyricsFreak';
 import attemptLyricsWikia from './source_lyricsWikia';
 import attemptMetroLyrics from './source_metroLyrics';
 
@@ -28,6 +29,7 @@ export const resolveLyrics = (song) => {
   _.forEachRight(bracketed, (bracket) => {
     title = title.replace(bracket, '').trim();
     promises.push(attemptLyricsWikia(`${song.artist}:${title}`));
+    promises.push(attemptLyricsFreak(title, song.artist));
   });
 
   // DEV: Attempt to find lyrics from metro
