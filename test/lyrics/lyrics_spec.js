@@ -51,7 +51,4 @@ describe('Lyrics Resolver', () => {
   lyricsSourceSpec(attemptMetroLyrics, (song) =>
     `${song.title.toLowerCase().replace(/ /g, '-')}-lyrics-${song.artist.toLowerCase().replace(/ /g, '-')}`
   , 'Metro Lyrics');
-
-  // deV: MusiXmatch is dodgy at the best of time, can't run effective tests
-  // lyricsSourceSpec(attemptMusiXmatch, (song) => `${song.artist} ${song.title}`, 'MusiXmatch', 40000);
 });

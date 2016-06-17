@@ -1,7 +1,6 @@
 import _ from 'lodash';
 
 // Lyrics Sources
-import attemptMusiXmatch from './source_musiXmatch';
 import attemptLyricsWikia from './source_lyricsWikia';
 import attemptMetroLyrics from './source_metroLyrics';
 
@@ -56,12 +55,6 @@ export const resolveLyrics = (song) => {
       );
     });
   });
-
-  // DEV: Attempt to find lyrics from musixmatch
-  // DEV: Last resort as the fetch is quite slow
-  promises.push(
-    attemptMusiXmatch(`${song.artist} ${song.title}`)
-  );
 
   return attemptPromiseSequence(promises);
 };
