@@ -37,7 +37,6 @@ Write-Host " "
 Write-Host "Installing Bonjour Core"
 $args = "/i $bonjour_core /passive"
 Start-Process "msiexec" $args -Wait
-Write-Host "msiexec $args"
 Write-Host "Installation Complete"
 
 Write-Host " "
@@ -60,3 +59,7 @@ Write-Host " "
 Write-Host "Configuring NPM"
 $args = "config set msvs_version 2015"
 Start-Process "npm" $args -Wait
+
+Write-Host " "
+Write-Host " "
+Write-Host "Woo Hoo!  You should be all setup, go partay!"
