@@ -46,3 +46,16 @@ if (Settings.get('nativeFrame')) {
 } else {
   $('#native-frame').removeAttr('checked');
 }
+
+$('#save-page').change((e) => {
+  Emitter.fire('settings:set', {
+    key: 'savePage',
+    value: $(e.currentTarget).is(':checked'),
+  });
+});
+
+if (Settings.get('savePage', true)) {
+  $('#save-page').attr('checked', true);
+} else {
+  $('#save-page').removeAttr('checked');
+}

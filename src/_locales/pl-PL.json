@@ -81,6 +81,8 @@
 
   "settings-option-auto-launch": "Włącz aplikację podczas uruchamiania systemu.",
 
+  "settings-option-save-page": "Automatically load last viewed page on startup",
+
   "settings-option-mini-always-show": "Zawsze pokazuj informacje o utworze",
   "settings-option-mini-ontop": "Zawsze na wierzchu",
   "settings-option-mini-use-scroll-volume": "Użyj rolki myszki aby sterować głośnością",

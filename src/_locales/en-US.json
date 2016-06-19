@@ -80,7 +80,9 @@
 
   "settings-option-min-to-tray": "Minimize to Tray",
 
-  "settings-option-auto-launch": "Automatically launch when I turn my computer on.",
+  "settings-option-auto-launch": "Automatically launch when I turn my computer on",
+
+  "settings-option-save-page": "Automatically load last viewed page on startup",
 
   "settings-option-mini-always-show": "Always show song information",
   "settings-option-mini-ontop": "Always on top",
