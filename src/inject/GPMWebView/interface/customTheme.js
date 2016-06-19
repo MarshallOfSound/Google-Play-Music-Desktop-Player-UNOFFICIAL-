@@ -21,6 +21,7 @@ Emitter.on('theme:updateType', (event, type) => {
 window.wait(() => {
   window.GPMTheme.updateTheme({
     type: Settings.get('themeType', 'FULL'),
+    backHighlight: '#1a1b1d',
     foreSecondary: Settings.get('themeColor'),
   });
   if (Settings.get('theme')) {
