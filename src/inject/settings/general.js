@@ -65,7 +65,6 @@ $('#scroll-lyrics').change((e) => {
     key: 'scrollLyrics',
     value: $(e.currentTarget).is(':checked'),
   });
-  Emitter.fireAtMain('settings:set:scrollLyrics', $(e.currentTarget).is(':checked'));
 });
 
 if (Settings.get('scrollLyrics', true)) {

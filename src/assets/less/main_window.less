@@ -195,12 +195,10 @@ html, body {
         font-size: 26px;
         line-height: 1.6em;
         padding: 12px 0;
-      }
-      p[scroll=true] {
-        overflow: hidden; /* Hide scroll bar so that the user relies on auto scroll */
-      }
-      p[scroll=false] {
         overflow: overlay;
+      }
+      p[data-scroll] {
+        overflow: hidden; /* Hide scroll bar so that the user relies on auto scroll */
       }
     }
 

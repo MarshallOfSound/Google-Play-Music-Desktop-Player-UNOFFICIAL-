@@ -1,5 +1,3 @@
-import { remote } from 'electron';
-
 window.addEventListener('load', () => {
   if (!window.$) return;
   if (!$('#lyrics').length) return;
@@ -19,8 +17,9 @@ window.addEventListener('load', () => {
       }, 4000);
     } else {
       clearTimeout(noLyricsTimer);
+      const scroll = Settings.get('scrollLyrics', true);
       const lyricsHTML = lyrics.replace(/\n/g, '<br />');
-      $('#lyrics').html(`<p scroll="${Settings.get('scrollLyrics', true)}">${lyricsHTML}</p>`);
+      $('#lyrics').html(`<p ${scroll ? 'data-scroll' : ''}>${lyricsHTML}</p>`);
       animate = true;
     }
   };
@@ -54,28 +53,22 @@ window.addEventListener('load', () => {
     animate = false;
   };
 
-  const scrollHandler = (state) => {
+  const scrollSettingsHandler = (state) => {
     const lyricsP = $('#lyrics p');
-    if (state) { // enable auto scroll
-      lyricsP.attr('scroll', true);
-      animate = true;
-      timeHandler(remote.getGlobal('PlaybackAPI').data.time);
-      // reset scroll to proper place
-    } else { // disable auto scroll
-      lyricsP.attr('scroll', false);
-      animate = false;
+    animate = state;
+    if (state) {
+      lyricsP.attr('data-scroll', true);
+    } else {
+      lyricsP.removeAttr('data-scroll');
       clearTimeout(animationTimer);
       lyricsP.stop();
-      // stop scroll
     }
   };
-
-  scrollHandler(Settings.get('scrollLyrics', true));
 
   Emitter.on('PlaybackAPI:change:lyrics', (e, arg) => lyricsHandler(arg));
   Emitter.on('PlaybackAPI:change:state', (e, arg) => stateHandler(arg));
   Emitter.on('PlaybackAPI:change:time', (e, arg) => timeHandler(arg));
-  Emitter.on('settings:set:scrollLyrics', (e, arg) => scrollHandler(arg));
+  Emitter.on('settings:set:scrollLyrics', (e, arg) => scrollSettingsHandler(arg));
 
   window.addEventListener('resize', () => { animate = true; });
   $('#lyrics_back').click(() => $('#lyrics_back').removeClass('vis'));
