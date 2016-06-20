@@ -194,8 +194,11 @@ html, body {
         width: 100%;
         font-size: 26px;
         line-height: 1.6em;
-        overflow: hidden; /* Hide scroll bar so that the user relies on auto scroll */
         padding: 12px 0;
+        overflow: auto;
+      }
+      p[data-scroll] {
+        overflow: hidden; /* Hide scroll bar so that the user relies on auto scroll */
       }
     }
 

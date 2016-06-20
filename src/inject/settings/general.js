@@ -59,3 +59,16 @@ if (Settings.get('savePage', true)) {
 } else {
   $('#save-page').removeAttr('checked');
 }
+
+$('#scroll-lyrics').change((e) => {
+  Emitter.fire('settings:set', {
+    key: 'scrollLyrics',
+    value: $(e.currentTarget).is(':checked'),
+  });
+});
+
+if (Settings.get('scrollLyrics', true)) {
+  $('#scroll-lyrics').attr('checked', true);
+} else {
+  $('#scroll-lyrics').removeAttr('checked');
+}

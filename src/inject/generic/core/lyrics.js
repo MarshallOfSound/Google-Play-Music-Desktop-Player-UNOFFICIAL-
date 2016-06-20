@@ -17,8 +17,9 @@ window.addEventListener('load', () => {
       }, 4000);
     } else {
       clearTimeout(noLyricsTimer);
+      const scroll = Settings.get('scrollLyrics', true);
       const lyricsHTML = lyrics.replace(/\n/g, '<br />');
-      $('#lyrics').html(`<p>${lyricsHTML}</p>`);
+      $('#lyrics').html(`<p ${scroll ? 'data-scroll' : ''}>${lyricsHTML}</p>`);
       animate = true;
     }
   };
@@ -52,9 +53,22 @@ window.addEventListener('load', () => {
     animate = false;
   };
 
+  const scrollSettingsHandler = (state) => {
+    const lyricsP = $('#lyrics p');
+    animate = state;
+    if (state) {
+      lyricsP.attr('data-scroll', true);
+    } else {
+      lyricsP.removeAttr('data-scroll');
+      clearTimeout(animationTimer);
+      lyricsP.stop();
+    }
+  };
+
   Emitter.on('PlaybackAPI:change:lyrics', (e, arg) => lyricsHandler(arg));
   Emitter.on('PlaybackAPI:change:state', (e, arg) => stateHandler(arg));
   Emitter.on('PlaybackAPI:change:time', (e, arg) => timeHandler(arg));
+  Emitter.on('settings:set:scrollLyrics', (e, arg) => scrollSettingsHandler(arg));
 
   window.addEventListener('resize', () => { animate = true; });
   $('#lyrics_back').click(() => $('#lyrics_back').removeClass('vis'));

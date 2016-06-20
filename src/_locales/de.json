@@ -84,6 +84,8 @@
 
   "settings-option-save-page": "Automatisch zuletzt geöffnete Seite beim Start öffnen",
 
+  "settings-option-scroll-lyrics": "Liedtext automatisch mit dem Lied nach unten scrollen",
+
   "settings-option-mini-always-show": "Immer Titelinformationen anzeigen",
   "settings-option-mini-ontop": "Immer oben",
   "settings-option-mini-use-scroll-volume": "Benutze das Mausrad um die Lautstärke zu ändern",
