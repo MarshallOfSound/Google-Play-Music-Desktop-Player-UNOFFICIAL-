@@ -1,5 +1,7 @@
 import { remote } from 'electron';
 
+import { positionOnScreen } from '../../../_util';
+
 const mainWindow = remote.getCurrentWindow();
 const webContents = mainWindow.webContents;
 const MINI_SIZE = 310;
@@ -22,7 +24,11 @@ window.wait(() => {
     const miniPosition = Settings.get('mini-position', mainWindow.getPosition());
     mainWindow.setContentSize(...miniSize);
     mainWindow.setSize(...mainWindow.getSize());
-    mainWindow.setPosition(...miniPosition);
+    if (positionOnScreen(miniPosition)) {
+      mainWindow.setPosition(...miniPosition);
+    } else {
+      mainWindow.center();
+    }
 
     mainWindow.setMaximumSize(MINI_SIZE, MINI_SIZE);
     mainWindow.setMinimumSize(50, 50);
@@ -44,7 +50,11 @@ window.wait(() => {
     const regularSize = Settings.get('size');
     const regularPosition = Settings.get('position');
     mainWindow.setSize(...regularSize);
-    mainWindow.setPosition(...regularPosition);
+    if (positionOnScreen(regularPosition)) {
+      mainWindow.setPosition(...regularPosition);
+    } else {
+      mainWindow.center();
+    }
 
     webContents.executeJavaScript('document.body.removeAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);

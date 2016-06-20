@@ -7,6 +7,7 @@ import winston from 'winston';
 
 import configureApp from './main/configureApp';
 import generateBrowserConfig from './main/configureBrowser';
+import { positionOnScreen } from './_util';
 
 import EmitterClass from './main/utils/Emitter';
 import SettingsClass from './main/utils/Settings';
@@ -109,17 +110,7 @@ import handleStartupEvent from './squirrel';
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
     const position = Settings.get('position');
-    let inBounds = false;
-    if (position) {
-      screen.getAllDisplays().forEach((display) => {
-        if (position[0] >= display.workArea.x &&
-            position[0] <= display.workArea.x + display.workArea.width &&
-            position[1] >= display.workArea.y &&
-            position[1] <= display.workArea.y + display.workArea.height) {
-          inBounds = true;
-        }
-      });
-    }
+    const inBounds = positionOnScreen(position);
 
     let size = Settings.get('size');
     size = size || [1200, 800];
