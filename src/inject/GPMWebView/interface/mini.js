@@ -1,5 +1,7 @@
 import { remote } from 'electron';
 
+import { positionOnScreen } from '../../../_util';
+
 const mainWindow = remote.getCurrentWindow();
 const webContents = mainWindow.webContents;
 const MINI_SIZE = 310;
@@ -10,6 +12,9 @@ window.wait(() => {
   if (Settings.get('miniAlwaysShowSongInfo', false)) {
     document.body.setAttribute('controls', 'controls');
   }
+  if (Settings.get('miniUseScrollVolume', false)) {
+    window.GPM.mini.setScrollVolume(true);
+  }
 
   window.GPM.mini.on('enable', () => {
     Emitter.fire('mini', { state: true });
@@ -17,10 +22,16 @@ window.wait(() => {
 	// Restore the mini size/position from settings, otherwise use default size and regular position.
     const miniSize = Settings.get('mini-size', [MINI_SIZE, MINI_SIZE]);
     const miniPosition = Settings.get('mini-position', mainWindow.getPosition());
-    mainWindow.setSize(...miniSize);
-    mainWindow.setPosition(...miniPosition);
+    mainWindow.setContentSize(...miniSize);
+    mainWindow.setSize(...mainWindow.getSize());
+    if (positionOnScreen(miniPosition)) {
+      mainWindow.setPosition(...miniPosition);
+    } else {
+      mainWindow.center();
+    }
 
-    mainWindow.setMaximumSize(MINI_SIZE, MINI_SIZE);
+    setTimeout(() => remote.getCurrentWindow().setMaximumSize(MINI_SIZE, MINI_SIZE), 0);
+    remote.getCurrentWindow().setMinimumSize(50, 50);
     webContents.executeJavaScript('document.body.setAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
     remote.getCurrentWindow().setAlwaysOnTop(Settings.get('miniAlwaysOnTop', false));
@@ -37,13 +48,18 @@ window.wait(() => {
     // DEV: Set max size to be massive
     //      Same reason as specified in Electron src
     //        --> https://github.com/atom/electron/blob/master/atom/browser/native_window_views.cc
-    mainWindow.setMaximumSize(99999999, 999999999);
+    setTimeout(() => remote.getCurrentWindow().setMaximumSize(99999999, 999999999), 0);
+    remote.getCurrentWindow().setMinimumSize(200, 200);
 
     // Restore the regular size/position from settings.
     const regularSize = Settings.get('size');
     const regularPosition = Settings.get('position');
     mainWindow.setSize(...regularSize);
-    mainWindow.setPosition(...regularPosition);
+    if (positionOnScreen(regularPosition)) {
+      mainWindow.setPosition(...regularPosition);
+    } else {
+      mainWindow.center();
+    }
 
     webContents.executeJavaScript('document.body.removeAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
@@ -83,4 +99,7 @@ Emitter.on('miniReplaceWithThumbs', (event, state) => {
   } else {
     player.removeAttribute('thumbs');
   }
+});
+Emitter.on('miniUseScrollVolume', (event, state) => {
+  window.GPM.mini.setScrollVolume(state.state);
 });

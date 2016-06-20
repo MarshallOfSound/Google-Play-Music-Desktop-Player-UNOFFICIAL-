@@ -95,17 +95,17 @@ function toggleMainWindow() {
   // we must find the window ourselves
   const win = WindowManager.getAll('main')[0];
 
-  if (win.isMinimized()) {
+  if (win.isMinimized() || !win.isVisible()) {
     win.setSkipTaskbar(false);
     win.show();
     if (global.wasMaximized) {
       win.maximize();
     }
   } else {
+    global.wasMaximized = Settings.get('maximized', false);
+    win.minimize();
     // Hide to tray, if configured
     if (Settings.get('minToTray', true)) {
-      global.wasMaximized = Settings.get('maximized', false);
-      win.minimize();
       win.setSkipTaskbar(true);
     }
   }

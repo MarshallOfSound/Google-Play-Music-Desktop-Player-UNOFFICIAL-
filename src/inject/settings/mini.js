@@ -27,12 +27,23 @@ if (Settings.get('miniAlwaysShowSongInfo', false)) {
 $('#mini-replace-with-thumbs').change((e) => {
   Emitter.fire('settings:set', {
     key: 'miniReplaceWithThumbs',
-    value: $(e.currentTarget).is(':checked'),
-  });
+});    
+
+$('#mini-use-scroll-volume').change((e) => {
+  Emitter.fire('settings:set', {
+    key: 'miniUseScrollVolume',
+    value: $(e.currentTarget).is(':checked'),    
 });
+
 
 if (Settings.get('miniReplaceWithThumbs', false)) {
   $('#mini-replace-with-thumbs').attr('checked', 'checked');
 } else {
   $('#mini-replace-with-thumbs').removeAttr('checked');
+}
+
+if (Settings.get('miniUseScrollVolume', false)) {
+  $('#mini-use-scroll-volume').attr('checked', 'checked');
+} else {
+  $('#mini-use-scroll-volume').removeAttr('checked');
 }

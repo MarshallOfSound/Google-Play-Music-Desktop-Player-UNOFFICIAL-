@@ -26,22 +26,15 @@ class PlaybackAPI {
     Emitter.on('playback:isPaused', this._setPlaying.bind(this, false));
     Emitter.on('playback:isStopped', this._setPlaying.bind(this, false));
 
-    Emitter.on('change:playback-time', (event, timeObj) => {
-      this._setTime(timeObj.current, timeObj.total);
-    });
+    Emitter.on('change:playback-time', (event, timeObj) => this._setTime(timeObj.current, timeObj.total));
     // we throttle this function because of a bug in gmusic.js
     // ratings are received multiple times here in a couple of ms
     // to avoid writing the file 5+ times we throttle it to 500ms max
-    Emitter.on('change:rating', _.throttle((event, details) => {
-      this._setRating(details);
-    }, 500));
-
-    Emitter.on('change:shuffle', _.throttle((event, mode) => {
-      this._setShuffle(mode);
-    }), 20);
-    Emitter.on('change:repeat', _.throttle((event, mode) => {
-      this._setRepeat(mode);
-    }), 20);
+    Emitter.on('change:rating', _.throttle((event, details) => this._setRating(details), 500));
+    Emitter.on('change:shuffle', _.throttle((event, mode) => this._setShuffle(mode)), 20);
+    Emitter.on('change:repeat', _.throttle((event, mode) => this._setRepeat(mode)), 20);
+    Emitter.on('change:playlists', _.throttle((event, playlists) => this._setPlaylists(playlists)), 20);
+    Emitter.on('change:queue', _.throttle((event, queue) => this._setQueue(queue)), 20);
   }
 
   reset() {
@@ -65,11 +58,15 @@ class PlaybackAPI {
       shuffle: 'NO_SHUFFLE',
       repeat: 'NO_REPEAT',
     };
+    this._private_data = {
+      playlists: [],
+      queue: [],
+    };
     this._save();
   }
 
   _save() {
-    if (Settings.get('enableJSONApi', true)) {
+    if (Settings.get('enableJSON_API', true)) {
       fs.writeFileSync(this.PATH, JSON.stringify(this.data, null, 4));
     }
   }
@@ -93,6 +90,16 @@ class PlaybackAPI {
     this._fire('change:song', this.data.song);
     this._fire('change:lyrics', this.data.songLyrics);
     this._save();
+  }
+
+  _setPlaylists(playlists) {
+    this._private_data.playlists = playlists;
+    this._fire('change:playlists', this._private_data.playlists);
+  }
+
+  _setQueue(queue) {
+    this._private_data.queue = queue;
+    this._fire('change:queue', this._private_data.queue);
   }
 
   _setRating(rating) {
@@ -159,6 +166,14 @@ class PlaybackAPI {
     return this.data.time;
   }
 
+  getPlaylists() {
+    return this._private_data.playlists;
+  }
+
+  getQueue() {
+    return this._private_data.queue;
+  }
+
   on(what, fn) {
     this._ev[what] = this._ev[what] || [];
     this._ev[what].push(fn);
@@ -174,6 +189,7 @@ class PlaybackAPI {
     this._ev[what].forEach((fn) => {
       fn(arg);
     });
+    Emitter.sendToWindowsOfName('main', `PlaybackAPI:${what}`, arg);
   }
 }
 

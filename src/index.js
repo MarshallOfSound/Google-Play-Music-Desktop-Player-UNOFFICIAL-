@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import { argv } from 'yargs';
 import path from 'path';
 import ua from 'universal-analytics';
@@ -7,6 +7,7 @@ import winston from 'winston';
 
 import configureApp from './main/configureApp';
 import generateBrowserConfig from './main/configureBrowser';
+import { positionOnScreen } from './_util';
 
 import EmitterClass from './main/utils/Emitter';
 import SettingsClass from './main/utils/Settings';
@@ -43,9 +44,13 @@ import handleStartupEvent from './squirrel';
     return;
   }
 
-  global.Settings = new SettingsClass();
+  if (process.env.TEST_SPEC) {
+    global.Settings = new SettingsClass('.test', true);
+  } else {
+    global.Settings = new SettingsClass();
+  }
 
-  global.DEV_MODE = argv.development || argv.dev;
+  global.DEV_MODE = process.env.TEST_SPEC || argv.development || argv.dev;
   if (Settings.get('START_IN_DEV_MODE', false)) {
     global.DEV_MODE = true;
     Settings.set('START_IN_DEV_MODE', false);
@@ -105,17 +110,7 @@ import handleStartupEvent from './squirrel';
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
     const position = Settings.get('position');
-    let inBounds = false;
-    if (position) {
-      screen.getAllDisplays().forEach((display) => {
-        if (position[0] >= display.workArea.x &&
-            position[0] <= display.workArea.x + display.workArea.width &&
-            position[1] >= display.workArea.y &&
-            position[1] <= display.workArea.y + display.workArea.height) {
-          inBounds = true;
-        }
-      });
-    }
+    const inBounds = positionOnScreen(position);
 
     let size = Settings.get('size');
     size = size || [1200, 800];

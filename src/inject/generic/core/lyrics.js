@@ -1,5 +1,3 @@
-import { remote } from 'electron';
-
 window.addEventListener('load', () => {
   if (!window.$) return;
   if (!$('#lyrics').length) return;
@@ -19,8 +17,9 @@ window.addEventListener('load', () => {
       }, 4000);
     } else {
       clearTimeout(noLyricsTimer);
+      const scroll = Settings.get('scrollLyrics', true);
       const lyricsHTML = lyrics.replace(/\n/g, '<br />');
-      $('#lyrics').html(`<p>${lyricsHTML}</p>`);
+      $('#lyrics').html(`<p ${scroll ? 'data-scroll' : ''}>${lyricsHTML}</p>`);
       animate = true;
     }
   };
@@ -30,6 +29,7 @@ window.addEventListener('load', () => {
   };
   // Handle time progression of a song
   const timeHandler = (timeObj) => {
+    $('#lyrics_bar').width(`${(timeObj.total === 0 ? 0 : timeObj.current / timeObj.total) * 100}%`);
     let jumped = false;
     if (timeObj.current < jumpDetect || timeObj.current - jumpDetect > 1000) {
       animate = true;
@@ -53,15 +53,22 @@ window.addEventListener('load', () => {
     animate = false;
   };
 
-  remote.getGlobal('PlaybackAPI').on('change:lyrics', lyricsHandler);
-  remote.getGlobal('PlaybackAPI').on('change:state', stateHandler);
-  remote.getGlobal('PlaybackAPI').on('change:time', timeHandler);
+  const scrollSettingsHandler = (state) => {
+    const lyricsP = $('#lyrics p');
+    animate = state;
+    if (state) {
+      lyricsP.attr('data-scroll', true);
+    } else {
+      lyricsP.removeAttr('data-scroll');
+      clearTimeout(animationTimer);
+      lyricsP.stop();
+    }
+  };
 
-  window.addEventListener('beforeunload', () => {
-    remote.getGlobal('PlaybackAPI').unbind('change:lyrics', lyricsHandler);
-    remote.getGlobal('PlaybackAPI').unbind('change:state', stateHandler);
-    remote.getGlobal('PlaybackAPI').unbind('change:time', timeHandler);
-  });
+  Emitter.on('PlaybackAPI:change:lyrics', (e, arg) => lyricsHandler(arg));
+  Emitter.on('PlaybackAPI:change:state', (e, arg) => stateHandler(arg));
+  Emitter.on('PlaybackAPI:change:time', (e, arg) => timeHandler(arg));
+  Emitter.on('settings:set:scrollLyrics', (e, arg) => scrollSettingsHandler(arg));
 
   window.addEventListener('resize', () => { animate = true; });
   $('#lyrics_back').click(() => $('#lyrics_back').removeClass('vis'));

@@ -79,7 +79,7 @@ function hideNotWorkingStuff() {
   hide('.upload-dialog-bg', true);
   hide('.upload-dialog', true);
 
-  setInterval(() => hide('.goog-menu.now-playing-menu > .goog-menuitem:nth-child(3)'), 500);
+  setInterval(() => hide('.song-menu.goog-menu.now-playing-menu > .goog-menuitem:nth-child(3)'), 500);
 }
 
 /** Create the Desktop Settings button in the left sidebar */

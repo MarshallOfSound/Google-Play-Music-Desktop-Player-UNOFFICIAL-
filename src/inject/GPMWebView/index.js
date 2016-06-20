@@ -23,7 +23,7 @@ window.open = (url) => remote.shell.openExternal(url);
 
 require('./playback');
 require('./interface');
-if (global.DEV_MODE) {
+if (remote.getGlobal('DEV_MODE')) {
   require('electron-chromecast');
 }
 
@@ -32,7 +32,10 @@ if (global.DEV_MODE) {
 const waitForExternal = setInterval(() => {
   if (document.querySelector('#material-vslider')) {
     clearInterval(waitForExternal);
-    require('../../assets/external.js');
+    window.GMusic = require('gmusic.js');
+    require('gmusic-ui.js');
+    require('gmusic-mini-player.js');
+    require('gmusic-theme.js');
 
     window.GPM = new window.GMusic(window);
     window.GPMTheme = new window.GMusicTheme();

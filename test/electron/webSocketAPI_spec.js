@@ -10,8 +10,8 @@ chai.use(chaiSinon);
 chai.should();
 
 // Test Classes
-import Emitter from '../build/main/utils/Emitter';
-import PlaybackAPI from '../build/main/utils/PlaybackAPI';
+import Emitter from '../../build/main/utils/Emitter';
+import PlaybackAPI from '../../build/main/utils/PlaybackAPI';
 
 // Moch the required Settings API
 global.Settings = {
@@ -21,17 +21,27 @@ global.Settings = {
     }
     return def;
   },
+  onChange: () => {},
+  __TEST__: true,
+};
+// Moch the required WindowManager API
+global.WindowManager = {
+  getAll: () => [],
+};
+// Moch the required Logger API
+global.Logger = {
+  error: () => {},
 };
 global.Emitter = new Emitter();
 global.PlaybackAPI = new PlaybackAPI();
 global.API_PORT = 4202; // Travis has something running on 5672
 
-const INITIAL_DATA_COUNT = 7;
+const INITIAL_DATA_COUNT = 9;
 
 describe('WebSocketAPI', () => {
   beforeEach(() => {
     global.PlaybackAPI.reset();
-    require('../build/main/features/core/websocketAPI');
+    require('../../build/main/features/core/websocketAPI');
   });
 
   it(`should start a WebSocket server on port ${global.API_PORT}`, (done) => {
@@ -72,9 +82,11 @@ describe('WebSocketAPI', () => {
       spy.getCall(1).args[0].channel.should.be.equal('playState');
       spy.getCall(2).args[0].channel.should.be.equal('shuffle');
       spy.getCall(3).args[0].channel.should.be.equal('repeat');
-      spy.getCall(4).args[0].channel.should.be.equal('song');
-      spy.getCall(5).args[0].channel.should.be.equal('time');
-      spy.getCall(6).args[0].channel.should.be.equal('lyrics');
+      spy.getCall(4).args[0].channel.should.be.equal('playlists');
+      spy.getCall(5).args[0].channel.should.be.equal('queue');
+      spy.getCall(6).args[0].channel.should.be.equal('song');
+      spy.getCall(7).args[0].channel.should.be.equal('time');
+      spy.getCall(8).args[0].channel.should.be.equal('lyrics');
       done();
     }));
 
@@ -86,20 +98,24 @@ describe('WebSocketAPI', () => {
       spy.getCall(2).args[0].payload.should.be.equal('NO_SHUFFLE');
       // repeat
       spy.getCall(3).args[0].payload.should.be.equal('NO_REPEAT');
+      // playlists
+      spy.getCall(4).args[0].payload.should.be.deep.equal([]);
+      // queue
+      spy.getCall(5).args[0].payload.should.be.deep.equal([]);
       // song
-      spy.getCall(4).args[0].payload.should.have.property('title');
-      spy.getCall(4).args[0].payload.should.have.property('artist');
-      spy.getCall(4).args[0].payload.should.have.property('album');
-      expect(spy.getCall(4).args[0].payload.title).to.be.equal(null);
-      expect(spy.getCall(4).args[0].payload.artist).to.be.equal(null);
-      expect(spy.getCall(4).args[0].payload.album).to.be.equal(null);
+      spy.getCall(6).args[0].payload.should.have.property('title');
+      spy.getCall(6).args[0].payload.should.have.property('artist');
+      spy.getCall(6).args[0].payload.should.have.property('album');
+      expect(spy.getCall(6).args[0].payload.title).to.be.equal(null);
+      expect(spy.getCall(6).args[0].payload.artist).to.be.equal(null);
+      expect(spy.getCall(6).args[0].payload.album).to.be.equal(null);
       // time
-      spy.getCall(5).args[0].payload.should.have.property('current');
-      spy.getCall(5).args[0].payload.should.have.property('total');
-      spy.getCall(5).args[0].payload.current.should.be.equal(0);
-      spy.getCall(5).args[0].payload.total.should.be.equal(0);
+      spy.getCall(7).args[0].payload.should.have.property('current');
+      spy.getCall(7).args[0].payload.should.have.property('total');
+      spy.getCall(7).args[0].payload.current.should.be.equal(0);
+      spy.getCall(7).args[0].payload.total.should.be.equal(0);
       // lyrics
-      expect(spy.getCall(6).args[0].payload).to.be.equal(null);
+      expect(spy.getCall(8).args[0].payload).to.be.equal(null);
       done();
     }));
 
@@ -148,6 +164,14 @@ describe('WebSocketAPI', () => {
       shouldUpdateTest('playState', '_setPlaying', true);
       shouldUpdateTest('shuffle', '_setShuffle', 'ALL_SHUFFLE');
       shouldUpdateTest('repeat', '_setRepeat', 'SINGLE_REPEAT');
+      shouldUpdateTest('playlists', '_setPlaylists',
+        [{ id: 1, name: 'TEST_PLAYLIST', tracks: [] }],
+        { id: 1, name: 'TEST_PLAYLIST', tracks: [] }
+      );
+      shouldUpdateTest('queue', '_setQueue',
+        [{ id: 1, title: 'Song 1' }],
+        { id: 1, title: 'Song 1' }
+      );
       shouldUpdateTest('song', '_setPlaybackSong',
         ['songTitle', 'songArtist', 'songAlbum', 'songArt'],
         {

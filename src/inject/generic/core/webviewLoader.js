@@ -1,14 +1,24 @@
 import { remote } from 'electron';
 
 const webview = document.querySelector('webview');
+if (process.env.TEST_SPEC) {
+  webview.setAttribute('partition', '__TEST__');
+}
 
 if (webview) {
   let once = true;
-  webview.addEventListener('did-start-loading', () => {
+  const targetPage = Settings.get('savePage', true) ?
+                       Settings.get('lastPage', 'https://play.google.com/music/listen') :
+                       'https://play.google.com/music/listen';
+  document.body.setAttribute('loading', 'loading');
+
+  webview.addEventListener('did-stop-loading', () => {
     if (once) {
       once = false;
-      webview.src = Settings.get('lastPage', 'https://play.google.com/music/listen');
-      document.body.setAttribute('loading', 'loading');
+      document.querySelector('webview').executeJavaScript(`window.location = "${targetPage}"`);
+      setTimeout(() => {
+        document.body.removeAttribute('loading');
+      }, 300);
     }
   });
 
@@ -23,7 +33,6 @@ if (webview) {
 
   webview.addEventListener('dom-ready', () => {
     setTimeout(() => {
-      document.body.removeAttribute('loading');
       webview.focus();
       webview.addEventListener('did-navigate', savePage);
       webview.addEventListener('did-navigate-in-page', savePage);

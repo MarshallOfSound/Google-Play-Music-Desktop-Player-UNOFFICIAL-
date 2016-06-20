@@ -71,8 +71,14 @@ Emitter.on('settings:set', (event, details) => {
     case 'miniAlwaysOnTop':
       Emitter.sendToGooglePlayMusic('miniAlwaysOnTop', { state: details.value });
       break;
+    case 'miniUseScrollVolume':
+      Emitter.sendToGooglePlayMusic('miniUseScrollVolume', { state: details.value });
+      break;
     case 'speechRecognition':
       Emitter.sendToGooglePlayMusic('speech:toggle', { state: details.value });
+      break;
+    case 'scrollLyrics':
+      Emitter.sendToAll('settings:set:scrollLyrics', details.value);
       break;
     case 'auto-launch':
       if (details.value === true) {

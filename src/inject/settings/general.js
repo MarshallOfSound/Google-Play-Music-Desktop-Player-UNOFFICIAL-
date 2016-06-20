@@ -8,6 +8,19 @@ if (Settings.get('playbackAPI', false)) {
   $('#playback-api').removeAttr('checked');
 }
 
+$('#json-api').change((e) => {
+  Emitter.fire('settings:set', {
+    key: 'enableJSON_API',
+    value: $(e.currentTarget).is(':checked'),
+  });
+});
+
+if (Settings.get('enableJSON_API', false)) {
+  $('#json-api').attr('checked', true);
+} else {
+  $('#json-api').removeAttr('checked');
+}
+
 $('#voice-controls').change((e) => {
   Emitter.fire('settings:set', {
     key: 'speechRecognition',
@@ -32,4 +45,30 @@ if (Settings.get('nativeFrame')) {
   $('#native-frame').attr('checked', true);
 } else {
   $('#native-frame').removeAttr('checked');
+}
+
+$('#save-page').change((e) => {
+  Emitter.fire('settings:set', {
+    key: 'savePage',
+    value: $(e.currentTarget).is(':checked'),
+  });
+});
+
+if (Settings.get('savePage', true)) {
+  $('#save-page').attr('checked', true);
+} else {
+  $('#save-page').removeAttr('checked');
+}
+
+$('#scroll-lyrics').change((e) => {
+  Emitter.fire('settings:set', {
+    key: 'scrollLyrics',
+    value: $(e.currentTarget).is(':checked'),
+  });
+});
+
+if (Settings.get('scrollLyrics', true)) {
+  $('#scroll-lyrics').attr('checked', true);
+} else {
+  $('#scroll-lyrics').removeAttr('checked');
 }

@@ -17,6 +17,8 @@ class Settings {
       fs.chmodSync(this.PATH, '777');
     }
     this.coupled = true;
+
+    this._hooks = {};
   }
 
   uncouple() {
@@ -30,8 +32,16 @@ class Settings {
     return typeof this.data[key] === 'undefined' ? defaultValue : this.data[key];
   }
 
+  onChange(key, fn) {
+    this._hooks[key] = this._hooks[key] || [];
+    this._hooks[key].push(fn);
+  }
+
   set(key, value) {
     if (this.coupled) {
+      if (this._hooks[key] && this.data[key] !== value) {
+        this._hooks[key].forEach((hookFn) => hookFn(value));
+      }
       this.data[key] = value;
       this._save();
     }

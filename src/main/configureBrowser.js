@@ -10,6 +10,8 @@ export default () => {
   const baseConfig = {
     width: Settings.get('width', defaultWidth),
     height: Settings.get('height', defaultHeight),
+    minWidth: 200,
+    minHeight: 200,
     x: Settings.get('X'),
     y: Settings.get('Y'),
     show: false,
