@@ -82,6 +82,8 @@
 
   "settings-option-auto-launch": "Automatisch starten wenn mein Computer hochfährt",
 
+  "settings-option-save-page": "Automatisch zuletzt geöffnete Seite beim Start öffnen",
+
   "settings-option-mini-always-show": "Immer Titelinformationen anzeigen",
   "settings-option-mini-ontop": "Immer oben",
   "settings-option-mini-use-scroll-volume": "Benuze das Mausrad um die Lautstärke zu ändern",
