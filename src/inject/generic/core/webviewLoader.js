@@ -8,8 +8,8 @@ if (process.env.TEST_SPEC) {
 if (webview) {
   let once = true;
   const targetPage = Settings.get('savePage', true) ?
-Settings.get('lastPage', 'https://play.google.com/music/listen') :
-'https://play.google.com/music/listen';
+                       Settings.get('lastPage', 'https://play.google.com/music/listen') :
+                       'https://play.google.com/music/listen';
   document.body.setAttribute('loading', 'loading');
 
   webview.addEventListener('did-stop-loading', () => {
