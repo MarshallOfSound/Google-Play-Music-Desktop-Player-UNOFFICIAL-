@@ -84,6 +84,8 @@
 
   "settings-option-save-page": "Automatically load last viewed page on startup",
 
+  "settings-option-scroll-lyrics": "Scroll lyrics automatically while playing",
+
   "settings-option-mini-always-show": "Always show song information",
   "settings-option-mini-ontop": "Always on top",
   "settings-option-mini-use-scroll-volume": "Use the scroll wheel to adjust volume",
