@@ -11,11 +11,6 @@ window.wait(() => {
     document.body.setAttribute('controls', 'controls');
   }
 
-  if (Settings.get('miniReplaceWithThumbs', false)) {
-    const player = document.querySelector('#player');
-    player.setAttribute('thumbs', 'thumbs');
-  }
-
   window.GPM.mini.on('enable', () => {
     Emitter.fire('mini', { state: true });
 
@@ -30,6 +25,11 @@ window.wait(() => {
     remote.getCurrentWebContents().setZoomFactor(1);
     remote.getCurrentWindow().setAlwaysOnTop(Settings.get('miniAlwaysOnTop', false));
     mini = true;
+
+    if (Settings.get('miniReplaceWithThumbs', false)) {
+    const player = document.querySelector('#player');
+    player.setAttribute('thumbs', 'thumbs');
+  }
   });
 
   window.GPM.mini.on('disable', () => {
