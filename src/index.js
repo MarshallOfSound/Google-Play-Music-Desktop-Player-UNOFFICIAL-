@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import { argv } from 'yargs';
 import path from 'path';
 import ua from 'universal-analytics';
