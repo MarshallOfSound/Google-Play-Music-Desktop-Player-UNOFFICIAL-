@@ -35,6 +35,7 @@ class PlaybackAPI {
     Emitter.on('change:repeat', _.throttle((event, mode) => this._setRepeat(mode)), 20);
     Emitter.on('change:playlists', _.throttle((event, playlists) => this._setPlaylists(playlists)), 20);
     Emitter.on('change:queue', _.throttle((event, queue) => this._setQueue(queue)), 20);
+    Emitter.on('change:search-results', _.throttle((event, results) => this._setResults(results)), 20);
   }
 
   reset() {
@@ -61,6 +62,12 @@ class PlaybackAPI {
     this._private_data = {
       playlists: [],
       queue: [],
+      results: {
+        searchText: '',
+        artists: [],
+        albums: [],
+        tracks: [],
+      },
     };
     this._save();
   }
@@ -132,6 +139,11 @@ class PlaybackAPI {
     this._save();
   }
 
+  _setResults(results) {
+    this._private_data.results = results;
+    this._fire('change:search-results', this._private_data.results);
+  }
+
   _setTime(current, total) {
     const totalTime = total || this.data.time.total;
     this.data.time = {
@@ -172,6 +184,10 @@ class PlaybackAPI {
 
   getQueue() {
     return this._private_data.queue;
+  }
+
+  getResults() {
+    return this._private_data.results;
   }
 
   on(what, fn) {
