@@ -15,6 +15,10 @@ window.wait(() => {
   if (Settings.get('miniUseScrollVolume', false)) {
     window.GPM.mini.setScrollVolume(true);
   }
+  if (Settings.get('miniReplaceWithThumbs', false)) {
+    const player = document.querySelector('#player');
+    player.setAttribute('thumbs', 'thumbs');
+  }
 
   window.GPM.mini.on('enable', () => {
     Emitter.fire('mini', { state: true });
