@@ -29,15 +29,14 @@ $('#mini-replace-with-thumbs').change((e) => {
     key: 'miniReplaceWithThumbs',
     value: $(e.currentTarget).is('checked'),
   });
-});   
+});
 
 $('#mini-use-scroll-volume').change((e) => {
   Emitter.fire('settings:set', {
     key: 'miniUseScrollVolume',
-    value: $(e.currentTarget).is(':checked'),    
+    value: $(e.currentTarget).is(':checked'),
   });
 });
-
 
 if (Settings.get('miniReplaceWithThumbs', false)) {
   $('#mini-replace-with-thumbs').attr('checked', 'checked');

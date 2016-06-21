@@ -38,9 +38,9 @@ window.wait(() => {
     mini = true;
 
     if (Settings.get('miniReplaceWithThumbs', false)) {
-    const player = document.querySelector('#player');
-    player.setAttribute('thumbs', 'thumbs');
-  }
+      const player = document.querySelector('#player');
+      player.setAttribute('thumbs', 'thumbs');
+    }
   });
 
   window.GPM.mini.on('disable', () => {
