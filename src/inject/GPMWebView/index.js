@@ -40,6 +40,14 @@ const waitForExternal = setInterval(() => {
     window.GPM = new window.GMusic(window);
     window.GPMTheme = new window.GMusicTheme();
 
+    /*
+    Move to magical file
+    */
+    window.GPM.search.performSearchAndPlayResult = (searchText, result) => {
+      window.GPM.search.performSearch(searchText)
+        .then(() => window.GPM.search.playResult(result));
+    };
+
     Emitter.ready = true;
     _.forEach(waitingQueue, (fn) => {
       try {
