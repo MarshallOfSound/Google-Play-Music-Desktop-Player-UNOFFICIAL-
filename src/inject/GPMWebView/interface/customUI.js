@@ -150,10 +150,17 @@ function installNowPlayingMenu() {
 
 function handleZoom() {
   let zoom = Settings.get('zoom', 1);
+  const updateZoom = () => {
+    const webContents = remote.getCurrentWebContents();
+    webContents.setZoomFactor(zoom);
+    Emitter.fire('settings:set', {
+      key: 'zoom',
+      value: zoom,
+    });
+  };
   remote.getCurrentWebContents().setZoomFactor(zoom);
   window.addEventListener('keydown', (e) => {
     if (!(e.ctrlKey || e.metaKey) || e.repeat) return;
-    const webContents = remote.getCurrentWebContents();
     if (e.which === 189) {
       // Zoom out
       zoom -= 0.1;
@@ -165,11 +172,18 @@ function handleZoom() {
     } else {
       return;
     }
-    webContents.setZoomFactor(zoom);
-    Emitter.fire('settings:set', {
-      key: 'zoom',
-      value: zoom,
-    });
+    updateZoom();
+  });
+  window.addEventListener('mousewheel', (e) => {
+    if (!e.ctrlKey) return;
+    e.preventDefault();
+    // e.deltaY is affected by the users "scroll speed" setting on their mouse.
+    if (e.deltaY < 0) {
+      zoom += 0.1;
+    } else {
+      zoom -= 0.1;
+    }
+    updateZoom();
   });
 }
 
