@@ -51,6 +51,10 @@ window.wait(() => {
 
   window.GPM.on('change:playback-time', (playbackInfo) => {
     Emitter.fire('change:playback-time', playbackInfo);
+    if (playbackInfo.current === 0) {
+      lastScrobble = {};
+      lastScrobbleTime = Date.now();
+    }
     if (playbackInfo.current >= playbackInfo.total / 2
           && Date.now() - 10000 >= lastScrobbleTime && currentSong !== null
           && JSON.stringify(lastScrobble) !== JSON.stringify(currentSong)) {
