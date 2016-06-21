@@ -36,3 +36,16 @@ if (Settings.get('miniUseScrollVolume', false)) {
 } else {
   $('#mini-use-scroll-volume').removeAttr('checked');
 }
+
+$('#mini-replace-with-thumbs').change((e) => {
+  Emitter.fire('settings:set', {
+    key: 'miniReplaceWithThumbs',
+    value: $(e.currentTarget).is(':checked'),
+  });
+});
+
+if (Settings.get('miniReplaceWithThumbs', false)) {
+  $('#mini-replace-with-thumbs').attr('checked', 'checked');
+} else {
+  $('#mini-replace-with-thumbs').removeAttr('checked');
+}

@@ -15,6 +15,10 @@ window.wait(() => {
   if (Settings.get('miniUseScrollVolume', false)) {
     window.GPM.mini.setScrollVolume(true);
   }
+  if (Settings.get('miniReplaceWithThumbs', false)) {
+    const player = document.querySelector('#player');
+    player.setAttribute('thumbs', 'thumbs');
+  }
 
   window.GPM.mini.on('enable', () => {
     Emitter.fire('mini', { state: true });
@@ -36,6 +40,11 @@ window.wait(() => {
     remote.getCurrentWebContents().setZoomFactor(1);
     remote.getCurrentWindow().setAlwaysOnTop(Settings.get('miniAlwaysOnTop', false));
     mini = true;
+
+    if (Settings.get('miniReplaceWithThumbs', false)) {
+      const player = document.querySelector('#player');
+      player.setAttribute('thumbs', 'thumbs');
+    }
   });
 
   window.GPM.mini.on('disable', () => {
@@ -80,9 +89,19 @@ Emitter.on('miniAlwaysShowSongInfo', (event, state) => {
     document.body.removeAttribute('controls');
   }
 });
+
 Emitter.on('miniAlwaysOnTop', (event, state) => {
   if (mini) {
     remote.getCurrentWindow().setAlwaysOnTop(state.state);
+  }
+});
+
+Emitter.on('miniReplaceWithThumbs', (event, state) => {
+  const player = document.querySelector('#player');
+  if (state.state) {
+    player.setAttribute('thumbs', 'thumbs');
+  } else {
+    player.removeAttribute('thumbs');
   }
 });
 Emitter.on('miniUseScrollVolume', (event, state) => {
