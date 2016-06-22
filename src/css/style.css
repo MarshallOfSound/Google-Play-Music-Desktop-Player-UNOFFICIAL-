@@ -78,6 +78,11 @@ ul.feat-list, ul.feat-list li {
   list-style-type: circle !important;
 }
 
+.store-image {
+  width: 80%;
+  max-width: 350px;
+}
+
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     position: absolute;
@@ -91,6 +96,10 @@ ul.feat-list, ul.feat-list li {
 @media only screen and (max-width : 600px) {
   #index-banner .section {
     top: 0;
+  }
+
+  .store-image {
+    width: 50%;
   }
 }
 
