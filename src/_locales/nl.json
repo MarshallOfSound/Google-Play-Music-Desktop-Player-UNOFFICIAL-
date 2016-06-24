@@ -42,6 +42,7 @@
 
   "modal-confirmTray-title": "Kijk uit",
   "modal-confirmTray-content": "Het programma minimaliseert zich naar het systeemvak bij het afsluiten (wat u zonet probeerde te doen) van het programma. Je kan dit gedrag veranderen in de instellingen van GPMDP.",
+  "modal-confirmOpenPort-content": "De PlaybackAPI kon niet worden gestard omdat Windows Firewall dit blokkeert. Om dit op te lossen zijn administartor-machtigingen nodig.",
   "modal-confirmUpdate-title": "Beschikbare updates",
   "modal-confirmUpdate-content": "Woo hoo, er is een nieuwe update beschikbaar voor Google Play Music Desktop Player. Deze update brengt nieuwe functies en lost een aantal problemen op! Het is aanbevolen om deze update zo snel mogelijk te installeren.<br />We hopen dat je kunt genieten van de nieuwe update!",
   "modal-confirmUninstall-title": "Zo dit is het probleem...",
@@ -67,6 +68,7 @@
   "settings-option-custom-theme-light": "Licht",
 
   "settings-option-enable-api": "Zet Playback API aan",
+  "settings-option-enable-api-json": "Zet JSON API aan",
   "settings-option-enable-api-details": "Hierdoor kunenen andere applicaties koppelen met GPMDP",
   "settings-option-enable-system-borders": "Gebruik systeem randen",
   "settings-option-enable-system-borders-details": "Herstart vereist",
@@ -78,8 +80,15 @@
 
   "settings-option-min-to-tray": "Minimaliseer naar systeemvak",
 
-  "settings-option-mini-always-show": "Altijd nummerinformatie laten zien",
+  "settings-option-auto-launch": "Start Google Play Music Desktop Player bij inloggen",
+
+  "settings-option-save-page": "Bekijk laatst bezochte pagina bij inloggen",
+
+  "settings-option-scroll-lyrics": "Laat lyrics meescrollen tijdens het afspelen",
+
+  "settings-option-mini-always-show": "Altijd informatie van dit nummer laten zien",
   "settings-option-mini-ontop": "Altijd op top",
+  "settings-option-mini-use-scroll-volume": "Gebruik middelste knop op de muis om het volume aan te passen",
 
   "title-color-picker": "Color Picker Magic",
   "title-settings": "Instellingen",
