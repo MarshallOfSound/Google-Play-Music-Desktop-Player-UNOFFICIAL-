@@ -28,7 +28,7 @@
   "lastfm-login-authorizing": "Inloggen",
   "lastfm-login-button-text": "Log in op Last.FM",
   "lastfm-login-error": "Je hebt het inloggen geannuleerd, probeer het opnieuw",
-  "lastfm-login-not-authorized": "Niet Ingelofd",
+  "lastfm-login-not-authorized": "Niet Ingelogd",
   "lastfm-logout-button-text": "Uitloggen op Last.FM",
 
   "lyrics-failed-message": "Sorry, voor dit nummer is geen songtekst gevonden",
@@ -54,7 +54,7 @@
   "playback-label-play-pause": "Play / Pause",
   "playback-label-previous-track": "Vorige Nummer",
   "playback-label-stop": "Stop",
-  "playback-label-thumbs-down": "Duimp omlaag",
+  "playback-label-thumbs-down": "Duim omlaag",
   "playback-label-thumbs-up": "Duim omhoog",
   "playback-label-volume-down": "Verlaag Volume",
   "playback-label-volume-up": "Verhoog Volume",
@@ -87,7 +87,7 @@
   "title-settings-general": "Algemeen",
   "title-settings-hotkeys": "Hotkeys",
   "title-settings-lastfm": "LastFM",
-  "title-settings-mini": "Minispelerr",
+  "title-settings-mini": "Minispeler",
 
   "tray-label-audio-device": "Geluidsapparaat",
   "tray-label-show": "Laat zien"
