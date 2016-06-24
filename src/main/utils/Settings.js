@@ -17,6 +17,8 @@ class Settings {
       fs.chmodSync(this.PATH, '777');
     }
     this.coupled = true;
+
+    this._hooks = {};
   }
 
   uncouple() {
@@ -30,15 +32,34 @@ class Settings {
     return typeof this.data[key] === 'undefined' ? defaultValue : this.data[key];
   }
 
+  onChange(key, fn) {
+    this._hooks[key] = this._hooks[key] || [];
+    this._hooks[key].push(fn);
+  }
+
   set(key, value) {
     if (this.coupled) {
+      if (this._hooks[key] && this.data[key] !== value) {
+        this._hooks[key].forEach((hookFn) => hookFn(value));
+      }
       this.data[key] = value;
       this._save();
     }
   }
 
-  _load() {
-    const userSettings = JSON.parse(fs.readFileSync(this.PATH, 'utf8'));
+  _load(retryCount = 5) {
+    let userSettings;
+    try {
+      userSettings = JSON.parse(fs.readFileSync(this.PATH, 'utf8'));
+    } catch (e) {
+      if (retryCount > 0) {
+        setTimeout(this._load.bind(this, retryCount - 1), 10);
+        Logger.error('Failed to load settings JSON file, retyring in 10 milliseconds');
+        return;
+      }
+      userSettings = {};
+      Logger.error('Failed to load settings JSON file, giving up and resetting');
+    }
     this.data = _.extend({}, initalSettings, userSettings);
   }
 

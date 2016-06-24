@@ -10,7 +10,7 @@ chai.use(chaiFs);
 chai.should();
 
 // Actual Test Imports
-import jsonCreator from '../build/main/utils/_jsonCreator';
+import jsonCreator from '../../build/main/utils/_jsonCreator';
 
 describe('JSONCreator', () => {
   it('should return a valid path', () => {

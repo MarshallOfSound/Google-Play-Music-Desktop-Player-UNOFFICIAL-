@@ -39,6 +39,9 @@
       </div>
       <div id="shadow"></div>
     </div>
+    <div id="lyrics_progress">
+      <div id="lyrics_bar" class="lyrics-progress"></div>
+    </div>
   </div>
   <!-- End Lyrics Container -->
 
@@ -50,7 +53,7 @@
     </div>
     <div class="modal-footer">
       <a href="javascript:void(0)" id="confirmTrayButton" class="modal-action modal-close waves-effect waves-green btn-flat">
-        <span is="translation-key">button-text-ok</span>
+        <span is="translation-key">button-test-ok</span>
       </a>
       <a href="javascript:void(0)" id="confirmTrayNeverButton" class="modal-action modal-close waves-effect waves-orange btn-flat">
         <span is="translation-key">button-text-dont-tell-me-again</span>
@@ -67,7 +70,37 @@
     </div>
     <div class="modal-footer">
       <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">
-        <span is="translation-key">button-text-ok</span>
+        <span is="translation-key">button-test-ok</span>
+      </a>
+    </div>
+  </div>
+  <!-- End Modal -->
+
+  <!-- Code Pop Up -->
+  <div id="APICode" class="modal">
+    <div class="modal-content">
+      <span id="APICodeContainer"></span>
+    </div>
+    <div class="modal-footer">
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">
+        <span is="translation-key">button-test-ok</span>
+      </a>
+    </div>
+  </div>
+  <!-- End Modal -->
+
+  <!-- Confirm open port spawn -->
+  <div id="confirmOpenPort" class="modal">
+    <div class="modal-content">
+      <h4 is="translation-key-h4">modal-confirmTray-title</h4>
+      <p is="translation-key-p">modal-confirmOpenPort-content</p>
+    </div>
+    <div class="modal-footer">
+      <a href="javascript:void(0)" id="confirmOpenPortButton" class="modal-action modal-close waves-effect waves-green btn" style="margin-right: 6px">
+        <span is="translation-key">button-text-lets-do-this</span>
+      </a>
+      <a href="javascript:void(0)" id="notNowOpenPortButton" class="modal-action modal-close waves-effect waves-orange btn-flat red-text">
+        <span is="translation-key">button-text-not-now</span>
       </a>
     </div>
   </div>
@@ -126,6 +159,7 @@
     <div class="modal-content">
       <h4><span is="translation-key">label-about</span> <span data-app-name></span></h4>
       <p><span is="translation-key">label-version</span>: <span data-app-version></span></p>
+      <p><span data-app-dev-mode></span></p>
     </div>
     <div class="modal-footer">
       <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn">

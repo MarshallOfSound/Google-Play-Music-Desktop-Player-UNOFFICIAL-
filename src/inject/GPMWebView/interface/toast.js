@@ -19,3 +19,17 @@ window.showToast = function (text, dismissable, buttonText, buttonColor, buttonE
   toast.show();
   postCreationFunction(toast, button);
 };
+
+window.showBasicToast = function (text) { // eslint-disable-line
+  const toast = document.createElement('paper-toast');
+  toast.setAttribute('text', text);
+  toast.duration = 5000;
+  toast.noCancelOnOutsideClick = true;
+  toast.style.marginBottom = '102px';
+  document.body.appendChild(toast);
+  toast.show();
+};
+
+Emitter.on('register_controller', (event, { name }) => {
+  window.showBasicToast(`A device "${name}" is now controlling this player!`);
+});

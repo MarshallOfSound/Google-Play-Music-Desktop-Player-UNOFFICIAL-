@@ -19,12 +19,12 @@ const _save = () => {
     }
   } else {
     Settings.set('mini-position', mainWindow.getPosition());
-    Settings.set('mini-size', mainWindow.getSize());
+    Settings.set('mini-size', mainWindow.getContentSize());
 
     // Keep the mini-player square.
-    const dimension = Math.max(...mainWindow.getSize());
+    const dimension = Math.max(...mainWindow.getContentSize());
     if (resizeTimer) clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => mainWindow.setSize(dimension, dimension), 100);
+    resizeTimer = setTimeout(() => mainWindow.setContentSize(dimension, dimension), 100);
     Emitter.sendToGooglePlayMusic('set:zoom', dimension / 310);
   }
 };

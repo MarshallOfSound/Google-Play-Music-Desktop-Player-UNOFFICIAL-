@@ -1,6 +1,6 @@
 let pauseAfter = false;
 
-window.addEventListener('load', () => {
+window.wait(() => {
   GPM.on('change:song', () => {
     if (pauseAfter) {
       GPM.playback.playPause();

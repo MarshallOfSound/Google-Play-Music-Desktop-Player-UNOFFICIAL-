@@ -23,16 +23,30 @@ window.open = (url) => remote.shell.openExternal(url);
 
 require('./playback');
 require('./interface');
+if (remote.getGlobal('DEV_MODE')) {
+  require('electron-chromecast');
+}
 
 // DEV: We need to wait for the page to load sufficiently before we can load
 //      gmusic.js and its child libraries
 const waitForExternal = setInterval(() => {
   if (document.querySelector('#material-vslider')) {
     clearInterval(waitForExternal);
-    require('../../assets/external.js');
+    window.GMusic = require('gmusic.js');
+    require('gmusic-ui.js');
+    require('gmusic-mini-player.js');
+    require('gmusic-theme.js');
 
     window.GPM = new window.GMusic(window);
     window.GPMTheme = new window.GMusicTheme();
+
+    /*
+    Move to magical file
+    */
+    window.GPM.search.performSearchAndPlayResult = (searchText, result) => {
+      window.GPM.search.performSearch(searchText)
+        .then(() => window.GPM.search.playResult(result));
+    };
 
     Emitter.ready = true;
     _.forEach(waitingQueue, (fn) => {

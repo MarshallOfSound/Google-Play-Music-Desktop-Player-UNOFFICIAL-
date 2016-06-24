@@ -51,3 +51,11 @@ Emitter.on('playback:increaseVolume', () => {
 Emitter.on('playback:decreaseVolume', () => {
   window.GPM.volume.decreaseVolume();
 });
+
+Emitter.on('playback:miniEnable', () => {
+  window.GPM.mini.enable();
+});
+
+Emitter.on('playback:miniDisable', () => {
+  window.GPM.mini.disable();
+});

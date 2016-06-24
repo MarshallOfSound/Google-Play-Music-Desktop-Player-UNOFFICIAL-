@@ -51,6 +51,10 @@ window.wait(() => {
 
   window.GPM.on('change:playback-time', (playbackInfo) => {
     Emitter.fire('change:playback-time', playbackInfo);
+    if (playbackInfo.current === 0) {
+      lastScrobble = {};
+      lastScrobbleTime = Date.now();
+    }
     if (playbackInfo.current >= playbackInfo.total / 2
           && Date.now() - 10000 >= lastScrobbleTime && currentSong !== null
           && JSON.stringify(lastScrobble) !== JSON.stringify(currentSong)) {
@@ -63,6 +67,16 @@ window.wait(() => {
       lastScrobbleTime = Date.now();
       lastScrobble = currentSong;
     }
+  });
+
+  window.GPM.on('change:playlists', (playlists) => {
+    Emitter.fire('change:playlists', playlists);
+  });
+  window.GPM.on('change:queue', (queue) => {
+    Emitter.fire('change:queue', queue);
+  });
+  window.GPM.on('change:search-results', (results) => {
+    Emitter.fire('change:search-results', results);
   });
 
   Emitter.on('execute:gmusic', (event, cmd) => {

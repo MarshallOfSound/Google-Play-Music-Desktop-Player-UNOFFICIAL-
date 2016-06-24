@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import { argv } from 'yargs';
 import path from 'path';
 import ua from 'universal-analytics';
@@ -7,6 +7,7 @@ import winston from 'winston';
 
 import configureApp from './main/configureApp';
 import generateBrowserConfig from './main/configureBrowser';
+import { positionOnScreen } from './_util';
 
 import EmitterClass from './main/utils/Emitter';
 import SettingsClass from './main/utils/Settings';
@@ -23,7 +24,37 @@ import handleStartupEvent from './squirrel';
     return;
   }
 
-  global.DEV_MODE = argv.development || argv.dev;
+  // Keep a global reference of the window object, if you don't, the window will
+  // be closed automatically when the JavaScript object is garbage collected.
+  let mainWindow = null;
+
+  // DEV: Make the app single instance
+  const shouldQuit = app.makeSingleInstance(() => {
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.focus();
+      mainWindow.show();
+      mainWindow.setSkipTaskbar(false);
+      if (app.dock && app.dock.show) app.dock.show();
+    }
+  });
+
+  if (shouldQuit) {
+    app.quit();
+    return;
+  }
+
+  if (process.env.TEST_SPEC) {
+    global.Settings = new SettingsClass('.test', true);
+  } else {
+    global.Settings = new SettingsClass();
+  }
+
+  global.DEV_MODE = process.env.TEST_SPEC || argv.development || argv.dev;
+  if (Settings.get('START_IN_DEV_MODE', false)) {
+    global.DEV_MODE = true;
+    Settings.set('START_IN_DEV_MODE', false);
+  }
 
   // Initialize the logger with some default logging levels.
   const defaultFileLogLevel = 'info';
@@ -46,29 +77,8 @@ import handleStartupEvent from './squirrel';
 
   configureApp(app);
 
-  // Keep a global reference of the window object, if you don't, the window will
-  // be closed automatically when the JavaScript object is garbage collected.
-  let mainWindow = null;
-
-  // DEV: Make the app single instance
-  const shouldQuit = app.makeSingleInstance(() => {
-    if (mainWindow) {
-      if (mainWindow.isMinimized()) mainWindow.restore();
-      mainWindow.focus();
-      mainWindow.show();
-      mainWindow.setSkipTaskbar(false);
-      if (app.dock && app.dock.show) app.dock.show();
-    }
-  });
-
-  if (shouldQuit) {
-    app.quit();
-    return;
-  }
-
   global.Emitter = new EmitterClass();
   global.WindowManager = new WindowManagerClass();
-  global.Settings = new SettingsClass();
   global.PlaybackAPI = new PlaybackAPIClass();
 
   // UA for GA
@@ -100,17 +110,7 @@ import handleStartupEvent from './squirrel';
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
     const position = Settings.get('position');
-    let inBounds = false;
-    if (position) {
-      screen.getAllDisplays().forEach((display) => {
-        if (position[0] >= display.workArea.x &&
-            position[0] <= display.workArea.x + display.workArea.width &&
-            position[1] >= display.workArea.y &&
-            position[1] <= display.workArea.y + display.workArea.height) {
-          inBounds = true;
-        }
-      });
-    }
+    const inBounds = positionOnScreen(position);
 
     let size = Settings.get('size');
     size = size || [1200, 800];
