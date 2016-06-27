@@ -74,16 +74,17 @@
   "settings-option-enable-system-borders-details": "Wymaga ponownego uruchomienia",
   "settings-option-enable-voice": "Włącz Kontrolę Głosową",
   "settings-option-enable-voice-details": "Kontrola nad GPMDP za pomocą komend głosowych - funkcja eksperymentalna",
+  
   "settings-option-hotkey-explanation": "Domyślne klawisze dedykowane obsłudze mediów będą działać bez względu na te ustawienia. Traktuj te ustawienia jako dodatkowe.",
   "settings-option-hotkey-explanation-2": "Użyj klawisza <i>\"Escape\"</i> żeby zresetować ustawienia.",
 
   "settings-option-min-to-tray": "Minimalizuj do paska narzędzi",
 
-  "settings-option-auto-launch": "Włącz aplikację podczas uruchamiania systemu.",
+  "settings-option-auto-launch": "Włącz aplikację podczas uruchamiania systemu",
 
-  "settings-option-save-page": "",
+  "settings-option-save-page": "Automatycznie załaduj ostatnio przeglądaną stronę przy starcie aplikacji",
 
-  "settings-option-scroll-lyrics": "",
+  "settings-option-scroll-lyrics": "Przewijaj napisy automatycznie podczas odtwarzania",
 
   "settings-option-mini-always-show": "Zawsze pokazuj informacje o utworze",
   "settings-option-mini-ontop": "Zawsze na wierzchu",
