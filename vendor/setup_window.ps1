@@ -5,16 +5,29 @@ function Test-Administrator
     (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)  
 }
 
+#Check for Node install
+function Node-Checker
+{
+    Try
+    {
+        return node -v
+    }
+    Catch
+    {
+        return ""
+    }
+}
+
 #Perform test to see if user as an administrator
 $IsAdmin = Test-Administrator
 
 #Lets alert the user, if needed
 if(!$IsAdmin)
 {
-    Write-Host "*******************************************************"
-    Write-Host "Warning:  It may be required to run this script as"
-    Write-Host "an administor or some of the programs may not install."
-    Write-Host "*******************************************************"
+    Write-Warning "*******************************************************"
+    Write-Warning "Warning:  It may be required to run this script as"
+    Write-Warning "an administor or some of the programs may not install."
+    Write-Warning "*******************************************************"
     
     $caption = “Would you like to continue?”
     $message = “Select an option below”
@@ -33,9 +46,12 @@ if(!$IsAdmin)
     }
 }
 
+#Set up initial variables
 $storageDir = $PSScriptRoot
 $webclient = New-Object System.Net.WebClient
 
+$node_CurrentVersion = Node-Checker
+$node_installer_version = "v6.2.2"
 $node_installer_remote = "https://nodejs.org/dist/v6.2.2/node-v6.2.2-x64.msi"
 $node_installer = "$storageDir\node-v6.2.2-x64.msi"
 
@@ -54,9 +70,31 @@ $bonjour_sdk = "$storageDir\bonjoursdksetup.exe"
 $python_remote = "https://www.python.org/ftp/python/2.7.10/python-2.7.10.amd64.msi"
 $python = "$storageDir\python.msi"
 
-Write-Host " "
-Write-Host "Downloading Node: $node_installer"
-$webclient.DownloadFile($node_installer_remote, $node_installer)
+
+#Ask the script runner some question(s)
+
+#Node
+if($node_CurrentVersion -ne $node_installer_version)
+{
+    $caption = "Node Installation"
+    switch -Wildcard ($node_CurrentVersion) 
+    {
+        "" {$message = "It looks like you may not have Node installed, would you like this script to install Node? "; break;}
+        "v*" {$message = "Looks like you currently have Node $node_CurrentVersion installed, would you like this script to install $node_installer_version of Node?"; break;}
+        default {$message = "No version of Node was detected on your machine, would you like this script to install $node_installer_version of Node?";}
+    }
+    $choices = [System.Management.Automation.Host.ChoiceDescription[]] `
+    @(“&No”, “&Yes”)
+    [int]$defaultChoice = 0
+    $Node_Install_Choice = $host.ui.PromptForChoice($caption,$message, $choices,$defaultChoice)
+}
+
+if($Node_Install_Choice -eq 1)
+{
+    Write-Host " "
+    Write-Host "Downloading Node: $node_installer"
+    $webclient.DownloadFile($node_installer_remote, $node_installer)
+}
 
 Write-Host " "
 Write-Host "Downloading Git: $git_installer"
@@ -78,12 +116,15 @@ Write-Host " "
 Write-Host "Downloading Python 2.7.10: $python"
 $webclient.DownloadFile($python_remote, $python)
 
-Write-Host " "
-Write-Host "Installing Node"
-$args = "/i $node_installer /qn"
-Start-Process "msiexec" $args -Wait
-Write-Host "msiexec $args"
-Write-Host "Installation Complete"
+if($Node_Install_Choice -eq 1)
+{
+    Write-Host " "
+    Write-Host "Installing Node"
+    $args = "/i $node_installer /qn"
+    #Start-Process "msiexec" $args -Wait
+    Write-Host "msiexec $args"
+    Write-Host "Installation Complete"
+}
 
 Write-Host " "
 Write-Host "Installing Git"
