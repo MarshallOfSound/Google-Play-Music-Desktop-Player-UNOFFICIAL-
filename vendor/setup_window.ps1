@@ -8,14 +8,15 @@ function Test-Administrator
 #Check for Node install
 function Node-Checker
 {
-    Try
-    {
-        return node -v
-    }
-    Catch
-    {
-        return ""
-    }
+    Try { return node -v }
+    Catch { return "" }
+}
+
+#Check for Git install
+function Git-Checker
+{
+    Try {return git --version}
+    Catch {return ""}
 }
 
 #Perform test to see if user as an administrator
@@ -38,10 +39,10 @@ if(!$IsAdmin)
 
     if($choiceRTN -eq 1)
     {
-    Write-Host "Okay...Lets continue!"
+    Write-Host "`nOkay...Lets continue! `n"
     } else 
     {
-    Write-Host "Probably for the best, run as administrator and try again"
+    Write-Host "`nProbably for the best, run as administrator and try again `n"
     Exit
     }
 }
@@ -55,6 +56,7 @@ $node_installer_version = "v6.2.2"
 $node_installer_remote = "https://nodejs.org/dist/v6.2.2/node-v6.2.2-x64.msi"
 $node_installer = "$storageDir\node-v6.2.2-x64.msi"
 
+$git_CurrentVersion = Git-Checker
 $git_installer_remote = "https://github.com/git-for-windows/git/releases/download/v2.9.0.windows.1/Git-2.9.0-64-bit.exe"
 $git_installer = "$storageDir\Git-2.9.0-64-bit.exe"
 
@@ -87,8 +89,9 @@ if($node_CurrentVersion -ne $node_installer_version)
     @(“&No”, “&Yes”)
     [int]$defaultChoice = 0
     $Node_Install_Choice = $host.ui.PromptForChoice($caption,$message, $choices,$defaultChoice)
-}
+} else { Write-Host "Node is already installed and up-to-date! (Node $node_CurrentVersion) `n" }
 
+#Install Node if the user wants to or needs it
 if($Node_Install_Choice -eq 1)
 {
     Write-Host " "
@@ -96,9 +99,12 @@ if($Node_Install_Choice -eq 1)
     $webclient.DownloadFile($node_installer_remote, $node_installer)
 }
 
-Write-Host " "
-Write-Host "Downloading Git: $git_installer"
-$webclient.DownloadFile($git_installer_remote, $git_installer)
+#Install Git only if it is needed
+if($git_CurrentVersion -eq ""){
+    Write-Host " "
+    Write-Host "Downloading Git: $git_installer"
+    $webclient.DownloadFile($git_installer_remote, $git_installer)
+} else { Write-Host "Git is already installed. ($git_CurrentVersion) `n" }
 
 Write-Host " "
 Write-Host "Downloading VC++ 2015 Build Tools: $vcpp"
@@ -121,17 +127,19 @@ if($Node_Install_Choice -eq 1)
     Write-Host " "
     Write-Host "Installing Node"
     $args = "/i $node_installer /qn"
-    #Start-Process "msiexec" $args -Wait
+    Start-Process "msiexec" $args -Wait
     Write-Host "msiexec $args"
     Write-Host "Installation Complete"
 }
 
-Write-Host " "
-Write-Host "Installing Git"
-$args = "/SILENT"
-Start-Process $git_installer $args -Wait
-Write-Host "$git_installer $args"
-Write-Host "Installation Complete"
+if($git_CurrentVersion -eq ""){
+    Write-Host " "
+    Write-Host "Installing Git"
+    $args = "/SILENT"
+    Start-Process $git_installer $args -Wait
+    Write-Host "$git_installer $args"
+    Write-Host "Installation Complete"
+}
 
 Write-Host " "
 Write-Host "Installing VC++ 2015 Build Tools"
