@@ -15,12 +15,13 @@ const receiverFn = (receivers) =>
     receivers.forEach((receiver) => {
       const cast = document.createElement('paper-item');
       cast.textContent = receiver.friendlyName;
-      cast.setAttribute('data-reciever-id', `${receiver.label}_${trigID}`);
+      cast.setAttribute('data-reciever-id', `${receiver.ipAddress}_${trigID}`);
       listContainer.appendChild(cast);
       document.body.addEventListener('click', (e) => {
         if (!dialog || !dialog.opened) return;
-        if (e.target.getAttribute('data-reciever-id') === `${receiver.label}_${trigID}`) {
+        if (e.target.getAttribute('data-reciever-id') === `${receiver.ipAddress}_${trigID}`) {
           dialog.close();
+          dialog.parentNode.removeChild(dialog);
           dialog = null;
           resolve(receiver);
         }
@@ -35,14 +36,21 @@ const receiverFn = (receivers) =>
     </div>`;
 
     // Handle Close and Cancel Buttons
-    document.body.addEventListener('mousedown', (e) => {
-      if (!dialog || !dialog.opened) return;
+    const closeHandler = (e) => {
+      if (!dialog) {
+        return;
+      } else if (!dialog.opened) {
+        dialog.parentNode.removeChild(dialog);
+        document.body.removeEventListener('mousedown', closeHandler);
+        return;
+      }
       if (e.target.hasAttribute('data-stop-cast')) {
         reject('STOP');
       } else if (e.target.hasAttribute('data-cancel')) {
         reject('CANCEL');
       }
-    });
+    };
+    document.body.addEventListener('mousedown', closeHandler);
 
     body.appendChild(dialog);
 
