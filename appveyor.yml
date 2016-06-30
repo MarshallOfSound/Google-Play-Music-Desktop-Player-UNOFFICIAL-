@@ -19,7 +19,6 @@ branches:
   except:
   - website
 
-os: unstable
 platform:
   - x64
 
