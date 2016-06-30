@@ -15,11 +15,11 @@ const receiverFn = (receivers) =>
     receivers.forEach((receiver) => {
       const cast = document.createElement('paper-item');
       cast.textContent = receiver.friendlyName;
-      cast.setAttribute('data-reciever-id', `${receiver.label}_${trigID}`);
+      cast.setAttribute('data-reciever-id', `${receiver.ipAddress}_${trigID}`);
       listContainer.appendChild(cast);
       document.body.addEventListener('click', (e) => {
         if (!dialog || !dialog.opened) return;
-        if (e.target.getAttribute('data-reciever-id') === `${receiver.label}_${trigID}`) {
+        if (e.target.getAttribute('data-reciever-id') === `${receiver.ipAddress}_${trigID}`) {
           dialog.close();
           dialog = null;
           resolve(receiver);
