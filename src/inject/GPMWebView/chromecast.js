@@ -21,6 +21,7 @@ const receiverFn = (receivers) =>
         if (!dialog || !dialog.opened) return;
         if (e.target.getAttribute('data-reciever-id') === `${receiver.ipAddress}_${trigID}`) {
           dialog.close();
+          dialog.parentNode.removeChild(dialog);
           dialog = null;
           resolve(receiver);
         }
@@ -35,14 +36,21 @@ const receiverFn = (receivers) =>
     </div>`;
 
     // Handle Close and Cancel Buttons
-    document.body.addEventListener('mousedown', (e) => {
-      if (!dialog || !dialog.opened) return;
+    const closeHandler = (e) => {
+      if (!dialog) {
+        return;
+      } else if (!dialog.opened) {
+        dialog.parentNode.removeChild(dialog);
+        document.body.removeEventListener('mousedown', closeHandler);
+        return;
+      }
       if (e.target.hasAttribute('data-stop-cast')) {
         reject('STOP');
       } else if (e.target.hasAttribute('data-cancel')) {
         reject('CANCEL');
       }
-    });
+    };
+    document.body.addEventListener('mousedown', closeHandler);
 
     body.appendChild(dialog);
 
