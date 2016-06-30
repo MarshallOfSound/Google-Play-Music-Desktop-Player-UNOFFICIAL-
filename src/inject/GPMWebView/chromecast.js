@@ -41,6 +41,7 @@ const receiverFn = (receivers) =>
         return;
       } else if (!dialog.opened) {
         dialog.parentNode.removeChild(dialog);
+        dialog = null;
         document.body.removeEventListener('mousedown', closeHandler);
         return;
       }
