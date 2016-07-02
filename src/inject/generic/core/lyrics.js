@@ -12,6 +12,7 @@ window.addEventListener('load', () => {
       $('#lyrics').html('<h1><span is="translation-key">lyrics-loading-message</span></h1>');
       $('#lyrics p').stop();
       animate = false;
+      clearTimeout(noLyricsTimer);
       noLyricsTimer = setTimeout(() => {
         $('#lyrics').html('<h1><span is="translation-key">lyrics-failed-message</span></h1>');
       }, 4000);
