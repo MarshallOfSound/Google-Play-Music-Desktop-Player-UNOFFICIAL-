@@ -64,7 +64,10 @@ export const resolveLyrics = (song) => {
 PlaybackAPI.on('change:song', (song) => {
   resolveLyrics(song)
     .then((lyrics) => {
-      PlaybackAPI._setPlaybackSongLyrics(lyrics);
+      const playing = PlaybackAPI.currentSong(true);
+      if (playing.title === song.title && playing.artist === song.artist && playing.album === song.album) {
+        PlaybackAPI._setPlaybackSongLyrics(lyrics);
+      }
     })
     .catch(() => {
       Logger.verbose('Lyrics parsing failed');

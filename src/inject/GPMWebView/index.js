@@ -23,9 +23,7 @@ window.open = (url) => remote.shell.openExternal(url);
 
 require('./playback');
 require('./interface');
-if (remote.getGlobal('DEV_MODE')) {
-  require('electron-chromecast');
-}
+require('./chromecast');
 
 // DEV: We need to wait for the page to load sufficiently before we can load
 //      gmusic.js and its child libraries

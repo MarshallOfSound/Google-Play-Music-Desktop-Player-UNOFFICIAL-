@@ -19,7 +19,7 @@ branches:
   except:
   - website
 
-os: unstable
+os: Previous Visual Studio 2015
 platform:
   - x64
 
