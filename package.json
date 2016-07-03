@@ -45,7 +45,7 @@
   "license": "MIT",
   "dependencies": {
     "auto-launch": "^2.0.1",
-    "electron-chromecast": "^1.0.10",
+    "electron-chromecast": "^1.0.14",
     "electron-prebuilt": "1.2.3",
     "html-entities": "^1.2.0",
     "gmusic-mini-player.js": "^1.1.1",
