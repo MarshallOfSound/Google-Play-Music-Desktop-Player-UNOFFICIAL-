@@ -1,5 +1,3 @@
-import { remote } from 'electron';
-
 let trigID = 0;
 const receiverFn = (receivers) =>
   new Promise((resolve, reject) => {
@@ -60,6 +58,4 @@ const receiverFn = (receivers) =>
     dialog.toggle();
   });
 
-if (remote.getGlobal('DEV_MODE')) {
-  require('electron-chromecast')(receiverFn);
-}
+require('electron-chromecast')(receiverFn);
