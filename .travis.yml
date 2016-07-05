@@ -8,8 +8,8 @@ cache:
 install:
   - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh | bash
   - source ~/.bashrc
-  - nvm install 4.4.1
-  - nvm use 4.4.1
+  - nvm install 6.1.0
+  - nvm use 6.1.0
   - npm i -g npm
   - rm -rf node_modules
   - npm install
@@ -20,8 +20,10 @@ branches:
 
 script:
   - npm run test
-  - npm run test-unit
   - if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then ./sig/import.sh && npm run make:darwin && node ./sig/publish-mac.js; fi
+  - if [[ $TRAVIS_PULL_REQUEST != "false" ]]; then npm run package:darwin; fi
+  - npm run test-unit
+  - npm run test-spec
 
 notifications:
   webhooks:

@@ -8,19 +8,18 @@ import clean from 'gulp-clean';
 import concat from 'gulp-concat';
 import cssmin from 'gulp-cssmin';
 import { createWindowsInstaller as electronInstaller } from 'electron-winstaller';
+import header from 'gulp-header';
 import less from 'gulp-less';
 import packager from 'electron-packager';
 import rebuild from './vendor/rebuild';
 import replace from 'gulp-replace';
 import runSequence from 'run-sequence';
+import uglify from 'gulp-uglify';
 
 import { spawn, exec } from 'child_process';
 
 const paths = {
   internalScripts: ['src/**/*.js'],
-  externalScripts: ['node_modules/gmusic.js/dist/gmusic.min.js',
-                    'node_modules/gmusic-theme.js/dist/gmusic-theme.min.js',
-                    'node_modules/gmusic-mini-player.js/dist/gmusic-mini-player.min.js'],
   utilityScripts: ['node_modules/jquery/dist/jquery.min.js',
                     'node_modules/materialize-css/dist/js/materialize.min.js',
                     'node_modules/materialize-css/extras/noUiSlider/nouislider.min.js'],
@@ -35,25 +34,47 @@ const paths = {
 
 const packageJSON = require('./package.json');
 let version = packageJSON.dependencies['electron-prebuilt'];
-if (version.substr(0, 1) !== '0') {
+if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1') {
   version = version.substr(1);
 }
 
 const defaultPackageConf = {
-  dir: '.',
-  name: packageJSON.productName,
-  'build-version': packageJSON.version,
-  version,
-  platform: 'all',
-  arch: 'all',
   'app-bundle-id': packageJSON.name,
+  'app-category-type': 'public.app-category.music',
+  'app-copyright': `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
   'app-version': packageJSON.version,
+  arch: 'all',
+  'build-version': packageJSON.version,
+  dir: '.',
   icon: './build/assets/img/main',
+  ignore: (path) => {
+    const tests = [
+      // Ignore git directory
+      () => /^\/\.git\/.*/g,
+      // Ignore electron-prebuilt
+      () => /^\/node_modules\/electron-prebuilt\//g,
+      // Ignore debug files
+      () => /^\/node_modules\/.*\.pdb/g,
+      // Ignore native module obj files
+      () => /^\/node_modules\/.*\.obj/g,
+      // Ignore symlinks in the bin directory
+      () => /^\/node_modules\/.bin/g,
+      // Ignore root dev FileDescription
+      () => /^\/(vendor|dist|sig|docs|src|test|.cert.pfx|.editorconfig|.eslintignore|.eslintrc|.gitignore|.travis.yml|appveyor.yml|circle.yml|CONTRIBUTING.md|Gruntfile.js|gulpfile.js|ISSUE_TEMPLATE.md|LICENSE|README.md)(\/|$)/g, // eslint-disable-line
+    ];
+    for (let i = 0; i < tests.length; i++) {
+      if (tests[i]().test(path)) {
+        return true;
+      }
+    }
+    return false;
+  },
+  name: packageJSON.productName,
   out: './dist/',
   overwrite: true,
+  platform: 'all',
   prune: true,
-  ignore: /^(?!.*node_modules).*\/(vendor|dist|sig|docs|src|.cert.pfx|.eslintignore|.eslintrc|.gitignore|.travis.yml|appveyor.yml|circle.yml|Gruntfile.js|gulpfile.js|ISSUE_TEMPLATE.md|LICENSE|README.md)(\/|$)/g, // eslint-disable-line
-  'app-copyright': `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
+  version,
   'version-string': {
     CompanyName: packageJSON.author.name,
     FileDescription: packageJSON.productName,
@@ -78,22 +99,21 @@ const winstallerConfig = {
   iconUrl: 'https://www.samuelattard.com/img/gpmdp_setup.ico',
   setupIcon: 'build/assets/img/main.ico',
   loadingGif: 'build/assets/img/installing.gif',
-  // DEV: After initial 3.0.0 release this should be uncommented
-  // TODO: Read DEV above ^^
   remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
 };
 
-const cleanGlob = (glob) =>
-  () =>
-    gulp.src(glob, { read: false })
+const cleanGlob = (glob) => {
+  return () => {
+    return gulp.src(glob, { read: false })
       .pipe(clean({ force: true }));
+  };
+};
 
 gulp.task('clean', cleanGlob(['./build', './dist']));
 gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
 gulp.task('clean-dist-darwin', cleanGlob(`./dist/${packageJSON.productName}-darwin-ia32`));
 gulp.task('clean-dist-linux-32', cleanGlob(`./dist/${packageJSON.productName}-linux-ia32`));
 gulp.task('clean-dist-linux-64', cleanGlob(`./dist/${packageJSON.productName}-linux-x64`));
-gulp.task('clean-external', cleanGlob('./build/external.js'));
 gulp.task('clean-material', cleanGlob('./build/assets/material'));
 gulp.task('clean-utility', cleanGlob('./build/assets/util'));
 gulp.task('clean-html', cleanGlob('./build/public_html'));
@@ -102,12 +122,6 @@ gulp.task('clean-fonts', cleanGlob('./build/assets/fonts'));
 gulp.task('clean-less', cleanGlob('./build/assets/css'));
 gulp.task('clean-images', cleanGlob('./build/assets/img'));
 gulp.task('clean-locales', cleanGlob('./build/_locales/*.json'));
-
-gulp.task('external', ['clean-external'], () => {
-  return gulp.src(paths.externalScripts)
-    .pipe(concat('external.js'))
-    .pipe(gulp.dest('./build/assets'));
-});
 
 gulp.task('materialize-js', ['clean-material'], () => {
   return gulp.src('node_modules/materialize-css/dist/js/materialize.min.js')
@@ -125,7 +139,7 @@ gulp.task('html', ['clean-html'], () => {
 });
 
 gulp.task('transpile', ['clean-internal'], () => {
-  gulp.src(paths.internalScripts)
+  return gulp.src(paths.internalScripts)
     .pipe(babel())
     .on('error', (err) => { console.error(err); }) // eslint-disable-line
     .pipe(replace(/process\.env\.(.+);/gi, (envCall, envKey) => {
@@ -145,7 +159,7 @@ gulp.task('fonts', ['clean-fonts'], () => {
 });
 
 gulp.task('less', ['clean-less'], () => {
-  gulp.src(paths.less)
+  return gulp.src(paths.less)
     .pipe(less())
     .on('error', (err) => { console.error(err); }) // eslint-disable-line
     .pipe(cssmin())
@@ -159,6 +173,22 @@ gulp.task('images', ['clean-images'], () => {
     .pipe(gulp.dest('./build/assets/img/'));
 });
 
+gulp.task('build-release', ['build'], () => {
+  return gulp.src('./build/**/*.js')
+    .pipe(uglify())
+    .pipe(header(
+`/*!
+${packageJSON.productName}
+Version: v${packageJSON.version}
+API Version: v${packageJSON.apiVersion}
+Compiled: ${new Date().toUTCString()}
+Copyright (C) ${(new Date()).getFullYear()} ${packageJSON.author.name}
+This software may be modified and distributed under the terms of the MIT license.
+ */\n`
+    ))
+    .pipe(gulp.dest('./build'));
+});
+
 // Rerun the task when a file changes
 gulp.task('watch', ['build'], () => {
   gulp.watch(paths.internalScripts, ['transpile']);
@@ -168,7 +198,7 @@ gulp.task('watch', ['build'], () => {
   gulp.watch(paths.locales, ['locales']);
 });
 
-gulp.task('package:win', ['clean-dist-win', 'build'], (done) => {
+gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
   console.log('Rebuilding ll-keyboard-hook-win'); // eslint-disable-line
   rebuild('rebuild_ia32.bat')
     .then(() => {
@@ -195,8 +225,11 @@ gulp.task('make:win', ['package:win'], (done) => {
     });
 });
 
-gulp.task('package:darwin', ['clean-dist-darwin', 'build'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', 'osx-sign': { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
+gulp.task('package:darwin', ['clean-dist-darwin', 'build-release'], (done) => {
+  rebuild('./rebuild_null.sh')
+    .then(() => {
+      packager(_.extend({}, defaultPackageConf, { platform: 'darwin', 'osx-sign': { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
+    });
 });
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {
@@ -220,14 +253,14 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
   });
 });
 
-gulp.task('package:linux:32', ['clean-dist-linux-32', 'build'], (done) => {
+gulp.task('package:linux:32', ['clean-dist-linux-32', 'build-release'], (done) => {
   rebuild('./rebuild_ia32.sh')
     .then(() => {
       packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }), done);
     });
 });
 
-gulp.task('package:linux:64', ['clean-dist-linux-64', 'build'], (done) => {
+gulp.task('package:linux:64', ['clean-dist-linux-64', 'build-release'], (done) => {
   rebuild('./rebuild.sh')
     .then(() => {
       packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }), done);
@@ -245,16 +278,21 @@ const generateGulpLinuxDistroTask = (prefix, name, arch) => {
     const defaults = {
       bin: packageJSON.productName,
       dest: `dist/installers/${name}`,
-      depends: ['libappindicator1'],
+      depends: ['libappindicator1', 'avahi-daemon'],
       maintainer: `${packageJSON.author.name} <${packageJSON.author.email}>`,
       homepage: packageJSON.homepage,
       icon: 'build/assets/img/main.png',
       categories: ['AudioVideo', 'Audio'],
     };
 
+    let pkgArch = 'i386';
+    if (arch === '64') {
+      pkgArch = (prefix === 'rpm' ? 'x86_64' : 'amd64');
+    }
+
     tool(_.extend({}, defaults, {
       src: `dist/${packageJSON.productName}-linux-${arch === '32' ? 'ia32' : 'x64'}`,
-      arch: arch === '32' ? 'i386' : 'amd64',
+      arch: pkgArch,
     }), (err) => {
       console.log(`${arch}bit ${prefix} package built`); // eslint-disable-line
       if (err) return done(err);
@@ -307,6 +345,6 @@ zipTask('linux:rpm', ['rpm:linux'], './dist/installers/redhat', 'the Redhat (Fed
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['watch', 'transpile', 'images']);
-gulp.task('build', ['external', 'materialize-js', 'utility-js', 'transpile', 'images', 'less',
+gulp.task('build', ['materialize-js', 'utility-js', 'transpile', 'images', 'less',
                     'fonts', 'html', 'locales']);
 gulp.task('package', ['package:win', 'package:darwin', 'package:linux']);

@@ -18,12 +18,42 @@ const handleSwipeCommand = (e, direction) => {
   }
 };
 
+let scrolling = false;
+let scrollingShouldNav = 0;
+const NAV_VELOCITY = 100;
+
+const startScroll = () => { scrolling = true; };
+const endScroll = () => {
+  scrolling = false;
+  if (scrollingShouldNav) {
+    if (scrollingShouldNav > 0) {
+      remote.getCurrentWebContents().goForward();
+    } else {
+      remote.getCurrentWebContents().goBack();
+    }
+    scrollingShouldNav = 0;
+  }
+};
+
 window.addEventListener('beforeunload', () => {
   bWindow.removeListener('app-command', handleAppCommand);
   bWindow.removeListener('swipe', handleSwipeCommand);
+  bWindow.removeListener('scroll-touch-begin', startScroll);
+  bWindow.removeListener('scroll-touch-end', endScroll);
 });
+
+window.addEventListener('mousewheel', (e) => {
+  if (e.deltaX > NAV_VELOCITY && scrolling) {
+    scrollingShouldNav = 1;
+  } else if (e.deltaX < -1 * NAV_VELOCITY && scrolling) {
+    scrollingShouldNav = -1;
+  }
+});
+
 bWindow.on('app-command', handleAppCommand);
 bWindow.on('swipe', handleSwipeCommand);
+bWindow.on('scroll-touch-begin', startScroll);
+bWindow.on('scroll-touch-end', endScroll);
 
 if (process.platform === 'linux') {
   const mouse = require('mouse-forward-back');

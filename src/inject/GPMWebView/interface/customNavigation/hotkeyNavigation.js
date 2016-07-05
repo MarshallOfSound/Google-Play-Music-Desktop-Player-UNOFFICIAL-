@@ -32,6 +32,28 @@ window.wait(() => {
   };
 
   backBtn.addEventListener('click', attemptBack);
+
+  /*
+   OSX has a standard of cmd+left and cmd+right for browser navigation.
+   However cmd does not show up as a modifier key, but rather as a
+   separate keypress, which also eats the keyup event of the key it
+   is modifying.
+   */
+  const holdingKeyMap = {};
+
+  window.addEventListener('keydown', (e) => {
+    holdingKeyMap[e.which] = true;
+
+    if ((holdingKeyMap[91] || holdingKeyMap[93])
+       && document.activeElement.value === undefined) {
+      if (e.which === 37) {
+        attemptBack();
+      } else if (e.which === 39) {
+        attemptForward();
+      }
+    }
+  });
+
   window.addEventListener('keyup', (e) => {
     if ((e.which === 8 && document.activeElement.value === undefined)
       || (e.which === 37 && e.altKey && document.activeElement.value === undefined)) {
@@ -39,6 +61,7 @@ window.wait(() => {
     } else if (e.which === 39 && e.altKey && document.activeElement.value === undefined) {
       attemptForward();
     }
+    holdingKeyMap[e.which] = false;
   });
 
   style('#backButton', {

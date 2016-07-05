@@ -7,7 +7,6 @@ import './tray';
 import './lastFM';
 import './mini';
 import './general';
-import './autoLaunch';
 
 document.body.classList.add(process.platform);
 

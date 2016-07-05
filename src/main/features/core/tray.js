@@ -16,7 +16,11 @@ let audioDeviceMenu = [
 if (process.platform === 'darwin') {
   appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/macTemplate.png`));
 } else {
-  appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray.png`));
+  if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
+    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
+  } else {
+    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray.png`));
+  }
 }
 
 const setContextMenu = () => {
@@ -87,7 +91,7 @@ const setContextMenu = () => {
 setContextMenu();
 
 
-let wasMaximized = Settings.get('maximized', false);
+global.wasMaximized = Settings.get('maximized', false);
 
 // Tray icon toggle action (windows, linux)
 function toggleMainWindow() {
@@ -95,17 +99,17 @@ function toggleMainWindow() {
   // we must find the window ourselves
   const win = WindowManager.getAll('main')[0];
 
-  if (win.isMinimized()) {
+  if (win.isMinimized() || !win.isVisible()) {
     win.setSkipTaskbar(false);
     win.show();
-    if (wasMaximized) {
+    if (global.wasMaximized) {
       win.maximize();
     }
   } else {
-    wasMaximized = win.isMaximized();
+    global.wasMaximized = Settings.get('maximized', false);
+    win.minimize();
     // Hide to tray, if configured
     if (Settings.get('minToTray', true)) {
-      win.minimize();
       win.setSkipTaskbar(true);
     }
   }

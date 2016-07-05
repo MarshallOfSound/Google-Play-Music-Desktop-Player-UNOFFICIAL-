@@ -1,3 +1,4 @@
 cd ..
 cd node_modules
-.bin\electron-rebuild.cmd --which-module="ll-keyboard-hook-win" -f
+rmdir /Q /S nslog\build 2>nul
+.bin\electron-rebuild.cmd -f

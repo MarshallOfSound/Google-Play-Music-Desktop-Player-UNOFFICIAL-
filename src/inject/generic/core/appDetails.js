@@ -17,6 +17,7 @@ window.addEventListener('load', () => {
     const modal = $('#about');
     $('[data-app-version]').text(remote.app.getVersion());
     $('[data-app-name]').text(remote.app.getName());
+    $('[data-app-dev-mode]').text(remote.getGlobal('DEV_MODE') ? 'Running in Development Mode' : '');
     Emitter.on('about', () => {
       modal.openModal({
         dismissable: true,

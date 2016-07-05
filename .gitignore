@@ -2,3 +2,5 @@ node_modules/
 build/
 dist/
 .settings.json
+xunit.xml
+vendor/*.msi

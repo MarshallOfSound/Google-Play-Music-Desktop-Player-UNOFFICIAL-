@@ -157,8 +157,9 @@ html, body {
   width: calc(~"100vw -" (@border-width * 1.8));
   height: calc(~"100vh -" (@title-bar-height + @border-width * 1.8));
   z-index: 999999999;
+  overflow: hidden;
   opacity: 0;
-  background: rgba(0, 0, 0, 0.98);
+  background: @darksecondary;
 
 
   &.vis {
@@ -193,19 +194,63 @@ html, body {
         width: 100%;
         font-size: 26px;
         line-height: 1.6em;
-        overflow: hidden; /* Hide scroll bar so that the user relies on auto scroll */
         padding: 12px 0;
+        overflow: auto;
+      }
+      p[data-scroll] {
+        overflow: hidden; /* Hide scroll bar so that the user relies on auto scroll */
+      }
+      @media (max-width: 35em) {
+        p {
+          font-size: 4.5vw;
+          padding: 5vw 0;
+        }
+      }
+      @media (max-width: 20em) {
+        p {
+          font-size: 12px;
+          padding: 26px 0;
+        }
       }
     }
 
     #shadow {
       position: absolute;
       top: 0;
-      left: @border-width * 0.9;
-      width: calc(~"100% -" (@border-width * 1.8));
+      left: -80px;
+      width: calc(100% + 2*80px);
       height: 100%;
-      box-shadow: 50px 0 20px 66px black inset;
+      box-shadow: 0 0 20px 66px @darksecondary inset;
       pointer-events: none;
     }
   }
+
+  #lyrics_progress {
+    position: relative;
+    bottom: 4px;
+    height: 4px;
+    width: 100%;
+    background: @orange;
+    box-shadow: 0 0 8px rgba(0,0,0,.4);
+    [loaded] & {
+      transition: background 0.3s ease;
+    }
+
+    #lyrics_bar {
+      position: absolute;
+      height: 100%;
+      width: 0%;
+      background: @darkprimary;
+      [loaded] & {
+        transition: background 0.3s ease;
+      }
+    }
+  }
+}
+
+#APICodeContainer {
+  display: block;
+  font-size: 72px;
+  text-align: center;
+  letter-spacing: 40px;
 }

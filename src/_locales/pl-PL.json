@@ -1,0 +1,103 @@
+{
+  "audio-device-communications": "Domyślne urządzenie do komunikacji",
+  "audio-device-default": "Domyślne urządzenie",
+  "audio-device-unknown": "Nieznane urządzenie",
+
+  "button-test-ok": "OK",
+  "button-text-close": "Zamknij",
+  "button-text-dont-tell-me-again": "Nie pokazuj więcej",
+  "button-text-lets-do-this": "Zróbmy to!!",
+  "button-text-lets-go": "Zaczynajmy!!",
+  "button-text-not-now": "Nie teraz",
+
+  "label-about": "Informacje",
+  "label-desktop-settings": "Ustawienia Aplikacji",
+  "label-donate": "Wspomóż projekt",
+  "label-help": "Pomoc",
+  "label-issues": "Problemy",
+  "label-learn-more": "Dowiedz się więcej",
+  "label-loading-devices": "Wczytywanie urządzeń...",
+  "label-pause-after-song": "Wstrzymaj po tym utworze",
+  "label-quit": "Wyjdź",
+  "label-show-lyrics": "Pokaż tekst utworu (Beta)",
+  "label-unknown-artist": "Nieznany Wykonawca",
+  "label-unknown-song": "Nieznany Utwór",
+  "label-version": "Wersja",
+
+  "lastfm-login-authorized": "Zalogowany",
+  "lastfm-login-authorizing": "W trakcie logowania",
+  "lastfm-login-button-text": "Zaloguj się do Last.FM",
+  "lastfm-login-error": "Wygląda na to, że przerwałeś proces logowania - jeśli to pomyłka, spróbuj jeszcze raz",
+  "lastfm-login-not-authorized": "Nie zalogowany",
+  "lastfm-logout-button-text": "Wyloguj się z Last.FM",
+
+  "lyrics-failed-message": "Niestety nie znaleziono tekstu tego utworu",
+  "lyrics-loading-message": "Wczytywanie tekstu utworu...",
+  "lyrics-no-song-message": "Żaden utwór nie jest teraz odtwarzany",
+
+  "message-pausing-after-song": "Włączono wstrzymanie po tym utworze.",
+  "message-pausing-after-song-button": "Wyłączono wstrzymanie po tym utworze",
+  "message-uncaught-error": "Wystąpił niespodziewany błąd w aplikacji GPMDP.",
+  "message-uncaught-error-button": "Kliknij tutaj aby zgłosić ten błąd na stronie GitHub",
+
+  "modal-confirmTray-title": "Chcieliśmy tylko uprzedzić",
+  "modal-confirmTray-content": "Zamknięcie głównego okna aplikacji (czyli to, co właśnie próbowałeś zrobić) w rzeczywistości zminimalizuje odtwarzacz do systemowego paska narzędzi. Możesz zmienić to ustawienie w oknie Ustawień Aplikacji.",
+  "modal-confirmOpenPort-content": "Playback API nie mogło zostać uruchomione, ponieważ jest ono blokowane przez Windows Firewall. Możemy to dla Ciebie odblokować, ale ostrzegamy, że może to wymagać uprawnień administratora",
+  "modal-confirmUpdate-title": "Dostępna aktualizacja",
+  "modal-confirmUpdate-content": "Hurra, wygląda na to, że dostępna jest nowa wersja Google Play Music Desktop Player. Ta aktualizacja powinna przynieść całe mnóstwo nowych funkcji i poprawek. Rekomendujemy zaktualizowanie aplikacji najszybciej jak to możliwe, żeby zapewnić najlepsze wrażenia z korzystania z niej.<br />Mamy nadzieję, że polubisz nową wersję!",
+  "modal-confirmUninstall-title": "Jest taka sprawa...",
+  "modal-confirmUninstall-content": "Wykryliśmy w Twoim systemie starszą wersję GPMDP. Jeśli właśnie zaktualizowałeś aplikację, to jest to zupełnie normalne. Teraz odinstalujemy starszą wersję. To \"może\" wymagać uprawnień administratora, proszę udziel ich abyśmy mogli posprzątać ten bałagan.",
+  "modal-goToURL-title": "Otwórz Google Play Music aby przejść do:",
+  "modal-welcome-title": "Witaj w nowej wersji",
+  "modal-welcome-content": "Mamy nadzieję, że polubisz nową wersję!",
+
+  "playback-label-next-track": "Następny utwór",
+  "playback-label-play-pause": "Odtwórz / Wstrzymaj",
+  "playback-label-previous-track": "Poprzedni utwór",
+  "playback-label-stop": "Zatrzymaj",
+  "playback-label-thumbs-down": "Nie lubię",
+  "playback-label-thumbs-up": "Podoba mi się",
+  "playback-label-volume-down": "Zmniejsz głośność",
+  "playback-label-volume-up": "Zwiększ głośność",
+
+  "settings-option-custom-theme": "Własny styl",
+  "settings-option-custom-theme-choose-color": "Wybierz kolor szczegółów dla własnego stylu",
+  "settings-option-custom-theme-choose-custom": "Albo wybierz",
+  "settings-option-custom-theme-custom-color": "Własny kolor",
+  "settings-option-custom-theme-dark": "Ciemny",
+  "settings-option-custom-theme-light": "Jasny",
+
+  "settings-option-enable-api": "Włącz Playback API",
+  "settings-option-enable-api-json": "Włącz API JSON",
+  "settings-option-enable-api-details": "To pozwala innym aplikacjom współpracować z GPMDP",
+  "settings-option-enable-system-borders": "Użyj systemowych ramek okna aplikacji",
+  "settings-option-enable-system-borders-details": "Wymaga ponownego uruchomienia",
+  "settings-option-enable-voice": "Włącz Kontrolę Głosową",
+  "settings-option-enable-voice-details": "Kontrola nad GPMDP za pomocą komend głosowych - funkcja eksperymentalna",
+  
+  "settings-option-hotkey-explanation": "Domyślne klawisze dedykowane obsłudze mediów będą działać bez względu na te ustawienia. Traktuj te ustawienia jako dodatkowe.",
+  "settings-option-hotkey-explanation-2": "Użyj klawisza <i>\"Escape\"</i> żeby zresetować ustawienia.",
+
+  "settings-option-min-to-tray": "Minimalizuj do paska narzędzi",
+
+  "settings-option-auto-launch": "Włącz aplikację podczas uruchamiania systemu",
+
+  "settings-option-save-page": "Automatycznie załaduj ostatnio przeglądaną stronę przy starcie aplikacji",
+
+  "settings-option-scroll-lyrics": "Przewijaj napisy automatycznie podczas odtwarzania",
+
+  "settings-option-mini-always-show": "Zawsze pokazuj informacje o utworze",
+  "settings-option-mini-ontop": "Zawsze na wierzchu",
+  "settings-option-mini-use-scroll-volume": "Użyj rolki myszki aby sterować głośnością",
+
+  "title-color-picker": "Wybierz kolor",
+  "title-settings": "Ustawienia",
+  "title-settings-audio": "Audio",
+  "title-settings-general": "Ogólne",
+  "title-settings-hotkeys": "Skróty klawiszowe",
+  "title-settings-lastfm": "LastFM",
+  "title-settings-mini": "Mini Odtwarzacz",
+
+  "tray-label-audio-device": "Urządzenie Audio",
+  "tray-label-show": "Pokaż"
+}

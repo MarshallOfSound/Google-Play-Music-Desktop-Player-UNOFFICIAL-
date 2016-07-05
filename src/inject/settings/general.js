@@ -8,28 +8,25 @@ if (Settings.get('playbackAPI', false)) {
   $('#playback-api').removeAttr('checked');
 }
 
-$('#voice-controls').change((e) => {
-  Emitter.fire('settings:set', {
-    key: 'speechRecognition',
-    value: $(e.currentTarget).is(':checked'),
+const settingsToggle = (elemID, settingsKey, defaultValue = false) => {
+  const elem = $(`#${elemID}`);
+  elem.change((e) => {
+    Emitter.fire('settings:set', {
+      key: settingsKey,
+      value: $(e.currentTarget).is(':checked'),
+    });
   });
-});
 
-if (Settings.get('speechRecognition', false)) {
-  $('#voice-controls').attr('checked', true);
-} else {
-  $('#voice-controls').removeAttr('checked');
-}
+  if (defaultValue === null ? Settings.get(settingsKey) : Settings.get(settingsKey, defaultValue)) {
+    elem.attr('checked', true);
+  } else {
+    elem.removeAttr('checked');
+  }
+};
 
-$('#native-frame').change((e) => {
-  Emitter.fire('settings:set', {
-    key: 'nativeFrame',
-    value: $(e.currentTarget).is(':checked'),
-  });
-});
-
-if (Settings.get('nativeFrame')) {
-  $('#native-frame').attr('checked', true);
-} else {
-  $('#native-frame').removeAttr('checked');
-}
+settingsToggle('json-api', 'enableJSON_API');
+settingsToggle('voice-controls', 'speechRecognition');
+settingsToggle('native-frame', 'nativeFrame', null);
+settingsToggle('save-page', 'savePage', true);
+settingsToggle('scroll-lyrics', 'scrollLyrics', true);
+settingsToggle('auto-launch', 'auto-launch');

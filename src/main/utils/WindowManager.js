@@ -66,11 +66,17 @@ class WindowManager {
 
   getWindowManagerName() {
     if (process.platform === 'linux') {
-      return process.env.XDG_CURRENT_DESKTOP;
+      return process.env['XDG_CURRENT_DESKTOP']; // eslint-disable-line
     }
     return undefined;
   }
 
+  getWindowManagerGDMName() {
+    if (process.platform === 'linux') {
+      return process.env['GDMSESSION']; // eslint-disable-line
+    }
+    return undefined;
+  }
 }
 
 export default WindowManager;

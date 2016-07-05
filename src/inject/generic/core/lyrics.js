@@ -1,5 +1,3 @@
-import { remote } from 'electron';
-
 window.addEventListener('load', () => {
   if (!window.$) return;
   if (!$('#lyrics').length) return;
@@ -8,27 +6,31 @@ window.addEventListener('load', () => {
   let noLyricsTimer;
   let jumpDetect;
 
-  remote.getGlobal('PlaybackAPI').on('change:lyrics', (lyrics) => {
+  // Handle new lyrics strings
+  const lyricsHandler = (lyrics) => {
     if (!lyrics) {
       $('#lyrics').html('<h1><span is="translation-key">lyrics-loading-message</span></h1>');
       $('#lyrics p').stop();
       animate = false;
+      clearTimeout(noLyricsTimer);
       noLyricsTimer = setTimeout(() => {
         $('#lyrics').html('<h1><span is="translation-key">lyrics-failed-message</span></h1>');
       }, 4000);
     } else {
       clearTimeout(noLyricsTimer);
+      const scroll = Settings.get('scrollLyrics', true);
       const lyricsHTML = lyrics.replace(/\n/g, '<br />');
-      $('#lyrics').html(`<p>${lyricsHTML}</p>`);
+      $('#lyrics').html(`<p ${scroll ? 'data-scroll' : ''}>${lyricsHTML}</p>`);
       animate = true;
     }
-  });
-
-  remote.getGlobal('PlaybackAPI').on('change:state', (isPlaying) => {
+  };
+  // Handle playing and pausing
+  const stateHandler = (isPlaying) => {
     if (!isPlaying) return $('#lyrics p').stop() && setTimeout(() => (animate = true), 10);
-  });
-
-  remote.getGlobal('PlaybackAPI').on('change:time', (timeObj) => {
+  };
+  // Handle time progression of a song
+  const timeHandler = (timeObj) => {
+    $('#lyrics_bar').width(`${(timeObj.total === 0 ? 0 : timeObj.current / timeObj.total) * 100}%`);
     let jumped = false;
     if (timeObj.current < jumpDetect || timeObj.current - jumpDetect > 1000) {
       animate = true;
@@ -50,7 +52,24 @@ window.addEventListener('load', () => {
       }, timeObj.total - timeObj.current - actualWaitTime - waitTime, 'linear');
     }, actualWaitTime);
     animate = false;
-  });
+  };
+
+  const scrollSettingsHandler = (state) => {
+    const lyricsP = $('#lyrics p');
+    animate = state;
+    if (state) {
+      lyricsP.attr('data-scroll', true);
+    } else {
+      lyricsP.removeAttr('data-scroll');
+      clearTimeout(animationTimer);
+      lyricsP.stop();
+    }
+  };
+
+  Emitter.on('PlaybackAPI:change:lyrics', (e, arg) => lyricsHandler(arg));
+  Emitter.on('PlaybackAPI:change:state', (e, arg) => stateHandler(arg));
+  Emitter.on('PlaybackAPI:change:time', (e, arg) => timeHandler(arg));
+  Emitter.on('settings:set:scrollLyrics', (e, arg) => scrollSettingsHandler(arg));
 
   window.addEventListener('resize', () => { animate = true; });
   $('#lyrics_back').click(() => $('#lyrics_back').removeClass('vis'));
