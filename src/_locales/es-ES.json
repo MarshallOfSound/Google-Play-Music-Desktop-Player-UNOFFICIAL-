@@ -21,7 +21,7 @@
   "label-quit": "Cerrar",
   "label-show-lyrics": "Mostrar Letras (Beta)",
   "label-unknown-artist": "Artista desconocido",
-  "label-unknown-song": "Canción desconocida ",
+  "label-unknown-song": "Pista desconocida ",
   "label-version": "Versión",
 
   "lastfm-login-authorized": "Autorizado",
@@ -42,6 +42,7 @@
 
   "modal-confirmTray-title": "Sólo un aviso",
   "modal-confirmTray-content": "Cerrar la ventana principal del reproductor (lo que acabas de intentar hacer) lo minimizará a la bandeja del sistema. Éste comportamiento se puede cambiar en la ventana de \"Ajustes de Escritorio\".",
+  "modal-confirmOpenPort-content": "La API de reproducción falla al iniciar, debido a la configuración del cortafuegos de Windows la esta bloqueando.  Podemos desbloquearlo por ti si quieres, pero requerirá privilegios de administrador",
   "modal-confirmUpdate-title": "Actualización disponible",
   "modal-confirmUpdate-content": "¡Hey!, parece que hay una nueva actualización para Google Play Music Desktop Player. Ésta actualización incluye nuevas características, soluciones de problemas y cosas nuevas geniales. Recomendamos que lo actualices lo antes posible para una mejor experiencia con nuevas características. <br />¡Esperamos que te guste la nueva actualización!",
   "modal-confirmUninstall-title": "Resulta que...",
@@ -67,6 +68,7 @@
   "settings-option-custom-theme-light": "Claro",
 
   "settings-option-enable-api": "Activar reproducción a través de API",
+  "settings-option-enable-api-json": "Activar API JSON",
   "settings-option-enable-api-details": "Esta opción activa el uso de GPMDP por otras aplicaciones.",
   "settings-option-enable-system-borders": "Usar sistema de ventanas  de sistema operativo",
   "settings-option-enable-system-borders-details": "Requiere reinicio",
@@ -79,9 +81,14 @@
   "settings-option-min-to-tray": "Minimizar en bandeja del sistema",
 
   "settings-option-auto-launch": "Arrancar automáticamente al iniciar el sistema.",
+  
+  "settings-option-save-page": "Cargar automaticamente la ultima pagina visitada al iniciar",
+
+  "settings-option-scroll-lyrics": "Desplazar automaticamente las letras mientras esta en reproduccion",
 
   "settings-option-mini-always-show": "Mostrar siempre la información de la pista",
   "settings-option-mini-ontop": "Siempre visible",
+  "settings-option-mini-use-scroll-volume": "Usa la rueda de desplazamiento para ajustar el volumen",
 
   "title-color-picker": "Selector de color",
   "title-settings": "Ajustes",
@@ -92,5 +99,5 @@
   "title-settings-mini": "Mini Reproductor",
 
   "tray-label-audio-device": "Dispositivo de Audio",
-  "tray-label-show": "Mostrar"
+  "tray-label-show": "Mostrar",
 }
