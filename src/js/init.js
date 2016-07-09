@@ -47,7 +47,7 @@ $(function() {
           'Deb32': /i386\.deb/g,
           'Deb64': /amd64\.deb/g,
           'Fed32': /i386\.rpm/g,
-          'Fed64': /amd64\.rpm/g,
+          'Fed64': /x86_64\.rpm/g,
         },
         downloads = {};
 
