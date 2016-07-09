@@ -110,6 +110,9 @@ function toggleMainWindow() {
   } else {
     global.wasMaximized = Settings.get('maximized', false);
     win.minimize();
+    if (WindowManager.getWindowManagerName() === 'i3') {
+      win.hide();
+    }
     // Hide to tray, if configured
     if (Settings.get('minToTray', true)) {
       win.setSkipTaskbar(true);
