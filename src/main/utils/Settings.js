@@ -54,11 +54,11 @@ class Settings {
     } catch (e) {
       if (retryCount > 0) {
         setTimeout(this._load.bind(this, retryCount - 1), 10);
-        Logger.error('Failed to load settings JSON file, retyring in 10 milliseconds');
+        if (global.Logger) Logger.error('Failed to load settings JSON file, retyring in 10 milliseconds');
         return;
       }
       userSettings = {};
-      Logger.error('Failed to load settings JSON file, giving up and resetting');
+      if (global.Logger) Logger.error('Failed to load settings JSON file, giving up and resetting');
     }
     this.data = _.extend({}, initalSettings, userSettings);
   }
