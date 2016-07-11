@@ -248,6 +248,55 @@ html, body {
   }
 }
 
+.offline-warning {
+  position: absolute;
+  background: @white;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+  text-align: center;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .offline & {
+    display: flex;
+  }
+
+  i {
+    color: @darkprimary;
+    font-size: 500px;
+  }
+
+  h1 {
+    font-size: 62px;
+    color: @darkprimary;
+  }
+
+  @media (max-width: 1100px), (max-height: 660px) {
+    i { font-size: 300px; }
+    h1 { font-size: 44px; }
+  }
+
+  @media (max-width: 650px), (max-height: 530px) {
+    i { font-size: 200px; }
+    h1 { font-size: 32px; }
+  }
+
+  @media (max-width: 400px), (max-height: 400px) {
+    i { font-size: 160px; }
+    h1 { font-size: 28px; }
+  }
+
+  @media (max-width: 300px), (max-height: 350px) {
+    i { font-size: 80px; }
+    h1 { font-size: 22px; }
+  }
+}
+
 #APICodeContainer {
   display: block;
   font-size: 72px;
