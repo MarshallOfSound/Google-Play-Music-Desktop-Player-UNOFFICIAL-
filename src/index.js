@@ -50,7 +50,7 @@ import handleStartupEvent from './squirrel';
     global.Settings = new SettingsClass();
   }
 
-  global.DEV_MODE = process.env.TEST_SPEC || argv.development || argv.dev;
+  global.DEV_MODE = process.env['TEST_SPEC'] || argv.development || argv.dev; // eslint-disable-line
   if (Settings.get('START_IN_DEV_MODE', false)) {
     global.DEV_MODE = true;
     Settings.set('START_IN_DEV_MODE', false);

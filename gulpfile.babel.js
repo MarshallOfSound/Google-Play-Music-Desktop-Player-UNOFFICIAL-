@@ -278,7 +278,7 @@ const generateGulpLinuxDistroTask = (prefix, name, arch) => {
     const defaults = {
       bin: packageJSON.productName,
       dest: `dist/installers/${name}`,
-      depends: ['libappindicator1'],
+      depends: ['libappindicator1', 'avahi-daemon'],
       maintainer: `${packageJSON.author.name} <${packageJSON.author.email}>`,
       homepage: packageJSON.homepage,
       icon: 'build/assets/img/main.png',

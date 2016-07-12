@@ -41,13 +41,17 @@ const fetchLyrics = (track, artist) =>
       new Promise((resolve, reject) => {
         request(url, (err, resp) => {
           if (err) return reject(err);
-          let lyrics = /<div id='content[\s\S]+?>([\s\S]+?)<\/div>/g.exec(resp.body)[1];
-          lyrics = lyrics.replace(/<br>/gi, '\n');
-          resolve(xss(lyrics, {
-            whiteList: { br: [], i: [], b: [], strong: [], em: [] },
-            stripIgnoreTag: true,
-            stripIgnoreTagBody: ['script'],
-          }));
+          try {
+            let lyrics = /<div id='content[\s\S]+?>([\s\S]+?)<\/div>/g.exec(resp.body)[1];
+            lyrics = lyrics.replace(/<br>/gi, '\n');
+            resolve(xss(lyrics, {
+              whiteList: { br: [], i: [], b: [], strong: [], em: [] },
+              stripIgnoreTag: true,
+              stripIgnoreTagBody: ['script'],
+            }));
+          } catch (e) {
+            reject(e);
+          }
         });
       })
     );
