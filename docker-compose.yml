@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  spec-runner:
+    build: .
+    command: npm run test-spec
+    volumes:
+      - .:/test-output
+    environment:
+      XUNIT_FILE: '/test-output/electron.xml'
+
+volumes:
+  checkout:
+    driver: local
