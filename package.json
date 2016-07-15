@@ -26,8 +26,9 @@
     "postinstall": "node vendor/rebuild.js --instant",
     "test": "npm run lint",
     "pretest-unit": "npm run build",
+    "pretest-spec": "npm run build",
     "test-unit": "electron-mocha ./test/electron --recursive --compilers js:babel-core/register --timeout 10000 -R spec-xunit-file",
-    "test-spec": "mocha ./test/spectron --compilers js:babel-core/register -R spec --timeout 10000",
+    "test-spec": "mocha ./test/spectron --compilers js:babel-core/register -R spec-xunit-file --timeout 10000",
     "prestart": "pre-flight",
     "start": "electron . --dev",
     "watch": "gulp watch"
