@@ -1,13 +1,21 @@
 version: '2'
 
 services:
+  test-runner:
+    build: .
+    command: npm run test-unit
+    volumes:
+      - .:/test-output
+    environment:
+      XUNIT_FILE: '/test-output/electron.xml'
+
   spec-runner:
     build: .
     command: npm run test-spec
     volumes:
       - .:/test-output
     environment:
-      XUNIT_FILE: '/test-output/electron.xml'
+      XUNIT_FILE: '/test-output/spectron.xml'
 
 volumes:
   checkout:
