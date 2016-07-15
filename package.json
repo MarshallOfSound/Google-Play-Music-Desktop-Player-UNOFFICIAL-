@@ -29,7 +29,7 @@
     "pretest-spec": "npm run build",
     "test-unit": "electron-mocha ./test/electron --recursive --compilers js:babel-core/register --timeout 10000 -R spec-xunit-file",
     "test-spec": "mocha ./test/spectron --compilers js:babel-core/register -R spec-xunit-file --timeout 10000",
-    "prestart": "pre-flight",
+    "prestart": "pre-flight && node vendor/mac_patch_dev.js",
     "start": "electron . --dev",
     "watch": "gulp watch"
   },
@@ -47,7 +47,7 @@
   "dependencies": {
     "auto-launch": "^2.0.1",
     "electron-chromecast": "^1.0.14",
-    "electron-prebuilt": "1.2.3",
+    "electron-prebuilt": "1.2.7",
     "html-entities": "^1.2.0",
     "gmusic-mini-player.js": "^1.1.1",
     "gmusic-theme.js": "^1.1.9",
@@ -82,6 +82,7 @@
     "eslint": "^2.9.0",
     "eslint-config-airbnb-base": "^3.0.1",
     "eslint-plugin-import": "^1.7.0",
+    "fs-extra": "^0.30.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-clean": "^0.3.2",
@@ -96,6 +97,7 @@
     "materialize-css": "^0.97.6",
     "mocha": "^2.4.5",
     "mocha-testdata": "^1.2.0",
+    "plist": "^1.2.0",
     "pre-commit": "^1.1.2",
     "pre-flight": "^1.0.2",
     "request": "^2.72.0",
