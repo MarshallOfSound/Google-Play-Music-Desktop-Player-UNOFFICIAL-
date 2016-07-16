@@ -4,6 +4,7 @@ layout: docs
 
 <i>{{ page.short }}</i><br /><br />
 
+{% unless page.custom %}
 Data recieved in the <code class="highlighter-rouge">{{ page.channel }}</code> channel will have a payload in the format
 
 <br />
@@ -41,3 +42,7 @@ Data recieved in the <code class="highlighter-rouge">{{ page.channel }}</code> c
 {% endif %}
 
 <p>{{ page.info }}</p>
+{% endunless %}
+{% if page.custom %}
+{{ content }}
+{% endif %}

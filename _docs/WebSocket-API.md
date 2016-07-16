@@ -20,9 +20,19 @@ All messages are sent from the Web Socket Server in the following format
 }
 </code></pre>
 
+##### Protocols
+
+{% assign sortedChannels = site.channels | sort: 'sortTitle' %}
+{% for channel in sortedChannels %}
+{% if channel.custom %}
+[{{ channel.title }}]({{ channel.url }}) - {{ channel.short }}
+{% endif %}
+{% endfor %}
+
 ##### Channels
 
-{% assign sortedChannels = site.channels | sort: 'title' %}
 {% for channel in sortedChannels %}
+{% unless channel.custom %}
 [{{ channel.title }}]({{ channel.url }}) - {{ channel.short }}
+{% endunless %}
 {% endfor %}

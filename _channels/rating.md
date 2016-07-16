@@ -1,14 +1,15 @@
 ---
 layout: api-channel
-title:  "Rating"
-channel: "rating"
-short: "The rating of the currently playing song"
+title:  Rating
+sortTitle: Rating
+channel: rating
+short: The rating of the currently playing song
 info: > #
         NOTE: It is impossible for both liked and disliked to be true at the same time
-payloadType: "object"
+payloadType: object
 payload:
-  - key: "liked"
+  - key: liked
     type: Boolean
-  - key: "disliked"
+  - key: disliked
     type: Boolean
 ---

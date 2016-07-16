@@ -12,7 +12,8 @@
     {% if doc.target == 'Dev' %}
       <a href="{{ doc.url }}" class="collection-item{% if page.url == doc.url %} active{% endif %}">{{ doc.title }}</a>
       {% if doc.title == 'WebSocket API' and page.url contains doc.url  %}
-        {% for channel in site.channels %}
+        {% assign channels = site.channels | sort: 'sortTitle' %}
+        {% for channel in channels %}
         <a href="{{ channel.url }}" class="collection-item{% if page.url contains channel.url %} active{% endif %}">
           <i class="material-icons" style="line-height: 0.4; position: relative; top: 5px;">keyboard_arrow_right</i>
           {{ channel.title }}

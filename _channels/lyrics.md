@@ -1,8 +1,9 @@
 ---
 layout: api-channel
-title:  "Lyrics"
-channel: "lyrics"
-short: "The lyrics for the current song"
+title:  Lyrics
+sortTitle: Lyrics
+channel: lyrics
+short: The lyrics for the current song
 info: > #
         This data is sent every time the currently playing song changes. It is important to note that this channel
         will still be sent even if the song changes while the player is paused.
@@ -12,5 +13,5 @@ info: > #
 payloadType: 'single'
 payload:
   type: String
-  comment: "String of song lyrics, newline characters are '\\n'"
+  comment: String of song lyrics, newline characters are '\\n'
 ---
