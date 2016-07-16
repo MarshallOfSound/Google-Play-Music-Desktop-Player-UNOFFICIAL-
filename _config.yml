@@ -55,3 +55,8 @@ gems:
   - jekyll-coffeescript
   - jekyll-paginate
   - jekyll-humanize
+exclude:
+    - node_modules
+    - CNAME
+    - Gemfile
+    - Gemfile.lock
