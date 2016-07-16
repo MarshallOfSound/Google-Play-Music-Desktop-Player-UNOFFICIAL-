@@ -11,6 +11,9 @@
       <div class="nav-wrapper blue-grey darken-1">
         <div class="col s12">
           <a href="{{ site.baseurl }}/docs/" class="breadcrumb">Docs</a>
+          {% if page.layout == 'api-channel' %}
+          <a href="{{ site.baseurl }}/docs/WebSocket-API" class="breadcrumb">WebSocket API</a>
+          {% endif %}
           {% unless page.isDoc %}
           <a href="{{ site.baseurl }}/docs/{{ page.title }}" class="breadcrumb">{{ page.title }}</a>
           {% endunless %}
@@ -22,10 +25,16 @@
     </div>
     <div class="col m9 s12">
       <h2>Documentation</h2>
-      {{% if page.title == '' %}}
-        <h4>{{ page.title }}</h4>
-      {{% endif %}}
+      {% if page.title != '' %}
+        {% if page.layout == 'api-channel' %}
+          <h4>WebSocket API - {{ page.title }}</h4>
+        {% else %}
+          <h4>{{ page.title }}</h4>
+        {% endif %}
+      {% endif %}
+      <div class="docs">
       {{ content }}
+    </div>
     </div>
   </div>
 
@@ -49,6 +58,7 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
   <script src="/js/materialize.min.js"></script>
   <script src="/js/init.js" defer></script>
 

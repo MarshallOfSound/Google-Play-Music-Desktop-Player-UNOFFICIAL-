@@ -86,6 +86,12 @@ ul.feat-list li {
   max-width: 350px;
 }
 
+.docs {
+  ul li {
+    list-style-type: disc;
+  }
+}
+
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     position: absolute;

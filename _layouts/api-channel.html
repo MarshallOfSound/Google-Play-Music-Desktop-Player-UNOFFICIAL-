@@ -1,14 +1,43 @@
 ---
 layout: docs
 ---
-<article class="post">
 
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-  </header>
+<i>{{ page.short }}</i><br /><br />
 
-  <div class="post-content">
-    {{ content }}
-  </div>
+Data recieved in the <code class="highlighter-rouge">{{ page.channel }}</code> channel will have a payload in the format
 
-</article>
+<br />
+
+<b>Channel Payload</b>
+
+{% if page.payloadType == 'object' %}
+<pre><code class="language-javascript">
+"payload": {
+{% for param in page.payload %}  {% if param.type == 'array' %}"{{ param.key }}": [
+    {
+    {% for subParam in param.subPayload %}  "{{ subParam.key }}": {{ subParam.type }}{% if forloop.rindex0 != 0 %},{% endif %} {% if subParam.comment %}// {{ subParam.comment }}{% endif %}
+    {% endfor %}}
+  ]{% if forloop.rindex0 != 0 %},{% endif %}  {% else %}"{{ param.key }}": {{ param.type }}{% if forloop.rindex0 != 0 %},{% endif %} {% if param.comment %}// {{ param.comment }}{% endif %}{% endif %}
+{% endfor %}}
+
+</code></pre>
+{% elsif page.payloadType == 'single' %}
+<pre><code class="language-javascript">
+"payload": {{ page.payload.type }}, {% if page.payload.comment %}// {{ page.payload.comment }}{% endif %}
+
+</code></pre>
+{% elsif page.payloadType == 'array' %}
+<pre><code class="language-javascript">
+"payload": [
+  {  {% for param in page.payload %}
+    {% if param.type == 'array' %}"{{ param.key }}": [
+      {
+      {% for subParam in param.subPayload %}  "{{ subParam.key }}": {{ subParam.type }}{% if forloop.rindex0 != 0 %},{% endif %} {% if subParam.comment %}// {{ subParam.comment }}{% endif %}
+      {% endfor %}}
+    ]  {% else %}"{{ param.key }}": {{ param.type }}{% if forloop.rindex0 != 0 %},{% endif %} {% if param.comment %}// {{ param.comment }}{% endif %}{% endif %}{% endfor %}
+  }
+]
+</code></pre>
+{% endif %}
+
+<p>{{ page.info }}</p>

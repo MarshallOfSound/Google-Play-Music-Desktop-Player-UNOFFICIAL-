@@ -43,6 +43,7 @@ author:
 
 collections:
   docs: {output: true, permalink: '/docs/:path/'}
+  channels: {output: true, permalink: '/docs/WebSocket-API/:path'}
 
 # Build settings
 markdown: kramdown
