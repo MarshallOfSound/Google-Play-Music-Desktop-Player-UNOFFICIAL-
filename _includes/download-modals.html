@@ -1,3 +1,31 @@
+{% assign win = '#!' %}
+{% assign macOS = '#!' %}
+{% assign deb32 = '#!' %}
+{% assign deb64 = '#!' %}
+{% assign fed32 = '#!' %}
+{% assign fed64 = '#!' %}
+
+{% for asset in site.github.releases[0].assets %}
+  {% if asset.name contains 'x86.exe' %}
+    {% assign win = asset.browser_download_url %}
+  {% endif %}
+  {% if asset.name contains 'OSX.zip' %}
+    {% assign macOS = asset.browser_download_url %}
+  {% endif %}
+  {% if asset.name contains 'i386.rpm' %}
+    {% assign fed32 = asset.browser_download_url %}
+  {% endif %}
+  {% if asset.name contains 'x86_64.rpm' %}
+    {% assign fed64 = asset.browser_download_url %}
+  {% endif %}
+  {% if asset.name contains 'i386.deb' %}
+    {% assign deb32 = asset.browser_download_url %}
+  {% endif %}
+  {% if asset.name contains 'amd64.deb' %}
+    {% assign deb64 = asset.browser_download_url %}
+  {% endif %}
+{% endfor %}
+
 <!-- Modal Structure -->
 <div id="downloadModal" class="modal">
   <div class="modal-content">
@@ -6,8 +34,8 @@
   </div>
   <div class="modal-footer">
     <a href="#!" id="triggerLinux" class="modal-action modal-close waves-effect waves-green btn-flat">Linux</a>
-    <a href="#!" id="downloadMac" class="modal-action modal-close waves-effect waves-green btn-flat">Mac OS X</a>
-    <a href="#!" id="downloadWin" class="modal-action modal-close waves-effect waves-green btn-flat">Windows</a>
+    <a href="{{ macOS }}" target="_blank" class="modal-action modal-close waves-effect waves-green btn-flat">Mac OS X</a>
+    <a href="{{ win }}" target="_blank" class="modal-action modal-close waves-effect waves-green btn-flat">Windows</a>
   </div>
 </div>
 
@@ -17,9 +45,9 @@
     <p>If you are not sure check if your flavor supports installing `.deb` files.  If so, go with Debian, otherwise go with Fedora.</p>
   </div>
   <div class="modal-footer">
-    <a href="#!" id="downloadDeb32" class="modal-action modal-close waves-effect waves-green btn-flat">Debian 32-bit</a>
-    <a href="#!" id="downloadDeb64" class="modal-action modal-close waves-effect waves-green btn-flat">Debian 64-bit</a>
-    <a href="#!" id="downloadFed32" class="modal-action modal-close waves-effect waves-green btn-flat">Fedora 32-bit</a>
-    <a href="#!" id="downloadFed64" class="modal-action modal-close waves-effect waves-green btn-flat">Fedora 64-bit</a>
+    <a href="{{ deb32 }}" target="_blank" class="modal-action modal-close waves-effect waves-green btn-flat">Debian 32-bit</a>
+    <a href="{{ deb64 }}" target="_blank" class="modal-action modal-close waves-effect waves-green btn-flat">Debian 64-bit</a>
+    <a href="{{ fed32 }}" target="_blank" class="modal-action modal-close waves-effect waves-green btn-flat">Fedora 32-bit</a>
+    <a href="{{ fed64 }}" target="_blank" class="modal-action modal-close waves-effect waves-green btn-flat">Fedora 64-bit</a>
   </div>
 </div>

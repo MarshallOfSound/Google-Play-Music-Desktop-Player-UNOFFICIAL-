@@ -1,0 +1,16 @@
+{% assign docs = site.docs | sort: 'index' %}
+
+<div class="collection">
+  <div class="collection-header"><h5 style="margin-left: 18px">User</h5></div>
+  {% for doc in docs | sort: 'index' %}
+    {% if doc.target == 'User' %}
+      <a href="{{ doc.url }}" class="collection-item{% if page.url == doc.url %} active{% endif %}">{{ doc.title }}</a>
+    {% endif %}
+  {% endfor %}
+  <div class="collection-header"><h5 style="margin-left: 18px">Developer</h5></div>
+  {% for doc in docs | sort: 'index' %}
+    {% if doc.target == 'Dev' %}
+      <a href="{{ doc.url }}" class="collection-item{% if page.url == doc.url %} active{% endif %}">{{ doc.title }}</a>
+    {% endif %}
+  {% endfor %}
+</div>

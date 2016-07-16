@@ -41,6 +41,9 @@ author:
     - text: Email
       url: mailto:samuel.r.attard@gmail.com
 
+collections:
+  docs: {output: true, permalink: '/docs/:path/'}
+
 # Build settings
 markdown: kramdown
 repository: MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
@@ -50,4 +53,4 @@ kramdown:
 gems:
   - jekyll-coffeescript
   - jekyll-paginate
-  - jekyll-github-metadata
+  - jekyll-humanize

@@ -4,9 +4,9 @@
 {% include head.html %}
 
 <body class="blue-grey darken-3">
-    {% include menu.html %}
+  {% include menu.html %}
 
-    <div id="index-banner" class="parallax-container">
+  <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
@@ -15,9 +15,8 @@
           <h5 class="header col s12 light">A beautiful cross platform Desktop Player for Google Play Music</h5>
         </div>
         <div class="row center">
-          {{ site.github | jsonify }}
           <a href="https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-" target="_blank" class="btn-large waves-effect waves-light red darken-1" style="margin-bottom: 12px">View on GitHub</a>
-          <a href="#" class="btn-large waves-effect waves-light red lighten-1" style="margin-left: 12px; margin-bottom: 12px" dl-latest>...</a>
+          <a href="#" dl-latest class="btn-large waves-effect waves-light red lighten-1 modal-trigger" style="margin-left: 12px; margin-bottom: 12px">Download Latest - {{ site.github.releases[0].tag_name }}</a>
           <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ" target="_blank" class="btn-large waves-effect waves-light red darken-3" style="margin-left: 12px; margin-bottom: 12px">Donate</a>
         </div>
         <br><br>
@@ -171,6 +170,19 @@
   {% include footer.html %}
 
   {% include download-modals.html %}
+
+  <!-- Generated Vars -->
+  <script>
+  {% assign downloadCount = 0 %}
+  {% for release in site.github.releases %}
+    {% for asset in release.assets %}
+      {% if asset.name != 'RELEASES' %}
+        {% assign downloadCount =  downloadCount | plus: asset.download_count %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  window.initialDownloadCount = {{ downloadCount }};
+  </script>
 
 
   <!--  Scripts-->

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include head.html %}
+
+<body class="blue-grey lighten-5">
+  {% include menu.html %}
+
+  <div class="row">
+    <nav class="col s12 blue-grey darken-1">
+      <div class="nav-wrapper blue-grey darken-1">
+        <div class="col s12">
+          <a href="{{ site.baseurl }}/docs/" class="breadcrumb">Docs</a>
+          {% unless page.isDoc %}
+          <a href="{{ site.baseurl }}/docs/{{ page.title }}" class="breadcrumb">{{ page.title }}</a>
+          {% endunless %}
+        </div>
+      </div>
+    </nav>
+    <div class="col m3 s12">
+      {% include docs-menu.html %}
+    </div>
+    <div class="col m9 s12">
+      <h2>Documentation</h2>
+      {{% if page.title == '' %}}
+        <h4>{{ page.title }}</h4>
+      {{% endif %}}
+      {{ content }}
+    </div>
+  </div>
+
+  {% include footer.html %}
+
+  {% include download-modals.html %}
+
+  <!-- Generated Vars -->
+  <script>
+  {% assign downloadCount = 0 %}
+  {% for release in site.github.releases %}
+    {% for asset in release.assets %}
+      {% if asset.name != 'RELEASES' %}
+        {% assign downloadCount =  downloadCount | plus: asset.download_count %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  window.initialDownloadCount = {{ downloadCount }};
+  </script>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.min.js"></script>
+  <script src="/js/init.js" defer></script>
+
+  </body>
+</html>

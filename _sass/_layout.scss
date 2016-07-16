@@ -20,6 +20,7 @@ p {
 }
 
 .parallax-container {
+  width: 100%;
   min-height: 380px;
   line-height: 0;
   height: auto;
@@ -32,38 +33,39 @@ p {
 
 .icon-block {
   padding: 0 15px;
-}
-.icon-block .material-icons {
-  font-size: inherit;
+
+  .material-icons {
+    font-size: inherit;
+  }
 }
 
 .slider .slides {
   position: relative;
-}
 
-.slider .slides li::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #222;
-  opacity: 0.6;
-  z-index: 4;
-}
+  li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    opacity: 0.6;
+    z-index: 4;
+  }
 
-.slider .slides img {
-  opacity: 0.8;
-  filter: blur(1px) grayscale(60%);
-  -webkit-filter: blur(1px) grayscale(60%);
-  -moz-filter: blur(1px) grayscale(60%);
-  -ms-filter: blur(1px) grayscale(60%);
-  -o-filter: blur(1px) grayscale(60%);
-}
+  img {
+    opacity: 0.8;
+    filter: blur(1px) grayscale(60%);
+    -webkit-filter: blur(1px) grayscale(60%);
+    -moz-filter: blur(1px) grayscale(60%);
+    -ms-filter: blur(1px) grayscale(60%);
+    -o-filter: blur(1px) grayscale(60%);
+  }
 
-.slider .slides .caption {
-  z-index: 6;
+  .caption {
+    z-index: 6;
+  }
 }
 
 footer.page-footer {
@@ -74,7 +76,8 @@ footer.page-footer {
   content: " Open";
 }
 
-ul.feat-list, ul.feat-list li {
+ul.feat-list,
+ul.feat-list li {
   list-style-type: circle !important;
 }
 
