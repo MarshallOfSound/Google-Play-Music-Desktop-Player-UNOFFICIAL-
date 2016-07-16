@@ -54,7 +54,7 @@ Or for lazy people
 sudo apt-get install g++-multilib lib32z1 lib32ncurses5 lib32bz2-1.0 rpm fakeroot dpkg libdbus-1-dev libx11-dev g++ libavahi-compat-libdnssd-dev gcc-4.8-multilib g++-4.8-multilib libnotify4
 ```
 
-## Getting the project running
+##### Getting the project running
 ```bash
 git clone https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-.git gpmdp
 cd gpmdp
@@ -65,7 +65,7 @@ npm start
 
 That sequence of commands should get the app running.  If they don't head over to [Gitter](https://gitter.im/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-) and someone will try to help you out.
 
-## Easy development process
+##### Easy development process
 
 We have a `watch` task that will constantly recompile certain parts of the app as you change the files.  To get this going you will need 2 command prompts / terminal windows.  
 
