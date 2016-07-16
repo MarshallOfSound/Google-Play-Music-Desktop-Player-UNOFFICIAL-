@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include head.html %}
+
+<body class="blue-grey darken-3">
+    {% include menu.html %}
+
+    <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center red-text">{{ site.title }}</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">A beautiful cross platform Desktop Player for Google Play Music</h5>
+        </div>
+        <div class="row center">
+          {{ site.github | jsonify }}
+          <a href="https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-" target="_blank" class="btn-large waves-effect waves-light red darken-1" style="margin-bottom: 12px">View on GitHub</a>
+          <a href="#" class="btn-large waves-effect waves-light red lighten-1" style="margin-left: 12px; margin-bottom: 12px" dl-latest>...</a>
+          <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ" target="_blank" class="btn-large waves-effect waves-light red darken-3" style="margin-left: 12px; margin-bottom: 12px">Donate</a>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax blue-grey darken-4"><img src="/img/par1.jpg" alt="Unsplashed background img 1" style="opacity: 0.2"></div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons red-text text-lighten-4">group</i></h2>
+            <h5 class="center blue-grey-text text-lighten-5">Open Source</h5>
+
+            <p class="light blue-grey-text text-lighten-5">Google Play Music Desktop Player is open source on GitHub this means YOU, the community, gets a say in all the features we implement and you can even get involved and help out.</p>
+            <p class="light blue-grey-text text-lighten-5">If you find a bug or want something new, tell us in Gitter or on GitHub and we will see what we can do!!</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons red-text text-lighten-4">flash_on</i></h2>
+            <h5 class="center blue-grey-text text-lighten-5">Resource Efficient</h5>
+
+            <p class="light blue-grey-text text-lighten-5">Being a lightweight, standalone framework we use FAR less resources than having Google Play Music open in a standard chrome tab.  This frees up your computers resources to do things you care about, instead of wasting them on playing music.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons red-text text-lighten-4">settings</i></h2>
+            <h5 class="center blue-grey-text text-lighten-5">Customizable</h5>
+
+            <p class="light blue-grey-text text-lighten-5">Google Play Music Desktop Player adds a level of customization that simply isn't there in the web player.  You can change your theme, customize the colors, send your play history straight to last.fm, and it even has a built-in equalizer.</p>
+            <p class="light blue-grey-text text-lighten-5">From advanced audio controls to simple song change notifications, this desktop player literally does it all.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light">The same beautiful Material Design experience you love on the browser, just as a dedicated desktop player</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax blue-grey darken-4"><img src="/img/par2.png" alt="Unsplashed background img 2" style="opacity: 0.2"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 center">
+          <h3 class="blue-grey-text text-lighten-5">Mobile Remote Control</h3>
+          <p class="grey-text text-lighten-4">
+            Easily control the player from the comfort of your couch.  We have apps
+            for iOS and Android.  Simply enable the Playback API in your players
+            settings and install the mobile app.
+          </P>
+          <div class="row">
+            <div class="col s12 m6">
+              <img src="/img/playstore-soon.png" class="store-image" />
+            </div>
+            <div class="col s12 m6">
+              <img src="/img/app-store-soon.png" class="store-image" />
+            </div>
+          </div>
+          <h3 class="blue-grey-text text-lighten-5">Features</h3>
+          <ul class="blue-grey-text text-lighten-5 left-align feat-list">
+            <li>Media Keys support (Play, Pause, Stop, Previous, Next)</li>
+            <li><a href="https://last.fm" target="_blank">Last.FM</a> Scrobbling and Now Playing support!</li>
+            <li>Desktop notifications on track change</li>
+            <li>Simplistic mini player</li>
+            <li>Customizable dark theme</li>
+            <li>Taskbar media controls (media controls embedded into the taskbar) <i>Windows only</i></li>
+            <li>HTML5 audio support - No more Adobe Flash Player</li>
+            <li>Built-in audio equalizer - Make it sound how you like it</li>
+            <li>Background music playing, minimize to the task bar</li>
+            <li>Customizable hotkeys. No worries if you don't have media keys - Choose your own shortcuts!</li>
+            <li>Choose your audio output device from within the player</li>
+            <li>Interface for external applications such as Rainmeter</li>
+            <li>And a whole lot more coming soon!!</li>
+          </ul>
+          <div class="slider">
+            <ul class="slides">
+              <li>
+                <img alt="Custom Theme Demo" src="/img/par2.png"> <!-- random image -->
+                <div class="caption center-align">
+                  <h3>Custom Themes</h3>
+                  <h5 class="light grey-text text-lighten-3">You choose how it looks.</h5>
+                </div>
+              </li>
+              <li>
+                <img alt="Equializer Demo" src="/img/slider/eq.png"> <!-- random image -->
+                <div class="caption left-align">
+                  <h3>Audio Equalizer</h3>
+                  <h5 class="light grey-text text-lighten-3">You choose how it sounds.</h5>
+                </div>
+              </li>
+              <li>
+                <img alt="Mini Player Demo" src="/img/slider/mini.png" style="background-size: contain; background-repeat: no-repeat"> <!-- random image -->
+                <div class="caption right-align">
+                  <h3>Mini Player</h3>
+                  <h5 class="light grey-text text-lighten-3">You choose how to use it.</h5>
+                </div>
+              </li>
+              <li>
+                <img alt="Last.FM Demo" src="/img/slider/lastfm.png"> <!-- random image -->
+                <div class="caption center-align">
+                  <h3>Last FM Integration</h3>
+                  <h5 class="light grey-text text-lighten-3">You choose who knows about it.</h5>
+                </div>
+              </li>
+              <li>
+                <img alt="Notification Demo" src="/img/slider/dn_both.png" style="background-size: contain; background-repeat: no-repeat"> <!-- random image -->
+                <div class="caption -align">
+                  <h3>Desktop Notification Support</h3>
+                  <h5 class="light grey-text text-lighten-3">You choose if you find out about it.</h5>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light" download-counter>100% Open Source</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax blue-grey darken-4"><img src="/img/par3.png" alt="Unsplashed background img 3" style="opacity: 0.2"></div>
+  </div>
+
+  {% include footer.html %}
+
+  {% include download-modals.html %}
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.min.js"></script>
+  <script src="/js/init.js" defer></script>
+
+  </body>
+</html>

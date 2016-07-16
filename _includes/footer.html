@@ -1,0 +1,39 @@
+<footer class="page-footer blue-grey darken-3">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">About the Author</h5>
+        <p class="grey-text text-lighten-4">
+          {{ site.author.description }}
+        </p>
+
+
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          {% for link in site.project.links %}
+            <li>
+              <a class="white-text" href="{{ link.url }}">{{ link.text }} {% if link.badge %} <span class="badge new open" style="position: static" {{ link.badge }}>0</span> {% endif %}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Connect with Me</h5>
+        <ul>
+          {% for link in site.author.connections %}
+            <li>
+              <a class="white-text" href="{{ link.url }}">{{ link.text }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    Made by <a class="brown-text text-lighten-3" href="{{ site.author.homepage }}">{{ site.author.name }}</a>
+    </div>
+  </div>
+</footer>

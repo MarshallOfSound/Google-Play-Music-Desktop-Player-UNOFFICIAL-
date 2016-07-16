@@ -1,0 +1,27 @@
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="favicon.ico?2">
+  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <link rel="author" href="https://plus.google.com/+SamuelAttard"/>
+  <link rel="publisher" href="https://plus.google.com/+SamuelAttard"/>
+
+  <meta property="og:title" content="Google Play Music Desktop Player"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="http://www.googleplaymusicdesktopplayer.com/img/main.png"/>
+  <meta property="og:description" content="A beautiful cross platform Desktop Player for Google Play Music"/>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://www.googleplaymusicdesktopplayer.com">
+  <meta name="twitter:title" content="Google Play Music Desktop Player">
+  <meta name="twitter:description" content="A beautiful cross platform Desktop Player for Google Play Music">
+  <meta name="twitter:image" content="http://www.googleplaymusicdesktopplayer.com/img/main.png">
+</head>

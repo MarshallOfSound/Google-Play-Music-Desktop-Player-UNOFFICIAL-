@@ -1,0 +1,53 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: Google Play Music Desktop Player
+shorttitle: GPMDP
+email: samuel.r.attard@gmail.com
+description: > # A beautiful cross platform Desktop Player for Google Play Music.  Your music how you want it.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://googleplaymusicdesktopplayer.com" # the base hostname & protocol for your site
+project:
+  links:
+    - text: GitHub Repo
+      url: https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
+    - text: GitHub Issues
+      url: https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues
+      badge: issue-count
+    - text: Gitter Chat
+      url: https://gitter.im/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
+    - text: Appveyor CI
+      url: https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial/branch/master
+    - text: Travis CI
+      url: https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
+    - text: Circle CI
+      url: https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/tree/master
+author:
+  name: 'Samuel Attard'
+  homepage: 'https://www.samuelattard.com'
+  description: > # I am a University student based in Melbourne, AU but originally from Auckland, NZ.
+                I love programming in my spare time and think it's great giving back to the community
+                through Open Source projects such as this.
+  connections:
+    - text: GitHub
+      url: https://github.com/MarshallOfSound
+    - text: LinkedIn
+      url: https://www.linkedin.com/in/samuelattard
+    - text: Email
+      url: mailto:samuel.r.attard@gmail.com
+
+# Build settings
+markdown: kramdown
+repository: MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
+kramdown:
+  input: GFM
+  hard_wrap: false
+gems:
+  - jekyll-coffeescript
+  - jekyll-paginate
+  - jekyll-github-metadata
