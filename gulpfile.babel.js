@@ -3,7 +3,6 @@
 import gulp from 'gulp';
 
 import _ from 'lodash';
-import appdmg from 'appdmg';
 import babel from 'gulp-babel';
 import clean from 'gulp-clean';
 import concat from 'gulp-concat';
@@ -282,7 +281,7 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
     if (fs.existsSync(nodePath.resolve(__dirname, appdmgConf.target))) {
       fs.unlinkSync(nodePath.resolve(__dirname, appdmgConf.target));
     }
-    const dmg = appdmg(appdmgConf);
+    const dmg = require('appdmg')(appdmgConf);
 
     dmg.on('finish', () => done());
     dmg.on('error', done);
