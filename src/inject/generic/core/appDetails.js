@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 window.addEventListener('load', () => {
-  if (window.$ && Settings.get('welcomed') !== remote.app.getVersion()) {
+  if (window.$ && Settings.get('welcomed') === remote.app.getVersion() && $('#welcome').length) {
     $('[data-app-changes]').html(fs.readFileSync(path.resolve(`${__dirname}/../../../../MR_CHANGELOG.html`), 'utf8')); // eslint-disable-line
 
     $('#welcome').openModal({
