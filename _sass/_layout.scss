@@ -92,6 +92,10 @@ ul.feat-list li {
   }
 }
 
+ul#nav-mobile {
+  transform: translateX(0) !important;
+}
+
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     position: absolute;
