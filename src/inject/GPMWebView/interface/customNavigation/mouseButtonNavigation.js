@@ -50,10 +50,10 @@ window.addEventListener('mousewheel', (e) => {
   }
 });
 
-bWindow.on('app-command', handleAppCommand);
-bWindow.on('swipe', handleSwipeCommand);
-bWindow.on('scroll-touch-begin', startScroll);
-bWindow.on('scroll-touch-end', endScroll);
+Emitter.on('BrowserWindow:app-command', (e, ...args) => startScroll(...args));
+Emitter.on('BrowserWindow:swipe', (e, ...args) => startScroll(...args));
+Emitter.on('BrowserWindow:scroll-touch-begin', (e, ...args) => startScroll(...args));
+Emitter.on('BrowserWindow:scroll-touch-end', (e, ...args) => startScroll(...args));
 
 if (process.platform === 'linux') {
   const mouse = require('mouse-forward-back');
