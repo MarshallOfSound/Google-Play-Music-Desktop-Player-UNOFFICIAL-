@@ -108,6 +108,7 @@
     "spectron": "^3.2.3"
   },
   "optionalDependencies": {
+    "appdmg": "^0.4.5",
     "mouse-forward-back": "^1.0.1",
     "dbus": "GPMDP/node-dbus#linux-only",
     "mpris-service": "GPMDP/mpris-service",

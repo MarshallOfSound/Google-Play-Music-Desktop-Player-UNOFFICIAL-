@@ -3,14 +3,17 @@
 import gulp from 'gulp';
 
 import _ from 'lodash';
+import appdmg from 'appdmg';
 import babel from 'gulp-babel';
 import clean from 'gulp-clean';
 import concat from 'gulp-concat';
 import cssmin from 'gulp-cssmin';
 import { createWindowsInstaller as electronInstaller } from 'electron-winstaller';
+import fs from 'fs';
 import header from 'gulp-header';
 import less from 'gulp-less';
 import packager from 'electron-packager';
+import nodePath from 'path';
 import rebuild from './vendor/rebuild';
 import replace from 'gulp-replace';
 import runSequence from 'run-sequence';
@@ -100,6 +103,32 @@ const winstallerConfig = {
   setupIcon: 'build/assets/img/main.ico',
   loadingGif: 'build/assets/img/installing.gif',
   remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
+};
+
+const appdmgConf = {
+  target: `dist/${packageJSON.productName}-darwin-x64/${packageJSON.productName}.dmg`,
+  basepath: __dirname,
+  specification: {
+    title: 'GPMDP',
+    icon: `${defaultPackageConf.icon}.icns`,
+    background: 'src/assets/img/dmg.png',
+    window: {
+      size: {
+        width: 600,
+        height: 400,
+      },
+    },
+    contents: [
+      {
+        x: 490, y: 252, type: 'link',
+        path: '/Applications',
+      },
+      {
+        x: 106, y: 252, type: 'file',
+        path: `dist/${packageJSON.productName}-darwin-x64/${packageJSON.productName}.app`,
+      },
+    ],
+  },
 };
 
 const cleanGlob = (glob) => {
@@ -249,7 +278,14 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
 
   child.on('close', (code) => {
     console.log('Finished zipping with code ' + code); // eslint-disable-line
-    done();
+
+    if (fs.existsSync(nodePath.resolve(__dirname, appdmgConf.target))) {
+      fs.unlinkSync(nodePath.resolve(__dirname, appdmgConf.target));
+    }
+    const dmg = appdmg(appdmgConf);
+
+    dmg.on('finish', () => done());
+    dmg.on('error', done);
   });
 });
 
