@@ -10,6 +10,9 @@ current playback information. The file is JSON-formatted and located at
 * OS X: `~/Library/Application Support/Google Play Music Desktop Player/json_store/playback.json`
 * Linux: `~/.config/Google Play Music Desktop Player/json_store/playback.json`
 
+**NOTE:** On some linux distros the file system does not lock the JSON file correctly and
+sometimes it will be empty when you try to read it.  (This is really rare)
+
 ## Data Format
 
 The file contains a single JSON object with the following attributes:
