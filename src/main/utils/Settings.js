@@ -64,7 +64,7 @@ class Settings {
   }
 
   _save(force) {
-    const now = (new Date).getTime();
+    const now = (new Date()).getTime();
     // During some save events (like resize) we need to queue the disk writes
     // so that we don't blast the disk every millisecond
     if ((now - this.lastSync > 250 || force)) {

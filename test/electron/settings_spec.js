@@ -2,14 +2,14 @@
 import chai from 'chai';
 import chaiFs from 'chai-fs';
 
-const expect = chai.expect;
-
-chai.use(chaiFs);
-chai.should();
-
 // Actual Test Imports
 import Settings from '../../build/main/utils/Settings';
 import initialSettings from '../../build/main/utils/_initialSettings';
+
+const expect = chai.expect;
+chai.use(chaiFs);
+chai.should();
+
 
 describe('Settings', () => {
   let settings;

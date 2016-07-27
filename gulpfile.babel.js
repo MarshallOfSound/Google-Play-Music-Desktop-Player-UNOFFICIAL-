@@ -10,6 +10,7 @@ import cssmin from 'gulp-cssmin';
 import { createWindowsInstaller as electronInstaller } from 'electron-winstaller';
 import fs from 'fs';
 import header from 'gulp-header';
+import lec from 'gulp-line-ending-corrector';
 import less from 'gulp-less';
 import packager from 'electron-packager';
 import nodePath from 'path';
@@ -136,6 +137,12 @@ const cleanGlob = (glob) => {
       .pipe(clean({ force: true }));
   };
 };
+
+gulp.task('fix-eol', () =>
+  gulp.src('src/**/*.js')
+    .pipe(lec({verbose:true, eolc: 'LF', encoding:'utf8'}))
+    .pipe(gulp.dest('src'))
+)
 
 gulp.task('clean', cleanGlob(['./build', './dist']));
 gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
