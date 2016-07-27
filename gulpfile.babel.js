@@ -2,6 +2,7 @@
 
 import gulp from 'gulp';
 
+import { spawn, exec } from 'child_process';
 import _ from 'lodash';
 import babel from 'gulp-babel';
 import clean from 'gulp-clean';
@@ -10,16 +11,14 @@ import cssmin from 'gulp-cssmin';
 import { createWindowsInstaller as electronInstaller } from 'electron-winstaller';
 import fs from 'fs';
 import header from 'gulp-header';
-import lec from 'gulp-line-ending-corrector';
 import less from 'gulp-less';
 import packager from 'electron-packager';
 import nodePath from 'path';
-import rebuild from './vendor/rebuild';
 import replace from 'gulp-replace';
 import runSequence from 'run-sequence';
 import uglify from 'gulp-uglify';
 
-import { spawn, exec } from 'child_process';
+import rebuild from './vendor/rebuild';
 
 const paths = {
   internalScripts: ['src/**/*.js'],
@@ -36,6 +35,7 @@ const paths = {
 };
 
 const packageJSON = require('./package.json');
+
 let version = packageJSON.dependencies['electron-prebuilt'];
 if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1') {
   version = version.substr(1);
@@ -120,12 +120,10 @@ const appdmgConf = {
     },
     contents: [
       {
-        x: 490, y: 252, type: 'link',
-        path: '/Applications',
+        x: 490, y: 252, type: 'link', path: '/Applications',
       },
       {
-        x: 106, y: 252, type: 'file',
-        path: `dist/${packageJSON.productName}-darwin-x64/${packageJSON.productName}.app`,
+        x: 106, y: 252, type: 'file', path: `dist/${packageJSON.productName}-darwin-x64/${packageJSON.productName}.app`,
       },
     ],
   },
@@ -137,12 +135,6 @@ const cleanGlob = (glob) => {
       .pipe(clean({ force: true }));
   };
 };
-
-gulp.task('fix-eol', () =>
-  gulp.src('src/**/*.js')
-    .pipe(lec({verbose:true, eolc: 'LF', encoding:'utf8'}))
-    .pipe(gulp.dest('src'))
-)
 
 gulp.task('clean', cleanGlob(['./build', './dist']));
 gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
