@@ -272,11 +272,9 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
 
   console.log(`Zipping "${packageJSON.productName}.app"`); // eslint-disable-line
 
-  child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
+  child.stdout.on('data', () => {});
 
-  child.stderr.on('data', (data) => {
-    process.stdout.write(data.toString());
-  });
+  child.stderr.on('data', () => {});
 
   child.on('close', (code) => {
     console.log('Finished zipping with code ' + code); // eslint-disable-line
