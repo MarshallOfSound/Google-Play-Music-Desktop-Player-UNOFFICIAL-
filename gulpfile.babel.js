@@ -359,12 +359,10 @@ const zipTask = (makeName, deps, cwd, what) => {
     console.log(`Zipping ${what}`); // eslint-disable-line
 
     // spit stdout to screen
-    child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
+    child.stdout.on('data', () => {});
 
     // Send stderr to the main console
-    child.stderr.on('data', (data) => {
-      process.stdout.write(data.toString());
-    });
+    child.stderr.on('data', () => {});
 
     child.on('close', (code) => {
       console.log(`Finished zipping ${what} with code: ${code}`); // eslint-disable-line
