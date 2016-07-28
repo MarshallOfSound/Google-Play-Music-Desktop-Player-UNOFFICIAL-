@@ -8,15 +8,15 @@ import attemptMetroLyrics from '../../../build/main/features/core/lyrics/source_
 import lyricsSourceSpec from './_lyricsSource_spec';
 import { validSongs, invalidSongs } from '../testdata/lyrics';
 
-// Actual Test Imports
-const resolveLyrics = require('../../../build/main/features/core/lyrics').resolveLyrics;
-
 chai.should();
 
 // Mock expected globals
 global.PlaybackAPI = {
   on: () => {},
 };
+
+// Actual Test Imports
+const resolveLyrics = require('../../../build/main/features/core/lyrics').resolveLyrics; // eslint-disable-line
 
 describe('Lyrics Resolver', () => {
   givenAsync(...validSongs).it('should resolve when given a valid song object', (done, song) => {
