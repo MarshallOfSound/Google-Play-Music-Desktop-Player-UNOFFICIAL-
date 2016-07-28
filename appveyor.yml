@@ -30,7 +30,7 @@ cache:
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm i -g npm
-  - rd /S /Q "node_modules"
+  - if exist "node_modules" rd /S /Q "node_modules"
   - appveyor DownloadFile https://www.samuelattard.com/files/bonjourcore2.msi
   - msiexec /i bonjourcore2.msi /qn
   - del bonjourcore2.msi
