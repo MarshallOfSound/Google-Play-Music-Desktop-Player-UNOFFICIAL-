@@ -60,6 +60,10 @@ const defaultPackageConf = {
       () => /^\/node_modules\/.*\.pdb/g,
       // Ignore native module obj files
       () => /^\/node_modules\/.*\.obj/g,
+      // Ignore optional dev modules
+      () => /^\/node_modules\/appdmg/g,
+      () => /^\/node_modules\/electron-installer-debian/g,
+      () => /^\/node_modules\/electron-installer-redhat/g,
       // Ignore symlinks in the bin directory
       () => /^\/node_modules\/.bin/g,
       // Ignore root dev FileDescription
