@@ -29,7 +29,7 @@ window.addEventListener('load', () => {
   const stateHandler = (remoteIsPlaying) => {
     isPlaying = remoteIsPlaying;
     if (!isPlaying) return $('#lyrics p').stop();
-    animate = true;
+    animate = Settings.get('scrollLyrics', true);
   };
   // Handle time progression of a song
   const timeHandler = (timeObj) => {
