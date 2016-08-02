@@ -279,14 +279,18 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
   child.on('close', (code) => {
     console.log('Finished zipping with code ' + code); // eslint-disable-line
 
-    if (fs.existsSync(nodePath.resolve(__dirname, appdmgConf.target))) {
-      fs.unlinkSync(nodePath.resolve(__dirname, appdmgConf.target));
-    }
-    const dmg = require('appdmg')(appdmgConf);
-
-    dmg.on('finish', () => done());
-    dmg.on('error', done);
+    done();
   });
+});
+
+gulp.task('dmg:darwin', ['package:darwin'], (done) => {
+  if (fs.existsSync(nodePath.resolve(__dirname, appdmgConf.target))) {
+    fs.unlinkSync(nodePath.resolve(__dirname, appdmgConf.target));
+  }
+  const dmg = require('appdmg')(appdmgConf);
+
+  dmg.on('finish', () => done());
+  dmg.on('error', done);
 });
 
 gulp.task('package:linux:32', ['clean-dist-linux-32', 'build-release'], (done) => {
