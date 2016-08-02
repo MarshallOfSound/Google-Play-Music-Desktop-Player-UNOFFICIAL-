@@ -131,6 +131,15 @@ import handleStartupEvent from './squirrel';
     require('./main/features');
     require('./old_win32');
 
+    // Proxy window events through IPC to solve 'webContents destroyed' errors
+    const proxyWindowEvent = (name) => {
+      mainWindow.on(name, (...args) => Emitter.sendToGooglePlayMusic(`BrowserWindow:${name}`, ...args));
+    };
+    proxyWindowEvent('app-command');
+    proxyWindowEvent('swipe');
+    proxyWindowEvent('scroll-touch-begin');
+    proxyWindowEvent('scroll-touch-end');
+
     // Emitted when the window is closed.
     mainWindow.on('closed', () => {
       // Dereference the window object, usually you would store windows

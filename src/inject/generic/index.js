@@ -2,6 +2,7 @@ import '../rendererEmitter';
 import './core';
 
 import SettingsController from '../../main/utils/Settings';
+
 if (process.env.TEST_SPEC) {
   global.Settings = new SettingsController('.test', true);
 } else {
@@ -14,6 +15,7 @@ require(`./${process.platform}`);
 document.addEventListener('DOMContentLoaded', () => {
   require('./windowThemeHandler');
   require('./translations');
+
   setTimeout(() => require('electron').remote.getCurrentWindow().show(), 100);
 
   const nativeFrameAtLaunch = Settings.get('nativeFrame');

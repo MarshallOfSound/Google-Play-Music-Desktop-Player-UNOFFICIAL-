@@ -16,6 +16,7 @@ window.wait(() => {
     window.GPM.mini.setScrollVolume(true);
   }
 
+  let wasMaximized = mainWindow.isMaximized();
   window.GPM.mini.on('enable', () => {
     Emitter.fire('mini', { state: true });
 
@@ -29,6 +30,8 @@ window.wait(() => {
     } else {
       mainWindow.center();
     }
+    wasMaximized = mainWindow.isMaximized();
+    mainWindow.unmaximize();
 
     setTimeout(() => remote.getCurrentWindow().setMaximumSize(MINI_SIZE, MINI_SIZE), 0);
     remote.getCurrentWindow().setMinimumSize(50, 50);
@@ -55,6 +58,8 @@ window.wait(() => {
     } else {
       mainWindow.center();
     }
+
+    if (wasMaximized) mainWindow.maximize();
 
     webContents.executeJavaScript('document.body.removeAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);

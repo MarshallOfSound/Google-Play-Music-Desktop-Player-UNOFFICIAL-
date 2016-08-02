@@ -1,6 +1,6 @@
+import _ from 'lodash';
 import fs from 'fs';
 import createJSON from './_jsonCreator';
-import _ from 'lodash';
 
 class PlaybackAPI {
   constructor() {

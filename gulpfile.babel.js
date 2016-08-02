@@ -2,21 +2,23 @@
 
 import gulp from 'gulp';
 
+import { spawn, exec } from 'child_process';
 import _ from 'lodash';
 import babel from 'gulp-babel';
 import clean from 'gulp-clean';
 import concat from 'gulp-concat';
 import cssmin from 'gulp-cssmin';
 import { createWindowsInstaller as electronInstaller } from 'electron-winstaller';
+import fs from 'fs';
 import header from 'gulp-header';
 import less from 'gulp-less';
 import packager from 'electron-packager';
-import rebuild from './vendor/rebuild';
+import nodePath from 'path';
 import replace from 'gulp-replace';
 import runSequence from 'run-sequence';
 import uglify from 'gulp-uglify';
 
-import { spawn, exec } from 'child_process';
+import rebuild from './vendor/rebuild';
 
 const paths = {
   internalScripts: ['src/**/*.js'],
@@ -33,6 +35,7 @@ const paths = {
 };
 
 const packageJSON = require('./package.json');
+
 let version = packageJSON.dependencies['electron-prebuilt'];
 if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1') {
   version = version.substr(1);
@@ -57,6 +60,10 @@ const defaultPackageConf = {
       () => /^\/node_modules\/.*\.pdb/g,
       // Ignore native module obj files
       () => /^\/node_modules\/.*\.obj/g,
+      // Ignore optional dev modules
+      () => /^\/node_modules\/appdmg/g,
+      () => /^\/node_modules\/electron-installer-debian/g,
+      () => /^\/node_modules\/electron-installer-redhat/g,
       // Ignore symlinks in the bin directory
       () => /^\/node_modules\/.bin/g,
       // Ignore root dev FileDescription
@@ -100,6 +107,30 @@ const winstallerConfig = {
   setupIcon: 'build/assets/img/main.ico',
   loadingGif: 'build/assets/img/installing.gif',
   remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
+};
+
+const appdmgConf = {
+  target: `dist/${packageJSON.productName}-darwin-x64/${packageJSON.productName}.dmg`,
+  basepath: __dirname,
+  specification: {
+    title: 'GPMDP',
+    icon: `${defaultPackageConf.icon}.icns`,
+    background: 'src/assets/img/dmg.png',
+    window: {
+      size: {
+        width: 600,
+        height: 400,
+      },
+    },
+    contents: [
+      {
+        x: 490, y: 252, type: 'link', path: '/Applications',
+      },
+      {
+        x: 106, y: 252, type: 'file', path: `dist/${packageJSON.productName}-darwin-x64/${packageJSON.productName}.app`,
+      },
+    ],
+  },
 };
 
 const cleanGlob = (glob) => {
@@ -241,16 +272,25 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
 
   console.log(`Zipping "${packageJSON.productName}.app"`); // eslint-disable-line
 
-  child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
+  child.stdout.on('data', () => {});
 
-  child.stderr.on('data', (data) => {
-    process.stdout.write(data.toString());
-  });
+  child.stderr.on('data', () => {});
 
   child.on('close', (code) => {
     console.log('Finished zipping with code ' + code); // eslint-disable-line
+
     done();
   });
+});
+
+gulp.task('dmg:darwin', ['package:darwin'], (done) => {
+  if (fs.existsSync(nodePath.resolve(__dirname, appdmgConf.target))) {
+    fs.unlinkSync(nodePath.resolve(__dirname, appdmgConf.target));
+  }
+  const dmg = require('appdmg')(appdmgConf);
+
+  dmg.on('finish', () => done());
+  dmg.on('error', done);
 });
 
 gulp.task('package:linux:32', ['clean-dist-linux-32', 'build-release'], (done) => {
@@ -321,12 +361,10 @@ const zipTask = (makeName, deps, cwd, what) => {
     console.log(`Zipping ${what}`); // eslint-disable-line
 
     // spit stdout to screen
-    child.stdout.on('data', (data) => { process.stdout.write(data.toString()); });
+    child.stdout.on('data', () => {});
 
     // Send stderr to the main console
-    child.stderr.on('data', (data) => {
-      process.stdout.write(data.toString());
-    });
+    child.stderr.on('data', () => {});
 
     child.on('close', (code) => {
       console.log(`Finished zipping ${what} with code: ${code}`); // eslint-disable-line

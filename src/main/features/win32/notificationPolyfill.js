@@ -29,7 +29,7 @@ class Notification {
 
     const windowID = WindowManager.add(this.window, 'notify');
     Emitter.executeOnWindow(windowID, (opts) => {
-      window.NOTIFY_DATA = opts;
+      window.NOTIFY_DATA = opts; // eslint-disable-line
     }, this.options);
 
     setTimeout(() => {

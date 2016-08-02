@@ -15,14 +15,12 @@ let audioDeviceMenu = [
 
 if (process.platform === 'darwin') {
   appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/macTemplate.png`));
+} else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
+  // TODO: Change this back to ico when electron supports it on linux
+  // appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
+  appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray.png`));
 } else {
-  if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
-    // TODO: Change this back to ico when electron supports it on linux
-    // appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray.png`));
-  } else {
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray.png`));
-  }
+  appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray.png`));
 }
 
 const setContextMenu = () => {

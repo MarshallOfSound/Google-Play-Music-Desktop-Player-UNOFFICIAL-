@@ -32,12 +32,14 @@ class Emitter {
       if (details && details.event) {
         if (view.isLoading()) {
           let waitForPageLoad = 0;
-          view.addEventListener('did-stop-loading', () => {
+          const _listener = () => {
             if (waitForPageLoad > 1 && !view.isLoading()) {
               view.send(details.event, details.details);
+              view.removeEventListener('did-stop-loading', _listener);
             }
             waitForPageLoad++;
-          });
+          };
+          view.addEventListener('did-stop-loading', _listener);
         } else {
           view.send(details.event, details.details);
         }
