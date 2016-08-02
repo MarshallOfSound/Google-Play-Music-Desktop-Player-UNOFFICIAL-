@@ -6,22 +6,51 @@
 }
 ::-webkit-scrollbar-track,
 ::shadow ::-webkit-scrollbar-track {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(0, 0, 0, 0.25);
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.35);
   }
   &:active {
-    background-color: rgba(255, 255, 255, 0.07);
+    background-color: rgba(0, 0, 0, 0.25);
   }
 }
 ::-webkit-scrollbar-thumb,
 ::shadow ::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 0;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(0, 0, 0, 0.4);
   }
   &:active {
-    background-color: rgba(255, 255, 255, 0.125);
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+[theme][full] {
+  ::-webkit-scrollbar,
+  ::shadow ::-webkit-scrollbar {
+    width: 9px;
+    background: rgba(0, 0, 0, 0);
+  }
+  ::-webkit-scrollbar-track,
+  ::shadow ::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.05);
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    &:active {
+      background-color: rgba(255, 255, 255, 0.07);
+    }
+  }
+  ::-webkit-scrollbar-thumb,
+  ::shadow ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    &:active {
+      background-color: rgba(255, 255, 255, 0.125);
+    }
   }
 }

@@ -57,24 +57,32 @@ export const harness = (name, fn, handleSignIn = true, handleFirstStart = true) 
       );
     }
 
-    before((done) =>
+    before(() =>
       app.client.windowByIndex(1)
         .waitUntilWindowLoaded()
         .getWindowCount().should.eventually.equal(2)
         .then(() => {
           if (!handleSignIn) {
-            return done();
+            return Promise.resolve();
           }
-          setTimeout(() => {
-            app.webContents.getURL()
-              .then((url) => {
-                if (/#/gi.test(url)) {
-                  done();
-                } else {
-                  signIn(done);
-                }
-              });
-          }, 5000);
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              app.webContents.getURL()
+                .then((url) => {
+                  if (/#/gi.test(url)) {
+                    resolve();
+                  } else {
+                    signIn((err) => {
+                      if (err) {
+                        resolve();
+                      } else {
+                        reject(err);
+                      }
+                    });
+                  }
+                });
+            }, 5000);
+          });
         })
     );
 

@@ -17,8 +17,24 @@ html, body {
   background: #fff;
 }
 
+// Make modal inside custom frame
+.lean-overlay {
+  height: calc(~"100vh - " (@border-width * 2 + @title-bar-height));
+  width: calc(~"100vw - " ((@border-width - 0.05em) * 2));
+  margin: (@border-width - 0.05em);
+  margin-top: @border-width + @title-bar-height;
+  top: 0;
+}
+
 // Hide custom frame when native frame is used
 .native-frame {
+  .lean-overlay {
+    height: 125%;
+    width: 100%;
+    margin: 0;
+    top: -100px;
+  }
+
   .window-border {
     border: 0;
     > header {
@@ -126,14 +142,6 @@ html, body {
   }
 }
 
-.lean-overlay {
-  height: calc(~"100vh - " (@border-width * 2 + @title-bar-height));
-  width: calc(~"100vw - " ((@border-width - 0.05em) * 2));
-  margin: (@border-width - 0.05em);
-  margin-top: @border-width + @title-bar-height;
-  top: 0;
-}
-
 .drag-handle-large {
   position: absolute;
   top: 10px;
@@ -200,6 +208,18 @@ html, body {
       p[data-scroll] {
         overflow: hidden; /* Hide scroll bar so that the user relies on auto scroll */
       }
+      @media (max-width: 35em) {
+        p {
+          font-size: 4.5vw;
+          padding: 5vw 0;
+        }
+      }
+      @media (max-width: 20em) {
+        p {
+          font-size: 12px;
+          padding: 26px 0;
+        }
+      }
     }
 
     #shadow {
@@ -233,6 +253,70 @@ html, body {
         transition: background 0.3s ease;
       }
     }
+  }
+}
+
+#welcome.open {
+  display: flex !important;
+  flex-direction: column;
+  overflow: hidden;
+
+  .modal-content {
+    flex: 1 auto;
+    overflow: auto;
+  }
+
+  .modal-footer {
+    margin-bottom: 8px;
+  }
+}
+
+.offline-warning {
+  position: absolute;
+  background: @white;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+  text-align: center;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .offline & {
+    display: flex;
+  }
+
+  i {
+    color: @darkprimary;
+    font-size: 500px;
+  }
+
+  h1 {
+    font-size: 62px;
+    color: @darkprimary;
+  }
+
+  @media (max-width: 1100px), (max-height: 660px) {
+    i { font-size: 300px; }
+    h1 { font-size: 44px; }
+  }
+
+  @media (max-width: 650px), (max-height: 530px) {
+    i { font-size: 200px; }
+    h1 { font-size: 32px; }
+  }
+
+  @media (max-width: 400px), (max-height: 400px) {
+    i { font-size: 160px; }
+    h1 { font-size: 28px; }
+  }
+
+  @media (max-width: 300px), (max-height: 350px) {
+    i { font-size: 80px; }
+    h1 { font-size: 22px; }
   }
 }
 

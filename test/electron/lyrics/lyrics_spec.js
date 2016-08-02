@@ -2,6 +2,12 @@
 import chai from 'chai';
 import { givenAsync } from 'mocha-testdata';
 
+import attemptLyricsWikia from '../../../build/main/features/core/lyrics/source_lyricsWikia';
+import attemptMetroLyrics from '../../../build/main/features/core/lyrics/source_metroLyrics';
+
+import lyricsSourceSpec from './_lyricsSource_spec';
+import { validSongs, invalidSongs } from '../testdata/lyrics';
+
 chai.should();
 
 // Mock expected globals
@@ -10,13 +16,7 @@ global.PlaybackAPI = {
 };
 
 // Actual Test Imports
-const resolveLyrics = require('../../../build/main/features/core/lyrics').resolveLyrics;
-
-import attemptLyricsWikia from '../../../build/main/features/core/lyrics/source_lyricsWikia';
-import attemptMetroLyrics from '../../../build/main/features/core/lyrics/source_metroLyrics';
-
-import lyricsSourceSpec from './_lyricsSource_spec';
-import { validSongs, invalidSongs } from '../testdata/lyrics';
+const resolveLyrics = require('../../../build/main/features/core/lyrics').resolveLyrics; // eslint-disable-line
 
 describe('Lyrics Resolver', () => {
   givenAsync(...validSongs).it('should resolve when given a valid song object', (done, song) => {

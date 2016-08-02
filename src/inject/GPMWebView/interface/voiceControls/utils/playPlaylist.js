@@ -21,10 +21,10 @@ export default function (playlistName) {
         const title = document.querySelector('.playlist-view .material-container-details .info .title'); // eslint-disable-line
         return title && title.innerText.toLowerCase().trim() === playlistName.toLowerCase();
       })
-      .then(() => {
-        document.querySelector('.playlist-view .material-container-details [data-id=play]').click(); // eslint-disable-line
-        resolve('');
-      });
+        .then(() => {
+          document.querySelector('.playlist-view .material-container-details [data-id=play]').click(); // eslint-disable-line
+          resolve('');
+        });
     } else {
       reject(`There is no playlist with the name ${playlistName}`);
     }

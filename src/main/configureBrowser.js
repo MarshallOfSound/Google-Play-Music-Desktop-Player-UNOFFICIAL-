@@ -3,8 +3,8 @@ import path from 'path';
 
 export default () => {
   const screenSize = screen.getPrimaryDisplay().workAreaSize;
-  const defaultHeight = screenSize.height * 3 / 4;
-  const defaultWidth = screenSize.width * 3 / 4;
+  const defaultHeight = (screenSize.height * 3) / 4;
+  const defaultWidth = (screenSize.width * 3) / 4;
 
 
   const baseConfig = {

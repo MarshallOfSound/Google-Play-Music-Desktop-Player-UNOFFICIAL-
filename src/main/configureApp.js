@@ -1,3 +1,5 @@
+import path from 'path';
+
 export default (app) => {
   app.commandLine.appendSwitch('enable-smooth-scrolling', '1');
   app.commandLine.appendSwitch('enable-overlay-scrollbar', '1');
@@ -7,5 +9,9 @@ export default (app) => {
 
   if (process.platform === 'linux') {
     app.disableHardwareAcceleration();
+  }
+
+  if (process.platform === 'darwin' && global.DEV_MODE) {
+    app.dock.setIcon(path.resolve(__dirname, '..', 'assets/img/main.png'));
   }
 };
