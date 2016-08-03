@@ -20,6 +20,8 @@ const localeLinks = {
   'en-TT': 'en-US',
   'en-ZA': 'en-US',
   'en-ZW': 'en-US',
+  'pt-PT': 'pt-BR',
+  'pt-BR': 'pt-BR',
 };
 
 export default class TranslationProvider {
