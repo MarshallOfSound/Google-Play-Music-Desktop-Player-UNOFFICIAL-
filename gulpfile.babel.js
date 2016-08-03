@@ -36,7 +36,7 @@ const paths = {
 
 const packageJSON = require('./package.json');
 
-let version = packageJSON.dependencies['electron-prebuilt'];
+let version = packageJSON.dependencies.electron;
 if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1') {
   version = version.substr(1);
 }
@@ -54,8 +54,8 @@ const defaultPackageConf = {
     const tests = [
       // Ignore git directory
       () => /^\/\.git\/.*/g,
-      // Ignore electron-prebuilt
-      () => /^\/node_modules\/electron-prebuilt\//g,
+      // Ignore electron
+      () => /^\/node_modules\/electron\//g,
       // Ignore debug files
       () => /^\/node_modules\/.*\.pdb/g,
       // Ignore native module obj files

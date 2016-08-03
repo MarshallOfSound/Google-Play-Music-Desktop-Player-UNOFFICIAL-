@@ -9,7 +9,7 @@ if (process.platform === 'darwin') {
   const plistPath = path.resolve(
     __dirname,
     '..',
-    'node_modules/electron-prebuilt/dist/Electron.app/Contents/Info.plist'
+    'node_modules/electron/dist/Electron.app/Contents/Info.plist'
   );
   const plistContent = plist.parse(fs.readFileSync(plistPath, 'utf8'));
 

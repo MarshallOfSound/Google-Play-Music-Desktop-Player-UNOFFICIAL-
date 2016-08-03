@@ -2,4 +2,4 @@
 
 cd ..
 cd node_modules
-.bin/electron-rebuild --arch=ia32 -f
+.bin/electron-rebuild --arch=ia32 -f -e=electron

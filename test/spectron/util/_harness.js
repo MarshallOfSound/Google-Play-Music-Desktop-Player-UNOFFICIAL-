@@ -14,17 +14,17 @@ let appPath;
 if (process.platform === 'win32') {
   appPath = path.resolve(
     __dirname,
-    '../../../node_modules/electron-prebuilt/dist/electron.exe'
+    '../../../node_modules/electron/dist/electron.exe'
   );
 } else if (process.platform === 'darwin') {
   appPath = path.resolve(
     __dirname,
-    '../../../node_modules/electron-prebuilt/dist/electron.app/Contents/MacOS/electron'
+    '../../../node_modules/electron/dist/electron.app/Contents/MacOS/electron'
   );
 } else {
   appPath = path.resolve(
     __dirname,
-    '../../../node_modules/electron-prebuilt/dist/electron'
+    '../../../node_modules/electron/dist/electron'
   );
 }
 
