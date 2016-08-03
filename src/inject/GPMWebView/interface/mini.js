@@ -16,8 +16,9 @@ window.wait(() => {
     window.GPM.mini.setScrollVolume(true);
   }
 
+  let wasMaximized = mainWindow.isMaximized();
   window.GPM.mini.on('enable', () => {
-    Emitter.fire('mini', { state: true });
+    Emitter.fireSync('mini', { state: true });
 
 	// Restore the mini size/position from settings, otherwise use default size and regular position.
     const miniSize = Settings.get('mini-size', [MINI_SIZE, MINI_SIZE]);
@@ -29,8 +30,10 @@ window.wait(() => {
     } else {
       mainWindow.center();
     }
+    wasMaximized = mainWindow.isMaximized();
+    mainWindow.unmaximize();
 
-    setTimeout(() => remote.getCurrentWindow().setMaximumSize(MINI_SIZE, MINI_SIZE), 0);
+    remote.getCurrentWindow().setMaximumSize(MINI_SIZE, MINI_SIZE);
     remote.getCurrentWindow().setMinimumSize(50, 50);
     webContents.executeJavaScript('document.body.setAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
@@ -40,10 +43,7 @@ window.wait(() => {
 
   window.GPM.mini.on('disable', () => {
     Emitter.fire('mini', { state: false });
-    // DEV: Set max size to be massive
-    //      Same reason as specified in Electron src
-    //        --> https://github.com/atom/electron/blob/master/atom/browser/native_window_views.cc
-    setTimeout(() => remote.getCurrentWindow().setMaximumSize(99999999, 999999999), 0);
+    remote.getCurrentWindow().setMaximumSize(99999999, 999999999);
     remote.getCurrentWindow().setMinimumSize(200, 200);
 
     // Restore the regular size/position from settings.
@@ -55,6 +55,8 @@ window.wait(() => {
     } else {
       mainWindow.center();
     }
+
+    if (wasMaximized) mainWindow.maximize();
 
     webContents.executeJavaScript('document.body.removeAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);

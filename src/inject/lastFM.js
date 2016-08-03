@@ -1,6 +1,6 @@
+import { remote } from 'electron';
 import './rendererEmitter';
 import './generic/translations';
-import { remote } from 'electron';
 
 let warnOnce = true;
 

@@ -5,6 +5,7 @@ import { globalShortcut } from 'electron';
 let keyRegisterFn = (...args) => globalShortcut.register(...args);
 if (process.platform === 'win32') {
   const hook = require('ll-keyboard-hook-win');
+
   keyRegisterFn = (key, fn) => {
     hook.on('down', key, fn);
   };

@@ -32,12 +32,14 @@ class Emitter {
       if (details && details.event) {
         if (view.isLoading()) {
           let waitForPageLoad = 0;
-          view.addEventListener('did-stop-loading', () => {
+          const _listener = () => {
             if (waitForPageLoad > 1 && !view.isLoading()) {
               view.send(details.event, details.details);
+              view.removeEventListener('did-stop-loading', _listener);
             }
             waitForPageLoad++;
-          });
+          };
+          view.addEventListener('did-stop-loading', _listener);
         } else {
           view.send(details.event, details.details);
         }
@@ -50,6 +52,14 @@ class Emitter {
       ipcRenderer.send(event, details);
     } else {
       this.q.push(this.fire.bind(this, event, details));
+    }
+  }
+
+  fireSync(event, details) {
+    if (this.ready) {
+      ipcRenderer.sendSync(event, details);
+    } else {
+      this.q.push(this.fireSync.bind(this, event, details));
     }
   }
 

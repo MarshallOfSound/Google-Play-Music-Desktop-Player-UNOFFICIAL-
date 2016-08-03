@@ -22,24 +22,24 @@ window.addEventListener('load', () => {
       const scroll = Settings.get('scrollLyrics', true);
       const lyricsHTML = lyrics.replace(/\n/g, '<br />');
       $('#lyrics').html(`<p ${scroll ? 'data-scroll' : ''}>${lyricsHTML}</p>`);
-      animate = true;
+      animate = scroll;
     }
   };
   // Handle playing and pausing
   const stateHandler = (remoteIsPlaying) => {
     isPlaying = remoteIsPlaying;
     if (!isPlaying) return $('#lyrics p').stop();
-    animate = true;
+    animate = Settings.get('scrollLyrics', true);
   };
   // Handle time progression of a song
   const timeHandler = (timeObj) => {
     $('#lyrics_bar').width(`${(timeObj.total === 0 ? 0 : timeObj.current / timeObj.total) * 100}%`);
     let jumped = false;
-    if (Math.abs(timeObj.current - jumpDetect) > 1000) {
+    if (Math.abs(timeObj.current - jumpDetect) > 1000 && $('#lyrics p').attr('data-scroll')) {
       animate = true;
       jumped = true;
     }
-    if (jumped) console.log('jumped');
+
     jumpDetect = timeObj.current;
     if (!isPlaying || !animate || !timeObj.total || !$('#lyrics p').get(0)) return;
     const lyricsP = $('#lyrics p');

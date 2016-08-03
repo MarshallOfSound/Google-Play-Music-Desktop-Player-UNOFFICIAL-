@@ -67,45 +67,45 @@ const writeAccelerator = (input) => {
 
 // DEV: Lets by honest this looks awful, need to clean this up.......
 $('#hotkeys input')
-.on('keydown', (e) => {
-  const input = $(e.currentTarget);
-  const m = input.data('m') || [];
-  const ac = input.data('ac') || [];
+  .on('keydown', (e) => {
+    const input = $(e.currentTarget);
+    const m = input.data('m') || [];
+    const ac = input.data('ac') || [];
 
-  if (ACCELERATOR_KEYS[e.which]) {
-    input.data('a', ACCELERATOR_KEYS[e.which]);
-  } else if (MODIFIER_KEYS[e.which] && !_.includes(m, MODIFIER_KEYS[e.which])) {
-    input.data('m', m.concat([MODIFIER_KEYS[e.which]]));
-  } else if (ACTION_KEYS[e.which] && !_.includes(ac, ACTION_KEYS[e.which])) {
-    input.data('ac', ac.concat([ACTION_KEYS[e.which]]));
-  }
-  writeAccelerator(input);
-  e.preventDefault();
-  return false;
-})
-.on('keyup', (e) => {
-  const input = $(e.currentTarget);
-  const m = input.data('m') || [];
-  const ac = input.data('ac') || [];
+    if (ACCELERATOR_KEYS[e.which]) {
+      input.data('a', ACCELERATOR_KEYS[e.which]);
+    } else if (MODIFIER_KEYS[e.which] && !_.includes(m, MODIFIER_KEYS[e.which])) {
+      input.data('m', m.concat([MODIFIER_KEYS[e.which]]));
+    } else if (ACTION_KEYS[e.which] && !_.includes(ac, ACTION_KEYS[e.which])) {
+      input.data('ac', ac.concat([ACTION_KEYS[e.which]]));
+    }
+    writeAccelerator(input);
+    e.preventDefault();
+    return false;
+  })
+  .on('keyup', (e) => {
+    const input = $(e.currentTarget);
+    const m = input.data('m') || [];
+    const ac = input.data('ac') || [];
 
-  if (ACCELERATOR_KEYS[e.which]) {
-    input.data('a', null);
-  } else if (MODIFIER_KEYS[e.which]) {
-    _.remove(m, (val) => val === MODIFIER_KEYS[e.which]);
-    input.data('m', m);
-  } else if (ACTION_KEYS[e.which]) {
-    _.remove(ac, (val) => val === ACTION_KEYS[e.which]);
-    input.data('ac', ac);
-  } else if (e.which === 27) {
-    input.data('reset', true);
-  }
-  writeAccelerator(input);
-  Emitter.fire('hotkey:set', {
-    action: input.attr('id'),
-    accelerator: (input.val() === 'Not Set' ? null : input.val()),
+    if (ACCELERATOR_KEYS[e.which]) {
+      input.data('a', null);
+    } else if (MODIFIER_KEYS[e.which]) {
+      _.remove(m, (val) => val === MODIFIER_KEYS[e.which]);
+      input.data('m', m);
+    } else if (ACTION_KEYS[e.which]) {
+      _.remove(ac, (val) => val === ACTION_KEYS[e.which]);
+      input.data('ac', ac);
+    } else if (e.which === 27) {
+      input.data('reset', true);
+    }
+    writeAccelerator(input);
+    Emitter.fire('hotkey:set', {
+      action: input.attr('id'),
+      accelerator: (input.val() === 'Not Set' ? null : input.val()),
+    });
+  })
+  .each((index, el) => {
+    const input = $(el);
+    input.val(initialHotkeys[input.attr('id')] || 'Not Set');
   });
-})
-.each((index, el) => {
-  const input = $(el);
-  input.val(initialHotkeys[input.attr('id')] || 'Not Set');
-});
