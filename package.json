@@ -49,7 +49,7 @@
     "electron-chromecast": "^1.0.14",
     "electron": "1.3.2",
     "html-entities": "^1.2.0",
-    "gmusic-mini-player.js": "^1.1.1",
+    "gmusic-mini-player.js": "^1.1.2",
     "gmusic-theme.js": "^1.1.9",
     "gmusic-ui.js": "^1.1.3",
     "gmusic.js": "^5.0.0",
@@ -113,7 +113,7 @@
     "dbus": "GPMDP/node-dbus#linux-only",
     "mpris-service": "GPMDP/mpris-service",
     "electron-installer-debian": "^0.3.0",
-    "electron-installer-redhat": "^0.3.0",
+    "electron-installer-redhat": "^0.2.0",
     "ll-keyboard-hook-win": "^3.0.0"
   },
   "babel": {

@@ -55,6 +55,14 @@ class Emitter {
     }
   }
 
+  fireSync(event, details) {
+    if (this.ready) {
+      ipcRenderer.sendSync(event, details);
+    } else {
+      this.q.push(this.fireSync.bind(this, event, details));
+    }
+  }
+
   fireAtAll(event, details) {
     if (this.ready) {
       ipcRenderer.send('passback:all', {

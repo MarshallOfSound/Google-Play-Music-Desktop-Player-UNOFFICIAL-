@@ -4,6 +4,7 @@ const mainWindow = mainWindows[0];
 let mini = false;
 Emitter.on('mini', (event, state) => {
   mini = state.state;
+  event.returnValue = null; // eslint-disable-line
 });
 
 let resizeTimer;
