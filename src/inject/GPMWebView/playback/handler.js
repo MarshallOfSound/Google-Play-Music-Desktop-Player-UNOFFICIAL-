@@ -15,12 +15,14 @@ window.wait(() => {
     }
   });
 
-  let lastScrobble = {};
-  let lastScrobbleTime = 0;
   let currentSong;
-
+  let playTime = 0;
+  let lastPosition = 0;
+  
   window.GPM.on('change:song', (song) => {
     currentSong = song;
+    playTime = 0;
+    lastPosition = 0;
     Emitter.fire('change:song', song);
     const rating = window.GPM.rating.getRating();
     if (rating === '0') {
@@ -51,21 +53,19 @@ window.wait(() => {
 
   window.GPM.on('change:playback-time', (playbackInfo) => {
     Emitter.fire('change:playback-time', playbackInfo);
-    if (playbackInfo.current === 0) {
-      lastScrobble = {};
-      lastScrobbleTime = Date.now();
+    const progress = playbackInfo.current - lastPosition;
+    lastPosition = playbackInfo.current;
+    if (progress > 0 && progress < 2000) {
+      playTime += progress;
     }
-    if (playbackInfo.current >= playbackInfo.total / 2
-          && Date.now() - 10000 >= lastScrobbleTime && currentSong !== null
-          && JSON.stringify(lastScrobble) !== JSON.stringify(currentSong)) {
+    if ((playTime / playbackInfo.total) + 0.4 > 1) {
+      playTime -= playbackInfo.total;
       Emitter.fire('change:song:scrobble', {
         title: currentSong.title,
         artist: currentSong.artist,
         album: currentSong.album,
-        timestamp: Math.round((Date.now() - playbackInfo.current) / 1000),
+        timestamp: Math.round(Date.now() / 1000),
       });
-      lastScrobbleTime = Date.now();
-      lastScrobble = currentSong;
     }
   });
 
