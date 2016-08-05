@@ -65,13 +65,13 @@ export const getLastFMSession = () =>
           lastfm.session({
             token,
           })
-          .on('success', (session) => {
-            global.lastFMSession = session;
-            Settings.set('lastFMKey', session.key);
-            Settings.set('lastFMUser', session.user);
-            resolve(session);
-          })
-          .on('error', reject);
+            .on('success', (session) => {
+              global.lastFMSession = session;
+              Settings.set('lastFMKey', session.key);
+              Settings.set('lastFMUser', session.user);
+              resolve(session);
+            })
+            .on('error', reject);
         })
         .catch(reject);
     }
@@ -92,8 +92,7 @@ export const updateNowPlaying = (track, artist, album) => {
           track,
           artist,
           album,
-        })
-        .on('error', (err) => Logger.error('LASTFM ERROR', err));
+        }).on('error', (err) => Logger.error('LASTFM ERROR', err));
       })
       .catch((err) => Logger.error('LASTFM ERROR', err));
   }
@@ -108,8 +107,7 @@ export const updateScrobble = (track, artist, album, timestamp) => {
           artist,
           album,
           timestamp,
-        })
-        .on('error', (err) => Logger.error('LASTFM ERROR', err));
+        }).on('error', (err) => Logger.error('LASTFM ERROR', err));
       })
       .catch((err) => Logger.error('LASTFM ERROR', err));
   }
@@ -125,10 +123,10 @@ Emitter.on('lastfm:auth', () => {
     });
 });
 
-Emitter.on('change:song', (event, details) => {
+Emitter.on('change:track', (event, details) => {
   updateNowPlaying(details.title, details.artist, details.album);
 });
 
-Emitter.on('change:song:scrobble', (event, details) => {
+Emitter.on('change:track:scrobble', (event, details) => {
   updateScrobble(details.title, details.artist, details.album, details.timestamp);
 });

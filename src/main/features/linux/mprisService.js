@@ -47,7 +47,7 @@ function mprisService() {
     player.playbackStatus = 'Stopped';
   });
 
-  PlaybackAPI.on('change:song', (newSong) => {
+  PlaybackAPI.on('change:track', (newSong) => {
     player.metadata = _songInfo = {
       'mpris:artUrl': newSong.albumArt.replace('=s90', '=s300'),
       'xesam:asText': (newSong.lyrics || ''),

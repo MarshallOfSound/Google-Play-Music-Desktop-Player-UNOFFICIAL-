@@ -30,12 +30,13 @@ require('./chromecast');
 const waitForExternal = setInterval(() => {
   if (document.querySelector('#material-vslider')) {
     clearInterval(waitForExternal);
-    window.GMusic = require('gmusic.js');
-    require('gmusic-ui.js');
-    require('gmusic-mini-player.js');
+    const GMusic = require('gmusic.js');
+    require('gmusic-ui.js')(GMusic);
+    require('gmusic-mini-player.js')(GMusic);
     require('gmusic-theme.js');
+    window.GMusic = GMusic;
 
-    window.GPM = new window.GMusic(window);
+    window.GPM = new GMusic();
     window.GPMTheme = new window.GMusicTheme();
 
     /*
@@ -46,12 +47,19 @@ const waitForExternal = setInterval(() => {
         .then(() => window.GPM.search.playResult(result));
     };
 
+    /*
+    Fix scrollbars
+    */
+    remote.getCurrentWebContents().insertCSS(
+      '::-webkit-scrollbar,::shadow ::-webkit-scrollbar{width:9px;background:0 0}::-webkit-scrollbar-track,::shadow ::-webkit-scrollbar-track{background-color:rgba(0,0,0,.25)}::-webkit-scrollbar-track:hover,::shadow ::-webkit-scrollbar-track:hover{background-color:rgba(0,0,0,.35)}::-webkit-scrollbar-track:active,::shadow ::-webkit-scrollbar-track:active{background-color:rgba(0,0,0,.25)}::-webkit-scrollbar-thumb,::shadow ::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,.3);border-radius:0}::-webkit-scrollbar-thumb:hover,::shadow ::-webkit-scrollbar-thumb:hover{background-color:rgba(0,0,0,.4)}::-webkit-scrollbar-thumb:active,::shadow ::-webkit-scrollbar-thumb:active{background-color:rgba(0,0,0,.4)}' // eslint-disable-line
+    );
+
     Emitter.ready = true;
     _.forEach(waitingQueue, (fn) => {
       try {
         fn();
       } catch (e) {
-        Logger.error('Emitter fn() threw exception.', e);
+        Logger.error('Emitter fn() threw exception.', e.stack);
       }
     });
 

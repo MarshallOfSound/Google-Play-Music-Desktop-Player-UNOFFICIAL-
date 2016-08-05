@@ -6,11 +6,11 @@ import mkdirp from 'mkdirp';
 import os from 'os';
 import path from 'path';
 
-chai.use(chaiFs);
-chai.should();
-
 // Actual Test Imports
 import jsonCreator from '../../build/main/utils/_jsonCreator';
+
+chai.use(chaiFs);
+chai.should();
 
 describe('JSONCreator', () => {
   it('should return a valid path', () => {

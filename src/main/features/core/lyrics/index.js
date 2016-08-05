@@ -61,7 +61,7 @@ export const resolveLyrics = (song) => {
   return attemptPromiseSequence(promises);
 };
 
-PlaybackAPI.on('change:song', (song) => {
+PlaybackAPI.on('change:track', (song) => {
   resolveLyrics(song)
     .then((lyrics) => {
       const playing = PlaybackAPI.currentSong(true);

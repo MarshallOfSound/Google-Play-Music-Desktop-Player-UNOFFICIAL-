@@ -72,7 +72,7 @@ window.wait(() => {
   speech.registerHandler(['mixitup', 'mix it up',
                           'shuffle', 'shake', 'random'], () =>
     new Promise((resolve) => {
-      if (GPM.playback.getShuffle() === window.GMusic.Playback.ALL_SHUFFLE) {
+      if (GPM.playback.getShuffle() === window.GMusic.ShuffleStatus.ALL_SHUFFLE) {
         GPM.playback.toggleShuffle();
       }
       GPM.playback.toggleShuffle();
@@ -83,7 +83,7 @@ window.wait(() => {
 
   speech.registerHandler(['turn shuffle on', 'shuffle on'], () =>
     new Promise((resolve) => {
-      if (GPM.playback.getShuffle() === window.GMusic.Playback.NO_SHUFFLE) {
+      if (GPM.playback.getShuffle() === window.GMusic.ShuffleStatus.NO_SHUFFLE) {
         GPM.playback.toggleShuffle();
       }
       resolve();
@@ -92,7 +92,7 @@ window.wait(() => {
 
   speech.registerHandler(['turn shuffle off', 'shuffle off'], () =>
     new Promise((resolve) => {
-      if (GPM.playback.getShuffle() === window.GMusic.Playback.ALL_SHUFFLE) {
+      if (GPM.playback.getShuffle() === window.GMusic.ShuffleStatus.ALL_SHUFFLE) {
         GPM.playback.toggleShuffle();
       }
       resolve();

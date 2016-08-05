@@ -4,11 +4,11 @@ import chaiFs from 'chai-fs';
 import fs from 'fs';
 import path from 'path';
 
-chai.use(chaiFs);
-chai.should();
-
 // Actual Test Imports
 import TranslationProvider from '../../build/_locales/_provider';
+
+chai.use(chaiFs);
+chai.should();
 
 describe('Translations', () => {
   let provider;

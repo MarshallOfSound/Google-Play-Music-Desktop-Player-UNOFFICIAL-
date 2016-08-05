@@ -54,21 +54,28 @@ class Settings {
     } catch (e) {
       if (retryCount > 0) {
         setTimeout(this._load.bind(this, retryCount - 1), 10);
-        Logger.error('Failed to load settings JSON file, retyring in 10 milliseconds');
+        if (global.Logger) Logger.error('Failed to load settings JSON file, retyring in 10 milliseconds');
         return;
       }
       userSettings = {};
-      Logger.error('Failed to load settings JSON file, giving up and resetting');
+      if (global.Logger) Logger.error('Failed to load settings JSON file, giving up and resetting');
     }
     this.data = _.extend({}, initalSettings, userSettings);
   }
 
   _save(force) {
-    const now = (new Date).getTime();
+    const now = (new Date()).getTime();
     // During some save events (like resize) we need to queue the disk writes
     // so that we don't blast the disk every millisecond
     if ((now - this.lastSync > 250 || force)) {
-      if (this.data) fs.writeFileSync(this.PATH, JSON.stringify(this.data, null, 4));
+      if (this.data) {
+        try {
+          fs.writeFileSync(this.PATH, JSON.stringify(this.data, null, 4));
+        } catch (e) {
+          if (this.saving) clearTimeout(this.saving);
+          this.saving = setTimeout(this._save.bind(this), 275);
+        }
+      }
       if (this.saving) clearTimeout(this.saving);
     } else {
       if (this.saving) clearTimeout(this.saving);
