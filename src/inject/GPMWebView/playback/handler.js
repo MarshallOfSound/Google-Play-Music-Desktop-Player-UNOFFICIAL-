@@ -1,13 +1,13 @@
 window.wait(() => {
   window.GPM.on('change:playback', (mode) => {
     switch (mode) {
-      case window.GMusic.Playback.STOPPED:
+      case window.GMusic.PlaybackStatus.STOPPED:
         Emitter.fire('playback:isStopped');
         break;
-      case window.GMusic.Playback.PAUSED:
+      case window.GMusic.PlaybackStatus.PAUSED:
         Emitter.fire('playback:isPaused');
         break;
-      case window.GMusic.Playback.PLAYING:
+      case window.GMusic.PlaybackStatus.PLAYING:
         Emitter.fire('playback:isPlaying');
         break;
       default:
@@ -19,9 +19,9 @@ window.wait(() => {
   let lastScrobbleTime = 0;
   let currentSong;
 
-  window.GPM.on('change:song', (song) => {
+  window.GPM.on('change:track', (song) => {
     currentSong = song;
-    Emitter.fire('change:song', song);
+    Emitter.fire('change:track', song);
     const rating = window.GPM.rating.getRating();
     if (rating === '0') {
       // we have to emit this manually if the user hasn't rated the song
@@ -58,7 +58,7 @@ window.wait(() => {
     if (playbackInfo.current >= playbackInfo.total / 2
           && Date.now() - 10000 >= lastScrobbleTime && currentSong !== null
           && JSON.stringify(lastScrobble) !== JSON.stringify(currentSong)) {
-      Emitter.fire('change:song:scrobble', {
+      Emitter.fire('change:track:scrobble', {
         title: currentSong.title,
         artist: currentSong.artist,
         album: currentSong.album,

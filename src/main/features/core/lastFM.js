@@ -123,10 +123,10 @@ Emitter.on('lastfm:auth', () => {
     });
 });
 
-Emitter.on('change:song', (event, details) => {
+Emitter.on('change:track', (event, details) => {
   updateNowPlaying(details.title, details.artist, details.album);
 });
 
-Emitter.on('change:song:scrobble', (event, details) => {
+Emitter.on('change:track:scrobble', (event, details) => {
   updateScrobble(details.title, details.artist, details.album, details.timestamp);
 });

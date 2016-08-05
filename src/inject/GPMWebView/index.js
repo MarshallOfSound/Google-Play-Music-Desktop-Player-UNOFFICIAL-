@@ -30,12 +30,13 @@ require('./chromecast');
 const waitForExternal = setInterval(() => {
   if (document.querySelector('#material-vslider')) {
     clearInterval(waitForExternal);
-    window.GMusic = require('gmusic.js');
-    require('gmusic-ui.js');
-    require('gmusic-mini-player.js');
+    const GMusic = require('gmusic.js');
+    require('gmusic-ui.js')(GMusic);
+    require('gmusic-mini-player.js')(GMusic);
     require('gmusic-theme.js');
+    window.GMusic = GMusic;
 
-    window.GPM = new window.GMusic(window);
+    window.GPM = new GMusic();
     window.GPMTheme = new window.GMusicTheme();
 
     /*
@@ -58,7 +59,7 @@ const waitForExternal = setInterval(() => {
       try {
         fn();
       } catch (e) {
-        Logger.error('Emitter fn() threw exception.', e);
+        Logger.error('Emitter fn() threw exception.', e.stack);
       }
     });
 

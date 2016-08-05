@@ -1,7 +1,7 @@
 let pauseAfter = false;
 
 window.wait(() => {
-  GPM.on('change:song', () => {
+  GPM.on('change:track', () => {
     if (pauseAfter) {
       GPM.playback.playPause();
       Emitter.fireAtGoogle('pauseAfter:hide', null);

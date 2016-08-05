@@ -17,7 +17,7 @@ window.wait(() => {
   }
 
   let wasMaximized = mainWindow.isMaximized();
-  window.GPM.mini.on('enable', () => {
+  window.GPM.on('mini:enable', () => {
     Emitter.fireSync('mini', { state: true });
 
 	// Restore the mini size/position from settings, otherwise use default size and regular position.
@@ -41,7 +41,7 @@ window.wait(() => {
     mini = true;
   });
 
-  window.GPM.mini.on('disable', () => {
+  window.GPM.on('mini:disable', () => {
     Emitter.fire('mini', { state: false });
     remote.getCurrentWindow().setMaximumSize(99999999, 999999999);
     remote.getCurrentWindow().setMinimumSize(200, 200);

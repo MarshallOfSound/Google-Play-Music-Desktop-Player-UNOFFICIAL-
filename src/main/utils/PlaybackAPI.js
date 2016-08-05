@@ -18,7 +18,7 @@ class PlaybackAPI {
   }
 
   _hook() {
-    Emitter.on('change:song', (event, details) => {
+    Emitter.on('change:track', (event, details) => {
       this._setPlaybackSong(details.title, details.artist, details.album, details.art);
     });
 
@@ -94,7 +94,7 @@ class PlaybackAPI {
     };
     this._resetRating();
     this.data.songLyrics = null;
-    this._fire('change:song', this.data.song);
+    this._fire('change:track', this.data.song);
     this._fire('change:lyrics', this.data.songLyrics);
     this._save();
   }

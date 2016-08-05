@@ -275,7 +275,7 @@ All you need to do is send a message to the WebSocket with a stringified JSON ob
 ```js
 {
   "namespace": "playback",
-  "method": "setPlaybackTime",
+  "method": "setCurrentTime",
   "arguments": [10000]
 }
 ```
