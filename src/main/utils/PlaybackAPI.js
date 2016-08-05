@@ -19,7 +19,7 @@ class PlaybackAPI {
 
   _hook() {
     Emitter.on('change:track', (event, details) => {
-      this._setPlaybackSong(details.title, details.artist, details.album, details.art);
+      this._setPlaybackSong(details.title, details.artist, details.album, details.albumArt);
     });
 
     Emitter.on('playback:isPlaying', this._setPlaying.bind(this, true));
