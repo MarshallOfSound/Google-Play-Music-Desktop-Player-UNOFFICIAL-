@@ -4,14 +4,13 @@ import chaiSinon from 'sinon-chai';
 import sinon from 'sinon';
 import WebSocket from 'ws';
 
-const expect = chai.expect;
-
-chai.use(chaiSinon);
-chai.should();
-
 // Test Classes
 import Emitter from '../../build/main/utils/Emitter';
 import PlaybackAPI from '../../build/main/utils/PlaybackAPI';
+
+const expect = chai.expect;
+chai.use(chaiSinon);
+chai.should();
 
 // Moch the required Settings API
 global.Settings = {

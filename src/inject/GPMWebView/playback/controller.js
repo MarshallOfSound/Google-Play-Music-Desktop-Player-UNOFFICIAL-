@@ -2,7 +2,7 @@ import { remote } from 'electron';
 
 let mode;
 window.wait(() => {
-  mode = window.GMusic.Playback.STOPPED;
+  mode = window.GMusic.PlaybackStatus.STOPPED;
   window.GPM.on('change:playback', (newMode) => {
     mode = newMode;
   });
@@ -21,7 +21,7 @@ Emitter.on('playback:nextTrack', () => {
 });
 
 Emitter.on('playback:stop', () => {
-  if (mode === window.GMusic.Playback.PLAYING) {
+  if (mode === window.GMusic.PlaybackStatus.PLAYING) {
     window.GPM.playback.playPause();
   }
 });

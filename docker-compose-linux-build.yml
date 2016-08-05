@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  debian-64:
+    build: .
+    command: npm run make:deb:64
+    volumes:
+      - ./dist:/dist
+
+  fedora-64:
+    build: .
+    command: npm run make:rpm:64
+    volumes:
+      - ./dist:/dist
+
+volumes:
+  checkout:
+    driver: local

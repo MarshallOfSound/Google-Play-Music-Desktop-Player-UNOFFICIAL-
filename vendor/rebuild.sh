@@ -2,4 +2,4 @@
 
 cd ..
 cd node_modules
-.bin/electron-rebuild -f
+.bin/electron-rebuild -f -e=electron

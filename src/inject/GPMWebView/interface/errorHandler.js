@@ -21,6 +21,7 @@ ${details.error.stack.length > 1200 ? '%0A...Some of the stack is missing' : ''}
 \`\`\`
 %0A
 This issue was created automatically inside the \`uncaughtException\` handler`;
+
     remote.shell.openExternal(`https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues/new?title=${title}&body=${body}`); // eslint-disable-line
     toast.hide();
     buttonEvent.preventDefault();

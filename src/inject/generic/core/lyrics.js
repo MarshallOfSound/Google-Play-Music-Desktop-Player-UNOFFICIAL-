@@ -5,6 +5,7 @@ window.addEventListener('load', () => {
   let animationTimer;
   let noLyricsTimer;
   let jumpDetect;
+  let isPlaying = false;
 
   // Handle new lyrics strings
   const lyricsHandler = (lyrics) => {
@@ -21,22 +22,26 @@ window.addEventListener('load', () => {
       const scroll = Settings.get('scrollLyrics', true);
       const lyricsHTML = lyrics.replace(/\n/g, '<br />');
       $('#lyrics').html(`<p ${scroll ? 'data-scroll' : ''}>${lyricsHTML}</p>`);
-      animate = true;
+      animate = scroll;
     }
   };
   // Handle playing and pausing
-  const stateHandler = (isPlaying) => {
-    if (!isPlaying) return $('#lyrics p').stop() && setTimeout(() => (animate = true), 10);
+  const stateHandler = (remoteIsPlaying) => {
+    isPlaying = remoteIsPlaying;
+    if (!isPlaying) return $('#lyrics p').stop();
+    animate = Settings.get('scrollLyrics', true);
   };
   // Handle time progression of a song
   const timeHandler = (timeObj) => {
     $('#lyrics_bar').width(`${(timeObj.total === 0 ? 0 : timeObj.current / timeObj.total) * 100}%`);
     let jumped = false;
-    if (timeObj.current < jumpDetect || timeObj.current - jumpDetect > 1000) {
+    if (Math.abs(timeObj.current - jumpDetect) > 1000 && $('#lyrics p').attr('data-scroll')) {
       animate = true;
       jumped = true;
     }
-    if (!animate || !timeObj.total || !$('#lyrics p').get(0)) return;
+
+    jumpDetect = timeObj.current;
+    if (!isPlaying || !animate || !timeObj.total || !$('#lyrics p').get(0)) return;
     const lyricsP = $('#lyrics p');
     const maxHeight = parseInt(lyricsP.get(0).scrollHeight, 10);
     const viewPortHeight = parseInt(lyricsP.innerHeight(), 10);
@@ -44,7 +49,8 @@ window.addEventListener('load', () => {
     const actualWaitTime = Math.max(0, waitTime - timeObj.current);
     clearTimeout(animationTimer);
     if (jumped) {
-      lyricsP.scrollTop(maxHeight * (Math.max(0, timeObj.current - waitTime) / timeObj.total));
+      lyricsP.stop();
+      lyricsP.scrollTop(maxHeight * (Math.max(0, timeObj.current - actualWaitTime) / timeObj.total));
     }
     animationTimer = setTimeout(() => {
       lyricsP.stop().animate({

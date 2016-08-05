@@ -1,6 +1,6 @@
 version: 1.0.{build}
 environment:
-  nodejs_version: "6.1.0"
+  nodejs_version: "6.3.0"
   GITHUB_KEY:
     secure: eZcSozzDKzRJhSoXL7LS9w1jqFLdkiRT4H57JoWGpKj/kS6NC/DP3ColwKkvSeFn
   SIGN_CERT_PASS:
@@ -30,7 +30,7 @@ cache:
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm i -g npm
-  - rd /S /Q "node_modules"
+  - if exist "node_modules" rd /S /Q "node_modules"
   - appveyor DownloadFile https://www.samuelattard.com/files/bonjourcore2.msi
   - msiexec /i bonjourcore2.msi /qn
   - del bonjourcore2.msi

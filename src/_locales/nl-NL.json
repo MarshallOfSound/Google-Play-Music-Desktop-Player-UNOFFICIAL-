@@ -1,0 +1,103 @@
+{
+  "audio-device-communications": "Standaard Systeem Communicaties",
+  "audio-device-default": "Systeem Standaard",
+  "audio-device-unknown": "Onbekend apparaat",
+
+  "button-test-ok": "OK",
+  "button-text-close": "Sluit",
+  "button-text-dont-tell-me-again": "Meld het niet nog een keer",
+  "button-text-lets-do-this": "Laten we het doen!!",
+  "button-text-lets-go": "Starten maar!!",
+  "button-text-not-now": "Nu even niet",
+
+  "label-about": "Over",
+  "label-desktop-settings": "Desktop instellingen",
+  "label-donate": "Doneer",
+  "label-help": "Help",
+  "label-issues": "Problemen",
+  "label-learn-more": "Kom meer te weten",
+  "label-loading-devices": "Apparaten aan 't laden...",
+  "label-pause-after-song": "Pauzeer na dit nummer",
+  "label-quit": "Stop",
+  "label-show-lyrics": "Toon Tekst (Beta)",
+  "label-unknown-artist": "Onbekende Artiest",
+  "label-unknown-song": "Onbekend nummer",
+  "label-version": "Versie",
+
+  "lastfm-login-authorized": "Geautoriseerd",
+  "lastfm-login-authorizing": "Autorisatie in behandeling",
+  "lastfm-login-button-text": "Aanmelden bij Last.FM",
+  "lastfm-login-error": "Het lijkt er op dat u het autorisatieproces heeft verlaten. als dit een vergissing is, probeer het dan opnieuw",
+  "lastfm-login-not-authorized": "Niet geautoriseerd",
+  "lastfm-logout-button-text": "Afmelden bij Last.FM",
+
+  "lyrics-failed-message": "Sorry, we kunnen geen teksten vinden bij dit nummer",
+  "lyrics-loading-message": "Teksten aan 't laden...",
+  "lyrics-no-song-message": "Er wordt nu niets afgespeeld",
+
+  "message-pausing-after-song": "Pauzeren na dit nummer.",
+  "message-pausing-after-song-button": "Niet pauzeren na dit nummer",
+  "message-uncaught-error": "Er is een onverwachte fout opgetreden in GPMDP.",
+  "message-uncaught-error-button": "Klik hier om dit op Github te rapporteren als een probleem",
+
+  "modal-confirmTray-title": "Een korte waarschuwing",
+  "modal-confirmTray-content": "Afsluiten van het hoofdvenster van de Player (wat u net probeerde te doen) zal in feite de Player minimaliseren naar het Systeemvak. als u dit gedrag wilt veranderen, kan dat in het \"Desktop instellingen\" venster.",
+  "modal-confirmOpenPort-content": "De PlaybackAPI kon niet opstarten omdat de Windows' Firewall dit blokkeert.  We kunnen deze blokkade opheffen voor u als u dit wilt. Wees gewaarschuwd dat dit admin privileges kan vereisen",
+  "modal-confirmUpdate-title": "Update beschikbaar",
+  "modal-confirmUpdate-content": "Woo hoo, het ziet er naar uit dat er een gloednieuwe update beschikbaar is voor Google Play Music Desktop Player.  Deze update zal een hele lading nieuwe functies, bugfixes en nieuwe extra's brengen.  We raden u aan zo snel mogelijk de update uit te voeren om een functierijke en bug-vrije applicatie te ervaren.<br />We hopen dat u de nieuwe update u zal bevallen!",
+  "modal-confirmUninstall-title": "Zo, dit is het geval...",
+  "modal-confirmUninstall-content": "We vonden net uit dat u nog een oude versie van GPMDP heeft staan op uw system.  Als u net heeft geüpdate is dit vrij normaal.  We zullen nu proberen de oude versie te verwijderen.  Dit \"kan misschien\" admin rechten vereisen, geef die ons, zodat we onze rommel kunnen opruimen.",
+  "modal-goToURL-title": "Geef de Google Play Music URL om daar heen te gaan:",
+  "modal-welcome-title": "Welkom bij versie",
+  "modal-welcome-content": "We hopen dat u de nieuwe update bevalt!",
+
+  "playback-label-next-track": "Volgende nummer",
+  "playback-label-play-pause": "Afspelen / Pauzeren",
+  "playback-label-previous-track": "Vorig nummer",
+  "playback-label-stop": "Stop",
+  "playback-label-thumbs-down": "Duim omlaag",
+  "playback-label-thumbs-up": "Duim omhoog",
+  "playback-label-volume-down": "Harder",
+  "playback-label-volume-up": "Zachter",
+
+  "settings-option-custom-theme": "Aangepast thema",
+  "settings-option-custom-theme-choose-color": "Kies uw thema's markeringskleur",
+  "settings-option-custom-theme-choose-custom": "Of kies een",
+  "settings-option-custom-theme-custom-color": "Aangepaste kleur",
+  "settings-option-custom-theme-dark": "Donker",
+  "settings-option-custom-theme-light": "Licht",
+
+  "settings-option-enable-api": "Inschakelen Playback API",
+  "settings-option-enable-api-json": "Inschakelen JSON API",
+  "settings-option-enable-api-details": "Dat laat andere toepassingen communiceren met GPMDP",
+  "settings-option-enable-system-borders": "Gebruik systeemvensterranden",
+  "settings-option-enable-system-borders-details": "Vereist herstart",
+  "settings-option-enable-voice": "Inschakelen spraakbesturing",
+  "settings-option-enable-voice-details": "Handenvrije spraakbesturing voor GPMDP, dit is experimenteel",
+
+  "settings-option-hotkey-explanation": "Standaard mediatoetsen zullen blijven werken onafhankelijk van deze instellingen.  Deze instellingen zijn een toevoeging aan de standaard instellingen.",
+  "settings-option-hotkey-explanation-2": "Gebruik de <i>\"Escape\"</i> toets om de sneltoetsfunctie te herstellen.",
+
+  "settings-option-min-to-tray": "Minimaliseer naar Systeemvak",
+
+  "settings-option-auto-launch": "Start automatisch wanneer ik mijn computer aanzet",
+
+  "settings-option-save-page": "Laad de laatst bekeken pagina automatisch bij opstarten",
+
+  "settings-option-scroll-lyrics": "Scroll liedteksten automatisch bij het afspelen",
+
+  "settings-option-mini-always-show": "Toon altijd informatie over het nummer",
+  "settings-option-mini-ontop": "Altijd op de voorgrond",
+  "settings-option-mini-use-scroll-volume": "Gebruik het muiswieltje om het volume aan te passen",
+
+  "title-color-picker": "kleurenkiezer",
+  "title-settings": "Instellingen",
+  "title-settings-audio": "Audio",
+  "title-settings-general": "Algemeen",
+  "title-settings-hotkeys": "Sneltoetsen",
+  "title-settings-lastfm": "LastFM",
+  "title-settings-mini": "Mini Player",
+
+  "tray-label-audio-device": "Audio apparaat",
+  "tray-label-show": "Toon"
+}

@@ -4,3 +4,5 @@ dist/
 .settings.json
 xunit.xml
 vendor/*.msi
+electron.xml
+spectron.xml

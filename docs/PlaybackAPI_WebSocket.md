@@ -131,9 +131,9 @@ Data received in the `repeat` channel will have a payload in the format
 *Possible repeat values can be found [here](https://github.com/gmusic-utils/gmusic.js#playbackgetrepeat)*
 
 
-### Playlists *(Beta)*
+### Playlists
 
-Data recieved in the `playlists` channel will have a payload in the format
+Data received in the `playlists` channel will have a payload in the format
 
 ```js
 "payload": [ // 0 -> Many playlists
@@ -142,7 +142,8 @@ Data recieved in the `playlists` channel will have a payload in the format
     "name": String,    // The user defined name of the playlist
     "tracks": [ // 0 -> Many tracks
       {
-        "id": String,  // This ID can be dynamic (you have been warned)
+        "id": String,  // Unique ID for this song
+        "index": Number, // The index position (starting at 1) of the track in the playlist
         "title": String,
         "artist": String,
         "album": String,
@@ -155,12 +156,68 @@ Data recieved in the `playlists` channel will have a payload in the format
 ]
 ```
 
+### Queue
+
+Data received in the `queue` channel will have a payload in the format
+
+```js
+"payload": [ // 0 -> Many tracks
+  {
+    "id": String,             // Unique ID for this song
+    "index": Number,          // The index position (starting at 1) of the track in the queue
+    "title": String,
+    "artist": String,
+    "album": String,
+    "albumArt": String,       // URL to the albumArt for this song
+    "duration": Number,       // Duration of song in milliseconds
+    "playCount": Number,      // Number of times the user has ever played the song
+  }
+]
+```
+
+### Search-Results
+
+Data received in the `search-results` channel will have a payload in the format
+
+```js
+{
+  "searchText": String,   // The text the user searched for to get these results
+  "albums": [ // 0 -> Many albums
+    {
+      "id": String,           // Unique ID for this album
+      "name": String,         // The name of the album
+      "artist": String,       // The name of the artist for the album
+      "albumArt": String,     // URL to the albumArt for this album
+    }
+  ]
+  "artists": [ // 0 -> Many artists
+    {
+      "id": String,           // Unique ID for this artist
+      "name": String,         // The name of the artist
+      "image": String,        // URL to an image of this artist
+    }
+  ]
+  "tracks": [ // 0 -> Many tracks
+    {
+      "id": String,             // Unique ID for this song
+      "index": Number,          // The index position (starting at 1) of the track in the object that is storing a collection of tracks E.g. A Playlist
+      "title": String,
+      "artist": String,
+      "album": String,
+      "albumArt": String,       // URL to the albumArt for this song
+      "duration": Number,       // Duration of song in milliseconds
+      "playCount": Number,      // Number of times the user has ever played the song
+    }
+  ]
+}
+```
+
 ## Controlling the application
 
 ### Be Polite
 
 If your app is going to be using the controller detailed below you **must** inform the user that you are
-now controlling the app.  This is done by sending a message to websocket with a stringified JSON object
+now controlling the app.  This is done by sending a message to WebSocket with a stringified JSON object
 in the form.
 
 ```js
@@ -190,7 +247,7 @@ A UI will popup in GPMDP containing a 4 digit code.  You must instruct your user
 }
 ```
 
-If the code is incorrect the `CODE_REQUIRED` message will be sent to you again.  If it is correct however you will recieve a **permanent** authorization code in the following form
+If the code is incorrect the `CODE_REQUIRED` message will be sent to you again.  If it is correct however you will receive a **permanent** authorization code in the following form
 
 ```js
 {
@@ -199,7 +256,7 @@ If the code is incorrect the `CODE_REQUIRED` message will be sent to you again. 
 }
 ```
 
-As soon as you recieve that message (and whenever you want to connect to the WebSocketAPI) you must simply send one message in the form.
+As soon as you receive that message (and whenever you want to connect to the WebSocketAPI) you must simply send one message in the form.
 
 ```js
 {
@@ -213,12 +270,12 @@ As soon as you recieve that message (and whenever you want to connect to the Web
 
 You can use **ANY** method from the `gmusic-utils` library --> https://github.com/gmusic-utils/gmusic.js
 
-All you need to do is send a message to the websocket with a stringified JSON object in the form.
+All you need to do is send a message to the WebSocket with a stringified JSON object in the form.
 
 ```js
 {
   "namespace": "playback",
-  "method": "setPlaybackTime",
+  "method": "setCurrentTime",
   "arguments": [10000]
 }
 ```

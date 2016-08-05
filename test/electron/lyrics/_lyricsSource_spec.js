@@ -2,10 +2,10 @@
 import chai from 'chai';
 import { givenAsync } from 'mocha-testdata';
 
-chai.should();
-
 // Actual Test Imports
 import { validSongs, invalidSongs } from '../testdata/lyrics';
+
+chai.should();
 
 export default (source, format, name, timeout) => {
   describe(`with the ${name} Source`, function lyricsSourceTestScope() {
