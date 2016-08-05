@@ -84,7 +84,7 @@ describe('WebSocketAPI', () => {
       spy.getCall(4).args[0].channel.should.be.equal('playlists');
       spy.getCall(5).args[0].channel.should.be.equal('queue');
       spy.getCall(6).args[0].channel.should.be.equal('search-results');
-      spy.getCall(7).args[0].channel.should.be.equal('song');
+      spy.getCall(7).args[0].channel.should.be.equal('track');
       spy.getCall(8).args[0].channel.should.be.equal('time');
       spy.getCall(9).args[0].channel.should.be.equal('lyrics');
       done();
@@ -109,7 +109,7 @@ describe('WebSocketAPI', () => {
         artists: [],
         tracks: [],
       });
-      // song
+      // track
       spy.getCall(7).args[0].payload.should.have.property('title');
       spy.getCall(7).args[0].payload.should.have.property('artist');
       spy.getCall(7).args[0].payload.should.have.property('album');
@@ -187,7 +187,7 @@ describe('WebSocketAPI', () => {
           tracks: [],
         }
       );
-      shouldUpdateTest('song', '_setPlaybackSong',
+      shouldUpdateTest('track', '_setPlaybackSong',
         ['songTitle', 'songArtist', 'songAlbum', 'songArt'],
         {
           title: 'songTitle',
