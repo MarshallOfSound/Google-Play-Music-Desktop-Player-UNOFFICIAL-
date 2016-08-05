@@ -34,6 +34,7 @@ const waitForExternal = setInterval(() => {
     require('gmusic-ui.js')(GMusic);
     require('gmusic-mini-player.js')(GMusic);
     require('gmusic-theme.js');
+
     window.GMusic = GMusic;
 
     window.GPM = new GMusic();

@@ -1,6 +1,4 @@
 import { app } from 'electron';
-import path from 'path';
-import { spawn } from 'child_process';
 
 import { createShortcuts, updateShortcuts, removeShortcuts } from './main/utils/_shortcutManager';
 
@@ -10,8 +8,6 @@ const handleStartupEvent = () => {
   }
 
   const squirrelCommand = process.argv[1];
-
-  const target = path.basename(process.execPath);
 
   switch (squirrelCommand) {
     case '--squirrel-install':

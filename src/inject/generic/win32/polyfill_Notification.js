@@ -2,7 +2,7 @@ import os from 'os';
 
 const osVersion = os.release().split('.');
 
-if (osVersion[0] && (parseInt(osVersion[0], 10) > 6 || parseInt(osVersion[0], 10) === 6 && parseInt(osVersion[1], 10) > 1)) {
+if ((osVersion[0] && parseInt(osVersion[0], 10) > 6) || (parseInt(osVersion[0], 10) === 6 && parseInt(osVersion[1], 10) > 1)) {
   // If we are above windows 7 we can use the system notifications but with
   // the silent flag forced on
   require('../silent_Notification');
