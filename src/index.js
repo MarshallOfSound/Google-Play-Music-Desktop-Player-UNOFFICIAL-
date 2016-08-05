@@ -19,6 +19,11 @@ import './inject/generic/translations';
 
 import handleStartupEvent from './squirrel';
 
+import { updateShortcuts } from './main/utils/_shortcutManager';
+
+app.setAppUserModelId('com.marshallofsound.gpmdp.core');
+updateShortcuts();
+
 (() => {
   if (handleStartupEvent()) {
     return;
