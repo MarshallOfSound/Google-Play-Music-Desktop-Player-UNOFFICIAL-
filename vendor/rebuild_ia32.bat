@@ -1,3 +1,4 @@
+@echo off
 cd ..
 cd node_modules
 rmdir /Q /S nslog\build 2>nul

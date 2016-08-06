@@ -48,7 +48,7 @@ const defaultPackageConf = {
   'app-version': packageJSON.version,
   arch: 'all',
   'build-version': packageJSON.version,
-  dir: '.',
+  dir: __dirname,
   icon: './build/assets/img/main',
   ignore: (path) => {
     const tests = [
@@ -230,7 +230,6 @@ gulp.task('watch', ['build'], () => {
 });
 
 gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
-  console.log('Rebuilding ll-keyboard-hook-win'); // eslint-disable-line
   rebuild('rebuild_ia32.bat')
     .then(() => {
       packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), () => {
@@ -242,7 +241,8 @@ gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
           });
         }, 1000);
       });
-    });
+    })
+    .catch((err) => done(err));
 });
 
 gulp.task('make:win', ['package:win'], (done) => {
@@ -253,14 +253,16 @@ gulp.task('make:win', ['package:win'], (done) => {
           done();
         });
       });
-    });
+    })
+    .catch((err) => done(err));
 });
 
 gulp.task('package:darwin', ['clean-dist-darwin', 'build-release'], (done) => {
   rebuild('./rebuild_null.sh')
     .then(() => {
       packager(_.extend({}, defaultPackageConf, { platform: 'darwin', 'osx-sign': { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
-    });
+    })
+    .catch((err) => done(err));
 });
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {
