@@ -1,9 +1,12 @@
 import _ from 'lodash';
 import fs from 'fs';
 import createJSON from './_jsonCreator';
+import EventEmitter from 'events';
 
-class PlaybackAPI {
+class PlaybackAPI extends EventEmitter {
   constructor() {
+    super();
+
     this.PATH = createJSON('playback');
     this.reset();
     this._save();
@@ -11,8 +14,6 @@ class PlaybackAPI {
       // DEV: Handle windows users running as admin...
       fs.chmodSync(this.PATH, '777');
     }
-
-    this._ev = {};
 
     this._hook();
   }
@@ -190,21 +191,8 @@ class PlaybackAPI {
     return this._private_data.results;
   }
 
-  on(what, fn) {
-    this._ev[what] = this._ev[what] || [];
-    this._ev[what].push(fn);
-  }
-
-  unbind(what, fn) {
-    this._ev[what] = this._ev[what] || [];
-    this._ev[what] = this._ev[what].filter((testFn) => fn !== testFn);
-  }
-
   _fire(what, arg) {
-    this._ev[what] = this._ev[what] || [];
-    this._ev[what].forEach((fn) => {
-      fn(arg);
-    });
+    this.emit(what, arg);
     Emitter.sendToWindowsOfName('main', `PlaybackAPI:${what}`, arg);
   }
 }
