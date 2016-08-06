@@ -4,6 +4,8 @@ const plist = require('plist');
 
 const packageJSON = require('../package.json');
 
+console.log('Monkey patching your Info.plist');
+
 if (process.platform === 'darwin') {
   // Patch Info.plist values
   const plistPath = path.resolve(
