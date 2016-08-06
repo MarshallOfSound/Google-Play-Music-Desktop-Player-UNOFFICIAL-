@@ -1,7 +1,8 @@
 import _ from 'lodash';
-import fs from 'fs';
-import createJSON from './_jsonCreator';
 import EventEmitter from 'events';
+import fs from 'fs';
+
+import createJSON from './_jsonCreator';
 
 class PlaybackAPI extends EventEmitter {
   constructor() {
