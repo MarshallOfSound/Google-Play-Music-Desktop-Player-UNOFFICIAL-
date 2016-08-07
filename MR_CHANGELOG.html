@@ -2,15 +2,20 @@ This is a feature release of Google Play Music Desktop Player
 
 Here is a quick run down of all things that have changed.
 <ul style="padding-left: 20px">
-  <li style="list-style-type: disc">NEW: Chromecast Support!!!!!</li>
-  <li style="list-style-type: disc">NEW: The PlaybackAPI now has ZeroConf</li>
-  <li style="list-style-type: disc">NEW: Native translations for German and Polish</li>
-  <li style="list-style-type: disc">FIX: Javascript error has occured bug when starting up</li>
-  <li style="list-style-type: disc">FIX: Tray icon is now the GPM favicon</li>
-  <li style="list-style-type: disc">FIX: Ridiculous CPU usage in some circumstances</li>
-  <li style="list-style-type: disc">FIX: The lyrics screen is now a lot nicer</li>
-  <li style="list-style-type: disc">FIX: Correctly set App category on macOS</li>
-  <li style="list-style-type: disc">FIX: Command + Left/Right now navigates back and forward on macOS</li>
+  <li style="list-style-type: disc">NEW: Lyrics are now visible in thin windows</li>
+  <li style="list-style-type: disc">NEW: Desktop Notifications are now native notifications on Windows 8</li>
+  <li style="list-style-type: disc">FIX: The update notification always shows the buttons now</li>
+  <li style="list-style-type: disc">FIX: I3 Window Manager now works with the Mini Player</li>
+  <li style="list-style-type: disc">FIX: Startup JavaScript errors are gone for good</li>
+  <li style="list-style-type: disc">FIX: If you have more than one Chromecast they all appear now</li>
+  <li style="list-style-type: disc">FIX: Installing on Windows no longer trips AV warnings</li>
+</ul>
+
+API Changes
+<ul style="padding-left: 20px">
+  <li style="list-style-type: disc">BREAKING: Under the hood we have updated to gmusic.js v6</li>
+  <li style="list-style-type: disc">BREAKING: The WebSocketAPI now refers to "songs" as "tracks"</li>
+  <li style="list-style-type: disc">NEW: The WebSocketAPI now exposes a few more methods.  Check the docs</li>
 </ul>
 
 Thanks to all the people who have helped with these features and fixes.
