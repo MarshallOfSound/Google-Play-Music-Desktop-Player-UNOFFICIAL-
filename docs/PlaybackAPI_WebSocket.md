@@ -47,9 +47,9 @@ Data received in the `playState` channel will have a payload in the format
 The Boolean value will be true if a song is currently playing, and false if a
 song is currently paused or stopped.
 
-### Song
+### Track
 
-Data received in the `song` channel will have a payload in the format
+Data received in the `track` channel will have a payload in the format
 
 ```js
 "payload": {
