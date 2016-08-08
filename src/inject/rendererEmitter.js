@@ -34,81 +34,81 @@ class Emitter {
           let waitForPageLoad = 0;
           const _listener = () => {
             if (waitForPageLoad > 1 && !view.isLoading()) {
-              view.send(details.event, details.details);
+              view.send(details.event, ...details.details);
               view.removeEventListener('did-stop-loading', _listener);
             }
             waitForPageLoad++;
           };
           view.addEventListener('did-stop-loading', _listener);
         } else {
-          view.send(details.event, details.details);
+          view.send(details.event, ...details.details);
         }
       }
     });
   }
 
-  fire(event, details) {
+  fire(event, ...details) {
     if (this.ready) {
-      ipcRenderer.send(event, details);
+      ipcRenderer.send(event, ...details);
     } else {
-      this.q.push(this.fire.bind(this, event, details));
+      this.q.push(this.fire.bind(this, event, ...details));
     }
   }
 
-  fireSync(event, details) {
+  fireSync(event, ...details) {
     if (this.ready) {
-      ipcRenderer.sendSync(event, details);
+      ipcRenderer.sendSync(event, ...details);
     } else {
-      this.q.push(this.fireSync.bind(this, event, details));
+      this.q.push(this.fireSync.bind(this, event, ...details));
     }
   }
 
-  fireAtAll(event, details) {
+  fireAtAll(event, ...details) {
     if (this.ready) {
       ipcRenderer.send('passback:all', {
         event,
         details,
       });
-      ipcRenderer.send(event, details);
+      ipcRenderer.send(event, ...details);
     } else {
-      this.q.push(this.fireAtAll.bind(this, event, details));
+      this.q.push(this.fireAtAll.bind(this, event, ...details));
     }
   }
 
-  fireAtMain(event, details) {
+  fireAtMain(event, ...details) {
     if (this.ready) {
       ipcRenderer.send('passback:main', {
         event,
         details,
       });
     } else {
-      this.q.push(this.fireAtMain.bind(this, event, details));
+      this.q.push(this.fireAtMain.bind(this, event, ...details));
     }
   }
 
-  fireAtGoogle(event, details) {
+  fireAtGoogle(event, ...details) {
     if (this.ready) {
       ipcRenderer.send('passback', {
         event,
         details,
       });
     } else {
-      this.q.push(this.fireAtGoogle.bind(this, event, details));
+      this.q.push(this.fireAtGoogle.bind(this, event, ...details));
     }
   }
 
   on(event, fn) {
-    ipcRenderer.on(event, (internalEvent, internalDetails) => {
+    ipcRenderer.on(event, (internalEvent, ...internalDetails) => {
       if (this.ready) {
-        this._call(fn, internalEvent, internalDetails);
+        this._call(fn, internalEvent, ...internalDetails);
       } else {
-        this.q.push(this._call.bind(this, fn, internalEvent, internalDetails));
+        this.q.push(this._call.bind(this, fn, internalEvent, ...internalDetails));
       }
     });
   }
 
-  _call(fn, internalEvent, internalDetails) {
-    fn(internalEvent, internalDetails);
+  _call(fn, internalEvent, ...internalDetails) {
+    fn(internalEvent, ...internalDetails);
   }
 }
 

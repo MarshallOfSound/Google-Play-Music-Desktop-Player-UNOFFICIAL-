@@ -35,13 +35,6 @@ const endScroll = () => {
   }
 };
 
-window.addEventListener('beforeunload', () => {
-  bWindow.removeListener('app-command', handleAppCommand);
-  bWindow.removeListener('swipe', handleSwipeCommand);
-  bWindow.removeListener('scroll-touch-begin', startScroll);
-  bWindow.removeListener('scroll-touch-end', endScroll);
-});
-
 window.addEventListener('mousewheel', (e) => {
   if (e.deltaX > NAV_VELOCITY && scrolling) {
     scrollingShouldNav = 1;
@@ -50,10 +43,10 @@ window.addEventListener('mousewheel', (e) => {
   }
 });
 
-Emitter.on('BrowserWindow:app-command', (e, ...args) => startScroll(...args));
-Emitter.on('BrowserWindow:swipe', (e, ...args) => startScroll(...args));
+Emitter.on('BrowserWindow:app-command', (e, ...args) => handleAppCommand(...args));
+Emitter.on('BrowserWindow:swipe', (e, ...args) => handleSwipeCommand(...args));
 Emitter.on('BrowserWindow:scroll-touch-begin', (e, ...args) => startScroll(...args));
-Emitter.on('BrowserWindow:scroll-touch-end', (e, ...args) => startScroll(...args));
+Emitter.on('BrowserWindow:scroll-touch-end', (e, ...args) => endScroll(...args));
 
 if (process.platform === 'linux') {
   const mouse = require('mouse-forward-back');
