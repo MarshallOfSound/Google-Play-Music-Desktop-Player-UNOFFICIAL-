@@ -1,7 +1,5 @@
 import { remote } from 'electron';
 
-const bWindow = remote.getCurrentWindow();
-
 const handleAppCommand = (e, cmd) => {
   if (cmd === 'browser-backward') {
     remote.getCurrentWebContents().goBack();

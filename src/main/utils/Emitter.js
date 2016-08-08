@@ -18,7 +18,7 @@ class Emitter {
 
   _send(window, event, ...details) {
     if (!details || details.length === 0) {
-      details = [{}];
+      details = [{}]; // eslint-disable-line
     }
     if (window.webContents.isLoading()) {
       let once = false;
