@@ -17,6 +17,7 @@ const taskbarPath = path.resolve(
 const squirrelPath = path.resolve(path.dirname(process.execPath), '..', 'update.exe');
 
 const shortcutAtPath = (targetPath, create) => {
+  if (process.platform !== 'win32') return;
   if (!fs.existsSync(targetPath) && !create) return;
   shell.writeShortcutLink(targetPath, fs.existsSync(targetPath) ? 'update' : 'create', {
     target: squirrelPath,
