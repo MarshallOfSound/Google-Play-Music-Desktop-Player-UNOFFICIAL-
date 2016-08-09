@@ -1,6 +1,6 @@
 import { BrowserWindow } from 'electron';
 import path from 'path';
-import AutoLaunch from 'auto-launch';
+import AutoLaunch from 'auto-launch-gpmdp';
 
 const appLauncher = new AutoLaunch({
   name: 'Google Play Music Desktop Player',
