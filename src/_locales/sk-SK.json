@@ -1,0 +1,103 @@
+{
+  "audio-device-communications": "Systémom predvolená komunikácia",
+  "audio-device-default": "Predvolené systémom",
+  "audio-device-unknown": "Neznáme zariadnie",
+
+  "button-test-ok": "OK",
+  "button-text-close": "Zavrieť",
+  "button-text-dont-tell-me-again": "Nabudúce neoznamovať",
+  "button-text-lets-do-this": "Tak poďme na to!!",
+  "button-text-lets-go": "Poďme na to!!",
+  "button-text-not-now": "Teraz nie",
+
+  "label-about": "O programe",
+  "label-desktop-settings": "Nastavenia programu",
+  "label-donate": "Podporiť",
+  "label-help": "Pomocník",
+  "label-issues": "Problémy",
+  "label-learn-more": "Zistiť viac",
+  "label-loading-devices": "Načítanie zariadení...",
+  "label-pause-after-song": "Pozastaviť po tejto skladbe",
+  "label-quit": "Ukončiť",
+  "label-show-lyrics": "Zobraziť text skladby (Beta)",
+  "label-unknown-artist": "Neznámy interprét",
+  "label-unknown-song": "Neznáma skladba",
+  "label-version": "Verzia",
+
+  "lastfm-login-authorized": "Autorizované",
+  "lastfm-login-authorizing": "Prebieha autorizácia",
+  "lastfm-login-button-text": "Prihlásiť sa do Last.FM",
+  "lastfm-login-error": "Zdá sa, že ste opustili proces autorizácie, pokiaľ ide o chybu, skúste to znova",
+  "lastfm-login-not-authorized": "Neautorizované",
+  "lastfm-logout-button-text": "Odhlásiť sa z Last.FM",
+
+  "lyrics-failed-message": "Je nám ľúto, ale pre túto skladbu sme nenašli žiadne texty",
+  "lyrics-loading-message": "Načítanie textu...",
+  "lyrics-no-song-message": "Práve sa neprehráva žiadna skladba",
+
+  "message-pausing-after-song": "Pozastavenie po tejto skladbe.",
+  "message-pausing-after-song-button": "Zrušiť pozastavenie po tejto skladbe",
+  "message-uncaught-error": "Vyskytla sa nezachytená chyba v GPMDP.",
+  "message-uncaught-error-button": "Kliknite sem, pre nahlásenie chyby na GitHub",
+
+  "modal-confirmTray-title": "Len pre informáciu",
+  "modal-confirmTray-content": "Zatvorenie hlavného okna prehrávača (čo ste sa práve pokúsili urobiť) len minimalizuje prehrávač do systémového panela. Ak to chcete zmeniť, môžete tak urobiť v okne \"Nastavenia programu\".",
+  "modal-confirmOpenPort-content": "PlaybackAPI sa nepodarilo spustiť, pretože ho blokuje Windows Firewall.  Môžeme ho odblokovať, ale môže to vyžadovať administrátorské práva",
+  "modal-confirmUpdate-title": "Je dostupná aktualizácia",
+  "modal-confirmUpdate-content": "Juhuuuuu, vyzerá to, že je dostupná nová aktualizácia pre Google Play Music Desktop Player.  Táto aktualizácia môže priniesť veľa nových funkcií, opravy chýb a nové super veci.  Odporúčame vám aktualizovať čo najskôr, aby ste si mohli užiť nové funkcie bez chýb.<br />Dúfame, že sa vám aktualizácia páči!",
+  "modal-confirmUninstall-title": "Takže veci sa majú takto...",
+  "modal-confirmUninstall-content": "Zistili sme, že máte stále nainštalovanú staršiu verziu GPMDP vo vašom systéme.  Ak ste ju práve aktualizovali, je to úplne normálne.  Teraz sa pokúsime odinštalovať starú verziu.  To \"môže\" vyžadovať administrátorské práva, prosím, povoľte ich, aby sme mohli urobiť poriadok.",
+  "modal-goToURL-title": "Zadajte adresu Google Play Music pre zobrazenie:",
+  "modal-welcome-title": "Vitajte vo verzii",
+  "modal-welcome-content": "Dúfame, že sa vám aktualizácia páči!",
+
+  "playback-label-next-track": "Ďalšia skladba",
+  "playback-label-play-pause": "Prehrať / Pozastaviť",
+  "playback-label-previous-track": "Predchádzajúca skladba",
+  "playback-label-stop": "Stop",
+  "playback-label-thumbs-down": "Nepáči sa mi",
+  "playback-label-thumbs-up": "Páči sa mi",
+  "playback-label-volume-down": "Znížiť hlasitosť",
+  "playback-label-volume-up": "Zvýšiť hlasitosť",
+
+  "settings-option-custom-theme": "Vlastná téma",
+  "settings-option-custom-theme-choose-color": "Vyberte si farbu zvýraznenia",
+  "settings-option-custom-theme-choose-custom": "Alebo si vyberte",
+  "settings-option-custom-theme-custom-color": "vlastnú farbu",
+  "settings-option-custom-theme-dark": "Tmavá",
+  "settings-option-custom-theme-light": "Svetlá",
+
+  "settings-option-enable-api": "Povoliť Playback API",
+  "settings-option-enable-api-json": "Povoliť JSON API",
+  "settings-option-enable-api-details": "Umožní iným programom pracovať s GPMDP",
+  "settings-option-enable-system-borders": "Použiť systémové orámovanie okna",
+  "settings-option-enable-system-borders-details": "Vyžaduje reštart",
+  "settings-option-enable-voice": "Povoliť ovládanie hlasom",
+  "settings-option-enable-voice-details": "Hands free ovládanie hlasom pre GPMDP, toto je experimentálna funkcia",
+
+  "settings-option-hotkey-explanation": "Predvolené mediálne klávesy budú stále fungovať bez ohľadu na tieto nastavenia.  Tieto nastavenia sú ako doplnok k predvoleným.",
+  "settings-option-hotkey-explanation-2": "Použite klávesu <i>\"Escape\"</i> pre obnovenie skratky.",
+
+  "settings-option-min-to-tray": "Minimalizovať do panela",
+
+  "settings-option-auto-launch": "Spustiť automaticky pri štarte systému",
+
+  "settings-option-save-page": "Po spustení automaticky načítať poslednú zobrazenú stránku",
+
+  "settings-option-scroll-lyrics": "Automaticky posúvať text skladby počas prehrávania",
+
+  "settings-option-mini-always-show": "Vždy zobraziť informácie o skladbe",
+  "settings-option-mini-ontop": "Vždy na vrchu",
+  "settings-option-mini-use-scroll-volume": "Použiť koliesko myši pre nastavenie hlasitosti",
+
+  "title-color-picker": "Výber farby",
+  "title-settings": "Nastavenia",
+  "title-settings-audio": "Audio",
+  "title-settings-general": "Všeobecné",
+  "title-settings-hotkeys": "Klávesové skratky",
+  "title-settings-lastfm": "LastFM",
+  "title-settings-mini": "Mini prehrávač",
+
+  "tray-label-audio-device": "Prehrávacie zariadenie",
+  "tray-label-show": "Zobraziť"
+}
