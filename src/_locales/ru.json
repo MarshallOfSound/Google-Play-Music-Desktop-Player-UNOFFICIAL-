@@ -1,0 +1,103 @@
+{
+  "audio-device-communications": "Устройства связи по умолчанию",
+  "audio-device-default": "Устройство по умолчанию",
+  "audio-device-unknown": "Неизвестное устройство",
+
+  "button-test-ok": "OK",
+  "button-text-close": "Закрыть",
+  "button-text-dont-tell-me-again": "Не показывать больше",
+  "button-text-lets-do-this": "Сделаем это!!",
+  "button-text-lets-go": "Погнали!!",
+  "button-text-not-now": "Не сейчас",
+
+  "label-about": "О программе",
+  "label-desktop-settings": "Настройки приложения",
+  "label-donate": "Пожертвовать",
+  "label-help": "Помощь",
+  "label-issues": "Проблемы",
+  "label-learn-more": "Узнать больше",
+  "label-loading-devices": "Загрузка устройств...",
+  "label-pause-after-song": "Пауза после этой песни",
+  "label-quit": "Выход",
+  "label-show-lyrics": "Текст песни (Beta)",
+  "label-unknown-artist": "Неизвестный артист",
+  "label-unknown-song": "Неизвестная песня",
+  "label-version": "Версия",
+
+  "lastfm-login-authorized": "Авторизован",
+  "lastfm-login-authorizing": "Идёт авторизация",
+  "lastfm-login-button-text": "Войти в Last.FM",
+  "lastfm-login-error": "Похоже что вы прервали процесс авторизации, если это не так, пожалуйста, попробуйте ещё раз",
+  "lastfm-login-not-authorized": "Не авторизован",
+  "lastfm-logout-button-text": "Выйти из Last.FM",
+
+  "lyrics-failed-message": "Извините, мы не смогли найти текст этой песни",
+  "lyrics-loading-message": "Загрузка текста песни...",
+  "lyrics-no-song-message": "Сейчас музыка не играет",
+
+  "message-pausing-after-song": "Пауза после этой песни.",
+  "message-pausing-after-song-button": "Не останавливать после этой песни",
+  "message-uncaught-error": "Произошла неизвестная ошибка в GPMDP.",
+  "message-uncaught-error-button": "Нажмите сюда, чтобы отправить ошибку на GitHub",
+
+  "modal-confirmTray-title": "Это просто уведомление",
+  "modal-confirmTray-content": "Закрытие главного окна плеера (то, что вы только что сделали) свернёт плеер в трей. Это можно изменить в окне \"Настройки приложения\".",
+  "modal-confirmOpenPort-content": "PlaybackAPI не запущен, потому что Защитник Windows блокирует его.  Мы можем разблокировать его за Вас, но это может потребовать прав администратора",
+  "modal-confirmUpdate-title": "Доступно обновление",
+  "modal-confirmUpdate-content": "Юхууу, похоже что для Google Play Music Desktop Player доступно абсолютно новое обновление.  Оно должно принести много новых возможностей, исправлений ошибок и других крутых штук.  Мы рекомендуем Вам обновиться как можно быстрее чтобы насладиться новыми возможностями и избавиться от ошибок.<br />Мы надеемся, обновление Вам понравится!",
+  "modal-confirmUninstall-title": "Так вот в чём дело...",
+  "modal-confirmUninstall-content": "Мы обнаружили, что у Вас всё ещё установлена старая версия GPMDP.  Это нормально, если Вы только что обновили GPMDP.  Сейчас мы попробуем удалить старую версию.  Это \"может\" потребовать прав администратора, пожалуйста, предоставьте их.",
+  "modal-goToURL-title": "Введите URL Google Play Music, по которому хотите перейти:",
+  "modal-welcome-title": "Добро пожаловать в версию",
+  "modal-welcome-content": "Мы надеемся, обновление Вам понравится!",
+
+  "playback-label-next-track": "Следующий трек",
+  "playback-label-play-pause": "Воспроизведение / Пауза",
+  "playback-label-previous-track": "Предыдущий трек",
+  "playback-label-stop": "Стоп",
+  "playback-label-thumbs-down": "Мне не нравится",
+  "playback-label-thumbs-up": "Мне нравится",
+  "playback-label-volume-down": "Уменьшить громкость",
+  "playback-label-volume-up": "Увеличить громкость",
+
+  "settings-option-custom-theme": "Собственная тема",
+  "settings-option-custom-theme-choose-color": "Выберите цвет темы",
+  "settings-option-custom-theme-choose-custom": "Или выберите",
+  "settings-option-custom-theme-custom-color": "Свой цвет",
+  "settings-option-custom-theme-dark": "Темная",
+  "settings-option-custom-theme-light": "Светлая",
+
+  "settings-option-enable-api": "Включить Playback API",
+  "settings-option-enable-api-json": "Включить JSON API",
+  "settings-option-enable-api-details": "Позволяет другим приложениеям взаимодействовать с GPMDP",
+  "settings-option-enable-system-borders": "Использовать системное оформление окон",
+  "settings-option-enable-system-borders-details": "Требуется перезагрузка",
+  "settings-option-enable-voice": "Включить голосовое управление",
+  "settings-option-enable-voice-details": "Управление GPMDP голосом, экспериментальная функция",
+
+  "settings-option-hotkey-explanation": "Стандартные медиа-клавиши продолжат работать в независимости от этих настроек.  Эти настройки - дополнение к стандартным.",
+  "settings-option-hotkey-explanation-2": "Используйте <i>\"Escape\"</i> чтобы удалить горячую клавишу.",
+
+  "settings-option-min-to-tray": "Свернуть в трей",
+
+  "settings-option-auto-launch": "Автоматически запускать при включении компьютера",
+
+  "settings-option-save-page": "Автоматически открывать последнюю просмотренную страницу при запуске",
+
+  "settings-option-scroll-lyrics": "Прокручивать текст песни автоматически при воспроизведении",
+
+  "settings-option-mini-always-show": "Всегда показывать информацию о песне",
+  "settings-option-mini-ontop": "Всегда поверх остальных окон",
+  "settings-option-mini-use-scroll-volume": "Использовать колёсико мыши для управления громкостью",
+
+  "title-color-picker": "Выбор цвета",
+  "title-settings": "Настройки",
+  "title-settings-audio": "Аудио",
+  "title-settings-general": "Общие",
+  "title-settings-hotkeys": "Горячие клавиши",
+  "title-settings-lastfm": "LastFM",
+  "title-settings-mini": "Мини-плеер",
+
+  "tray-label-audio-device": "Аудио устрйоства",
+  "tray-label-show": "Показать"
+}
