@@ -19,6 +19,14 @@ try {
   mdns = require('mdns');
 } catch (e) {
   Logger.error('Failed to load bonjour with error: %j', e);
+  console.error('Bonjour is required to use Chromecast Support or to enable ZeroConf for the PlaybackAPI'); // eslint-disable-line
+  if (process.platform === 'win32') {
+    console.error('On windows you need to install Bonjour Print Services'); // eslint-disable-line
+  } else if (process.platform === 'darwin') {
+    console.error('One macOS Bonjour should "just work" so if you see this you have much bigger problems'); // eslint-disable-line
+  } else {
+    console.error('On linux you need to install "avahi"'); // eslint-disable-line
+  }
   if (process.platform === 'win32') {
     Emitter.sendToWindowsOfName('main', 'bonjour-install');
   }
