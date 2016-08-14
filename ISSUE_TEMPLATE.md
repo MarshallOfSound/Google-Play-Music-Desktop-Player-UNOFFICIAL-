@@ -9,6 +9,10 @@ Before you click that big tempting "Submit New Issue" button though, can you qui
 
 If you have done those 3 things go ahead and fill out the information below.
 Once again, thanks for taking the time to submit an issue
+
+If appropriate please attach the DEBUG information zip file that you can generate by following the instructions in the FAQ  
+(https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/wiki/FAQ)
+
 -->
 
 **OS:**

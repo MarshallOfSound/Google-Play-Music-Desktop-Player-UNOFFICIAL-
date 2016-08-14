@@ -14,6 +14,8 @@ const parseURL = (url) => {
     setTimeout(() => {
       remote.app.quit();
     }, 500);
+  } else if (url === 'DEBUG_INFO') {
+    Emitter.fire('generateDebugInfo');
   }
   if (!/https:\/\/play\.google\.com\/music\/listen/g.test(url)) return;
   document.querySelector('webview').executeJavaScript(`window.location = "${url}"`);
@@ -30,6 +32,7 @@ window.addEventListener('load', () => {
     modal.openModal({
       dismissible: true,
     });
+    URLInput.focus();
   });
 
   URLButton.click(() => {
