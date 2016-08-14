@@ -18,11 +18,11 @@ if (process.platform === 'darwin') {
 } else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
   // TODO: Change this back to ico when electron supports it on linux
   // appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
-  appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray_white.png`));
+  appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray_white_s.png`));
 } else if (process.platform === 'linux') {
-	appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray_white.png`));
+  appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray_white_s.png`));
 } else {
-  appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray_white.png`));
+  appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray_s.png`));
 }
 
 const setContextMenu = () => {
