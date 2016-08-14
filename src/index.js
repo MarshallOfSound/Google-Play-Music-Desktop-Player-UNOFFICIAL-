@@ -67,7 +67,7 @@ updateShortcuts();
   global.Logger = new (winston.Logger)({
     transports: [
       new (winston.transports.File)({
-        filename: path.resolve(app.getPath('userData'), 'gpmdc.log'),
+        filename: path.resolve(app.getPath('userData'), 'gpmdp.log'),
         level: defaultFileLogLevel,
         maxsize: 5000000,
         maxfiles: 2,
