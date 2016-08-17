@@ -169,7 +169,13 @@ const enableAPI = () => {
             if (!Array.isArray(args)) {
               throw Error('Bad arguments');
             }
-            if (!ws.authorized) return;
+            if (!ws.authorized) {
+              ws.json({
+                channel: 'connect',
+                payload: 'CODE_REQUIRED',
+              });
+              return;
+            }
             Emitter.sendToGooglePlayMusic('execute:gmusic', {
               namespace: command.namespace,
               method: command.method,
