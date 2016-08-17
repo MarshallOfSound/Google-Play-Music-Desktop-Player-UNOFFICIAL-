@@ -268,7 +268,10 @@ As soon as you receive that message (and whenever you want to connect to the Web
 
 ### All Powerful Controller
 
-You can use **ANY** method from the `gmusic-utils` library --> https://github.com/gmusic-utils/gmusic.js
+You can use **ANY** method from the
+
+* `gmusic.js` library --> https://github.com/gmusic-utils/gmusic.js  
+* `gmusic-ui.js` library --> https://github.com/gmusic-utils/gmusic-ui.js  
 
 All you need to do is send a message to the WebSocket with a stringified JSON object in the form.
 
@@ -280,12 +283,25 @@ All you need to do is send a message to the WebSocket with a stringified JSON ob
 }
 ```
 
- #### Additional commands
+#### Return Values
 
- GPMDP have also *"extended"* the standard `gmusic.js` library with some extra namespaces.
+If the method has a return value you want to fetch you need to pass a `requestID` property to the WebSocket like so.
 
+```js
+{
+  "namespace": "playback",
+  "method": "getCurrentTime",
+  "requestID": 1
+}
+```
 
-| Namespace | Method | Arguments |
-|-----------|--------|-----------|
-| `playlists` | `play` | One Argument<br />- A `Playlist` object returned from the `playlist` namespace. |
-| `playlists` | `playWithTrack` | Two arguments<br />-A `Playlist` object returned from the `playlist` namespace.<br />-A `Track` object from the `tracks` property of the supplied `playlist` |
+You will recieve a response in the following form
+
+```js
+{
+  "namespace": "result",
+  "type": "return", // This will be "error" if the method threw an error
+  "value": 10000, // This will be the error object if the method threw an error
+  "requestID": 1
+}
+```

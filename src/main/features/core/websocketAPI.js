@@ -8,6 +8,7 @@ import WebSocket, { Server as WebSocketServer } from 'ws';
 
 let server;
 let oldTime = {};
+let uniqID = uuid.v4();
 
 let runas = () => {};
 if (process.platform === 'win32') {
@@ -179,8 +180,15 @@ const enableAPI = () => {
             Emitter.sendToGooglePlayMusic('execute:gmusic', {
               namespace: command.namespace,
               method: command.method,
+              requestID: command.requestID || uniqID,
               args,
             });
+            if (typeof command.requestID !== 'undefined') {
+              Emitter.once(`execute:gmusic:result_${command.requestID}`, (event, result) => {
+                ws.json(result);
+              });
+            }
+            uniqID = uuid.v4();
           } else {
             throw Error('Bad command');
           }

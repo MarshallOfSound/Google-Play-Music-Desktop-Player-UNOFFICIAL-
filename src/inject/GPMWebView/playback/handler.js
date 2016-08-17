@@ -82,7 +82,19 @@ window.wait(() => {
   Emitter.on('execute:gmusic', (event, cmd) => {
     if (window.GPM && GPM[cmd.namespace] && GPM[cmd.namespace][cmd.method]
       && typeof GPM[cmd.namespace][cmd.method] === 'function') {
-      GPM[cmd.namespace][cmd.method].apply(GPM, cmd.args || []);
+      let error;
+      let result;
+      try {
+        result = GPM[cmd.namespace][cmd.method].apply(GPM, cmd.args || []);
+      } catch (err) {
+        error = err;
+      }
+      Emitter.fire(`execute:gmusic:result_${cmd.requestID}`, {
+        namespace: 'result',
+        type: error ? 'error' : 'return',
+        value: error || result,
+        requestID: cmd.requestID,
+      });
     }
   });
 });
