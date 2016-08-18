@@ -67,6 +67,18 @@ PlaybackAPI.on('change:time', (timeObj) => {
   }
 });
 
+const requireCode = (ws) => {
+  authCode = Math.floor(Math.random() * 9999).toString();
+  authCode = '0000'.substr(0, 4 - authCode.length) + authCode;
+  Emitter.sendToWindowsOfName('main', 'show:code_controller', {
+    authCode,
+  });
+  ws.json({
+    channel: 'connect',
+    payload: 'CODE_REQUIRED',
+  });
+};
+
 const enableAPI = () => {
   let portOpen = true;
   if (process.platform === 'win32') {
@@ -154,15 +166,7 @@ const enableAPI = () => {
                   payload: code,
                 });
               } else {
-                authCode = Math.floor(Math.random() * 9999).toString();
-                authCode = '0000'.substr(0, 4 - authCode.length) + authCode;
-                Emitter.sendToWindowsOfName('main', 'show:code_controller', {
-                  authCode,
-                });
-                ws.json({
-                  channel: 'connect',
-                  payload: 'CODE_REQUIRED',
-                });
+                requireCode(ws);
               }
               return;
             }
@@ -171,10 +175,7 @@ const enableAPI = () => {
               throw Error('Bad arguments');
             }
             if (!ws.authorized) {
-              ws.json({
-                channel: 'connect',
-                payload: 'CODE_REQUIRED',
-              });
+              requireCode(ws);
               return;
             }
             Emitter.sendToGooglePlayMusic('execute:gmusic', {
