@@ -40,4 +40,4 @@ test:
 
 general:
   artifacts:
-    - "dist"
+    - "dist/installers"
