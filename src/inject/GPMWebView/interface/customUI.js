@@ -54,7 +54,7 @@ function fixShopButton() {
 }
 
 function handleSubscribeButton() {
-  _redirectButton(document.querySelector('.sub[data-type="sub"]'), 'https://play.google.com/music/listen#/sulp', true);
+  _redirectButton(document.querySelector('[data-type="sub"]'), 'https://play.google.com/music/listen#/sulp', true);
 }
 
 /** Hide buttons & elements that don't work */
