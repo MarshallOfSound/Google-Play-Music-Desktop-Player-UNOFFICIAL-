@@ -35,7 +35,7 @@ global.Emitter = new Emitter();
 global.PlaybackAPI = new PlaybackAPI();
 global.API_PORT = 4202; // Travis has something running on 5672
 
-const INITIAL_DATA_COUNT = 10;
+const INITIAL_DATA_COUNT = 11;
 
 describe('WebSocketAPI', () => {
   beforeEach(() => {
@@ -84,9 +84,10 @@ describe('WebSocketAPI', () => {
       spy.getCall(4).args[0].channel.should.be.equal('playlists');
       spy.getCall(5).args[0].channel.should.be.equal('queue');
       spy.getCall(6).args[0].channel.should.be.equal('search-results');
-      spy.getCall(7).args[0].channel.should.be.equal('track');
-      spy.getCall(8).args[0].channel.should.be.equal('time');
-      spy.getCall(9).args[0].channel.should.be.equal('lyrics');
+      spy.getCall(7).args[0].channel.should.be.equal('library');
+      spy.getCall(8).args[0].channel.should.be.equal('track');
+      spy.getCall(9).args[0].channel.should.be.equal('time');
+      spy.getCall(10).args[0].channel.should.be.equal('lyrics');
       done();
     }));
 
@@ -109,20 +110,26 @@ describe('WebSocketAPI', () => {
         artists: [],
         tracks: [],
       });
+      // library
+      spy.getCall(7).args[0].payload.should.be.deep.equal({
+        albums: [],
+        artists: [],
+        tracks: [],
+      });
       // track
-      spy.getCall(7).args[0].payload.should.have.property('title');
-      spy.getCall(7).args[0].payload.should.have.property('artist');
-      spy.getCall(7).args[0].payload.should.have.property('album');
-      expect(spy.getCall(7).args[0].payload.title).to.be.equal(null);
-      expect(spy.getCall(7).args[0].payload.artist).to.be.equal(null);
-      expect(spy.getCall(7).args[0].payload.album).to.be.equal(null);
+      spy.getCall(8).args[0].payload.should.have.property('title');
+      spy.getCall(8).args[0].payload.should.have.property('artist');
+      spy.getCall(8).args[0].payload.should.have.property('album');
+      expect(spy.getCall(8).args[0].payload.title).to.be.equal(null);
+      expect(spy.getCall(8).args[0].payload.artist).to.be.equal(null);
+      expect(spy.getCall(8).args[0].payload.album).to.be.equal(null);
       // time
-      spy.getCall(8).args[0].payload.should.have.property('current');
-      spy.getCall(8).args[0].payload.should.have.property('total');
-      spy.getCall(8).args[0].payload.current.should.be.equal(0);
-      spy.getCall(8).args[0].payload.total.should.be.equal(0);
+      spy.getCall(9).args[0].payload.should.have.property('current');
+      spy.getCall(9).args[0].payload.should.have.property('total');
+      spy.getCall(9).args[0].payload.current.should.be.equal(0);
+      spy.getCall(9).args[0].payload.total.should.be.equal(0);
       // lyrics
-      expect(spy.getCall(9).args[0].payload).to.be.equal(null);
+      expect(spy.getCall(10).args[0].payload).to.be.equal(null);
       done();
     }));
 
@@ -182,6 +189,13 @@ describe('WebSocketAPI', () => {
       shouldUpdateTest('search-results', '_setResults',
         {
           searchText: 'FOO_BAR',
+          albums: [],
+          artists: [],
+          tracks: [],
+        }
+      );
+      shouldUpdateTest('library', '_setLibrary',
+        {
           albums: [],
           artists: [],
           tracks: [],
