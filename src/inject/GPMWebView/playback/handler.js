@@ -78,6 +78,10 @@ window.wait(() => {
   window.GPM.on('change:search-results', (results) => {
     Emitter.fire('change:search-results', results);
   });
+  window.GPM.on('change:library', (library) => {
+    Emitter.fire('change:library', library);
+  });
+  Emitter.fire('change:library', window.GPM.library.getLibrary());
 
   Emitter.on('execute:gmusic', (event, cmd) => {
     if (window.GPM && GPM[cmd.namespace] && GPM[cmd.namespace][cmd.method]

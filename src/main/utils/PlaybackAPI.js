@@ -38,6 +38,7 @@ class PlaybackAPI extends EventEmitter {
     Emitter.on('change:playlists', _.throttle((event, playlists) => this._setPlaylists(playlists)), 20);
     Emitter.on('change:queue', _.throttle((event, queue) => this._setQueue(queue)), 20);
     Emitter.on('change:search-results', _.throttle((event, results) => this._setResults(results)), 20);
+    Emitter.on('change:library', _.throttle((event, library) => this._setLibrary(library)), 20);
   }
 
   reset() {
@@ -70,6 +71,11 @@ class PlaybackAPI extends EventEmitter {
         albums: [],
         tracks: [],
       },
+      library: {
+        albums: [],
+        artists: [],
+        tracks: [],
+      },
     };
     this._save();
   }
@@ -78,6 +84,11 @@ class PlaybackAPI extends EventEmitter {
     if (Settings.get('enableJSON_API', true)) {
       fs.writeFileSync(this.PATH, JSON.stringify(this.data, null, 4));
     }
+  }
+
+  _setLibrary(library) {
+    this._private_data.library = library;
+    this._fire('change:library', this._private_data.library);
   }
 
   _setPlaying(isPlaying) {
@@ -178,6 +189,10 @@ class PlaybackAPI extends EventEmitter {
 
   currentTime() {
     return this.data.time;
+  }
+
+  getLibrary() {
+    return this._private_data.library;
   }
 
   getPlaylists() {
