@@ -204,10 +204,8 @@ const enableAPI = () => {
       ws.channel('playState', PlaybackAPI.isPlaying());
       ws.channel('shuffle', PlaybackAPI.currentShuffle());
       ws.channel('repeat', PlaybackAPI.currentRepeat());
-      ws.channel('playlists', PlaybackAPI.getPlaylists());
       ws.channel('queue', PlaybackAPI.getQueue());
       ws.channel('search-results', PlaybackAPI.getResults());
-      ws.channel('library', PlaybackAPI.getLibrary());
       if (PlaybackAPI.currentSong(true)) {
         ws.channel('track', PlaybackAPI.currentSong(true));
         ws.channel('time', PlaybackAPI.currentTime());
@@ -218,6 +216,9 @@ const enableAPI = () => {
           ws.channel(`settings:${channel}`, Settings.get(channel));
         });
       }
+      // We send library and playlists last as they take a while to stringify
+      ws.channel('playlists', PlaybackAPI.getPlaylists());
+      ws.channel('library', PlaybackAPI.getLibrary());
     });
   });
 
