@@ -81,13 +81,13 @@ describe('WebSocketAPI', () => {
       spy.getCall(1).args[0].channel.should.be.equal('playState');
       spy.getCall(2).args[0].channel.should.be.equal('shuffle');
       spy.getCall(3).args[0].channel.should.be.equal('repeat');
-      spy.getCall(4).args[0].channel.should.be.equal('playlists');
-      spy.getCall(5).args[0].channel.should.be.equal('queue');
-      spy.getCall(6).args[0].channel.should.be.equal('search-results');
-      spy.getCall(7).args[0].channel.should.be.equal('library');
-      spy.getCall(8).args[0].channel.should.be.equal('track');
-      spy.getCall(9).args[0].channel.should.be.equal('time');
-      spy.getCall(10).args[0].channel.should.be.equal('lyrics');
+      spy.getCall(4).args[0].channel.should.be.equal('queue');
+      spy.getCall(5).args[0].channel.should.be.equal('search-results');
+      spy.getCall(6).args[0].channel.should.be.equal('track');
+      spy.getCall(7).args[0].channel.should.be.equal('time');
+      spy.getCall(8).args[0].channel.should.be.equal('lyrics');
+      spy.getCall(9).args[0].channel.should.be.equal('playlists');
+      spy.getCall(10).args[0].channel.should.be.equal('library');
       done();
     }));
 
@@ -99,37 +99,37 @@ describe('WebSocketAPI', () => {
       spy.getCall(2).args[0].payload.should.be.equal('NO_SHUFFLE');
       // repeat
       spy.getCall(3).args[0].payload.should.be.equal('NO_REPEAT');
-      // playlists
-      spy.getCall(4).args[0].payload.should.be.deep.equal([]);
       // queue
-      spy.getCall(5).args[0].payload.should.be.deep.equal([]);
+      spy.getCall(4).args[0].payload.should.be.deep.equal([]);
       // search-results
-      spy.getCall(6).args[0].payload.should.be.deep.equal({
+      spy.getCall(5).args[0].payload.should.be.deep.equal({
         searchText: '',
         albums: [],
         artists: [],
         tracks: [],
       });
+      // track
+      spy.getCall(6).args[0].payload.should.have.property('title');
+      spy.getCall(6).args[0].payload.should.have.property('artist');
+      spy.getCall(6).args[0].payload.should.have.property('album');
+      expect(spy.getCall(6).args[0].payload.title).to.be.equal(null);
+      expect(spy.getCall(6).args[0].payload.artist).to.be.equal(null);
+      expect(spy.getCall(6).args[0].payload.album).to.be.equal(null);
+      // time
+      spy.getCall(7).args[0].payload.should.have.property('current');
+      spy.getCall(7).args[0].payload.should.have.property('total');
+      spy.getCall(7).args[0].payload.current.should.be.equal(0);
+      spy.getCall(7).args[0].payload.total.should.be.equal(0);
+      // lyrics
+      expect(spy.getCall(8).args[0].payload).to.be.equal(null);
+      // playlists
+      spy.getCall(9).args[0].payload.should.be.deep.equal([]);
       // library
-      spy.getCall(7).args[0].payload.should.be.deep.equal({
+      spy.getCall(10).args[0].payload.should.be.deep.equal({
         albums: [],
         artists: [],
         tracks: [],
       });
-      // track
-      spy.getCall(8).args[0].payload.should.have.property('title');
-      spy.getCall(8).args[0].payload.should.have.property('artist');
-      spy.getCall(8).args[0].payload.should.have.property('album');
-      expect(spy.getCall(8).args[0].payload.title).to.be.equal(null);
-      expect(spy.getCall(8).args[0].payload.artist).to.be.equal(null);
-      expect(spy.getCall(8).args[0].payload.album).to.be.equal(null);
-      // time
-      spy.getCall(9).args[0].payload.should.have.property('current');
-      spy.getCall(9).args[0].payload.should.have.property('total');
-      spy.getCall(9).args[0].payload.current.should.be.equal(0);
-      spy.getCall(9).args[0].payload.total.should.be.equal(0);
-      // lyrics
-      expect(spy.getCall(10).args[0].payload).to.be.equal(null);
       done();
     }));
 
