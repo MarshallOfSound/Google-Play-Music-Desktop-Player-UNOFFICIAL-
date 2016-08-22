@@ -3,7 +3,7 @@ version: '2'
 services:
   test-runner:
     build: .
-    command: npm run test-unit
+    command: npm run test-electron
     volumes:
       - .:/test-output
     environment:
@@ -11,7 +11,7 @@ services:
 
   spec-runner:
     build: .
-    command: npm run test-spec
+    command: npm run test-spectron
     volumes:
       - .:/test-output
     environment:
