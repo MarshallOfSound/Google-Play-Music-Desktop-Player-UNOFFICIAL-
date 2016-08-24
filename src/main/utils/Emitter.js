@@ -21,12 +21,8 @@ class Emitter {
       details = [{}]; // eslint-disable-line
     }
     if (window.webContents.isLoading()) {
-      let once = false;
-      window.webContents.on('did-stop-loading', () => {
-        if (!once) {
-          once = true;
-          this._send(window, event, ...details);
-        }
+      window.webContents.once('did-stop-loading', () => {
+        this._send(window, event, ...details);
       });
     } else {
       window.webContents.send(event, ...details);
