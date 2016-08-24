@@ -7,7 +7,7 @@ import MockWindow from './testdata/moch_window';
 
 chai.should();
 
-describe.only('WindowManager', () => {
+describe('WindowManager', () => {
   let WindowManager;
 
   beforeEach(() => {

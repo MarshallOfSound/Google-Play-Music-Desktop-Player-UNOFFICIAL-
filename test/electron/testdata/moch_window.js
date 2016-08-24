@@ -1,6 +1,6 @@
 import Emitter from 'events';
 
-let idCounter;
+let idCounter = 0;
 
 export default class MockWindow extends Emitter {
   constructor(...args) {
