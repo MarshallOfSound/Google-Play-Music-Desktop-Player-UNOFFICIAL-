@@ -79,7 +79,7 @@
     "chai-as-promised": "^5.3.0",
     "chai-fs": "chaijs/chai-fs",
     "devtron": "^1.0.1",
-    "electron-mocha": "^3.0.0",
+    "electron-mocha": "^3.0.4",
     "electron-packager": "^7.0.1",
     "electron-rebuild": "^1.1.4",
     "electron-winstaller": "2.2.0",
