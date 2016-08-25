@@ -17,6 +17,7 @@ export default () => {
     show: false,
     autoHideMenuBar: true,
     frame: Settings.get('nativeFrame'),
+    titleBarStyle: Settings.get('nativeFrame') && process.platform === 'darwin' ? 'hidden' : 'default',
     icon: path.resolve(`${__dirname}/../assets/img/main.${(process.platform === 'win32' ? 'ico' : 'png')}`), // eslint-disable-line
     title: 'Google Play Music Desktop Player',
     webPreferences: {

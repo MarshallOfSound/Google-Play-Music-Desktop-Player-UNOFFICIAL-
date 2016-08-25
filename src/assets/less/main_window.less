@@ -35,6 +35,38 @@ html, body {
     top: -100px;
   }
 
+  .darwin& {
+    .darwin-title-bar {
+      height: @title-bar-height;
+      transition: margin-top 160ms;
+
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: @title-bar-text-size;
+      // -webkit-user-select: none;
+      -webkit-app-region: drag;
+
+      padding: 0 70px;
+      // overflow: hidden;
+
+      .title {
+        flex: 0 1 auto;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: @grey;
+      }
+
+      background-color: @orange;
+      [loaded] & {
+        transition: background-color 0.3s ease;
+      }
+    }
+  }
+
   .window-border {
     border: 0;
     > header {
@@ -43,6 +75,10 @@ html, body {
 
     .embedded-player {
       height: 100vh !important;
+
+      .darwin& {
+        height: calc(100vh ~"-" @title-bar-height) !important;
+      }
     }
   }
 
