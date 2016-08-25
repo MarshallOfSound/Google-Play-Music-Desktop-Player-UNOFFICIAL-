@@ -1,9 +1,14 @@
 const windowTitle = WindowManager.get(global.mainWindowID).getTitle();
 
+const updateDarwinTitle = () => {
+  Emitter.sendToWindowsOfName('main', 'window:updateTitle', WindowManager.get(global.mainWindowID).getTitle());
+};
+
 PlaybackAPI.on('change:track', (songInfo) => {
   const newString = `${(songInfo.title || TranslationProvider.query('label-unknown-song'))} - ${(songInfo.artist || TranslationProvider.query('label-unknown-artist'))}`; // eslint-disable-line
   global.appIcon.setToolTip(newString);
   WindowManager.get(global.mainWindowID).setTitle(newString);
+  updateDarwinTitle();
 });
 
 const changeState = (stateVal) => {
@@ -17,6 +22,7 @@ const changeState = (stateVal) => {
   }
   global.appIcon.setToolTip(newString);
   WindowManager.get(global.mainWindowID).setTitle(newString);
+  updateDarwinTitle();
 };
 
 Emitter.on('playback:isPlaying', changeState.bind(this, 2));

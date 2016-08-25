@@ -16,6 +16,13 @@ if (window.$ && window.$.ajax) {
     }
   });
 
+  Emitter.on('window:updateTitle', (event, newTitle) => {
+    const titleBar = document.querySelector('.darwin-title-bar .title');
+    if (titleBar) {
+      titleBar.innerHTML = newTitle;
+    }
+  });
+
   if (Settings.get('theme')) {
     document.body.setAttribute('theme', 'on');
   }
@@ -31,12 +38,13 @@ if (window.$ && window.$.ajax) {
     const color = customColor || Settings.get('themeColor');
     const border = `[theme][light] .window-border{border-color:${color}}`;
     const titleBar = `[theme][light] .title-bar{background:${color}}`;
+    const darwinTitleBar = `[theme][light] .darwin-title-bar{background-color:${color}}`;
     const header = `[theme][light] .dialog .window-title{background:${color}}`;
     const lyricsProgress = `
 [theme][full] #lyrics_bar{background:${color} !important}
 [theme][light] #lyrics_progress{background:${color} !important}
 [theme][full] #lyrics_progress{background:#222326 !important}`; // @darkprimary
-    style.html(border + titleBar + header + lyricsProgress);
+    style.html(border + titleBar + darwinTitleBar + header + lyricsProgress);
     document.body.setAttribute('loaded', 'loaded');
   };
   redrawTheme();
