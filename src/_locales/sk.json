@@ -89,11 +89,16 @@
   "settings-option-mini-always-show": "Vždy zobraziť informácie o skladbe",
   "settings-option-mini-ontop": "Vždy na vrchu",
   "settings-option-mini-use-scroll-volume": "Použiť koliesko myši pre nastavenie hlasitosti",
-  
+
   "settings-options-style-description": "Zvoľte miestny CSS súbor pre použitie vlastného štýlu v aplikácii",
   "settings-options-style-main-app": "Hlavná apl.",
   "settings-options-style-gpm": "Hudba Google Play",
   "settings-options-style-refresh": "Obnoviť štýly",
+
+  "settings-options-style-description": "",
+  "settings-options-style-main-app": "",
+  "settings-options-style-gpm": "",
+  "settings-options-style-refresh": "",
 
   "title-color-picker": "Výber farby",
   "title-settings": "Nastavenia",

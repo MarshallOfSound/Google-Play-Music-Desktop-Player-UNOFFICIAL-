@@ -31,11 +31,10 @@ describe('Translations', () => {
 
 
   const files = fs.readdirSync(path.resolve('./src/_locales'));
-  const isJSON = /.*\.json$/gi;
   const baseKeys = Object.keys(JSON.parse(fs.readFileSync(path.resolve('./src/_locales/en-US.json'), 'utf8')));
 
   files.forEach((file) => {
-    if (isJSON.test(file)) {
+    if (/.*\.json$/gi.test(file)) {
       const filePath = path.resolve(`./src/_locales/${file}`);
 
       describe(file, () => {
@@ -47,6 +46,13 @@ describe('Translations', () => {
           const locale = JSON.parse(fs.readFileSync(filePath, 'utf8'));
           baseKeys.forEach((key) => {
             locale.should.have.property(key);
+          });
+        });
+
+        it('shouldn\'t have extra translation keys compared to en-US', () => {
+          const locale = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+          Object.keys(locale).forEach((key) => {
+            baseKeys.should.contain(key);
           });
         });
       });

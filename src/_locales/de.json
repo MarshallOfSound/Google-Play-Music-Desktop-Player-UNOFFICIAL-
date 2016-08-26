@@ -90,6 +90,11 @@
   "settings-option-mini-ontop": "Immer oben",
   "settings-option-mini-use-scroll-volume": "Benutze das Mausrad um die Lautstärke zu ändern",
 
+  "settings-options-style-description": "",
+  "settings-options-style-main-app": "",
+  "settings-options-style-gpm": "",
+  "settings-options-style-refresh": "",
+
   "title-color-picker": "Farbauswahl",
   "title-settings": "Einstellungen",
   "title-settings-audio": "Audio",
@@ -97,6 +102,7 @@
   "title-settings-hotkeys": "Hotkeys",
   "title-settings-lastfm": "LastFM",
   "title-settings-mini": "Mini Player",
+  "title-settings-style": "",
 
   "tray-label-audio-device": "Audiogerät",
   "tray-label-show": "Anzeigen"
