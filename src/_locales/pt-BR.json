@@ -90,6 +90,11 @@
   "settings-option-mini-ontop": "Sempre no topo",
   "settings-option-mini-use-scroll-volume": "Use o scroll do mouse para controlar o volume",
 
+  "settings-options-style-description": "",
+  "settings-options-style-main-app": "",
+  "settings-options-style-gpm": "",
+  "settings-options-style-refresh": "",
+
   "title-color-picker": "Paleta de cores",
   "title-settings": "Configurações",
   "title-settings-audio": "Audio",
@@ -97,6 +102,7 @@
   "title-settings-hotkeys": "Atalhos",
   "title-settings-lastfm": "LastFM",
   "title-settings-mini": "Mini Player",
+  "title-settings-style": "",
 
   "tray-label-audio-device": "Dispositivo de áudio",
   "tray-label-show": "Mostrar"

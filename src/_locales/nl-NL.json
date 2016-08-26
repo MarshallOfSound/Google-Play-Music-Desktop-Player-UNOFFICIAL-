@@ -90,6 +90,11 @@
   "settings-option-mini-ontop": "Altijd op de voorgrond",
   "settings-option-mini-use-scroll-volume": "Gebruik het muiswieltje om het volume aan te passen",
 
+  "settings-options-style-description": "",
+  "settings-options-style-main-app": "",
+  "settings-options-style-gpm": "",
+  "settings-options-style-refresh": "",
+
   "title-color-picker": "kleurenkiezer",
   "title-settings": "Instellingen",
   "title-settings-audio": "Audio",
@@ -97,6 +102,7 @@
   "title-settings-hotkeys": "Sneltoetsen",
   "title-settings-lastfm": "LastFM",
   "title-settings-mini": "Mini Player",
+  "title-settings-style": "",
 
   "tray-label-audio-device": "Audio apparaat",
   "tray-label-show": "Toon"
