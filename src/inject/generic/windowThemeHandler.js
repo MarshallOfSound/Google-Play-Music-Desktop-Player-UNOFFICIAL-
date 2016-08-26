@@ -1,4 +1,6 @@
 if (window.$ && window.$.ajax) {
+  require('./customWindowThemeHandler');
+
   Emitter.on('theme:updateState', (event, state) => {
     if (!state.state) {
       document.body.removeAttribute('theme');

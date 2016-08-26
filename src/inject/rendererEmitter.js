@@ -107,6 +107,16 @@ class Emitter {
     });
   }
 
+  once(event, fn) {
+    ipcRenderer.once(event, (internalEvent, ...internalDetails) => {
+      if (this.ready) {
+        this._call(fn, internalEvent, ...internalDetails);
+      } else {
+        this.q.push(this._call.bind(this, fn, internalEvent, ...internalDetails));
+      }
+    });
+  }
+
   _call(fn, internalEvent, ...internalDetails) {
     fn(internalEvent, ...internalDetails);
   }

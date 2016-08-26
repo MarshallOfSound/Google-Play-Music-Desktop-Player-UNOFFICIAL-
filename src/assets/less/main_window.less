@@ -26,6 +26,10 @@ html, body {
   top: 0;
 }
 
+.darwin-title-bar {
+  display: none;
+}
+
 // Hide custom frame when native frame is used
 .native-frame {
   .lean-overlay {
@@ -37,7 +41,7 @@ html, body {
 
   .darwin& {
     .darwin-title-bar {
-      height: @title-bar-height;
+      height: @title-bar-height-darwin;
       transition: margin-top 160ms;
 
       flex-shrink: 0;
@@ -77,7 +81,7 @@ html, body {
       height: 100vh !important;
 
       .darwin& {
-        height: calc(100vh ~"-" @title-bar-height) !important;
+        height: calc(100vh ~"-" @title-bar-height-darwin) !important;
       }
     }
   }

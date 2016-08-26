@@ -33,12 +33,21 @@ const waitForExternal = setInterval(() => {
     const GMusic = require('gmusic.js');
     require('gmusic-ui.js')(GMusic);
     require('gmusic-mini-player.js')(GMusic);
-    require('gmusic-theme.js');
+    const GMusicTheme = require('gmusic-theme.js');
 
     window.GMusic = GMusic;
+    window.GMusicTheme = GMusicTheme;
 
     window.GPM = new GMusic();
     window.GPMTheme = new window.GMusicTheme();
+
+    const customStyle = document.createElement('style');
+    document.body.appendChild(customStyle);
+
+    Emitter.on('LoadGPMCustomStyles', (event, styleString) => {
+      customStyle.innerHTML = window.GPMTheme.substituteColors(styleString);
+    });
+    Emitter.fire('FetchGPMCustomStyles');
 
     /*
     Move to magical file
