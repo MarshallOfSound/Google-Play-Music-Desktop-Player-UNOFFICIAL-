@@ -105,7 +105,6 @@ class PlaybackAPI extends EventEmitter {
       album,
       albumArt: fullSizeAlbumArt,
     };
-    this._resetRating();
     this.data.songLyrics = null;
     this._fire('change:track', this.data.song);
     this._fire('change:lyrics', this.data.songLyrics);
@@ -127,11 +126,6 @@ class PlaybackAPI extends EventEmitter {
     this.data.rating.disliked = rating === '1';
     this._fire('change:rating', this.data.rating);
     this._save();
-  }
-
-  _resetRating() {
-    this.data.rating.liked = false;
-    this.data.rating.disliked = false;
   }
 
   _setPlaybackSongLyrics(lyricString) {

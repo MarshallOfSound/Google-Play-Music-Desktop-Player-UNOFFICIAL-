@@ -22,11 +22,7 @@ window.wait(() => {
   window.GPM.on('change:track', (song) => {
     currentSong = song;
     Emitter.fire('change:track', song);
-    const rating = window.GPM.rating.getRating();
-    if (rating === '0') {
-      // we have to emit this manually if the user hasn't rated the song
-      Emitter.fire('change:rating', rating);
-    }
+    Emitter.fire('change:rating', window.GPM.rating.getRating());
   });
 
   window.GPM.on('change:rating', (rating) => {
