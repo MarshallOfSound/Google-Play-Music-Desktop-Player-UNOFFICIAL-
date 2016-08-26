@@ -7,7 +7,6 @@ Object.assign(GMusicTheme.prototype, {
   disable: () => {},
   enable: () => {},
   redrawTheme: () => {},
-  updateTheme: () => {},
 });
 
 let customColor = Settings.get('themeColor');

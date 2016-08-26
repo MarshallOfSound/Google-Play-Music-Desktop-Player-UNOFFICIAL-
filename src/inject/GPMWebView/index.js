@@ -41,14 +41,6 @@ const waitForExternal = setInterval(() => {
     window.GPM = new GMusic();
     window.GPMTheme = new window.GMusicTheme();
 
-    const customStyle = document.createElement('style');
-    document.body.appendChild(customStyle);
-
-    Emitter.on('LoadGPMCustomStyles', (event, styleString) => {
-      customStyle.innerHTML = window.GPMTheme.substituteColors(styleString);
-    });
-    Emitter.fire('FetchGPMCustomStyles');
-
     /*
     Move to magical file
     */

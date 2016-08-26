@@ -1,7 +1,11 @@
+const customStyle = document.createElement('style');
+let customStyleString = '';
+
 Emitter.on('theme:updateColor', (event, customColor) => {
   window.GPMTheme.updateTheme({
     foreSecondary: customColor,
   });
+  customStyle.innerHTML = window.GPMTheme.substituteColors(customStyleString);
 });
 
 Emitter.on('theme:updateState', (event, state) => {
@@ -18,7 +22,14 @@ Emitter.on('theme:updateType', (event, type) => {
   });
 });
 
+Emitter.on('LoadGPMCustomStyles', (event, styleString) => {
+  customStyleString = styleString;
+  customStyle.innerHTML = window.GPMTheme.substituteColors(customStyleString);
+});
+Emitter.fire('FetchGPMCustomStyles');
+
 window.wait(() => {
+  document.body.appendChild(customStyle);
   window.GPMTheme.updateTheme({
     type: Settings.get('themeType', 'FULL'),
     backHighlight: '#1a1b1d',
