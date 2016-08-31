@@ -5,13 +5,13 @@ import fs from 'fs';
 import createJSON from './_jsonCreator';
 
 class PlaybackAPI extends EventEmitter {
-  constructor() {
+  constructor(filePrefix = '') {
     super();
 
-    this.PATH = createJSON('playback');
+    this.PATH = createJSON(`${filePrefix}playback`);
     this.reset();
     this._save();
-    if (Settings.get('enableJSONApi', true)) {
+    if (Settings.get('enableJSON_API', true)) {
       // DEV: Handle windows users running as admin...
       fs.chmodSync(this.PATH, '777');
     }

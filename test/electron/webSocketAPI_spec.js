@@ -12,32 +12,35 @@ const expect = chai.expect;
 chai.use(chaiSinon);
 chai.should();
 
-// Moch the required Settings API
-global.Settings = {
-  get: (key, def) => {
-    if (key === 'playbackAPI') {
-      return true;
-    }
-    return def;
-  },
-  onChange: () => {},
-  __TEST__: true,
-};
-// Moch the required WindowManager API
-global.WindowManager = {
-  getAll: () => [],
-};
-// Moch the required Logger API
-global.Logger = {
-  error: () => {},
-};
-global.Emitter = new Emitter();
-global.PlaybackAPI = new PlaybackAPI();
-global.API_PORT = 4202; // Travis has something running on 5672
-
 const INITIAL_DATA_COUNT = 11;
 
+global.API_PORT = 4202; // Travis has something running on 5672
+
 describe('WebSocketAPI', () => {
+  before(() => {
+    // Moch the required Settings API
+    global.Settings = {
+      get: (key, def) => {
+        if (key === 'playbackAPI') {
+          return true;
+        }
+        return def;
+      },
+      onChange: () => {},
+      __TEST__: true,
+    };
+    // Moch the required WindowManager API
+    global.WindowManager = {
+      getAll: () => [],
+    };
+    // Moch the required Logger API
+    global.Logger = {
+      error: () => {},
+    };
+    global.Emitter = new Emitter();
+    global.PlaybackAPI = new PlaybackAPI();
+  });
+
   beforeEach(() => {
     global.PlaybackAPI.reset();
     require('../../build/main/features/core/websocketAPI');
