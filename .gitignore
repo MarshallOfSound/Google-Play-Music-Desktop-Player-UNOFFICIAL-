@@ -1,6 +1,8 @@
 node_modules/
 build/
 dist/
+cov/
+coverage/
 .settings.json
 xunit.xml
 vendor/*.msi
