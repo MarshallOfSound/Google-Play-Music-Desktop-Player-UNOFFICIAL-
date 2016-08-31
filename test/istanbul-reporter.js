@@ -1,17 +1,19 @@
 const istanbulAPI = require('istanbul-api');
 const libCoverage = require('istanbul-lib-coverage');
+const Spec = require('mocha/lib/reporters/spec');
 
-function Istanbul(runner) {
-  runner.on('end', () => {
-    const mainReporter = istanbulAPI.createReporter();
-    const coverageMap = libCoverage.createCoverageMap();
+module.exports = class Istanbul extends Spec {
+  constructor(runner) {
+    super(runner);
 
-    coverageMap.merge(global.__coverage__ || {});
+    runner.on('end', () => {
+      const mainReporter = istanbulAPI.createReporter();
+      const coverageMap = libCoverage.createCoverageMap();
 
-    mainReporter.addAll(['text', 'html']);
-    mainReporter.write(coverageMap, {});
-  });
-}
+      coverageMap.merge(global.__coverage__ || {});
 
-
-module.exports = Istanbul;
+      mainReporter.addAll(['text', 'html']);
+      mainReporter.write(coverageMap, {});
+    });
+  }
+};
