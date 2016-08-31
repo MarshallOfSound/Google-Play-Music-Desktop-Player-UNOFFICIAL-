@@ -46,6 +46,16 @@ describe('Settings', () => {
     settings.get('test_key').should.be.equal('test_value');
   });
 
+  it('should fire change functions when a setting key is changed', () => {
+    let hookCalled = false;
+    settings.onChange('test_key', (newValue) => {
+      hookCalled = true;
+      newValue.should.be.equal('test_value_2');
+    });
+    settings.set('test_key', 'test_value_2');
+    hookCalled.should.be.equal(true);
+  });
+
   describe('when uncoupled', () => {
     beforeEach(() => {
       settings.uncouple();
