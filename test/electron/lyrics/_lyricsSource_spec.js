@@ -13,16 +13,19 @@ export default (source, format, name, timeout) => {
       this.timeout(timeout);
     }
     givenAsync(...validSongs).it('should resolve when given a valid song object', (done, song) => {
-      source(format(song))
+      source(...format(song))
         .then((lyrics) => {
           lyrics.should.be.a('string');
           done();
         })
-        .catch(() => done(new Error(`Failed to fetch lyrics for song: ${song.title}`)));
+        .catch((err) => {
+          console.error(err);
+          done(new Error(`Failed to fetch lyrics for song: ${song.title}`));
+        });
     });
 
     givenAsync(...invalidSongs).it('should fail when given an invalid song object', (done, song) => {
-      source(format(song))
+      source(...format(song))
         .then((lyrics) => {
           lyrics.should.be.equal(null);
           done();
@@ -31,12 +34,15 @@ export default (source, format, name, timeout) => {
     });
 
     givenAsync(...validSongs).it('should not contain any script tags when resolved', (done, song) => {
-      source(format(song))
+      source(...format(song))
         .then((lyrics) => {
           /<script/g.test(lyrics).should.be.equal(false);
           done();
         })
-        .catch(() => done(new Error('Failed to fetch lyrics in this test')));
+        .catch((err) => {
+          console.error(err);
+          done(new Error('Failed to fetch lyrics in this test'));
+        });
     });
   });
 };

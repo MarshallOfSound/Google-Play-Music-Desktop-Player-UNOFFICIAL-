@@ -4,6 +4,7 @@ import { givenAsync } from 'mocha-testdata';
 
 import attemptLyricsWikia from '../../../build/main/features/core/lyrics/source_lyricsWikia';
 import attemptMetroLyrics from '../../../build/main/features/core/lyrics/source_metroLyrics';
+import attemptLyricsFreak from '../../../build/main/features/core/lyrics/source_lyricsFreak';
 
 import lyricsSourceSpec from './_lyricsSource_spec';
 import { validSongs, invalidSongs } from '../testdata/lyrics';
@@ -46,8 +47,9 @@ describe('Lyrics Resolver', () => {
       .catch(() => done(new Error('Failed to fetch lyrics in this test')));
   });
 
-  lyricsSourceSpec(attemptLyricsWikia, (song) => `${song.artist}:${song.title}`, 'Lyrics Wikia');
+  lyricsSourceSpec(attemptLyricsWikia, (song) => [`${song.artist}:${song.title}`], 'Lyrics Wikia');
   lyricsSourceSpec(attemptMetroLyrics, (song) =>
-    `${song.title.toLowerCase().replace(/ /g, '-')}-lyrics-${song.artist.toLowerCase().replace(/ /g, '-')}`
+    [`${song.title.toLowerCase().replace(/ /g, '-')}-lyrics-${song.artist.toLowerCase().replace(/ /g, '-')}`]
   , 'Metro Lyrics');
+  lyricsSourceSpec(attemptLyricsFreak, (song) => [song.title, song.artist], 'Metro Lyrics');
 });
