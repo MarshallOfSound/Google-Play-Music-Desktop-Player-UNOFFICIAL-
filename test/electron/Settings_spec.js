@@ -1,6 +1,7 @@
 // Pre-run
 import chai from 'chai';
 import chaiFs from 'chai-fs';
+import fs from 'fs';
 
 // Actual Test Imports
 import Settings from '../../build/main/utils/Settings';
@@ -54,6 +55,38 @@ describe('Settings', () => {
     });
     settings.set('test_key', 'test_value_2');
     hookCalled.should.be.equal(true);
+  });
+
+  it('should retry when loadig JSON failed', (done) => {
+    const errorCalls = [];
+    fs.writeFileSync(settings.PATH, 'BAD_JSON');
+    global.Logger = {
+      error: (...args) => errorCalls.push(args),
+    };
+    settings._load();
+    setTimeout(() => {
+      errorCalls.forEach((errorCall) => {
+        errorCall[0].should.be.equal('Failed to load settings JSON file, retyring in 10 milliseconds');
+      });
+      errorCalls.length.should.be.gt(2);
+      fs.writeFileSync(settings.PATH, '{"foo_key":"bar_value"}');
+      settings.get('foo_key', 'default').should.be.equal('default');
+      setTimeout(() => {
+        settings.get('foo_key', 'default').should.be.equal('bar_value');
+        done();
+      }, 15);
+    }, 35);
+  });
+
+  it('should instantly save when calling _save with force parameter', () => {
+    settings.data = {};
+    settings.set('foo_key', 'bar_value');
+    settings.set('foo_key2', 'bar_value2');
+    JSON.parse(fs.readFileSync(settings.PATH), 'utf8').should.not.have.property('foo_key');
+    JSON.parse(fs.readFileSync(settings.PATH), 'utf8').should.not.have.property('foo_key2');
+    settings._save(true);
+    JSON.parse(fs.readFileSync(settings.PATH), 'utf8').should.have.property('foo_key');
+    JSON.parse(fs.readFileSync(settings.PATH), 'utf8').should.have.property('foo_key2');
   });
 
   describe('when uncoupled', () => {
