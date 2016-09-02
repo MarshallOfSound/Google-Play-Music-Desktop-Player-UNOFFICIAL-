@@ -6,5 +6,8 @@ window.addEventListener('load', () => {
 
 window.addEventListener('online', () => {
   document.body.classList.remove('offline');
-  document.querySelector('webview').reload();
+  // DEV: This is currently fired when resuming from sleep
+  //      Disabling this line till we can figure it out
+
+  // document.querySelector('webview').reload();
 });
