@@ -39,10 +39,11 @@ class Settings {
 
   set(key, value) {
     if (this.coupled) {
-      if (this._hooks[key] && this.data[key] !== value) {
+      const valChanged = this.data[key] !== value;
+      this.data[key] = value;
+      if (this._hooks[key] && valChanged) {
         this._hooks[key].forEach((hookFn) => hookFn(value));
       }
-      this.data[key] = value;
       this._save();
     }
   }
