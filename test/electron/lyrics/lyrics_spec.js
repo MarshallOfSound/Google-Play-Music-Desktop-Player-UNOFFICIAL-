@@ -51,5 +51,5 @@ describe('Lyrics Resolver', () => {
   lyricsSourceSpec(attemptMetroLyrics, (song) =>
     [`${song.title.toLowerCase().replace(/ /g, '-')}-lyrics-${song.artist.toLowerCase().replace(/ /g, '-')}`]
   , 'Metro Lyrics');
-  lyricsSourceSpec(attemptLyricsFreak, (song) => [song.title, song.artist], 'Metro Lyrics');
+  // lyricsSourceSpec(attemptLyricsFreak, (song) => [song.title, song.artist], 'Lyrics Freak');
 });
