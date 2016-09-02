@@ -173,6 +173,10 @@ function handleZoom() {
   });
 }
 
+const fixChromecastButton = () => {
+  cssRule('#player paper-icon-button[data-id="cast"] { display: inline-block; }');
+};
+
 
 // Modify the GUI after everything is sufficiently loaded
 window.wait(() => {
@@ -182,4 +186,5 @@ window.wait(() => {
   installDesktopSettingsButton();
   handleZoom();
   installNowPlayingMenu();
+  fixChromecastButton();
 });
