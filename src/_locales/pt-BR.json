@@ -74,6 +74,7 @@
   "settings-option-enable-system-borders-details": "Requer reinicialização",
   "settings-option-enable-voice": "Habilitar Controles de Voz",
   "settings-option-enable-voice-details": "Habilita controle de voz do GPMDP, recurso experimental",
+  "settings-option-enable-taskbar-progress": "",
 
   "settings-option-hotkey-explanation": "Teclas de mídia padrão continuarão a funcionar independente das configurações. Estas configurações apenas complementam as demais teclas.",
   "settings-option-hotkey-explanation-2": "Uuue a tecla <i>\"Esc\"</i> para redefinir o atalho.",
