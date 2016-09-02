@@ -4,7 +4,7 @@ import { givenAsync } from 'mocha-testdata';
 
 import attemptLyricsWikia from '../../../build/main/features/core/lyrics/source_lyricsWikia';
 import attemptMetroLyrics from '../../../build/main/features/core/lyrics/source_metroLyrics';
-import attemptLyricsFreak from '../../../build/main/features/core/lyrics/source_lyricsFreak';
+// import attemptLyricsFreak from '../../../build/main/features/core/lyrics/source_lyricsFreak';
 
 import lyricsSourceSpec from './_lyricsSource_spec';
 import { validSongs, invalidSongs } from '../testdata/lyrics';
