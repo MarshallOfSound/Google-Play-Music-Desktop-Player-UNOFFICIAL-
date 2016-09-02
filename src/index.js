@@ -33,6 +33,8 @@ updateShortcuts();
   // be closed automatically when the JavaScript object is garbage collected.
   let mainWindow = null;
 
+  const windowStateKeeper = require('electron-window-state');
+
   // DEV: Make the app single instance
   const shouldQuit = app.makeSingleInstance(() => {
     if (mainWindow) {
@@ -112,6 +114,12 @@ updateShortcuts();
   // initialization and is ready to create browser windows.
   app.on('ready', () => {
     mainWindow = new BrowserWindow(generateBrowserConfig());
+
+    // Set full screen if previous state was full screen
+    const mainWindowState = windowStateKeeper();
+    mainWindow.setFullScreen(mainWindowState.isFullScreen);
+    mainWindowState.manage(mainWindow);
+
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
     const position = Settings.get('position');
