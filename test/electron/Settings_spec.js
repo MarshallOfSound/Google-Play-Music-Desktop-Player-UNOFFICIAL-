@@ -52,6 +52,7 @@ describe('Settings', () => {
     settings.onChange('test_key', (newValue) => {
       hookCalled = true;
       newValue.should.be.equal('test_value_2');
+      settings.get('test_key', 'null').should.be.equal('test_value_2');
     });
     settings.set('test_key', 'test_value_2');
     hookCalled.should.be.equal(true);
