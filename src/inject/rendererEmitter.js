@@ -45,6 +45,8 @@ class Emitter {
         }
       }
     });
+
+    this._internalEventWrappers = {};
   }
 
   fire(event, ...details) {
@@ -98,13 +100,16 @@ class Emitter {
   }
 
   on(event, fn) {
-    ipcRenderer.on(event, (internalEvent, ...internalDetails) => {
+    const internalMethod = (internalEvent, ...internalDetails) => {
       if (this.ready) {
         this._call(fn, internalEvent, ...internalDetails);
       } else {
         this.q.push(this._call.bind(this, fn, internalEvent, ...internalDetails));
       }
-    });
+    };
+    this._internalEventWrappers[event] = this._internalEventWrappers[event] || {};
+    this._internalEventWrappers[event][fn] = internalMethod;
+    ipcRenderer.on(event, internalMethod);
   }
 
   once(event, fn) {
@@ -115,6 +120,12 @@ class Emitter {
         this.q.push(this._call.bind(this, fn, internalEvent, ...internalDetails));
       }
     });
+  }
+
+  off(event, fn) {
+    if (this._internalEventWrappers[event] && this._internalEventWrappers[event][fn]) {
+      ipcRenderer.removeListener(event, this._internalEventWrappers[event][fn]);
+    }
   }
 
   _call(fn, internalEvent, ...internalDetails) {
