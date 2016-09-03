@@ -4,10 +4,10 @@ Emitter.on('theme:updateColor', (event, newColor) => {
   Emitter.sendToAll('theme:updateColor', newColor);
 });
 
-Emitter.on('theme:updateState', (event, state) => {
-  Settings.set('theme', state.state);
-  Emitter.sendToGooglePlayMusic('theme:updateState', state);
-  Emitter.sendToAll('theme:updateState', state);
+Emitter.on('settings:change:theme', (event, state) => {
+  Settings.set('theme', state);
+  Emitter.sendToGooglePlayMusic('theme:updateState', { state });
+  Emitter.sendToAll('theme:updateState', { state });
 });
 
 Emitter.on('theme:updateType', (event, newType) => {
