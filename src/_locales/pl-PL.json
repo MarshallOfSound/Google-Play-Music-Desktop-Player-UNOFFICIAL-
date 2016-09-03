@@ -42,7 +42,7 @@
 
   "modal-confirmTray-title": "Chcieliśmy tylko uprzedzić",
   "modal-confirmTray-content": "Zamknięcie głównego okna aplikacji (czyli to, co właśnie próbowałeś zrobić) w rzeczywistości zminimalizuje odtwarzacz do systemowego paska narzędzi. Możesz zmienić to ustawienie w oknie Ustawień Aplikacji.",
-  "modal-confirmOpenPort-content": "Nie można udzielić dostępu do API, ponieważ operacja została zablokowana przez Firewall. Możemy go dla Ciebie odblokować, ale ostrzegamy, że może to wymagać uprawnień administratora",
+  "modal-confirmOpenPort-content": "Nie można udzielić dostępu do API, ponieważ operacja została zablokowana przez Windows Firewall. Możemy go dla Ciebie odblokować, ale ostrzegamy, że może to wymagać uprawnień administratora",
   "modal-confirmUpdate-title": "Dostępna aktualizacja",
   "modal-confirmUpdate-content": "Hurra, wygląda na to, że dostępna jest nowa wersja Google Play Music Desktop Player. Ta aktualizacja powinna przynieść całe mnóstwo nowych funkcji i poprawek. Rekomendujemy aktualizacje aplikacji najszybciej jak to możliwe, aby zapewnić najlepsze wrażenia korzystania z niej. Mamy nadzieję, że polubisz nową wersję!",
   "modal-confirmUninstall-title": "Jest taka sprawa...",
