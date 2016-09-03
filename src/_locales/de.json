@@ -74,6 +74,7 @@
   "settings-option-enable-system-borders-details": "Erfordert einen Neustart",
   "settings-option-enable-voice": "Aktiviere Sprachsteuerung",
   "settings-option-enable-voice-details": "Sprachsteuerung für GPMDP, dies ist experimentell",
+  "settings-option-enable-taskbar-progress": "",
 
   "settings-option-hotkey-explanation": "Die grundlegenden Medientasten werden dennoch funktionieren.  Diese Einstellungen kommen zu den Standardeinstellungen hinzu.",
   "settings-option-hotkey-explanation-2": "Zum Zurücksetzen der Tastenkombination benutze die <i>\"Escape\"</i>-Taste.",
