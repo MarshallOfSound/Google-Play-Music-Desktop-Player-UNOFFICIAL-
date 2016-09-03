@@ -1,8 +1,8 @@
 if (window.$ && window.$.ajax) {
   require('./customWindowThemeHandler');
 
-  Emitter.on('theme:updateState', (event, state) => {
-    if (!state.state) {
+  Emitter.on('settings:change:theme', (event, state) => {
+    if (!state) {
       document.body.removeAttribute('theme');
     } else {
       document.body.setAttribute('theme', 'on');

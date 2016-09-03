@@ -11,10 +11,10 @@ if (process.env.TEST_SPEC) {
 Settings.uncouple();
 
 require(`./${process.platform}`);
+require('./translations');
 
 document.addEventListener('DOMContentLoaded', () => {
   require('./windowThemeHandler');
-  require('./translations');
 
   setTimeout(() => require('electron').remote.getCurrentWindow().show(), 100);
 

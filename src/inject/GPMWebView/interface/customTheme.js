@@ -8,8 +8,8 @@ Emitter.on('theme:updateColor', (event, customColor) => {
   customStyle.innerHTML = window.GPMTheme.substituteColors(customStyleString);
 });
 
-Emitter.on('theme:updateState', (event, state) => {
-  if (state.state) {
+Emitter.on('settings:change:theme', (event, state) => {
+  if (state) {
     window.GPMTheme.enable();
   } else {
     window.GPMTheme.disable();
