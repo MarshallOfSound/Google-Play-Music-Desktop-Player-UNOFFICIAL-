@@ -74,7 +74,7 @@
   "settings-option-enable-system-borders-details": "Vyžaduje reštart",
   "settings-option-enable-voice": "Povoliť ovládanie hlasom",
   "settings-option-enable-voice-details": "Hands free ovládanie hlasom pre GPMDP, toto je experimentálna funkcia",
-  "settings-option-enable-taskbar-progress": "",
+  "settings-option-enable-taskbar-progress": "Zobraziť priebeh skladby na panely úloh",
 
   "settings-option-hotkey-explanation": "Predvolené mediálne klávesy budú stále fungovať bez ohľadu na tieto nastavenia.  Tieto nastavenia sú ako doplnok k predvoleným.",
   "settings-option-hotkey-explanation-2": "Použite klávesu <i>\"Escape\"</i> pre obnovenie skratky.",
