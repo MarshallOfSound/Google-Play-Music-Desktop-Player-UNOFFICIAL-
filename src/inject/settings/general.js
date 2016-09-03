@@ -30,3 +30,4 @@ settingsToggle('native-frame', 'nativeFrame', null);
 settingsToggle('save-page', 'savePage', true);
 settingsToggle('scroll-lyrics', 'scrollLyrics', true);
 settingsToggle('auto-launch', 'auto-launch');
+settingsToggle('taskbar-progress', 'enableTaskbarProgress');
