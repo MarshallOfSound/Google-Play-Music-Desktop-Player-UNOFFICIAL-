@@ -44,7 +44,10 @@ class Settings {
       if (this._hooks[key] && valChanged) {
         this._hooks[key].forEach((hookFn) => hookFn(value));
       }
-      Emitter.sendToAll(`settings:change:${key}`, value, key);
+      if (!['position', 'size', 'mini-position', 'mini-size'].includes(key)) {
+        Emitter.sendToAll(`settings:change:${key}`, value, key);
+        Emitter.sendToGooglePlayMusic(`settings:change:${key}`, value, key);
+      }
       this._save();
     }
   }
