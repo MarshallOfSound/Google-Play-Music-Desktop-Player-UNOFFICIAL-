@@ -82,7 +82,7 @@ const defaultPackageConf = {
   platform: 'all',
   prune: true,
   version,
-  'version-string': {
+  win32metadata: {
     CompanyName: packageJSON.author.name,
     FileDescription: packageJSON.productName,
     ProductName: packageJSON.productName,
