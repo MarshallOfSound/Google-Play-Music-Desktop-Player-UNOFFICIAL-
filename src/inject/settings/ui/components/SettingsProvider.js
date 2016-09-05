@@ -18,9 +18,14 @@ export default class SettingsProvider extends Component {
       } else {
         initialState[settingsKey] = Settings.get(settingsKey);
       }
-      Emitter.on(`settings:change:${settingsKey}`, this.handleKeyChange);
     });
     this.state = initialState;
+  }
+
+  componentDidMount() {
+    this.props.keys.forEach((settingsKey) => {
+      Emitter.on(`settings:change:${settingsKey}`, this.handleKeyChange);
+    });
   }
 
   componentWillUnmount() {
