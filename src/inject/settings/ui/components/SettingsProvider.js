@@ -59,7 +59,7 @@ export const requireSettings = (component, settingsArray, settingsDefaults = {})
   class WrappedSettingsProvider extends Component {
     render() {
       return (
-        <SettingsProvider component={component} keys={settingsArray} defaults={settingsDefaults} />
+        <SettingsProvider component={component} componentProps={this.props} keys={settingsArray} defaults={settingsDefaults} />
       );
     }
   };
