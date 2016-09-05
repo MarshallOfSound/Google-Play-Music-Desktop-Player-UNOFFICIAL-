@@ -40,7 +40,7 @@
     "prestart": "pre-flight && node vendor/mac_patch_dev.js",
     "start": "electron . --dev",
     "watch": "gulp watch",
-    "_remap": "remap-istanbul -i coverage/coverage-final.json -o coverage -t html && remap-istanbul -i coverage/coverage-final.json -o coverage/lcov.info -t lcovonly && npm run _coveralls",
+    "_remap": "remap-istanbul -i coverage/coverage-final.json -o coverage -t html && remap-istanbul -i coverage/coverage-final.json -o coverage/lcov.info -t lcovonly",
     "_coveralls": "node test/istanbul-patch-lcov.js | node node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
