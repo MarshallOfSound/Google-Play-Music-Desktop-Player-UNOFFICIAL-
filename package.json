@@ -40,7 +40,8 @@
     "prestart": "pre-flight && node vendor/mac_patch_dev.js",
     "start": "electron . --dev",
     "watch": "gulp watch",
-    "_remap": "remap-istanbul -i coverage/coverage-final.json -o coverage -t html && remap-istanbul -i coverage/coverage-final.json -o coverage/lcov.info -t lcovonly"
+    "_remap": "remap-istanbul -i coverage/coverage-final.json -o coverage -t html && remap-istanbul -i coverage/coverage-final.json -o coverage/lcov.info -t lcovonly && npm run _coveralls",
+    "_coveralls": "node test/istanbul-patch-lcov.js | node node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
     "type": "git",
@@ -93,6 +94,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
     "chai-fs": "chaijs/chai-fs",
+    "coveralls": "^2.11.12",
     "cross-env": "^2.0.1",
     "devtron": "^1.0.1",
     "electron-devtools-installer": "^2.0.1",
