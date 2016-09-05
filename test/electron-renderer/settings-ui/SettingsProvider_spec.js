@@ -5,6 +5,7 @@ import chai from 'chai';
 import { mount } from 'enzyme';
 
 import SettingsProvider, { requireSettings } from '../../../build/inject/settings/ui/components/SettingsProvider';
+import mockSettings, { getVars } from './_mockSettings';
 
 chai.should();
 
@@ -12,38 +13,18 @@ const NullComponent = () =>
   (<span>NullComponent</span>);
 NullComponent.displayName = 'NullComponent';
 
-describe.only('<SettingsProvider />', () => {
-  let fired = {};
-  let hooks = {};
-  let queries = {};
-  let unhooks = {};
+describe('<SettingsProvider />', () => {
+  let fired;
+  let hooks;
+  let queries;
+  let unhooks;
 
   beforeEach(() => {
-    fired = {};
-    hooks = {};
-    queries = {};
-    unhooks = {};
-    global.Settings = {
-      get: (key, def) => {
-        queries[key] = queries[key] || 0;
-        queries[key]++;
-        return def || key;
-      },
-    };
-    global.Emitter = {
-      fire: (what, ...args) => {
-        fired[what] = fired[what] || [];
-        fired[what].push(args);
-      },
-      on: (what, fn) => {
-        hooks[what] = hooks[what] || [];
-        hooks[what].push(fn);
-      },
-      off: (what, fn) => {
-        unhooks[what] = unhooks[what] || [];
-        unhooks[what].push(fn);
-      },
-    };
+    mockSettings();
+    fired = getVars().fired;
+    hooks = getVars().hooks;
+    queries = getVars().queries;
+    unhooks = getVars().unhooks;
   });
 
   it('should load initial key values', () => {
