@@ -4,14 +4,13 @@ let queries = {};
 let unhooks = {};
 let _values = {};
 
-export const getVars = () => {
-  return {
+export const getVars = () =>
+  ({
     fired,
     hooks,
     queries,
     unhooks,
-  };
-};
+  });
 
 export const fakeSettings = (key, value) => {
   _values[key] = value;
