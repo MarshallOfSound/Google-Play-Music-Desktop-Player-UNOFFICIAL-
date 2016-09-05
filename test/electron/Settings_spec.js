@@ -17,6 +17,10 @@ describe('Settings', () => {
 
   beforeEach(() => {
     settings = new Settings('test');
+    global.Emitter = {
+      sendToAll: () => {},
+      sendToGooglePlayMusic: () => {},
+    };
   });
 
   it('should initialize with default settings', () => {
