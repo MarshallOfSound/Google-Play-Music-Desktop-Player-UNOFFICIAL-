@@ -19,12 +19,16 @@ global.API_PORT = 4202; // Travis has something running on 5672
 describe('WebSocketAPI', () => {
   before(() => {
     // Moch the required Settings API
+    const _values = {};
     global.Settings = {
       get: (key, def) => {
         if (key === 'playbackAPI') {
           return true;
         }
-        return def;
+        return _values[key] || def;
+      },
+      set: (key, value) => {
+        _values[key] = value;
       },
       onChange: () => {},
       __TEST__: true,
@@ -214,6 +218,106 @@ describe('WebSocketAPI', () => {
         });
       shouldUpdateTest('time', '_setTime', [100, 101], { current: 100, total: 101 });
       shouldUpdateTest('lyrics', '_setPlaybackSongLyrics', 'LA LA LA DOO WOP');
+    });
+
+    describe('when sending commands', () => {
+      beforeEach((done) => {
+        ws.on('open', () => {
+          spy = sinon.spy();
+          ws.on('message', (msg) => spy(JSON.parse(msg)));
+
+          const checker = setInterval(() => {
+            if (spy.callCount === INITIAL_DATA_COUNT) {
+              spy = sinon.spy();
+              ws.on('message', (msg) => spy(JSON.parse(msg)));
+              clearInterval(checker);
+              done();
+            }
+          }, 1);
+        });
+      });
+
+      const playPauseCMD = JSON.stringify({ namespace: 'playback', method: 'playPause' });
+      const connectCMD = JSON.stringify({ namespace: 'connect', method: 'connect', arguments: ['Test Device'] });
+      const connectGoodCMD = JSON.stringify({ namespace: 'connect', method: 'connect', arguments: ['Test Device', '0000'] });
+      const connectBadCMD = JSON.stringify({ namespace: 'connect', method: 'connect', arguments: ['Test Device', '1111'] });
+      let permCode = false;
+
+      it('should reject commands when not authoenticated', (done) => {
+        ws.send(playPauseCMD);
+
+        ws.once('message', (msg) => {
+          const payload = JSON.parse(msg);
+          payload.channel.should.be.equal('connect');
+          payload.payload.should.be.equal('CODE_REQUIRED');
+          done();
+        });
+      });
+
+      it('should ask for a code when connecting and not authoenticated', (done) => {
+        ws.send(connectCMD);
+
+        ws.once('message', (msg) => {
+          const payload = JSON.parse(msg);
+          payload.channel.should.be.equal('connect');
+          payload.payload.should.be.equal('CODE_REQUIRED');
+          done();
+        });
+      });
+
+      it('should ask for a code when connecting and not authenticated when sending an incorrect code', (done) => {
+        ws.send(connectBadCMD);
+
+        ws.once('message', (msg) => {
+          const payload = JSON.parse(msg);
+          payload.channel.should.be.equal('connect');
+          payload.payload.should.be.equal('CODE_REQUIRED');
+          done();
+        });
+      });
+
+      it('should respond with a permenant code when connecting and not authenticated when sending a correct code', (done) => {
+        ws.send(connectGoodCMD);
+
+        ws.once('message', (msg) => {
+          const payload = JSON.parse(msg);
+          payload.channel.should.be.equal('connect');
+          payload.payload.should.not.be.equal('CODE_REQUIRED');
+          permCode = payload.payload;
+          done();
+        });
+      });
+
+      it('should not respond when connecting and not authenticated when sending a valid permenant code', (done) => {
+        permCode.should.not.be.equal(false);
+        ws.send(JSON.stringify({ namespace: 'connect', method: 'connect', arguments: ['Test Device', permCode] }));
+
+        let msgRec = false;
+        ws.once('message', () => {
+          msgRec = true;
+        });
+
+        setTimeout(() => {
+          msgRec.should.not.be.equal(true);
+          done();
+        }, 20);
+      });
+
+      it('should accept commands once authenticated', (done) => {
+        permCode.should.not.be.equal(false);
+        ws.send(JSON.stringify({ namespace: 'connect', method: 'connect', arguments: ['Test Device', permCode] }));
+        ws.send(playPauseCMD);
+
+        let msgRec = false;
+        ws.once('message', () => {
+          msgRec = true;
+        });
+
+        setTimeout(() => {
+          msgRec.should.not.be.equal(true);
+          done();
+        }, 20);
+      });
     });
 
     afterEach(() => {
