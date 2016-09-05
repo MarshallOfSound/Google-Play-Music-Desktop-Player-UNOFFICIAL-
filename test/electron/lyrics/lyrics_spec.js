@@ -4,7 +4,7 @@ import { givenAsync } from 'mocha-testdata';
 
 import attemptLyricsWikia from '../../../build/main/features/core/lyrics/source_lyricsWikia';
 import attemptMetroLyrics from '../../../build/main/features/core/lyrics/source_metroLyrics';
-// import attemptLyricsFreak from '../../../build/main/features/core/lyrics/source_lyricsFreak';
+import attemptLyricsFreak from '../../../build/main/features/core/lyrics/source_lyricsFreak';
 
 import lyricsSourceSpec from './_lyricsSource_spec';
 import { validSongs, invalidSongs } from '../testdata/lyrics';
@@ -21,6 +21,20 @@ const resolveLyrics = require('../../../build/main/features/core/lyrics').resolv
 
 describe('Lyrics Resolver', () => {
   givenAsync(...validSongs).it('should resolve when given a valid song object', (done, song) => {
+    resolveLyrics(song)
+      .then((lyrics) => {
+        lyrics.should.be.a('string');
+        done();
+      })
+      .catch(() => done(new Error(`Failed to fetch lyrics for song: ${song.title}`)));
+  });
+
+  it('should resolve when given a valid song object with brackets', (done) => {
+    const song = {
+      title: '(Just One Bracketted) One Call Away',
+      artist: 'Charlie Puth',
+      album: 'Nine Track Mind',
+    };
     resolveLyrics(song)
       .then((lyrics) => {
         lyrics.should.be.a('string');
@@ -51,5 +65,7 @@ describe('Lyrics Resolver', () => {
   lyricsSourceSpec(attemptMetroLyrics, (song) =>
     [`${song.title.toLowerCase().replace(/ /g, '-')}-lyrics-${song.artist.toLowerCase().replace(/ /g, '-')}`]
   , 'Metro Lyrics');
-  // lyricsSourceSpec(attemptLyricsFreak, (song) => [song.title, song.artist], 'Lyrics Freak');
+  if (process.env.NODE_ENV === 'coverage') {
+    lyricsSourceSpec(attemptLyricsFreak, (song) => [song.title, song.artist], 'Lyrics Freak');
+  }
 });
