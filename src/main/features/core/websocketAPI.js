@@ -70,6 +70,8 @@ PlaybackAPI.on('change:time', (timeObj) => {
 const requireCode = (ws) => {
   authCode = Math.floor(Math.random() * 9999).toString();
   authCode = '0000'.substr(0, 4 - authCode.length) + authCode;
+  // DEV: Always be 000 when testing
+  authCode = Settings.__TEST__ ? '0000' : authCode;
   Emitter.sendToWindowsOfName('main', 'show:code_controller', {
     authCode,
   });
