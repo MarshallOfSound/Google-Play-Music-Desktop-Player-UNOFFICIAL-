@@ -46,7 +46,8 @@ test_script:
   - npm --version
   # run tests
   - npm test
-  - npm run test-electron -- -R mocha-appveyor-reporter
+  - npm run test-electron-main -- -R mocha-appveyor-reporter
+  - npm run test-electron-renderer -- -R mocha-appveyor-reporter
 
 build_script:
 - cmd: npm run make:win
