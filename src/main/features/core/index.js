@@ -1,7 +1,6 @@
 import './keyboardShortcuts';
 import './persistAppState';
 import './controlBar';
-import './customTheme';
 import './debug';
 import './desktopSettings';
 import './errorHandler';

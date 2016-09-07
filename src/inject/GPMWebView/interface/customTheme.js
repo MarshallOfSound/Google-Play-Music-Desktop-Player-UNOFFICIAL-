@@ -1,7 +1,7 @@
 const customStyle = document.createElement('style');
 let customStyleString = '';
 
-Emitter.on('theme:updateColor', (event, customColor) => {
+Emitter.on('settings:change:themeColor', (event, customColor) => {
   window.GPMTheme.updateTheme({
     foreSecondary: customColor,
   });
@@ -16,7 +16,7 @@ Emitter.on('settings:change:theme', (event, state) => {
   }
 });
 
-Emitter.on('theme:updateType', (event, type) => {
+Emitter.on('settings:change:themeType', (event, type) => {
   window.GPMTheme.updateTheme({
     type,
   });

@@ -43,4 +43,7 @@ export default () => {
       unhooks[what].push(fn);
     },
   };
+  global.TranslationProvider = {
+    query: str => str,
+  };
 };
