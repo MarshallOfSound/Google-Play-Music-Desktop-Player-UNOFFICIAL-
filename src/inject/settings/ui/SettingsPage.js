@@ -3,7 +3,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Tabs, Tab } from 'material-ui/Tabs';
 
 import GeneralTab from './components/tabs/GeneralTab';
+import HotkeyTab from './components/tabs/HotkeyTab';
 import MiniTab from './components/tabs/MiniTab';
+
 import generateTheme from './utils/theme';
 
 const styles = {
@@ -67,7 +69,9 @@ export default class SettingsPage extends Component {
             <MiniTab />
           </Tab>
           <Tab label={TranslationProvider.query('title-settings-lastfm')} />
-          <Tab label={TranslationProvider.query('title-settings-hotkeys')} />
+          <Tab label={TranslationProvider.query('title-settings-hotkeys')}>
+            <HotkeyTab />
+          </Tab>
           <Tab label={TranslationProvider.query('title-settings-audio')} />
           <Tab label={TranslationProvider.query('title-settings-style')} />
         </Tabs>
