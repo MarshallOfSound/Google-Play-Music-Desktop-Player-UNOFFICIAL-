@@ -27,12 +27,12 @@ const redrawCustomStyles = () => {
   customStyle.innerHTML = hackedGPMTheme.substituteColors(styles);
 };
 
-Emitter.on('theme:updateColor', (event, newCustomColor) => {
+Emitter.on('settings:change:themeColor', (event, newCustomColor) => {
   customColor = newCustomColor;
   redrawCustomStyles();
 });
 
-Emitter.on('theme:updateType', (event, newThemeType) => {
+Emitter.on('settings:change:themeType', (event, newThemeType) => {
   themeType = newThemeType;
   redrawCustomStyles();
 });

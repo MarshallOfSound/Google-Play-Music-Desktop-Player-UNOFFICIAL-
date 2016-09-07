@@ -4,7 +4,7 @@ import React from 'react';
 import chai, { expect } from 'chai';
 import { mount } from 'enzyme';
 
-import SettingsTab from '../../../build/inject/settings/ui/components/SettingsTab';
+import SettingsTabWrapper from '../../../build/inject/settings/ui/components/tabs/SettingsTabWrapper';
 
 chai.should();
 
@@ -12,14 +12,14 @@ const NullComponent = () =>
   (<span>NullComponent</span>);
 NullComponent.displayName = 'NullComponent';
 
-describe('<SettingsTab />', () => {
+describe('<SettingsTabWrapper />', () => {
   it('should render as a wrapper with no state', () => {
-    const component = mount(<SettingsTab><NullComponent /></SettingsTab>);
+    const component = mount(<SettingsTabWrapper><NullComponent /></SettingsTabWrapper>);
     expect(component.state()).to.be.equal(null);
   });
 
   it('should render the inner child component', () => {
-    const component = mount(<SettingsTab><NullComponent /></SettingsTab>);
+    const component = mount(<SettingsTabWrapper><NullComponent /></SettingsTabWrapper>);
     component.find(NullComponent).length.should.be.ok;
   });
 });

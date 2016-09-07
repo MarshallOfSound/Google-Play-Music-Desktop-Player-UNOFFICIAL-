@@ -5,7 +5,21 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import { darken } from 'material-ui/utils/colorManipulator';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import GeneralTab from './components/GeneralTab';
+import GeneralTab from './components/tabs/GeneralTab';
+import MiniTab from './components/tabs/MiniTab';
+
+const styles = {
+  tab: {
+    overflow: 'auto',
+    flex: 1,
+  },
+  tabContainer: {
+    height: '100%',
+    flex: 1,
+    flexDirection: 'column',
+    display: 'flex',
+  },
+};
 
 export default class SettingsPage extends Component {
   constructor(...args) {
@@ -43,6 +57,7 @@ export default class SettingsPage extends Component {
   }
 
   render() {
+    const themePalette = {};
     let primaryColor = '#FF5722';
     let textColor = darkBlack;
     let alternateTextColor = white;
@@ -56,20 +71,30 @@ export default class SettingsPage extends Component {
         primaryColor = this.state.themeColor;
       }
     }
-    const themePalette = {
-      primary1Color: primaryColor,
-      primary2Color: darken(primaryColor, 0.2),
-      textColor,
-      alternateTextColor,
-    };
+    themePalette.primary1Color = primaryColor;
+    themePalette.primary2Color = darken(primaryColor, 0.2);
+    themePalette.textColor = textColor;
+    themePalette.alternateTextColor = alternateTextColor;
+
+    const muiTheme = getMuiTheme({ palette: themePalette });
+    if (this.state.theme && this.state.themeType === 'FULL') {
+      muiTheme.tabs.backgroundColor = '#121212';
+      muiTheme.tabs.textColor = white;
+      muiTheme.tabs.selectedTextColor = this.state.themeColor;
+      muiTheme.inkBar.backgroundColor = this.state.themeColor;
+    } else {
+      muiTheme.inkBar.backgroundColor = white;
+    }
 
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme({ palette: themePalette })}>
-        <Tabs>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <Tabs style={styles.tabContainer} contentContainerStyle={styles.tab}>
           <Tab label={TranslationProvider.query('title-settings-general')}>
             <GeneralTab />
           </Tab>
-          <Tab label={TranslationProvider.query('title-settings-mini')} />
+          <Tab label={TranslationProvider.query('title-settings-mini')}>
+            <MiniTab />
+          </Tab>
           <Tab label={TranslationProvider.query('title-settings-lastfm')} />
           <Tab label={TranslationProvider.query('title-settings-hotkeys')} />
           <Tab label={TranslationProvider.query('title-settings-audio')} />
