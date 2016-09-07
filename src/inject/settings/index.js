@@ -50,7 +50,7 @@ if (window.$) {
     // };
     //
     // redrawTheme();
-    // Emitter.on('theme:updateColor', (event, customColor) => {
+    // Emitter.on('settings:change:themeColor', (event, customColor) => {
     //   redrawTheme(customColor);
     // });
   });

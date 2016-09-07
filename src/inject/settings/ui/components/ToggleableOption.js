@@ -20,6 +20,12 @@ class SettingsCheckbox extends Component {
         label={this.props.label}
         checked={this.props[this.props.settingsKey]}
         onCheck={this.onChange}
+        style={{
+          marginTop: 4,
+        }}
+        labelStyle={{
+          fontSize: 16,
+        }}
       />
     );
   }

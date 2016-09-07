@@ -4,9 +4,12 @@ const settingsPanelStyle = {
   padding: 12,
 };
 
-export default class SettingsTab extends Component {
+export default class SettingsTabWrapper extends Component {
   static propTypes = {
-    children: PropTypes.array.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object,
+    ]).isRequired,
   };
 
   render() {

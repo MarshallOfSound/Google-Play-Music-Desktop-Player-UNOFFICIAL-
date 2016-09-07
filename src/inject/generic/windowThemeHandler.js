@@ -8,7 +8,7 @@ if (window.$ && window.$.ajax) {
       document.body.setAttribute('theme', 'on');
     }
   });
-  Emitter.on('theme:updateType', (event, type) => {
+  Emitter.on('settings:change:themeType', (event, type) => {
     if (type === 'FULL') {
       document.body.setAttribute('full', 'full');
       document.body.removeAttribute('light');
@@ -50,7 +50,7 @@ if (window.$ && window.$.ajax) {
     document.body.setAttribute('loaded', 'loaded');
   };
   redrawTheme();
-  Emitter.on('theme:updateColor', (event, customColor) => {
+  Emitter.on('settings:change:themeColor', (event, customColor) => {
     redrawTheme(customColor);
   });
 }
