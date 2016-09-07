@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { darkBlack, white } from 'material-ui/styles/colors';
 import { Tabs, Tab } from 'material-ui/Tabs';
-import { darken } from 'material-ui/utils/colorManipulator';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import GeneralTab from './components/tabs/GeneralTab';
 import MiniTab from './components/tabs/MiniTab';
+import generateTheme from './utils/theme';
 
 const styles = {
   tab: {
@@ -57,34 +55,7 @@ export default class SettingsPage extends Component {
   }
 
   render() {
-    const themePalette = {};
-    let primaryColor = '#FF5722';
-    let textColor = darkBlack;
-    let alternateTextColor = white;
-    if (this.state.theme) {
-      primaryColor = this.state.themeColor;
-      if (this.state.themeType === 'FULL') {
-        // primaryColor = '#121212';
-        textColor = white;
-        alternateTextColor = darkBlack;
-      } else {
-        primaryColor = this.state.themeColor;
-      }
-    }
-    themePalette.primary1Color = primaryColor;
-    themePalette.primary2Color = darken(primaryColor, 0.2);
-    themePalette.textColor = textColor;
-    themePalette.alternateTextColor = alternateTextColor;
-
-    const muiTheme = getMuiTheme({ palette: themePalette });
-    if (this.state.theme && this.state.themeType === 'FULL') {
-      muiTheme.tabs.backgroundColor = '#121212';
-      muiTheme.tabs.textColor = white;
-      muiTheme.tabs.selectedTextColor = this.state.themeColor;
-      muiTheme.inkBar.backgroundColor = this.state.themeColor;
-    } else {
-      muiTheme.inkBar.backgroundColor = white;
-    }
+    const muiTheme = generateTheme(this.state.theme, this.state.themeColor, this.state.themeType);
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>

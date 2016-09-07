@@ -5,7 +5,7 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SettingsTabWrapper from './tabs/SettingsTabWrapper';
 import { requireSettings } from './SettingsProvider';
 
-import { themeColors } from '../constants';
+import { themeColors } from '../utils/constants';
 
 class ThemeOptions extends Component {
   static propTypes = {
