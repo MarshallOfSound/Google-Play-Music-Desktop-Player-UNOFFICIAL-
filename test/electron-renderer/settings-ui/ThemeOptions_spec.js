@@ -5,7 +5,7 @@ import chai, { expect } from 'chai';
 import { mount } from 'enzyme';
 
 import ThemeOptions from '../../../build/inject/settings/ui/components/ThemeOptions';
-import { themeColors } from '../../../build/inject/settings/ui/constants';
+import { themeColors } from '../../../build/inject/settings/ui/utils/constants';
 
 import mockSettings, { getVars } from './_mockSettings';
 import materialUIContext from './_materialUIContext';
