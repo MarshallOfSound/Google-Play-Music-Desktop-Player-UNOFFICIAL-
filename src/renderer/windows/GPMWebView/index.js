@@ -1,7 +1,9 @@
 import _ from 'lodash';
 import { remote } from 'electron';
 
-import '../generic';
+global.isGPM = true;
+
+require('../../generic');
 
 // Initialize the global Logger to forward to the main process.
 window.Logger = remote.getGlobal('Logger');
@@ -64,8 +66,5 @@ const waitForExternal = setInterval(() => {
         Logger.error('Emitter fn() threw exception.', e.stack);
       }
     });
-
-    // require('./desktopSettingsTrigger');
-    // require('./hideUI');
   }
 }, 10);

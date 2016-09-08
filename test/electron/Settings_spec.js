@@ -18,6 +18,7 @@ describe('Settings', () => {
   beforeEach(() => {
     settings = new Settings('test');
     global.Emitter = {
+      fire: () => {},
       sendToAll: () => {},
       sendToGooglePlayMusic: () => {},
     };
