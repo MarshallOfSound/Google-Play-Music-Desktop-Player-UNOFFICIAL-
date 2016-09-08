@@ -1,15 +1,30 @@
-import './APICode';
-import './devtools';
-import './goToURL';
-import './uninstall';
-import './updateAvailable';
-import './appDetails';
-import './lyrics';
-import './openPort';
-import './onlineStatus';
+import { remote } from 'electron';
 
-// Anything that requires the DOM needs to go here as of Electron 0.36.6
-document.addEventListener('DOMContentLoaded', () => {
-  require('./webviewLoader');
-  require('./control-bar');
-});
+if (remote.getGlobal('DEV_MODE')) {
+  // Attempt to install DevTron
+  try {
+    if (!remote.BrowserWindow.getDevToolsExtensions().hasOwnProperty('devtron')) {
+      require('devtron').install();
+    }
+  } catch (e) {
+    // Who cares
+  }
+
+  // Attempt to install React Developer Tools
+  try {
+    const devtoolsInstaller = require('electron-devtools-installer');
+    devtoolsInstaller.default(devtoolsInstaller.REACT_DEVELOPER_TOOLS);
+  } catch (err) {
+    // Whoe cares
+  }
+
+  window.addEventListener('load', () => {
+    const webview = document.querySelector('webview');
+    if (!webview) {
+      return;
+    }
+    window.openGPMDevTools = () => {
+      webview.openDevTools();
+    };
+  });
+}

@@ -56,10 +56,6 @@ updateShortcuts();
   }
 
   global.DEV_MODE = process.env['TEST_SPEC'] || argv.development || argv.dev; // eslint-disable-line
-  if (Settings.get('START_IN_DEV_MODE', false)) {
-    global.DEV_MODE = true;
-    Settings.set('START_IN_DEV_MODE', false);
-  }
 
   // Initialize the logger with some default logging levels.
   const defaultFileLogLevel = 'info';

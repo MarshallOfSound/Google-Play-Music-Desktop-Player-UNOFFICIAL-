@@ -1,56 +1,46 @@
-if (window.$ && window.$.ajax) {
-  require('./customWindowThemeHandler');
+import GMusicTheme from 'gmusic-theme.js';
 
-  Emitter.on('settings:change:theme', (event, state) => {
-    if (!state) {
-      document.body.removeAttribute('theme');
-    } else {
-      document.body.setAttribute('theme', 'on');
-    }
-  });
-  Emitter.on('settings:change:themeType', (event, type) => {
-    if (type === 'FULL') {
-      document.body.setAttribute('full', 'full');
-      document.body.removeAttribute('light');
-    } else {
-      document.body.removeAttribute('full');
-      document.body.setAttribute('light', 'light');
-    }
-  });
+// Hack the crap out of GMusicTheme
+Object.assign(GMusicTheme.prototype, {
+  _drawLogo: () => {},
+  _refreshStyleSheet: () => {},
+  disable: () => {},
+  enable: () => {},
+  redrawTheme: () => {},
+});
 
-  Emitter.on('window:updateTitle', (event, newTitle) => {
-    const titleBar = document.querySelector('.darwin-title-bar .title');
-    if (titleBar) {
-      titleBar.innerHTML = newTitle;
-    }
-  });
+let customColor = Settings.get('themeColor');
+let themeType = Settings.get('themeType', 'FULL');
+let styles = '';
 
-  if (Settings.get('theme')) {
-    document.body.setAttribute('theme', 'on');
-  }
-  if (Settings.get('themeType', 'FULL') === 'FULL') {
-    document.body.setAttribute('full', 'full');
-  } else {
-    document.body.setAttribute('light', 'light');
-  }
+const hackedGPMTheme = new GMusicTheme();
 
-  const style = $('<style></style>');
-  $('body').append(style);
-  const redrawTheme = (customColor) => {
-    const color = customColor || Settings.get('themeColor');
-    const border = `[theme][light] .window-border{border-color:${color}}`;
-    const titleBar = `[theme][light] .title-bar{background:${color}}`;
-    const darwinTitleBar = `[theme][light] .darwin-title-bar{background-color:${color}}`;
-    const header = `[theme][light] .dialog .window-title{background:${color}}`;
-    const lyricsProgress = `
-[theme][full] #lyrics_bar{background:${color} !important}
-[theme][light] #lyrics_progress{background:${color} !important}
-[theme][full] #lyrics_progress{background:#222326 !important}`; // @darkprimary
-    style.html(border + titleBar + darwinTitleBar + header + lyricsProgress);
-    document.body.setAttribute('loaded', 'loaded');
-  };
-  redrawTheme();
-  Emitter.on('settings:change:themeColor', (event, customColor) => {
-    redrawTheme(customColor);
+const customStyle = document.createElement('style');
+document.body.appendChild(customStyle);
+
+const redrawCustomStyles = () => {
+  hackedGPMTheme.updateTheme({
+    type: themeType,
+    backHighlight: '#1a1b1d',
+    foreSecondary: customColor,
   });
-}
+  customStyle.innerHTML = hackedGPMTheme.substituteColors(styles);
+};
+
+Emitter.on('settings:change:themeColor', (event, newCustomColor) => {
+  customColor = newCustomColor;
+  redrawCustomStyles();
+});
+
+Emitter.on('settings:change:themeType', (event, newThemeType) => {
+  themeType = newThemeType;
+  redrawCustomStyles();
+});
+
+Emitter.on('LoadMainAppCustomStyles', (event, newStyles) => {
+  styles = newStyles;
+  redrawCustomStyles();
+});
+
+redrawCustomStyles();
+Emitter.fire('FetchMainAppCustomStyles');
