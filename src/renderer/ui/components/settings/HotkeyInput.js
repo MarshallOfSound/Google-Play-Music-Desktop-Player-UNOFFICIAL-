@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/TextField';
 
-import { requireSettings } from './SettingsProvider';
-import { ACCELERATOR_KEYS, MODIFIER_KEYS, ACTION_KEYS } from '../utils/constants';
+import { requireSettings } from '../generic/SettingsProvider';
+import { ACCELERATOR_KEYS, MODIFIER_KEYS, ACTION_KEYS } from '../../utils/constants';
 
 const styles = {
   inputContainer: {

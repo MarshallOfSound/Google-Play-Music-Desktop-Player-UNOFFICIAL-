@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Checkbox from 'material-ui/Checkbox';
 
-import SettingsProvider from './SettingsProvider';
+import SettingsProvider from '../generic/SettingsProvider';
 
 class SettingsCheckbox extends Component {
   static propTypes = {
