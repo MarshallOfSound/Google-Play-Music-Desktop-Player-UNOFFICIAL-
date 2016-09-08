@@ -28,6 +28,12 @@ export default () => {
       queries[key]++;
       return typeof _values[key] === 'undefined' ? def || key : _values[key];
     },
+    set: (key, value) => {
+      Emitter.fire('settings:set', {
+        key,
+        value,
+      });
+    },
   };
   global.Emitter = {
     fire: (what, ...args) => {
