@@ -4,7 +4,7 @@ import React from 'react';
 import chai from 'chai';
 import { mount } from 'enzyme';
 
-import PlatformSpecific from '../../../build/inject/settings/ui/components/PlatformSpecific';
+import PlatformSpecific from '../../../build/renderer/settings/ui/components/PlatformSpecific';
 
 chai.should();
 

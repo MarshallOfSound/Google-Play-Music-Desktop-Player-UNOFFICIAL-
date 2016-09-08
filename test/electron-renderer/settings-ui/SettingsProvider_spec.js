@@ -4,7 +4,7 @@ import React from 'react';
 import chai from 'chai';
 import { mount } from 'enzyme';
 
-import SettingsProvider, { requireSettings } from '../../../build/inject/settings/ui/components/SettingsProvider';
+import SettingsProvider, { requireSettings } from '../../../build/renderer/settings/ui/components/SettingsProvider';
 import mockSettings, { getVars } from './_mockSettings';
 
 chai.should();
