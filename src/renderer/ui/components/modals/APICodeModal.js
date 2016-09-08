@@ -42,7 +42,7 @@ export default class APICodeModal extends Component {
   render() {
     const actions = [
       <FlatButton
-        label={TranslationProvider.query('button-test-ok')}
+        label={TranslationProvider.query('button-text-ok')}
         primary
         keyboardFocused
         onTouchTap={this.handleClose}
