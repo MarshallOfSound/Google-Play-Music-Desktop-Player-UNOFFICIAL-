@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Tabs, Tab } from 'material-ui/Tabs';
 
-import GeneralTab from './components/tabs/GeneralTab';
-import HotkeyTab from './components/tabs/HotkeyTab';
-import MiniTab from './components/tabs/MiniTab';
+import GeneralTab from '../components/settings/tabs/GeneralTab';
+import HotkeyTab from '../components/settings/tabs/HotkeyTab';
+import MiniTab from '../components/settings/tabs/MiniTab';
 
-import generateTheme from './utils/theme';
+import generateTheme from '../utils/theme';
 
 const styles = {
   tab: {
