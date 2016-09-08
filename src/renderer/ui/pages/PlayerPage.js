@@ -86,7 +86,7 @@ export default class PlayerPage extends Component {
           ref="view"
           src={this.state.webviewTarget}
           className="embedded-player"
-          preload="../renderer/GPMWebView"
+          preload="../renderer/windows/GPMWebView"
           didStopLoading={this._didStopLoading}
           domReady={this._domReady}
           didNavigate={this._didNavigate}
