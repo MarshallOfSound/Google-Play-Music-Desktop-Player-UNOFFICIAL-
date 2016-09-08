@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { requireSettings } from '../SettingsProvider';
+import { requireSettings } from '../../generic/SettingsProvider';
 
-import PlatformSpecific from '../PlatformSpecific';
+import PlatformSpecific from '../../generic/PlatformSpecific';
 import SettingsTabWrapper from './SettingsTabWrapper';
 import ThemeOptions from '../ThemeOptions';
 import ToggleableOption from '../ToggleableOption';

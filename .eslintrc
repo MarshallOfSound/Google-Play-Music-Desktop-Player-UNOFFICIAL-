@@ -8,8 +8,7 @@
     "WindowManager": true,
     "PlaybackAPI": true,
     "TranslationProvider": true,
-    "GPM": true,
-    "$": true
+    "GPM": true
   },
   "env": {
     "mocha": true
