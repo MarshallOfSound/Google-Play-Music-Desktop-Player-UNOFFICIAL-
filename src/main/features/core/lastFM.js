@@ -34,7 +34,7 @@ const authLastFMToken = (token) =>
       title: 'Last.FM',
       webPreferences: {
         nodeIntegration: false,
-        preload: path.resolve(`${__dirname}/../../../inject/lastFM.js`),
+        preload: path.resolve(`${__dirname}/../../../renderer/lastFM.js`),
       },
     });
     authWindow.setMenu(null);

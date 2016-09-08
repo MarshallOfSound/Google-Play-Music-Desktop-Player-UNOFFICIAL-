@@ -6,7 +6,7 @@ import { mount } from 'enzyme';
 
 import Checkbox from 'material-ui/Checkbox';
 
-import ToggleableOption from '../../../build/inject/settings/ui/components/ToggleableOption';
+import ToggleableOption from '../../../build/renderer/settings/ui/components/ToggleableOption';
 import mockSettings, { fakeSettings, getVars } from './_mockSettings';
 import materialUIContext from './_materialUIContext';
 import injectTapEventPlugin from 'react-tap-event-plugin';
