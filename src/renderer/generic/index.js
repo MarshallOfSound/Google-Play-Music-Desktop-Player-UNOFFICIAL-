@@ -16,8 +16,6 @@ require('./translations');
 document.addEventListener('DOMContentLoaded', () => {
   require('./windowThemeHandler');
 
-  setTimeout(() => require('electron').remote.getCurrentWindow().show(), 100);
-
   const nativeFrameAtLaunch = Settings.get('nativeFrame');
 
   document.body.classList.toggle('native-frame', nativeFrameAtLaunch);

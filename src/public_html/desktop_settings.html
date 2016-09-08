@@ -5,7 +5,8 @@
   <link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <section class="window-border">
+  <div id="settings-window" style="height: 100%"></div>
+  <!-- <section class="window-border">
     <header class="darwin-title-bar">
       <div class="title">Desktop Settings</div>
     </header>
@@ -28,7 +29,7 @@
         <span is="translation-key">title-settings</span>
       </div>
       <div class="window-main">
-        <div class="row" id="settings-panel">
+        <div class="row" id="settings-panel"> -->
           <!-- <div class="col s12">
             <ul class="tabs">
               <li class="tab col s3"><a href="#general" class="theme-text orange-text"><span is="translation-key">title-settings-general</span></a></li>
@@ -213,17 +214,12 @@
             <a class="waves-effect waves-light btn style-refresh"><i class="material-icons left">refresh</i><span is="translation-key">settings-options-style-refresh</span></a>
           </div>
         </div> -->
-      </div>
+      <!-- </div>
     </main>
-  </section>
-  <script>window._module = window.module; window.module = undefined;</script>
-  <script src="../assets/util/jquery.min.js"></script>
-  <script src="../assets/util/materialize.min.js"></script>
-  <script src="../assets/util/nouislider.min.js"></script>
+  </section> -->
   <script>
-  window.module = window._module;
   require('../renderer/generic');
-  require('../renderer/settings');
+  require('../renderer/windows/settings');
   </script>
 </body>
 </html>

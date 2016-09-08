@@ -35,10 +35,7 @@ export default class SettingsProvider extends Component {
   }
 
   setSetting(key, value) {
-    Emitter.fire('settings:set', {
-      key,
-      value,
-    });
+    Settings.set(key, value);
   }
 
   handleKeyChange = (event, keyValue, keyName) => {
@@ -55,7 +52,10 @@ export default class SettingsProvider extends Component {
   }
 }
 
-export const requireSettings = (component, settingsArray, settingsDefaults = {}) =>
-  (props) => (
+export const requireSettings = (component, settingsArray, settingsDefaults = {}) => {
+  const WrappedComponent = (props) => (
     <SettingsProvider component={component} componentProps={props} keys={settingsArray} defaults={settingsDefaults} />
   );
+  WrappedComponent.displayName = `Wrapped${component.name ? component.name : 'Component'}`;
+  return WrappedComponent;
+};
