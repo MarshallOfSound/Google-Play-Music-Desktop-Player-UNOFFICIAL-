@@ -15,7 +15,7 @@ import WindowManagerClass from './main/utils/WindowManager';
 import PlaybackAPIClass from './main/utils/PlaybackAPI';
 import I3IpcHelperClass from './main/utils/I3IpcHelper';
 
-import './inject/generic/translations';
+import './renderer/generic/translations';
 
 import handleStartupEvent from './squirrel';
 
