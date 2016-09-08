@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
 import SettingsTabWrapper from './tabs/SettingsTabWrapper';
-import { requireSettings } from './SettingsProvider';
+import { requireSettings } from '../generic/SettingsProvider';
 
-import { themeColors } from '../utils/constants';
+import { themeColors } from '../../utils/constants';
 
 class ThemeOptions extends Component {
   static propTypes = {

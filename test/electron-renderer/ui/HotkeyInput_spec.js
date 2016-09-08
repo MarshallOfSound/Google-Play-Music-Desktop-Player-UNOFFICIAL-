@@ -6,7 +6,7 @@ import { mount } from 'enzyme';
 
 import TextField from 'material-ui/TextField';
 
-import HotkeyInput from '../../../build/renderer/settings/ui/components/HotkeyInput';
+import HotkeyInput from '../../../build/renderer/ui/components/settings/HotkeyInput';
 import mockSettings, { fakeSettings, getVars } from './_mockSettings';
 import materialUIContext from './_materialUIContext';
 

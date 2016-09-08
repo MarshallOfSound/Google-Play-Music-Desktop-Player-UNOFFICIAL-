@@ -4,7 +4,7 @@ import React from 'react';
 import chai, { expect } from 'chai';
 import { mount } from 'enzyme';
 
-import SettingsTabWrapper from '../../../build/renderer/settings/ui/components/tabs/SettingsTabWrapper';
+import SettingsTabWrapper from '../../../build/renderer/ui/components/settings/tabs/SettingsTabWrapper';
 
 chai.should();
 

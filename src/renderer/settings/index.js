@@ -12,7 +12,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import SettingsPage from './ui/SettingsPage';
+import SettingsPage from '../ui/pages/SettingsPage';
 
 try {
   const devtoolsInstaller = require('electron-devtools-installer');
