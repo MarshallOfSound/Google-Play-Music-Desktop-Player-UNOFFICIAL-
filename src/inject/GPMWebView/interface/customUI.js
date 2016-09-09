@@ -59,11 +59,12 @@ function handleSubscribeButton() {
 
 /** Hide buttons & elements that don't work */
 function hideNotWorkingStuff() {
-  // Top left account control buttons
+  // Top right account control buttons
   hide('#material-one-right #gb > div > div > div:not(:last-child)');
   style('#material-one-right #gb > div > div > div:last-child',
           { display: 'block', float: 'right' });
   style('#material-one-right #gb > div > div', { display: 'block', float: 'right' });
+  cssRule('#material-one-right #gb {min-width: 40px !important}');
 
   // Built in mini player buttons
   hide('.player-top-right-items > paper-icon-button');
