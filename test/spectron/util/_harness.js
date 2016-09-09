@@ -52,15 +52,14 @@ export const harness = (name, fn, handleSignIn = true, handleFirstStart = true) 
       before(() =>
         app.client.windowByIndex(0)
           .waitUntilWindowLoaded()
-          .waitForVisible('#welcome .modal-close')
-          .click('#welcome .modal-close')
+          .waitForVisible('body > div > div > div > div > div > div:last-child > button')
+          .click('body > div > div > div > div > div > div:last-child > button')
       );
     }
 
     before(() =>
       app.client.windowByIndex(1)
         .waitUntilWindowLoaded()
-        .getWindowCount().should.eventually.equal(2)
         .then(() => {
           if (!handleSignIn) {
             return Promise.resolve();
