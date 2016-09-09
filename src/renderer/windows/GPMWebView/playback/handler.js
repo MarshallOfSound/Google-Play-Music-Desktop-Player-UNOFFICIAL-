@@ -53,7 +53,7 @@ window.wait(() => {
     }
     if (playbackInfo.current >= playbackInfo.total / 2
           && Date.now() - 10000 >= lastScrobbleTime && currentSong !== null
-          && JSON.stringify(lastScrobble) !== JSON.stringify(currentSong)) {
+          && !currentSong.equals(lastScrobble)) {
       Emitter.fire('change:track:scrobble', {
         title: currentSong.title,
         artist: currentSong.artist,
