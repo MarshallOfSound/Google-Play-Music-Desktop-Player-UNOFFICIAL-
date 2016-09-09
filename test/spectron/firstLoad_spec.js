@@ -4,6 +4,6 @@ harness('on first load', () => {
   it('should display the welcome modal', () =>
     app.client.waitUntilWindowLoaded()
       .windowByIndex(0)
-      .waitForVisible('#welcome').should.eventually.be.ok
+      .waitForVisible('body > div > div > div > div > div > div:last-child > button').should.eventually.be.ok
   );
 }, false, false);
