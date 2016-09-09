@@ -16,6 +16,14 @@ export const fakeSettings = (key, value) => {
   _values[key] = value;
 };
 
+export const mockEvent = (key, ...args) => {
+  (hooks[key] || []).forEach((fn) => {
+    if (!(unhooks[key] || []).includes(fn)) {
+      fn({}, ...args);
+    }
+  });
+};
+
 export default () => {
   fired = {};
   hooks = {};
@@ -39,6 +47,9 @@ export default () => {
     fire: (what, ...args) => {
       fired[what] = fired[what] || [];
       fired[what].push(args);
+    },
+    fireAtGoogle: (what, ...args) => {
+      global.Emitter.fire(what, ...args);
     },
     on: (what, fn) => {
       hooks[what] = hooks[what] || [];

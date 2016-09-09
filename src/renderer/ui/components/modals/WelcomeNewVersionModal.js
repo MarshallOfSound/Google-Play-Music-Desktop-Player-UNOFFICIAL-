@@ -24,6 +24,12 @@ export default class WelcomeNewVersionModal extends Component {
     Settings.set('welcomed', appVersion);
   }
 
+  show = () => {
+    this.setState({
+      open: true,
+    });
+  }
+
   render() {
     const actions = [
       <FlatButton

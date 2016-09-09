@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import React, { Component, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 
 import { requireSettings } from './SettingsProvider';
 
@@ -31,39 +32,39 @@ class LyricsViewer extends Component {
     // Handle new lyrics strings
     this.lyricsHandler = (e, lyrics) => {
       if (!lyrics) {
-        $('#lyrics').html('<h1><span is="translation-key">lyrics-loading-message</span></h1>');
-        $('#lyrics p').stop();
+        $(findDOMNode(this)).find('#lyrics').html('<h1><span is="translation-key">lyrics-loading-message</span></h1>');
+        $(findDOMNode(this)).find('#lyrics p').stop();
         animate = false;
         clearTimeout(noLyricsTimer);
         noLyricsTimer = setTimeout(() => {
-          $('#lyrics').html('<h1><span is="translation-key">lyrics-failed-message</span></h1>');
+          $(findDOMNode(this)).find('#lyrics').html('<h1><span is="translation-key">lyrics-failed-message</span></h1>');
         }, 4000);
       } else {
         clearTimeout(noLyricsTimer);
         const scroll = Settings.get('scrollLyrics', true);
         const lyricsHTML = lyrics.replace(/\n/g, '<br />');
-        $('#lyrics').html(`<p ${scroll ? 'data-scroll' : ''}>${lyricsHTML}</p>`);
+        $(findDOMNode(this)).find('#lyrics').html(`<p ${scroll ? 'data-scroll' : ''}>${lyricsHTML}</p>`);
         animate = scroll;
       }
     };
     // Handle playing and pausing
     this.stateHandler = (e, remoteIsPlaying) => {
       isPlaying = remoteIsPlaying;
-      if (!isPlaying) return $('#lyrics p').stop();
+      if (!isPlaying) return $(findDOMNode(this)).find('#lyrics p').stop();
       animate = Settings.get('scrollLyrics', true);
     };
     // Handle time progression of a song
     this.timeHandler = (e, timeObj) => {
-      $('#lyrics_bar').width(`${(timeObj.total === 0 ? 0 : timeObj.current / timeObj.total) * 100}%`);
+      $(findDOMNode(this)).find('#lyrics_bar').width(`${(timeObj.total === 0 ? 0 : timeObj.current / timeObj.total) * 100}%`);
       let jumped = false;
-      if (Math.abs(timeObj.current - jumpDetect) > 1000 && $('#lyrics p').attr('data-scroll')) {
+      if (Math.abs(timeObj.current - jumpDetect) > 1000 && $(findDOMNode(this)).find('#lyrics p').attr('data-scroll')) {
         animate = true;
         jumped = true;
       }
 
       jumpDetect = timeObj.current;
-      if (!isPlaying || !animate || !timeObj.total || !$('#lyrics p').get(0)) return;
-      const lyricsP = $('#lyrics p');
+      if (!isPlaying || !animate || !timeObj.total || !$(findDOMNode(this)).find('#lyrics p').get(0)) return;
+      const lyricsP = $(findDOMNode(this)).find('#lyrics p');
       const maxHeight = parseInt(lyricsP.get(0).scrollHeight, 10);
       const viewPortHeight = parseInt(lyricsP.innerHeight(), 10);
       const waitTime = (viewPortHeight / maxHeight) * timeObj.total * 0.3;
@@ -82,7 +83,7 @@ class LyricsViewer extends Component {
     };
 
     this.scrollSettingsHandler = (e, state) => {
-      const lyricsP = $('#lyrics p');
+      const lyricsP = $(findDOMNode(this)).find('#lyrics p');
       animate = state;
       if (state) {
         lyricsP.attr('data-scroll', true);
