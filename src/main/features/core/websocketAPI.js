@@ -114,7 +114,7 @@ const enableAPI = () => {
     }
 
     try {
-      ad = mdns.createAdvertisement(mdns.tcp('GPMDP'), 5672, {
+      ad = mdns.createAdvertisement(mdns.tcp('GPMDP'), global.API_PORT || process['env'].GPMDP_API_PORT || 5672, { // eslint-disable-line
         name: os.hostname(),
         txtRecord: {
           API_VERSION,
