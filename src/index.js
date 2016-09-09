@@ -15,8 +15,6 @@ import WindowManagerClass from './main/utils/WindowManager';
 import PlaybackAPIClass from './main/utils/PlaybackAPI';
 import I3IpcHelperClass from './main/utils/I3IpcHelper';
 
-import './renderer/generic/translations';
-
 import handleStartupEvent from './squirrel';
 
 import { updateShortcuts } from './main/utils/_shortcutManager';
@@ -129,6 +127,7 @@ updateShortcuts();
 
     // and load the index.html of the app.
     mainWindow.loadURL(`file://${__dirname}/public_html/index.html`);
+    require('./renderer/generic/translations');
     require('./main/features');
     require('./old_win32');
 
