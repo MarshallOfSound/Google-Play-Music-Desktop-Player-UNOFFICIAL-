@@ -1,11 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class OfflineWarning extends Component {
-  constructor(...args) {
-    super(...args);
+  static propTypes = {
+    navigator: PropTypes.object,
+  };
+
+  static defaultProps = {
+    navigator: window.navigator,
+  };
+
+  constructor(props, ...args) {
+    super(props, ...args);
 
     this.state = {
-      online: navigator.onLine,
+      online: props.navigator.onLine,
     };
   }
 
@@ -19,7 +27,7 @@ export default class OfflineWarning extends Component {
 
   _handleOnlineChange = () => {
     this.setState({
-      online: navigator.onLine,
+      online: this.props.navigator.onLine,
     });
   }
 
