@@ -3,6 +3,7 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 
 import GeneralTab from '../components/settings/tabs/GeneralTab';
 import HotkeyTab from '../components/settings/tabs/HotkeyTab';
+import LastFMTab from '../components/settings/tabs/LastFMTab';
 import MiniTab from '../components/settings/tabs/MiniTab';
 import WindowContainer from '../components/generic/WindowContainer';
 
@@ -30,7 +31,9 @@ export default class SettingsPage extends Component {
           <Tab label={TranslationProvider.query('title-settings-mini')}>
             <MiniTab />
           </Tab>
-          <Tab label={TranslationProvider.query('title-settings-lastfm')} />
+          <Tab label={TranslationProvider.query('title-settings-lastfm')}>
+            <LastFMTab />
+          </Tab>
           <Tab label={TranslationProvider.query('title-settings-hotkeys')}>
             <HotkeyTab />
           </Tab>
