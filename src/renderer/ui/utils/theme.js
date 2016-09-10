@@ -14,6 +14,7 @@ export default (themeEnabled, themeColor, themeType) => {
     if (themeType === 'FULL') {
       textColor = white;
       alternateTextColor = darkBlack;
+      themePalette.canvasColor = '#222326';
     } else {
       primaryColor = themeColor;
     }
