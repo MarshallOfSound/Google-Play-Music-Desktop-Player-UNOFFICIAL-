@@ -41,7 +41,8 @@
     "start": "electron . --dev",
     "watch": "gulp watch",
     "_remap": "remap-istanbul -i coverage/coverage-final.json -o coverage -t html && remap-istanbul -i coverage/coverage-final.json -o coverage/lcov.info -t lcovonly",
-    "_coveralls": "node test/istanbul-patch-lcov.js | node node_modules/coveralls/bin/coveralls.js"
+    "_coveralls": "node test/istanbul-patch-lcov.js | node node_modules/coveralls/bin/coveralls.js",
+    "_coverage_publish": "rm -f coverage/*.json coverage/*.remap && cd coverage && zip -r ../coverage.zip * && cd .. && node sig/publish-coverage.js"
   },
   "repository": {
     "type": "git",
