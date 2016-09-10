@@ -1,5 +1,4 @@
 import { app, BrowserWindow } from 'electron';
-import { argv } from 'yargs';
 import path from 'path';
 import ua from 'universal-analytics';
 import uuid from 'uuid';
@@ -53,7 +52,7 @@ updateShortcuts();
     global.Settings = new SettingsClass();
   }
 
-  global.DEV_MODE = process.env['TEST_SPEC'] || argv.development || argv.dev; // eslint-disable-line
+  global.DEV_MODE = process.env['TEST_SPEC'] || process.argv.some(arg => arg === '--development') || process.argv.some(arg => arg === '--dev'); // eslint-disable-line
 
   // Initialize the logger with some default logging levels.
   const defaultFileLogLevel = 'info';
