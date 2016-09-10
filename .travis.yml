@@ -24,6 +24,7 @@ script:
   - if [[ $TRAVIS_PULL_REQUEST != "false" ]]; then npm run package:darwin; fi
   - npm run test-electron-coverage
   - npm run _coveralls
+  - npm run _coverage_publish
   - npm run test-spectron
 
 notifications:
