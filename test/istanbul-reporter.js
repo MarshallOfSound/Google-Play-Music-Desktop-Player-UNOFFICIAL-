@@ -8,6 +8,11 @@ const path = require('path');
 
 const isMain = !electron.remote;
 
+const htmlPatchPath = path.resolve(__dirname, '..', 'node_modules', 'remap-istanbul', 'node_modules', 'istanbul', 'lib', 'report', 'html.js');
+if (fs.existsSync(htmlPatchPath)) {
+  fs.writeFileSync(htmlPatchPath, fs.readFileSync(htmlPatchPath, 'utf8').replace(/annotateFunctions\(fileCoverage, structured\);/g, ''));
+}
+
 module.exports = class Istanbul extends Spec {
   constructor(runner) {
     super(runner);
