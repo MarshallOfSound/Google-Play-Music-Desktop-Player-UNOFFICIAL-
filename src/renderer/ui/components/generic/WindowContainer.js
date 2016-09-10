@@ -86,7 +86,7 @@ export default class WindowContainer extends Component {
             </header>
           </PlatformSpecific>
           <header className="title-bar" style={{ backgroundColor: muiTheme.tabs.backgroundColor }}>
-            <div className="drag-handle"></div>
+            <div className="drag-handle" />
             <div className="controls">
               {
                 ['min', 'max', 'close'].map((action) => (
