@@ -10,6 +10,10 @@ export default class MockWindow extends Emitter {
     this.id = idCounter++;
   }
 
+  focus() {
+    this.focused = true;
+  }
+
   close() {
     this.open = false;
   }
