@@ -4,10 +4,9 @@ import React, { Component, PropTypes } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import PlatformSpecific from './PlatformSpecific';
-import { requireSettings } from './SettingsProvider';
 import generateTheme from '../../utils/theme';
 
-class WindowContainer extends Component {
+export default class WindowContainer extends Component {
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.array,
@@ -125,5 +124,3 @@ class WindowContainer extends Component {
     );
   }
 }
-
-export default requireSettings(WindowContainer, ['theme', 'themeColor', 'themeType']);
