@@ -1,4 +1,5 @@
 import { remote } from 'electron';
+import RendererPluginController from './RendererPluginController';
 
 if (remote.getGlobal('DEV_MODE')) {
   // Attempt to install DevTron
@@ -28,3 +29,10 @@ if (remote.getGlobal('DEV_MODE')) {
     };
   });
 }
+
+const waitForSettings = setInterval(() => {
+  if (global.Settings) {
+    clearInterval(waitForSettings);
+    window._controller = new RendererPluginController();
+  }
+}, 10);

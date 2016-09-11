@@ -14,3 +14,54 @@ export const positionOnScreen = (position) => {
   }
   return inBounds;
 };
+
+function searchCache(moduleName, callback) {
+  let mod;
+  try {
+    mod = require.resolve(moduleName);
+  } catch (err) {
+    return;
+  }
+
+  if (mod && ((mod = require.cache[mod]) !== undefined)) { // eslint-disable-line
+    (function traverse(mod2) {
+      mod2.children.forEach((child) => {
+        traverse(child);
+      });
+
+      callback(mod2);
+    }(mod));
+  }
+}
+
+export const purgeCache = (moduleName) => {
+  searchCache(moduleName, (mod) => {
+    delete require.cache[mod.id];
+  });
+
+  Object.keys(module.constructor._pathCache).forEach((cacheKey) => {
+    if (cacheKey.indexOf(moduleName) > 0) {
+      delete module.constructor._pathCache[cacheKey];
+    }
+  });
+};
+
+export const PluginAPI = class PluginAPI {
+  static PLUGIN_NAME = 'Demo Plugin';
+
+  constructor(electronRequire, Emitter, PlaybackAPI, WindowManager, additionals) {
+    console.log('Plugin created');
+  }
+
+  install() {
+    console.log('Called once in the main process when installing');
+  }
+
+  uninstall() {
+    console.log('Called once in each process when uninstalling');
+  }
+
+  activate() {
+    console.log('Called once in each process during the preload phase');
+  }
+};
