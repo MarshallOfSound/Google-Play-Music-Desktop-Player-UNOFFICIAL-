@@ -45,23 +45,3 @@ export const purgeCache = (moduleName) => {
     }
   });
 };
-
-export const PluginAPI = class PluginAPI {
-  static PLUGIN_NAME = 'Demo Plugin';
-
-  constructor(electronRequire, Emitter, PlaybackAPI, WindowManager, additionals) {
-    console.log('Plugin created');
-  }
-
-  install() {
-    console.log('Called once in the main process when installing');
-  }
-
-  uninstall() {
-    console.log('Called once in each process when uninstalling');
-  }
-
-  activate() {
-    console.log('Called once in each process during the preload phase');
-  }
-};
