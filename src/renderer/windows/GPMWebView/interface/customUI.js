@@ -83,21 +83,39 @@ function hideNotWorkingStuff() {
   setInterval(() => hide('.song-menu.goog-menu.now-playing-menu > .goog-menuitem:nth-child(3)'), 500);
 }
 
+function installSidebarButton(translationKey, type, icon, index, fn) {
+  const elem = document.createElement('a');
+  elem.setAttribute('data-type', type);
+  elem.setAttribute('class', 'nav-item-container tooltip');
+  elem.setAttribute('href', '');
+  elem.setAttribute('no-focus', '');
+  elem.innerHTML = `<iron-icon icon="${icon}" alt="" class="x-scope iron-icon-1"></iron-icon><span is="translation-key">${translationKey}</span>`; // eslint-disable-line
+  elem.addEventListener('click', fn);
+  if (index === -1) {
+    document.querySelectorAll('.nav-section.material')[0].appendChild(elem);
+  } else {
+    document.querySelectorAll('.nav-section.material')[0].insertBefore(elem, document.querySelectorAll('.nav-section.material > a')[index]); // eslint-disable-line
+  }
+}
+
 /** Create the Desktop Settings button in the left sidebar */
 function installDesktopSettingsButton() {
-  const dSettings = document.createElement('a');
-  dSettings.setAttribute('data-type', 'desktopsettings');
-  dSettings.setAttribute('class', 'nav-item-container tooltip');
-  dSettings.setAttribute('href', '');
-  dSettings.setAttribute('no-focus', '');
-  dSettings.innerHTML = '<iron-icon icon="settings" alt="" class="x-scope iron-icon-1"></iron-icon><span is="translation-key">label-desktop-settings</span>'; // eslint-disable-line
-  dSettings.addEventListener('click', (e) => {
+  installSidebarButton('label-desktop-settings', 'desktopsettings', 'settings', 2, (e) => {
     Emitter.fire('window:settings');
     e.preventDefault();
     e.stopPropagation();
     return false;
   });
-  document.querySelectorAll('.nav-section.material')[0].insertBefore(dSettings, document.querySelectorAll('.nav-section.material > a')[2]); // eslint-disable-line
+}
+
+/** Create the Quit button in the left sidebar */
+function installQuitButton() {
+  installSidebarButton('label-quit', 'quit', 'exit-to-app', -1, (e) => {
+    remote.app.quit();
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  });
 }
 
 /* eslint-disable max-len, no-multi-str */
@@ -185,6 +203,7 @@ window.wait(() => {
   fixShopButton();
   handleSubscribeButton();
   installDesktopSettingsButton();
+  installQuitButton();
   handleZoom();
   installNowPlayingMenu();
   fixChromecastButton();
