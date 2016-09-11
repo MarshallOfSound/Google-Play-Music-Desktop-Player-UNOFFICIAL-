@@ -6,6 +6,7 @@ import GeneralTab from '../components/settings/tabs/GeneralTab';
 import HotkeyTab from '../components/settings/tabs/HotkeyTab';
 import LastFMTab from '../components/settings/tabs/LastFMTab';
 import MiniTab from '../components/settings/tabs/MiniTab';
+import PluginsTab from '../components/settings/tabs/PluginsTab';
 import StyleTab from '../components/settings/tabs/StyleTab';
 import WindowContainer from '../components/generic/WindowContainer';
 
@@ -44,6 +45,9 @@ export default class SettingsPage extends Component {
           </Tab>
           <Tab label={TranslationProvider.query('title-settings-style')}>
             <StyleTab />
+          </Tab>
+          <Tab label={TranslationProvider.query('title-settings-plugins')}>
+            <PluginsTab />
           </Tab>
         </Tabs>
       </WindowContainer>

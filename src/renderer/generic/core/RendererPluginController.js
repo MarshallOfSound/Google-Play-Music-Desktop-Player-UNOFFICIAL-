@@ -38,13 +38,22 @@ export default class RendererPluginController {
     if (
       Plugin &&
       Plugin.PLUGIN_NAME &&
+      Plugin.CONFIG &&
       typeof Plugin === 'function' &&
       typeof Plugin.prototype.install === 'function' &&
       typeof Plugin.prototype.uninstall === 'function' &&
       typeof Plugin.prototype.activate === 'function'
     ) {
       try {
-        this.plugins[pluginPath] = new Plugin(require, Emitter, null, null, {});
+        const bindings = [];
+        const scopedSettings = {
+          onChange: (key, fn) => { bindings.push([key, fn]); Emitter.on(`settings:change:${Plugin.PLUGIN_NAME}_${key}`, fn); },
+          get: (key, ...args) => Settings.hey(`${Plugin.PLUGIN_NAME}_${key}`, ...args),
+          getGlobal: (key, ...args) => Settings.get(key, ...args),
+          set: (key, ...args) => Settings.set(`${Plugin.PLUGIN_NAME}_${key}`, ...args),
+        };
+        this.plugins[pluginPath] = new Plugin(require, Emitter, scopedSettings, null, null, {});
+        this.plugins[pluginPath].__BINDINGS__ = bindings;
       } catch (err) {
         remote.getGlobal('Logger').error('Error initializing plugin in renderer process', Plugin.PLUGIN_NAME, err.message);
         return false;
@@ -57,7 +66,14 @@ export default class RendererPluginController {
 
   uninstall(pluginPath) {
     if (this.plugins[pluginPath]) {
-      this.plugins[pluginPath].uninstall();
+      try {
+        this.plugins[pluginPath].uninstall();
+      } catch (err) {
+        remote.getGlobal('Logger').error('Error while uninstalling plugin', this.plugins[pluginPath].constructor.PLUGIN_NAME, { message: err.message, stack: err.stack });
+      }
+      this.plugins[pluginPath].__BINDINGS__.forEach((binding) => {
+        Emitter.off(binding[0], binding[1]);
+      });
       purgeCache(pluginPath);
     }
   }

@@ -6,8 +6,6 @@ import uuid from 'uuid';
 import { spawnSync } from 'child_process';
 import WebSocket, { Server as WebSocketServer } from 'ws';
 
-import getPluginManager from './plugins';
-
 let server;
 let oldTime = {};
 let uniqID = uuid.v4();
@@ -175,7 +173,7 @@ const enableAPI = () => {
               return;
             }
             if (command.namespace === 'plugin' && command.method === 'install' && args.length === 1 && global.DEV_MODE) {
-              getPluginManager().install(args[0]);
+              require('./plugins').default().install(args[0]);
               return;
             }
             // Attempt to execute the globa magical controller
