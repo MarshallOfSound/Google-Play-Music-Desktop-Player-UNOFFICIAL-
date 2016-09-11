@@ -84,11 +84,11 @@ const requireCode = (ws) => {
 const enableAPI = () => {
   let portOpen = true;
   if (process.platform === 'win32') {
-    const testOutput = spawnSync(
+    const testResult = spawnSync(
       'netsh',
       ['advfirewall', 'firewall', 'show', 'rule', 'name=GPMDP\ PlaybackAPI'] // eslint-disable-line
-    ).stdout.toString().trim();
-    portOpen = testOutput !== 'No rules match the specified criteria.';
+    );
+    portOpen = testResult.status === 0;
   }
   if (!portOpen) {
     Emitter.once('openport:confirm', () => {
