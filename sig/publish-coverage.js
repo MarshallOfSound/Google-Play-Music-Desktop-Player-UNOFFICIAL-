@@ -4,6 +4,10 @@ const fs = require('fs');
 const request = require('request');
 const path = require('path');
 
+if (!process.env.TRAVIS_BRANCH || !process.env.TRAVIS_PULL_REQUEST) {
+  process.exit(0);
+}
+
 console.log('Uploading ZIP coverage file'); // eslint-disable-line
 
 const req = request.post('https://coverage.gpmdp.xyz/submit', (err) => {
