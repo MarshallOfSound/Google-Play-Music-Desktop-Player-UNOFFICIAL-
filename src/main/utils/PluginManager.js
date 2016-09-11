@@ -38,6 +38,7 @@ export default class PluginManager {
         Logger.error('Error initializing plugin', Plugin.PLUGIN_NAME, err);
         return false;
       }
+      Logger.info('Successfully loaded plugin:', Plugin.PLUGIN_NAME);
       return true;
     }
     Logger.error('Plugin does not expose all required API methods', pluginPath);
@@ -46,9 +47,11 @@ export default class PluginManager {
 
   install(pluginPath) {
     if (this.plugins[pluginPath]) {
+      Logger.info('Plugin already installed, uninstalling', pluginPath);
       this.uninstall(pluginPath);
       purgeCache(pluginPath);
     } else {
+      Logger.info('Installing plugin, saving path', pluginPath);
       Settings.set('plugins', this.pluginPaths.concat([pluginPath]));
     }
     if (this.load(pluginPath)) {
