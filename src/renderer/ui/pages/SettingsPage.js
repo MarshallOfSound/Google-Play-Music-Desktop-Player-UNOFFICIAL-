@@ -6,6 +6,7 @@ import GeneralTab from '../components/settings/tabs/GeneralTab';
 import HotkeyTab from '../components/settings/tabs/HotkeyTab';
 import LastFMTab from '../components/settings/tabs/LastFMTab';
 import MiniTab from '../components/settings/tabs/MiniTab';
+import StyleTab from '../components/settings/tabs/StyleTab';
 import WindowContainer from '../components/generic/WindowContainer';
 
 const styles = {
@@ -41,7 +42,9 @@ export default class SettingsPage extends Component {
           <Tab label={TranslationProvider.query('title-settings-audio')}>
             <AudioTab />
           </Tab>
-          <Tab label={TranslationProvider.query('title-settings-style')} />
+          <Tab label={TranslationProvider.query('title-settings-style')}>
+            <StyleTab />
+          </Tab>
         </Tabs>
       </WindowContainer>
     );
