@@ -109,6 +109,10 @@ const winstallerConfig = {
   remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
 };
 
+if (process.env.APPVEYOR) {
+  delete winstallerConfig.remoteReleases;
+}
+
 const appdmgConf = {
   target: `dist/${packageJSON.productName}-darwin-x64/${packageJSON.productName}.dmg`,
   basepath: __dirname,

@@ -3,7 +3,7 @@
   "audio-device-default": "System Default",
   "audio-device-unknown": "Unknown Device",
 
-  "button-test-ok": "OK",
+  "button-text-ok": "OK",
   "button-text-close": "Close",
   "button-text-dont-tell-me-again": "Don't tell me again",
   "button-text-lets-do-this": "Let's do this!!",

@@ -17,6 +17,11 @@ describe('Settings', () => {
 
   beforeEach(() => {
     settings = new Settings('test');
+    global.Emitter = {
+      fire: () => {},
+      sendToAll: () => {},
+      sendToGooglePlayMusic: () => {},
+    };
   });
 
   it('should initialize with default settings', () => {
@@ -75,7 +80,7 @@ describe('Settings', () => {
       setTimeout(() => {
         settings.get('foo_key', 'default').should.be.equal('bar_value');
         done();
-      }, 15);
+      }, 40);
     }, 35);
   });
 

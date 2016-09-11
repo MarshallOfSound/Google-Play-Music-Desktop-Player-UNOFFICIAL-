@@ -70,6 +70,8 @@ PlaybackAPI.on('change:time', (timeObj) => {
 const requireCode = (ws) => {
   authCode = Math.floor(Math.random() * 9999).toString();
   authCode = '0000'.substr(0, 4 - authCode.length) + authCode;
+  // DEV: Always be 000 when testing
+  authCode = Settings.__TEST__ ? '0000' : authCode;
   Emitter.sendToWindowsOfName('main', 'show:code_controller', {
     authCode,
   });
@@ -82,11 +84,11 @@ const requireCode = (ws) => {
 const enableAPI = () => {
   let portOpen = true;
   if (process.platform === 'win32') {
-    const testOutput = spawnSync(
+    const testResult = spawnSync(
       'netsh',
       ['advfirewall', 'firewall', 'show', 'rule', 'name=GPMDP\ PlaybackAPI'] // eslint-disable-line
-    ).stdout.toString().trim();
-    portOpen = testOutput !== 'No rules match the specified criteria.';
+    );
+    portOpen = testResult.status === 0;
   }
   if (!portOpen) {
     Emitter.once('openport:confirm', () => {
@@ -112,7 +114,7 @@ const enableAPI = () => {
     }
 
     try {
-      ad = mdns.createAdvertisement(mdns.tcp('GPMDP'), 5672, {
+      ad = mdns.createAdvertisement(mdns.tcp('GPMDP'), global.API_PORT || process['env'].GPMDP_API_PORT || 5672, { // eslint-disable-line
         name: os.hostname(),
         txtRecord: {
           API_VERSION,

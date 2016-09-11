@@ -5,7 +5,8 @@
   <link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <section class="window-border">
+  <div id="settings-window" style="height: 100%"></div>
+  <!-- <section class="window-border">
     <header class="darwin-title-bar">
       <div class="title">Desktop Settings</div>
     </header>
@@ -28,8 +29,8 @@
         <span is="translation-key">title-settings</span>
       </div>
       <div class="window-main">
-        <div class="row">
-          <div class="col s12">
+        <div class="row" id="settings-panel"> -->
+          <!-- <div class="col s12">
             <ul class="tabs">
               <li class="tab col s3"><a href="#general" class="theme-text orange-text"><span is="translation-key">title-settings-general</span></a></li>
               <li class="tab col s3"><a href="#mini" class="theme-text orange-text"><span is="translation-key">title-settings-mini</span></a></li>
@@ -39,148 +40,12 @@
               <li class="tab col s3"><a href="#style" class="theme-text orange-text"><span is="translation-key">title-settings-style</span></a></li>
             </ul>
           </div>
-          <div id="general" class="col s12 settings-box">
-            <div>
-              <p>
-                <input type="checkbox" class="filled-in" id="min-to-tray" />
-                <label for="min-to-tray"><span is="translation-key">settings-option-min-to-tray</span></label>
-              </p>
-              <p>
-                <input type="checkbox" class="filled-in" id="auto-launch" />
-                <label for="auto-launch"><span is="translation-key">settings-option-auto-launch</span></label>
-              </p>
-              <p>
-                <input type="checkbox" class="filled-in" id="theme-state" />
-                <label for="theme-state"><span is="translation-key">settings-option-custom-theme</span></label>
-              </p>
-              <div class="switch" id="themeStyleSwitch">
-                <label>
-                  <span is="translation-key">settings-option-custom-theme-light</span>
-                  <input type="checkbox">
-                  <span class="lever"></span>
-                  <span is="translation-key">settings-option-custom-theme-dark</span>
-                </label>
-              </div>
-            </div>
-            <div class="color-square-wrapper">
-              <h5 class="theme-text"><span is="translation-key">settings-option-custom-theme-choose-color</span></h5>
-              <div class="color-square red"></div>
-              <div class="color-square cyan"></div>
-              <div class="color-square purple"></div>
-              <div class="color-square lime"></div>
-              <div class="color-square indigo"></div>
-              <div class="color-square pink"></div>
-              <div class="color-square teal"></div>
-              <div class="color-square green"></div>
-              <div class="color-square orange"></div>
-              <div class="color-square deep-purple"></div>
-              <h5 class="theme-text">
-                <small>
-                  <span is="translation-key">settings-option-custom-theme-choose-custom</span> <a href="#" id="color_wheel_trigger" style="text-decoration: underline"><span is="translation-key">settings-option-custom-theme-custom-color</span></a>
-                </small>
-              </h5>
-            </div>
-            <div>
-              <p>
-                <input type="checkbox" class="filled-in" id="voice-controls" />
-                <label for="voice-controls"><span is="translation-key">settings-option-enable-voice</span> <i><span is="translation-key">settings-option-enable-voice-details</span></i></label>
-              </p>
-              <p>
-                <input type="checkbox" class="filled-in" id="json-api" />
-                <label for="json-api"><span is="translation-key">settings-option-enable-api-json</span></label>
-              </p>
-              <p>
-                <input type="checkbox" class="filled-in" id="playback-api" />
-                <label for="playback-api"><span is="translation-key">settings-option-enable-api</span> <i><span is="translation-key">settings-option-enable-api-details</span></i></label>
-              </p>
-              <p>
-                <input type="checkbox" class="filled-in" id="native-frame" />
-                <label for="native-frame"><span is="translation-key">settings-option-enable-system-borders</span> <i><span is="translation-key">settings-option-enable-system-borders-details</span></i></label>
-              </p>
-              <p>
-                <input type="checkbox" class="filled-in" id="save-page" />
-                <label for="save-page"><span is="translation-key">settings-option-save-page</span></label>
-              </p>
-              <p>
-                <input type="checkbox" class="filled-in" id="scroll-lyrics" />
-                <label for="scroll-lyrics"><span is="translation-key">settings-option-scroll-lyrics</span></label>
-              </p>
-              <p class="windows-only">
-                <input type="checkbox" class="filled-in" id="taskbar-progress" />
-                <label for="taskbar-progress"><span is="translation-key">settings-option-enable-taskbar-progress</span></label>
-              </p>
-            </div>
-          </div>
-          <div id="mini" class="col s12 settings-box">
-            <div>
-              <p>
-                <input type="checkbox" class="filled-in" id="mini-always-on-top" />
-                <label for="mini-always-on-top"><span is="translation-key">settings-option-mini-ontop</span></label>
-              </p>
-              <p>
-                <input type="checkbox" class="filled-in" id="mini-always-show-song-info" />
-                <label for="mini-always-show-song-info"><span is="translation-key">settings-option-mini-always-show</span></label>
-              </p>
-              <p>
-                <input type="checkbox" class="filled-in" id="mini-use-scroll-volume" />
-                <label for="mini-use-scroll-volume"><span is="translation-key">settings-option-mini-use-scroll-volume</span></label>
-              </p>
-            </div>
-          </div>
-          <div id="lastfm" class="col s12 settings-box">
-            <h5>Last.FM Status: <span class="last-fm-status-text"><span is="translation-key">lastfm-login-not-authorized</span></span></h5>
-            <a class="waves-effect waves-light btn lastfm-button"><i class="material-icons left">exit_to_app</i><span is="translation-key">lastfm-login-button-text</span></a>
-          </div>
-          <div id="hotkeys" class="col s12 settings-box">
-            <span is="translation-key">settings-option-hotkey-explanation</span>
-            <span is="translation-key">settings-option-hotkey-explanation-2</span>
-            <div class="row">
-              <div class="input-field col s6">
-                <input placeholder="Not Set" id="playPause" type="text">
-                <label for="first_name"><span is="translation-key">playback-label-play-pause</span></label>
-              </div>
-              <div class="input-field col s6">
-                <input placeholder="Not Set" id="stop" type="text">
-                <label for="last_name"><span is="translation-key">playback-label-stop</span></label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s6">
-                <input placeholder="Not Set" id="previousTrack" type="text">
-                <label for="first_name"><span is="translation-key">playback-label-previous-track</span></label>
-              </div>
-              <div class="input-field col s6">
-                <input placeholder="Not Set" id="nextTrack" type="text">
-                <label for="last_name"><span is="translation-key">playback-label-next-track</span></label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s6">
-                <input placeholder="Not Set" id="thumbsUp" type="text">
-                <label for="first_name"><span is="translation-key">playback-label-thumbs-up</span></label>
-              </div>
-              <div class="input-field col s6">
-                <input placeholder="Not Set" id="thumbsDown" type="text">
-                <label for="last_name"><span is="translation-key">playback-label-thumbs-down</span></label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s6">
-                <input placeholder="Not Set" id="decreaseVolume" type="text">
-                <label for="first_name"><span is="translation-key">playback-label-volume-down</span></label>
-              </div>
-              <div class="input-field col s6">
-                <input placeholder="Not Set" id="increaseVolume" type="text">
-                <label for="last_name"><span is="translation-key">playback-label-volume-up</span></label>
-              </div>
-            </div>
-          </div>
           <div id="audio" class="col s12 settings-box">
             <div class="input-field col s12">
               <select id="audioOutputSelect"></select>
               <label><span is="translation-key">tray-label-audio-device</span></label>
             </div>
-            <!-- This doesn't work with audio selection so let's disable it -->
+            <!-\- This doesn't work with audio selection so let's disable it -->
             <!--<div class="input-field col s12" style="margin-top: 0">
               <span>Equalizer <a class="waves-effect waves-light btn reset-eq" style="position:absolute;right:0;top:-8px">Reset</a></span>
               <div class="eq-slide-con"><label>60Hz</label><div class="eq-slide"></div></div>
@@ -188,7 +53,7 @@
               <div class="eq-slide-con"><label>910Hz</label><div class="eq-slide"></div></div>
               <div class="eq-slide-con"><label>4kHz</label><div class="eq-slide"></div></div>
               <div class="eq-slide-con"><label>14kHz</label><div class="eq-slide"></div></div>
-            </div>-->
+            </div>-\->
           </div>
           <div id="style" class="col s12 settings-box">
             <div class="file-field input-field">
@@ -212,18 +77,13 @@
             </div>
             <a class="waves-effect waves-light btn style-refresh"><i class="material-icons left">refresh</i><span is="translation-key">settings-options-style-refresh</span></a>
           </div>
-        </div>
-      </div>
+        </div> -->
+      <!-- </div>
     </main>
-  </section>
-  <script>window._module = window.module; window.module = undefined;</script>
-  <script src="../assets/util/jquery.min.js"></script>
-  <script src="../assets/util/materialize.min.js"></script>
-  <script src="../assets/util/nouislider.min.js"></script>
+  </section> -->
   <script>
-  window.module = window._module;
-  require('../inject/generic');
-  require('../inject/settings');
+  require('../renderer/generic');
+  require('../renderer/windows/settings');
   </script>
 </body>
 </html>
