@@ -1,11 +1,13 @@
 import { app } from 'electron';
+import fs from 'fs';
 import os from 'os';
+import path from 'path';
 import raven from 'raven';
 
-if (process.env.GPMDP_SENTRY_DSN) {
+if (!global.DEV_MODE && process.env.GPMDP_SENTRY_DSN) {
   const client = new raven.Client(process.env.GPMDP_SENTRY_DSN, {
     release: app.getVersion(),
-    environment: global.DEV_MODE ? 'development' : 'production',
+    environment: fs.existsSync(path.resolve(__dirname, '../../../..', 'circle.yml')) ? 'development' : 'production',
     platform: os.platform(),
     platform_version: os.release(),
     arch: os.arch(),
