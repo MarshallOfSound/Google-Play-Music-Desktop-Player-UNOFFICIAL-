@@ -43,16 +43,20 @@
   <script>
   window.module = window._module;
   require('pretty-colorwheel');
-  require('../inject/generic');
+  require('../renderer/generic');
+  const _ = require('lodash');
 
   const input = $(".window-main input");
 
   const cw = Raphael.colorwheel($("#color_wheel_container > div")[0],240,200);
   cw.input(input.get(0));
   cw.color(Settings.get('themeColor'));
-  cw.onchange((color) => {
-    Emitter.fire('theme:updateColor', color.hex);
-  });
+  cw.onchange(_.throttle((color) => {
+    Emitter.fire('settings:set', {
+      key: 'themeColor',
+      value: color.hex,
+    });
+  }, 400));
   </script>
 </body>
 </html>

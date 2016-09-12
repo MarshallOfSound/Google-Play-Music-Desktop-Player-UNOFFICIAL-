@@ -1,4 +1,5 @@
 // Pre-run
+import { app } from 'electron';
 import chai from 'chai';
 import chaiFs from 'chai-fs';
 import fs from 'fs';
@@ -27,6 +28,14 @@ describe('Translations', () => {
 
   it('should resolve a invalid translation key to the default string', () => {
     provider.query('label-magical-unicorn').should.be.equal(TranslationProvider.UNKNOWN);
+  });
+
+  it('should default to en-US if the current locale does not exist', () => {
+    const _getLocale = app.getLocale;
+    app.getLocale = () => 'zb-FQ';
+    provider = new TranslationProvider();
+    provider.t.should.be.deep.equal(provider._t);
+    app.getLocale = _getLocale;
   });
 
 
