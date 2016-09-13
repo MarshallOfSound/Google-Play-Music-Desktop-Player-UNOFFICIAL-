@@ -1,7 +1,7 @@
 {
   "name": "google-play-music-desktop-player",
   "productName": "Google Play Music Desktop Player",
-  "version": "3.5.0",
+  "version": "3.6.0",
   "apiVersion": "1.0.0",
   "description": "An electron wrapper for Google Play Music",
   "main": "build/index.js",
@@ -52,7 +52,7 @@
     "electron": "1.3.4",
     "electron-chromecast": "^1.0.14",
     "gmusic-mini-player.js": "^2.0.6",
-    "gmusic-theme.js": "^2.0.0",
+    "gmusic-theme.js": "^2.0.1",
     "gmusic-ui.js": "^2.1.0",
     "gmusic.js": "^6.0.10",
     "html-entities": "^1.2.0",
