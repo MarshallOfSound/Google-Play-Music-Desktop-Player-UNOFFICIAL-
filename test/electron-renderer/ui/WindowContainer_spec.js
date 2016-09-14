@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-
+import { remote } from 'electron';
 import React from 'react';
 import chai from 'chai';
 import { mount } from 'enzyme';
@@ -105,5 +105,32 @@ describe('<WindowContainer />', () => {
     component.find('.control').at(2).props()
       .onClick();
     spy.callCount.should.be.equal(1);
+  });
+
+  it('should attempt to minimize on darwin when double clicking the titlebar and the user config is minimize', () => {
+    const _orig = remote.systemPreferences.getUserDefault;
+    remote.systemPreferences.getUserDefault = () => 'Minimize';
+    const component = mount(<WindowContainer isMainWindow title="Test Title" />);
+    component.instance()._darwinExpand();
+    fired.should.have.property('window:minimize');
+    remote.systemPreferences.getUserDefault = _orig;
+  });
+
+  it('should attempt to maximize on darwin when double clicking the titlebar and the user config is maximize', () => {
+    const _orig = remote.systemPreferences.getUserDefault;
+    remote.systemPreferences.getUserDefault = () => 'Maximize';
+    const component = mount(<WindowContainer isMainWindow title="Test Title" />);
+    component.instance()._darwinExpand();
+    fired.should.have.property('window:maximize');
+    remote.systemPreferences.getUserDefault = _orig;
+  });
+
+  it('should not attempt to perform a window actions on darwin when double clicking the titlebar and the user config is unknown', () => {
+    const _orig = remote.systemPreferences.getUserDefault;
+    remote.systemPreferences.getUserDefault = () => 'RandomString';
+    const component = mount(<WindowContainer isMainWindow title="Test Title" />);
+    component.instance()._darwinExpand();
+    fired.should.be.deep.equal({});
+    remote.systemPreferences.getUserDefault = _orig;
   });
 });
