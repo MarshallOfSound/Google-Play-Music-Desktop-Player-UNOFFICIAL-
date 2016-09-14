@@ -11,7 +11,7 @@
   "button-text-not-now": "Nie teraz",
 
   "label-about": "Informacje",
-  "label-desktop-settings": "Ustawienia Aplikacji",
+  "label-desktop-settings": "Ustawienia aplikacji",
   "label-donate": "Wspomóż projekt",
   "label-help": "Pomoc",
   "label-issues": "Problemy",
@@ -42,9 +42,9 @@
 
   "modal-confirmTray-title": "Chcieliśmy tylko uprzedzić",
   "modal-confirmTray-content": "Zamknięcie głównego okna aplikacji (czyli to, co właśnie próbowałeś zrobić) w rzeczywistości zminimalizuje odtwarzacz do systemowego paska narzędzi. Możesz zmienić to ustawienie w oknie Ustawień Aplikacji.",
-  "modal-confirmOpenPort-content": "Playback API nie mogło zostać uruchomione, ponieważ jest ono blokowane przez Windows Firewall. Możemy to dla Ciebie odblokować, ale ostrzegamy, że może to wymagać uprawnień administratora",
+  "modal-confirmOpenPort-content": "Nie można udzielić dostępu do API, ponieważ operacja została zablokowana przez Windows Firewall. Możemy go dla Ciebie odblokować, ale ostrzegamy, że może to wymagać uprawnień administratora",
   "modal-confirmUpdate-title": "Dostępna aktualizacja",
-  "modal-confirmUpdate-content": "Hurra, wygląda na to, że dostępna jest nowa wersja Google Play Music Desktop Player. Ta aktualizacja powinna przynieść całe mnóstwo nowych funkcji i poprawek. Rekomendujemy zaktualizowanie aplikacji najszybciej jak to możliwe, żeby zapewnić najlepsze wrażenia z korzystania z niej.<br />Mamy nadzieję, że polubisz nową wersję!",
+  "modal-confirmUpdate-content": "Hurra, wygląda na to, że dostępna jest nowa wersja Google Play Music Desktop Player. Ta aktualizacja powinna przynieść całe mnóstwo nowych funkcji i poprawek. Rekomendujemy aktualizacje aplikacji najszybciej jak to możliwe, aby zapewnić najlepsze wrażenia korzystania z niej.<br />Mamy nadzieję, że polubisz nową wersję!",
   "modal-confirmUninstall-title": "Jest taka sprawa...",
   "modal-confirmUninstall-content": "Wykryliśmy w Twoim systemie starszą wersję GPMDP. Jeśli właśnie zaktualizowałeś aplikację, to jest to zupełnie normalne. Teraz odinstalujemy starszą wersję. To \"może\" wymagać uprawnień administratora, proszę udziel ich abyśmy mogli posprzątać ten bałagan.",
   "modal-goToURL-title": "Otwórz Google Play Music aby przejść do:",
@@ -67,14 +67,14 @@
   "settings-option-custom-theme-dark": "Ciemny",
   "settings-option-custom-theme-light": "Jasny",
 
-  "settings-option-enable-api": "Włącz Playback API",
+  "settings-option-enable-api": "Włącz dostęp poprzez API",
   "settings-option-enable-api-json": "Włącz API JSON",
-  "settings-option-enable-api-details": "To pozwala innym aplikacjom współpracować z GPMDP",
-  "settings-option-enable-system-borders": "Użyj systemowych ramek okna aplikacji",
+  "settings-option-enable-api-details": "Dostęp do API pozwala innym aplikacjom współpracować z GPMDP",
+  "settings-option-enable-system-borders": "Użyj stylu systemowego dla okna aplikacji",
   "settings-option-enable-system-borders-details": "Wymaga ponownego uruchomienia",
   "settings-option-enable-voice": "Włącz Kontrolę Głosową",
   "settings-option-enable-voice-details": "Kontrola nad GPMDP za pomocą komend głosowych - funkcja eksperymentalna",
-  "settings-option-enable-taskbar-progress": "",
+  "settings-option-enable-taskbar-progress": "Pokazuj postęp utworu na pasku systemowym",
   
   "settings-option-hotkey-explanation": "Domyślne klawisze dedykowane obsłudze mediów będą działać bez względu na te ustawienia. Traktuj te ustawienia jako dodatkowe.",
   "settings-option-hotkey-explanation-2": "Użyj klawisza <i>\"Escape\"</i> żeby zresetować ustawienia.",
@@ -102,7 +102,7 @@
   "title-settings-general": "Ogólne",
   "title-settings-hotkeys": "Skróty klawiszowe",
   "title-settings-lastfm": "LastFM",
-  "title-settings-mini": "Mini Odtwarzacz",
+  "title-settings-mini": "Mini odtwarzacz",
   "title-settings-style": "Własne style",
 
   "tray-label-audio-device": "Urządzenie Audio",
