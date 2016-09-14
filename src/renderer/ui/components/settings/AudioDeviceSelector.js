@@ -77,7 +77,7 @@ class AudioDeviceSelector extends Component {
     return (
       <div style={{ width: '90%' }}>
         <SelectField
-          value={this.state.deviceList.length === 0 ? '...' : this.props.audiooutput}
+          value={this.state.deviceList.length === 0 ? '...' : this.props.audiooutput || this.state.deviceList[0].label}
           onChange={this.onChooseDevice}
           floatingLabelText={TranslationProvider.query('tray-label-audio-device')}
           maxHeight={200}
@@ -91,4 +91,4 @@ class AudioDeviceSelector extends Component {
   }
 }
 
-export default requireSettings(AudioDeviceSelector, ['audiooutput'], { audiooutput: 'default' });
+export default requireSettings(AudioDeviceSelector, ['audiooutput'], { audiooutput: '' });
