@@ -34,7 +34,7 @@ export default () => {
     get: (key, def) => {
       queries[key] = queries[key] || 0;
       queries[key]++;
-      return typeof _values[key] === 'undefined' ? def || key : _values[key];
+      return typeof _values[key] === 'undefined' ? def || (key === 'nativeFrame' ? false : key) : _values[key];
     },
     set: (key, value) => {
       Emitter.fire('settings:set', {

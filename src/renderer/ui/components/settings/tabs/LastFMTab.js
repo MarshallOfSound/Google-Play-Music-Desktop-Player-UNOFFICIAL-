@@ -11,7 +11,8 @@ class LastFMTab extends Component {
       PropTypes.bool,
     ]).isRequired,
     setSetting: PropTypes.func.isRequired,
-  }
+  };
+
   constructor(props, ...args) {
     super(props, ...args);
 
@@ -84,4 +85,4 @@ class LastFMTab extends Component {
   }
 }
 
-export default requireSettings(LastFMTab, ['lastFMKey']);
+export default requireSettings(LastFMTab, ['lastFMKey'], { lastFMKey: false });

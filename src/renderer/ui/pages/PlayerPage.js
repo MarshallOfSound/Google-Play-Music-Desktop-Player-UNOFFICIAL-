@@ -75,7 +75,7 @@ export default class PlayerPage extends Component {
 
   render() {
     return (
-      <WindowContainer isMainWindow title="" confirmClose={this._confirmCloseWindow}>
+      <WindowContainer isMainWindow title={process.platform === 'darwin' ? 'Google Play Music Desktop Player' : ''} confirmClose={this._confirmCloseWindow}>
         <div className="drag-handle-large"></div>
         <div className="loader">
           <svg className="circular" viewBox="25 25 50 50">
@@ -85,7 +85,7 @@ export default class PlayerPage extends Component {
         <WebView
           ref="view"
           src={this.state.webviewTarget}
-          className="embedded-player"
+          className={`embedded-player ${process.platform}`}
           preload="../renderer/windows/GPMWebView"
           didStopLoading={this._didStopLoading}
           domReady={this._domReady}
