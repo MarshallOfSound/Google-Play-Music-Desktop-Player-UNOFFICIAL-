@@ -121,4 +121,4 @@ class HotkeyInput extends Component {
   }
 }
 
-export default requireSettings(HotkeyInput, ['hotkeys']);
+export default requireSettings(HotkeyInput, ['hotkeys'], { hotkeys: {} });

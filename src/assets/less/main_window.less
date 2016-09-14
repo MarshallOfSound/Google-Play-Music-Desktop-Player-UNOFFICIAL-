@@ -26,6 +26,10 @@ html, body {
   top: 0;
 }
 
+.darwin-title-bar {
+  display: none;
+}
+
 // Hide custom frame when native frame is used
 .native-frame {
   .lean-overlay {
@@ -40,16 +44,15 @@ html, body {
     transition: margin-top 160ms;
 
     flex-shrink: 0;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
 
     font-size: @title-bar-text-size;
-    // -webkit-user-select: none;
+    -webkit-user-select: none;
     -webkit-app-region: drag;
 
     padding: 0 70px;
-    // overflow: hidden;
 
     .title {
       flex: 0 1 auto;
@@ -74,7 +77,7 @@ html, body {
     .embedded-player {
       height: 100vh !important;
 
-      .darwin& {
+      &.darwin {
         height: calc(100vh ~"-" @title-bar-height-darwin) !important;
       }
     }

@@ -91,4 +91,4 @@ class AudioDeviceSelector extends Component {
   }
 }
 
-export default requireSettings(AudioDeviceSelector, ['audiooutput']);
+export default requireSettings(AudioDeviceSelector, ['audiooutput'], { audiooutput: 'default' });

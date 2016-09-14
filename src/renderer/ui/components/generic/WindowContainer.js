@@ -40,6 +40,15 @@ export default class WindowContainer extends Component {
     Emitter.off('settings:change:themeType', this._themeTypeUpdate);
   }
 
+  _darwinExpand = () => {
+    const doubleClickAction = remote.systemPreferences.getUserDefault('AppleActionOnDoubleClick', 'string');
+    if (doubleClickAction === 'Minimize') {
+      this.minWindow();
+    } else if (doubleClickAction === 'Maximize') {
+      this.maxWindow();
+    }
+  }
+
   _themeUpdate = (event, theme) => {
     this.setState({ theme });
   }
@@ -81,7 +90,7 @@ export default class WindowContainer extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <section className="window-border" style={{ borderColor: muiTheme.tabs.backgroundColor }}>
           <PlatformSpecific platform="darwin">
-            <header className="darwin-title-bar" style={{ backgroundColor: muiTheme.tabs.backgroundColor }}>
+            <header className="darwin-title-bar" onDoubleClick={this._darwinExpand} style={{ backgroundColor: muiTheme.tabs.backgroundColor }}>
               <div className="title">{this.props.title}</div>
             </header>
           </PlatformSpecific>
@@ -108,9 +117,14 @@ export default class WindowContainer extends Component {
             ) :
             (
               <main className="dialog">
-                <div className="window-title" style={{ backgroundColor: muiTheme.tabs.backgroundColor }}>
-                  {this.props.title}
-                </div>
+                {
+                  process.platform === 'darwin' && !this.state.nativeFrame ?
+                  (
+                    <div className="window-title" style={{ backgroundColor: muiTheme.tabs.backgroundColor }}>
+                      {this.props.title}
+                    </div>
+                  ) : null
+                }
                 <div className="window-main" style={fadedBackground}>
                   {
                     this.props.children

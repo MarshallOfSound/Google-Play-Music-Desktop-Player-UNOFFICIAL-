@@ -46,7 +46,7 @@ class FileInput extends Component {
         />
         <TextField
           id={`${this.props.label.replace(/ /g, '-')}_value`}
-          value={path.basename(this.props[this.props.settingsKey])}
+          value={this.props[this.props.settingsKey] ? path.basename(this.props[this.props.settingsKey]) : ''}
           style={{ flex: 1 }}
           onClick={this._triggerFile}
         />
