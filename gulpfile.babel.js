@@ -106,8 +106,11 @@ const winstallerConfig = {
   iconUrl: 'https://www.samuelattard.com/img/gpmdp_setup.ico',
   setupIcon: 'build/assets/img/main.ico',
   loadingGif: 'build/assets/img/installing.gif',
-  remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
 };
+
+if (!process.env.GPMDP_DONT_BUILD_DELTAS) {
+  winstallerConfig.remoteReleases = 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-';
+}
 
 if (process.env.APPVEYOR) {
   delete winstallerConfig.remoteReleases;
