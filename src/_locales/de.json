@@ -4,6 +4,8 @@
   "audio-device-unknown": "Unbekanntes Gerät",
 
   "button-text-ok": "OK",
+  "button-text-cancel-alarm": "",
+  "button-text-click-here-to-set-alarm": "",
   "button-text-close": "Schließen",
   "button-text-dont-tell-me-again": "Sag mir das nicht nochmal",
   "button-text-lets-do-this": "Lass uns starten!!",
@@ -11,6 +13,7 @@
   "button-text-not-now": "Nicht jetzt",
 
   "label-about": "Über",
+  "label-alarm": "",
   "label-desktop-settings": "Desktop-Einstellungen",
   "label-donate": "Spenden",
   "label-help": "Hilfe",

@@ -118,6 +118,23 @@ function installQuitButton() {
   });
 }
 
+function installAlarmButton() {
+  installSidebarButton('label-alarm', 'alarm', 'alarm', 0, (e) => {
+    // Closes the sliding drawer
+    document.querySelector('paper-drawer-panel').setAttribute('selected', 'main');
+    Emitter.fireAtMain('alarm:show');
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  });
+}
+
+function installMainMenu() {
+  installDesktopSettingsButton();
+  installQuitButton();
+  installAlarmButton();
+}
+
 /* eslint-disable max-len, no-multi-str */
 function installNowPlayingButton(textKey, id, callback) {
   const ripple = `<paper-ripple style="-webkit-user-select: none;">
@@ -202,8 +219,7 @@ window.wait(() => {
   hideNotWorkingStuff();
   fixShopButton();
   handleSubscribeButton();
-  installDesktopSettingsButton();
-  installQuitButton();
+  installMainMenu();
   handleZoom();
   installNowPlayingMenu();
   fixChromecastButton();
