@@ -89,12 +89,21 @@ window.wait(() => {
       } catch (err) {
         error = err;
       }
-      Emitter.fire(`execute:gmusic:result_${cmd.requestID}`, {
-        namespace: 'result',
-        type: error ? 'error' : 'return',
-        value: error || result,
-        requestID: cmd.requestID,
-      });
+      const sendResponse = (response, isError) => {
+        Emitter.fire(`execute:gmusic:result_${cmd.requestID}`, {
+          namespace: 'result',
+          type: isError ? 'error' : 'return',
+          value: response,
+          requestID: cmd.requestID,
+        });
+      };
+      if (error) {
+        sendResponse(error, true);
+      } else {
+        Promise.resolve(result)
+          .then((response) => sendResponse(response, false))
+          .catch((err) => sendResponse(err, true));
+      }
     }
   });
 });
