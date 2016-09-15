@@ -33,7 +33,8 @@ window.wait(() => {
     wasMaximized = mainWindow.isMaximized();
     mainWindow.unmaximize();
 
-    remote.getCurrentWindow().setMaximumSize(MINI_SIZE, MINI_SIZE);
+    // TODO: Re-enable when the root cause of electron/electron#6783 is fixed
+    // remote.getCurrentWindow().setMaximumSize(MINI_SIZE + 20, MINI_SIZE + 20);
     remote.getCurrentWindow().setMinimumSize(50, 50);
     webContents.executeJavaScript('document.body.setAttribute("mini", "mini")');
     remote.getCurrentWebContents().setZoomFactor(1);
