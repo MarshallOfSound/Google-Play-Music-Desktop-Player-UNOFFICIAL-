@@ -4,6 +4,8 @@
   "audio-device-unknown": "Neznáme zariadnie",
 
   "button-text-ok": "OK",
+  "button-text-cancel-alarm": "",
+  "button-text-click-here-to-set-alarm": "",
   "button-text-close": "Zavrieť",
   "button-text-dont-tell-me-again": "Nabudúce neoznamovať",
   "button-text-lets-do-this": "Tak poďme na to!!",
@@ -11,6 +13,7 @@
   "button-text-not-now": "Teraz nie",
 
   "label-about": "O programe",
+  "label-alarm": "",
   "label-desktop-settings": "Nastavenia programu",
   "label-donate": "Podporiť",
   "label-help": "Pomocník",

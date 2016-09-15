@@ -16,6 +16,23 @@ Emitter.on('playback:playPause', () => {
   window.GPM.playback.playPause();
 });
 
+Emitter.on('playback:play:smooth', () => {
+  const originalVolume = window.GPM.volume.getVolume();
+  window.GPM.volume.setVolume(0);
+  if (!window.GPM.playback.isPlaying()) {
+    window.GPM.playback.playPause();
+  }
+  let i = 0;
+  const FADE_SPEED = 500;
+  const fadeIn = setInterval(() => {
+    window.GPM.volume.setVolume(i * (originalVolume / FADE_SPEED));
+    i++;
+    if (i >= FADE_SPEED) {
+      clearInterval(fadeIn);
+    }
+  }, 20);
+});
+
 Emitter.on('playback:nextTrack', () => {
   window.GPM.playback.forward();
 });

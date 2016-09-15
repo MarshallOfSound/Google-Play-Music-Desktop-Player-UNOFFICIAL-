@@ -8,6 +8,7 @@ import WindowContainer from '../components/generic/WindowContainer';
 
 // Modals
 import AboutModal from '../components/modals/AboutModal';
+import AlarmModal from '../components/modals/AlarmModal';
 import APICodeModal from '../components/modals/APICodeModal';
 import ConfirmTrayModal from '../components/modals/ConfirmTrayModal';
 import GoToModal from '../components/modals/GoToModal';
@@ -96,6 +97,7 @@ export default class PlayerPage extends Component {
         <LyricsViewer />
 
         <AboutModal />
+        <AlarmModal />
         <APICodeModal />
         <ConfirmTrayModal ref="trayModal" />
         <GoToModal />
