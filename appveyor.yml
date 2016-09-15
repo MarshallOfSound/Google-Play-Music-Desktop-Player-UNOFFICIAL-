@@ -16,6 +16,7 @@ environment:
   GOOGLE_MUSIC_JS_PASSWORD:
     secure: ysdUmqSIrW+4OE1sRvLp+g==
   BONJOUR_SDK_HOME: 'C:\\Program Files\\Bonjour SDK'
+  GPMDP_DONT_BUILD_DELTAS: 'true'
 
 branches:
   except:
