@@ -10,7 +10,7 @@ describe('Update Server', () => {
       .on('error', () => done(new Error('Update server was unreachable')));
   });
 
-  it('should return JSON from the api URL', (done) => {
+  it.skip('should return JSON from the api URL', (done) => {
     fetch('https://update.gpmdp.xyz/api/versions')
       .then((resp) => resp.json())
       .then((json) => {
