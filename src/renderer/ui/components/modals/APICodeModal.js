@@ -13,12 +13,12 @@ export default class APICodeModal extends Component {
   }
 
   componentDidMount() {
-    Emitter.on('show:code_controller', this._show);
+    Emitter.on('show:code_controller', this.show);
     Emitter.on('hide:code_controller', this._hide);
   }
 
   componentWillUnmount() {
-    Emitter.off('show:code_controller', this._show);
+    Emitter.off('show:code_controller', this.show);
     Emitter.off('hide:code_controller', this._hide);
   }
 
@@ -32,7 +32,7 @@ export default class APICodeModal extends Component {
     this.handleClose();
   }
 
-  _show = (event, data) => {
+  show = (event, data) => {
     this.setState({
       code: data.authCode,
       open: true,

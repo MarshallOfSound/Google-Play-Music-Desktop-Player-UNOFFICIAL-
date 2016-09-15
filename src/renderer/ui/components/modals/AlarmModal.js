@@ -6,7 +6,7 @@ import { green500, green700 } from 'material-ui/styles/colors';
 
 import { requireSettings } from '../generic/SettingsProvider';
 
-class AlarmModel extends Component {
+class AlarmModal extends Component {
   static propTypes = {
     alarm: PropTypes.oneOfType([
       PropTypes.string,
@@ -88,4 +88,4 @@ class AlarmModel extends Component {
   }
 }
 
-export default requireSettings(AlarmModel, ['alarm'], { alarm: null });
+export default requireSettings(AlarmModal, ['alarm'], { alarm: null });

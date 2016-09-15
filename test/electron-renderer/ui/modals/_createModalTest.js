@@ -40,7 +40,7 @@ export default (ModalClass, eventsToShow, eventsToHide, eventsOnButtons, setup =
     });
 
     it(`should be ${!setup() ? 'hidden' : 'visisble'} initially`, () => {
-      component.state().open.should.be.equal(!hidden);
+      component.find('Dialog').props().open.should.be.equal(!hidden);
     });
 
     it('should hook events on mount', () => {
@@ -59,32 +59,32 @@ export default (ModalClass, eventsToShow, eventsToHide, eventsOnButtons, setup =
     });
 
     it('should handle a request to close gracefully', () => {
-      component.setState({ open: true });
-      component.state().open.should.be.equal(true);
+      (component.instance().show || component.find('AlarmModal').get(0).show)({}, {});
+      component.find('Dialog').props().open.should.be.equal(true);
       component.find('Dialog').props().onRequestClose();
-      component.state().open.should.be.equal(false);
+      component.find('Dialog').props().open.should.be.equal(false);
     });
 
     if (eventsToShow.length === 0) {
       it('should show when the show method is called', () => {
-        component.state().open.should.be.equal(!hidden);
+        component.find('Dialog').props().open.should.be.equal(!hidden);
         component.instance().show();
-        component.state().open.should.be.equal(true);
+        component.find('Dialog').props().open.should.be.equal(true);
       });
     }
 
     eventsToShow.forEach((eventName) => {
       it(`should show when it recieves the "${eventName}" event`, () => {
         mockEvent(eventName, {}, {});
-        component.state().open.should.be.equal(true);
+        component.find('Dialog').props().open.should.be.equal(true);
       });
 
       eventsToHide.forEach((hideEventName) => {
         it(`should show when it recieves the "${eventName}" event and then hide when it recieves the "${hideEventName}" evebt`, () => {
           mockEvent(eventName, {}, {});
-          component.state().open.should.be.equal(true);
+          component.find('Dialog').props().open.should.be.equal(true);
           mockEvent(hideEventName, {}, {});
-          component.state().open.should.be.equal(false);
+          component.find('Dialog').props().open.should.be.equal(false);
         });
       });
     });
