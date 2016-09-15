@@ -118,7 +118,7 @@ export default class WindowContainer extends Component {
             (
               <main className="dialog">
                 {
-                  process.platform === 'darwin' && !this.state.nativeFrame ?
+                  !(process.platform === 'darwin' && this.state.nativeFrame) ?
                   (
                     <div className="window-title" style={{ backgroundColor: muiTheme.tabs.backgroundColor }}>
                       {this.props.title}
