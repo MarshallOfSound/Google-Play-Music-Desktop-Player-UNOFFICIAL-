@@ -46,8 +46,8 @@ describe('<PlayerPage />', () => {
     setTimeout(() => {
       component.instance().ready.should.be.equal(true);
       component.instance().refs.view.focus.callCount.should.be.equal(1);
-      stub.callCount.should.be.eq(17);
-      stub.getCall(16).args[1]();
+      stub.callCount.should.be.eq(19);
+      stub.getCall(16).args[1]({});
       windowSpy.firstCall.args[0].should.be.equal('focus');
       const queryStub = sinon.stub(document, 'querySelector');
       const focusObj = {
