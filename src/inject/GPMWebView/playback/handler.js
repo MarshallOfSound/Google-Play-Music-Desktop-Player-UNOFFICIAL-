@@ -89,11 +89,13 @@ window.wait(() => {
       } catch (err) {
         error = err;
       }
-      Emitter.fire(`execute:gmusic:result_${cmd.requestID}`, {
-        namespace: 'result',
-        type: error ? 'error' : 'return',
-        value: error || result,
-        requestID: cmd.requestID,
+      Promise.resolve(result).then(resolved => {
+        Emitter.fire(`execute:gmusic:result_${cmd.requestID}`, {
+          namespace: 'result',
+          type: error ? 'error' : 'return',
+          value: error || resolved,
+          requestID: cmd.requestID,
+        });
       });
     }
   });
