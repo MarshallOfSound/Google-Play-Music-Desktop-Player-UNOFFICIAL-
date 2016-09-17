@@ -25,7 +25,7 @@ class GeneralTab extends Component {
         <ToggleableOption label={TranslationProvider.query('settings-option-enable-api-details')} settingsKey={"playbackAPI"} />
         <ToggleableOption label={TranslationProvider.query('settings-option-enable-system-borders')} settingsKey={"nativeFrame"} />
         <ToggleableOption label={TranslationProvider.query('settings-option-save-page')} settingsKey={"savePage"} />
-        <ToggleableOption label={TranslationProvider.query('settings-option-scroll-lyrics')} settingsKey={"scrollLyricss"} />
+        <ToggleableOption label={TranslationProvider.query('settings-option-scroll-lyrics')} settingsKey={"scrollLyrics"} />
         <PlatformSpecific platform="win32">
           <ToggleableOption label={TranslationProvider.query('settings-option-enable-taskbar-progress')} settingsKey={"enableTaskbarProgress"} />
         </PlatformSpecific>

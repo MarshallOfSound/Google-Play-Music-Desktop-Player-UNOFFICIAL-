@@ -12,9 +12,7 @@ window.wait(() => {
   if (Settings.get('miniAlwaysShowSongInfo', false)) {
     document.body.setAttribute('controls', 'controls');
   }
-  if (Settings.get('miniUseScrollVolume', false)) {
-    window.GPM.mini.setScrollVolume(true);
-  }
+  window.GPM.mini.setScrollVolume(Settings.get('miniUseScrollVolume', false));
 
   let wasMaximized = mainWindow.isMaximized();
   window.GPM.on('mini:enable', () => {
