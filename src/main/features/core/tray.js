@@ -183,45 +183,45 @@ Emitter.on('audiooutput:list', (event, devices) => {
 // Change the Icon if its playing
 Emitter.on('playback:isPlaying', () => {
   if (process.platform === 'darwin') {
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/playing/macTemplate.png`));
+    appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/playing/macTemplate.png`));
   } else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
     // TODO: Change this back to ico when electron supports it on linux
-    // appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/playing/main_tray_white_s.png`));
+    // appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
+    appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/playing/main_tray_white_s.png`));
   } else if (process.platform === 'linux') {
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/playing/main_tray_white_s.png`));
+    appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/playing/main_tray_white_s.png`));
   } else {
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/playing/main_tray_s.png`));
+    appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/playing/main_tray_s.png`));
   }
 });
 
 // Change the Icon if its paused
 Emitter.on('playback:isPaused', () => {
   if (process.platform === 'darwin') {
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/paused/macTemplate.png`));
+    appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/paused/macTemplate.png`));
   } else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
     // TODO: Change this back to ico when electron supports it on linux
-    // appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/paused/main_tray_white_s.png`));
+    // appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
+    appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/paused/main_tray_white_s.png`));
   } else if (process.platform === 'linux') {
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/paused/main_tray_white_s.png`));
+    appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/paused/main_tray_white_s.png`));
   } else {
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/paused/main_tray_s.png`));
+    appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/paused/main_tray_s.png`));
   }
 });
 
 // Change the Icon if its stopped
 Emitter.on('playback:isStopped', () => {
   if (process.platform === 'darwin') {
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/macTemplate.png`));
+    appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/macTemplate.png`));
   } else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
     // TODO: Change this back to ico when electron supports it on linux
-    // appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray_white_s.png`));
+    // appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
+    appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/main_tray_white_s.png`));
   } else if (process.platform === 'linux') {
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray_white_s.png`));
+    appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/main_tray_white_s.png`));
   } else {
-    appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main_tray_s.png`));
+    appIcon.setImage(path.resolve(`${__dirname}/../../../assets/img/main_tray_s.png`));
   }
 });
 
