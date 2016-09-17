@@ -180,7 +180,7 @@ Emitter.on('audiooutput:list', (event, devices) => {
   setContextMenu();
 });
 
-//Change the Icon if its playing
+// Change the Icon if its playing
 Emitter.on('playback:isPlaying', () => {
   if (process.platform === 'darwin') {
     appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/playing/macTemplate.png`));
@@ -195,7 +195,7 @@ Emitter.on('playback:isPlaying', () => {
   }
 });
 
-//Change the Icon if its paused
+// Change the Icon if its paused
 Emitter.on('playback:isPaused', () => {
   if (process.platform === 'darwin') {
     appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/paused/macTemplate.png`));
@@ -210,7 +210,7 @@ Emitter.on('playback:isPaused', () => {
   }
 });
 
-//Change the Icon if its stopped
+// Change the Icon if its stopped
 Emitter.on('playback:isStopped', () => {
   if (process.platform === 'darwin') {
     appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/macTemplate.png`));
