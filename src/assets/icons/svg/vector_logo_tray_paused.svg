@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Pause" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1280 1280" style="enable-background:new 0 0 1280 1280;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#F44A23;}
+	.st1{fill:#FFFFFF;}
+</style>
+<circle id="Background" class="st0" cx="640" cy="640" r="640"/>
+<path id="Note" class="st1" d="M640,701.1c-22-15.3-45.8-24.1-76.3-24.1c0,0,0,0,0,0c0,0,0,0,0,0c-84,0-152.7,69.3-152.7,153.3
+	s67.9,153,151.9,153S730,914.9,730,830.9V459h136V297H640V701.1z"/>
+<path id="Pause_2_Hintegrund_2_" class="st0" d="M963,1280.3H811.3c-13.8,0-25-11.3-25-25v-608c0-13.8,11.3-25,25-25H963
+	c13.8,0,25,11.3,25,25v608C988,1269.1,976.7,1280.3,963,1280.3z"/>
+<rect id="Pause_1" x="824.7" y="670.3" class="st1" width="125" height="562"/>
+<path id="Pause_2_Hintegrund_1_" class="st0" d="M1213,1280.3h-151.7c-13.8,0-25-11.3-25-25v-608c0-13.8,11.3-25,25-25H1213
+	c13.8,0,25,11.3,25,25v608C1238,1269.1,1226.7,1280.3,1213,1280.3z"/>
+<rect id="Pause_1_" x="1074.7" y="670.3" class="st1" width="125" height="562"/>
+</svg>
