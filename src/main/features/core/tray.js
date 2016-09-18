@@ -7,7 +7,7 @@ let appIcon = null;
 const mainWindow = WindowManager.getAll('main')[0];
 
 const trayNormalPath = path.resolve(`${__dirname}/../../../assets/img/`);
-const trayPausedPath = path.resolve(`${__dirname}/../../../assets/img/paused/`);
+// const trayPausedPath = path.resolve(`${__dirname}/../../../assets/img/paused/`);
 const trayPlayingPath = path.resolve(`${__dirname}/../../../assets/img/playing/`);
 
 let audioDeviceMenu = [
