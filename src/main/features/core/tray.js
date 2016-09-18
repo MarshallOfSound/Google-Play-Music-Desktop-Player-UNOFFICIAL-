@@ -7,8 +7,22 @@ let appIcon = null;
 const mainWindow = WindowManager.getAll('main')[0];
 
 const trayNormalPath = path.resolve(`${__dirname}/../../../assets/img/`);
-// const trayPausedPath = path.resolve(`${__dirname}/../../../assets/img/paused/`);
+const trayPausedPath = path.resolve(`${__dirname}/../../../assets/img/paused/`);
 const trayPlayingPath = path.resolve(`${__dirname}/../../../assets/img/playing/`);
+
+const changeTrayIcon = (iconFolderPath) => {
+  if (process.platform === 'darwin') {
+    appIcon.setImage(path.resolve(`${iconFolderPath}/macTemplate.png`));
+  } else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
+    // TODO: Change this back to ico when electron supports it on linux
+    // appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
+    appIcon.setImage(path.resolve(`${iconFolderPath}/main_tray_white_s.png`));
+  } else if (process.platform === 'linux') {
+    appIcon.setImage(path.resolve(`${iconFolderPath}/main_tray_white_s.png`));
+  } else {
+    appIcon.setImage(path.resolve(`${iconFolderPath}/main_tray_s.png`));
+  }
+};
 
 let audioDeviceMenu = [
   {
@@ -29,33 +43,19 @@ if (process.platform === 'darwin') {
   appIcon = new Tray(path.resolve(`${trayNormalPath}/main_tray_s.png`));
 }
 
-// Change the Icon if Music is Playing / not
-PlaybackAPI.on('change:state', (state) => {
-  if (state === true) {
-    if (process.platform === 'darwin') {
-      appIcon.setImage(path.resolve(`${trayPlayingPath}/macTemplate.png`));
-    } else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
-      // TODO: Change this back to ico when electron supports it on linux
-      // appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
-      appIcon.setImage(path.resolve(`${trayPlayingPath}/main_tray_white_s.png`));
-    } else if (process.platform === 'linux') {
-      appIcon.setImage(path.resolve(`${trayPlayingPath}/main_tray_white_s.png`));
-    } else {
-      appIcon.setImage(path.resolve(`${trayPlayingPath}/main_tray_s.png`));
-    }
-  } else {
-    if (process.platform === 'darwin') {
-      appIcon.setImage(path.resolve(`${trayNormalPath}/macTemplate.png`));
-    } else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
-      // TODO: Change this back to ico when electron supports it on linux
-      // appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
-      appIcon.setImage(path.resolve(`${trayNormalPath}/main_tray_white_s.png`));
-    } else if (process.platform === 'linux') {
-      appIcon.setImage(path.resolve(`${trayNormalPath}/main_tray_white_s.png`));
-    } else {
-      appIcon.setImage(path.resolve(`${trayNormalPath}/main_tray_s.png`));
-    }
-  }
+// Change the icon if the music is playing
+Emitter.on('playback:isPlaying', () => {
+  changeTrayIcon(trayPlayingPath);
+});
+
+// Change the icon is the music is paused
+Emitter.on('playback:isPaused', () => {
+  changeTrayIcon(trayPausedPath);
+});
+
+// Change the icon is the music is stopped
+Emitter.on('playback:isStopped', () => {
+  changeTrayIcon(trayNormalPath);
 });
 
 const setContextMenu = () => {
