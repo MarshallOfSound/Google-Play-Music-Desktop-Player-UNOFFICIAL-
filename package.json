@@ -82,7 +82,7 @@
     "electron-mocha": "^3.0.0",
     "electron-packager": "^8.0.0",
     "electron-rebuild": "^1.1.4",
-    "electron-winstaller": "2.2.0",
+    "electron-winstaller": "2.3.4",
     "eslint": "^3.1.1",
     "eslint-config-airbnb-base": "^5.0.0",
     "eslint-plugin-import": "^1.12.0",
