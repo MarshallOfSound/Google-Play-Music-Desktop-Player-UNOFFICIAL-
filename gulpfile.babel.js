@@ -47,6 +47,7 @@ const defaultPackageConf = {
   'app-copyright': `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
   'app-version': packageJSON.version,
   arch: 'all',
+  asar: true,
   'build-version': packageJSON.version,
   dir: __dirname,
   icon: './build/assets/img/main',
