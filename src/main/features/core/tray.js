@@ -13,11 +13,11 @@ const trayPlayingPath = `${__dirname}/../../../assets/img/playing/`;
 let appIconFileName;
 
 if (process.platform === 'darwin') {
-  appIconFileName 'macTemplate.png';
+  appIconFileName = 'macTemplate.png';
 } else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
   // TODO: Change this back to ico when electron supports it on linux
   // appIconFileName = 'main.ico';
-  appIconFileName 'main_tray_white_s.png';
+  appIconFileName = 'main_tray_white_s.png';
 } else if (process.platform === 'linux') {
   appIconFileName = 'main_tray_white_s.png';
 } else {
@@ -45,7 +45,7 @@ Emitter.on('playback:isPaused', () => {
 
 // Change the icon is the music is stopped
 Emitter.on('playback:isStopped', () => {
-  appIcon.setImage(path.resolve(trayPlayingPath, appIconFileName));
+  appIcon.setImage(path.resolve(trayNormalPath, appIconFileName));
 });
 
 const setContextMenu = () => {
