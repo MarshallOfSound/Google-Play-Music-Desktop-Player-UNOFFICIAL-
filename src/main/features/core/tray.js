@@ -6,23 +6,23 @@ import { showDesktopSettings } from './desktopSettings';
 let appIcon = null;
 const mainWindow = WindowManager.getAll('main')[0];
 
-const trayNormalPath = path.resolve(`${__dirname}/../../../assets/img/`);
-const trayPausedPath = path.resolve(`${__dirname}/../../../assets/img/paused/`);
-const trayPlayingPath = path.resolve(`${__dirname}/../../../assets/img/playing/`);
+const trayNormalPath = `${__dirname}/../../../assets/img/`;
+const trayPausedPath = `${__dirname}/../../../assets/img/paused/`;
+const trayPlayingPath = `${__dirname}/../../../assets/img/playing/`;
 
-const changeTrayIcon = (iconFolderPath) => {
-  if (process.platform === 'darwin') {
-    appIcon.setImage(path.resolve(`${iconFolderPath}/macTemplate.png`));
-  } else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
-    // TODO: Change this back to ico when electron supports it on linux
-    // appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
-    appIcon.setImage(path.resolve(`${iconFolderPath}/main_tray_white_s.png`));
-  } else if (process.platform === 'linux') {
-    appIcon.setImage(path.resolve(`${iconFolderPath}/main_tray_white_s.png`));
-  } else {
-    appIcon.setImage(path.resolve(`${iconFolderPath}/main_tray_s.png`));
-  }
-};
+let appIconFileName;
+
+if (process.platform === 'darwin') {
+  appIconFileName 'macTemplate.png';
+} else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
+  // TODO: Change this back to ico when electron supports it on linux
+  // appIconFileName = 'main.ico';
+  appIconFileName 'main_tray_white_s.png';
+} else if (process.platform === 'linux') {
+  appIconFileName = 'main_tray_white_s.png';
+} else {
+  appIconFileName = 'main_tray_s.png';
+}
 
 let audioDeviceMenu = [
   {
@@ -31,31 +31,21 @@ let audioDeviceMenu = [
   },
 ];
 
-if (process.platform === 'darwin') {
-  appIcon = new Tray(path.resolve(`${trayNormalPath}/macTemplate.png`));
-} else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
-  // TODO: Change this back to ico when electron supports it on linux
-  // appIcon = new Tray(path.resolve(`${__dirname}/../../../assets/img/main.ico`));
-  appIcon = new Tray(path.resolve(`${trayNormalPath}/main_tray_white_s.png`));
-} else if (process.platform === 'linux') {
-  appIcon = new Tray(path.resolve(`${trayNormalPath}/main_tray_white_s.png`));
-} else {
-  appIcon = new Tray(path.resolve(`${trayNormalPath}/main_tray_s.png`));
-}
+appIcon = new Tray(path.resolve(trayNormalPath, appIconFileName.png));
 
 // Change the icon if the music is playing
 Emitter.on('playback:isPlaying', () => {
-  changeTrayIcon(trayPlayingPath);
+  appIcon.setImage(path.resolve(trayPausedPath, appIconFileName));
 });
 
 // Change the icon is the music is paused
 Emitter.on('playback:isPaused', () => {
-  changeTrayIcon(trayPausedPath);
+  appIcon.setImage(path.resolve(trayPlayingPath, appIconFileName));
 });
 
 // Change the icon is the music is stopped
 Emitter.on('playback:isStopped', () => {
-  changeTrayIcon(trayNormalPath);
+  appIcon.setImage(path.resolve(trayPlayingPath, appIconFileName));
 });
 
 const setContextMenu = () => {
