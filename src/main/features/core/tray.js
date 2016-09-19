@@ -31,7 +31,7 @@ let audioDeviceMenu = [
   },
 ];
 
-appIcon = new Tray(path.resolve(trayNormalPath, appIconFileName.png));
+appIcon = new Tray(path.resolve(trayNormalPath, appIconFileName));
 
 // Change the icon if the music is playing
 Emitter.on('playback:isPlaying', () => {
