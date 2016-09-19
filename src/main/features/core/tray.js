@@ -35,12 +35,12 @@ appIcon = new Tray(path.resolve(trayNormalPath, appIconFileName));
 
 // Change the icon if the music is playing
 Emitter.on('playback:isPlaying', () => {
-  appIcon.setImage(path.resolve(trayPausedPath, appIconFileName));
+  appIcon.setImage(path.resolve(trayPlayingPath, appIconFileName));
 });
 
 // Change the icon is the music is paused
 Emitter.on('playback:isPaused', () => {
-  appIcon.setImage(path.resolve(trayPlayingPath, appIconFileName));
+  appIcon.setImage(path.resolve(trayPausedPath, appIconFileName));
 });
 
 // Change the icon is the music is stopped
