@@ -76,6 +76,10 @@ class Emitter {
   once(what, fn) {
     ipcMain.once(what, fn);
   }
+
+  off(what, fn) {
+    ipcMain.removeListener(what, fn);
+  }
 }
 
 export default Emitter;

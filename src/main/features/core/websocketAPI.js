@@ -172,6 +172,10 @@ const enableAPI = () => {
               }
               return;
             }
+            if (command.namespace === 'plugin' && command.method === 'install' && args.length === 1 && global.DEV_MODE) {
+              require('./plugins').default().install(args[0]);
+              return;
+            }
             // Attempt to execute the globa magical controller
             if (!Array.isArray(args)) {
               throw Error('Bad arguments');

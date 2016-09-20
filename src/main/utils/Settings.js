@@ -37,6 +37,11 @@ class Settings {
     this._hooks[key].push(fn);
   }
 
+  offChange(key, fn) {
+    this._hooks[key] = this._hooks[key] || [];
+    this._hooks[key] = this._hooks[key].filter((tFn) => tFn !== fn);
+  }
+
   set(key, value) {
     if (this.coupled) {
       const valChanged = this.data[key] !== value;
