@@ -1,0 +1,11 @@
+<svg id="Tray_Icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280">
+  <style>
+    .st0{fill:#F44A23;} .st1{fill:#FFFFFF;}
+  </style>
+  <circle id="Hintergrund" class="st0" cx="640" cy="640" r="640"/>
+  <path id="Pfeil" class="st1" d="M640 701c-22.9-15.3-45.7-23-76.2-23-83.9 0-152.5 68.7-152.5 152.6S480.1 983.1 564 983.1s168-68.6 168-152.5V457h137V297H640v404z"/>
+  <path id="Pause_2_Hintegrund_2_" class="st0" d="M955.8 1256.8H818.5c-13.8 0-25-11.3-25-25v-561c0-13.8 11.3-25 25-25h137.3c13.8 0 25 11.3 25 25v561c0 13.8-11.3 25-25 25z"/>
+  <path id="Pause_1" class="st1" d="M829.3 691.3H945v520H829.3z"/>
+  <path id="Pause_2_Hintegrund_1_" class="st0" d="M1205.8 1256.8h-137.3c-13.8 0-25-11.3-25-25v-561c0-13.8 11.3-25 25-25h137.3c13.8 0 25 11.3 25 25v561c0 13.8-11.3 25-25 25z"/>
+  <path id="Pause_1_" class="st1" d="M1079.3 691.3H1195v520h-115.7z"/>
+</svg>
