@@ -124,7 +124,7 @@
     "image-to-icon-converter": "^1.0.1",
     "istanbul": "^1.1.0-alpha.1",
     "jimp": "^0.2.27",
-    "jquery": "^2.2.3",
+    "jquery": "^3.1.1",
     "material-design-icons-iconfont": "^2.0.5",
     "materialize-css": "^0.97.6",
     "mocha": "^3.0.0",
