@@ -14,6 +14,7 @@ import header from 'gulp-header';
 import less from 'gulp-less';
 import packager from 'electron-packager';
 import nodePath from 'path';
+import rasterize from './vendor/svg_raster';
 import replace from 'gulp-replace';
 import runSequence from 'run-sequence';
 import uglify from 'gulp-uglify';
@@ -30,7 +31,7 @@ const paths = {
   fonts: ['node_modules/materialize-css/dist/fonts/**/*',
           '!node_modules/materialize-css/dist/font/material-design-icons/*',
           'node_modules/material-design-icons-iconfont/dist/fonts/**/*'],
-  images: ['src/assets/icons/**/*', 'src/assets/img/**/*'],
+  images: ['src/assets/img/**/*'],
   locales: ['src/_locales/*.json'],
 };
 
@@ -221,9 +222,13 @@ gulp.task('less', ['clean-less'], () => {
 });
 
 // Copy all static images
-gulp.task('images', ['clean-images'], () => {
+gulp.task('copy-static-images', ['clean-images'], () => {
   return gulp.src(paths.images)
     .pipe(gulp.dest('./build/assets/img/'));
+});
+
+gulp.task('images', ['copy-static-images'], (done) => {
+  rasterize(done);
 });
 
 gulp.task('build-release', ['build'], () => {
