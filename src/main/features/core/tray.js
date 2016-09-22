@@ -109,7 +109,7 @@ const setContextMenu = () => {
     },
     { label: TranslationProvider.query('label-desktop-settings'), click: () => { showDesktopSettings(); } },
     { type: 'separator' },
-    { label: TranslationProvider.query('label-quit'), click: () => { global.quiting = true; app.quit(); } },
+    { label: TranslationProvider.query('label-quit'), click: () => { global.quitting = true; app.quit(); } },
   ]);
   appIcon.setContextMenu(contextMenu);
 };
