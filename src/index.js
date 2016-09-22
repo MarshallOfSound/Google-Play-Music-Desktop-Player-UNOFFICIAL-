@@ -155,6 +155,6 @@ updateShortcuts();
 
   app.on('before-quit', () => {
     Logger.info('Application exiting...');
-    global.quiting = true;
+    global.quitting = true;
   });
 })();
