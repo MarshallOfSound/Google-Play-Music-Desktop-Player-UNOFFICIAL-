@@ -71,7 +71,7 @@
     "material-ui": "^0.15.4",
     "mdns": "^2.3.3",
     "mkdirp": "^0.5.1",
-    "node-fetch": "^1.5.2",
+    "node-fetch": "^1.6.2",
     "pretty-colorwheel": "^1.0.1",
     "raven": "^0.12.1",
     "react": "^15.3.1",
