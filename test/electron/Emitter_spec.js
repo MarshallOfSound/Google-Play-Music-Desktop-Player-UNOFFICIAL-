@@ -10,20 +10,28 @@ import MockIPCWindow from './testdata/moch_ipc_window';
 chai.should();
 
 const originalIPCMainOn = ipcMain.on.bind(ipcMain);
+const originalIPCMainOnce = ipcMain.once.bind(ipcMain);
 
 describe('Emitter (main)', () => {
   let Emitter;
   let testWindow1;
   let testWindow2;
   let IPCHooks;
+  let IPCHooksOnce;
 
   beforeEach(() => {
     // Mock IPC Main
     IPCHooks = {};
+    IPCHooksOnce = {};
     ipcMain.on = (eventName, fn) => {
       IPCHooks[eventName] = IPCHooks[eventName] || [];
       IPCHooks[eventName].push(fn);
       originalIPCMainOn(eventName, fn);
+    };
+    ipcMain.once = (eventName, fn) => {
+      IPCHooksOnce[eventName] = IPCHooksOnce[eventName] || [];
+      IPCHooksOnce[eventName].push(fn);
+      originalIPCMainOnce(eventName, fn);
     };
     Emitter = new EmitterClass();
     // Mock WindowManager
@@ -31,10 +39,10 @@ describe('Emitter (main)', () => {
     testWindow2 = new MockIPCWindow();
 
     global.WindowManager = {
-      IDMap: { dummy: 0 },
+      IDMap: { dummy: 0, goodie: 1 },
       get: () => testWindow1,
-      getAll: () => [testWindow1, testWindow2],
-      getByInternalID: () => testWindow1,
+      getAll: (name) => { if (name === 'main') { return [testWindow1]; } return [testWindow1, testWindow2, null]; },
+      getByInternalID: (id) => { if (id === 'goodie') { return null; } return testWindow1; },
     };
   });
 
@@ -55,6 +63,30 @@ describe('Emitter (main)', () => {
       event: 'test-event',
       args: ['arg1', 'arg2'],
     });
+    // Should not throw error
+    Emitter.sendToWindow('goodie', 'test-event', 'arg1', 'arg2');
+  });
+
+  it('should send an IPC event to all windows', () => {
+    testWindow1.recieved.length.should.be.equal(0);
+    Emitter.sendToAll('test-event', 'arg1', 'arg2');
+    testWindow1.recieved.length.should.be.equal(1);
+    testWindow1.recieved[0].should.be.deep.equal({
+      event: 'test-event',
+      args: ['arg1', 'arg2'],
+    });
+  });
+
+  it('should pass a method to be executed on a window', () => {
+    testWindow1.recieved.length.should.be.equal(0);
+    Emitter.executeOnWindow(Symbol(), function () { doFoo(); }, 'bar', 'arg2'); // eslint-disable-line
+    testWindow1.recieved.length.should.be.equal(1);
+    testWindow1.recieved[0].should.be.deep.equal({
+      event: 'execute',
+      args: [{
+        fn: '(function () {\n      doFoo();\n    }).apply(window, ["bar","arg2"])',
+      }],
+    });
   });
 
   it('should send IPC events to all windows with a given name', () => {
@@ -74,6 +106,22 @@ describe('Emitter (main)', () => {
     });
   });
 
+  it('should send passthrough IPC events to GPM when using sendToGooglePlayMusic', () => {
+    testWindow1.recieved.length.should.be.equal(0);
+    Emitter.sendToGooglePlayMusic('gpm-event', 'bar1', 'bar2');
+
+    testWindow1.recieved.length.should.be.equal(1);
+    testWindow1.recieved[0].should.be.deep.equal({
+      event: 'passthrough',
+      args: [{
+        event: 'gpm-event',
+        details: ['bar1', 'bar2'],
+      }],
+    });
+
+    testWindow2.recieved.length.should.be.equal(0);
+  });
+
   it('should default the details of an event to an empty object', () => {
     testWindow1.recieved.length.should.be.equal(0);
     Emitter.sendToWindow(Symbol(), 'empty-event');
@@ -88,6 +136,14 @@ describe('Emitter (main)', () => {
     IPCHooks['dummy-event'].should.be.ok;
     IPCHooks['dummy-event'].length.should.be.equal(1);
     IPCHooks['dummy-event'][0].should.be.equal(fn);
+  });
+
+  it('should hook events (once) when requested', () => {
+    const fn = () => {};
+    Emitter.once('dummy-event', fn);
+    IPCHooksOnce['dummy-event'].should.be.ok;
+    IPCHooksOnce['dummy-event'].length.should.be.equal(1);
+    IPCHooksOnce['dummy-event'][0].should.be.equal(fn);
   });
 
   describe('when the webcontents is not loaded', () => {
@@ -127,5 +183,9 @@ describe('Emitter (main)', () => {
 
       testWindow1.mockLoading = false;
     });
+  });
+
+  afterEach(() => {
+    ipcMain.removeAllListeners();
   });
 });

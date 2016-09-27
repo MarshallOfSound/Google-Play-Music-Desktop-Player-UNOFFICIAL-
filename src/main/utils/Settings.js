@@ -96,7 +96,7 @@ class Settings {
 
   destroy() {
     this.data = null;
-    fs.unlinkSync(this.PATH);
+    if (this.coupled && fs.existsSync(this.PATH)) fs.unlinkSync(this.PATH);
   }
 }
 
