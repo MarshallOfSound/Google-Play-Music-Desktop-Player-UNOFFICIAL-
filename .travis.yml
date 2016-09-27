@@ -6,10 +6,6 @@ language: node_js
 node_js:
   - '6'
 
-cache:
-  directories:
-  - $HOME/.electron
-
 install:
   - rm -rf node_modules
   - npm install
