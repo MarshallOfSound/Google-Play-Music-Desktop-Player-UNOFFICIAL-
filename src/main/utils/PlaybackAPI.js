@@ -197,6 +197,10 @@ class PlaybackAPI extends EventEmitter {
     return this._private_data.queue;
   }
 
+  getRating() {
+    return this.data.rating;
+  }
+
   getResults() {
     return this._private_data.results;
   }
