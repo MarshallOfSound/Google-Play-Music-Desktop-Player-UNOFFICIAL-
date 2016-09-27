@@ -121,7 +121,7 @@
     "gulp-less": "^3.1.0",
     "gulp-replace": "^0.5.4",
     "gulp-uglify": "^2.0.0",
-    "image-to-icon-converter": "^1.0.1",
+    "icon-gen": "^1.0.5",
     "istanbul": "^1.1.0-alpha.1",
     "jimp": "^0.2.27",
     "jquery": "^2.2.3",

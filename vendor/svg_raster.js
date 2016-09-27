@@ -1,5 +1,5 @@
 const fs = require('pn/fs');
-const iconConverter = require('image-to-icon-converter');
+const iconGen = require('icon-gen');
 const Jimp = require('jimp');
 const mkdirp = require('mkdirp');
 const path = require('path');
@@ -29,25 +29,21 @@ export default (cb) => {
 
       const done = () => {
         counter++;
-        if (counter === jimpOutFiles.length + 2) return cb();
+        if (counter === (jimpOutFiles.length * 3) + 1) return cb();
       };
 
       // Generate ico and icns files
       if (!fs.existsSync(path.resolve(targetPath, 'main.icns'))) {
-        setTimeout(() => {
-          iconConverter.uploadConvertDownload(fs.createReadStream(path.resolve(targetPath, 'main.png')), 'icns')
-            .then((result) => {
-              result.pipe(fs.createWriteStream(path.resolve(targetPath, 'main.icns')));
-              done();
-            })
-            .then(() => {
-              iconConverter.uploadConvertDownload(fs.createReadStream(path.resolve(targetPath, 'main.png')), 'ico')
-                .then((result) => {
-                  result.pipe(fs.createWriteStream(path.resolve(targetPath, 'main.ico')));
-                  done();
-                });
-            });
-        }, 1000);
+        iconGen(path.resolve(basePath, 'vector_logo.svg'), targetPath, {
+          type: 'svg',
+          names: {
+            ico: 'main',
+            icns: 'main',
+          },
+          modes: ['ico', 'icns'],
+        }).then(() => done());
+      } else {
+        done();
       }
 
       types.forEach((type) => {
