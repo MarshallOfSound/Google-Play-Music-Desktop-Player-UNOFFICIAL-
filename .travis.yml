@@ -1,16 +1,16 @@
 os:
   - osx
 
+language: node_js
+
+node_js:
+  - '6'
+
 cache:
   directories:
   - $HOME/.electron
 
 install:
-  - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh | bash
-  - source ~/.bashrc
-  - nvm install 6.3.0
-  - nvm use 6.3.0
-  - npm i -g npm
   - rm -rf node_modules
   - npm install
 
