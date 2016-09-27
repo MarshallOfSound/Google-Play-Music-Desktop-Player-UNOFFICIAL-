@@ -63,6 +63,15 @@ describe('Settings', () => {
     hookCalled.should.be.equal(true);
   });
 
+  it('should not fire changa function when the position key is changed', () => {
+    let hookCalled = false;
+    settings.onChange('test_key', () => {
+      hookCalled = true;
+    });
+    settings.set('position', 'test_value_2');
+    hookCalled.should.be.equal(false);
+  });
+
   it('should retry when loadig JSON failed', (done) => {
     const errorCalls = [];
     fs.writeFileSync(settings.PATH, 'BAD_JSON');
