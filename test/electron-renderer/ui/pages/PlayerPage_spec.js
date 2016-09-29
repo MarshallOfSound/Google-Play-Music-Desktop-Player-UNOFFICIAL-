@@ -39,13 +39,13 @@ describe('<PlayerPage />', () => {
     const stub = sinon.stub(window, 'addEventListener');
     const _on = remote.getCurrentWindow().on;
     const windowSpy = remote.getCurrentWindow().on = sinon.spy();
-    component.instance()._domReady();
-    component.instance().refs.view = {
+    component.instance().domReady();
+    component.instance().view = {
       focus: sinon.spy(),
     };
     setTimeout(() => {
       component.instance().ready.should.be.equal(true);
-      component.instance().refs.view.focus.callCount.should.be.equal(1);
+      component.instance().view.focus.callCount.should.be.equal(1);
       stub.callCount.should.be.eq(19);
       stub.getCall(18).args[1]({});
       windowSpy.firstCall.args[0].should.be.equal('focus');
@@ -68,11 +68,11 @@ describe('<PlayerPage />', () => {
     const component = mount(<PlayerPage />);
     component.instance().once.should.be.equal(true);
     document.body.setAttribute('loading', 'loading');
-    component.instance()._didStopLoading();
+    component.instance().didStopLoading();
     component.instance().once.should.be.equal(false);
     setTimeout(() => {
       expect(document.body.getAttribute('loading')).to.be.equal(null);
-      component.instance()._didStopLoading();
+      component.instance().didStopLoading();
       component.instance().once.should.be.equal(false);
       done();
     }, 400);
@@ -81,40 +81,40 @@ describe('<PlayerPage />', () => {
   it('should persist GPM URLS on navigate events', () => {
     const component = mount(<PlayerPage />);
     component.instance().ready = true;
-    component.instance()._didNavigate('https://play.google.com/music/now');
+    component.instance().didNavigate('https://play.google.com/music/now');
     fired['settings:set'].should.be.ok;
   });
 
   it('should persist GPM URLS on navigate in pageevents', () => {
     const component = mount(<PlayerPage />);
     component.instance().ready = true;
-    component.instance()._didNavigateInPage('https://play.google.com/music/now');
+    component.instance().didNavigateInPage('https://play.google.com/music/now');
     fired['settings:set'].should.be.ok;
   });
 
   it('should not persist GPM URLS on navigate events when not ready', () => {
     const component = mount(<PlayerPage />);
-    component.instance()._didNavigate('https://play.google.com/music/now');
+    component.instance().didNavigate('https://play.google.com/music/now');
     expect(fired['settings:set']).to.not.be.ok;
   });
 
   it('should not persist GPM URLS on navigate in page events when not ready', () => {
     const component = mount(<PlayerPage />);
-    component.instance()._didNavigateInPage('https://play.google.com/music/now');
+    component.instance().didNavigateInPage('https://play.google.com/music/now');
     expect(fired['settings:set']).to.not.be.ok;
   });
 
   it('should not persist non-GPM URLS on navigate events', () => {
     const component = mount(<PlayerPage />);
     component.instance().ready = true;
-    component.instance()._didNavigate('https://www.google.com');
+    component.instance().didNavigate('https://www.google.com');
     expect(fired['settings:set']).to.not.be.ok;
   });
 
   it('should not persist non-GPM URLS on navigate in page events', () => {
     const component = mount(<PlayerPage />);
     component.instance().ready = true;
-    component.instance()._didNavigateInPage('https://www.google.com');
+    component.instance().didNavigateInPage('https://www.google.com');
     expect(fired['settings:set']).to.not.be.ok;
   });
 });
