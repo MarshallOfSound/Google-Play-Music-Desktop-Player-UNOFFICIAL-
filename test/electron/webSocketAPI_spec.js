@@ -182,18 +182,18 @@ describe('WebSocketAPI', () => {
         });
       };
 
-      shouldUpdateTest('playState', '_setPlaying', true);
-      shouldUpdateTest('shuffle', '_setShuffle', 'ALL_SHUFFLE');
-      shouldUpdateTest('repeat', '_setRepeat', 'SINGLE_REPEAT');
-      shouldUpdateTest('playlists', '_setPlaylists',
+      shouldUpdateTest('playState', 'setPlaying', true);
+      shouldUpdateTest('shuffle', 'setShuffle', 'ALL_SHUFFLE');
+      shouldUpdateTest('repeat', 'setRepeat', 'SINGLE_REPEAT');
+      shouldUpdateTest('playlists', 'setPlaylists',
         [{ id: 1, name: 'TEST_PLAYLIST', tracks: [] }],
         { id: 1, name: 'TEST_PLAYLIST', tracks: [] }
       );
-      shouldUpdateTest('queue', '_setQueue',
+      shouldUpdateTest('queue', 'setQueue',
         [{ id: 1, title: 'Song 1' }],
         { id: 1, title: 'Song 1' }
       );
-      shouldUpdateTest('search-results', '_setResults',
+      shouldUpdateTest('search-results', 'setResults',
         {
           searchText: 'FOO_BAR',
           albums: [],
@@ -201,14 +201,14 @@ describe('WebSocketAPI', () => {
           tracks: [],
         }
       );
-      shouldUpdateTest('library', '_setLibrary',
+      shouldUpdateTest('library', 'setLibrary',
         {
           albums: [],
           artists: [],
           tracks: [],
         }
       );
-      shouldUpdateTest('track', '_setPlaybackSong',
+      shouldUpdateTest('track', 'setPlaybackSong',
         ['songTitle', 'songArtist', 'songAlbum', 'songArt'],
         {
           title: 'songTitle',
@@ -216,8 +216,8 @@ describe('WebSocketAPI', () => {
           album: 'songAlbum',
           albumArt: 'songArt',
         });
-      shouldUpdateTest('time', '_setTime', [100, 101], { current: 100, total: 101 });
-      shouldUpdateTest('lyrics', '_setPlaybackSongLyrics', 'LA LA LA DOO WOP');
+      shouldUpdateTest('time', 'setTime', [100, 101], { current: 100, total: 101 });
+      shouldUpdateTest('lyrics', 'setPlaybackSongLyrics', 'LA LA LA DOO WOP');
     });
 
     describe('when sending commands', () => {

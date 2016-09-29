@@ -29,7 +29,7 @@ describe('Lyrics Resolver', () => {
   before(() => {
     global.PlaybackAPI = _playbackAPI;
     PlaybackAPI.currentSong = () => testSong;
-    PlaybackAPI._setPlaybackSongLyrics = (lyrics) => PlaybackAPI.emit('change:lyrics', lyrics);
+    PlaybackAPI.setPlaybackSongLyrics = (lyrics) => PlaybackAPI.emit('change:lyrics', lyrics);
   });
 
   beforeEach(() => {

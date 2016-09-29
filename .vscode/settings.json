@@ -10,7 +10,6 @@
         },
         "**/*.js.map": true,
         ".build/**/*": true,
-        "build/**/*": true,
-        "dist/**/*": true   
+        "dist/**/*": true
     }
 }
