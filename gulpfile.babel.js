@@ -4,7 +4,6 @@ import gulp from 'gulp';
 
 import { spawn, exec } from 'child_process';
 import _ from 'lodash';
-import babel from 'gulp-babel';
 import clean from 'gulp-clean';
 import concat from 'gulp-concat';
 import cssmin from 'gulp-cssmin';
@@ -17,12 +16,13 @@ import nodePath from 'path';
 import rasterize from './vendor/svg_raster';
 import replace from 'gulp-replace';
 import runSequence from 'run-sequence';
+import ts from 'gulp-typescript';
 import uglify from 'gulp-uglify';
 
 import rebuild from './vendor/rebuild';
 
 const paths = {
-  internalScripts: ['src/**/*.js'],
+  internalScripts: ['src/**/*.ts'],
   utilityScripts: ['node_modules/jquery/dist/jquery.min.js',
                     'node_modules/materialize-css/dist/js/materialize.min.js',
                     'node_modules/materialize-css/extras/noUiSlider/nouislider.min.js'],
@@ -36,6 +36,8 @@ const paths = {
 };
 
 const packageJSON = require('./package.json');
+const tsProject = ts.createProject('tsconfig.json');
+
 
 let version = packageJSON.dependencies.electron;
 if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1') {
@@ -192,14 +194,20 @@ gulp.task('html', ['clean-html'], () => {
     .pipe(gulp.dest('./build/public_html'));
 });
 
-gulp.task('transpile', ['clean-internal'], () => {
+gulp.task('typescript-reference', ['clean-internal'], () => {
   return gulp.src(paths.internalScripts)
-    .pipe(babel())
-    .on('error', (err) => { console.error(err); }) // eslint-disable-line
+    .pipe(header(`/// <reference path="${require('path').resolve(__dirname, 'typings/index.d.ts')}" />\n\n`))
     .pipe(replace(/process\.env\.(.+);/gi, (envCall, envKey) => {
       return `'${process.env[envKey]}'`;
     }))
-    .pipe(gulp.dest('./build/'));
+    .pipe(gulp.dest('./.build'));
+});
+
+gulp.task('transpile', ['typescript-reference'], () => {
+  return tsProject.src()
+        .pipe(tsProject())
+        .js
+        .pipe(gulp.dest('build'));
 });
 
 gulp.task('locales', ['clean-locales'], () => {

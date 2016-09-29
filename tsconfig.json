@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "sourceMap": true,
+        "jsx": "react"
+    },
+    "filesGlob": [
+        "./,build/**/*.ts",
+        "!./node_modules/**/*.ts",
+        "./typings/**/*.ts"
+    ]
+}
