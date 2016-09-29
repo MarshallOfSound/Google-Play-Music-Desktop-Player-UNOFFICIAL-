@@ -23,7 +23,7 @@
     "package:linux:32": "gulp package:linux:32",
     "package:linux:64": "gulp package:linux:64",
     "package:win": "gulp package:win",
-    "postinstall": "node vendor/rebuild.js --instant",
+    "postinstall": "typings install && node vendor/rebuild.js --instant",
     "test": "npm run lint",
     "pretest-electron": "npm run build",
     "pretest-electron-coverage": "cross-env NODE_ENV=coverage npm run build",
