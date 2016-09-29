@@ -1,0 +1,20 @@
+{
+  "globalDependencies": {
+    "archiver": "registry:dt/archiver#0.15.0+20160709062918",
+    "html-entities": "registry:dt/html-entities#1.2.0+20160412134357",
+    "jquery": "registry:dt/jquery#1.10.0+20160908203239",
+    "node": "registry:dt/node#6.0.0+20160928143418",
+    "node-fetch": "registry:dt/node-fetch#0.0.0+20160711094047",
+    "uuid": "registry:dt/uuid#3.3.0+20160728152600",
+    "winston": "registry:dt/winston#0.0.0+20160417152829",
+    "ws": "registry:dt/ws#0.0.0+20160922171501"
+  },
+  "dependencies": {
+    "lodash": "registry:npm/lodash#4.0.0+20160723033700",
+    "material-ui": "registry:npm/material-ui#0.15.1+20160817172421",
+    "mkdirp": "registry:npm/mkdirp#0.5.0+20160723033700",
+    "react": "registry:npm/react#15.0.1+20160601175240",
+    "react-dom": "registry:npm/react-dom#15.0.1+20160826174104",
+    "request": "registry:npm/request#2.69.0+20160428223725"
+  }
+}

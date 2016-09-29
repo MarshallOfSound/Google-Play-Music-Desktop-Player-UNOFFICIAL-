@@ -92,18 +92,18 @@ describe('PlaybackAPI', () => {
     });
   };
 
-  shouldUpdatePropTest('getRating', '_setRating', { liked: true, disliked: false }, '5');
-  shouldUpdatePropTest('getRating', '_setRating', { liked: false, disliked: true }, '1');
-  shouldUpdatePropTest('getLibrary', '_setLibrary', 'NEW_VALUE');
-  shouldUpdatePropTest('isPlaying', '_setPlaying', true);
-  shouldUpdatePropTest('currentSong', '_setPlaybackSong', { title: '', artist: '', album: '', albumArt: '' }, '', '', '', '');
-  shouldUpdatePropTest('getPlaylists', '_setPlaylists', ['foo', 'bar']);
-  shouldUpdatePropTest('getQueue', '_setQueue', ['dumb', 'queue']);
-  shouldUpdatePropTest('currentSongLyrics', '_setPlaybackSongLyrics', 'LA LA LA, Epic Lyrics');
-  shouldUpdatePropTest('currentShuffle', '_setShuffle', 'NEW_SHUFFLE_MODE');
-  shouldUpdatePropTest('currentRepeat', '_setRepeat', 'NEVER BEFORE SEEN REPEAT MODE');
-  shouldUpdatePropTest('getResults', '_setResults', 'No results here :)');
-  shouldUpdatePropTest('currentTime', '_setTime', { current: 100, total: 200 }, 100, 200);
+  shouldUpdatePropTest('getRating', 'setRating', { liked: true, disliked: false }, '5');
+  shouldUpdatePropTest('getRating', 'setRating', { liked: false, disliked: true }, '1');
+  shouldUpdatePropTest('getLibrary', 'setLibrary', 'NEW_VALUE');
+  shouldUpdatePropTest('isPlaying', 'setPlaying', true);
+  shouldUpdatePropTest('currentSong', 'setPlaybackSong', { title: '', artist: '', album: '', albumArt: '' }, '', '', '', '');
+  shouldUpdatePropTest('getPlaylists', 'setPlaylists', ['foo', 'bar']);
+  shouldUpdatePropTest('getQueue', 'setQueue', ['dumb', 'queue']);
+  shouldUpdatePropTest('currentSongLyrics', 'setPlaybackSongLyrics', 'LA LA LA, Epic Lyrics');
+  shouldUpdatePropTest('currentShuffle', 'setShuffle', 'NEW_SHUFFLE_MODE');
+  shouldUpdatePropTest('currentRepeat', 'setRepeat', 'NEVER BEFORE SEEN REPEAT MODE');
+  shouldUpdatePropTest('getResults', 'setResults', 'No results here :)');
+  shouldUpdatePropTest('currentTime', 'setTime', { current: 100, total: 200 }, 100, 200);
 
   describe('when creating a new PlaybackAPI', () => {
     given(gpmIpcEvents).it('should hook into GPM IPC event: ', (ipcEventName) => {

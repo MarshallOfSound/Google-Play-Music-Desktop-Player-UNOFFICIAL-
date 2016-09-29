@@ -102,7 +102,7 @@ describe('<LyricsViewer />', () => {
     mockEvent('PlaybackAPI:change:lyrics', 'new lyrics');
     mockEvent('settings:set:scrollLyrics', true);
     const domNode = $(findDOMNode(component.instance()));
-    expect(domNode.find('#lyrics p').attr('data-scroll')).to.be.equal('true');
+    expect(domNode.find('#lyrics p').attr('data-scroll')).to.be.equal('on');
   });
 
   it('should start scrolling when the time changes', () => {
