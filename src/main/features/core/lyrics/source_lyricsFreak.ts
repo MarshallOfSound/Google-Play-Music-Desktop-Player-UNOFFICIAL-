@@ -39,7 +39,7 @@ const fetchLyricsPage = (title, artist) =>
 const fetchLyrics = (track, artist) =>
   fetchLyricsPage(track, artist)
     .then((url) =>
-      new Promise((resolve, reject) => {
+      new Promise<string>((resolve, reject) => {
         request(url, (err, resp) => {
           if (err) return reject(err);
           try {

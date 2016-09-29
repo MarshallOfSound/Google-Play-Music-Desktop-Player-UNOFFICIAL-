@@ -6,7 +6,7 @@ const xss = require('xss');
 const decoder = new Entities();
 
 const attemptLyricsWikia = (path) =>
-  new Promise((resolve, reject) => {
+  new Promise<string>((resolve, reject) => {
     fetch(`http://lyrics.wikia.com/wiki/${path}`)
       .then((data) => data.text())
       .then((html) => {

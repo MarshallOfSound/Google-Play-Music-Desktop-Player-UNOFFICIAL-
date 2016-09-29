@@ -7,4 +7,4 @@ declare var Logger: GPMDP.GConsole;
 declare var PlaybackAPI: GPMDP.IPlaybackAPI;
 declare var TranslationProvider: GPMDP.ITranslationProvider;
 declare var GPM: GMusic.GMusic;
-declare var GPMTheme: GMusicTheme.GMusicTheme;
+declare var GPMTheme: GMT.GMusicTheme;

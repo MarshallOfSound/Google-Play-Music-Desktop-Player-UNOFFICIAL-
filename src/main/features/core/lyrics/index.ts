@@ -5,7 +5,7 @@ import attemptLyricsFreak from './source_lyricsFreak';
 import attemptLyricsWikia from './source_lyricsWikia';
 import attemptMetroLyrics from './source_metroLyrics';
 
-const attemptPromiseSequence = (seq) =>
+const attemptPromiseSequence = (seq: Promise<string>[]) =>
   new Promise<string>((resolve, reject) => {
     seq[0].then(resolve).catch(() => {
       if (seq.length <= 1) {
