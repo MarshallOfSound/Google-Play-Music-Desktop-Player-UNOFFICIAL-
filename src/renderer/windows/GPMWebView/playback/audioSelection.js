@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+const findAudioElem = () => Array.prototype.find.call(document.querySelectorAll('audio'), (elem) => !!elem.src);
+
 Emitter.on('audiooutput:fetch', () => {
   navigator.mediaDevices.enumerateDevices()
     .then((devices) => {
@@ -15,15 +17,15 @@ Emitter.on('audiooutput:fetch', () => {
 
 export const setAudioDevice = (id, count = 0) =>
   new Promise((resolve, reject) => {
-    document.querySelectorAll('audio')[0].setSinkId(id)
+    findAudioElem().setSinkId(id)
       .then(() => { resolve(); })
       .catch((oops) => { if (count > 10000) { reject(oops); } else { setAudioDevice(id, count + 1).then(resolve).catch((err) => reject(err)); } }); // eslint-disable-line
   });
 
 Emitter.on('audiooutput:set', (event, deviceId) => {
   let once = true;
-  if (document.querySelector('audio').paused) {
-    document.querySelector('audio').addEventListener('playing', () => {
+  if (findAudioElem().paused) {
+    findAudioElem().addEventListener('playing', () => {
       if (!once) return;
       once = false;
       setAudioDevice(deviceId);

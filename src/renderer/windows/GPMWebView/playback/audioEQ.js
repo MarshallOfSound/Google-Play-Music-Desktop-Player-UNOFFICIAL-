@@ -2,9 +2,11 @@ import _ from 'lodash';
 
 import { setAudioDevice } from './audioSelection';
 
+const findAudioElem = () => Array.prototype.find.call(document.querySelectorAll('audio'), (elem) => !!elem.src);
+
 window.wait(() => {
   const waitForAudio = setInterval(() => {
-    if (document.querySelector('audio')) {
+    if (findAudioElem()) {
       clearInterval(waitForAudio);
 
       // DEV: We do this here so that we can set the output device before hooking the context
@@ -16,7 +18,7 @@ window.wait(() => {
               if (device.label === Settings.get('audiooutput')) {
                 set = true;
                 let once = true;
-                document.querySelector('audio').addEventListener('playing', () => {
+                findAudioElem().addEventListener('playing', () => {
                   if (!once) return;
                   once = false;
                   setAudioDevice(device.deviceId)
