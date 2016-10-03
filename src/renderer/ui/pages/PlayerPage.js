@@ -1,5 +1,6 @@
-import { remote } from 'electron';
+import { remote, shell } from 'electron';
 import React, { Component } from 'react';
+import { parse as parseURL } from 'url';
 
 import LyricsViewer from '../components/generic/LyricsViewer';
 import OfflineWarning from '../components/generic/OfflineWarning';
@@ -68,6 +69,13 @@ export default class PlayerPage extends Component {
     if (this.ready) this._savePage(...args);
   }
 
+  _newWindow = ({ url }) => {
+    const protocol = parseURL(url).protocol;
+    if (protocol === 'http:' || protocol === 'https:') {
+      shell.openExternal(url);
+    }
+  }
+
   _savePage = (param) => {
     const url = param.url || param;
     if (!/https?:\/\/play\.google\.com\/music/g.test(url)) return;
@@ -92,6 +100,7 @@ export default class PlayerPage extends Component {
           domReady={this._domReady}
           didNavigate={this._didNavigate}
           didNavigateInPage={this._didNavigateInPage}
+          newWindow={this._newWindow}
         />
         <OfflineWarning />
         <LyricsViewer />
