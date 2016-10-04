@@ -14,7 +14,6 @@ import header from 'gulp-header';
 import less from 'gulp-less';
 import packager from 'electron-packager';
 import nodePath from 'path';
-import rasterize from './vendor/svg_raster';
 import replace from 'gulp-replace';
 import runSequence from 'run-sequence';
 import uglify from 'gulp-uglify';
