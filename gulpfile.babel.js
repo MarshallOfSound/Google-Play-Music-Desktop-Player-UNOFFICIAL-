@@ -228,7 +228,16 @@ gulp.task('copy-static-images', ['clean-images'], () => {
 });
 
 gulp.task('images', ['copy-static-images'], (done) => {
-  rasterize(done);
+  const child = spawn(process.execPath, ['vendor/svg_raster.js', '--instant'],
+    {
+      cwd: './',
+    });
+
+  child.stdout.on('data', () => {});
+
+  child.stderr.on('data', () => {});
+
+  child.on('close', () => done());
 });
 
 gulp.task('build-release', ['build'], () => {
@@ -259,7 +268,8 @@ gulp.task('watch', ['build'], () => {
 gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
   rebuild('rebuild_ia32.bat')
     .then(() => {
-      packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), () => {
+      packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), (err) => {
+        if (err) return done(err);
         setTimeout(() => {
           const packageExePath = `dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe`;
           windowsSignFile(packageExePath, 'sha1')

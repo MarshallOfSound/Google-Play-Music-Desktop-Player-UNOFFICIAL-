@@ -19,7 +19,7 @@ const fileMappings = {
 
 const types = [null, 'playing', 'paused'];
 
-export default (cb) => {
+module.exports = (cb) => {
   let i = 0;
   let counter = 0;
   const doIcons = () => {
@@ -91,3 +91,7 @@ export default (cb) => {
     });
   });
 };
+
+if (process.argv.some(arg => arg === '--instant')) {
+  module.exports(() => console.log('Generated Images'));
+}
