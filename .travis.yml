@@ -21,7 +21,8 @@ script:
   - npm run test-electron-coverage
   - npm run _coveralls
   - npm run _coverage_publish
-  - npm run test-spectron
+  # Disabel Spectron for now
+  # - npm run test-spectron
 
 notifications:
   webhooks:
