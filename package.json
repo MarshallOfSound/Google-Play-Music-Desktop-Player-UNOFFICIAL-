@@ -125,7 +125,7 @@
     "istanbul": "^1.1.0-alpha.1",
     "jimp": "^0.2.27",
     "jquery": "^2.2.3",
-    "material-design-icons-iconfont": "^2.0.5",
+    "material-design-icons-iconfont": "^3.0.1",
     "materialize-css": "^0.97.6",
     "mocha": "^3.0.0",
     "mocha-appveyor-reporter": "^0.2.1",
