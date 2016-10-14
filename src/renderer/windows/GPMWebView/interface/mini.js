@@ -15,7 +15,12 @@ window.wait(() => {
   window.GPM.mini.setScrollVolume(Settings.get('miniUseScrollVolume', false));
 
   let wasMaximized = mainWindow.isMaximized();
+  let wasFullscreen = mainWindow.isFullScreen();
+
   window.GPM.on('mini:enable', () => {
+    wasFullscreen = mainWindow.isFullScreen();
+    mainWindow.setFullScreen(false);
+    mainWindow.setFullScreenable(false);
     Emitter.fireSync('mini', { state: true });
 
 	// Restore the mini size/position from settings, otherwise use default size and regular position.
@@ -41,6 +46,8 @@ window.wait(() => {
   });
 
   window.GPM.on('mini:disable', () => {
+    mainWindow.setFullScreen(wasFullscreen);
+    mainWindow.setFullScreenable(true);
     Emitter.fire('mini', { state: false });
     remote.getCurrentWindow().setMaximumSize(99999999, 999999999);
     remote.getCurrentWindow().setMinimumSize(200, 200);
