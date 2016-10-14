@@ -40,3 +40,13 @@ export const ACTION_KEYS = _.transform(_.range(26), (final, current) => { // let
   221: ']',
   222: '\'',
 })));
+
+export const languageMap = {
+  de: 'German',
+  'en-US': 'English',
+  'nl-NL': 'Dutch',
+  'pl-PL': 'Polish',
+  'pt-BR': 'Portuguese',
+  ru: 'Russian',
+  sk: 'Slovak',
+};
