@@ -4,59 +4,11 @@
   <title>Color Picker</title>
   <link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
-  <section class="window-border">
-    <header class="darwin-title-bar">
-      <div class="title">Color Picker</div>
-    </header>
-    <header class="title-bar">
-      <div class="drag-handle"></div>
-      <div class="controls">
-        <div id="min" class="control">
-          <img src="../assets/img/control_bar/min.png" />
-        </div>
-        <div id="max" class="control">
-          <img src="../assets/img/control_bar/max.png" />
-        </div>
-        <div id="close" class="control">
-          <img src="../assets/img/control_bar/close.png" />
-        </div>
-      </div>
-    </header>
-    <main class="dialog">
-      <div class="window-title">
-        <span is="translation-key">title-color-picker</span>
-      </div>
-      <div class="window-main">
-        <div class="row">
-          <div id="color_wheel_container">
-            <div></div>
-          </div>
-          <input />
-        </div>
-      </div>
-    </main>
-  </section>
-  <script>window._module = window.module; window.module = undefined;</script>
-  <script src="../assets/util/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+<body loading>
+  <div id="color-wheel-window" style="height: 100%"></div>
   <script>
-  window.module = window._module;
-  require('pretty-colorwheel');
   require('../renderer/generic');
-  const _ = require('lodash');
-
-  const input = $(".window-main input");
-
-  const cw = Raphael.colorwheel($("#color_wheel_container > div")[0],240,200);
-  cw.input(input.get(0));
-  cw.color(Settings.get('themeColor'));
-  cw.onchange(_.throttle((color) => {
-    Emitter.fire('settings:set', {
-      key: 'themeColor',
-      value: color.hex,
-    });
-  }, 400));
+  require('../renderer/windows/color_wheel');
   </script>
 </body>
 </html>
