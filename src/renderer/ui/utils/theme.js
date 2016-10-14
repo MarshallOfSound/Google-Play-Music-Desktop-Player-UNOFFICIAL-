@@ -37,6 +37,9 @@ export default (themeEnabled, themeColor, themeType) => {
   } else {
     muiTheme.inkBar.backgroundColor = white;
   }
+  if (themeEnabled) {
+    muiTheme.timePicker.headerColor = themeColor;
+  }
   muiTheme._themeColor = themeColor;
 
   return muiTheme;
