@@ -31,6 +31,13 @@ const template = [
     label: 'View',
     submenu: [
       {
+        label: 'Reload',
+        accelerator: 'CmdOrCtrl+R',
+        click: (item, focusedWindow) => {
+          focusedWindow.reload();
+        },
+      },
+      {
         label: 'Toggle Full Screen',
         accelerator: (() => {
           if (process.platform === 'darwin') return 'Ctrl+Command+F';

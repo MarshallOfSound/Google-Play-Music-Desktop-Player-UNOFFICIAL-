@@ -3,7 +3,9 @@
   "audio-device-default": "Standardgerät",
   "audio-device-unknown": "Unbekanntes Gerät",
 
-  "button-test-ok": "OK",
+  "button-text-ok": "OK",
+  "button-text-cancel-alarm": "",
+  "button-text-click-here-to-set-alarm": "",
   "button-text-close": "Schließen",
   "button-text-dont-tell-me-again": "Sag mir das nicht nochmal",
   "button-text-lets-do-this": "Lass uns starten!!",
@@ -11,6 +13,7 @@
   "button-text-not-now": "Nicht jetzt",
 
   "label-about": "Über",
+  "label-alarm": "",
   "label-desktop-settings": "Desktop-Einstellungen",
   "label-donate": "Spenden",
   "label-help": "Hilfe",
@@ -75,6 +78,7 @@
   "settings-option-enable-voice": "Aktiviere Sprachsteuerung",
   "settings-option-enable-voice-details": "Sprachsteuerung für GPMDP, dies ist experimentell",
   "settings-option-enable-taskbar-progress": "",
+  "settings-option-change-locale": "",
 
   "settings-option-hotkey-explanation": "Die grundlegenden Medientasten werden dennoch funktionieren.  Diese Einstellungen kommen zu den Standardeinstellungen hinzu.",
   "settings-option-hotkey-explanation-2": "Zum Zurücksetzen der Tastenkombination benutze die <i>\"Escape\"</i>-Taste.",

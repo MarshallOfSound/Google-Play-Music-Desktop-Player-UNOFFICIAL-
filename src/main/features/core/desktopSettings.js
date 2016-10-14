@@ -12,7 +12,7 @@ export const showDesktopSettings = () => {
     return;
   }
   const desktopSettings = new BrowserWindow({
-    width: 800,
+    width: 840,
     height: 540,
     autoHideMenuBar: true,
     frame: Settings.get('nativeFrame'),
@@ -37,7 +37,11 @@ export const showColorWheel = () => {
   }
   const colorWheel = new BrowserWindow({
     width: 400,
+    minWidth: 400,
+    maxWidth: 400,
     height: 400,
+    minHeight: 400,
+    maxHeight: 400,
     autoHideMenuBar: true,
     frame: Settings.get('nativeFrame'),
     titleBarStyle: Settings.get('nativeFrame') && process.platform === 'darwin' ? 'hidden' : 'default',

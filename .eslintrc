@@ -1,5 +1,6 @@
 {
-  "extends": "airbnb-base",
+  "extends": "airbnb",
+  "parser": "babel-eslint",
   "globals": {
     "Logger": true,
     "Settings": true,
@@ -7,19 +8,20 @@
     "WindowManager": true,
     "PlaybackAPI": true,
     "TranslationProvider": true,
-    "GPM": true,
-    "$": true
+    "GPM": true
   },
   "env": {
     "mocha": true
   },
   "rules": {
-    "max-len": [1, 120],
+    "max-len": [1, 160],
     "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": 0,
     "import/prefer-default-export": 0,
     "global-require": 0,
     "no-underscore-dangle": 0,
-    "consistent-return": 0
+    "consistent-return": 0,
+    "react/no-multi-comp": 0,
+    "react/prefer-stateless-function": 0
   }
 }

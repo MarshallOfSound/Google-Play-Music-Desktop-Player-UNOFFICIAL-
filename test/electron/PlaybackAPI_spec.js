@@ -92,6 +92,8 @@ describe('PlaybackAPI', () => {
     });
   };
 
+  shouldUpdatePropTest('getRating', '_setRating', { liked: true, disliked: false }, '5');
+  shouldUpdatePropTest('getRating', '_setRating', { liked: false, disliked: true }, '1');
   shouldUpdatePropTest('getLibrary', '_setLibrary', 'NEW_VALUE');
   shouldUpdatePropTest('isPlaying', '_setPlaying', true);
   shouldUpdatePropTest('currentSong', '_setPlaybackSong', { title: '', artist: '', album: '', albumArt: '' }, '', '', '', '');

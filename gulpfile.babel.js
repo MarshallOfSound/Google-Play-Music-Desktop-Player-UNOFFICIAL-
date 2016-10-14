@@ -30,7 +30,7 @@ const paths = {
   fonts: ['node_modules/materialize-css/dist/fonts/**/*',
           '!node_modules/materialize-css/dist/font/material-design-icons/*',
           'node_modules/material-design-icons-iconfont/dist/fonts/**/*'],
-  images: ['src/assets/icons/**/*', 'src/assets/img/**/*'],
+  images: ['src/assets/img/**/*'],
   locales: ['src/_locales/*.json'],
 };
 
@@ -47,6 +47,7 @@ const defaultPackageConf = {
   'app-copyright': `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
   'app-version': packageJSON.version,
   arch: 'all',
+  asar: true,
   'build-version': packageJSON.version,
   dir: __dirname,
   icon: './build/assets/img/main',
@@ -106,8 +107,15 @@ const winstallerConfig = {
   iconUrl: 'https://www.samuelattard.com/img/gpmdp_setup.ico',
   setupIcon: 'build/assets/img/main.ico',
   loadingGif: 'build/assets/img/installing.gif',
-  remoteReleases: 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-',
 };
+
+if (!process.env.GPMDP_DONT_BUILD_DELTAS) {
+  winstallerConfig.remoteReleases = 'https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-';
+}
+
+if (process.env.APPVEYOR) {
+  delete winstallerConfig.remoteReleases;
+}
 
 const appdmgConf = {
   target: `dist/${packageJSON.productName}-darwin-x64/${packageJSON.productName}.dmg`,
@@ -213,9 +221,22 @@ gulp.task('less', ['clean-less'], () => {
 });
 
 // Copy all static images
-gulp.task('images', ['clean-images'], () => {
+gulp.task('copy-static-images', ['clean-images'], () => {
   return gulp.src(paths.images)
     .pipe(gulp.dest('./build/assets/img/'));
+});
+
+gulp.task('images', ['copy-static-images'], (done) => {
+  const child = spawn(process.execPath, ['vendor/svg_raster.js', '--instant'],
+    {
+      cwd: './',
+    });
+
+  child.stdout.on('data', () => {});
+
+  child.stderr.on('data', () => {});
+
+  child.on('close', () => done());
 });
 
 gulp.task('build-release', ['build'], () => {
@@ -246,7 +267,8 @@ gulp.task('watch', ['build'], () => {
 gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
   rebuild('rebuild_ia32.bat')
     .then(() => {
-      packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), () => {
+      packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), (err) => {
+        if (err) return done(err);
         setTimeout(() => {
           const packageExePath = `dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe`;
           windowsSignFile(packageExePath, 'sha1')

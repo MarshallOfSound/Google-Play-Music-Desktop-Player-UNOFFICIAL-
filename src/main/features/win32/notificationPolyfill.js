@@ -21,7 +21,7 @@ class Notification {
       backgroundColor: '#FFF',
       webPreferences: {
         nodeIntegration: true,
-        preload: path.resolve('./build/inject/generic/index.js'),
+        preload: path.resolve('./build/renderer/generic/index.js'),
       },
     });
 

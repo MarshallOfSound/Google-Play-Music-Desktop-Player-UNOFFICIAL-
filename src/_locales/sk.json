@@ -3,7 +3,9 @@
   "audio-device-default": "Predvolené systémom",
   "audio-device-unknown": "Neznáme zariadnie",
 
-  "button-test-ok": "OK",
+  "button-text-ok": "OK",
+  "button-text-cancel-alarm": "Zrušiť budík",
+  "button-text-click-here-to-set-alarm": "Kliknite pre nastavenie budíka",
   "button-text-close": "Zavrieť",
   "button-text-dont-tell-me-again": "Nabudúce neoznamovať",
   "button-text-lets-do-this": "Tak poďme na to!!",
@@ -11,6 +13,7 @@
   "button-text-not-now": "Teraz nie",
 
   "label-about": "O programe",
+  "label-alarm": "Budík",
   "label-desktop-settings": "Nastavenia programu",
   "label-donate": "Podporiť",
   "label-help": "Pomocník",
@@ -75,6 +78,7 @@
   "settings-option-enable-voice": "Povoliť ovládanie hlasom",
   "settings-option-enable-voice-details": "Hands free ovládanie hlasom pre GPMDP, toto je experimentálna funkcia",
   "settings-option-enable-taskbar-progress": "Zobraziť priebeh skladby na panely úloh",
+  "settings-option-change-locale": "Vybrať jazyk",
 
   "settings-option-hotkey-explanation": "Predvolené mediálne klávesy budú stále fungovať bez ohľadu na tieto nastavenia.  Tieto nastavenia sú ako doplnok k predvoleným.",
   "settings-option-hotkey-explanation-2": "Použite klávesu <i>\"Escape\"</i> pre obnovenie skratky.",

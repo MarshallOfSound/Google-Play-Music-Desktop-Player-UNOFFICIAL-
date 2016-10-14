@@ -1,5 +1,4 @@
 import { app, BrowserWindow } from 'electron';
-import { argv } from 'yargs';
 import path from 'path';
 import ua from 'universal-analytics';
 import uuid from 'uuid';
@@ -14,8 +13,6 @@ import SettingsClass from './main/utils/Settings';
 import WindowManagerClass from './main/utils/WindowManager';
 import PlaybackAPIClass from './main/utils/PlaybackAPI';
 import I3IpcHelperClass from './main/utils/I3IpcHelper';
-
-import './inject/generic/translations';
 
 import handleStartupEvent from './squirrel';
 
@@ -55,11 +52,7 @@ updateShortcuts();
     global.Settings = new SettingsClass();
   }
 
-  global.DEV_MODE = process.env['TEST_SPEC'] || argv.development || argv.dev; // eslint-disable-line
-  if (Settings.get('START_IN_DEV_MODE', false)) {
-    global.DEV_MODE = true;
-    Settings.set('START_IN_DEV_MODE', false);
-  }
+  global.DEV_MODE = process.env['TEST_SPEC'] || process.argv.some(arg => arg === '--development') || process.argv.some(arg => arg === '--dev'); // eslint-disable-line
 
   // Initialize the logger with some default logging levels.
   const defaultFileLogLevel = 'info';
@@ -133,6 +126,7 @@ updateShortcuts();
 
     // and load the index.html of the app.
     mainWindow.loadURL(`file://${__dirname}/public_html/index.html`);
+    require('./renderer/generic/translations');
     require('./main/features');
     require('./old_win32');
 
@@ -161,6 +155,6 @@ updateShortcuts();
 
   app.on('before-quit', () => {
     Logger.info('Application exiting...');
-    global.quiting = true;
+    global.quitting = true;
   });
 })();

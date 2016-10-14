@@ -13,10 +13,17 @@ chai.should();
 
 
 describe('Settings', () => {
+  let fired;
   let settings;
 
   beforeEach(() => {
     settings = new Settings('test');
+    fired = [];
+    global.Emitter = {
+      fire: (...args) => fired.push(args),
+      sendToAll: () => {},
+      sendToGooglePlayMusic: () => {},
+    };
   });
 
   it('should initialize with default settings', () => {
@@ -58,6 +65,15 @@ describe('Settings', () => {
     hookCalled.should.be.equal(true);
   });
 
+  it('should not fire changa function when the position key is changed', () => {
+    let hookCalled = false;
+    settings.onChange('test_key', () => {
+      hookCalled = true;
+    });
+    settings.set('position', 'test_value_2');
+    hookCalled.should.be.equal(false);
+  });
+
   it('should retry when loadig JSON failed', (done) => {
     const errorCalls = [];
     fs.writeFileSync(settings.PATH, 'BAD_JSON');
@@ -75,8 +91,30 @@ describe('Settings', () => {
       setTimeout(() => {
         settings.get('foo_key', 'default').should.be.equal('bar_value');
         done();
-      }, 15);
+      }, 40);
     }, 35);
+  });
+
+  it('should eventually stop retrying when loadig JSON failed', (done) => {
+    const errorCalls = [];
+    fs.writeFileSync(settings.PATH, 'BAD_JSON');
+    global.Logger = {
+      error: (...args) => errorCalls.push(args),
+    };
+    settings._load();
+    setTimeout(() => {
+      errorCalls.forEach((errorCall, index) => {
+        if (index < errorCalls.length - 2) errorCall[0].should.be.equal('Failed to load settings JSON file, retyring in 10 milliseconds');
+        if (index === errorCalls.length - 1) errorCall[0].should.be.equal('Failed to load settings JSON file, giving up and resetting');
+      });
+      errorCalls.length.should.be.gt(2);
+      fs.writeFileSync(settings.PATH, '{"foo_key":"bar_value"}');
+      settings.get('foo_key', 'default').should.be.equal('default');
+      setTimeout(() => {
+        settings.get('foo_key', 'default').should.be.equal('default');
+        done();
+      }, 40);
+    }, 95);
   });
 
   it('should instantly save when calling _save with force parameter', () => {
@@ -88,6 +126,20 @@ describe('Settings', () => {
     settings._save(true);
     JSON.parse(fs.readFileSync(settings.PATH), 'utf8').should.have.property('foo_key');
     JSON.parse(fs.readFileSync(settings.PATH), 'utf8').should.have.property('foo_key2');
+  });
+
+  it('should delete the file when destroying', () => {
+    fs.existsSync(settings.PATH).should.be.equal(true);
+    settings.destroy();
+    fs.existsSync(settings.PATH).should.be.equal(false);
+  });
+
+  it('should delete the file and not error when destroying multiple times', () => {
+    fs.existsSync(settings.PATH).should.be.equal(true);
+    settings.destroy();
+    fs.existsSync(settings.PATH).should.be.equal(false);
+    settings.destroy();
+    fs.existsSync(settings.PATH).should.be.equal(false);
   });
 
   describe('when uncoupled', () => {
@@ -112,6 +164,12 @@ describe('Settings', () => {
       }, 300);
     });
 
+    it('should send the set event to the main process when setting a value', () => {
+      settings.set('foo', 'bar');
+      fired[0][0].should.be.equal('settings:set');
+      fired[0][1].should.be.deep.equal({ key: 'foo', value: 'bar' });
+    });
+
     it('should load settings created from other processes each fetch', (done) => {
       const settings2 = new Settings('test');
       settings2.set('test_key', 'test_value');
@@ -119,6 +177,12 @@ describe('Settings', () => {
         settings.get('test_key').should.be.equal('test_value');
         done();
       }, 300);
+    });
+
+    it('should not delete the file when calling destroy', () => {
+      fs.existsSync(settings.PATH).should.be.equal(true);
+      settings.destroy();
+      fs.existsSync(settings.PATH).should.be.equal(true);
     });
   });
 

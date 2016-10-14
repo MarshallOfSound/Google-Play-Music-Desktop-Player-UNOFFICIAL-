@@ -34,7 +34,7 @@ const authLastFMToken = (token) =>
       title: 'Last.FM',
       webPreferences: {
         nodeIntegration: false,
-        preload: path.resolve(`${__dirname}/../../../inject/lastFM.js`),
+        preload: path.resolve(`${__dirname}/../../../renderer/lastFM.js`),
       },
     });
     authWindow.setMenu(null);
@@ -113,6 +113,20 @@ export const updateScrobble = (track, artist, album, timestamp) => {
   }
 };
 
+export const heartSong = (love, track, artist, album) => {
+  if (Settings.get('lastFMKey')) {
+    getLastFMSession()
+      .then((session) => {
+        lastfm.request(`track.${love ? 'love' : 'unlove'}`, session, {
+          track,
+          artist,
+          album,
+        }).on('error', (err) => Logger.error('LASTFM ERROR', err));
+      })
+      .catch((err) => Logger.error('LASTFM ERROR', err));
+  }
+};
+
 Emitter.on('lastfm:auth', () => {
   getLastFMSession()
     .then(() => {
@@ -123,10 +137,27 @@ Emitter.on('lastfm:auth', () => {
     });
 });
 
+let currentRating = {};
 Emitter.on('change:track', (event, details) => {
+  currentRating = {};
   updateNowPlaying(details.title, details.artist, details.album);
 });
 
 Emitter.on('change:track:scrobble', (event, details) => {
   updateScrobble(details.title, details.artist, details.album, details.timestamp);
+});
+
+PlaybackAPI.on('change:rating', (newRating) => {
+  const currentSong = PlaybackAPI.currentSong(true);
+  setTimeout(() => {
+    if (JSON.stringify(currentSong) === JSON.stringify(PlaybackAPI.currentSong(true))) {
+      if (newRating.liked && !currentRating.liked) {
+        heartSong(true, currentSong.title, currentSong.artist, currentSong.album);
+      }
+      if (!newRating.liked && currentRating.liked) {
+        heartSong(false, currentSong.title, currentSong.artist, currentSong.album);
+      }
+      currentRating = newRating;
+    }
+  });
 });

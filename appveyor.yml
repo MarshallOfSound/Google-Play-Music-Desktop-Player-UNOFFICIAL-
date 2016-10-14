@@ -9,11 +9,14 @@ environment:
     secure: t4Ka6QT10/i0FMX4cVi4BaNeGKfi76T/iEKZ3PEsnUPrQ2lK6cmlGSA01NfHvUze
   GPMDP_LASTFM_API_SECRET:
     secure: RIfJtcbYwHBG7uGI8TQS9JzO37zPNuyO3yPPayVKb8vVISfxrFXH4rYT9dzmGaAx
+  GPMDP_SENTRY_DSN:
+    secure: SOdAq6QgqVupAJIbh7LIUDa3hv5cgjR5bZD4u2x1/4ErWjwzoYjZwTQoaNaPSwZ5cx7bda0ExE5oBjoJJSmXki0yjKMHRur172h2ysk4FHYb7S2zW7lHTBCiDXOryVHS
   GOOGLE_MUSIC_JS_EMAIL:
     secure: UtCUPcatc43rCKYKuQUl+Q==
   GOOGLE_MUSIC_JS_PASSWORD:
     secure: ysdUmqSIrW+4OE1sRvLp+g==
   BONJOUR_SDK_HOME: 'C:\\Program Files\\Bonjour SDK'
+  GPMDP_DONT_BUILD_DELTAS: 'true'
 
 branches:
   except:
@@ -46,7 +49,10 @@ test_script:
   - npm --version
   # run tests
   - npm test
-  - npm run test-electron -- -R mocha-appveyor-reporter
+  # Clean build so that Component names are not minified
+  - npm run build
+  - npm run test-electron-main -- -R mocha-appveyor-reporter
+  - npm run test-electron-renderer -- -R mocha-appveyor-reporter
 
 build_script:
 - cmd: npm run make:win

@@ -26,7 +26,7 @@ const localeLinks = {
 
 export default class TranslationProvider {
   constructor(customLocale) {
-    let locale = eApp.getLocale();
+    let locale = Settings.get('locale', eApp.getLocale());
     const _tPath = path.resolve(`${__dirname}/en-US.json`);
     locale = customLocale || localeLinks[locale] || locale || 'en-US';
     let localePath = path.resolve(`${__dirname}/${locale}.json`);

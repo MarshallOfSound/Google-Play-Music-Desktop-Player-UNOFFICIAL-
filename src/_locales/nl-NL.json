@@ -3,7 +3,9 @@
   "audio-device-default": "Systeem Standaard",
   "audio-device-unknown": "Onbekend apparaat",
 
-  "button-test-ok": "OK",
+  "button-text-ok": "OK",
+  "button-text-cancel-alarm": "",
+  "button-text-click-here-to-set-alarm": "",
   "button-text-close": "Sluit",
   "button-text-dont-tell-me-again": "Meld het niet nog een keer",
   "button-text-lets-do-this": "Laten we het doen!!",
@@ -11,6 +13,7 @@
   "button-text-not-now": "Nu even niet",
 
   "label-about": "Over",
+  "label-alarm": "",
   "label-desktop-settings": "Desktop instellingen",
   "label-donate": "Doneer",
   "label-help": "Help",
@@ -75,6 +78,7 @@
   "settings-option-enable-voice": "Inschakelen spraakbesturing",
   "settings-option-enable-voice-details": "Handenvrije spraakbesturing voor GPMDP, dit is experimenteel",
   "settings-option-enable-taskbar-progress": "",
+  "settings-option-change-locale": "",
 
   "settings-option-hotkey-explanation": "Standaard mediatoetsen zullen blijven werken onafhankelijk van deze instellingen.  Deze instellingen zijn een toevoeging aan de standaard instellingen.",
   "settings-option-hotkey-explanation-2": "Gebruik de <i>\"Escape\"</i> toets om de sneltoetsfunctie te herstellen.",

@@ -1,7 +1,6 @@
 import './keyboardShortcuts';
 import './persistAppState';
 import './controlBar';
-import './customTheme';
 import './debug';
 import './desktopSettings';
 import './errorHandler';
@@ -13,3 +12,4 @@ import './lyrics';
 import './applicationMenu';
 import './windowTitleInfo';
 import './customStyle';
+import './alarm.js';

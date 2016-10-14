@@ -39,35 +39,32 @@ html, body {
     top: -100px;
   }
 
-  .darwin& {
-    .darwin-title-bar {
-      height: @title-bar-height-darwin;
-      transition: margin-top 160ms;
+  .darwin-title-bar {
+    height: @title-bar-height-darwin;
+    transition: margin-top 160ms;
 
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
 
-      font-size: @title-bar-text-size;
-      // -webkit-user-select: none;
-      -webkit-app-region: drag;
+    font-size: @title-bar-text-size;
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
 
-      padding: 0 70px;
-      // overflow: hidden;
+    padding: 0 70px;
 
-      .title {
-        flex: 0 1 auto;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        color: @grey;
-      }
+    .title {
+      flex: 0 1 auto;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: @grey;
+    }
 
-      background-color: @orange;
-      [loaded] & {
-        transition: background-color 0.3s ease;
-      }
+    background-color: @orange;
+    [loaded] & {
+      transition: background-color 0.3s ease;
     }
   }
 
@@ -80,7 +77,7 @@ html, body {
     .embedded-player {
       height: 100vh !important;
 
-      .darwin& {
+      &.darwin {
         height: calc(100vh ~"-" @title-bar-height-darwin) !important;
       }
     }

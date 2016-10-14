@@ -44,7 +44,16 @@ class Settings {
       if (this._hooks[key] && valChanged) {
         this._hooks[key].forEach((hookFn) => hookFn(value));
       }
+      if (!['position', 'size', 'mini-position', 'mini-size'].includes(key)) {
+        Emitter.sendToAll(`settings:change:${key}`, value, key);
+        Emitter.sendToGooglePlayMusic(`settings:change:${key}`, value, key);
+      }
       this._save();
+    } else {
+      Emitter.fire('settings:set', {
+        key,
+        value,
+      });
     }
   }
 
@@ -87,7 +96,7 @@ class Settings {
 
   destroy() {
     this.data = null;
-    fs.unlinkSync(this.PATH);
+    if (this.coupled && fs.existsSync(this.PATH)) fs.unlinkSync(this.PATH);
   }
 }
 

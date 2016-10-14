@@ -80,4 +80,49 @@ describe('WindowManager', () => {
     window.emit('closed');
     expect(WindowManager.get(result)).to.be.equal(null);
   });
+
+  it('should not throw errors when closing a non existent window', () => {
+    WindowManager.close(-1);
+  });
+
+  it('should return null when fetching non existent windows through any method', () => {
+    expect(WindowManager.get(-1)).to.be.equal(null);
+    expect(WindowManager.getByInternalID(-1)).to.be.equal(null);
+    expect(WindowManager.getAll(-1)).to.be.deep.equal([]);
+  });
+
+  it('should return an empty array if it can\'t convert a name to a valid window', () => {
+    WindowManager.nameReferences['test.name'] = [-1, -2, -3];
+    WindowManager.getAll('test.name').should.be.deep.equal([]);
+  });
+
+  it('should return the current WM name when requested', () => {
+    if (process.platform === 'linux') return;
+    expect(WindowManager.getWindowManagerName()).to.equal(undefined);
+  });
+
+  it('should return the current WM GD name when requested', () => {
+    if (process.platform === 'linux') return;
+    expect(WindowManager.getWindowManagerGDMName()).to.equal(undefined);
+  });
+
+  it('should correctly force chain of focus', () => {
+    const window = new MockWindow();
+    const window2 = new MockWindow();
+    const window3 = new MockWindow();
+
+    WindowManager.add(window);
+    WindowManager.add(window2);
+    WindowManager.add(window3);
+
+    WindowManager.forceFocus(window);
+    window.focused.should.be.equal(false);
+    window2.emit('focus');
+    window.focused.should.be.equal(true);
+
+    window.focused = false;
+    window.emit('close');
+    window3.emit('focus');
+    window.focused.should.be.equal(false);
+  });
 });

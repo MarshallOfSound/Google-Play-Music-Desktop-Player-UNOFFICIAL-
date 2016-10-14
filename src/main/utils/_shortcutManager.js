@@ -13,6 +13,10 @@ const taskbarPath = path.resolve(
   app.getPath('appData'), '..', 'Roaming', 'Microsoft', 'Internet Explorer', 'Quick Launch', 'User Pinned',
   'TaskBar', `${packageJSON.productName}.lnk`
 );
+const startPinPath = path.resolve(
+  app.getPath('appData'), '..', 'Roaming', 'Microsoft', 'Internet Explorer', 'Quick Launch', 'User Pinned',
+  'StartMenu', `${packageJSON.productName}.lnk`
+);
 
 const squirrelPath = path.resolve(path.dirname(process.execPath), '..', 'update.exe');
 
@@ -37,10 +41,12 @@ export const updateShortcuts = () => {
   shortcutAtPath(desktopPath);
   shortcutAtPath(startPath);
   shortcutAtPath(taskbarPath);
+  shortcutAtPath(startPinPath);
 };
 
 export const removeShortcuts = () => {
   if (fs.existsSync(startPath)) fs.unlinkSync(startPath);
   if (fs.existsSync(desktopPath)) fs.unlinkSync(desktopPath);
   if (fs.existsSync(taskbarPath)) fs.unlinkSync(taskbarPath);
+  if (fs.existsSync(startPinPath)) fs.unlinkSync(startPinPath);
 };

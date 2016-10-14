@@ -8,3 +8,4 @@ xunit.xml
 vendor/*.msi
 electron.xml
 spectron.xml
+coverage.zip
