@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import { remote } from 'electron';
+import { remote, shell } from 'electron';
 import React from 'react';
 import chai, { expect } from 'chai';
 import { mount } from 'enzyme';
@@ -116,5 +116,30 @@ describe('<PlayerPage />', () => {
     component.instance().ready = true;
     component.instance()._didNavigateInPage('https://www.google.com');
     expect(fired['settings:set']).to.not.be.ok;
+  });
+
+  it('should recieve new-window events and attempt to launch them externally', (done) => {
+    const _openExternal = shell.openExternal;
+    shell.openExternal = (url) => {
+      shell.openExternal = _openExternal;
+      expect(url).to.be.equal('https://www.google.com');
+      done();
+    };
+
+    const component = mount(<PlayerPage />);
+    component.instance()._newWindow({ url: 'https://www.google.com' });
+  });
+
+  it('should recieve new-window events and not do anything if they are not valid URL\'s', () => {
+    let called = false;
+    const _openExternal = shell.openExternal;
+    shell.openExternal = () => {
+      shell.openExternal = _openExternal;
+      called = true;
+    };
+
+    const component = mount(<PlayerPage />);
+    component.instance()._newWindow({ url: 'steamapp://791' });
+    expect(called).to.be.equal(false);
   });
 });
