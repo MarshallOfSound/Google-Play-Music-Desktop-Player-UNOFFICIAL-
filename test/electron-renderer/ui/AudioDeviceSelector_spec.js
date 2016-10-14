@@ -10,7 +10,7 @@ import mockSettings, { getVars, mockEvent } from './_mockSettings';
 
 chai.should();
 
-describe('<OfflineWarning />', () => {
+describe('<AudioDeviceSelector />', () => {
   let hooks;
   let unhooks;
   let fired;
