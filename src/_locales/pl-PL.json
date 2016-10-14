@@ -4,8 +4,8 @@
   "audio-device-unknown": "Nieznane urządzenie",
 
   "button-text-ok": "OK",
-  "button-text-cancel-alarm": "",
-  "button-text-click-here-to-set-alarm": "",
+  "button-text-cancel-alarm": "Wyłącz budzik",
+  "button-text-click-here-to-set-alarm": "Kliknij tu, aby ustawić budzik",
   "button-text-close": "Zamknij",
   "button-text-dont-tell-me-again": "Nie pokazuj więcej",
   "button-text-lets-do-this": "Zróbmy to!!",
@@ -13,7 +13,7 @@
   "button-text-not-now": "Nie teraz",
 
   "label-about": "Informacje",
-  "label-alarm": "",
+  "label-alarm": "Budzik",
   "label-desktop-settings": "Ustawienia aplikacji",
   "label-donate": "Wspomóż projekt",
   "label-help": "Pomoc",
@@ -78,7 +78,7 @@
   "settings-option-enable-voice": "Włącz Kontrolę Głosową",
   "settings-option-enable-voice-details": "Kontrola nad GPMDP za pomocą komend głosowych - funkcja eksperymentalna",
   "settings-option-enable-taskbar-progress": "Pokazuj postęp utworu na pasku systemowym",
-  "settings-option-change-locale": "",
+  "settings-option-change-locale": "Wybierz język aplikacji",
 
   "settings-option-hotkey-explanation": "Domyślne klawisze dedykowane obsłudze mediów będą działać bez względu na te ustawienia. Traktuj te ustawienia jako dodatkowe.",
   "settings-option-hotkey-explanation-2": "Użyj klawisza <i>\"Escape\"</i> żeby zresetować ustawienia.",
