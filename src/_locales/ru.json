@@ -78,6 +78,7 @@
   "settings-option-enable-voice": "Включить голосовое управление",
   "settings-option-enable-voice-details": "Голосовое управление для GPMDP, экспериментальная функция",
   "settings-option-enable-taskbar-progress": "Показывать позицию воспроизведения в панели задач",
+  "settings-option-change-locale": "",
 
   "settings-option-hotkey-explanation": "Стандартные мультимедийные кнопки всё равно будут работать, независимо от дополнительных, представленных ниже.",
   "settings-option-hotkey-explanation-2": "Используйте <i>\"Esc\"</i>, чтобы сбросить значение.",

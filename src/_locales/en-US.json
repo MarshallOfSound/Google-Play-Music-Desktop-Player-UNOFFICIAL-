@@ -78,6 +78,7 @@
   "settings-option-enable-voice": "Enable Voice Controls",
   "settings-option-enable-voice-details": "Hands free voice controls for GPMDP, this is experimental",
   "settings-option-enable-taskbar-progress": "Show track progress in the taskbar",
+  "settings-option-change-locale": "Choose language",
 
   "settings-option-hotkey-explanation": "Default media keys will continue to work regardless of these settings.  These settings are in addition to the defaults.",
   "settings-option-hotkey-explanation-2": "Use the <i>\"Escape\"</i> key to reset the hotkey.",
