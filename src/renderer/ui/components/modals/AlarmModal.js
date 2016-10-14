@@ -36,6 +36,7 @@ class AlarmModal extends Component {
 
   cancel = () => {
     Settings.set('alarm', null);
+    this.handleClose();
   }
 
   handleClose = () => {
