@@ -1,7 +1,5 @@
 import _ from 'lodash';
 
-const findAudioElem = () => Array.prototype.find.call(document.querySelectorAll('audio'), (elem) => !!elem.src);
-
 Emitter.on('audiooutput:fetch', () => {
   navigator.mediaDevices.enumerateDevices()
     .then((devices) => {
@@ -15,22 +13,24 @@ Emitter.on('audiooutput:fetch', () => {
     });
 });
 
-export const setAudioDevice = (id, count = 0) =>
+export const setAudioDevice = (audioElem, id, count = 0) =>
   new Promise((resolve, reject) => {
-    findAudioElem().setSinkId(id)
+    audioElem.setSinkId(id)
       .then(() => { resolve(); })
       .catch((oops) => { if (count > 10000) { reject(oops); } else { setAudioDevice(id, count + 1).then(resolve).catch((err) => reject(err)); } }); // eslint-disable-line
   });
 
 Emitter.on('audiooutput:set', (event, deviceId) => {
-  let once = true;
-  if (findAudioElem().paused) {
-    findAudioElem().addEventListener('playing', () => {
-      if (!once) return;
-      once = false;
-      setAudioDevice(deviceId);
-    });
-  } else {
-    setAudioDevice(deviceId);
-  }
+  Array.prototype.forEach.call(document.querySelectorAll('audio:not(.offscreen)'), (audioElem) => {
+    let once = true;
+    if (audioElem.paused) {
+      audioElem.addEventListener('playing', () => {
+        if (!once) return;
+        once = false;
+        setAudioDevice(audioElem, deviceId);
+      });
+    } else {
+      setAudioDevice(audioElem, deviceId);
+    }
+  });
 });

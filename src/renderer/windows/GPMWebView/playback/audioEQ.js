@@ -2,11 +2,9 @@ import _ from 'lodash';
 
 import { setAudioDevice } from './audioSelection';
 
-const findAudioElem = () => Array.prototype.find.call(document.querySelectorAll('audio'), (elem) => !!elem.src);
-
 window.wait(() => {
   const waitForAudio = setInterval(() => {
-    if (findAudioElem()) {
+    if (document.querySelectorAll('audio.offscreen').length > 0 && document.querySelectorAll('audio:not(.offscreen)').length > 0) {
       clearInterval(waitForAudio);
 
       // DEV: We do this here so that we can set the output device before hooking the context
@@ -17,12 +15,14 @@ window.wait(() => {
             _.forEach(devices, (device) => {
               if (device.label === Settings.get('audiooutput')) {
                 set = true;
-                let once = true;
-                findAudioElem().addEventListener('playing', () => {
-                  if (!once) return;
-                  once = false;
-                  setAudioDevice(device.deviceId)
-                    .then(resolve);
+                Array.prototype.forEach.call(document.querySelectorAll('audio:not(.offscreen)'), (audioElem) => {
+                  let once = true;
+                  audioElem.addEventListener('playing', () => {
+                    if (!once) return;
+                    once = false;
+                    setAudioDevice(audioElem, device.deviceId)
+                      .then(resolve);
+                  });
                 });
               }
             });
