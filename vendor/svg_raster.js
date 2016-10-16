@@ -32,19 +32,19 @@ module.exports = (cb) => {
         if (counter === (jimpOutFiles.length * 3) + 1) return cb();
       };
 
+      let p = Promise.resolve();
       // Generate ico and icns files
-      if (!fs.existsSync(path.resolve(targetPath, 'main.icns'))) {
-        iconGen(path.resolve(basePath, 'vector_logo.svg'), targetPath, {
+      if (!fs.existsSync(path.resolve(targetPath, 'main.ico'))) {
+        p = iconGen(path.resolve(basePath, 'vector_logo.svg'), targetPath, {
           type: 'svg',
           names: {
             ico: 'main',
             icns: 'main',
           },
-          modes: ['ico', 'icns'],
-        }).then(() => done());
-      } else {
-        done();
+          modes: ['ico'],
+        });
       }
+      p.then(() => done());
 
       types.forEach((type) => {
         const typeTargetPath = type ? path.resolve(targetPath, type) : targetPath;
