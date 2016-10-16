@@ -4,7 +4,7 @@
   "audio-device-unknown": "Unbekanntes Gerät",
 
   "button-text-ok": "OK",
-  "button-text-cancel-alarm": "Alarm Abbrechen",
+  "button-text-cancel-alarm": "Alarm abbrechen",
   "button-text-click-here-to-set-alarm": "Klicke hier um den Alarm zu setzen",
   "button-text-close": "Schließen",
   "button-text-dont-tell-me-again": "Sag mir das nicht nochmal",
@@ -95,10 +95,11 @@
   "settings-option-mini-ontop": "Immer oben",
   "settings-option-mini-use-scroll-volume": "Benutze das Mausrad um die Lautstärke zu ändern",
 
-  "settings-options-style-description": "Wähle eine lokale CSS Datei um Stile in die Applikation einzubringen",
+  "settings-options-style-description": "Wähle eine lokale CSS Datei um Styles in die Anwendung einzubringen",
+  "settings-options-style-gpm": "Google Play Music",
   "settings-options-style-main-app": "Hauptfenster",
   "settings-options-style-gpm": "Google Play Music",
-  "settings-options-style-refresh": "Lade die Stile neu",
+  "settings-options-style-refresh": "Lade die Styles neu",
 
   "title-color-picker": "Farbauswahl",
   "title-settings": "Einstellungen",
