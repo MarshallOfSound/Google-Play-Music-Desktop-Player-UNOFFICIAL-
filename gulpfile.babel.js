@@ -8,7 +8,7 @@ import babel from 'gulp-babel';
 import clean from 'gulp-clean';
 import concat from 'gulp-concat';
 import cssmin from 'gulp-cssmin';
-import { createWindowsInstaller as electronInstaller } from 'electron-winstaller';
+import { createWindowsInstaller as electronInstaller } from 'gpmdp-electron-winstaller';
 import fs from 'fs';
 import header from 'gulp-header';
 import less from 'gulp-less';
