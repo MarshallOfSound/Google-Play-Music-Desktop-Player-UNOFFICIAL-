@@ -4,8 +4,8 @@
   "audio-device-unknown": "Unbekanntes Gerät",
 
   "button-text-ok": "OK",
-  "button-text-cancel-alarm": "",
-  "button-text-click-here-to-set-alarm": "",
+  "button-text-cancel-alarm": "Alarm abbrechen",
+  "button-text-click-here-to-set-alarm": "Klicke hier um den Alarm zu setzen",
   "button-text-close": "Schließen",
   "button-text-dont-tell-me-again": "Sag mir das nicht nochmal",
   "button-text-lets-do-this": "Lass uns starten!!",
@@ -13,7 +13,7 @@
   "button-text-not-now": "Nicht jetzt",
 
   "label-about": "Über",
-  "label-alarm": "",
+  "label-alarm": "Alarm",
   "label-desktop-settings": "Desktop-Einstellungen",
   "label-donate": "Spenden",
   "label-help": "Hilfe",
@@ -77,8 +77,8 @@
   "settings-option-enable-system-borders-details": "Erfordert einen Neustart",
   "settings-option-enable-voice": "Aktiviere Sprachsteuerung",
   "settings-option-enable-voice-details": "Sprachsteuerung für GPMDP, dies ist experimentell",
-  "settings-option-enable-taskbar-progress": "",
-  "settings-option-change-locale": "",
+  "settings-option-enable-taskbar-progress": "Zeige den Fortschritt des Liedes in der Taskbar",
+  "settings-option-change-locale": "Wähle eine andere Sprache",
 
   "settings-option-hotkey-explanation": "Die grundlegenden Medientasten werden dennoch funktionieren.  Diese Einstellungen kommen zu den Standardeinstellungen hinzu.",
   "settings-option-hotkey-explanation-2": "Zum Zurücksetzen der Tastenkombination benutze die <i>\"Escape\"</i>-Taste.",
@@ -95,10 +95,11 @@
   "settings-option-mini-ontop": "Immer oben",
   "settings-option-mini-use-scroll-volume": "Benutze das Mausrad um die Lautstärke zu ändern",
 
-  "settings-options-style-description": "",
-  "settings-options-style-main-app": "",
-  "settings-options-style-gpm": "",
-  "settings-options-style-refresh": "",
+  "settings-options-style-description": "Wähle eine lokale CSS Datei um Styles in die Anwendung einzubringen",
+  "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-main-app": "Hauptfenster",
+  "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-refresh": "Lade die Styles neu",
 
   "title-color-picker": "Farbauswahl",
   "title-settings": "Einstellungen",
@@ -107,7 +108,7 @@
   "title-settings-hotkeys": "Hotkeys",
   "title-settings-lastfm": "LastFM",
   "title-settings-mini": "Mini Player",
-  "title-settings-style": "",
+  "title-settings-style": "Eigene Stile",
 
   "tray-label-audio-device": "Audiogerät",
   "tray-label-show": "Anzeigen"
