@@ -3,7 +3,7 @@ import './core';
 
 import SettingsController from '../../main/utils/Settings';
 
-if (process.env.TEST_SPEC) {
+if (process.env['TEST_SPEC']) { // eslint-disable-line
   global.Settings = new SettingsController('.test', true);
 } else {
   global.Settings = new SettingsController();
