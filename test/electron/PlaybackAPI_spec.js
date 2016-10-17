@@ -143,8 +143,7 @@ describe.only('PlaybackAPI', () => {
         if (ipcEventName !== 'playback:isPaused' && ipcEventName !== 'playback:isStopped') {
           originalJSON.should.not.be.deep.equal(JSON.parse(fs.readFileSync(PlaybackAPI.PATH, 'utf8')));
         }
-        done()
-      }, 400);
+        done();
       }, 100);
     });
 
