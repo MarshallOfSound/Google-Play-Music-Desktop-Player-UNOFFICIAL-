@@ -22,11 +22,17 @@ class GeneralTab extends Component {
         {
           this.props.theme ? <ThemeOptions /> : null
         }
-        <ToggleableOption label={TranslationProvider.query('settings-option-enable-voice-details')} settingsKey={"speechRecognition"} />
-        <ToggleableOption label={TranslationProvider.query('settings-option-enable-api-json')} settingsKey={"enableJSON_API"} />
-        <ToggleableOption label={TranslationProvider.query('settings-option-enable-api-details')} settingsKey={"playbackAPI"} />
         <ToggleableOption
-          label={`${_t.query('settings-option-enable-system-borders')} (${_t.query('settings-option-enable-system-borders-details')})`}
+          label={`${_t.query('settings-option-enable-voice')} - ${_t.query('settings-option-enable-voice-details')}`}
+          settingsKey={"speechRecognition"}
+        />
+        <ToggleableOption label={TranslationProvider.query('settings-option-enable-api-json')} settingsKey={"enableJSON_API"} />
+        <ToggleableOption
+          label={`${_t.query('settings-option-enable-api-details')} - ${_t.query('settings-option-enable-api')}`}
+          settingsKey={"playbackAPI"}
+        />
+        <ToggleableOption
+          label={`${_t.query('settings-option-enable-system-borders')} - (${_t.query('settings-option-enable-system-borders-details')})`}
           settingsKey={"nativeFrame"}
         />
         <ToggleableOption label={TranslationProvider.query('settings-option-save-page')} settingsKey={"savePage"} />
