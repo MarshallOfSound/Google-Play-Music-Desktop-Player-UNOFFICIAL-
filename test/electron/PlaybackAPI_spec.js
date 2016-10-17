@@ -51,7 +51,7 @@ let jsonAPIEnabled = false;
 
 chai.should();
 
-describe('PlaybackAPI', () => {
+describe.only('PlaybackAPI', () => {
   let PlaybackAPI;
 
   const mockAndGenerate = () => {
@@ -144,7 +144,7 @@ describe('PlaybackAPI', () => {
           originalJSON.should.not.be.deep.equal(JSON.parse(fs.readFileSync(PlaybackAPI.PATH, 'utf8')));
         }
         done();
-      }, 250);
+      }, 400);
     });
 
     after(() => {
