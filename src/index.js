@@ -46,7 +46,7 @@ updateShortcuts();
     return;
   }
 
-  if (process.env.TEST_SPEC) {
+  if (process.env['TEST_SPEC']) { // eslint-disable-line
     global.Settings = new SettingsClass('.test', true);
   } else {
     global.Settings = new SettingsClass();
