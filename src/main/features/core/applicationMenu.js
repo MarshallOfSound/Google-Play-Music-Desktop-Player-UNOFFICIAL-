@@ -34,7 +34,9 @@ const template = [
         label: 'Reload',
         accelerator: 'CmdOrCtrl+R',
         click: (item, focusedWindow) => {
-          focusedWindow.reload();
+          if (focusedWindow) {
+            focusedWindow.reload();
+          }
         },
       },
       {
