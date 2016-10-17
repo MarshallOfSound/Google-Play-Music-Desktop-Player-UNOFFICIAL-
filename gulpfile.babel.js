@@ -195,8 +195,8 @@ gulp.task('transpile', ['clean-internal'], () => {
   return gulp.src(paths.internalScripts)
     .pipe(babel())
     .on('error', (err) => { console.error(err); }) // eslint-disable-line
-    .pipe(replace(/process\.env\.(.+);/gi, (envCall, envKey) => {
-      return `'${process.env[envKey]}'`;
+    .pipe(replace(/process\.env\.(.+)([,;\)])/gi, (envCall, envKey, closer) => {
+      return `'${process.env[envKey]}'${closer}`;
     }))
     .pipe(gulp.dest('./build/'));
 });

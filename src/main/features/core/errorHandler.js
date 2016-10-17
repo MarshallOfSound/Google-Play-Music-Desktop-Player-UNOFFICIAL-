@@ -1,4 +1,4 @@
-import { app } from 'electron';
+import { app, crashReporter } from 'electron';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
@@ -16,7 +16,7 @@ if (!global.DEV_MODE && process.env.GPMDP_SENTRY_DSN) {
       settings: Settings.data,
     },
   });
-  if (global.Logger) Logger.info('Starting Sentry');
+  console.info('Starting Sentry'); // eslint-disable-line
   client.patchGlobal();
 } else {
   process.on('uncaughtException', (error) => {
@@ -35,3 +35,10 @@ if (!global.DEV_MODE && process.env.GPMDP_SENTRY_DSN) {
     });
   });
 }
+
+crashReporter.start({
+  productName: 'GPMDP',
+  companyName: 'Samuel Attard',
+  submitURL: 'https://crash.gpmdp.xyz/post',
+  autoSubmit: true,
+});
