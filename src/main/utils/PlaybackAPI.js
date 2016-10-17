@@ -10,7 +10,6 @@ class PlaybackAPI extends EventEmitter {
 
     this.PATH = createJSON(`${filePrefix}playback`);
     this.reset();
-    this.lastSync = 0;
     this._save();
     if (Settings.get('enableJSON_API', true)) {
       // DEV: Handle windows users running as admin...
@@ -83,22 +82,13 @@ class PlaybackAPI extends EventEmitter {
 
   _save() {
     if (Settings.get('enableJSON_API', true)) {
-      const now = (new Date()).getTime();
-      // During some save events (like resize) we need to queue the disk writes
-      // so that we don't blast the disk every millisecond
-      if ((now - this.lastSync > 250)) {
-        try {
-          fs.writeFileSync(this.PATH, JSON.stringify(this.data, null, 4));
-        } catch (e) {
-          if (this.saving) clearTimeout(this.saving);
-          this.saving = setTimeout(this._save.bind(this), 275);
-        }
-        if (this.saving) clearTimeout(this.saving);
-      } else {
+      try {
+        fs.writeFileSync(this.PATH, JSON.stringify(this.data, null, 4));
+      } catch (e) {
         if (this.saving) clearTimeout(this.saving);
         this.saving = setTimeout(this._save.bind(this), 275);
       }
-      this.lastSync = now;
+      if (this.saving) clearTimeout(this.saving);
     }
   }
 
