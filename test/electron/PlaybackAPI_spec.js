@@ -51,7 +51,7 @@ let jsonAPIEnabled = false;
 
 chai.should();
 
-describe.only('PlaybackAPI', () => {
+describe('PlaybackAPI', () => {
   let PlaybackAPI;
 
   const mockAndGenerate = () => {
