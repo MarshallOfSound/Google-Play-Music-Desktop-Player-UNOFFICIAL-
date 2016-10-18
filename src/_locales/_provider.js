@@ -9,7 +9,6 @@ const localeLinks = {
   'en-AU': 'en-US',
   'en-BZ': 'en-US',
   'en-CA': 'en-US',
-  'en-GB': 'en-GB',
   'en-IE': 'en-US',
   'en-IN': 'en-US',
   'en-JM': 'en-US',
