@@ -27,24 +27,24 @@
   "label-unknown-song": "Unknown Song",
   "label-version": "Version",
 
-  "lastfm-login-authorized": "Authorized",
-  "lastfm-login-authorizing": "Authorization In Progress",
+  "lastfm-login-authorized": "Authorised",
+  "lastfm-login-authorizing": "Authorisation In Progress",
   "lastfm-login-button-text": "Log in to Last.FM",
-  "lastfm-login-error": "You appear to have left the authorization process, if this is a mistake, please try authorizing again",
-  "lastfm-login-not-authorized": "Not Authorized",
+  "lastfm-login-error": "You appear to have left the authorisation process, if this is a mistake, please try authorising again",
+  "lastfm-login-not-authorized": "Not Authorised",
   "lastfm-logout-button-text": "Log out of Last.FM",
 
   "lyrics-failed-message": "Sorry, we could not find any lyrics for this song",
   "lyrics-loading-message": "Loading lyrics...",
   "lyrics-no-song-message": "No song is currently playing",
 
-  "message-pausing-after-song": "Pausing after this song.",
+  "message-pausing-after-song": "Pausing after this song",
   "message-pausing-after-song-button": "Don't pause after this song",
-  "message-uncaught-error": "An uncaught error has occurred inside GPMDP.",
+  "message-uncaught-error": "An uncaught error has occurred inside GPMDP",
   "message-uncaught-error-button": "Click here to report this as an issue on GitHub",
 
   "modal-confirmTray-title": "Just a heads up",
-  "modal-confirmTray-content": "Closing the main player window (what you just tried to do) will actually minimize the player to the System Tray. If you want to change this behaviour it can be changed in the \"Desktop Settings\" window.",
+  "modal-confirmTray-content": "Closing the main player window (what you just tried to do) will actually minimise the player to the System Tray. If you want to change this behaviour it can be changed in the \"Desktop Settings\" window.",
   "modal-confirmOpenPort-content": "The PlaybackAPI failed to start because Windows Firewall is blocking it.  We can unblock it for you if you want, be warned, this may require admin privileges",
   "modal-confirmUpdate-title": "Update Available",
   "modal-confirmUpdate-content": "Woo hoo, it looks like there is a brand new update available for Google Play Music Desktop Player.  This update should bring a whole load of new features, bugfixes and cool new things.  We recommend updating as fast as possible to allow you to enjoy the best feature filled, bug free experience.<br />We hope you like the new update!",
@@ -64,9 +64,9 @@
   "playback-label-volume-up": "Increase Volume",
 
   "settings-option-custom-theme": "Custom Theme",
-  "settings-option-custom-theme-choose-color": "Choose your theme highlight color",
+  "settings-option-custom-theme-choose-color": "Choose your theme highlight colour",
   "settings-option-custom-theme-choose-custom": "Or choose a",
-  "settings-option-custom-theme-custom-color": "Custom Color",
+  "settings-option-custom-theme-custom-color": "Custom Colour",
   "settings-option-custom-theme-dark": "Dark",
   "settings-option-custom-theme-light": "Light",
 
@@ -83,7 +83,7 @@
   "settings-option-hotkey-explanation": "Default media keys will continue to work regardless of these settings.  These settings are in addition to the defaults.",
   "settings-option-hotkey-explanation-2": "Use the <i>\"Escape\"</i> key to reset the hotkey.",
 
-  "settings-option-min-to-tray": "Minimize to Tray",
+  "settings-option-min-to-tray": "Minimise to Tray",
 
   "settings-option-auto-launch": "Automatically launch when I turn my computer on",
 
@@ -100,7 +100,7 @@
   "settings-options-style-gpm": "Google Play Music",
   "settings-options-style-refresh": "Reload Styles",
 
-  "title-color-picker": "Color Picker",
+  "title-color-picker": "Colour Picker",
   "title-settings": "Settings",
   "title-settings-audio": "Audio",
   "title-settings-general": "General",
