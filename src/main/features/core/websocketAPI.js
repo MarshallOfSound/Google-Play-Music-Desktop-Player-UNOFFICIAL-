@@ -129,7 +129,6 @@ const enableAPI = () => {
 
     server.broadcast = (channel, data) => {
       server.clients.forEach((client) => {
-        if (client.readyState !== WebSocket.OPEN) return;
         client.channel(channel, data);
       });
     };
@@ -138,6 +137,7 @@ const enableAPI = () => {
       const ws = websocket;
 
       ws.json = (obj) => {
+        if (ws.readyState !== WebSocket.OPEN) return;
         ws.send(JSON.stringify(obj));
       };
       ws.channel = (channel, obj) => {
