@@ -123,6 +123,7 @@ function toggleMainWindow() {
   // the mainWindow variable will be GC'd
   // we must find the window ourselves
   const win = WindowManager.getAll('main')[0];
+  if (!win) return;
 
   if (win.isMinimized() || !win.isVisible()) {
     win.setSkipTaskbar(false);
