@@ -41,7 +41,7 @@ System Memory: ${os.totalmem()}
   };
   output.on('close', () => {
     toRemove.forEach((removePath) => {
-      fs.unlinkSync(removePath);
+      if (fs.existsSync(removePath)) fs.unlinkSync(removePath);
     });
     shell.showItemInFolder(path.resolve(debugFolder, 'debug_info.zip'));
   });
