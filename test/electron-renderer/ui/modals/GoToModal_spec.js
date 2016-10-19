@@ -50,6 +50,18 @@ createModalTest(GoToModal, ['gotourl'], [], [], () => {}, (_c) => {
     fired['navigate:gotourl'][0][0].should.be.equal('https://play.google.com/music/listen/now/thing');
   });
 
+  it('should emit the navigate event if it is a valid shared GPM URL', () => {
+    const { component, fired } = _c;
+    const instance = component.instance();
+    instance._onChange({}, 'https://www.not.google/play/music');
+    instance._onKeyUp({ which: 13 });
+    fired.should.not.have.property('navigate:gotourl');
+    instance._onChange({}, 'https://play.google.com/music/r/m/Lmfbcdi7lg4inxvv3nydqyzor4y?t=Peaceful_Stroll_');
+    instance._onKeyUp({ which: 13 });
+    fired.should.have.property('navigate:gotourl');
+    fired['navigate:gotourl'][0][0].should.be.equal('https://play.google.com/music/r/m/Lmfbcdi7lg4inxvv3nydqyzor4y?t=Peaceful_Stroll_');
+  });
+
   it('should emit the generateDebugInfo event if you enter DEBUG_INFO', () => {
     const { component, fired } = _c;
     const instance = component.instance();
