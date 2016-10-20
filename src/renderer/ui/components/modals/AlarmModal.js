@@ -81,6 +81,7 @@ class AlarmModal extends Component {
       >
         <TimePicker
           hintText={TranslationProvider.query('button-text-click-here-to-set-alarm')}
+          textFieldStyle={{width: '100%'}}
           onChange={this.onChange}
           {...timePickerProps}
         />
