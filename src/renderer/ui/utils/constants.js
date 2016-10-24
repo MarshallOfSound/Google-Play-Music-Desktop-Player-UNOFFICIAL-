@@ -49,4 +49,5 @@ export const languageMap = {
   'pt-BR': 'Portuguese',
   ru: 'Russian',
   sk: 'Slovak',
+  ua: 'Ukrainian',
 };
