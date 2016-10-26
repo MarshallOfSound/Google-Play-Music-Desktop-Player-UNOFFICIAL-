@@ -95,10 +95,10 @@
   "settings-option-mini-ontop": "Vždy navrchu",
   "settings-option-mini-use-scroll-volume": "Použít rolovací kolečko pro změnu hlasitosti",
 
-  "settings-option-style-description": "Vybrat místní CSS soubor pro použití stylů v aplikaci",
-  "settings-option-style-main-app": "Hlavní aplikace",
-  "settings-option-style-gpm": "Hudba Google Play",
-  "settings-option-style-refresh": "Znovu načíst styly",
+  "settings-options-style-description": "Vybrat místní CSS soubor pro použití stylů v aplikaci",
+  "settings-options-style-main-app": "Hlavní aplikace",
+  "settings-options-style-gpm": "Hudba Google Play",
+  "settings-options-style-refresh": "Znovu načíst styly",
 
   "title-color-picker": "Výběr barvy",
   "title-settings": "Nastavení",
