@@ -14,7 +14,7 @@ Settings.uncouple();
 require(`./${process.platform}`);
 require('./translations');
 
-process.env['NODE_ENV'] = remote.getGlobal('DEV_MODE') ? 'development' : 'production';
+process.env['NODE_ENV'] = remote.getGlobal('DEV_MODE') ? 'development' : 'production'; // eslint-disable-line
 
 document.addEventListener('DOMContentLoaded', () => {
   require('./windowThemeHandler');
