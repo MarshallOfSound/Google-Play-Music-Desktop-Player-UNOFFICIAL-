@@ -38,7 +38,7 @@
   "lyrics-loading-message": "Načítání textu skladby...",
   "lyrics-no-song-message": "Právě nehraje žádná skladba",
 
-  "message-pausing-after-song": "Pozastavení po této skladbě.",
+  "message-pausing-after-song": "Po této skladbě se pozastaví přehrávání.",
   "message-pausing-after-song-button": "Nepozastavovat po této skladbě",
   "message-uncaught-error": "Nastala nespecifikovaná chyba v programu (GPMDP).",
   "message-uncaught-error-button": "Klikněte zde pro nahlášení tohoto problému na GitHub",
@@ -58,9 +58,9 @@
   "playback-label-play-pause": "Přehrát / Pozastavit",
   "playback-label-previous-track": "Předchozí skladba",
   "playback-label-stop": "Zastavit",
-  "playback-label-thumbs-down": "Palec dolů",
-  "playback-label-thumbs-up": "Palec nahoru",
-  "playback-label-volume-down": "Zeslabit hlasitost",
+  "playback-label-thumbs-down": "Nelíbí se mi",
+  "playback-label-thumbs-up": "Líbí se mi",
+  "playback-label-volume-down": "Snížit hlasitost",
   "playback-label-volume-up": "Zvýšit hlasitost",
 
   "settings-option-custom-theme": "Vlastní motiv",
