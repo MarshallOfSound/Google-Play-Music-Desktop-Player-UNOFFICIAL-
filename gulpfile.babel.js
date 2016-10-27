@@ -16,7 +16,7 @@ import packager from 'electron-packager';
 import nodePath from 'path';
 import replace from 'gulp-replace';
 import runSequence from 'run-sequence';
-import uglify from 'gulp-uglify';
+// import uglify from 'gulp-uglify';
 
 import rebuild from './vendor/rebuild';
 
@@ -241,7 +241,7 @@ gulp.task('images', ['copy-static-images'], (done) => {
 
 gulp.task('build-release', ['build'], () => {
   return gulp.src('./build/**/*.js')
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(header(
 `/*!
 ${packageJSON.productName}

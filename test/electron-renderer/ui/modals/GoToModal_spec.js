@@ -2,6 +2,7 @@
 import { remote } from 'electron';
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
+import { given } from 'mocha-testdata';
 
 import GoToModal from '../../../../build/renderer/ui/components/modals/GoToModal';
 
@@ -38,16 +39,29 @@ createModalTest(GoToModal, ['gotourl'], [], [], () => {}, (_c) => {
     spy.callCount.should.be.equal(1);
   });
 
-  it('should emit the navigate event if it is a valid GPM URL', () => {
+  given(['https://play.google.com/music/listen/now/thing', 'https://play.google.com/music/r/m/Lmfbcdi7lg4inxvv3nydqyzor4y?t=Peaceful_Stroll_'])
+  .it('should emit the navigate event if it is a valid GPM URL', (url) => {
     const { component, fired } = _c;
     const instance = component.instance();
     instance._onChange({}, 'https://www.not.google/play/music');
     instance._onKeyUp({ which: 13 });
     fired.should.not.have.property('navigate:gotourl');
-    instance._onChange({}, 'https://play.google.com/music/listen/now/thing');
+    instance._onChange({}, url);
     instance._onKeyUp({ which: 13 });
     fired.should.have.property('navigate:gotourl');
-    fired['navigate:gotourl'][0][0].should.be.equal('https://play.google.com/music/listen/now/thing');
+    fired['navigate:gotourl'][0][0].should.be.equal(url);
+  });
+
+  given(['https://play.google.com/store/thing', 'https://www.thisdoesnotexist.com'])
+  .it('should not emit the navigate event if it is an invalid GPM URL', (url) => {
+    const { component, fired } = _c;
+    const instance = component.instance();
+    instance._onChange({}, 'https://www.not.google/play/music');
+    instance._onKeyUp({ which: 13 });
+    fired.should.not.have.property('navigate:gotourl');
+    instance._onChange({}, url);
+    instance._onKeyUp({ which: 13 });
+    fired.should.not.have.property('navigate:gotourl');
   });
 
   it('should emit the generateDebugInfo event if you enter DEBUG_INFO', () => {

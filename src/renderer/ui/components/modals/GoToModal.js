@@ -55,7 +55,7 @@ export default class GoToModal extends Component {
     } else if (url === 'DEBUG_INFO') {
       Emitter.fire('generateDebugInfo');
     }
-    if (!/https:\/\/play\.google\.com\/music\/listen/g.test(url)) return;
+    if (!/https:\/\/play\.google\.com\/music/g.test(url)) return;
     Emitter.fireAtGoogle('navigate:gotourl', url);
     this.handleClose();
   }
