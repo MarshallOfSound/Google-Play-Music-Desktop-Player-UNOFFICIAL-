@@ -43,9 +43,9 @@ export const ACTION_KEYS = _.transform(_.range(26), (final, current) => { // let
 
 export const languageMap = {
   cs: 'Czech',
-  'nl-NL': 'Dutch',
+  de: 'German',
   'en-US': 'English',
-   de: 'German',
+  'nl-NL': 'Dutch',
   'pl-PL': 'Polish',
   'pt-BR': 'Portuguese',
   ru: 'Russian',
