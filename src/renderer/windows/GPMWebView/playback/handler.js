@@ -65,6 +65,10 @@ window.wait(() => {
     }
   });
 
+  window.GPM.on('change:volume', (newVolume) => {
+    Emitter.fire('change:volume', newVolume);
+  });
+  Emitter.fire('change:volume', window.GPM.volume.getVolume());
   window.GPM.on('change:playlists', (playlists) => {
     Emitter.fire('change:playlists', playlists);
   });
