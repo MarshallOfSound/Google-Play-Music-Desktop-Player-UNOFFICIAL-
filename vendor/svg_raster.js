@@ -25,7 +25,7 @@ module.exports = (cb) => {
   const doIcons = () => {
     i++;
     if (i === 10) {
-      const jimpOutFiles = ['main_tray_white_s', 'macTemplate@5x', 'macTemplate@2x', 'macTemplate'];
+      const jimpOutFiles = ['main_tray_black_s', 'main_tray_white_s', 'macTemplate@5x', 'macTemplate@2x', 'macTemplate'];
 
       const done = () => {
         counter++;
@@ -57,7 +57,8 @@ module.exports = (cb) => {
         jimpOutFiles.forEach((outFileName) => {
           Jimp.read(srcJimpFile, (err, lenna) => {
             if (err) throw err;
-            const image = lenna[/mac/g.test(outFileName) ? 'greyscale' : 'brightness'](/mac/g.test(outFileName) ? undefined : 1);
+            const brightness = (/black/g.test(outFileName)) ? -1 : 1;
+            const image = lenna[/mac/g.test(outFileName) ? 'greyscale' : 'brightness'](/mac/g.test(outFileName) ? undefined : brightness);
             if (/mac/g.test(outFileName)) {
               if (/@2x/g.test(outFileName)) {
                 image.resize(38, 38);

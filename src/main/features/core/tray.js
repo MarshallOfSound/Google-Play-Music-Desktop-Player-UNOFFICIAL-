@@ -11,17 +11,22 @@ const trayPausedPath = `${__dirname}/../../../assets/img/paused/`;
 const trayPlayingPath = `${__dirname}/../../../assets/img/playing/`;
 
 let appIconFileName;
+let currentIconPath = trayNormalPath;
+let appIconInvert = Settings.get('appIconInvert', false);
 
-if (process.platform === 'darwin') {
-  appIconFileName = 'macTemplate.png';
-} else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
-  // TODO: Change this back to ico when electron supports it on linux
-  // appIconFileName = 'main.ico';
-  appIconFileName = 'main_tray_white_s.png';
-} else if (process.platform === 'linux') {
-  appIconFileName = 'main_tray_white_s.png';
-} else {
-  appIconFileName = 'main_tray_s.png';
+function setAppIconFileName() {
+  if (process.platform === 'darwin') {
+    appIconFileName = 'macTemplate.png';
+  } else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
+    // TODO: Change this back to ico when electron supports it on linux
+    // appIconFileName = 'main.ico';
+    appIconFileName = 'main_tray_white_s.png';
+  } else if (process.platform === 'linux') {
+    appIconFileName = appIconInvert ? 'main_tray_black_s.png' : 'main_tray_white_s.png';
+  } else {
+    appIconFileName = 'main_tray_s.png';
+  }
+  appIconFileName = path.resolve(currentIconPath, appIconFileName);
 }
 
 let audioDeviceMenu = [
@@ -31,21 +36,37 @@ let audioDeviceMenu = [
   },
 ];
 
-appIcon = new Tray(path.resolve(trayNormalPath, appIconFileName));
+setAppIconFileName();
+
+appIcon = new Tray(appIconFileName);
+
+Emitter.on('settings:set', (event, details) => {
+  if (details.key === 'appIconInvert') {
+    appIconInvert = details.value;
+    setAppIconFileName();
+    appIcon.setImage(appIconFileName);
+  }
+});
 
 // Change the icon if the music is playing
 Emitter.on('playback:isPlaying', () => {
-  appIcon.setImage(path.resolve(trayPlayingPath, appIconFileName));
+  currentIconPath = trayPlayingPath;
+  setAppIconFileName();
+  appIcon.setImage(appIconFileName);
 });
 
 // Change the icon is the music is paused
 Emitter.on('playback:isPaused', () => {
-  appIcon.setImage(path.resolve(trayPausedPath, appIconFileName));
+  currentIconPath = trayPausedPath;
+  setAppIconFileName();
+  appIcon.setImage(appIconFileName);
 });
 
 // Change the icon is the music is stopped
 Emitter.on('playback:isStopped', () => {
-  appIcon.setImage(path.resolve(trayNormalPath, appIconFileName));
+  currentIconPath = trayNormalPath;
+  setAppIconFileName();
+  appIcon.setImage(appIconFileName);
 });
 
 const setContextMenu = () => {
