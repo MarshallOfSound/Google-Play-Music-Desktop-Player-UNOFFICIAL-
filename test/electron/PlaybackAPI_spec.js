@@ -14,6 +14,7 @@ const instantGPMIPCEvents = [
   'playback:isPaused',
   'playback:isStopped',
   'change:playback-time',
+  'change:volume',
 ];
 
 const throttledGPMIPCEvents = [
@@ -104,6 +105,7 @@ describe('PlaybackAPI', () => {
   shouldUpdatePropTest('currentRepeat', '_setRepeat', 'NEVER BEFORE SEEN REPEAT MODE');
   shouldUpdatePropTest('getResults', '_setResults', 'No results here :)');
   shouldUpdatePropTest('currentTime', '_setTime', { current: 100, total: 200 }, 100, 200);
+  shouldUpdatePropTest('getVolume', '_setVolume', 33);
 
   describe('when creating a new PlaybackAPI', () => {
     given(gpmIpcEvents).it('should hook into GPM IPC event: ', (ipcEventName) => {
