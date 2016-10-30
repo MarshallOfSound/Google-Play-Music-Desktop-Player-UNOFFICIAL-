@@ -10,11 +10,11 @@ const trayNormalPath = `${__dirname}/../../../assets/img/`;
 const trayPausedPath = `${__dirname}/../../../assets/img/paused/`;
 const trayPlayingPath = `${__dirname}/../../../assets/img/playing/`;
 
-let appIconFileName;
 let currentIconPath = trayNormalPath;
 let appIconInvert = Settings.get('appIconInvert', false);
 
-function setAppIconFileName() {
+function getAppIconFileName() {
+  let appIconFileName;
   if (process.platform === 'darwin') {
     appIconFileName = 'macTemplate.png';
   } else if (WindowManager.getWindowManagerGDMName() === 'kde-plasma') {
@@ -26,7 +26,7 @@ function setAppIconFileName() {
   } else {
     appIconFileName = 'main_tray_s.png';
   }
-  appIconFileName = path.resolve(currentIconPath, appIconFileName);
+  return path.resolve(currentIconPath, appIconFileName);
 }
 
 let audioDeviceMenu = [
@@ -36,37 +36,29 @@ let audioDeviceMenu = [
   },
 ];
 
-setAppIconFileName();
+appIcon = new Tray(getAppIconFileName());
 
-appIcon = new Tray(appIconFileName);
-
-Emitter.on('settings:set', (event, details) => {
-  if (details.key === 'appIconInvert') {
-    appIconInvert = details.value;
-    setAppIconFileName();
-    appIcon.setImage(appIconFileName);
-  }
+Settings.onChange('appIconInvert', (newValue) => {
+  appIconInvert = newValue;
+  appIcon.setImage(getAppIconFileName());
 });
 
 // Change the icon if the music is playing
 Emitter.on('playback:isPlaying', () => {
   currentIconPath = trayPlayingPath;
-  setAppIconFileName();
-  appIcon.setImage(appIconFileName);
+  appIcon.setImage(getAppIconFileName());
 });
 
 // Change the icon is the music is paused
 Emitter.on('playback:isPaused', () => {
   currentIconPath = trayPausedPath;
-  setAppIconFileName();
-  appIcon.setImage(appIconFileName);
+  appIcon.setImage(getAppIconFileName());
 });
 
 // Change the icon is the music is stopped
 Emitter.on('playback:isStopped', () => {
   currentIconPath = trayNormalPath;
-  setAppIconFileName();
-  appIcon.setImage(appIconFileName);
+  appIcon.setImage(getAppIconFileName());
 });
 
 const setContextMenu = () => {
