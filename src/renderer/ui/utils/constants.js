@@ -45,6 +45,7 @@ export const languageMap = {
   cs: 'Czech',
   de: 'German',
   'en-US': 'English',
+  'fr-FR': 'French',
   'nl-NL': 'Dutch',
   'pl-PL': 'Polish',
   'pt-BR': 'Portuguese',
