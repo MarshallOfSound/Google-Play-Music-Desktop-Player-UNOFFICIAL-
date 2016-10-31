@@ -63,6 +63,8 @@
   "playback-label-volume-down": "Baisser le volume",
   "playback-label-volume-up": "Augmenter le volume",
 
+  "settings-option-invert-tray-icon": "Inverser l'îcone de la barre de tâches",
+
   "settings-option-custom-theme": "Theme personnalisé",
   "settings-option-custom-theme-choose-color": "Choisissez la couleur de surlignage du thème",
   "settings-option-custom-theme-choose-custom": "Ou choisis une",
