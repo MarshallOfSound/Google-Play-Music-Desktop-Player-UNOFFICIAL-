@@ -172,6 +172,7 @@ class PlaybackAPI extends EventEmitter {
   _setVolume(newVolume) {
     this.data.volume = newVolume;
     this._fire('change:volume', newVolume);
+    this._save();
   }
 
   isPlaying() {
