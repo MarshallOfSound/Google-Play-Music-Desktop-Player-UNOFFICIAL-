@@ -33,7 +33,7 @@ try {
   }
 }
 
-const changeEvents = ['track', 'state', 'rating', 'lyrics', 'shuffle', 'repeat', 'playlists', 'queue', 'search-results', 'library'];
+const changeEvents = ['track', 'state', 'rating', 'lyrics', 'shuffle', 'repeat', 'playlists', 'queue', 'search-results', 'library', 'volume'];
 const API_VERSION = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/../../../../package.json`))).apiVersion;
 
 let ad;
@@ -129,7 +129,6 @@ const enableAPI = () => {
 
     server.broadcast = (channel, data) => {
       server.clients.forEach((client) => {
-        if (client.readyState !== WebSocket.OPEN) return;
         client.channel(channel, data);
       });
     };
@@ -138,6 +137,7 @@ const enableAPI = () => {
       const ws = websocket;
 
       ws.json = (obj) => {
+        if (ws.readyState !== WebSocket.OPEN) return;
         ws.send(JSON.stringify(obj));
       };
       ws.channel = (channel, obj) => {
@@ -208,6 +208,7 @@ const enableAPI = () => {
       ws.channel('repeat', PlaybackAPI.currentRepeat());
       ws.channel('queue', PlaybackAPI.getQueue());
       ws.channel('search-results', PlaybackAPI.getResults());
+      ws.channel('volume', PlaybackAPI.getVolume());
       if (PlaybackAPI.currentSong(true)) {
         ws.channel('track', PlaybackAPI.currentSong(true));
         ws.channel('time', PlaybackAPI.currentTime());

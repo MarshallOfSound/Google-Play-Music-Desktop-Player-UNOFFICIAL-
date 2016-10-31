@@ -12,7 +12,7 @@ const expect = chai.expect;
 chai.use(chaiSinon);
 chai.should();
 
-const INITIAL_DATA_COUNT = 11;
+const INITIAL_DATA_COUNT = 12;
 
 global.API_PORT = 4202; // Travis has something running on 5672
 
@@ -90,11 +90,12 @@ describe('WebSocketAPI', () => {
       spy.getCall(3).args[0].channel.should.be.equal('repeat');
       spy.getCall(4).args[0].channel.should.be.equal('queue');
       spy.getCall(5).args[0].channel.should.be.equal('search-results');
-      spy.getCall(6).args[0].channel.should.be.equal('track');
-      spy.getCall(7).args[0].channel.should.be.equal('time');
-      spy.getCall(8).args[0].channel.should.be.equal('lyrics');
-      spy.getCall(9).args[0].channel.should.be.equal('playlists');
-      spy.getCall(10).args[0].channel.should.be.equal('library');
+      spy.getCall(6).args[0].channel.should.be.equal('volume');
+      spy.getCall(7).args[0].channel.should.be.equal('track');
+      spy.getCall(8).args[0].channel.should.be.equal('time');
+      spy.getCall(9).args[0].channel.should.be.equal('lyrics');
+      spy.getCall(10).args[0].channel.should.be.equal('playlists');
+      spy.getCall(11).args[0].channel.should.be.equal('library');
       done();
     }));
 
@@ -115,24 +116,26 @@ describe('WebSocketAPI', () => {
         artists: [],
         tracks: [],
       });
+      // volume
+      spy.getCall(6).args[0].payload.should.be.equal(50);
       // track
-      spy.getCall(6).args[0].payload.should.have.property('title');
-      spy.getCall(6).args[0].payload.should.have.property('artist');
-      spy.getCall(6).args[0].payload.should.have.property('album');
-      expect(spy.getCall(6).args[0].payload.title).to.be.equal(null);
-      expect(spy.getCall(6).args[0].payload.artist).to.be.equal(null);
-      expect(spy.getCall(6).args[0].payload.album).to.be.equal(null);
+      spy.getCall(7).args[0].payload.should.have.property('title');
+      spy.getCall(7).args[0].payload.should.have.property('artist');
+      spy.getCall(7).args[0].payload.should.have.property('album');
+      expect(spy.getCall(7).args[0].payload.title).to.be.equal(null);
+      expect(spy.getCall(7).args[0].payload.artist).to.be.equal(null);
+      expect(spy.getCall(7).args[0].payload.album).to.be.equal(null);
       // time
-      spy.getCall(7).args[0].payload.should.have.property('current');
-      spy.getCall(7).args[0].payload.should.have.property('total');
-      spy.getCall(7).args[0].payload.current.should.be.equal(0);
-      spy.getCall(7).args[0].payload.total.should.be.equal(0);
+      spy.getCall(8).args[0].payload.should.have.property('current');
+      spy.getCall(8).args[0].payload.should.have.property('total');
+      spy.getCall(8).args[0].payload.current.should.be.equal(0);
+      spy.getCall(8).args[0].payload.total.should.be.equal(0);
       // lyrics
-      expect(spy.getCall(8).args[0].payload).to.be.equal(null);
+      expect(spy.getCall(9).args[0].payload).to.be.equal(null);
       // playlists
-      spy.getCall(9).args[0].payload.should.be.deep.equal([]);
+      spy.getCall(10).args[0].payload.should.be.deep.equal([]);
       // library
-      spy.getCall(10).args[0].payload.should.be.deep.equal({
+      spy.getCall(11).args[0].payload.should.be.deep.equal({
         albums: [],
         artists: [],
         tracks: [],
@@ -208,6 +211,7 @@ describe('WebSocketAPI', () => {
           tracks: [],
         }
       );
+      shouldUpdateTest('volume', '_setVolume', 20);
       shouldUpdateTest('track', '_setPlaybackSong',
         ['songTitle', 'songArtist', 'songAlbum', 'songArt'],
         {

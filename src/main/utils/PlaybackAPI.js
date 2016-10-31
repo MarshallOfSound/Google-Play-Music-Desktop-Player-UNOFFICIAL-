@@ -29,6 +29,7 @@ class PlaybackAPI extends EventEmitter {
     Emitter.on('playback:isStopped', this._setPlaying.bind(this, false));
 
     Emitter.on('change:playback-time', (event, timeObj) => this._setTime(timeObj.current, timeObj.total));
+    Emitter.on('change:volume', (event, newVolume) => this._setVolume(newVolume));
     // we throttle this function because of a bug in gmusic.js
     // ratings are received multiple times here in a couple of ms
     // to avoid writing the file 5+ times we throttle it to 500ms max
@@ -61,6 +62,7 @@ class PlaybackAPI extends EventEmitter {
       songLyrics: null,
       shuffle: 'NO_SHUFFLE',
       repeat: 'NO_REPEAT',
+      volume: 50,
     };
     this._private_data = {
       playlists: [],
@@ -167,6 +169,12 @@ class PlaybackAPI extends EventEmitter {
     this._save();
   }
 
+  _setVolume(newVolume) {
+    this.data.volume = newVolume;
+    this._fire('change:volume', newVolume);
+    this._save();
+  }
+
   isPlaying() {
     return this.data.playing;
   }
@@ -209,6 +217,10 @@ class PlaybackAPI extends EventEmitter {
 
   getResults() {
     return this._private_data.results;
+  }
+
+  getVolume() {
+    return this.data.volume;
   }
 
   _fire(what, arg) {

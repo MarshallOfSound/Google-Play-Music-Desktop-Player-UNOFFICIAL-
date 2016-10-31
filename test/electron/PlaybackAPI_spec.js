@@ -14,6 +14,7 @@ const instantGPMIPCEvents = [
   'playback:isPaused',
   'playback:isStopped',
   'change:playback-time',
+  'change:volume',
 ];
 
 const throttledGPMIPCEvents = [
@@ -51,7 +52,7 @@ let jsonAPIEnabled = false;
 
 chai.should();
 
-describe.only('PlaybackAPI', () => {
+describe('PlaybackAPI', () => {
   let PlaybackAPI;
 
   const mockAndGenerate = () => {
@@ -104,6 +105,7 @@ describe.only('PlaybackAPI', () => {
   shouldUpdatePropTest('currentRepeat', '_setRepeat', 'NEVER BEFORE SEEN REPEAT MODE');
   shouldUpdatePropTest('getResults', '_setResults', 'No results here :)');
   shouldUpdatePropTest('currentTime', '_setTime', { current: 100, total: 200 }, 100, 200);
+  shouldUpdatePropTest('getVolume', '_setVolume', 33);
 
   describe('when creating a new PlaybackAPI', () => {
     given(gpmIpcEvents).it('should hook into GPM IPC event: ', (ipcEventName) => {
@@ -143,8 +145,7 @@ describe.only('PlaybackAPI', () => {
         if (ipcEventName !== 'playback:isPaused' && ipcEventName !== 'playback:isStopped') {
           originalJSON.should.not.be.deep.equal(JSON.parse(fs.readFileSync(PlaybackAPI.PATH, 'utf8')));
         }
-        done()
-      }, 400);
+        done();
       }, 100);
     });
 

@@ -59,7 +59,7 @@
     "archiver": "^1.0.1",
     "auto-launch": "^4.0.0",
     "electron": "1.4.3",
-    "electron-chromecast": "^1.0.14",
+    "electron-chromecast": "^1.0.17",
     "gmusic-mini-player.js": "^2.0.7",
     "gmusic-theme.js": "^2.0.1",
     "gmusic-ui.js": "^2.2.0",

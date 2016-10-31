@@ -63,6 +63,8 @@
   "playback-label-volume-down": "Decrease Volume",
   "playback-label-volume-up": "Increase Volume",
 
+  "settings-option-invert-tray-icon": "Invert Tray Icon Color",
+
   "settings-option-custom-theme": "Custom Theme",
   "settings-option-custom-theme-choose-color": "Choose your theme highlight color",
   "settings-option-custom-theme-choose-custom": "Or choose a",

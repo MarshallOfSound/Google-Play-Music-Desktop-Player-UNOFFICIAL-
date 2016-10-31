@@ -25,6 +25,16 @@ class LastFMTab extends Component {
     // 2: Authorized
   }
 
+  componentDidMount() {
+    Emitter.on('lastfm:authcomplete', (event, success) => {
+      if (!success.result) {
+        this.setState({
+          authState: 0,
+        });
+      }
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
     const authState = !!nextProps.lastFMKey ? 2 : 0;
     if (this.state.authState !== authState) {

@@ -4,7 +4,7 @@ import os from 'os';
 import path from 'path';
 import raven from 'raven';
 
-if (!global.DEV_MODE && process.env.GPMDP_SENTRY_DSN) {
+if (!global.DEV_MODE && process.env.GPMDP_SENTRY_DSN !== 'undefined') {
   const client = new raven.Client(process.env.GPMDP_SENTRY_DSN, {
     release: app.getVersion(),
     environment: fs.existsSync(path.resolve(__dirname, '../../../..', 'circle.yml')) ? 'development' : 'production',

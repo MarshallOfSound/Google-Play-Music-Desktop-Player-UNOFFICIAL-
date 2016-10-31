@@ -16,7 +16,7 @@ import packager from 'electron-packager';
 import nodePath from 'path';
 import replace from 'gulp-replace';
 import runSequence from 'run-sequence';
-import uglify from 'gulp-uglify';
+// import uglify from 'gulp-uglify';
 
 import rebuild from './vendor/rebuild';
 
@@ -195,7 +195,7 @@ gulp.task('transpile', ['clean-internal'], () => {
   return gulp.src(paths.internalScripts)
     .pipe(babel())
     .on('error', (err) => { console.error(err); }) // eslint-disable-line
-    .pipe(replace(/process\.env\.(.+)([,;\)])/gi, (envCall, envKey, closer) => {
+    .pipe(replace(/process\.env\.([a-zA-Z_]+)?( |,|;|\))/gi, (envCall, envKey, closer) => {
       return `'${process.env[envKey]}'${closer}`;
     }))
     .pipe(gulp.dest('./build/'));
@@ -241,7 +241,7 @@ gulp.task('images', ['copy-static-images'], (done) => {
 
 gulp.task('build-release', ['build'], () => {
   return gulp.src('./build/**/*.js')
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(header(
 `/*!
 ${packageJSON.productName}
