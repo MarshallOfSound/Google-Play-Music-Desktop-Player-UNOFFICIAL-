@@ -1,0 +1,116 @@
+{
+  "audio-device-communications": "Vychozí komunikační zařízení",
+  "audio-device-default": "Výchozí systémové zařízení",
+  "audio-device-unknown": "Neznámé zařízení",
+
+  "button-text-ok": "OK",
+  "button-text-cancel-alarm": "Zrušit budík",
+  "button-text-click-here-to-set-alarm": "Klikněte zde pro nastavení budíku",
+  "button-text-close": "Zavřít",
+  "button-text-dont-tell-me-again": "Znovu neupozorňovat",
+  "button-text-lets-do-this": "Pojďme do toho!",
+  "button-text-lets-go": "Tak jdem na to!",
+  "button-text-not-now": "Ne nyní",
+
+  "label-about": "O Aplikaci",
+  "label-alarm": "Budík",
+  "label-desktop-settings": "Nastavení Desktop Přehrávače",
+  "label-donate": "Podpořit",
+  "label-help" : "Nápověda",
+  "label-issues": "Problémy s aplikací",
+  "label-learn-more": "Zjistit více",
+  "label-loading-devices": "Načítání zařízení...",
+  "label-pause-after-song": "Pozastavit po přehrání této skladby",
+  "label-quit": "Ukončit",
+  "label-show-lyrics": "Zobrazit text skladby (Beta)",
+  "label-unknown-artist": "Neznámý umělec",
+  "label-unknown-song": "Neznámá skladba",
+  "label-version": "Verze",
+
+  "lastfm-login-authorized": "Přihlášen",
+  "lastfm-login-authorizing": "Probíhá ověření",
+  "lastfm-login-button-text": "Přihlásit se do služby Last.FM",
+  "lastfm-login-error": "Vypadá to, že jste opustili přihlašovací proces. Pokud se tak nestalo, prosím, opakujte přihlášení",
+  "lastfm-login-not-authorized": "Nepřihlášen",
+  "lastfm-logout-button-text": "Odhlásit se ze služby Last.FM",
+
+  "lyrics-failed-message": "Omlouváme se, ale nenašly se žádné texty pro tuto skladbu",
+  "lyrics-loading-message": "Načítání textu skladby...",
+  "lyrics-no-song-message": "Právě nehraje žádná skladba",
+
+  "message-pausing-after-song": "Po této skladbě se pozastaví přehrávání.",
+  "message-pausing-after-song-button": "Nepozastavovat po této skladbě",
+  "message-uncaught-error": "Nastala nespecifikovaná chyba v programu (GPMDP).",
+  "message-uncaught-error-button": "Klikněte zde pro nahlášení tohoto problému na GitHub",
+
+  "modal-confirmTray-title": "Jen abyste věděli",
+  "modal-confirmTray-content": "Zavřením hlavního okna programu (to oč jste se právě pokusili) neukončí program, ale pouze jej minimalizuje do systémové lišty. Pokud chcete tuto možnost změnit, můžete tak učinit v okně \"Nastavení Desktop Přehrávače\".",
+  "modal-confirmOpenPort-content": "Vypadá to, že Váš firewall blokuje službu PlaybackAPI. Můžeme přidat výjimku za Vás, ale upozorňujeme, že to může vyžadovat administrátorské oprávnění",
+  "modal-confirmUpdate-title": "Aktualizace je k dispozici",
+  "modal-confirmUpdate-content": "Hurá, vypadá to, že je zde nová aktualizace pro Google Play Music Desktop Player. Tato aktualizace dodá nálož nových funkcí, opravu chyb a další super věci. Doporučujeme aktualizovat co nejdříve to bude možné, abyste si mohli užít skvělé nové funkce a bezchybné prostředí. <br />Doufáme, že se Vám bude nová aktualizace líbit!",
+  "modal-confirmUninstall-title": "Takže takhle...",
+  "modal-confirmUninstall-content": "Právě jsme zjistili, že máte nainstalovanou starou verzi GPMDP. Pokud jste právě aplikaci aktualizovali, je toto oznámení běžné. Nyní se pokusíme odebrat starou verzi. To \"může\" vyžadovat oprávnění správce. Prosíme Vás o jejich potvrzení, ať můžeme uklidit ten nepořádek.",
+  "modal-goToURL-title": "Otevřete odkaz na Hudba Google Play, aby jste se dostali na:",
+  "modal-welcome-title": "Vítejte ve verzi",
+  "modal-welcome-content": "Doufáme, že se Vám nová verze líbí!",
+
+  "playback-label-next-track": "Další skladba",
+  "playback-label-play-pause": "Přehrát / Pozastavit",
+  "playback-label-previous-track": "Předchozí skladba",
+  "playback-label-stop": "Zastavit",
+  "playback-label-thumbs-down": "Nelíbí se mi",
+  "playback-label-thumbs-up": "Líbí se mi",
+  "playback-label-volume-down": "Snížit hlasitost",
+  "playback-label-volume-up": "Zvýšit hlasitost",
+  
+  "settings-option-invert-tray-icon": "Převrátit barvu ikony v liště",
+
+  "settings-option-custom-theme": "Vlastní motiv",
+  "settings-option-custom-theme-choose-color": "Vyberte hlavní barvu pro svůj motiv",
+  "settings-option-custom-theme-choose-custom": "Nebo si vyberte",
+  "settings-option-custom-theme-custom-color": "Vlastní barvu",
+  "settings-option-custom-theme-dark": "Tmavý motiv",
+  "settings-option-custom-theme-light": "Světlý motiv",
+
+  "settings-option-enable-api": "Povolit Playback API",
+  "settings-option-enable-api-json": "Povolit JSON API",
+  "settings-option-enable-api-details": "Tato možnost umožní jiným aplikacím komunikovat s GPMDP",
+  "settings-option-enable-system-borders": "Použít systémové okraje oken",
+  "settings-option-enable-system-borders-details": "Vyžaduje restart",
+  "settings-option-enable-voice": "Povolit hlasové ovládání",
+  "settings-option-enable-voice-details": "Ovládání GPMDP hlasem, experimentální funkce",
+  "settings-option-enable-taskbar-progress": "Ukázat průběh skladby na hlavním panelu",
+  "settings-option-change-locale": "Vybrat jazyk (Language)",
+
+  "settings-option-hotkey-explanation": "Výchozí multimediální tlačítka budou fungovat jako doposud. Toto nastavení je doplňkem k výchozímu.",
+  "settings-option-hotkey-explanation-2": "Použijte klávesu <i>\"Escape\"</i> pro vyresetování klávesové zkratky.",
+
+  "settings-option-min-to-tray": "Minimalizovat do lišty",
+
+  "settings-option-auto-launch": "Automaticky spustit po spuštění počítače",
+
+  "settings-option-save-page": "Automaticky načíst poslední stránku při spuštění",
+
+  "settings-option-scroll-lyrics": "Posouvat text skladby při přehrávání automaticky",
+
+  "settings-option-mini-always-show": "Vždy zobraz informace o skladbě",
+  "settings-option-mini-ontop": "Vždy navrchu",
+  "settings-option-mini-use-scroll-volume": "Použít rolovací kolečko pro změnu hlasitosti",
+
+  "settings-options-style-description": "Vybrat místní CSS soubor pro použití stylů v aplikaci",
+  "settings-options-style-main-app": "Hlavní aplikace",
+  "settings-options-style-gpm": "Hudba Google Play",
+  "settings-options-style-refresh": "Znovu načíst styly",
+
+  "title-color-picker": "Výběr barvy",
+  "title-settings": "Nastavení",
+  "title-settings-audio": "Zvuk",
+  "title-settings-general": "Hlavní",
+  "title-settings-hotkeys": "Klávesové zkratky",
+  "title-settings-lastfm": "LastFM",
+  "title-settings-mini": "Mini přehrávač",
+  "title-settings-style": "Vlastní motivy",
+
+  "tray-label-audio-device": "Zvukové zařízení",
+  "tray-label-show": "Zobrazit"
+}
