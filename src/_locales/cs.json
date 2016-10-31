@@ -62,6 +62,8 @@
   "playback-label-thumbs-up": "Líbí se mi",
   "playback-label-volume-down": "Snížit hlasitost",
   "playback-label-volume-up": "Zvýšit hlasitost",
+  
+  "settings-option-invert-tray-icon": "Převrátit barvu ikony v liště",
 
   "settings-option-custom-theme": "Vlastní motiv",
   "settings-option-custom-theme-choose-color": "Vyberte hlavní barvu pro svůj motiv",
