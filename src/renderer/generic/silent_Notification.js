@@ -1,7 +1,7 @@
 window._Notification = window.Notification;
 
 class SilentNotification {
-  constructor(title, options) {
+  constructor(title, options={}) {
     const opts = options;
     opts.silent = true;
 
@@ -16,19 +16,21 @@ class SilentNotification {
     this.requireInteraction = false;
     this.silent = true;
 
-    Object.defineProperty(this, 'onclick', {
-      get: () => this._notification.onclick,
-      set: (fn) => { this._notification.onclick = fn; },
-      configurable: true,
-      enumerable: true,
-    });
-
-    Object.defineProperty(this, 'onerror', {
-      get: () => this._notification.onerror,
-      set: (fn) => { this._notification.onerror = fn; },
-      configurable: true,
-      enumerable: true,
-    });
+    // FIXME: Regression in Electron causes this code to create a hung process
+    //        electron/electron#7831
+    // Object.defineProperty(this, 'onclick', {
+    //   get: () => this._notification.onclick,
+    //   set: (fn) => { this._notification.onclick = fn; },
+    //   configurable: true,
+    //   enumerable: true,
+    // });
+    //
+    // Object.defineProperty(this, 'onerror', {
+    //   get: () => this._notification.onerror,
+    //   set: (fn) => { this._notification.onerror = fn; },
+    //   configurable: true,
+    //   enumerable: true,
+    // });
   }
 
   close() {
