@@ -56,7 +56,7 @@
   "homepage": "http://www.googleplaymusicdesktopplayer.com",
   "license": "MIT",
   "dependencies": {
-    "archiver": "^1.0.1",
+    "archiver": "^1.2.0",
     "auto-launch": "^4.0.0",
     "electron": "1.4.3",
     "electron-chromecast": "^1.0.17",
