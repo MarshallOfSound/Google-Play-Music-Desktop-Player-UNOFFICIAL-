@@ -1,7 +1,7 @@
 window._Notification = window.Notification;
 
 class SilentNotification {
-  constructor(title, options={}) {
+  constructor(title, options = {}) {
     const opts = options;
     opts.silent = true;
 
