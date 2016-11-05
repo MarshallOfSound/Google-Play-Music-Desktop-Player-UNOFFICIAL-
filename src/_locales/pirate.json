@@ -1,0 +1,116 @@
+{
+  "audio-device-communications": "Th' default device fer communicatin'",
+  "audio-device-default": "Th' default device fer all thin's",
+  "audio-device-unknown": "We don't be knowin' 'tis device",
+
+  "button-text-ok": "Yarr",
+  "button-text-cancel-alarm": "Turn th' alarm off",
+  "button-text-click-here-to-set-alarm": "Click over 'ere to set th' Alarm",
+  "button-text-close": "Shut 'tis window'",
+  "button-text-dont-tell-me-again": "Don't be tellin' me again",
+  "button-text-lets-do-this": "Let's be doin' it!!",
+  "button-text-lets-go": "Trim th' sails. Let's be goin'!!",
+  "button-text-not-now": "After a wee wee bit 'o spiced rum",
+
+  "label-about": "",
+  "label-alarm": "",
+  "label-desktop-settings": "Change ye settings",
+  "label-donate": "Share some 'o ye plunder",
+  "label-help": "Lend me some assistance",
+  "label-issues": "Somethin' bad be happenin'",
+  "label-learn-more": "Be tellin' me more",
+  "label-loading-devices": "Searching for them devices...",
+  "label-pause-after-song": "Pause after 'tis song",
+  "label-quit": "Scuttle this 'ere application'",
+  "label-show-lyrics": "",
+  "label-unknown-artist": "We not be knowin' this artist",
+  "label-unknown-song": "We not be knowin' this song",
+  "label-version": "",
+
+  "lastfm-login-authorized": "Ye be all sorted",
+  "lastfm-login-authorizing": "Ye appears to be battlin' Last.FM right now",
+  "lastfm-login-button-text": "Log in to Last.FM",
+  "lastfm-login-error": "Ye appear to have left th' authorization process, if 'tis be a mistake, please give a go' authorizin' again",
+  "lastfm-login-not-authorized": "Blimey! Ye ain't Authorized",
+  "lastfm-logout-button-text": "Scuttle ye Last.FM session",
+
+  "lyrics-failed-message": "Sorry, we could not find any lyrics fer 'tis song",
+  "lyrics-loading-message": "We be loadin' lyrics...",
+  "lyrics-no-song-message": "No song be currently playin'",
+
+  "message-pausing-after-song": "Pausin' after 'tis song.",
+  "message-pausing-after-song-button": "Don't pause after 'tis song",
+  "message-uncaught-error": "GPMDP 'as caught ye an error.",
+  "message-uncaught-error-button": "Click here to report 'tis 'ere' issue on GitHub",
+
+  "modal-confirmTray-title": "Ahoy",
+  "modal-confirmTray-content": "Closin' th' main player window (what ye just tried to do) gunna actually minimize th' player to th' System Tray. If ye want to change 'tis behaviour it can be changed in th' \"Desktop Settin's\" window.",
+  "modal-confirmOpenPort-content": "Th' PlaybackAPI failed to start because Windows Firewall be blockin' it. We can unblock it fer ye if ye want, be threatened, 'tis may require admin privileges",
+  "modal-confirmUpdate-title": "Ye can get a newer version of GPMDP",
+  "modal-confirmUpdate-content": "Woo hoo, it looks like thar be a brand new update available fer Google fight Music Desktop Player. 'tis update brin' a whole load 'o new weapons, bugfixes 'n Arrr new thin's. We recommend updatin' as fast as possible to allow ye to heartly enjoy th' best weapon filled, bug free experience.<br />We woe ye like th' new update!",
+  "modal-confirmUninstall-title": "Look 'ere matey'",
+  "modal-confirmUninstall-content": "We just found out an barnacle-covered version 'o GPMDP be still installed on ye system. If ye just updated 'tis be perfectly normal. We be now goin' to give a go' to uninstall th' barnacle-covered version. 'tis \"might\" require admin permissions, please grant these so we can spit shine up our mess.",
+  "modal-goToURL-title": "Enter th' to Google fight Music URL to be navigating to:",
+  "modal-welcome-title": "Ahoy, welcome aboard Version",
+  "modal-welcome-content": "We woe ye like th' new update!",
+
+  "playback-label-next-track": "",
+  "playback-label-play-pause": "",
+  "playback-label-previous-track": "",
+  "playback-label-stop": "",
+  "playback-label-thumbs-down": "Ye dislike",
+  "playback-label-thumbs-up": "Ye like",
+  "playback-label-volume-down": "Calm that noise",
+  "playback-label-volume-up": "Arr, I can't hear you",
+
+  "settings-option-invert-tray-icon": "Switch around that yonder Tray Icon Color",
+
+  "settings-option-custom-theme": "Give ye player a new look",
+  "settings-option-custom-theme-choose-color": "Pick ye favorite color laddie",
+  "settings-option-custom-theme-choose-custom": "Or pick a",
+  "settings-option-custom-theme-custom-color": "",
+  "settings-option-custom-theme-dark": "Dark as the Black Pearl",
+  "settings-option-custom-theme-light": "Light as the blazing sun",
+
+  "settings-option-enable-api": "Use ye Playback API",
+  "settings-option-enable-api-json": "Use ye JSON API",
+  "settings-option-enable-api-details": "'tis allows other applications to interface wit' GPMDP",
+  "settings-option-enable-system-borders": "Disguise yeself like other OS windows",
+  "settings-option-enable-system-borders-details": "Requires ye scuttle and relaunch",
+  "settings-option-enable-voice": "Control with ye voice",
+  "settings-option-enable-voice-details": "Hands free voice controls fer GPMDP, 'tis be experimental",
+  "settings-option-enable-taskbar-progress": "Show track progress in th' taskbar",
+  "settings-option-change-locale": "Choose how ye speak",
+
+  "settings-option-hotkey-explanation": "Default media keys gunna continue to set the sails regardless 'o these settin's. These settin's be in addition to th' defaults.",
+  "settings-option-hotkey-explanation-2": "Use th' <i>\"Escape\"</i> key to reset th' hotkey.",
+
+  "settings-option-min-to-tray": "Be hidin' in the tray",
+
+  "settings-option-auto-launch": "Set sail automatically when I boot up",
+
+  "settings-option-save-page": "Remember where ye set anchor last and load that location again when ye set sail",
+
+  "settings-option-scroll-lyrics": "",
+
+  "settings-option-mini-always-show": "Always be showin' song information",
+  "settings-option-mini-ontop": "Always keep this 'ere application on top'",
+  "settings-option-mini-use-scroll-volume": "",
+
+  "settings-options-style-description": "Choose a local CSS file to inject styles into th' ship",
+  "settings-options-style-main-app": "Main App",
+  "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-refresh": "Reload them Styles",
+
+  "title-color-picker": "Paint Picker",
+  "title-settings": "",
+  "title-settings-audio": "Noise",
+  "title-settings-general": "All th' thin's",
+  "title-settings-hotkeys": "Magic Buttons",
+  "title-settings-lastfm": "LastFM",
+  "title-settings-mini": "Small Player",
+  "title-settings-style": "Custom ship",
+
+  "tray-label-audio-device": "",
+  "tray-label-show": ""
+}
