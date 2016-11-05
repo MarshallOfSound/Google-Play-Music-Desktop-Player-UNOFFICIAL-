@@ -4,18 +4,17 @@ const nugget = require('nugget');
 const path = require('path');
 const rimraf = require('rimraf');
 
-const version = require('../package.json').version
-const downloadQueue = []
+const version = require('../package.json').version;
+const downloadQueue = [];
 
 const runQueue = () => {
   if (downloadQueue.length === 0) return;
-  downloadingSomething = true;
   const nextTarget = downloadQueue.pop(0);
   const nuggetOpts = {
     dir: path.resolve(__dirname, '..', 'dist', 'installers', nextTarget.platform),
     resume: true,
-    quiet: true
-  }
+    quiet: true,
+  };
   console.log('Downloading:', nextTarget.what);
   rimraf(nuggetOpts.dir, () => {
     mkdirp(nuggetOpts.dir, () => {
@@ -26,34 +25,34 @@ const runQueue = () => {
     });
   });
   runQueue();
-}
+};
 
-console.log(`Fetching builds of GPMDP version ${version} from build agents...`)
+console.log(`Fetching builds of GPMDP version ${version} from build agents...`);
 
 const fail = (fn, platform, arch) => {
   if (arch) {
-    console.error(`Failed to acquire ${platform}_${arch} build artifact, trying again in 30 seconds`)
+    console.error(`Failed to acquire ${platform}_${arch} build artifact, trying again in 30 seconds`);
   } else {
-    console.error(`Failed to acquire ${platform} build artifact, trying again in 30 seconds`)
+    console.error(`Failed to acquire ${platform} build artifact, trying again in 30 seconds`);
   }
-  setTimeout(() => obtainDarwinBuild(arch), 30000);
+  setTimeout(() => fn(arch), 30000);
   return Promise.reject();
-}
+};
 
 const obtainDarwinBuild = () => {
-  console.log('Searching for Darwin builds')
+  console.log('Searching for Darwin builds');
   fetch('https://api.travis-ci.org/repos/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/builds', {
     headers: {
-      Accept: 'application/vnd.travis-ci.2+json'
-    }
+      Accept: 'application/vnd.travis-ci.2+json',
+    },
   })
     .then(r => r.json())
     .then(({ builds, commits }) => {
-      const targetCommit = commits.find(c => c.branch === `v${version}`)
+      const targetCommit = commits.find(c => c.branch === `v${version}`);
       if (!targetCommit) {
         return fail(obtainDarwinBuild, 'darwin');
       }
-      const targetBuild = builds.find(b => b.commit_id === targetCommit.id)
+      const targetBuild = builds.find(b => b.commit_id === targetCommit.id);
       if (!targetBuild.state === 'passed') {
         return fail(obtainDarwinBuild, 'darwin');
       }
@@ -80,7 +79,7 @@ const obtainDarwinBuild = () => {
     .catch(err => {
       if (err) console.error(err);
     });
-}
+};
 
 const obtainLinuxBuilds = () => {
   console.log('Searching for Linux builds');
@@ -91,7 +90,9 @@ const obtainLinuxBuilds = () => {
       if (!targetBuild || targetBuild.status !== 'success') {
         return fail(obtainLinuxBuilds, 'linux');
       }
-      return fetch(`https://circleci.com/api/v1.1/project/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/${targetBuild.build_num}/artifacts?circle-token=${process.env.GPMDP_CIRCLE_TOKEN}`)
+      return fetch(
+        `https://circleci.com/api/v1.1/project/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/${targetBuild.build_num}/artifacts?circle-token=${process.env.GPMDP_CIRCLE_TOKEN}`
+      );
     })
     .then(r => r.json())
     .then(artifacts => {
@@ -106,8 +107,8 @@ const obtainLinuxBuilds = () => {
           downloadQueue.push({
             platform: platformDir,
             url: artifact.url,
-            what: `Linux ${platformDir} ${/i386/g.test(artifact.url) ? 'x86' : 'x64'} Installer Artifact`
-          })
+            what: `Linux ${platformDir} ${/i386/g.test(artifact.url) ? 'x86' : 'x64'} Installer Artifact`,
+          });
         }
       });
       runQueue();
@@ -115,7 +116,7 @@ const obtainLinuxBuilds = () => {
     .catch(err => {
       if (err) console.error(err);
     });
-}
+};
 
-obtainDarwinBuild()
+obtainDarwinBuild();
 obtainLinuxBuilds();
