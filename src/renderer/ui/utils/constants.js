@@ -50,6 +50,7 @@ export const languageMap = {
   pirate: 'Pirate',
   'pl-PL': 'Polish',
   'pt-BR': 'Portuguese',
+  ro: 'Romanian',
   ru: 'Russian',
   sk: 'Slovak',
   ua: 'Ukrainian',
