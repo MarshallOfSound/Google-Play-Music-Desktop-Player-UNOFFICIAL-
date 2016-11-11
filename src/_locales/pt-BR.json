@@ -4,8 +4,8 @@
   "audio-device-unknown": "Dispositivo desconhecido",
 
   "button-text-ok": "OK",
-  "button-text-cancel-alarm": "",
-  "button-text-click-here-to-set-alarm": "",
+  "button-text-cancel-alarm": "Cancelar despertador",
+  "button-text-click-here-to-set-alarm": "Clique aqui para configurar o despertador",
   "button-text-close": "Fechar",
   "button-text-dont-tell-me-again": "Não notificar novamente",
   "button-text-lets-do-this": "Vamos nessa!!",
@@ -13,7 +13,7 @@
   "button-text-not-now": "Mais tarde...",
 
   "label-about": "Sobre",
-  "label-alarm": "",
+  "label-alarm": "Despertador",
   "label-desktop-settings": "Configurações desktop",
   "label-donate": "Doar",
   "label-help": "Ajuda",
@@ -79,11 +79,11 @@
   "settings-option-enable-system-borders-details": "Requer reinicialização",
   "settings-option-enable-voice": "Habilitar Controles de Voz",
   "settings-option-enable-voice-details": "Habilita controle de voz do GPMDP, recurso experimental",
-  "settings-option-enable-taskbar-progress": "",
-  "settings-option-change-locale": "",
+  "settings-option-enable-taskbar-progress": "Mostrar o progresso da musica na barra de tarefas",
+  "settings-option-change-locale": "Escolher linguagem",
 
   "settings-option-hotkey-explanation": "Teclas de mídia padrão continuarão a funcionar independente das configurações. Estas configurações apenas complementam as demais teclas.",
-  "settings-option-hotkey-explanation-2": "Uuue a tecla <i>\"Esc\"</i> para redefinir o atalho.",
+  "settings-option-hotkey-explanation-2": "Use a tecla <i>\"Esc\"</i> para redefinir o atalho.",
 
   "settings-option-min-to-tray": "Minimizar para a bandeja",
 
@@ -97,10 +97,10 @@
   "settings-option-mini-ontop": "Sempre no topo",
   "settings-option-mini-use-scroll-volume": "Use o scroll do mouse para controlar o volume",
 
-  "settings-options-style-description": "",
-  "settings-options-style-main-app": "",
-  "settings-options-style-gpm": "",
-  "settings-options-style-refresh": "",
+  "settings-options-style-description": "Escolha um arquivo CSS local para injetar no aplicativo",
+  "settings-options-style-main-app": "Aplicativo Principal",
+  "settings-options-style-gpm": "Google Play Música",
+  "settings-options-style-refresh": "Recarregar estilos",
 
   "title-color-picker": "Paleta de cores",
   "title-settings": "Configurações",
@@ -109,7 +109,7 @@
   "title-settings-hotkeys": "Atalhos",
   "title-settings-lastfm": "LastFM",
   "title-settings-mini": "Mini Player",
-  "title-settings-style": "",
+  "title-settings-style": "Estilos personalizados",
 
   "tray-label-audio-device": "Dispositivo de áudio",
   "tray-label-show": "Mostrar"
