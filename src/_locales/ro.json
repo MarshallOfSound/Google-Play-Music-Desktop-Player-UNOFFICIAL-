@@ -1,0 +1,116 @@
+{
+  "audio-device-communications": "Comunicații sistem implicite",
+  "audio-device-default": "Configurație sistem implicită",
+  "audio-device-unknown": "Dispozitiv necunoscut",
+
+  "button-text-ok": "Ok",
+  "button-text-cancel-alarm": "Anulează alarmă",
+  "button-text-click-here-to-set-alarm": "Apasă aici pentru a seta alarma",
+  "button-text-close": "Închide",
+  "button-text-dont-tell-me-again": "Nu mai afișa",
+  "button-text-lets-do-this": "Să începem!",
+  "button-text-lets-go": "Să pornim!",
+  "button-text-not-now": "Nu chiar acum",
+
+  "label-about": "Despre",
+  "label-alarm": "Alarmă",
+  "label-desktop-settings": "Setări desktop",
+  "label-donate": "Donează",
+  "label-help": "Ajutor",
+  "label-issues": "Probleme",
+  "label-learn-more": "Mai multe detalii",
+  "label-loading-devices": "Se încarcă dispozitivile...",
+  "label-pause-after-song": "Pune pauză după această melodie",
+  "label-quit": "Închide",
+  "label-show-lyrics": "Arată versuri (Beta)",
+  "label-unknown-artist": "Artist necunoscut",
+  "label-unknown-song": "Melodie necunoscută",
+  "label-version": "Versiune",
+
+  "lastfm-login-authorized": "Autentificat",
+  "lastfm-login-authorizing": "Autentificare în progres",
+  "lastfm-login-button-text": "Autentificare cu Last.FM",
+  "lastfm-login-error": "Se pare că ai părăsit procesul de autentificare. Dacă acest lucru s-a întâmplat din greșeală, te rugăm să reiei procesul de autentificare.",
+  "lastfm-login-not-authorized": "Neautentificat",
+  "lastfm-logout-button-text": "Deautentificare Last.FM",
+
+  "lyrics-failed-message": "Ne pare rău, dar nu am găsit versuri pentru această melodie",
+  "lyrics-loading-message": "Se încarcă versurile",
+  "lyrics-no-song-message": "Nu se redă nicio melodie în acest moment",
+
+  "message-pausing-after-song": "Se va pune pauză după această melodie.",
+  "message-pausing-after-song-button": "Nu pune pauză după această melodie",
+  "message-uncaught-error": "GPMDP a întâmpinat o problemă.",
+  "message-uncaught-error-button": "Apasă aici pentru a raporta problema pe GitHub",
+
+  "modal-confirmTray-title": "Doar o idee",
+  "modal-confirmTray-content": "Închiderea ferestrei principale a player-ului (ceea ce tocmai ai încercat să faci) va minimiza de fapt aplicația în bara de sistem. Acest comportament poate fi schimbat accesând opțiunea \"Setări desktop\" din meniu.",
+  "modal-confirmOpenPort-content": "PlaybackAPI nu a putut porni din cauză că Windows Firewall îl blochează. Putem să-l deblocăm, doar că s-ar putea să avem nevoie de privilegii de administrator.",
+  "modal-confirmUpdate-title": "Actualizare disponibilă",
+  "modal-confirmUpdate-content": "Daaaaa! Se pare că este o versiune nou-nouță a aplicației Google Play Music Desktop Player. Această actualizare ar trebui să aducă funcționalități noi și să fixeze problemele existente. Îți recomandăm să-ți actualizezi aplicația pentru a beneficia de o experiență inedită, fără probleme.<br />Sperăm că o să-ți placă noua versiune!",
+  "modal-confirmUninstall-title": "Uite care e ideea...",
+  "modal-confirmUninstall-content": "Ne-am dat seama că o versiune veche de GPMDP este încă instalată. Dacă tocmai ai actualizat aplicația, acesta este un comportament normal. O să încercăm să dezinstalăm vechea versiune. Acest pas \"poate\" necesita privilegii de administrator, te rugăm să ni le acorzi pentru a putea finaliza procesul.",
+  "modal-goToURL-title": "Introdu URL-ul Google Play Music pe care vrei să-l accesezi:",
+  "modal-welcome-title": "Bine ai venit la verisiunea",
+  "modal-welcome-content": "Sperăm că o să-ți placă noua versiune!",
+
+  "playback-label-next-track": "Următoarea melodie",
+  "playback-label-play-pause": "Redă / Pauză",
+  "playback-label-previous-track": "Melodia anterioară",
+  "playback-label-stop": "Stop",
+  "playback-label-thumbs-down": "Nu-mi place",
+  "playback-label-thumbs-up": "Îmi place",
+  "playback-label-volume-down": "Scade volumul",
+  "playback-label-volume-up": "Crește volumul",
+
+  "settings-option-invert-tray-icon": "Inversează culoare iconiță din bara de sistem",
+
+  "settings-option-custom-theme": "Temă personalizată",
+  "settings-option-custom-theme-choose-color": "Alege culoarea principală a temei tale",
+  "settings-option-custom-theme-choose-custom": "Sau alege o",
+  "settings-option-custom-theme-custom-color": "Culoare personalizată",
+  "settings-option-custom-theme-dark": "Tentă închisă",
+  "settings-option-custom-theme-light": "Tentă deschisă",
+
+  "settings-option-enable-api": "Activează API Playback",
+  "settings-option-enable-api-json": "Activează API JSON",
+  "settings-option-enable-api-details": "Acest API permite altor aplicații să interacționeze cu GPMDP",
+  "settings-option-enable-system-borders": "Folosește bordurile de fereastră implicite ale sistemului",
+  "settings-option-enable-system-borders-details": "Necesită repornirea aplicației",
+  "settings-option-enable-voice": "Activează comenzile vocale",
+  "settings-option-enable-voice-details": "Comenzi vocale \"Mâini libere\" pentru GPMDP, funcționalitate experimentală",
+  "settings-option-enable-taskbar-progress": "Arată progresul melodiei în bara de sistem",
+  "settings-option-change-locale": "Alege limba",
+
+  "settings-option-hotkey-explanation": "Tastele media vor continua să funcționeze indiferent de aceste setări. Aceste setări vin ca o completare peste cele implicite.",
+  "settings-option-hotkey-explanation-2": "Folosește tasta <i>\"Escape\"</i> pentru a reseta scurtătura.",
+
+  "settings-option-min-to-tray": "Minimizează în bara de sistem",
+
+  "settings-option-auto-launch": "Pornește automat cu calculatorul",
+
+  "settings-option-save-page": "Redeschide ultima pagină accesată la pornire",
+
+  "settings-option-scroll-lyrics": "Derulează automat versurile în timpul redării",
+
+  "settings-option-mini-always-show": "Arată tot timpul informații despre melodie",
+  "settings-option-mini-ontop": "Ține fereastra deasupra",
+  "settings-option-mini-use-scroll-volume": "Folosește rotița mouse-ului pentru a ajusta volumul",
+
+  "settings-options-style-description": "Alege un fișier CSS pentru a injecta stilul în aplicație",
+  "settings-options-style-main-app": "Aplicație GPMDP",
+  "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-refresh": "Reîncarcă stilurile",
+
+  "title-color-picker": "Paletă culori",
+  "title-settings": "Setări",
+  "title-settings-audio": "Audio",
+  "title-settings-general": "General",
+  "title-settings-hotkeys": "Scurtături",
+  "title-settings-lastfm": "LastFM",
+  "title-settings-mini": "Player mini",
+  "title-settings-style": "Stiluri personalizate",
+
+  "tray-label-audio-device": "Dispozitiv audio",
+  "tray-label-show": "Arată"
+}
