@@ -39,11 +39,16 @@ const API_VERSION = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/../../
 let ad;
 let authCode = Math.floor(Math.random() * 9999);
 authCode = '0000'.substr(0, 4 - authCode.length) + authCode;
+let connectClient;
+let connectClientShouldReconnect = true;
 
 changeEvents.forEach((channel) => {
   PlaybackAPI.on(`change:${channel}`, (newValue) => {
     if (server && server.broadcast) {
       server.broadcast(channel === 'state' ? 'playState' : channel, newValue);
+    }
+    if (connectClient) {
+      connectClient.channel(channel === 'state' ? 'playState' : channel, newValue);
     }
   });
 });
@@ -55,14 +60,20 @@ settingsChangeEvents.forEach((channel) => {
     if (server && server.broadcast) {
       server.broadcast(`settings:${channel}`, newValue);
     }
+    if (connectClient) {
+      connectClient.channel(`settings:${channel}`, newValue);
+    }
   });
 });
 
 PlaybackAPI.on('change:time', (timeObj) => {
-  if (server && server.broadcast) {
-    if (JSON.stringify(timeObj) !== JSON.stringify(oldTime)) {
-      oldTime = timeObj;
+  if (JSON.stringify(timeObj) !== JSON.stringify(oldTime)) {
+    oldTime = timeObj;
+    if (server && server.broadcast) {
       server.broadcast('time', timeObj);
+    }
+    if (connectClient) {
+      connectClient.channel('time', timeObj);
     }
   }
 });
@@ -80,6 +91,127 @@ const requireCode = (ws) => {
     payload: 'CODE_REQUIRED',
   });
 };
+
+const sendInitialBurst = (ws) => {
+  ws.channel('API_VERSION', API_VERSION);
+  ws.channel('playState', PlaybackAPI.isPlaying());
+  ws.channel('shuffle', PlaybackAPI.currentShuffle());
+  ws.channel('repeat', PlaybackAPI.currentRepeat());
+  ws.channel('queue', PlaybackAPI.getQueue());
+  ws.channel('search-results', PlaybackAPI.getResults());
+  ws.channel('volume', PlaybackAPI.getVolume());
+  if (PlaybackAPI.currentSong(true)) {
+    ws.channel('track', PlaybackAPI.currentSong(true));
+    ws.channel('time', PlaybackAPI.currentTime());
+    ws.channel('lyrics', PlaybackAPI.currentSongLyrics(true));
+  }
+  if (!Settings.__TEST__) {
+    settingsChangeEvents.forEach((channel) => {
+      ws.channel(`settings:${channel}`, Settings.get(channel));
+    });
+  }
+  // We send library and playlists last as they take a while to stringify
+  ws.channel('playlists', PlaybackAPI.getPlaylists());
+  ws.channel('library', PlaybackAPI.getLibrary());
+};
+
+const addWSPrototypes = (ws) => {
+  ws.json = (obj) => { // eslint-disable-line
+    if (ws.readyState !== WebSocket.OPEN) return;
+    ws.send(JSON.stringify(obj));
+  };
+  ws.channel = (channel, obj) => { // eslint-disable-line
+    ws.json({
+      channel,
+      payload: obj,
+    });
+  };
+};
+
+const handleWSMessage = (ws) =>
+  (data) => {
+    try {
+      const command = JSON.parse(data);
+      if (command.type === 'disconnect') {
+        connectClientShouldReconnect = false;
+      }
+      if (command.namespace && command.method) {
+        const args = command.arguments || [];
+        // Attempt to handle client connectection and authorization
+        if (command.namespace === 'connect' && command.method === 'connect') {
+          if (Settings.get('authorized_devices', []).indexOf(args[1]) > -1) {
+            Emitter.sendToGooglePlayMusic('register_controller', {
+              name: args[0],
+            });
+            ws.authorized = true; // eslint-disable-line
+          } else if (args[1] === authCode) {
+            const code = uuid.v4();
+            Settings.set('authorized_devices', Settings.get('authorized_devices', []).concat([code]));
+            Emitter.sendToWindowsOfName('main', 'hide:code_controller');
+            ws.json({
+              channel: 'connect',
+              payload: code,
+            });
+          } else {
+            requireCode(ws);
+          }
+          return;
+        }
+        if (command.namespace === 'inital_burst') {
+          sendInitialBurst(ws);
+          return;
+        }
+        // Attempt to execute the globa magical controller
+        if (!Array.isArray(args)) {
+          throw Error('Bad arguments');
+        }
+        if (!ws.authorized) {
+          requireCode(ws);
+          return;
+        }
+        Emitter.sendToGooglePlayMusic('execute:gmusic', {
+          namespace: command.namespace,
+          method: command.method,
+          requestID: command.requestID || uniqID,
+          args,
+        });
+        if (typeof command.requestID !== 'undefined') {
+          Emitter.once(`execute:gmusic:result_${command.requestID}`, (event, result) => {
+            ws.json(result);
+          });
+        }
+        uniqID = uuid.v4();
+      } else {
+        throw Error('Bad command');
+      }
+    } catch (err) {
+      console.log(err);
+      Logger.error('WebSocketAPI Error: Invalid message recieved', { err, data });
+    }
+  };
+
+if (Settings.get('__gpmdp_connect__')) {
+  const reconnectConnectClient = () => {
+    connectClient = new WebSocket('wss://connect.gpmdp.xyz');
+    addWSPrototypes(connectClient);
+    connectClient.on('open', () => {
+      connectClient.json({
+        type: 'connect',
+        email: 'samuel.r.attard@gmail.com',
+        clientType: 'player',
+      });
+      connectClient.on('message', handleWSMessage(connectClient));
+    });
+    connectClient.on('error', () => {});
+    connectClient.on('close', () => {
+      if (connectClientShouldReconnect) {
+        Logger.warn('Attempting to reconnect to connect.gpmdp.xyz');
+        setTimeout(() => reconnectConnectClient(), 500);
+      }
+    });
+  };
+  reconnectConnectClient();
+}
 
 const enableAPI = () => {
   let portOpen = true;
@@ -136,92 +268,12 @@ const enableAPI = () => {
     server.on('connection', (websocket) => {
       const ws = websocket;
 
-      ws.json = (obj) => {
-        if (ws.readyState !== WebSocket.OPEN) return;
-        ws.send(JSON.stringify(obj));
-      };
-      ws.channel = (channel, obj) => {
-        ws.json({
-          channel,
-          payload: obj,
-        });
-      };
+      addWSPrototypes(ws);
 
-      ws.on('message', (data) => {
-        try {
-          const command = JSON.parse(data);
-          if (command.namespace && command.method) {
-            const args = command.arguments || [];
-            // Attempt to handle client connectection and authorization
-            if (command.namespace === 'connect' && command.method === 'connect') {
-              if (Settings.get('authorized_devices', []).indexOf(args[1]) > -1) {
-                Emitter.sendToGooglePlayMusic('register_controller', {
-                  name: args[0],
-                });
-                ws.authorized = true;
-              } else if (args[1] === authCode) {
-                const code = uuid.v4();
-                Settings.set('authorized_devices', Settings.get('authorized_devices', []).concat([code]));
-                Emitter.sendToWindowsOfName('main', 'hide:code_controller');
-                ws.json({
-                  channel: 'connect',
-                  payload: code,
-                });
-              } else {
-                requireCode(ws);
-              }
-              return;
-            }
-            // Attempt to execute the globa magical controller
-            if (!Array.isArray(args)) {
-              throw Error('Bad arguments');
-            }
-            if (!ws.authorized) {
-              requireCode(ws);
-              return;
-            }
-            Emitter.sendToGooglePlayMusic('execute:gmusic', {
-              namespace: command.namespace,
-              method: command.method,
-              requestID: command.requestID || uniqID,
-              args,
-            });
-            if (typeof command.requestID !== 'undefined') {
-              Emitter.once(`execute:gmusic:result_${command.requestID}`, (event, result) => {
-                ws.json(result);
-              });
-            }
-            uniqID = uuid.v4();
-          } else {
-            throw Error('Bad command');
-          }
-        } catch (err) {
-          console.log(err);
-          Logger.error('WebSocketAPI Error: Invalid message recieved', { err, data });
-        }
-      });
+      ws.on('message', handleWSMessage(ws));
 
       // Send initial PlaybackAPI Values
-      ws.channel('API_VERSION', API_VERSION);
-      ws.channel('playState', PlaybackAPI.isPlaying());
-      ws.channel('shuffle', PlaybackAPI.currentShuffle());
-      ws.channel('repeat', PlaybackAPI.currentRepeat());
-      ws.channel('queue', PlaybackAPI.getQueue());
-      ws.channel('search-results', PlaybackAPI.getResults());
-      ws.channel('volume', PlaybackAPI.getVolume());
-      if (PlaybackAPI.currentSong(true)) {
-        ws.channel('track', PlaybackAPI.currentSong(true));
-        ws.channel('time', PlaybackAPI.currentTime());
-        ws.channel('lyrics', PlaybackAPI.currentSongLyrics(true));
-      }
-      if (!Settings.__TEST__) {
-        settingsChangeEvents.forEach((channel) => {
-          ws.channel(`settings:${channel}`, Settings.get(channel));
-        });
-      }
-      // We send library and playlists last as they take a while to stringify
-      ws.channel('playlists', PlaybackAPI.getPlaylists());
-      ws.channel('library', PlaybackAPI.getLibrary());
+      sendInitialBurst(ws);
     });
   });
 
