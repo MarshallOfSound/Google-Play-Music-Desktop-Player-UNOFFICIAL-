@@ -192,24 +192,27 @@ const handleWSMessage = (ws) =>
 
 if (Settings.get('__gpmdp_connect__')) {
   const reconnectConnectClient = () => {
+    const email = Settings.get('gpmdp_connect_email');
+    if (!email) return;
+    if (connectClient) {
+      connectClient.close();
+      connectClient = null;
+    }
     connectClient = new WebSocket('wss://connect.gpmdp.xyz');
     addWSPrototypes(connectClient);
     connectClient.on('open', () => {
-      connectClient.json({
-        type: 'connect',
-        email: 'samuel.r.attard@gmail.com',
-        clientType: 'player',
-      });
+      connectClient.json({ type: 'connect', email, clientType: 'player' });
       connectClient.on('message', handleWSMessage(connectClient));
     });
     connectClient.on('error', () => {});
     connectClient.on('close', () => {
       if (connectClientShouldReconnect) {
-        Logger.warn('Attempting to reconnect to connect.gpmdp.xyz');
+        Logger.warn('Attempting to reconnect to wss://connect.gpmdp.xyz');
         setTimeout(() => reconnectConnectClient(), 500);
       }
     });
   };
+  Settings.onChange('gpmdp_connect_email', reconnectConnectClient);
   reconnectConnectClient();
 }
 

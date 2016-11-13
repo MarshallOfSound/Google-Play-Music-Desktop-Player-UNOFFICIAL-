@@ -66,5 +66,6 @@ const waitForExternal = setInterval(() => {
         Logger.error('Emitter fn() threw exception.', e.stack);
       }
     });
+    Settings.set('gpmdp_connect_email', window.gbar._CONFIG[0][10][5]);
   }
 }, 10);
