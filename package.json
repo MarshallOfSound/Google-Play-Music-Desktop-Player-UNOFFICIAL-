@@ -61,7 +61,7 @@
     "electron": "^1.4.5",
     "electron-chromecast": "^1.0.17",
     "gmusic-mini-player.js": "^2.0.8",
-    "gmusic-theme.js": "^2.0.1",
+    "gmusic-theme.js": "^2.1.0",
     "gmusic-ui.js": "^2.2.1",
     "gmusic.js": "^6.0.10",
     "html-entities": "^1.2.0",
