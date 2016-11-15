@@ -8,6 +8,7 @@ if (!global.isGPM) {
     disable: () => {},
     enable: () => {},
     redrawTheme: () => {},
+    _injectBackgroundOverlay: () => {},
   });
 
   let customColor = Settings.get('themeColor');
