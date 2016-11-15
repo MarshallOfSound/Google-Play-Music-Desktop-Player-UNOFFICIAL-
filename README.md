@@ -118,6 +118,10 @@ Dev Requirements
 * Node.js (Recommend `4.4.x`)
 * NPM (3.x.x)
 
+To build on Ubuntu you may need to install a couple of development packages in order to compile the app:
+```
+sudo apt-get install libavahi-compat-libdnssd-dev libexpat1-dev libx11-dev
+```
 Continuous Integration
 ------------------------
 
