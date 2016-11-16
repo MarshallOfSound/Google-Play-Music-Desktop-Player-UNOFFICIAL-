@@ -65,6 +65,13 @@ export default (ModalClass, eventsToShow, eventsToHide, eventsOnButtons, setup =
       component.find('Dialog').props().open.should.be.equal(false);
     });
 
+    it('should handle a request to close gracefully', () => {
+      (component.instance().show || component.find('SleepModal').get(0).show)({}, {});
+      component.find('Dialog').props().open.should.be.equal(true);
+      component.find('Dialog').props().onRequestClose();
+      component.find('Dialog').props().open.should.be.equal(false);
+    });
+
     if (eventsToShow.length === 0) {
       it('should show when the show method is called', () => {
         component.find('Dialog').props().open.should.be.equal(!hidden);

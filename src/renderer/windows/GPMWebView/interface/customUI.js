@@ -129,10 +129,21 @@ function installAlarmButton() {
   });
 }
 
+function installSleepButton() {
+  installSidebarButton('label-sleeptimer', 'sleep', 'hourglass-empty', 0, (e) => {
+    document.querySelector('paper-drawer-panel').setAttribute('selected', 'main');
+    Emitter.fireAtMain('sleep:show');
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  });
+}
+
 function installMainMenu() {
   installDesktopSettingsButton();
   installQuitButton();
   installAlarmButton();
+  installSleepButton();
 }
 
 /* eslint-disable max-len, no-multi-str */

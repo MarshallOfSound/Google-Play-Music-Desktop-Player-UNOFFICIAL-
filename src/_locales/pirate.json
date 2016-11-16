@@ -6,6 +6,8 @@
   "button-text-ok": "Yarr",
   "button-text-cancel-alarm": "Turn th' alarm off",
   "button-text-click-here-to-set-alarm": "Click over 'ere to set th' Alarm",
+  "button-text-cancel-sleeptimer": "",
+  "button-text-click-here-to-set-sleeptimer": "",
   "button-text-close": "Shut 'tis window'",
   "button-text-dont-tell-me-again": "Don't be tellin' me again",
   "button-text-lets-do-this": "Let's be doin' it!!",
@@ -14,6 +16,7 @@
 
   "label-about": "",
   "label-alarm": "",
+  "label-sleeptimer": "",
   "label-desktop-settings": "Change ye settings",
   "label-donate": "Share some 'o ye plunder",
   "label-help": "Lend me some assistance",

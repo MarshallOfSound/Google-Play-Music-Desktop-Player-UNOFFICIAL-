@@ -6,6 +6,8 @@
   "button-text-ok": "OK",
   "button-text-cancel-alarm": "Отключить будильник",
   "button-text-click-here-to-set-alarm": "Нажмите сюда, чтобы установить будильник",
+  "button-text-cancel-sleeptimer": "",
+  "button-text-click-here-to-set-sleeptimer": "",
   "button-text-close": "Закрыть",
   "button-text-dont-tell-me-again": "Больше не напоминайте",
   "button-text-lets-do-this": "Сделаем это!!",
@@ -14,6 +16,7 @@
 
   "label-about": "О программе",
   "label-alarm": "Будильник",
+  "label-sleeptimer": "",
   "label-desktop-settings": "Настройки программы",
   "label-donate": "Пожертвовать",
   "label-help": "Помощь",

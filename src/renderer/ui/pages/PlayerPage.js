@@ -10,6 +10,7 @@ import WindowContainer from '../components/generic/WindowContainer';
 // Modals
 import AboutModal from '../components/modals/AboutModal';
 import AlarmModal from '../components/modals/AlarmModal';
+import SleepModal from '../components/modals/SleepModal';
 import APICodeModal from '../components/modals/APICodeModal';
 import ConfirmTrayModal from '../components/modals/ConfirmTrayModal';
 import GoToModal from '../components/modals/GoToModal';
@@ -107,6 +108,7 @@ export default class PlayerPage extends Component {
 
         <AboutModal />
         <AlarmModal />
+        <SleepModal />
         <APICodeModal />
         <ConfirmTrayModal ref="trayModal" />
         <GoToModal />

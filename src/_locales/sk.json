@@ -6,6 +6,8 @@
   "button-text-ok": "OK",
   "button-text-cancel-alarm": "Zrušiť budík",
   "button-text-click-here-to-set-alarm": "Kliknite pre nastavenie budíka",
+  "button-text-cancel-sleeptimer": "",
+  "button-text-click-here-to-set-sleeptimer": "",
   "button-text-close": "Zavrieť",
   "button-text-dont-tell-me-again": "Nabudúce neoznamovať",
   "button-text-lets-do-this": "Tak poďme na to!!",
@@ -14,6 +16,7 @@
 
   "label-about": "O programe",
   "label-alarm": "Budík",
+  "label-sleeptimer": "",
   "label-desktop-settings": "Nastavenia programu",
   "label-donate": "Podporiť",
   "label-help": "Pomocník",
