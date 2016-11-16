@@ -6,6 +6,8 @@
   "button-text-ok": "OK",
   "button-text-cancel-alarm": "Cancelar despertador",
   "button-text-click-here-to-set-alarm": "Clique aqui para configurar o despertador",
+  "button-text-cancel-sleeptimer": "",
+  "button-text-click-here-to-set-sleeptimer": "",
   "button-text-close": "Fechar",
   "button-text-dont-tell-me-again": "Não notificar novamente",
   "button-text-lets-do-this": "Vamos nessa!!",
@@ -14,6 +16,7 @@
 
   "label-about": "Sobre",
   "label-alarm": "Despertador",
+  "label-sleeptimer": "",
   "label-desktop-settings": "Configurações desktop",
   "label-donate": "Doar",
   "label-help": "Ajuda",

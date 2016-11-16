@@ -6,6 +6,8 @@
   "button-text-ok": "OK",
   "button-text-cancel-alarm": "Cancel Alarm",
   "button-text-click-here-to-set-alarm": "Click here to set the Alarm",
+  "button-text-cancel-sleeptimer": "Cancel Sleep Timer",
+  "button-text-click-here-to-set-sleeptimer": "Click here to set the Sleep Timer",
   "button-text-close": "Close",
   "button-text-dont-tell-me-again": "Don't tell me again",
   "button-text-lets-do-this": "Let's do this!!",
@@ -14,6 +16,7 @@
 
   "label-about": "About",
   "label-alarm": "Alarm",
+  "label-sleeptimer": "Sleep Timer",
   "label-desktop-settings": "Desktop Settings",
   "label-donate": "Donate",
   "label-help": "Help",

@@ -6,6 +6,8 @@
   "button-text-ok": "OK",
   "button-text-cancel-alarm": "Zrušit budík",
   "button-text-click-here-to-set-alarm": "Klikněte zde pro nastavení budíku",
+  "button-text-cancel-sleeptimer": "",
+  "button-text-click-here-to-set-sleeptimer": "",
   "button-text-close": "Zavřít",
   "button-text-dont-tell-me-again": "Znovu neupozorňovat",
   "button-text-lets-do-this": "Pojďme do toho!",
@@ -14,6 +16,7 @@
 
   "label-about": "O Aplikaci",
   "label-alarm": "Budík",
+  "label-sleeptimer": "",
   "label-desktop-settings": "Nastavení Desktop Přehrávače",
   "label-donate": "Podpořit",
   "label-help" : "Nápověda",
@@ -62,7 +65,7 @@
   "playback-label-thumbs-up": "Líbí se mi",
   "playback-label-volume-down": "Snížit hlasitost",
   "playback-label-volume-up": "Zvýšit hlasitost",
-  
+
   "settings-option-invert-tray-icon": "Převrátit barvu ikony v liště",
 
   "settings-option-custom-theme": "Vlastní motiv",

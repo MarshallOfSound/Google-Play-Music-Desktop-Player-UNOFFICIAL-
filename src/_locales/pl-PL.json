@@ -6,6 +6,8 @@
   "button-text-ok": "OK",
   "button-text-cancel-alarm": "Wyłącz budzik",
   "button-text-click-here-to-set-alarm": "Kliknij tu, aby ustawić budzik",
+  "button-text-cancel-sleeptimer": "",
+  "button-text-click-here-to-set-sleeptimer": "",
   "button-text-close": "Zamknij",
   "button-text-dont-tell-me-again": "Nie pokazuj więcej",
   "button-text-lets-do-this": "Zróbmy to!!",
@@ -14,6 +16,7 @@
 
   "label-about": "Informacje",
   "label-alarm": "Budzik",
+  "label-sleeptimer": "",
   "label-desktop-settings": "Ustawienia aplikacji",
   "label-donate": "Wspomóż projekt",
   "label-help": "Pomoc",
