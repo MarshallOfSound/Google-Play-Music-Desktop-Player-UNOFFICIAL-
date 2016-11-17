@@ -55,6 +55,8 @@ const defaultPackageConf = {
     const tests = [
       // Ignore git directory
       () => /^\/\.git\/.*/g,
+      // Ignore electron-packager on Docker machines
+      () => /^\/electron-packager\//g,
       // Ignore electron
       () => /^\/node_modules\/electron\//g,
       // Ignore debug files
