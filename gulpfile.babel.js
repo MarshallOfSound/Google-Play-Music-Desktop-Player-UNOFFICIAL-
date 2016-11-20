@@ -361,6 +361,7 @@ const generateGulpLinuxDistroTask = (prefix, name, arch) => {
       homepage: packageJSON.homepage,
       icon: 'build/assets/img/main.png',
       categories: ['AudioVideo', 'Audio'],
+      section: 'sound',
     };
 
     let pkgArch = 'i386';
