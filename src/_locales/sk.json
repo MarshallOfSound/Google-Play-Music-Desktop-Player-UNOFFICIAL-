@@ -87,7 +87,7 @@
 
   "settings-option-min-to-tray": "Minimalizovať do panela",
 
-  "settings-option-prevent-display-sleep": "",
+  "settings-option-prevent-display-sleep": "Zabrániť počítaču prejsť do režimu spánku pokiaľ je GPMDP otvorený",
   "settings-option-auto-launch": "Spustiť automaticky pri štarte systému",
 
   "settings-option-save-page": "Po spustení automaticky načítať poslednú zobrazenú stránku",
