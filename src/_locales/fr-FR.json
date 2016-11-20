@@ -87,6 +87,7 @@
 
   "settings-option-min-to-tray": "Minimiser vers le système de notification",
 
+  "settings-option-prevent-display-sleep": "",
   "settings-option-auto-launch": "Lancer automatiquement au démarrage de l'ordinateur",
 
   "settings-option-save-page": "Charger automatiquement la dernière page vue au lancement",
