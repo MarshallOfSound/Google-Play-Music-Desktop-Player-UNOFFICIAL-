@@ -1,3 +1,5 @@
+'use strict'; // eslint-disable-line
+
 const fs = require('pn/fs');
 const iconGen = require('icon-gen');
 const Jimp = require('jimp');
