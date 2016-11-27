@@ -87,7 +87,7 @@
 
   "settings-option-min-to-tray": "In den Infobereich minimieren",
 
-  "settings-option-prevent-display-sleep": "",
+  "settings-option-prevent-display-sleep": "Verhindere das automatische Abschalten des Bildschirms solange GPMDP geöffnet ist",
   "settings-option-auto-launch": "Automatisch starten wenn mein Computer hochfährt",
 
   "settings-option-save-page": "Automatisch zuletzt geöffnete Seite beim Start öffnen",
