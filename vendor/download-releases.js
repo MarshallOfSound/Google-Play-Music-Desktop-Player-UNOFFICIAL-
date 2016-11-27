@@ -1,3 +1,5 @@
+'use strict'; // eslint-disable-line
+
 const fetch = require('node-fetch');
 const mkdirp = require('mkdirp');
 const nugget = require('nugget');

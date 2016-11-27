@@ -87,6 +87,7 @@
 
   "settings-option-min-to-tray": "Minimize to Tray",
 
+  "settings-option-prevent-display-sleep": "Stop your computer from sleeping while GPMDP is open",
   "settings-option-auto-launch": "Automatically launch when I turn my computer on",
 
   "settings-option-save-page": "Automatically load last viewed page on startup",

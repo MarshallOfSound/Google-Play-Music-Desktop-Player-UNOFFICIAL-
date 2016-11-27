@@ -36,6 +36,7 @@ const setUpAutoUpdate = () => {
     let update = false;
     autoUpdater.on('update-downloaded', () => {
       Logger.info('Auto updater - update downloaded.');
+      Emitter.sendToGooglePlayMusic('playback:miniDisable');
       Emitter.sendToAll('update:available');
       update = true;
     });

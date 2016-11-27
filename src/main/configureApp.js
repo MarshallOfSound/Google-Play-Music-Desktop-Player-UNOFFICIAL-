@@ -9,7 +9,9 @@ export default (app) => {
   //      --> Choosing audio output device
   app.commandLine.appendSwitch('enable-experimental-web-platform-features', '1');
 
-  app.disableHardwareAcceleration();
+  if (process.platform !== 'darwin') {
+    app.disableHardwareAcceleration();
+  }
 
   if (process.platform === 'darwin' && global.DEV_MODE) {
     app.dock.setIcon(path.resolve(__dirname, '..', 'assets/img/main.png'));

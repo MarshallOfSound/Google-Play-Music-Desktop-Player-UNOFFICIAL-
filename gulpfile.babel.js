@@ -55,6 +55,8 @@ const defaultPackageConf = {
     const tests = [
       // Ignore git directory
       () => /^\/\.git\/.*/g,
+      // Ignore electron-packager on Docker machines
+      () => /^\/electron-packager\//g,
       // Ignore electron
       () => /^\/node_modules\/electron\//g,
       // Ignore debug files
@@ -359,6 +361,7 @@ const generateGulpLinuxDistroTask = (prefix, name, arch) => {
       homepage: packageJSON.homepage,
       icon: 'build/assets/img/main.png',
       categories: ['AudioVideo', 'Audio'],
+      section: 'sound',
     };
 
     let pkgArch = 'i386';

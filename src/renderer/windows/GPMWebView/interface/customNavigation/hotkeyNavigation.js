@@ -30,6 +30,8 @@ window.wait(() => {
       if (canGoForward) return history.forward();
     });
   };
+  Emitter.on('GPMNav:Forward', attemptForward);
+  Emitter.on('GPMNav:Back', attemptBack);
 
   backBtn.addEventListener('click', attemptBack);
 
