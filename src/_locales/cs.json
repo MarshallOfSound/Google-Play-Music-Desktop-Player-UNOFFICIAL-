@@ -62,7 +62,7 @@
   "playback-label-thumbs-up": "Líbí se mi",
   "playback-label-volume-down": "Snížit hlasitost",
   "playback-label-volume-up": "Zvýšit hlasitost",
-  
+
   "settings-option-invert-tray-icon": "Převrátit barvu ikony v liště",
 
   "settings-option-custom-theme": "Vlastní motiv",
@@ -87,6 +87,7 @@
 
   "settings-option-min-to-tray": "Minimalizovat do lišty",
 
+  "settings-option-prevent-display-sleep": "",
   "settings-option-auto-launch": "Automaticky spustit po spuštění počítače",
 
   "settings-option-save-page": "Automaticky načíst poslední stránku při spuštění",

@@ -53,6 +53,16 @@ const template = [
         },
       },
       {
+        label: 'Previous Page',
+        accelerator: 'CmdOrCtrl+[',
+        click: () => Emitter.sendToGooglePlayMusic('GPMNav:Back'),
+      },
+      {
+        label: 'Next Page',
+        accelerator: 'CmdOrCtrl+]',
+        click: () => Emitter.sendToGooglePlayMusic('GPMNav:Forward'),
+      },
+      {
         label: 'Go to URL',
         accelerator: 'CmdOrCtrl+Shift+G',
         click: () => {
