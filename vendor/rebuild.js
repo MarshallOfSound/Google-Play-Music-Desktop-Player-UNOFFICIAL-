@@ -21,9 +21,9 @@ switch (process.platform) {
 let a = 0;
 
 const badYarn = {
-  win32: [''],
+  win32: [],
   darwin: ['dbus', 'll-keyboard-hook-win', 'mouse-forward-back'],
-  linux: [''],
+  linux: [],
 };
 
 module.exports = (overrideName) =>
