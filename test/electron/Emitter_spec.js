@@ -186,6 +186,7 @@ describe('Emitter (main)', () => {
   });
 
   afterEach(() => {
-    ipcMain.removeAllListeners();
+    Object.keys(IPCHooks).forEach((eventName) => ipcMain.removeAllListeners(eventName));
+    Object.keys(IPCHooksOnce).forEach((eventName) => ipcMain.removeAllListeners(eventName));
   });
 });
