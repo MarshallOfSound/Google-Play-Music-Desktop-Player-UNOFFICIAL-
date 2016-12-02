@@ -4,8 +4,8 @@
   "audio-device-unknown": "Unbekanntes Gerät",
 
   "button-text-ok": "OK",
-  "button-text-cancel-alarm": "Alarm abbrechen",
-  "button-text-click-here-to-set-alarm": "Klicke hier um den Alarm zu setzen",
+  "button-text-cancel-alarm": "Wecker ausschalten",
+  "button-text-click-here-to-set-alarm": "Klicke hier um den Wecker zu stellen",
   "button-text-close": "Schließen",
   "button-text-dont-tell-me-again": "Sag mir das nicht nochmal",
   "button-text-lets-do-this": "Lass uns starten!!",
@@ -13,7 +13,7 @@
   "button-text-not-now": "Nicht jetzt",
 
   "label-about": "Über",
-  "label-alarm": "Alarm",
+  "label-alarm": "Wecker",
   "label-desktop-settings": "Desktop-Einstellungen",
   "label-donate": "Spenden",
   "label-help": "Hilfe",
@@ -36,9 +36,9 @@
 
   "lyrics-failed-message": "Entschuldige, aber wir konnten keinen Liedtext finden",
   "lyrics-loading-message": "Lade Liedtext...",
-  "lyrics-no-song-message": "Aktuell spielt kein Titel",
+  "lyrics-no-song-message": "Aktuell spielt kein Lied",
 
-  "message-pausing-after-song": "Pausieren nach diesem Titel.",
+  "message-pausing-after-song": "Nach diesem Titel pausieren.",
   "message-pausing-after-song-button": "Nicht nach diesem Titel pausieren",
   "message-uncaught-error": "Es gab einen Fehler innerhalb von GPMDP.",
   "message-uncaught-error-button": "Klicke um den Fehler bei GitHub zu melden",
@@ -63,7 +63,7 @@
   "playback-label-volume-down": "Leiser",
   "playback-label-volume-up": "Lauter",
 
-  "settings-option-invert-tray-icon": "",
+  "settings-option-invert-tray-icon": "Invertiere die Farbe des Kontrollleisten-Icons",
 
   "settings-option-custom-theme": "Eigenes Farbschema",
   "settings-option-custom-theme-choose-color": "Wähle deine Akzentfarbe",
@@ -87,7 +87,7 @@
 
   "settings-option-min-to-tray": "In den Infobereich minimieren",
 
-  "settings-option-prevent-display-sleep": "",
+  "settings-option-prevent-display-sleep": "Verhindere das automatische Abschalten des Bildschirms solange GPMDP geöffnet ist",
   "settings-option-auto-launch": "Automatisch starten wenn mein Computer hochfährt",
 
   "settings-option-save-page": "Automatisch zuletzt geöffnete Seite beim Start öffnen",
