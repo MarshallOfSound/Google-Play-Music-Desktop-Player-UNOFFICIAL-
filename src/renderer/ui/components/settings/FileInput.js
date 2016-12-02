@@ -35,6 +35,13 @@ class FileInput extends Component {
     });
   }
 
+  _keyDown = (event) => {
+    if (event.which === 27) {
+      this.props.setSetting(this.props.settingsKey, null);
+      this.props.bonusEvents.forEach((eventName) => Emitter.fire(eventName));
+    }
+  }
+
   render() {
     return (
       <div style={{ display: 'flex' }}>
@@ -49,6 +56,7 @@ class FileInput extends Component {
           value={this.props[this.props.settingsKey] ? path.basename(this.props[this.props.settingsKey]) : ''}
           style={{ flex: 1 }}
           onClick={this._triggerFile}
+          onKeyDown={this._keyDown}
         />
       </div>
     );
