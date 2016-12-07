@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Google Play Music Desktop Player
+Comment=An electron wrapper for Google Play Music
+GenericName=Google Play Music Desktop Player
+Exec=gpmdp %U
+Icon=gpmdp
+Type=Application
+StartupNotify=true
+Categories=AudioVideo;Audio;
+
