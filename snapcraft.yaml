@@ -1,4 +1,4 @@
-name: gpmdp
+name: google-play-music-desktop-player
 version: '4.0.4'
 summary: Standalone player for Google Play Music
 description: |
@@ -12,7 +12,7 @@ grade: stable
 confinement: strict
 
 apps:
-  gpmdp:
+  google-play-music-desktop-player:
     command: desktop-launch '$SNAP/google-play-music-desktop-player/Google\ Play\ Music\ Desktop\ Player'
     plugs:
       - pulseaudio
@@ -55,6 +55,8 @@ parts:
       - libasound2-data
       - libasound2-plugins
       - libavahi-compat-libdnssd1
+      - libnotify4
+      - libdbus-1-3
     after:
       - desktop-gtk2
     organize:
