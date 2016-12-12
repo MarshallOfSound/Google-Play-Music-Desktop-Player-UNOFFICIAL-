@@ -87,7 +87,7 @@
 
   "settings-option-min-to-tray": "Minimalizuj do paska narzędzi",
 
-  "settings-option-prevent-display-sleep": "",
+  "settings-option-prevent-display-sleep": "Zabroń komputerowi przechodzenia w stan uśpienia podczas działania GPMDP",
   "settings-option-auto-launch": "Włącz aplikację podczas uruchamiania systemu",
 
   "settings-option-save-page": "Automatycznie załaduj ostatnio przeglądaną stronę przy starcie aplikacji",
