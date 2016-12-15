@@ -142,7 +142,7 @@
     "sinon-chai": "^2.8.0",
     "spec-xunit-file": "0.0.1-3",
     "spectron": "^3.2.3",
-    "svg2png": "^4.0.0"
+    "svg2png": "^4.1.0"
   },
   "optionalDependencies": {
     "appdmg": "^0.4.5",
