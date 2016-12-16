@@ -162,12 +162,12 @@ describe('<LyricsViewer />', () => {
   it('should update the styling in dark mode', () => {
     fakeSettings('themeType', 'FULL');
     const component = mount(<LyricsViewer />, opts);
-    component.find('#lyrics_progress').props().style.backgroundColor.should.be.equal('themeColor');
+    component.find('#lyrics_bar').props().style.backgroundColor.should.be.equal('themeColor');
   });
 
   it('should reset styling when the theme is disabled', () => {
     fakeSettings('theme', false);
     const component = mount(<LyricsViewer />, opts);
-    component.find('#lyrics_progress').props().style.should.not.have.property('backgroundColor');
+    component.find('#lyrics_bar').props().style.backgroundColor.should.be.equal('rgb(252, 88, 37)');
   });
 });
