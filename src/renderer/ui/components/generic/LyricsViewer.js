@@ -139,8 +139,6 @@ class LyricsViewer extends Component {
 
   render() {
     const barStyle = {};
-    // would rather not hardcode for default theme but not sure if it's passed through any props
-    // dynamically get from webpage?
     barStyle.backgroundColor = 'rgb(252, 88, 37)';
 
     const progressStyle = {};
