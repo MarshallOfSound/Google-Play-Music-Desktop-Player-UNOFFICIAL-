@@ -29,7 +29,16 @@ export default class PlayerPage extends Component {
     this.ready = false;
     this.state = {
       webviewTarget: 'https://play.google.com/music/listen',
+      pageTitle: 'Google Play Music Desktop Player',
     };
+  }
+
+  componentDidMount() {
+    Emitter.on('window:updateTitle', this._updateTitle);
+  }
+
+  componentWillUnmount() {
+    Emitter.off('window:updateTitle', this._updateTitle);
   }
 
   _confirmCloseWindow = () => {
@@ -76,6 +85,14 @@ export default class PlayerPage extends Component {
     }
   }
 
+  _updateTitle = (event, newTitle) => {
+    if (process.platform === 'darwin') {
+      this.setState({
+        title: newTitle,
+      });
+    }
+  }
+
   _savePage = (param) => {
     const url = param.url || param;
     if (!/https?:\/\/play\.google\.com\/music/g.test(url)) return;
@@ -84,7 +101,7 @@ export default class PlayerPage extends Component {
 
   render() {
     return (
-      <WindowContainer isMainWindow title={process.platform === 'darwin' ? 'Google Play Music Desktop Player' : ''} confirmClose={this._confirmCloseWindow}>
+      <WindowContainer isMainWindow title={process.platform === 'darwin' ? this.state.title : ''} confirmClose={this._confirmCloseWindow}>
         <div className="drag-handle-large"></div>
         <div className="loader">
           <svg className="circular" viewBox="25 25 50 50">
