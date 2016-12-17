@@ -22,6 +22,12 @@ class WindowManager {
         this.focus[focusIndex].focus();
       }
     });
+    window.on('enter-full-screen', () => {
+      window.webContents.send('window:changefullscreen', true);
+    });
+    window.on('leave-full-screen', () => {
+      window.webContents.send('window:changefullscreen', false);
+    });
     if (name) {
       this.nameReferences[name] = this.nameReferences[name] || [];
       this.nameReferences[name].push(newID);

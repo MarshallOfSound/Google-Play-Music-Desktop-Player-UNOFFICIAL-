@@ -25,6 +25,7 @@ export default class WindowContainer extends Component {
       theme: Settings.get('theme'),
       themeColor: Settings.get('themeColor'),
       themeType: Settings.get('themeType', 'FULL'),
+      isFullscreen: false,
     };
   }
 
@@ -32,12 +33,14 @@ export default class WindowContainer extends Component {
     Emitter.on('settings:change:theme', this._themeUpdate);
     Emitter.on('settings:change:themeColor', this._themeColorUpdate);
     Emitter.on('settings:change:themeType', this._themeTypeUpdate);
+    Emitter.on('window:changefullscreen', this._updateFullscreen);
   }
 
   componentWillUnmount() {
     Emitter.off('settings:change:theme', this._themeUpdate);
     Emitter.off('settings:change:themeColor', this._themeColorUpdate);
     Emitter.off('settings:change:themeType', this._themeTypeUpdate);
+    Emitter.off('window:changefullscreen', this._updateFullscreen);
   }
 
   _darwinExpand = () => {
@@ -47,6 +50,12 @@ export default class WindowContainer extends Component {
     } else if (doubleClickAction === 'Maximize') {
       this.maxWindow();
     }
+  }
+
+  _updateFullscreen = (event, isFullscreen) => {
+    this.setState({
+      isFullscreen,
+    });
   }
 
   _themeUpdate = (event, theme) => {
@@ -90,7 +99,7 @@ export default class WindowContainer extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <section className="window-border" style={{ borderColor: muiTheme.tabs.backgroundColor }}>
           <PlatformSpecific platform="darwin">
-            <header className="darwin-title-bar" onDoubleClick={this._darwinExpand} style={{ backgroundColor: muiTheme.tabs.backgroundColor }}>
+            <header className="darwin-title-bar" onDoubleClick={this._darwinExpand} style={{ backgroundColor: muiTheme.tabs.backgroundColor, height: this.state.isFullscreen ? 0 : 23 }}>
               <div className="title">{this.props.title}</div>
             </header>
           </PlatformSpecific>
