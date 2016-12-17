@@ -1,7 +1,11 @@
 const windowTitle = WindowManager.get(global.mainWindowID).getTitle();
 
+let darwinTimer;
 const updateDarwinTitle = () => {
-  Emitter.sendToWindowsOfName('main', 'window:updateTitle', WindowManager.get(global.mainWindowID).getTitle());
+  clearTimeout(darwinTimer);
+  darwinTimer = setTimeout(() => {
+    Emitter.sendToWindowsOfName('main', 'window:updateTitle', WindowManager.get(global.mainWindowID).getTitle());
+  }, 200);
 };
 
 PlaybackAPI.on('change:track', (songInfo) => {
