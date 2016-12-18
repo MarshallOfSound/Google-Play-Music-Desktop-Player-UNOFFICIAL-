@@ -139,15 +139,15 @@ class LyricsViewer extends Component {
 
   render() {
     const barStyle = {};
+    barStyle.backgroundColor = 'rgb(252, 88, 37)';
+
     const progressStyle = {};
+    progressStyle.backgroundColor = 'rgb(34, 35, 38)';
+
     if (this.props.theme) {
-      if (this.props.themeType === 'FULL') {
-        progressStyle.backgroundColor = this.props.themeColor;
-      } else {
-        barStyle.backgroundColor = this.props.themeColor;
-        progressStyle.backgroundColor = '#222326';
-      }
+      barStyle.backgroundColor = this.props.themeColor;
     }
+
     return (
       <div id="lyrics_back" className={this.state.visible ? 'vis' : ''} onClick={this.hide}>
         <div id="lyrics_container">
