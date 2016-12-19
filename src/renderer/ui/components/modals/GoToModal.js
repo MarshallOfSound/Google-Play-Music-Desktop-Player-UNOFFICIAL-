@@ -4,6 +4,33 @@ import { findDOMNode } from 'react-dom';
 import Dialog from './ThemedDialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
+import request from 'request';
+
+// Initialize the global Logger to forward to the main process.
+window.Logger = remote.getGlobal('Logger');
+
+const urlresolve = function urlresolve(url) {
+  return new Promise((resolve, reject) => {
+    const options = {
+      url,
+      headers: {
+        followAllRedirects: true,
+      },
+    };
+    request
+      .head(options)
+      .on('response', (response) => {
+        // handle http errors
+        if (response.statusCode < 200 || response.statusCode > 299) {
+          reject(new Error('Failed to load page'));
+        }
+        resolve(response.request.href);
+      })
+      .on('error', (err) => {
+        reject(err);
+      });
+  });
+};
 
 export default class GoToModal extends Component {
   constructor(...args) {
@@ -54,10 +81,18 @@ export default class GoToModal extends Component {
       remote.app.quit();
     } else if (url === 'DEBUG_INFO') {
       Emitter.fire('generateDebugInfo');
+      this.handleClose();
+    } else {
+      urlresolve(url)
+        .then((resolvedUrl) => {
+          if (!/https:\/\/play\.google\.com\/music/g.test(resolvedUrl)) return;
+          Emitter.fireAtGoogle('navigate:gotourl', resolvedUrl);
+          this.handleClose();
+        })
+        .catch((err) => {
+          Logger.error(err.toString());
+        });
     }
-    if (!/https:\/\/play\.google\.com\/music/g.test(url)) return;
-    Emitter.fireAtGoogle('navigate:gotourl', url);
-    this.handleClose();
   }
 
   _onChange = (event, newValue) => {
