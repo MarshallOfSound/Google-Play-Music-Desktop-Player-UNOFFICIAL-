@@ -69,7 +69,7 @@ export default class GoToModal extends Component {
     return (/https:\/\/play\.google\.com\/music/g.test(url));
   }
 
-  fireURL = (url) => {
+  goToURL = (url) => {
     Emitter.fireAtGoogle('navigate:gotourl', url);
     this.handleClose();
   }
@@ -91,13 +91,13 @@ export default class GoToModal extends Component {
     } else {
       // see if the URL is good to go already
       if (this.validURL(url)) {
-        this.fireURL(url);
+        this.goToURL(url);
       } else {
         // attempt to resolve the URL and test again
         this.resolveURL(url)
           .then((resolvedURL) => {
             if (!this.validURL(resolvedURL)) return;
-            this.fireURL(resolvedURL)
+            this.goToeURL(resolvedURL)
           })
           .catch((err) => {
             console.error(err);
