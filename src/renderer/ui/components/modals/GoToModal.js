@@ -63,7 +63,7 @@ export default class GoToModal extends Component {
           reject(err);
         });
     });
-  };
+  }
 
   validURL = (url) => {
     return (/https:\/\/play\.google\.com\/music/g.test(url));
@@ -97,7 +97,7 @@ export default class GoToModal extends Component {
         this.resolveURL(url)
           .then((resolvedURL) => {
             if (!this.validURL(resolvedURL)) return;
-            this.goToeURL(resolvedURL)
+            this.goToURL(resolvedURL);
           })
           .catch((err) => {
             console.error(err);
