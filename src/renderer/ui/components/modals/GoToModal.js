@@ -4,7 +4,6 @@ import { findDOMNode } from 'react-dom';
 import Dialog from './ThemedDialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import request from 'request';
 
 export default class GoToModal extends Component {
   constructor(...args) {
@@ -43,31 +42,32 @@ export default class GoToModal extends Component {
   }
 
   resolveURL = (url) => {
-    return new Promise((resolve, reject) => {
-      const options = {
-        url,
-        headers: {
-          followAllRedirects: true,
-        },
-      };
-      request
-        .head(options)
-        .on('response', (response) => {
-          // handle http errors
-          if (response.statusCode < 200 || response.statusCode > 299) {
-            reject(new Error('Failed to load page'));
+    const doResolve = (urlToResolve, priorURL, redirectCount) => {
+      if (redirectCount === 0) {
+        return Promise.reject(new Error('Too many redirects'));
+      }
+      const request = new Request(urlToResolve, {
+        method: 'HEAD',
+        redirect: 'follow',
+      });
+      return fetch(request)
+        .then((response) => {
+          console.log(urlToResolve, response.url, redirectCount);
+          if (response.url === priorURL) {
+            return Promise.resolve(response.url);
           }
-          resolve(response.request.href);
+          return doResolve(response.url, urlToResolve, redirectCount - 1);
         })
-        .on('error', (err) => {
-          reject(err);
+        .catch((err) => {
+          console.error(err);
+          return Promise.reject(new Error(err));
         });
-    });
+    };
+
+    return doResolve(url, url, 10);
   }
 
-  validURL = (url) => {
-    return (/https:\/\/play\.google\.com\/music/g.test(url));
-  }
+  validURL = (url) => /https:\/\/play\.google\.com\/music/g.test(url);
 
   goToURL = (url) => {
     Emitter.fireAtGoogle('navigate:gotourl', url);
