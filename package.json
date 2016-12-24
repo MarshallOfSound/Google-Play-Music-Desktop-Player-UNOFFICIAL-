@@ -128,7 +128,7 @@
     "material-design-icons-iconfont": "^2.0.5",
     "materialize-css": "^0.97.6",
     "mocha": "^3.0.0",
-    "mocha-appveyor-reporter": "^0.2.1",
+    "mocha-appveyor-reporter": "^0.3.0",
     "mocha-testdata": "^1.2.0",
     "nugget": "^2.0.1",
     "plist": "^2.0.1",
