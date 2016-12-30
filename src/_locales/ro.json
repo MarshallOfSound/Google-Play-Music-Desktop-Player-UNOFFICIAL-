@@ -102,6 +102,10 @@
   "settings-options-style-main-app": "Aplicație GPMDP",
   "settings-options-style-gpm": "Google Play Music",
   "settings-options-style-refresh": "Reîncarcă stilurile",
+  "settings-options-style-dialog-title": "",
+  "settings-options-style-dialog-button": "",
+  "settings-options-style-dialog-css-files": "",
+  "settings-options-style-dialog-all-files": "",
 
   "title-color-picker": "Paletă culori",
   "title-settings": "Setări",

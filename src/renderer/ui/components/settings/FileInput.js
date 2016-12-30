@@ -18,12 +18,12 @@ class FileInput extends Component {
 
   _triggerFile = () => {
     remote.dialog.showOpenDialog(remote.getCurrentWindow(), {
-      title: 'Choose a CSS file',
-      buttonLabel: 'Load CSS',
+      title: TranslationProvider.query('settings-options-style-dialog-title'),
+      buttonLabel: TranslationProvider.query('settings-options-style-dialog-button'),
       properties: ['openFile'],
       filters: [
-        { name: 'CSS Files', extensions: ['css'] },
-        { name: 'All Files', extensions: ['*'] },
+        { name: TranslationProvider.query('settings-options-style-dialog-css-files'), extensions: ['css'] },
+        { name: TranslationProvider.query('settings-options-style-dialog-all-files'), extensions: ['*'] },
       ],
     }, (filenames) => {
       if (!filenames) return;
