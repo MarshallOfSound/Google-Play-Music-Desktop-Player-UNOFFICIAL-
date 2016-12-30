@@ -16,10 +16,16 @@ class SettingsCheckbox extends Component {
   }
 
   render() {
+    const label = (
+      <span>
+        {this.props.label}
+        {this.props.hintLabel ? <span className="settings-toggle-hint-label">{this.props.hintLabel}</span> : null}
+      </span>
+    );
+
     return (
       <Checkbox
-        label={[this.props.label, this.props.hintLabel
-          ? <span id="checkbox-hint" style={{ display: 'block', fontSize: '0.75em', color: 'gray' }}>{this.props.hintLabel}</span> : null]}
+        label={label}
         checked={this.props[this.props.settingsKey]}
         onCheck={this.onChange}
         style={{
