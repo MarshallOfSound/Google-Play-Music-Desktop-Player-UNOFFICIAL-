@@ -9,6 +9,11 @@ class SettingsCheckbox extends Component {
     hintLabel: PropTypes.string,
     settingsKey: PropTypes.string.isRequired,
     setSetting: PropTypes.func.isRequired,
+    muiTheme: PropTypes.object,
+  };
+
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
   };
 
   onChange = (event, isChecked) => {
@@ -19,7 +24,9 @@ class SettingsCheckbox extends Component {
     const label = (
       <span>
         {this.props.label}
-        {this.props.hintLabel ? <span className="settings-toggle-hint-label">{this.props.hintLabel}</span> : null}
+        {this.props.hintLabel
+          ? <span className="settings-toggle-hint-label" style={{ color: this.context.muiTheme.palette.disabledColor }}>{this.props.hintLabel}</span>
+          : null}
       </span>
     );
 
@@ -38,7 +45,6 @@ class SettingsCheckbox extends Component {
     );
   }
 }
-
 
 export default class ToggleableOption extends Component {
   static propTypes = {
