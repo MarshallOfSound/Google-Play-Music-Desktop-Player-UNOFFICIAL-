@@ -102,6 +102,10 @@
   "settings-options-style-main-app": "Główna aplikacja",
   "settings-options-style-gpm": "Muzyka Google Play",
   "settings-options-style-refresh": "Przeładuj style",
+  "settings-options-style-dialog-title": "",
+  "settings-options-style-dialog-button": "",
+  "settings-options-style-dialog-css-files": "",
+  "settings-options-style-dialog-all-files": "",
 
   "title-color-picker": "Wybierz kolor",
   "title-settings": "Ustawienia",

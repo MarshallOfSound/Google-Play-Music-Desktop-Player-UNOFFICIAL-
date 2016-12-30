@@ -102,6 +102,10 @@
   "settings-options-style-main-app": "Hlavní aplikace",
   "settings-options-style-gpm": "Hudba Google Play",
   "settings-options-style-refresh": "Znovu načíst styly",
+  "settings-options-style-dialog-title": "",
+  "settings-options-style-dialog-button": "",
+  "settings-options-style-dialog-css-files": "",
+  "settings-options-style-dialog-all-files": "",
 
   "title-color-picker": "Výběr barvy",
   "title-settings": "Nastavení",

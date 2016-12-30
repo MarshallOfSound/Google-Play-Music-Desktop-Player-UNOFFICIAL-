@@ -102,6 +102,10 @@
   "settings-options-style-main-app": "Main App",
   "settings-options-style-gpm": "Google Play Music",
   "settings-options-style-refresh": "Reload Styles",
+  "settings-options-style-dialog-title": "Choose a CSS file",
+  "settings-options-style-dialog-button": "Load CSS",
+  "settings-options-style-dialog-css-files": "CSS Files",
+  "settings-options-style-dialog-all-files": "All Files",
 
   "title-color-picker": "Color Picker",
   "title-settings": "Settings",

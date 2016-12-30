@@ -103,6 +103,10 @@
   "settings-options-style-main-app": "Hauptfenster",
   "settings-options-style-gpm": "Google Play Music",
   "settings-options-style-refresh": "Lade die Styles neu",
+  "settings-options-style-dialog-title": "CSS-Datei auswählen",
+  "settings-options-style-dialog-button": "CSS laden",
+  "settings-options-style-dialog-css-files": "CSS-Dateien",
+  "settings-options-style-dialog-all-files": "Alle Dateien",
 
   "title-color-picker": "Farbauswahl",
   "title-settings": "Einstellungen",
