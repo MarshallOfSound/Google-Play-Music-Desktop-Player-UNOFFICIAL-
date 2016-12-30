@@ -6,6 +6,7 @@ import SettingsProvider from '../generic/SettingsProvider';
 class SettingsCheckbox extends Component {
   static propTypes = {
     label: PropTypes.string.isRequired,
+    hintLabel: PropTypes.string,
     settingsKey: PropTypes.string.isRequired,
     setSetting: PropTypes.func.isRequired,
   };
@@ -17,7 +18,7 @@ class SettingsCheckbox extends Component {
   render() {
     return (
       <Checkbox
-        label={this.props.label}
+        label={[this.props.label, this.props.hintLabel ? <span style={{ display: 'block', fontSize: '0.75em', color: 'gray' }}>{this.props.hintLabel}</span> : null]}
         checked={this.props[this.props.settingsKey]}
         onCheck={this.onChange}
         style={{
@@ -35,12 +36,14 @@ class SettingsCheckbox extends Component {
 export default class ToggleableOption extends Component {
   static propTypes = {
     label: PropTypes.string.isRequired,
+    hintLabel: PropTypes.string,
     settingsKey: PropTypes.string.isRequired,
   };
 
   render() {
     const checkboxProps = {
       label: this.props.label,
+      hintLabel: this.props.hintLabel,
       settingsKey: this.props.settingsKey,
     };
 
