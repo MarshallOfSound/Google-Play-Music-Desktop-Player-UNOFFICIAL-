@@ -98,10 +98,10 @@
   "settings-option-mini-ontop": "Immer im Vordergrund",
   "settings-option-mini-use-scroll-volume": "Mausrad zur Lautstärkekontrolle verwenden",
 
-  "settings-options-style-description": "Wähle eine lokale CSS-Datei, um Styles in die Anwendung einzubringen",
+  "settings-options-style-description": "Wähle eine lokale CSS-Datei, um eigene Stile in die Anwendung einzubringen",
   "settings-options-style-main-app": "Hauptfenster",
   "settings-options-style-gpm": "Google Play Music",
-  "settings-options-style-refresh": "Lade die Styles neu",
+  "settings-options-style-refresh": "Stile neu laden",
 
   "title-color-picker": "Farbauswahl",
   "title-settings": "Einstellungen",
