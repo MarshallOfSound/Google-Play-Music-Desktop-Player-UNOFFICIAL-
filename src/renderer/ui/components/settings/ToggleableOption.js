@@ -18,7 +18,8 @@ class SettingsCheckbox extends Component {
   render() {
     return (
       <Checkbox
-        label={[this.props.label, this.props.hintLabel ? <span style={{ display: 'block', fontSize: '0.75em', color: 'gray' }}>{this.props.hintLabel}</span> : null]}
+        label={[this.props.label, this.props.hintLabel
+          ? <span id="checkbox-hint" style={{ display: 'block', fontSize: '0.75em', color: 'gray' }}>{this.props.hintLabel}</span> : null]}
         checked={this.props[this.props.settingsKey]}
         onCheck={this.onChange}
         style={{
