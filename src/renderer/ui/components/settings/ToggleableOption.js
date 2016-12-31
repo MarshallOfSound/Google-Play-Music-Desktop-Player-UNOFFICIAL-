@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 import Checkbox from 'material-ui/Checkbox';
 
 import SettingsProvider from '../generic/SettingsProvider';
@@ -12,10 +13,6 @@ class SettingsCheckbox extends Component {
     muiTheme: PropTypes.object,
   };
 
-  static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
-  };
-
   onChange = (event, isChecked) => {
     this.props.setSetting(this.props.settingsKey, isChecked);
   }
@@ -25,7 +22,7 @@ class SettingsCheckbox extends Component {
       <span>
         {this.props.label}
         {this.props.hintLabel
-          ? <span className="settings-toggle-hint-label" style={{ color: this.context.muiTheme.palette.disabledColor }}>{this.props.hintLabel}</span>
+          ? <span className="settings-toggle-hint-label" style={{ color: this.props.muiTheme.palette.disabledColor }}>{this.props.hintLabel}</span>
           : null}
       </span>
     );
@@ -46,6 +43,8 @@ class SettingsCheckbox extends Component {
   }
 }
 
+const ThemedSettingsCheckbox = muiThemeable()(SettingsCheckbox);
+
 export default class ToggleableOption extends Component {
   static propTypes = {
     label: PropTypes.string.isRequired,
@@ -61,7 +60,7 @@ export default class ToggleableOption extends Component {
     };
 
     return (
-      <SettingsProvider component={SettingsCheckbox} componentProps={checkboxProps} keys={[this.props.settingsKey]} defaults={{}} />
+      <SettingsProvider component={ThemedSettingsCheckbox} componentProps={checkboxProps} keys={[this.props.settingsKey]} defaults={{}} />
     );
   }
 }
