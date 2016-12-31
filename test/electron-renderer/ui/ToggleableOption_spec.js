@@ -29,6 +29,12 @@ describe('<ToggleableOption />', () => {
     component.find(Checkbox).length.should.be.equal(1);
   });
 
+  it('should render a checkbox with a hint', () => {
+    const component = mount(<ToggleableOption label="Test Label" hintLabel="This is a hint" settingsKey="foo" />, materialUIContext);
+    component.find('.settings-toggle-hint-label').length.should.be.equal(1);
+    component.find('.settings-toggle-hint-label').text().should.be.equal('This is a hint');
+  });
+
   it('should render a checkbox with the correct default value', () => {
     const component = mount(<ToggleableOption label="Test Label" settingsKey="foo" />, materialUIContext);
     component.find(Checkbox).props().checked.should.be.ok;
