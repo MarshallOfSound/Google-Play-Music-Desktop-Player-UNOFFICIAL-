@@ -102,6 +102,10 @@
   "settings-options-style-main-app": "Aplicativo Principal",
   "settings-options-style-gpm": "Google Play Música",
   "settings-options-style-refresh": "Recarregar estilos",
+  "settings-options-style-dialog-title": "",
+  "settings-options-style-dialog-button": "",
+  "settings-options-style-dialog-css-files": "",
+  "settings-options-style-dialog-all-files": "",
 
   "title-color-picker": "Paleta de cores",
   "title-settings": "Configurações",

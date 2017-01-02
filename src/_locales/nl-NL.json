@@ -102,6 +102,10 @@
   "settings-options-style-main-app": "",
   "settings-options-style-gpm": "",
   "settings-options-style-refresh": "",
+  "settings-options-style-dialog-title": "",
+  "settings-options-style-dialog-button": "",
+  "settings-options-style-dialog-css-files": "",
+  "settings-options-style-dialog-all-files": "",
 
   "title-color-picker": "kleurenkiezer",
   "title-settings": "Instellingen",

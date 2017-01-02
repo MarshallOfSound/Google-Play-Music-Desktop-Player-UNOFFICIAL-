@@ -102,6 +102,10 @@
   "settings-options-style-main-app": "Стили приложения",
   "settings-options-style-gpm": "Стили сервиса GPM",
   "settings-options-style-refresh": "Перезагрузить стили",
+  "settings-options-style-dialog-title": "",
+  "settings-options-style-dialog-button": "",
+  "settings-options-style-dialog-css-files": "",
+  "settings-options-style-dialog-all-files": "",
 
   "title-color-picker": "Выбор цвета",
   "title-settings": "Настройки программы",
