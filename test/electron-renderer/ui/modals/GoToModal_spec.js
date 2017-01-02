@@ -8,6 +8,8 @@ import GoToModal from '../../../../build/renderer/ui/components/modals/GoToModal
 
 import createModalTest from './_createModalTest';
 
+window.Promise = Promise;
+
 chai.should();
 
 createModalTest(GoToModal, ['gotourl'], [], [], () => {}, (_c) => {
@@ -72,6 +74,52 @@ createModalTest(GoToModal, ['gotourl'], [], [], () => {}, (_c) => {
     instance._onKeyUp({ which: 13 });
     fired.should.have.property('generateDebugInfo');
     fired.generateDebugInfo.should.be.ok;
+  });
+
+  describe('stubbed fetch', () => {
+    beforeEach(() => {
+      sinon.stub(window, 'fetch');
+    });
+
+    afterEach(() => {
+      window.fetch.restore();
+    });
+
+    describe('making a fetch request', () => {
+      beforeEach(() => {
+        const fakeRedirect = () =>
+          Promise.resolve({
+            url: 'http://google.com/redirected',
+            status: 301,
+          });
+
+        const fakeOk = () =>
+          Promise.resolve({
+            url: 'https://play.google.com/music/listen#/album/Brktxc3e6ajhek4mxpmaa3quksu',
+            status: 200,
+          });
+
+        window.fetch.onFirstCall().returns(fakeRedirect());
+        window.fetch.onSecondCall().returns(fakeRedirect());
+        window.fetch.onThirdCall().returns(fakeOk());
+      });
+
+      given(['https://goo.gl/UFT1HU', 'https://goo.gl/ySV9WV'])
+      .it('should emit the navigate event if it is a valid redirected GPM URL', (url) => {
+        const { component, fired } = _c;
+        const instance = component.instance();
+        const resolveURLSpy = sinon.spy(instance, 'resolveURL');
+        const goToURLSpy = sinon.spy(instance, 'goToURL');
+        const validURLSpy = sinon.spy(instance, 'validURL');
+        instance.attemptToResolveURL(url).then(() => {
+          resolveURLSpy.callCount.should.be.equal(1);
+          goToURLSpy.callCount.should.be.equal(1);
+          validURLSpy.callCount.should.be.equal(1);
+          fired.should.have.property('navigate:gotourl');
+          fired['navigate:gotourl'][0][0].should.not.be.equal(url);
+        });
+      });
+    });
   });
 
   describe('when stubbed', () => {

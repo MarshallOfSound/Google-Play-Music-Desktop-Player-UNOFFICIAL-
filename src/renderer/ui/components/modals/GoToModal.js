@@ -42,7 +42,7 @@ export default class GoToModal extends Component {
   }
 
   resolveURL = (url) => {
-    const doResolve = (urlToResolve, priorURL, redirectCount) => {
+    const doResolve = (urlToResolve, redirectCount) => {
       if (redirectCount === 0) {
         return Promise.reject(new Error('Too many redirects'));
       }
@@ -52,19 +52,15 @@ export default class GoToModal extends Component {
       });
       return fetch(request)
         .then((response) => {
-          console.log(urlToResolve, response.url, redirectCount);
-          if (response.url === priorURL) {
+          if (response.status === 200) {
             return Promise.resolve(response.url);
           }
-          return doResolve(response.url, urlToResolve, redirectCount - 1);
+          return doResolve(response.url, redirectCount - 1);
         })
-        .catch((err) => {
-          console.error(err);
-          return Promise.reject(new Error(err));
-        });
+        .catch((err) => Promise.reject(err));
     };
 
-    return doResolve(url, url, 10);
+    return doResolve(url, 10);
   }
 
   validURL = (url) => /https:\/\/play\.google\.com\/music/g.test(url);
@@ -73,6 +69,15 @@ export default class GoToModal extends Component {
     Emitter.fireAtGoogle('navigate:gotourl', url);
     this.handleClose();
   }
+
+  attemptToResolveURL = (url) =>
+    this.resolveURL(url)
+      .then((resolvedURL) => {
+        if (!this.validURL(resolvedURL)) return Promise.reject(resolvedURL);
+        this.goToURL(resolvedURL);
+        return Promise.resolve(resolvedURL);
+      })
+    .catch((err) => Promise.reject(err));
 
   parseURL = (url) => {
     if (url === 'DEV_MODE') {
@@ -94,14 +99,7 @@ export default class GoToModal extends Component {
         this.goToURL(url);
       } else {
         // attempt to resolve the URL and test again
-        this.resolveURL(url)
-          .then((resolvedURL) => {
-            if (!this.validURL(resolvedURL)) return;
-            this.goToURL(resolvedURL);
-          })
-          .catch((err) => {
-            console.error(err);
-          });
+        this.attemptToResolveURL(url);
       }
     }
   }
