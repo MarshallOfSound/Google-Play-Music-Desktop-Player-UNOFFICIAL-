@@ -10,8 +10,6 @@ import GoToModal from '../../../../build/renderer/ui/components/modals/GoToModal
 
 import createModalTest from './_createModalTest';
 
-window.Promise = Promise;
-
 chai.use(chaiAsPromised);
 chai.should();
 
@@ -105,8 +103,7 @@ createModalTest(GoToModal, ['gotourl'], [], [], () => {}, (_c) => {
       window.fetch.restore();
     });
 
-    given(['https://goo.gl/UFT1HU', 'https://goo.gl/ySV9WV'])
-    .it('should emit the navigate event if it is a valid redirected GPM URL', (url) => {
+    given(['https://goo.gl/UFT1HU', 'https://goo.gl/ySV9WV']).it('should emit the navigate event if it is a valid redirected GPM URL', (url) => { // eslint-disable-line
       const { component, fired } = _c;
       const instance = component.instance();
       const resolveURLSpy = sinon.spy(instance, 'resolveURL');
@@ -141,6 +138,35 @@ createModalTest(GoToModal, ['gotourl'], [], [], () => {}, (_c) => {
 
       return instance.attemptToResolveURL('https://www.not.google/play/music')
         .catch(() => {
+          resolveURLSpy.callCount.should.be.equal(1);
+          validURLSpy.callCount.should.be.equal(1);
+          goToURLSpy.callCount.should.be.equal(0);
+          fired.should.not.have.property('navigate:gotourl');
+          return Promise.reject('rejected');
+        }).should.be.rejected;
+    });
+
+    it('should fail if the URL is redirected too many times', () => {
+      const fakeRedirect = () =>
+        Promise.resolve({
+          url: 'http://google.com/redirected',
+          status: 301,
+        });
+
+      const { component, fired } = _c;
+      const instance = component.instance();
+
+      // setup the stub to trigger on our test payload
+      const request = instance.createRequest('https://play.google.com/music/redirectforever');
+      window.fetch.withArgs(request).returns(fakeRedirect());
+
+      const resolveURLSpy = sinon.spy(instance, 'resolveURL');
+      const goToURLSpy = sinon.spy(instance, 'goToURL');
+      const validURLSpy = sinon.spy(instance, 'validURL');
+
+      return instance.attemptToResolveURL('https://play.google.com/music/redirectforever')
+        .catch((err) => {
+          err.should.be.eq(new Error('Too many redirects'));
           resolveURLSpy.callCount.should.be.equal(1);
           validURLSpy.callCount.should.be.equal(1);
           goToURLSpy.callCount.should.be.equal(0);
