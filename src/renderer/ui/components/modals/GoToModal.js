@@ -41,15 +41,18 @@ export default class GoToModal extends Component {
     }
   }
 
+  createRequest = (urlToResolve) =>
+    new Request(urlToResolve, {
+      method: 'HEAD',
+      redirect: 'follow',
+    });
+
   resolveURL = (url) => {
     const doResolve = (urlToResolve, redirectCount) => {
       if (redirectCount === 0) {
         return Promise.reject(new Error('Too many redirects'));
       }
-      const request = new Request(urlToResolve, {
-        method: 'HEAD',
-        redirect: 'follow',
-      });
+      const request = this.createRequest(urlToResolve);
       return fetch(request)
         .then((response) => {
           if (response.status === 200) {

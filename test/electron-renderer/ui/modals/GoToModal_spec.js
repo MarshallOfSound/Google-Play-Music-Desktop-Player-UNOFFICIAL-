@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-expressions */
 import { remote } from 'electron';
 import chai, { expect } from 'chai';
+import chaiAsPromised from 'chai-as-promised';
+
 import sinon from 'sinon';
 import { given } from 'mocha-testdata';
 
@@ -10,6 +12,7 @@ import createModalTest from './_createModalTest';
 
 window.Promise = Promise;
 
+chai.use(chaiAsPromised);
 chai.should();
 
 createModalTest(GoToModal, ['gotourl'], [], [], () => {}, (_c) => {
@@ -76,49 +79,74 @@ createModalTest(GoToModal, ['gotourl'], [], [], () => {}, (_c) => {
     fired.generateDebugInfo.should.be.ok;
   });
 
-  describe('stubbed fetch', () => {
+  describe('stubbed fetch request', () => {
     beforeEach(() => {
       sinon.stub(window, 'fetch');
+
+      const fakeRedirect = () =>
+        Promise.resolve({
+          url: 'http://google.com/redirected',
+          status: 301,
+        });
+
+      const fakeOk = () =>
+        Promise.resolve({
+          url: 'https://play.google.com/music/listen#/album/Brktxc3e6ajhek4mxpmaa3quksu',
+          status: 200,
+        });
+
+      // setup mocks for fetch functionality (like redirects)
+      window.fetch.onFirstCall().returns(fakeRedirect());
+      window.fetch.onSecondCall().returns(fakeRedirect());
+      window.fetch.onThirdCall().returns(fakeOk());
     });
 
     afterEach(() => {
       window.fetch.restore();
     });
 
-    describe('making a fetch request', () => {
-      beforeEach(() => {
-        const fakeRedirect = () =>
-          Promise.resolve({
-            url: 'http://google.com/redirected',
-            status: 301,
-          });
-
-        const fakeOk = () =>
-          Promise.resolve({
-            url: 'https://play.google.com/music/listen#/album/Brktxc3e6ajhek4mxpmaa3quksu',
-            status: 200,
-          });
-
-        window.fetch.onFirstCall().returns(fakeRedirect());
-        window.fetch.onSecondCall().returns(fakeRedirect());
-        window.fetch.onThirdCall().returns(fakeOk());
+    given(['https://goo.gl/UFT1HU', 'https://goo.gl/ySV9WV'])
+    .it('should emit the navigate event if it is a valid redirected GPM URL', (url) => {
+      const { component, fired } = _c;
+      const instance = component.instance();
+      const resolveURLSpy = sinon.spy(instance, 'resolveURL');
+      const goToURLSpy = sinon.spy(instance, 'goToURL');
+      const validURLSpy = sinon.spy(instance, 'validURL');
+      instance.attemptToResolveURL(url).then(() => {
+        resolveURLSpy.callCount.should.be.equal(1);
+        validURLSpy.callCount.should.be.equal(1);
+        goToURLSpy.callCount.should.be.equal(1);
+        fired.should.have.property('navigate:gotourl');
+        fired['navigate:gotourl'][0][0].should.not.be.equal(url);
       });
+    });
 
-      given(['https://goo.gl/UFT1HU', 'https://goo.gl/ySV9WV'])
-      .it('should emit the navigate event if it is a valid redirected GPM URL', (url) => {
-        const { component, fired } = _c;
-        const instance = component.instance();
-        const resolveURLSpy = sinon.spy(instance, 'resolveURL');
-        const goToURLSpy = sinon.spy(instance, 'goToURL');
-        const validURLSpy = sinon.spy(instance, 'validURL');
-        instance.attemptToResolveURL(url).then(() => {
-          resolveURLSpy.callCount.should.be.equal(1);
-          goToURLSpy.callCount.should.be.equal(1);
-          validURLSpy.callCount.should.be.equal(1);
-          fired.should.have.property('navigate:gotourl');
-          fired['navigate:gotourl'][0][0].should.not.be.equal(url);
+    it('should not emit the navigate event if it is an invalid redirected GPM URL', () => {
+      const fakeInvalidURL = () =>
+        Promise.resolve({
+          url: 'https://not.a.valid.gpm.url',
+          status: 200,
         });
-      });
+
+      const { component, fired } = _c;
+      const instance = component.instance();
+
+      // setup the stub to trigger on our test payload
+      const request = instance.createRequest('https://www.not.google/play/music');
+      window.fetch.withArgs(request).returns(fakeInvalidURL());
+
+      const resolveURLSpy = sinon.spy(instance, 'resolveURL');
+      const goToURLSpy = sinon.spy(instance, 'goToURL');
+      const validURLSpy = sinon.spy(instance, 'validURL');
+
+      return instance.attemptToResolveURL('https://www.not.google/play/music')
+        .catch(() => {
+          resolveURLSpy.callCount.should.be.equal(1);
+          validURLSpy.callCount.should.be.equal(1);
+          goToURLSpy.callCount.should.be.equal(0);
+          fired.should.not.have.property('navigate:gotourl');
+          return Promise.reject('rejected');
+        }).should.be.rejected;
     });
   });
 
