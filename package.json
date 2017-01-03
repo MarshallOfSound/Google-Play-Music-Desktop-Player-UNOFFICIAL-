@@ -97,7 +97,7 @@
     "chai-as-promised": "^5.3.0",
     "chai-fs": "chaijs/chai-fs",
     "coveralls": "^2.11.12",
-    "cross-env": "^2.0.1",
+    "cross-env": "^3.1.4",
     "devtron": "^1.0.1",
     "electron-devtools-installer": "^2.0.1",
     "electron-mocha": "^3.0.0",
