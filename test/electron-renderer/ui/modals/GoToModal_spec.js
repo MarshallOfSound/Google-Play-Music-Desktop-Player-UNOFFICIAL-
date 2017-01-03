@@ -77,7 +77,7 @@ createModalTest(GoToModal, ['gotourl'], [], [], () => {}, (_c) => {
     fired.generateDebugInfo.should.be.ok;
   });
 
-  describe('stubbed fetch request', () => {
+  describe('when making stubbed fetch requests', () => {
     beforeEach(() => {
       sinon.stub(window, 'fetch');
 
