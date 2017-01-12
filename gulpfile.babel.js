@@ -16,9 +16,9 @@ import packager from 'electron-packager';
 import nodePath from 'path';
 import replace from 'gulp-replace';
 import runSequence from 'run-sequence';
+import electronWindowsStore from 'electron-windows-store';
 // import uglify from 'gulp-uglify';
-
-import rebuild from './vendor/rebuild';
+import rebuild from 'electron-rebuild';
 
 const paths = {
   internalScripts: ['src/**/*.js'],
@@ -46,6 +46,7 @@ const defaultPackageConf = {
   'app-category-type': 'public.app-category.music',
   'app-copyright': `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
   'app-version': packageJSON.version,
+  afterCopy: [(buildPath, electronVersion, pPlatform, pArch, done) => rebuild(buildPath, electronVersion, pArch).then(() => done()).catch(done)],
   arch: 'all',
   asar: true,
   'build-version': packageJSON.version,
@@ -59,6 +60,7 @@ const defaultPackageConf = {
       () => /^\/electron-packager\//g,
       // Ignore electron
       () => /^\/node_modules\/electron\//g,
+      () => /^\/node_modules\/electron$/g,
       // Ignore debug files
       () => /^\/node_modules\/.*\.pdb/g,
       // Ignore native module obj files
@@ -84,7 +86,7 @@ const defaultPackageConf = {
   overwrite: true,
   platform: 'all',
   prune: true,
-  version,
+  electronVersion: version,
   win32metadata: {
     CompanyName: packageJSON.author.name,
     FileDescription: packageJSON.productName,
@@ -267,19 +269,15 @@ gulp.task('watch', ['build'], () => {
 });
 
 gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
-  rebuild('rebuild_ia32.bat')
-    .then(() => {
-      packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), (err) => {
-        if (err) return done(err);
-        setTimeout(() => {
-          const packageExePath = `dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe`;
-          windowsSignFile(packageExePath, 'sha1')
-          .then(() => windowsSignFile(packageExePath, 'sha256'))
-          .then(() => done());
-        }, 1000);
-      });
-    })
-    .catch((err) => done(err));
+  packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), (err) => {
+    if (err) return done(err);
+    setTimeout(() => {
+      const packageExePath = `dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe`;
+      windowsSignFile(packageExePath, 'sha1')
+      .then(() => windowsSignFile(packageExePath, 'sha256'))
+      .then(() => done());
+    }, 1000);
+  });
 });
 
 gulp.task('make:win', ['package:win'], (done) => {
@@ -293,12 +291,24 @@ gulp.task('make:win', ['package:win'], (done) => {
     .catch((err) => done(err));
 });
 
+gulp.task('make:win:uwp', ['package:win'], (done) => {
+  electronWindowsStore({
+    containerVirtualization: false,
+    inputDirectory: nodePath.resolve(__dirname, `dist/${packageJSON.productName}-win32-ia32`),
+    outputDirectory: nodePath.resolve(__dirname, 'dist/uwp'),
+    flatten: true,
+    packageVersion: `${packageJSON.version}.0`,
+    packageName: 'GPMDP',
+    packageDisplayName: packageJSON.productName,
+    packageDescription: packageJSON.description,
+    packageExecutable: `app\\${packageJSON.productName}.exe`,
+    publisher: 'CN=marshallca',
+    assets: 'build\\assets\\img\\assets',
+  }).then(() => done()).catch(done);
+});
+
 gulp.task('package:darwin', ['clean-dist-darwin', 'build-release'], (done) => {
-  rebuild('./rebuild_null.sh')
-    .then(() => {
-      packager(_.extend({}, defaultPackageConf, { platform: 'darwin', 'osx-sign': { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
-    })
-    .catch((err) => done(err));
+  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', 'osx-sign': { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
 });
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {
@@ -332,17 +342,11 @@ gulp.task('dmg:darwin', ['package:darwin'], (done) => {
 });
 
 gulp.task('package:linux:32', ['clean-dist-linux-32', 'build-release'], (done) => {
-  rebuild('./rebuild_ia32.sh')
-    .then(() => {
-      packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }), done);
-    });
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }), done);
 });
 
 gulp.task('package:linux:64', ['clean-dist-linux-64', 'build-release'], (done) => {
-  rebuild('./rebuild.sh')
-    .then(() => {
-      packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }), done);
-    });
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }), done);
 });
 
 gulp.task('package:linux', (done) => {

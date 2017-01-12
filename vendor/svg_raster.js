@@ -14,7 +14,9 @@ mkdirp.sync(basePath);
 mkdirp.sync(targetPath);
 
 const fileMappings = {
-  vector_logo: [{ name: 'main', width: 1024, height: 1024 }],
+  vector_logo: [{ name: 'main', width: 1024, height: 1024 }, { name: 'assets/SampleAppx.44x44', width: 44, height: 44 },
+                { name: 'assets/SampleAppx.50x50', width: 50, height: 50 }, { name: 'assets/SampleAppx.150x150', width: 150, height: 150 },
+                { name: 'assets/SampleAppx.310x310', width: 310, height: 310 }, { name: 'assets/SampleAppx.310x150', width: 310, height: 150 }],
   vector_logo_tray: [{ name: 'main_tray', width: 1024, height: 1024 }, { name: 'main_tray_s', width: 128, height: 128 }],
   vector_logo_tray_transparent: [{ name: 'main_tray_transparent_s', width: 128, height: 128 }],
 };
@@ -87,7 +89,10 @@ module.exports = (cb) => {
         if (!fs.existsSync(filePath)) return;
         fs.readFile(filePath)
             .then((src) => svg2png(src, { width: targetFile.width, height: targetFile.height }))
-            .then(buffer => fs.writeFile(path.resolve(typeTargetPath, `${targetFile.name}.png`), buffer))
+            .then(buffer => {
+              mkdirp.sync(path.dirname(path.resolve(typeTargetPath, `${targetFile.name}.png`)));
+              return fs.writeFile(path.resolve(typeTargetPath, `${targetFile.name}.png`), buffer);
+            })
             .then(doIcons.bind(this, type, typeTargetPath))
             .catch(e => console.error(e));
       });
