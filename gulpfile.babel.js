@@ -19,6 +19,7 @@ import runSequence from 'run-sequence';
 import electronWindowsStore from 'electron-windows-store';
 // import uglify from 'gulp-uglify';
 import rebuild from 'electron-rebuild';
+import rasterImages from './vendor/svg_raster';
 
 const paths = {
   internalScripts: ['src/**/*.js'],
@@ -231,16 +232,7 @@ gulp.task('copy-static-images', ['clean-images'], () => {
 });
 
 gulp.task('images', ['copy-static-images'], (done) => {
-  const child = spawn(process.execPath, ['vendor/svg_raster.js', '--instant'],
-    {
-      cwd: './',
-    });
-
-  child.stdout.on('data', () => {});
-
-  child.stderr.on('data', () => {});
-
-  child.on('close', () => done());
+  rasterImages(done);
 });
 
 gulp.task('build-release', ['build'], () => {

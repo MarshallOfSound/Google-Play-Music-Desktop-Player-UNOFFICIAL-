@@ -9,3 +9,5 @@ vendor/*.msi
 electron.xml
 spectron.xml
 coverage.zip
+uwp/
+.vscode/

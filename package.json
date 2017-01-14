@@ -24,7 +24,7 @@
     "package:linux:32": "gulp package:linux:32",
     "package:linux:64": "gulp package:linux:64",
     "package:win": "gulp package:win",
-    "postinstall": "node vendor/rebuild.js --instant",
+    "postinstall": "electron-rebuild --types=prod,optioanl",
     "test": "npm run lint",
     "pretest-electron": "npm run build",
     "pretest-electron-coverage": "cross-env NODE_ENV=coverage npm run build",
@@ -147,6 +147,10 @@
     "svg2png": "^4.0.0"
   },
   "optionalDependencies": {
+    "@nodert-win10/windows.foundation": "^0.2.95",
+    "@nodert-win10/windows.media": "^0.2.95",
+    "@nodert-win10/windows.media.playback": "^0.2.95",
+    "@nodert-win10/windows.storage.streams": "^0.2.95",
     "appdmg": "^0.4.5",
     "mouse-forward-back": "^1.0.1",
     "dbus": "GPMDP/node-dbus#linux-only",
