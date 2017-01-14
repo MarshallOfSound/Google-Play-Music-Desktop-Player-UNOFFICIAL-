@@ -63,7 +63,7 @@
   "playback-label-volume-down": "Уменьшить громкость",
   "playback-label-volume-up": "Увеличить громкость",
 
-  "settings-option-invert-tray-icon": "",
+  "settings-option-invert-tray-icon": "Инвертировать цвет иконки в трее",
 
   "settings-option-custom-theme": "Своя тема оформления",
   "settings-option-custom-theme-choose-color": "Выберите основной цвет вашей темы",
@@ -80,14 +80,14 @@
   "settings-option-enable-voice": "Включить голосовое управление",
   "settings-option-enable-voice-details": "Голосовое управление для GPMDP, экспериментальная функция",
   "settings-option-enable-taskbar-progress": "Показывать позицию воспроизведения в панели задач",
-  "settings-option-change-locale": "",
+  "settings-option-change-locale": "Язык программы",
 
   "settings-option-hotkey-explanation": "Стандартные мультимедийные кнопки всё равно будут работать, независимо от дополнительных, представленных ниже.",
   "settings-option-hotkey-explanation-2": "Используйте <i>\"Esc\"</i>, чтобы сбросить значение.",
 
   "settings-option-min-to-tray": "Сворачивать в трей при закрытии",
 
-  "settings-option-prevent-display-sleep": "",
+  "settings-option-prevent-display-sleep": "Не давать компьютеру заснуть при открытом GPMDP",
   "settings-option-auto-launch": "Запускать автоматически при включениии компьютера",
 
   "settings-option-save-page": "При запуске автоматически открывать последнюю просмотренную страницу",
@@ -98,14 +98,14 @@
   "settings-option-mini-ontop": "Всегда наверху",
   "settings-option-mini-use-scroll-volume": "Управление громкостью колесом мыши",
 
-  "settings-options-style-description": "Выберите CSS-файл для инъекции стилей в приложение",
+  "settings-options-style-description": "Выберите локальный CSS-файл для инъекции стилей в приложение",
   "settings-options-style-main-app": "Стили приложения",
   "settings-options-style-gpm": "Стили сервиса GPM",
   "settings-options-style-refresh": "Перезагрузить стили",
-  "settings-options-style-dialog-title": "",
-  "settings-options-style-dialog-button": "",
-  "settings-options-style-dialog-css-files": "",
-  "settings-options-style-dialog-all-files": "",
+  "settings-options-style-dialog-title": "Выберите файл CSS",
+  "settings-options-style-dialog-button": "Загрузить CSS",
+  "settings-options-style-dialog-css-files": "Файлы CSS",
+  "settings-options-style-dialog-all-files": "Все файлы",
 
   "title-color-picker": "Выбор цвета",
   "title-settings": "Настройки программы",
