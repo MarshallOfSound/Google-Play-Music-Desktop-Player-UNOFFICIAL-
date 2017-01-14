@@ -41,7 +41,9 @@ module.exports = (cb) => {
         toIco([fs.readFileSync(path.resolve(targetPath, 'main.png'))], {
           resize: true,
           sizes: [16, 24, 32, 48, 64, 128, 256],
-        }).then(buf => fs.writeFileSync(path.resolve(targetPath, 'main.ico'), buf)).then(() => done()).catch(err => console.error(err));
+        }).then(buf => fs.writeFileSync(path.resolve(targetPath, 'main.ico'), buf))
+          .then(() => done())
+          .catch(err => console.error(err));
       } else {
         done();
       }
