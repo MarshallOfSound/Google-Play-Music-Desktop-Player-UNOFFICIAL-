@@ -57,6 +57,8 @@ const defaultPackageConf = {
     const tests = [
       // Ignore git directory
       () => /^\/\.git\/.*/g,
+      // Ignore uwp directory
+      () => /^\/\uwp\/.*/g,
       // Ignore electron-packager on Docker machines
       () => /^\/electron-packager\//g,
       // Ignore electron

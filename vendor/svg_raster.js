@@ -1,11 +1,11 @@
 'use strict'; // eslint-disable-line
 
 const fs = require('pn/fs');
-const iconGen = require('icon-gen');
 const Jimp = require('jimp');
 const mkdirp = require('mkdirp');
 const path = require('path');
 const svg2png = require('svg2png');
+const toIco = require('to-ico');
 
 const basePath = path.resolve(__dirname, '..', 'src/assets/icons/svg');
 const targetPath = path.resolve(__dirname, '..', 'build/assets/img');
@@ -28,27 +28,23 @@ module.exports = (cb) => {
   let counter = 0;
   const doIcons = () => {
     i++;
-    if (i === 10) {
+    if (i === 15) {
       const jimpOutFiles = ['main_tray_black_s', 'main_tray_white_s', 'macTemplate@5x', 'macTemplate@2x', 'macTemplate'];
 
       const done = () => {
         counter++;
-        if (counter === (jimpOutFiles.length * 3) + 1) return cb();
+        if (counter === 16) return cb();
       };
 
-      let p = Promise.resolve();
       // Generate ico and icns files
       if (!fs.existsSync(path.resolve(targetPath, 'main.ico'))) {
-        p = iconGen(path.resolve(basePath, 'vector_logo.svg'), targetPath, {
-          type: 'svg',
-          names: {
-            ico: 'main',
-            icns: 'main',
-          },
-          modes: ['ico'],
-        });
+        toIco([fs.readFileSync(path.resolve(targetPath, 'main.png'))], {
+          resize: true,
+          sizes: [16, 24, 32, 48, 64, 128, 256],
+        }).then(buf => fs.writeFileSync(path.resolve(targetPath, 'main.ico'), buf)).then(() => done()).catch(err => console.error(err));
+      } else {
+        done();
       }
-      p.then(() => done());
 
       types.forEach((type) => {
         const typeTargetPath = type ? path.resolve(targetPath, type) : targetPath;
