@@ -71,6 +71,16 @@ Emitter.on('settings:set', (event, details) => {
   Settings.set(details.key, details.value);
   // DEV: React to settings change
   switch (details.key) {
+    case 'minToTray':
+      if (details.value === true) {
+        Settings.set('hideTrayIcon', false);
+      }
+      break;
+    case 'hideTrayIcon':
+      if (details.value === true) {
+        Settings.set('minToTray', false);
+      }
+      break;
     case 'miniAlwaysShowSongInfo':
       Emitter.sendToGooglePlayMusic('miniAlwaysShowSongInfo', { state: details.value });
       break;

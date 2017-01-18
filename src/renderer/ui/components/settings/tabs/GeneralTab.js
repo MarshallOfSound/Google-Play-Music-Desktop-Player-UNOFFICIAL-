@@ -16,6 +16,7 @@ class GeneralTab extends Component {
     return (
       <SettingsTabWrapper>
         <ToggleableOption label={TranslationProvider.query('settings-option-min-to-tray')} settingsKey={"minToTray"} />
+        <ToggleableOption label={TranslationProvider.query('settings-option-show-tray-icon')} settingsKey={"hideTrayIcon"} />
         <PlatformSpecific platform="linux">
           <ToggleableOption label={TranslationProvider.query('settings-option-invert-tray-icon')} settingsKey={"appIconInvert"} />
         </PlatformSpecific>

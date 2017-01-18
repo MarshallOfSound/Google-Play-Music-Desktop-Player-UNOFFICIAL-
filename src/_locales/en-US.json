@@ -86,6 +86,7 @@
   "settings-option-hotkey-explanation-2": "Use the <i>\"Escape\"</i> key to reset the hotkey.",
 
   "settings-option-min-to-tray": "Minimize to Tray",
+  "settings-option-show-tray-icon": "Hide tray icon",
 
   "settings-option-prevent-display-sleep": "Stop your computer from sleeping while GPMDP is open",
   "settings-option-auto-launch": "Automatically launch when I turn my computer on",
