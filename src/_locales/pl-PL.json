@@ -86,6 +86,7 @@
   "settings-option-hotkey-explanation-2": "Użyj klawisza <i>\"Escape\"</i> żeby zresetować ustawienia.",
 
   "settings-option-min-to-tray": "Minimalizuj do paska narzędzi",
+  "settings-option-show-tray-icon": "",
 
   "settings-option-prevent-display-sleep": "Zabroń komputerowi przechodzenia w stan uśpienia podczas działania GPMDP",
   "settings-option-auto-launch": "Włącz aplikację podczas uruchamiania systemu",

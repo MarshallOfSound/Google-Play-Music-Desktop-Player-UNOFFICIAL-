@@ -86,6 +86,7 @@
   "settings-option-hotkey-explanation-2": "Použite klávesu <i>\"Escape\"</i> pre obnovenie skratky.",
 
   "settings-option-min-to-tray": "Minimalizovať do panela",
+  "settings-option-show-tray-icon": "",
 
   "settings-option-prevent-display-sleep": "Zabrániť počítaču prejsť do režimu spánku pokiaľ je GPMDP otvorený",
   "settings-option-auto-launch": "Spustiť automaticky pri štarte systému",

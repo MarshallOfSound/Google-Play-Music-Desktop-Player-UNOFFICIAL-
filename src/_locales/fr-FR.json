@@ -86,6 +86,7 @@
   "settings-option-hotkey-explanation-2": "Utilise la touche <i>\"Echap\"</i> pour réinitialiser les touches de raccourci.",
 
   "settings-option-min-to-tray": "Minimiser vers le système de notification",
+  "settings-option-show-tray-icon": "",
 
   "settings-option-prevent-display-sleep": "",
   "settings-option-auto-launch": "Lancer automatiquement au démarrage de l'ordinateur",

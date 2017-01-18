@@ -86,6 +86,7 @@
   "settings-option-hotkey-explanation-2": "Zum Zurücksetzen der Tastenkombination benutze die <i>\"Escape\"</i>-Taste.",
 
   "settings-option-min-to-tray": "In den Infobereich minimieren",
+  "settings-option-show-tray-icon": "",
 
   "settings-option-prevent-display-sleep": "Automatisches Abschalten des Bildschirms verhindern, solange GPMDP geöffnet ist",
   "settings-option-auto-launch": "Automatisch starten, wenn mein Computer hochfährt",
