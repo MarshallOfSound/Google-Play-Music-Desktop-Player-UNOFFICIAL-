@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import os from 'os';
 import { requireSettings } from '../../generic/SettingsProvider';
 
 import LocaleSelector from '../LocaleSelector';
@@ -46,6 +47,17 @@ class GeneralTab extends Component {
         <PlatformSpecific platform="win32">
           <ToggleableOption label={TranslationProvider.query('settings-option-enable-taskbar-progress')} settingsKey={"enableTaskbarProgress"} />
         </PlatformSpecific>
+        {
+            os.release().startsWith('10.') ?
+            <PlatformSpecific platform="win32">
+              <ToggleableOption
+                label={TranslationProvider.query('settings-option-enable-win10-media-service')}
+                hintLabel={TranslationProvider.query('settings-option-enable-system-borders-details')}
+                settingsKey={"enableWin10MediaService"}
+              />
+            </PlatformSpecific>
+            : null
+          }
         <LocaleSelector />
       </SettingsTabWrapper>
     );

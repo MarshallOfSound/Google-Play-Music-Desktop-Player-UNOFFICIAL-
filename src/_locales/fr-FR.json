@@ -80,6 +80,7 @@
   "settings-option-enable-voice": "Activer les contrôles vocaux",
   "settings-option-enable-voice-details": "Contrôle mains-libre pour GPMDP, c'est expérimental",
   "settings-option-enable-taskbar-progress": "Afficher la progression du morceau dans la barre des tâches",
+  "settings-option-enable-win10-media-service": "",
   "settings-option-change-locale": "Choisir un langage",
 
   "settings-option-hotkey-explanation": "Les touches multimédias continueront à fonctionner malgré ces paramètres. Ceux-ci sont en complément des paramètres par défaut.",

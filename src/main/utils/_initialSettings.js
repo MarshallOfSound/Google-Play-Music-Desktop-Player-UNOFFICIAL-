@@ -10,4 +10,5 @@ export default {
   themeColor: '#2196F3',
   themeType: 'FULL',
   preventDisplaySleep: false,
+  enableWin10MediaService: false,
 };

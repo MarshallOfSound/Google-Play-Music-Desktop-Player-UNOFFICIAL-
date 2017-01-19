@@ -80,6 +80,7 @@
   "settings-option-enable-voice": "Включить голосовое управление",
   "settings-option-enable-voice-details": "Голосовое управление для GPMDP, экспериментальная функция",
   "settings-option-enable-taskbar-progress": "Показывать позицию воспроизведения в панели задач",
+  "settings-option-enable-win10-media-service": "",
   "settings-option-change-locale": "Язык программы",
 
   "settings-option-hotkey-explanation": "Стандартные мультимедийные кнопки всё равно будут работать, независимо от дополнительных, представленных ниже.",

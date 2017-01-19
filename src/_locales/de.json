@@ -80,6 +80,7 @@
   "settings-option-enable-voice": "Aktiviere Sprachsteuerung",
   "settings-option-enable-voice-details": "Sprachsteuerung für GPMDP, dies ist experimentell",
   "settings-option-enable-taskbar-progress": "Zeige den Fortschritt des Titels in der Taskleiste",
+  "settings-option-enable-win10-media-service": "",
   "settings-option-change-locale": "Wähle eine andere Sprache",
 
   "settings-option-hotkey-explanation": "Die grundlegenden Medientasten werden dennoch funktionieren.  Diese Einstellungen kommen zu den Standardeinstellungen hinzu.",

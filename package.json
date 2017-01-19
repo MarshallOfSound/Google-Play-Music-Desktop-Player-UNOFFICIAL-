@@ -38,7 +38,7 @@
     "posttest-electron-main-coverage": "npm run _remap",
     "posttest-electron-renderer-coverage": "npm run _remap",
     "test-spectron": "mocha ./test/spectron --compilers js:babel-core/register -R spec-xunit-file --timeout 10000",
-    "prestart": "pre-flight && node vendor/mac_patch_dev.js && electron-rebuild",
+    "prestart": "pre-flight && node vendor/mac_patch_dev.js && electron-rebuild --types=prod,optional",
     "start": "electron . --dev",
     "watch": "gulp watch",
     "_remap": "remap-istanbul -i coverage/coverage-final.json -o coverage -t html && remap-istanbul -i coverage/coverage-final.json -o coverage/lcov.info -t lcovonly",

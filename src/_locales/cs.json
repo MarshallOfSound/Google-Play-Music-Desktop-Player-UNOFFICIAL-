@@ -80,6 +80,7 @@
   "settings-option-enable-voice": "Povolit hlasové ovládání",
   "settings-option-enable-voice-details": "Ovládání GPMDP hlasem, experimentální funkce",
   "settings-option-enable-taskbar-progress": "Ukázat průběh skladby na hlavním panelu",
+  "settings-option-enable-win10-media-service": "",
   "settings-option-change-locale": "Vybrat jazyk (Language)",
 
   "settings-option-hotkey-explanation": "Výchozí multimediální tlačítka budou fungovat jako doposud. Toto nastavení je doplňkem k výchozímu.",

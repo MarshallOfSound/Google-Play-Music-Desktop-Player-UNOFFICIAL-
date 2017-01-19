@@ -80,6 +80,7 @@
   "settings-option-enable-voice": "Control with ye voice",
   "settings-option-enable-voice-details": "Hands free voice controls fer GPMDP, 'tis be experimental",
   "settings-option-enable-taskbar-progress": "Show track progress in th' taskbar",
+  "settings-option-enable-win10-media-service": "Tell ye' OS what track be playin'",
   "settings-option-change-locale": "Choose how ye speak",
 
   "settings-option-hotkey-explanation": "Default media keys gunna continue to set the sails regardless 'o these settin's. These settin's be in addition to th' defaults.",
