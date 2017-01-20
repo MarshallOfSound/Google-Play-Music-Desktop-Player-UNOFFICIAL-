@@ -49,13 +49,13 @@ class GeneralTab extends Component {
         </PlatformSpecific>
         {
             os.release().startsWith('10.') ?
-            <PlatformSpecific platform="win32">
-              <ToggleableOption
-                label={TranslationProvider.query('settings-option-enable-win10-media-service')}
-                hintLabel={TranslationProvider.query('settings-option-enable-system-borders-details')}
-                settingsKey={"enableWin10MediaService"}
-              />
-            </PlatformSpecific>
+              <PlatformSpecific platform="win32">
+                <ToggleableOption
+                  label={TranslationProvider.query('settings-option-enable-win10-media-service')}
+                  hintLabel={TranslationProvider.query('settings-option-enable-system-borders-details')}
+                  settingsKey={"enableWin10MediaService"}
+                />
+              </PlatformSpecific>
             : null
           }
         <LocaleSelector />
