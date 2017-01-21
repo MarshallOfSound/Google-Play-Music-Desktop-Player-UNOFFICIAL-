@@ -182,7 +182,7 @@ function createTray() {
     delete global.appIcon;
     appIcon = null;
   });
-};
+}
 
 Emitter.on('audiooutput:list', (event, devices) => {
   audioDeviceMenu = [];
