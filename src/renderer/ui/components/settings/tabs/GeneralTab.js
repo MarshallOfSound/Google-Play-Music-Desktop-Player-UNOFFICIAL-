@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import os from 'os';
 import { requireSettings } from '../../generic/SettingsProvider';
 
 import LocaleSelector from '../LocaleSelector';
@@ -39,7 +38,7 @@ class GeneralTab extends Component {
         />
         <ToggleableOption
           label={TranslationProvider.query('settings-option-enable-system-borders')}
-          hintLabel={TranslationProvider.query('settings-option-enable-system-borders-details')}
+          hintLabel={TranslationProvider.query('settings-requires-restart')}
           settingsKey={"nativeFrame"}
         />
         <ToggleableOption label={TranslationProvider.query('settings-option-save-page')} settingsKey={"savePage"} />
@@ -47,17 +46,15 @@ class GeneralTab extends Component {
         <PlatformSpecific platform="win32">
           <ToggleableOption label={TranslationProvider.query('settings-option-enable-taskbar-progress')} settingsKey={"enableTaskbarProgress"} />
         </PlatformSpecific>
-        {
-            os.release().startsWith('10.') ?
-              <PlatformSpecific platform="win32">
-                <ToggleableOption
-                  label={TranslationProvider.query('settings-option-enable-win10-media-service')}
-                  hintLabel={TranslationProvider.query('settings-option-enable-system-borders-details')}
-                  settingsKey={"enableWin10MediaService"}
-                />
-              </PlatformSpecific>
-            : null
-          }
+        <PlatformSpecific platform="win32" version="10.">
+          <ToggleableOption
+            label={TranslationProvider.query('settings-option-enable-win10-media-service')}
+            hintLabel={
+              `${TranslationProvider.query('settings-option-enable-win10-media-service-details')}. ${TranslationProvider.query('settings-requires-restart')}`
+            }
+            settingsKey={"enableWin10MediaService"}
+          />
+        </PlatformSpecific>
         <LocaleSelector />
       </SettingsTabWrapper>
     );

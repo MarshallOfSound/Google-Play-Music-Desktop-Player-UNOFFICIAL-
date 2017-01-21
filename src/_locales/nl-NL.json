@@ -63,6 +63,8 @@
   "playback-label-volume-down": "Harder",
   "playback-label-volume-up": "Zachter",
 
+  "settings-requires-restart": "Vereist herstart",
+
   "settings-option-invert-tray-icon": "",
 
   "settings-option-custom-theme": "Aangepast thema",
@@ -76,11 +78,11 @@
   "settings-option-enable-api-json": "Inschakelen JSON API",
   "settings-option-enable-api-details": "Dat laat andere toepassingen communiceren met GPMDP",
   "settings-option-enable-system-borders": "Gebruik systeemvensterranden",
-  "settings-option-enable-system-borders-details": "Vereist herstart",
   "settings-option-enable-voice": "Inschakelen spraakbesturing",
   "settings-option-enable-voice-details": "Handenvrije spraakbesturing voor GPMDP, dit is experimenteel",
   "settings-option-enable-taskbar-progress": "",
   "settings-option-enable-win10-media-service": "",
+  "settings-option-enable-win10-media-service-details": "",
   "settings-option-change-locale": "",
 
   "settings-option-hotkey-explanation": "Standaard mediatoetsen zullen blijven werken onafhankelijk van deze instellingen.  Deze instellingen zijn een toevoeging aan de standaard instellingen.",

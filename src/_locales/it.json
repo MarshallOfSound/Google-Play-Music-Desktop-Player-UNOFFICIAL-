@@ -63,6 +63,8 @@
   "playback-label-volume-down": "Abbassa il volume",
   "playback-label-volume-up": "Aumenta il volume",
 
+  "settings-requires-restart": "Richiede riavvio",
+
   "settings-option-invert-tray-icon": "Inverti il colore dell'icona nell'area di notifica",
 
   "settings-option-custom-theme": "Tema personalizzato",
@@ -76,11 +78,11 @@
   "settings-option-enable-api-json": "Abilita le API JSON",
   "settings-option-enable-api-details": "Permetti ad altre applicazioni di interfacciarsi con GPMDP",
   "settings-option-enable-system-borders": "Usa i bordi di sistema per le finestre",
-  "settings-option-enable-system-borders-details": "Richiede riavvio",
   "settings-option-enable-voice": "Abilita i controlli vocali",
   "settings-option-enable-voice-details": "Controlli vocali senza mani per GPMDP, questo è sperimentale",
   "settings-option-enable-taskbar-progress": "Mostra il progresso del brano nella barra delle applicazioni",
   "settings-option-enable-win10-media-service": "Abilita il System Media Service di Windows 10",
+  "settings-option-enable-win10-media-service-details": "",
   "settings-option-change-locale": "Seleziona lingua",
 
   "settings-option-hotkey-explanation": "I tasti multimediali predefiniti continueranno a funzionare indipendentemente da queste impostazioni.  Queste sono in aggiunta alle impostazioni predefinite.",

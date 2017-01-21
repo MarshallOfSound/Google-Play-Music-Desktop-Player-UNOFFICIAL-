@@ -33,7 +33,7 @@ class LocaleSelector extends Component {
           value={this.props.locale}
           onChange={this.onChooseLocale}
           floatingLabelText={
-            `${TranslationProvider.query('settings-option-change-locale')} (${TranslationProvider.query('settings-option-enable-system-borders-details')})`
+            `${TranslationProvider.query('settings-option-change-locale')} (${TranslationProvider.query('settings-requires-restart')})`
           }
           maxHeight={200}
           disabled={items.length === 0}
