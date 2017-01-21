@@ -36,7 +36,96 @@ let audioDeviceMenu = [
   },
 ];
 
-const createTray = () => {
+const contextMenu = Menu.buildFromTemplate([
+  { label: TranslationProvider.query('tray-label-show'),
+    click: () => {
+      mainWindow.setSkipTaskbar(false);
+      mainWindow.show();
+    },
+  },
+  { type: 'separator' },
+  {
+    label: TranslationProvider.query('playback-label-play-pause'),
+    click: () => Emitter.sendToGooglePlayMusic('playback:playPause'),
+  },
+  {
+    label: TranslationProvider.query('playback-label-previous-track'),
+    click: () => Emitter.sendToGooglePlayMusic('playback:previousTrack'),
+  },
+  {
+    label: TranslationProvider.query('playback-label-next-track'),
+    click: () => Emitter.sendToGooglePlayMusic('playback:nextTrack'),
+  },
+  { type: 'separator' },
+  {
+    label: TranslationProvider.query('playback-label-thumbs-up'),
+    click: () => Emitter.sendToGooglePlayMusic('playback:thumbsUp'),
+  },
+  {
+    label: TranslationProvider.query('playback-label-thumbs-down'),
+    click: () => Emitter.sendToGooglePlayMusic('playback:thumbsDown'),
+  },
+  { type: 'separator' },
+  {
+    label: TranslationProvider.query('tray-label-audio-device'),
+    submenu: audioDeviceMenu,
+  },
+  {
+    label: TranslationProvider.query('label-help'),
+    role: 'help',
+    submenu: [
+      {
+        label: TranslationProvider.query('label-about'),
+        click: () => {
+          Emitter.sendToWindowsOfName('main', 'about');
+        },
+      },
+      {
+        label: TranslationProvider.query('label-issues'),
+        click: () => shell.openExternal('https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues'),
+      },
+      {
+        label: TranslationProvider.query('label-donate'),
+        click: () => shell.openExternal('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ'),
+      },
+      {
+        label: TranslationProvider.query('label-learn-more'),
+        click: () => shell.openExternal('http://www.googleplaymusicdesktopplayer.com'),
+      },
+    ],
+  },
+  { label: TranslationProvider.query('label-desktop-settings'), click: () => { showDesktopSettings(); } },
+  { type: 'separator' },
+  { label: TranslationProvider.query('label-quit'), click: () => { global.quitting = true; app.quit(); } },
+]);
+
+// Tray icon toggle action (windows, linux)
+function toggleMainWindow() {
+  // the mainWindow variable will be GC'd
+  // we must find the window ourselves
+  const win = WindowManager.getAll('main')[0];
+  if (!win) return;
+
+  if (win.isMinimized() || !win.isVisible()) {
+    win.setSkipTaskbar(false);
+    win.show();
+    if (global.wasMaximized) {
+      win.maximize();
+    }
+  } else {
+    global.wasMaximized = Settings.get('maximized', false);
+    win.minimize();
+    if (WindowManager.getWindowManagerName() === 'i3') {
+      win.hide();
+    }
+    // Hide to tray, if configured
+    if (Settings.get('minToTray', true)) {
+      win.setSkipTaskbar(true);
+    }
+  }
+}
+
+function createTray() {
   appIcon = new Tray(getAppIconFileName());
 
   Settings.onChange('appIconInvert', (newValue) => {
@@ -62,101 +151,9 @@ const createTray = () => {
     appIcon.setImage(getAppIconFileName());
   });
 
-  const setContextMenu = () => {
-    const contextMenu = Menu.buildFromTemplate([
-      { label: TranslationProvider.query('tray-label-show'),
-        click: () => {
-          mainWindow.setSkipTaskbar(false);
-          mainWindow.show();
-        },
-      },
-      { type: 'separator' },
-      {
-        label: TranslationProvider.query('playback-label-play-pause'),
-        click: () => Emitter.sendToGooglePlayMusic('playback:playPause'),
-      },
-      {
-        label: TranslationProvider.query('playback-label-previous-track'),
-        click: () => Emitter.sendToGooglePlayMusic('playback:previousTrack'),
-      },
-      {
-        label: TranslationProvider.query('playback-label-next-track'),
-        click: () => Emitter.sendToGooglePlayMusic('playback:nextTrack'),
-      },
-      { type: 'separator' },
-      {
-        label: TranslationProvider.query('playback-label-thumbs-up'),
-        click: () => Emitter.sendToGooglePlayMusic('playback:thumbsUp'),
-      },
-      {
-        label: TranslationProvider.query('playback-label-thumbs-down'),
-        click: () => Emitter.sendToGooglePlayMusic('playback:thumbsDown'),
-      },
-      { type: 'separator' },
-      {
-        label: TranslationProvider.query('tray-label-audio-device'),
-        submenu: audioDeviceMenu,
-      },
-      {
-        label: TranslationProvider.query('label-help'),
-        role: 'help',
-        submenu: [
-          {
-            label: TranslationProvider.query('label-about'),
-            click: () => {
-              Emitter.sendToWindowsOfName('main', 'about');
-            },
-          },
-          {
-            label: TranslationProvider.query('label-issues'),
-            click: () => shell.openExternal('https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues'),
-          },
-          {
-            label: TranslationProvider.query('label-donate'),
-            click: () => shell.openExternal('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ'),
-          },
-          {
-            label: TranslationProvider.query('label-learn-more'),
-            click: () => shell.openExternal('http://www.googleplaymusicdesktopplayer.com'),
-          },
-        ],
-      },
-      { label: TranslationProvider.query('label-desktop-settings'), click: () => { showDesktopSettings(); } },
-      { type: 'separator' },
-      { label: TranslationProvider.query('label-quit'), click: () => { global.quitting = true; app.quit(); } },
-    ]);
-    appIcon.setContextMenu(contextMenu);
-  };
-  setContextMenu();
-
+  appIcon.setContextMenu(contextMenu);
 
   global.wasMaximized = Settings.get('maximized', false);
-
-  // Tray icon toggle action (windows, linux)
-  function toggleMainWindow() {
-    // the mainWindow variable will be GC'd
-    // we must find the window ourselves
-    const win = WindowManager.getAll('main')[0];
-    if (!win) return;
-
-    if (win.isMinimized() || !win.isVisible()) {
-      win.setSkipTaskbar(false);
-      win.show();
-      if (global.wasMaximized) {
-        win.maximize();
-      }
-    } else {
-      global.wasMaximized = Settings.get('maximized', false);
-      win.minimize();
-      if (WindowManager.getWindowManagerName() === 'i3') {
-        win.hide();
-      }
-      // Hide to tray, if configured
-      if (Settings.get('minToTray', true)) {
-        win.setSkipTaskbar(true);
-      }
-    }
-  }
 
   appIcon.setToolTip('Google Play Music Desktop Player');
 
@@ -185,42 +182,41 @@ const createTray = () => {
     delete global.appIcon;
     appIcon = null;
   });
-
-  Emitter.on('audiooutput:list', (event, devices) => {
-    audioDeviceMenu = [];
-    devices.forEach((device) => {
-      if (device.kind === 'audiooutput') {
-        let label = device.label;
-        if (!label) {
-          switch (device.deviceId) {
-            case 'default':
-              label = TranslationProvider.query('audio-device-default');
-              break;
-            case 'communications':
-              label = TranslationProvider.query('audio-device-communications');
-              break;
-            default:
-              label = TranslationProvider.query('audio-device-unknown');
-              break;
-          }
-        }
-        audioDeviceMenu.push({
-          label,
-          type: 'radio',
-          click: () => {
-            Emitter.sendToGooglePlayMusic('audiooutput:set', device.deviceId);
-            Settings.set('audiooutput', label);
-          },
-          checked: (label === Settings.get('audiooutput')),
-        });
-      }
-    });
-    setContextMenu();
-  });
-
-  Emitter.sendToGooglePlayMusic('audiooutput:fetch');
-  Emitter.on('audiooutput:set', () => Emitter.sendToGooglePlayMusic('audiooutput:fetch'));
 };
+
+Emitter.on('audiooutput:list', (event, devices) => {
+  audioDeviceMenu = [];
+  devices.forEach((device) => {
+    if (device.kind === 'audiooutput') {
+      let label = device.label;
+      if (!label) {
+        switch (device.deviceId) {
+          case 'default':
+            label = TranslationProvider.query('audio-device-default');
+            break;
+          case 'communications':
+            label = TranslationProvider.query('audio-device-communications');
+            break;
+          default:
+            label = TranslationProvider.query('audio-device-unknown');
+            break;
+        }
+      }
+      audioDeviceMenu.push({
+        label,
+        type: 'radio',
+        click: () => {
+          Emitter.sendToGooglePlayMusic('audiooutput:set', device.deviceId);
+          Settings.set('audiooutput', label);
+        },
+        checked: (label === Settings.get('audiooutput')),
+      });
+    }
+  });
+});
+
+Emitter.sendToGooglePlayMusic('audiooutput:fetch');
+Emitter.on('audiooutput:set', () => Emitter.sendToGooglePlayMusic('audiooutput:fetch'));
 
 if (Settings.get('hideTrayIcon') !== true) {
   createTray();

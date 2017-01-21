@@ -73,11 +73,13 @@ Emitter.on('settings:set', (event, details) => {
   switch (details.key) {
     case 'minToTray':
       if (details.value === true) {
+        // don't allow hideTrayIcon to be true when minToTray is true
         Settings.set('hideTrayIcon', false);
       }
       break;
     case 'hideTrayIcon':
       if (details.value === true) {
+        // don't allow minToTray to be true when hideTrayIcon is true
         Settings.set('minToTray', false);
       }
       break;
