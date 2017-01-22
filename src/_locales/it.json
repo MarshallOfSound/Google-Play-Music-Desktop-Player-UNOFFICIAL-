@@ -62,7 +62,7 @@
   "playback-label-thumbs-up": "Pollice su",
   "playback-label-volume-down": "Abbassa il volume",
   "playback-label-volume-up": "Aumenta il volume",
-  "playback-os-no-track-playing": "",
+  "playback-os-no-track-playing": "Nessun brano in riproduzione",
 
   "settings-requires-restart": "Richiede riavvio",
 
@@ -74,7 +74,7 @@
   "settings-option-custom-theme-custom-color": "Colore personalizzato",
   "settings-option-custom-theme-dark": "Scuro",
   "settings-option-custom-theme-light": "Chiaro",
-  "settings-option-custom-theme-should-track-system": "",
+  "settings-option-custom-theme-should-track-system": "Rispetta la Dark Mode del sistema come tipo di tema",
 
   "settings-option-enable-api": "Abilita le API di Playback",
   "settings-option-enable-api-json": "Abilita le API JSON",
@@ -84,7 +84,7 @@
   "settings-option-enable-voice-details": "Controlli vocali senza mani per GPMDP, questo è sperimentale",
   "settings-option-enable-taskbar-progress": "Mostra il progresso del brano nella barra delle applicazioni",
   "settings-option-enable-win10-media-service": "Abilita il System Media Service di Windows 10",
-  "settings-option-enable-win10-media-service-details": "",
+  "settings-option-enable-win10-media-service-details": "Mostra il brano corrente nella schermata di blocco",
   "settings-option-change-locale": "Seleziona lingua",
 
   "settings-option-hotkey-explanation": "I tasti multimediali predefiniti continueranno a funzionare indipendentemente da queste impostazioni.  Queste sono in aggiunta alle impostazioni predefinite.",
