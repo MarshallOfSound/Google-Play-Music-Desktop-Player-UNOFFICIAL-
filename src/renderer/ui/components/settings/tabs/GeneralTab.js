@@ -46,7 +46,7 @@ class GeneralTab extends Component {
         <PlatformSpecific platform="win32">
           <ToggleableOption label={TranslationProvider.query('settings-option-enable-taskbar-progress')} settingsKey={"enableTaskbarProgress"} />
         </PlatformSpecific>
-        <PlatformSpecific platform="win32" version="10.">
+        <PlatformSpecific platform="win32" versionRange=">=10">
           <ToggleableOption
             label={TranslationProvider.query('settings-option-enable-win10-media-service')}
             hintLabel={

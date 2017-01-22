@@ -21,9 +21,9 @@ describe('<PlatformSpecific />', () => {
     component.contains(renderedNullComponent).should.be.ok;
   });
 
-  it('should render the children on the correct version', () => {
+  it('should render the children on the correct versionRange', () => {
     const component = mount(
-      <PlatformSpecific platform={process.platform} version={`${os.release().split('.')[0]}.`}>
+      <PlatformSpecific platform={process.platform} versionRange={`>=${os.release().split('.')[0]}`}>
         {renderedNullComponent}
       </PlatformSpecific>
     );
@@ -35,8 +35,13 @@ describe('<PlatformSpecific />', () => {
     component.contains(renderedNullComponent).should.not.be.ok;
   });
 
-  it('should not render the children on the incorrect version', () => {
-    const component = mount(<PlatformSpecific platform={process.platform} version={"bad.version."}>{renderedNullComponent}</PlatformSpecific>);
+  it('should not render the children on an invalid versionRange', () => {
+    const component = mount(<PlatformSpecific platform={process.platform} versionRange={"bad.version."}>{renderedNullComponent}</PlatformSpecific>);
+    component.contains(renderedNullComponent).should.not.be.ok;
+  });
+
+  it('should not render the children on a non-matching versionRange', () => {
+    const component = mount(<PlatformSpecific platform={process.platform} versionRange={"<=1"}>{renderedNullComponent}</PlatformSpecific>);
     component.contains(renderedNullComponent).should.not.be.ok;
   });
 });

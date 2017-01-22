@@ -80,6 +80,7 @@
     "react-tap-event-plugin": "^2.0.1",
     "request": "^2.72.0",
     "runas": "^3.1.1",
+    "semver": "^5.3.0",
     "universal-analytics": "^0.4.2",
     "username": "^2.2.2",
     "uuid": "^2.0.2",
@@ -151,12 +152,12 @@
     "@nodert-win10/windows.media.playback": "^0.2.95",
     "@nodert-win10/windows.storage.streams": "^0.2.95",
     "appdmg": "^0.4.5",
-    "mouse-forward-back": "^1.0.1",
     "dbus": "GPMDP/node-dbus#linux-only",
-    "mpris-service": "GPMDP/mpris-service",
     "electron-installer-debian": "^0.4.0",
     "electron-installer-redhat": "^0.3.0",
-    "ll-keyboard-hook-win": "^3.0.0"
+    "ll-keyboard-hook-win": "^3.0.0",
+    "mouse-forward-back": "^1.0.1",
+    "mpris-service": "GPMDP/mpris-service"
   },
   "babel": {
     "presets": [
