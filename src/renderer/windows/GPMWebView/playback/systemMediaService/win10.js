@@ -20,7 +20,7 @@ Controls.playbackStatus = MediaPlaybackStatus.closed;
 Controls.displayUpdater.type = MediaPlaybackType.music;
 
 Controls.displayUpdater.musicProperties.title = 'Google Play Music Desktop Player';
-Controls.displayUpdater.musicProperties.artist = 'No Track Playing';
+Controls.displayUpdater.musicProperties.artist = TranslationProvider.query('playback-os-no-track-playing');
 Controls.displayUpdater.update();
 
 Controls.on('buttonpressed', (sender, eventArgs) => {
