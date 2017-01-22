@@ -103,7 +103,7 @@
     "devtron": "^1.0.1",
     "electron-devtools-installer": "^2.0.1",
     "electron-mocha": "^3.0.0",
-    "electron-packager": "^8.0.0",
+    "electron-packager": "^8.5.1",
     "electron-rebuild": "^1.5.6",
     "electron-windows-store": "^0.7.3",
     "enzyme": "^2.4.1",
