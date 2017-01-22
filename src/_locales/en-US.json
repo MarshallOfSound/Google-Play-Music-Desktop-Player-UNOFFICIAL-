@@ -64,6 +64,8 @@
   "playback-label-volume-up": "Increase Volume",
   "playback-os-no-track-playing": "No Track Playing",
 
+  "settings-requires-restart": "Requires restart",
+
   "settings-option-invert-tray-icon": "Invert Tray Icon Color",
 
   "settings-option-custom-theme": "Custom Theme",
@@ -77,11 +79,11 @@
   "settings-option-enable-api-json": "Enable JSON API",
   "settings-option-enable-api-details": "This allows other applications to interface with GPMDP",
   "settings-option-enable-system-borders": "Use system window borders",
-  "settings-option-enable-system-borders-details": "Requires restart",
   "settings-option-enable-voice": "Enable Voice Controls",
   "settings-option-enable-voice-details": "Hands free voice controls for GPMDP, this is experimental",
   "settings-option-enable-taskbar-progress": "Show track progress in the taskbar",
   "settings-option-enable-win10-media-service": "Enable the Windows 10 System Media Service",
+  "settings-option-enable-win10-media-service-details": "This will show the current track on the lock screen",
   "settings-option-change-locale": "Choose language",
 
   "settings-option-hotkey-explanation": "Default media keys will continue to work regardless of these settings.  These settings are in addition to the defaults.",

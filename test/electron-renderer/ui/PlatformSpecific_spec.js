@@ -3,6 +3,7 @@
 import React from 'react';
 import chai from 'chai';
 import { mount } from 'enzyme';
+import os from 'os';
 
 import PlatformSpecific from '../../../build/renderer/ui/components/generic/PlatformSpecific';
 
@@ -20,8 +21,22 @@ describe('<PlatformSpecific />', () => {
     component.contains(renderedNullComponent).should.be.ok;
   });
 
+  it('should render the children on the correct version', () => {
+    const component = mount(
+      <PlatformSpecific platform={process.platform} version={`${os.release().split('.')[0]}.`}>
+        {renderedNullComponent}
+      </PlatformSpecific>
+    );
+    component.contains(renderedNullComponent).should.be.ok;
+  });
+
   it('should not render the children on the incorrect platform', () => {
     const component = mount(<PlatformSpecific platform={"bad-plat"}>{renderedNullComponent}</PlatformSpecific>);
+    component.contains(renderedNullComponent).should.not.be.ok;
+  });
+
+  it('should not render the children on the incorrect version', () => {
+    const component = mount(<PlatformSpecific platform={process.platform} version={"bad.version."}>{renderedNullComponent}</PlatformSpecific>);
     component.contains(renderedNullComponent).should.not.be.ok;
   });
 });

@@ -64,6 +64,8 @@
   "playback-label-volume-up": "Увеличить громкость",
   "playback-os-no-track-playing": "",
 
+  "settings-requires-restart": "Требует перезапуска",
+
   "settings-option-invert-tray-icon": "Инвертировать цвет иконки в трее",
 
   "settings-option-custom-theme": "Своя тема оформления",
@@ -77,11 +79,11 @@
   "settings-option-enable-api-json": "Включить JSON API",
   "settings-option-enable-api-details": "Это позволит другим приложениям взаимодействовать с GPMDP",
   "settings-option-enable-system-borders": "Использовать системные границы окна",
-  "settings-option-enable-system-borders-details": "Требует перезапуска",
   "settings-option-enable-voice": "Включить голосовое управление",
   "settings-option-enable-voice-details": "Голосовое управление для GPMDP, экспериментальная функция",
   "settings-option-enable-taskbar-progress": "Показывать позицию воспроизведения в панели задач",
   "settings-option-enable-win10-media-service": "",
+  "settings-option-enable-win10-media-service-details": "",
   "settings-option-change-locale": "Язык программы",
 
   "settings-option-hotkey-explanation": "Стандартные мультимедийные кнопки всё равно будут работать, независимо от дополнительных, представленных ниже.",

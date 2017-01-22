@@ -64,6 +64,8 @@
   "playback-label-volume-up": "Arr, I can't hear you",
   "playback-os-no-track-playing": "",
 
+  "settings-requires-restart": "Requires ye scuttle and relaunch",
+
   "settings-option-invert-tray-icon": "Switch around that yonder Tray Icon Color",
 
   "settings-option-custom-theme": "Give ye player a new look",
@@ -77,11 +79,11 @@
   "settings-option-enable-api-json": "Use ye JSON API",
   "settings-option-enable-api-details": "'tis allows other applications to interface wit' GPMDP",
   "settings-option-enable-system-borders": "Disguise yeself like other OS windows",
-  "settings-option-enable-system-borders-details": "Requires ye scuttle and relaunch",
   "settings-option-enable-voice": "Control with ye voice",
   "settings-option-enable-voice-details": "Hands free voice controls fer GPMDP, 'tis be experimental",
   "settings-option-enable-taskbar-progress": "Show track progress in th' taskbar",
   "settings-option-enable-win10-media-service": "Tell ye' OS what track be playin'",
+  "settings-option-enable-win10-media-service-details": "",
   "settings-option-change-locale": "Choose how ye speak",
 
   "settings-option-hotkey-explanation": "Default media keys gunna continue to set the sails regardless 'o these settin's. These settin's be in addition to th' defaults.",

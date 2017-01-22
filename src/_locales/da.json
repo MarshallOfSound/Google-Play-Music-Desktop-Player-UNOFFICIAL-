@@ -64,6 +64,8 @@
   "playback-label-volume-up": "Skru ned for lydstyrken",
   "playback-os-no-track-playing": "",
 
+  "settings-requires-restart": "Kræver genstart af GPMDP",
+
   "settings-option-invert-tray-icon": "Omvend system ikonets farve",
 
   "settings-option-custom-theme": "Brugerdefineret tema",
@@ -77,11 +79,11 @@
   "settings-option-enable-api-json": "Slå JSON API til",
   "settings-option-enable-api-details": "Denne indstilling tillader andre programmer at snakke med GPMDP",
   "settings-option-enable-system-borders": "Benyt mit systems vindue rammer",
-  "settings-option-enable-system-borders-details": "Kræver genstart af GPMDP",
   "settings-option-enable-voice": "Slå stemmekontrol til",
   "settings-option-enable-voice-details": "Håndfri stemmekontrol af GPMDP (Bemærk! Dette er experimentielt).",
   "settings-option-enable-taskbar-progress": "Vis sangens forløb i proceslinjen.",
   "settings-option-enable-win10-media-service": "",
+  "settings-option-enable-win10-media-service-details": "",
   "settings-option-change-locale": "Vælg sprog",
 
   "settings-option-hotkey-explanation": "De almindelige medie knapper vil stadig virke, uafhængigt af denne indstilling. Disse indstillinger er ekstra indstillinger.",

@@ -64,6 +64,8 @@
   "playback-label-volume-up": "Zvýšiť hlasitosť",
   "playback-os-no-track-playing": "",
 
+  "settings-requires-restart": "Vyžaduje reštart",
+
   "settings-option-invert-tray-icon": "Invertovať farbu ikony v paneli",
 
   "settings-option-custom-theme": "Vlastná téma",
@@ -77,11 +79,11 @@
   "settings-option-enable-api-json": "Povoliť JSON API",
   "settings-option-enable-api-details": "Umožní iným programom pracovať s GPMDP",
   "settings-option-enable-system-borders": "Použiť systémové orámovanie okna",
-  "settings-option-enable-system-borders-details": "Vyžaduje reštart",
   "settings-option-enable-voice": "Povoliť ovládanie hlasom",
   "settings-option-enable-voice-details": "Hands free ovládanie hlasom pre GPMDP, toto je experimentálna funkcia",
   "settings-option-enable-taskbar-progress": "Zobraziť priebeh skladby na panely úloh",
   "settings-option-enable-win10-media-service": "Povoliť Windows 10 System Media Service",
+  "settings-option-enable-win10-media-service-details": "",
   "settings-option-change-locale": "Vybrať jazyk",
 
   "settings-option-hotkey-explanation": "Predvolené mediálne klávesy budú stále fungovať bez ohľadu na tieto nastavenia.  Tieto nastavenia sú ako doplnok k predvoleným.",

@@ -64,6 +64,8 @@
   "playback-label-volume-up": "Aumentar Volume",
   "playback-os-no-track-playing": "",
 
+  "settings-requires-restart": "Requer reinicialização",
+
   "settings-option-invert-tray-icon": "",
 
   "settings-option-custom-theme": "Tema personalizado",
@@ -77,11 +79,11 @@
   "settings-option-enable-api-json": "Habilitar API JSON",
   "settings-option-enable-api-details": "Permite que outros softwares se comuniquem com o GPMDP",
   "settings-option-enable-system-borders": "Usar bordas de janela do sistema",
-  "settings-option-enable-system-borders-details": "Requer reinicialização",
   "settings-option-enable-voice": "Habilitar Controles de Voz",
   "settings-option-enable-voice-details": "Habilita controle de voz do GPMDP, recurso experimental",
   "settings-option-enable-taskbar-progress": "Mostrar o progresso da musica na barra de tarefas",
   "settings-option-enable-win10-media-service": "",
+  "settings-option-enable-win10-media-service-details": "",
   "settings-option-change-locale": "Escolher linguagem",
 
   "settings-option-hotkey-explanation": "Teclas de mídia padrão continuarão a funcionar independente das configurações. Estas configurações apenas complementam as demais teclas.",
