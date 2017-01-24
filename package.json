@@ -123,7 +123,7 @@
     "gulp-header": "^1.8.2",
     "gulp-less": "^3.1.0",
     "gulp-replace": "^0.5.4",
-    "gulp-uglify": "^2.0.0",
+    "gulp-uglify": "^2.0.1",
     "istanbul": "^1.1.0-alpha.1",
     "jimp": "^0.2.27",
     "material-design-icons-iconfont": "^2.0.5",
