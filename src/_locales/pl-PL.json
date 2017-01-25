@@ -62,7 +62,7 @@
   "playback-label-thumbs-up": "Podoba mi się",
   "playback-label-volume-down": "Zmniejsz głośność",
   "playback-label-volume-up": "Zwiększ głośność",
-  "playback-os-no-track-playing": "",
+  "playback-os-no-track-playing": "Żaden utwór nie jest teraz odtwarzany",
 
   "settings-requires-restart": "Wymaga ponownego uruchomienia",
 
@@ -82,8 +82,8 @@
   "settings-option-enable-voice": "Włącz Kontrolę Głosową",
   "settings-option-enable-voice-details": "Kontrola nad GPMDP za pomocą komend głosowych - funkcja eksperymentalna",
   "settings-option-enable-taskbar-progress": "Pokazuj postęp utworu na pasku systemowym",
-  "settings-option-enable-win10-media-service": "",
-  "settings-option-enable-win10-media-service-details": "",
+  "settings-option-enable-win10-media-service": "Włącz System Media Service (Windows 10)",
+  "settings-option-enable-win10-media-service-details": "Ta funkcja pozwala wyświetlać aktualny utwór na ekranie blokady",
   "settings-option-change-locale": "Wybierz język aplikacji",
 
   "settings-option-hotkey-explanation": "Domyślne klawisze dedykowane obsłudze mediów będą działać bez względu na te ustawienia. Traktuj te ustawienia jako dodatkowe.",
@@ -106,10 +106,10 @@
   "settings-options-style-main-app": "Główna aplikacja",
   "settings-options-style-gpm": "Muzyka Google Play",
   "settings-options-style-refresh": "Przeładuj style",
-  "settings-options-style-dialog-title": "",
-  "settings-options-style-dialog-button": "",
-  "settings-options-style-dialog-css-files": "",
-  "settings-options-style-dialog-all-files": "",
+  "settings-options-style-dialog-title": "Wybierz plik CSS",
+  "settings-options-style-dialog-button": "Załaduj plik CSS",
+  "settings-options-style-dialog-css-files": "Pliki CSS",
+  "settings-options-style-dialog-all-files": "Wszystkie pliki",
 
   "title-color-picker": "Wybierz kolor",
   "title-settings": "Ustawienia",
