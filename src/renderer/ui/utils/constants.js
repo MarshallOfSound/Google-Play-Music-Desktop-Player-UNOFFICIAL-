@@ -48,6 +48,7 @@ export const languageMap = {
   'en-US': 'English',
   'fr-FR': 'French',
   it: 'Italian',
+  ja: 'Japanese',
   'nl-NL': 'Dutch',
   pirate: 'Pirate',
   'pl-PL': 'Polish',
