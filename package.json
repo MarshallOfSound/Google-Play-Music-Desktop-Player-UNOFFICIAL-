@@ -142,7 +142,7 @@
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
     "spec-xunit-file": "0.0.1-3",
-    "spectron": "^3.2.3",
+    "spectron": "~3.4.0",
     "svg2png": "^4.0.0",
     "to-ico": "^1.1.3"
   },
