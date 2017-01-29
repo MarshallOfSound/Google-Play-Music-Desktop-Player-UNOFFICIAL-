@@ -57,7 +57,7 @@ class LyricsViewer extends Component {
     this.timeHandler = (e, timeObj) => {
       $(findDOMNode(this)).find('#lyrics_bar').width(`${(timeObj.total === 0 ? 0 : timeObj.current / timeObj.total) * 100}%`);
       let jumped = false;
-      if (Math.abs(timeObj.current - jumpDetect) > 1000 && $(findDOMNode(this)).find('#lyrics p').attr('data-scroll')) {
+      if (Math.abs(timeObj.current - jumpDetect) > 1000) {
         animate = true;
         jumped = true;
       }
@@ -73,6 +73,7 @@ class LyricsViewer extends Component {
       if (jumped) {
         lyricsP.stop();
         lyricsP.scrollTop(maxHeight * (Math.max(0, timeObj.current - actualWaitTime) / timeObj.total));
+        console.info('jumped');
       }
       animationTimer = setTimeout(() => {
         lyricsP.stop().animate({
