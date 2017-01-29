@@ -24,7 +24,6 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
   if (handleStartupEvent()) {
     return;
   }
-  updateShortcuts();
 
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
@@ -53,6 +52,8 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
   }
 
   global.DEV_MODE = process.env['TEST_SPEC'] || process.argv.some(arg => arg === '--development') || process.argv.some(arg => arg === '--dev'); // eslint-disable-line
+
+  updateShortcuts();
 
   // Initialize the logger with some default logging levels.
   const defaultFileLogLevel = 'info';

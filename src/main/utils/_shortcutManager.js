@@ -23,6 +23,7 @@ const squirrelPath = path.resolve(path.dirname(process.execPath), '..', 'Update.
 
 const shortcutAtPath = (targetPath, create) => {
   if (process.platform !== 'win32') return;
+  if (global.DEV_MODE) return;
   if (!fs.existsSync(targetPath) && !create) return;
   mkdirp.sync(path.dirname(targetPath));
   shell.writeShortcutLink(targetPath, fs.existsSync(targetPath) ? 'update' : 'create', {
