@@ -95,7 +95,9 @@ class LyricsViewer extends Component {
     };
 
     this.startAnimating = () => {
-      animate = true;
+      if (Settings.get('scrollLyrics', true)) {
+        animate = true;
+      }
     };
 
     this._hook();
