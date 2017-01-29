@@ -74,6 +74,7 @@
   "settings-option-custom-theme-custom-color": "カスタムカラーを設定する",
   "settings-option-custom-theme-dark": "ダーク",
   "settings-option-custom-theme-light": "ライト",
+  "settings-option-custom-theme-should-track-system": "",
 
   "settings-option-enable-api": "Playback APIを有効にする",
   "settings-option-enable-api-json": "JSON APIを有効にする",

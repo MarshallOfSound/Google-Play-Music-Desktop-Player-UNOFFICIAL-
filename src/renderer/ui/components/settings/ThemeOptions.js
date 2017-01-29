@@ -2,8 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
+import PlatformSpecific from '../generic/PlatformSpecific';
+import ToggleableOption from './ToggleableOption';
 import SettingsTabWrapper from './tabs/SettingsTabWrapper';
 import { requireSettings } from '../generic/SettingsProvider';
+
 
 import { themeColors } from '../../utils/constants';
 
@@ -11,6 +14,7 @@ class ThemeOptions extends Component {
   static propTypes = {
     themeColor: PropTypes.string.isRequired,
     themeType: PropTypes.string.isRequired,
+    themeTypeShouldTrackSystem: PropTypes.bool.isRequired,
     setSetting: PropTypes.func.isRequired,
   };
 
@@ -29,16 +33,28 @@ class ThemeOptions extends Component {
   render() {
     return (
       <SettingsTabWrapper>
-        <RadioButtonGroup name="shipSpeed" defaultSelected={this.props.themeType} onChange={this.changeThemeType}>
-          <RadioButton
-            value="HIGHLIGHT_ONLY"
-            label={TranslationProvider.query('settings-option-custom-theme-light')}
-          />
-          <RadioButton
-            value="FULL"
-            label={TranslationProvider.query('settings-option-custom-theme-dark')}
-          />
-        </RadioButtonGroup>
+        <PlatformSpecific platform="darwin">
+          <div style={{ paddingBottom: 16 }}>
+            <ToggleableOption
+              label={TranslationProvider.query('settings-option-custom-theme-should-track-system')}
+              settingsKey={"themeTypeShouldTrackSystem"}
+            />
+          </div>
+        </PlatformSpecific>
+        {
+          this.props.themeTypeShouldTrackSystem ?
+            null :
+            <RadioButtonGroup name="shipSpeed" defaultSelected={this.props.themeType} onChange={this.changeThemeType}>
+              <RadioButton
+                value="HIGHLIGHT_ONLY"
+                label={TranslationProvider.query('settings-option-custom-theme-light')}
+              />
+              <RadioButton
+                value="FULL"
+                label={TranslationProvider.query('settings-option-custom-theme-dark')}
+              />
+            </RadioButtonGroup>
+        }
         <h5>{TranslationProvider.query('settings-option-custom-theme-choose-color')}</h5>
         <div className="color-square-wrapper">
           {
@@ -58,4 +74,4 @@ class ThemeOptions extends Component {
   }
 }
 
-export default requireSettings(ThemeOptions, ['themeColor', 'themeType'], {});
+export default requireSettings(ThemeOptions, ['themeColor', 'themeType', 'themeTypeShouldTrackSystem'], {});

@@ -7,7 +7,7 @@ import { mount } from 'enzyme';
 import ThemeOptions from '../../../build/renderer/ui/components/settings/ThemeOptions';
 import { themeColors } from '../../../build/renderer/ui/utils/constants';
 
-import mockSettings, { getVars } from './_mockSettings';
+import mockSettings, { fakeSettings, getVars } from './_mockSettings';
 import materialUIContext from './_materialUIContext';
 
 chai.should();
@@ -21,6 +21,7 @@ describe('<ThemeOptions />', () => {
 
   beforeEach(() => {
     mockSettings();
+    fakeSettings('themeTypeShouldTrackSystem', false);
     fired = getVars().fired;
   });
 
@@ -61,6 +62,12 @@ describe('<ThemeOptions />', () => {
       key: 'themeType',
       value: 'FULL',
     });
+  });
+
+  it('should hide the manual themeType control on darwin when themeTypeShouldTrackSystem is enabled', () => {
+    fakeSettings('themeTypeShouldTrackSystem', true);
+    const component = mount(<ThemeOptions />, materialUIContext);
+    component.find('RadioButton').length.should.be.equal(0);
   });
 
   it('should render a square for every predefined color', () => {

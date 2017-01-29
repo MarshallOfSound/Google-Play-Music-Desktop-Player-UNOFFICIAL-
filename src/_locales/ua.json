@@ -74,6 +74,7 @@
   "settings-option-custom-theme-custom-color": "власний колір",
   "settings-option-custom-theme-dark": "Темна",
   "settings-option-custom-theme-light": "Світла",
+  "settings-option-custom-theme-should-track-system": "",
 
   "settings-option-enable-api": "Ввімкнути API відтворення",
   "settings-option-enable-api-json": "Ввімкнути JSON API",

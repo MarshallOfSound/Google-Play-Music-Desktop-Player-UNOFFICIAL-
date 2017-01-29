@@ -74,6 +74,7 @@
   "settings-option-custom-theme-custom-color": "Custom Color",
   "settings-option-custom-theme-dark": "Dark",
   "settings-option-custom-theme-light": "Light",
+  "settings-option-custom-theme-should-track-system": "Match your systems Dark Mode setting to the theme type",
 
   "settings-option-enable-api": "Enable Playback API",
   "settings-option-enable-api-json": "Enable JSON API",

@@ -74,6 +74,7 @@
   "settings-option-custom-theme-custom-color": "Cor personalizada",
   "settings-option-custom-theme-dark": "Escuro",
   "settings-option-custom-theme-light": "Claro",
+  "settings-option-custom-theme-should-track-system": "",
 
   "settings-option-enable-api": "Habilitar PlaybackAPI",
   "settings-option-enable-api-json": "Habilitar API JSON",

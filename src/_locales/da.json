@@ -74,6 +74,7 @@
   "settings-option-custom-theme-custom-color": "Brugerdefineret farve",
   "settings-option-custom-theme-dark": "Mørk",
   "settings-option-custom-theme-light": "Lys",
+  "settings-option-custom-theme-should-track-system": "",
 
   "settings-option-enable-api": "Slå Playback-API til",
   "settings-option-enable-api-json": "Slå JSON API til",

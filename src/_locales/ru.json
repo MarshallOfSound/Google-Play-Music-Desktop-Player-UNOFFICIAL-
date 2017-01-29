@@ -74,6 +74,7 @@
   "settings-option-custom-theme-custom-color": "собственный цвет",
   "settings-option-custom-theme-dark": "Тёмная",
   "settings-option-custom-theme-light": "Светлая",
+  "settings-option-custom-theme-should-track-system": "",
 
   "settings-option-enable-api": "Включить Playback API",
   "settings-option-enable-api-json": "Включить JSON API",

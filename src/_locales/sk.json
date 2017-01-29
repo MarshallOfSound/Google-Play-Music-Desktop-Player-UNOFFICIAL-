@@ -74,6 +74,7 @@
   "settings-option-custom-theme-custom-color": "vlastnú farbu",
   "settings-option-custom-theme-dark": "Tmavá",
   "settings-option-custom-theme-light": "Svetlá",
+  "settings-option-custom-theme-should-track-system": "",
 
   "settings-option-enable-api": "Povoliť Playback API",
   "settings-option-enable-api-json": "Povoliť JSON API",

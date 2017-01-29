@@ -74,6 +74,7 @@
   "settings-option-custom-theme-custom-color": "Culoare personalizată",
   "settings-option-custom-theme-dark": "Tentă închisă",
   "settings-option-custom-theme-light": "Tentă deschisă",
+  "settings-option-custom-theme-should-track-system": "",
 
   "settings-option-enable-api": "Activează API Playback",
   "settings-option-enable-api-json": "Activează API JSON",

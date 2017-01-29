@@ -74,6 +74,7 @@
   "settings-option-custom-theme-custom-color": "Colore personalizzato",
   "settings-option-custom-theme-dark": "Scuro",
   "settings-option-custom-theme-light": "Chiaro",
+  "settings-option-custom-theme-should-track-system": "",
 
   "settings-option-enable-api": "Abilita le API di Playback",
   "settings-option-enable-api-json": "Abilita le API JSON",

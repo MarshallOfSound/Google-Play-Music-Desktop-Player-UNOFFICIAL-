@@ -9,3 +9,4 @@ app.on('activate', () => {
     app.quit();
   }
 });
+import './darkMode';

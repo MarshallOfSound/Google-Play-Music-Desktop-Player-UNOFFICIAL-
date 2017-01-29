@@ -74,6 +74,7 @@
   "settings-option-custom-theme-custom-color": "Aangepaste kleur",
   "settings-option-custom-theme-dark": "Donker",
   "settings-option-custom-theme-light": "Licht",
+  "settings-option-custom-theme-should-track-system": "",
 
   "settings-option-enable-api": "Inschakelen Playback API",
   "settings-option-enable-api-json": "Inschakelen JSON API",
