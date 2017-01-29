@@ -19,12 +19,12 @@ import handleStartupEvent from './squirrel';
 import { updateShortcuts } from './main/utils/_shortcutManager';
 
 app.setAppUserModelId('com.marshallofsound.gpmdp.core');
-updateShortcuts();
 
 (() => {
   if (handleStartupEvent()) {
     return;
   }
+  updateShortcuts();
 
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.

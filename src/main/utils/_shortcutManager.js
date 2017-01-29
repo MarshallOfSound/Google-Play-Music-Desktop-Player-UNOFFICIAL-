@@ -1,6 +1,7 @@
 import { app, shell } from 'electron';
 import fs from 'fs';
 import path from 'path';
+import mkdirp from 'mkdirp';
 
 const packageJSON = require(path.resolve(__dirname, '..', '..', '..', 'package.json'));
 
@@ -18,11 +19,12 @@ const startPinPath = path.resolve(
   'StartMenu', `${packageJSON.productName}.lnk`
 );
 
-const squirrelPath = path.resolve(path.dirname(process.execPath), '..', 'update.exe');
+const squirrelPath = path.resolve(path.dirname(process.execPath), '..', 'Update.exe');
 
 const shortcutAtPath = (targetPath, create) => {
   if (process.platform !== 'win32') return;
   if (!fs.existsSync(targetPath) && !create) return;
+  mkdirp.sync(path.dirname(targetPath));
   shell.writeShortcutLink(targetPath, fs.existsSync(targetPath) ? 'update' : 'create', {
     target: squirrelPath,
     args: `--processStart "${path.basename(process.execPath)}"`,

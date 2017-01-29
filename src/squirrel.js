@@ -7,27 +7,29 @@ const handleStartupEvent = () => {
     return false;
   }
 
-  const squirrelCommand = process.argv[1];
-
-  switch (squirrelCommand) {
-    case '--squirrel-install':
-      createShortcuts();
-      app.quit();
-      return true;
-    case '--squirrel-updated':
-      updateShortcuts();
-      app.quit();
-      return true;
-    case '--squirrel-uninstall':
-      removeShortcuts();
-      app.quit();
-      return true;
-    case '--squirrel-obsolete':
-      app.quit();
-      return true;
-    default:
-      return false;
+  for (let i = 0; i < process.argv.length; i++) {
+    const squirrelCommand = process.argv[i];
+    switch (squirrelCommand) {
+      case '--squirrel-install':
+        createShortcuts();
+        app.quit();
+        return true;
+      case '--squirrel-updated':
+        updateShortcuts();
+        app.quit();
+        return true;
+      case '--squirrel-uninstall':
+        removeShortcuts();
+        app.quit();
+        return true;
+      case '--squirrel-obsolete':
+        app.quit();
+        return true;
+      default:
+        break;
+    }
   }
+  return false;
 };
 
 export default handleStartupEvent;
