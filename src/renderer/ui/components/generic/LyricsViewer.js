@@ -73,7 +73,6 @@ class LyricsViewer extends Component {
       if (jumped) {
         lyricsP.stop();
         lyricsP.scrollTop(maxHeight * (Math.max(0, timeObj.current - actualWaitTime) / timeObj.total));
-        console.info('jumped');
       }
       animationTimer = setTimeout(() => {
         lyricsP.stop().animate({
