@@ -97,7 +97,7 @@ export default class WindowContainer extends Component {
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <section className="window-border" style={{ borderColor: muiTheme.tabs.backgroundColor }}>
+        <section className={`window-border ${this.state.isFullscreen ? 'fullscreen' : ''}`} style={{ borderColor: muiTheme.tabs.backgroundColor }}>
           <PlatformSpecific platform="darwin">
             <header className="darwin-title-bar" onDoubleClick={this._darwinExpand} style={{ backgroundColor: muiTheme.tabs.backgroundColor, height: this.state.isFullscreen ? 0 : 23 }}>
               <div className="title">{this.props.title}</div>
