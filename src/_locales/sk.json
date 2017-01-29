@@ -74,7 +74,7 @@
   "settings-option-custom-theme-custom-color": "vlastnú farbu",
   "settings-option-custom-theme-dark": "Tmavá",
   "settings-option-custom-theme-light": "Svetlá",
-  "settings-option-custom-theme-should-track-system": "",
+  "settings-option-custom-theme-should-track-system": "Prispôsobiť nastavenie vašej systémovej tmavej témy typu témy",
 
   "settings-option-enable-api": "Povoliť Playback API",
   "settings-option-enable-api-json": "Povoliť JSON API",
@@ -84,7 +84,7 @@
   "settings-option-enable-voice-details": "Hands free ovládanie hlasom pre GPMDP, toto je experimentálna funkcia",
   "settings-option-enable-taskbar-progress": "Zobraziť priebeh skladby na panely úloh",
   "settings-option-enable-win10-media-service": "Povoliť Windows 10 System Media Service",
-  "settings-option-enable-win10-media-service-details": "",
+  "settings-option-enable-win10-media-service-details": "Zobrazí aktuálnu skladbu na uzamknutej obrazovke",
   "settings-option-change-locale": "Vybrať jazyk",
 
   "settings-option-hotkey-explanation": "Predvolené mediálne klávesy budú stále fungovať bez ohľadu na tieto nastavenia.  Tieto nastavenia sú ako doplnok k predvoleným.",
