@@ -23,7 +23,7 @@ export default class PlatformSpecific extends Component {
     if (process.platform === this.props.platform) {
       if (!this.props.versionRange) return this.props.children;
 
-      if (semver.validRange(this.props.versionRange) && semver.satisfies(osVersion, this.props.versionRange)) {
+      if ((semver.validRange(this.props.versionRange) && semver.satisfies(osVersion, this.props.versionRange)) || (osVersion === null && process.platform === 'linux')) {
         return this.props.children;
       }
     }
