@@ -74,7 +74,7 @@
   "settings-option-custom-theme-custom-color": "eigene Farbe",
   "settings-option-custom-theme-dark": "Dunkel",
   "settings-option-custom-theme-light": "Hell",
-  "settings-option-custom-theme-should-track-system": "",
+  "settings-option-custom-theme-should-track-system": "Farbschema an Dark-Mode-Option des Systems anpassen",
 
   "settings-option-enable-api": "Aktiviere Playback-API",
   "settings-option-enable-api-json": "Aktiviere JSON-API",
