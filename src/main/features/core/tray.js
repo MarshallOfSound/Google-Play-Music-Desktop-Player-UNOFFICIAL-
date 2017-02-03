@@ -234,7 +234,6 @@ Emitter.on('audiooutput:list', (event, devices) => {
 Emitter.sendToGooglePlayMusic('audiooutput:fetch');
 Emitter.on('audiooutput:set', () => Emitter.sendToGooglePlayMusic('audiooutput:fetch'));
 
-// When the track changes reset the context menu to reflect the track change
 PlaybackAPI.on('change:track', (track) => {
   setContextMenu(track);
 });
