@@ -29,17 +29,16 @@ function getAppIconFileName() {
   return path.resolve(currentIconPath, appIconFileName);
 }
 
-// Trim the song title to fit in the menu
-function getSongListing(song) {
-  let title = song.title;
-  const artist = song.artist;
+const getTrackString = (track) => {
+  let title = track.title;
+  const artist = track.artist;
 
   if (title.length + artist.length > 40) {
     title = `${title.substring(0, 40 - (artist.length + 6))}...`;
   }
 
   return `${title} - ${artist}`;
-}
+};
 
 let audioDeviceMenu = [
   {
@@ -73,7 +72,7 @@ Emitter.on('playback:isStopped', () => {
   appIcon.setImage(getAppIconFileName());
 });
 
-const setContextMenu = (song) => {
+const setContextMenu = (track) => {
   const contextMenu = Menu.buildFromTemplate([
     { label: TranslationProvider.query('tray-label-show'),
       click: () => {
@@ -81,7 +80,7 @@ const setContextMenu = (song) => {
         mainWindow.show();
       },
     },
-    { label: song ? getSongListing(song) : 'Not playing',
+    { label: track ? getTrackString(track) : TranslationProvider.query('playback-os-no-track-playing'),
       enabled: false,
     },
     { type: 'separator' },
@@ -229,13 +228,13 @@ Emitter.on('audiooutput:list', (event, devices) => {
       });
     }
   });
-  setContextMenu();
+  setContextMenu(PlaybackAPI.currentSong());
 });
 
 Emitter.sendToGooglePlayMusic('audiooutput:fetch');
 Emitter.on('audiooutput:set', () => Emitter.sendToGooglePlayMusic('audiooutput:fetch'));
 
 // When the track changes reset the context menu to reflect the track change
-PlaybackAPI.on('change:track', (song) => {
-  setContextMenu(song);
+PlaybackAPI.on('change:track', (track) => {
+  setContextMenu(track);
 });
