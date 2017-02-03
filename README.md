@@ -7,7 +7,9 @@ Google Play Music™ Desktop Player
  [![Code Climate](https://codeclimate.com/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/badges/gpa.svg)](https://codeclimate.com/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-)
  [![Coverage Status](https://coveralls.io/repos/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/badge.svg)](https://coveralls.io/github/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-)
  [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-.svg)](http://isitmaintained.com/project/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL- "Average time to resolve an issue")
- <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ" title="Help me out by donating to this project"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>  
+ <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ" title="Help me out by donating to this project"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a> 
+[![OpenCollective](https://opencollective.com/google-play-music-desktop-player-unofficial-/backers/badge.svg)](#backers) 
+[![OpenCollective](https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsors/badge.svg)](#sponsors)  
  Windows: [![Build status](https://ci.appveyor.com/api/projects/status/clg5vclqyltff7hg/branch/master?svg=true)](https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial/branch/master)  
  Mac OS X: [![Build Status](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-.svg?branch=master)](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-)  
  Linux: [![Circle CI](https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/tree/master.svg?style=svg)](https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/tree/master)
@@ -133,6 +135,76 @@ You can download the latest linux (debian and fedora) builds from the artifacts 
 [2]: https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial
 [3]: https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
 [4]: https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
+
+Backers
+-------
+Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/google-play-music-desktop-player-unofficial-#backer)]
+
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/0/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/0/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/1/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/1/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/2/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/2/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/3/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/3/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/4/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/4/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/5/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/5/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/6/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/6/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/7/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/7/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/8/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/8/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/9/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/9/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/10/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/10/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/11/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/11/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/12/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/12/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/13/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/13/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/14/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/14/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/15/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/15/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/16/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/16/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/17/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/17/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/18/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/18/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/19/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/19/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/20/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/20/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/21/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/21/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/22/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/22/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/23/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/23/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/24/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/24/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/25/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/25/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/26/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/26/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/27/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/27/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/28/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/28/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/29/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/backer/29/avatar.svg"></a>
+
+Sponsors
+-------
+Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/google-play-music-desktop-player-unofficial-#sponsor)]
+
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/0/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/1/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/2/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/3/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/4/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/5/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/6/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/7/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/8/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/9/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/9/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/10/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/10/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/11/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/11/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/12/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/12/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/13/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/13/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/14/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/14/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/15/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/15/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/16/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/16/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/17/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/17/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/18/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/18/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/19/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/19/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/20/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/20/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/21/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/21/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/22/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/22/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/23/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/23/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/24/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/24/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/25/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/25/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/26/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/26/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/27/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/27/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/28/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/28/avatar.svg"></a>
+<a href="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/29/website" target="_blank"><img src="https://opencollective.com/google-play-music-desktop-player-unofficial-/sponsor/29/avatar.svg"></a>
 
 License
 -------
