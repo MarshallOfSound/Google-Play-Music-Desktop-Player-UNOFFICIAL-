@@ -113,18 +113,19 @@ export const updateScrobble = (track, artist, album, timestamp) => {
   }
 };
 
-export const heartSong = (love, track, artist, album) => {
-  if (Settings.get('lastFMKey')) {
-    getLastFMSession()
-      .then((session) => {
-        lastfm.request(`track.${love ? 'love' : 'unlove'}`, session, {
-          track,
-          artist,
-          album,
-        }).on('error', (err) => Logger.error('LASTFM ERROR', err));
-      })
-      .catch((err) => Logger.error('LASTFM ERROR', err));
-  }
+// export const heartSong = (love, track, artist, album) => {
+export const heartSong = () => {
+  // if (Settings.get('lastFMKey')) {
+  //   getLastFMSession()
+  //     .then((session) => {
+  //       lastfm.request(`track.${love ? 'love' : 'unlove'}`, session, {
+  //         track,
+  //         artist,
+  //         album,
+  //       }).on('error', (err) => Logger.error('LASTFM ERROR', err));
+  //     })
+  //     .catch((err) => Logger.error('LASTFM ERROR', err));
+  // }
 };
 
 Emitter.on('lastfm:auth', () => {
