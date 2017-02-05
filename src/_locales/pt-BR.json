@@ -91,6 +91,7 @@
   "settings-option-hotkey-explanation-2": "Use a tecla <i>\"Esc\"</i> para redefinir o atalho.",
 
   "settings-option-min-to-tray": "Minimizar para a bandeja",
+  "settings-option-show-tray-icon": "",
 
   "settings-option-prevent-display-sleep": "",
   "settings-option-auto-launch": "Inicializar automaticamente junto com o computador",

@@ -36,100 +36,68 @@ let audioDeviceMenu = [
   },
 ];
 
-appIcon = new Tray(getAppIconFileName());
-
-Settings.onChange('appIconInvert', (newValue) => {
-  appIconInvert = newValue;
-  appIcon.setImage(getAppIconFileName());
-});
-
-// Change the icon if the music is playing
-Emitter.on('playback:isPlaying', () => {
-  currentIconPath = trayPlayingPath;
-  appIcon.setImage(getAppIconFileName());
-});
-
-// Change the icon is the music is paused
-Emitter.on('playback:isPaused', () => {
-  currentIconPath = trayPausedPath;
-  appIcon.setImage(getAppIconFileName());
-});
-
-// Change the icon is the music is stopped
-Emitter.on('playback:isStopped', () => {
-  currentIconPath = trayNormalPath;
-  appIcon.setImage(getAppIconFileName());
-});
-
-const setContextMenu = () => {
-  const contextMenu = Menu.buildFromTemplate([
-    { label: TranslationProvider.query('tray-label-show'),
-      click: () => {
-        mainWindow.setSkipTaskbar(false);
-        mainWindow.show();
+const contextMenu = Menu.buildFromTemplate([
+  { label: TranslationProvider.query('tray-label-show'),
+    click: () => {
+      mainWindow.setSkipTaskbar(false);
+      mainWindow.show();
+    },
+  },
+  { type: 'separator' },
+  {
+    label: TranslationProvider.query('playback-label-play-pause'),
+    click: () => Emitter.sendToGooglePlayMusic('playback:playPause'),
+  },
+  {
+    label: TranslationProvider.query('playback-label-previous-track'),
+    click: () => Emitter.sendToGooglePlayMusic('playback:previousTrack'),
+  },
+  {
+    label: TranslationProvider.query('playback-label-next-track'),
+    click: () => Emitter.sendToGooglePlayMusic('playback:nextTrack'),
+  },
+  { type: 'separator' },
+  {
+    label: TranslationProvider.query('playback-label-thumbs-up'),
+    click: () => Emitter.sendToGooglePlayMusic('playback:thumbsUp'),
+  },
+  {
+    label: TranslationProvider.query('playback-label-thumbs-down'),
+    click: () => Emitter.sendToGooglePlayMusic('playback:thumbsDown'),
+  },
+  { type: 'separator' },
+  {
+    label: TranslationProvider.query('tray-label-audio-device'),
+    submenu: audioDeviceMenu,
+  },
+  {
+    label: TranslationProvider.query('label-help'),
+    role: 'help',
+    submenu: [
+      {
+        label: TranslationProvider.query('label-about'),
+        click: () => {
+          Emitter.sendToWindowsOfName('main', 'about');
+        },
       },
-    },
-    { type: 'separator' },
-    {
-      label: TranslationProvider.query('playback-label-play-pause'),
-      click: () => Emitter.sendToGooglePlayMusic('playback:playPause'),
-    },
-    {
-      label: TranslationProvider.query('playback-label-previous-track'),
-      click: () => Emitter.sendToGooglePlayMusic('playback:previousTrack'),
-    },
-    {
-      label: TranslationProvider.query('playback-label-next-track'),
-      click: () => Emitter.sendToGooglePlayMusic('playback:nextTrack'),
-    },
-    { type: 'separator' },
-    {
-      label: TranslationProvider.query('playback-label-thumbs-up'),
-      click: () => Emitter.sendToGooglePlayMusic('playback:thumbsUp'),
-    },
-    {
-      label: TranslationProvider.query('playback-label-thumbs-down'),
-      click: () => Emitter.sendToGooglePlayMusic('playback:thumbsDown'),
-    },
-    { type: 'separator' },
-    {
-      label: TranslationProvider.query('tray-label-audio-device'),
-      submenu: audioDeviceMenu,
-    },
-    {
-      label: TranslationProvider.query('label-help'),
-      role: 'help',
-      submenu: [
-        {
-          label: TranslationProvider.query('label-about'),
-          click: () => {
-            Emitter.sendToWindowsOfName('main', 'about');
-          },
-        },
-        {
-          label: TranslationProvider.query('label-issues'),
-          click: () => shell.openExternal('https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues'),
-        },
-        {
-          label: TranslationProvider.query('label-donate'),
-          click: () => shell.openExternal('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ'),
-        },
-        {
-          label: TranslationProvider.query('label-learn-more'),
-          click: () => shell.openExternal('http://www.googleplaymusicdesktopplayer.com'),
-        },
-      ],
-    },
-    { label: TranslationProvider.query('label-desktop-settings'), click: () => { showDesktopSettings(); } },
-    { type: 'separator' },
-    { label: TranslationProvider.query('label-quit'), click: () => { global.quitting = true; app.quit(); } },
-  ]);
-  appIcon.setContextMenu(contextMenu);
-};
-setContextMenu();
-
-
-global.wasMaximized = Settings.get('maximized', false);
+      {
+        label: TranslationProvider.query('label-issues'),
+        click: () => shell.openExternal('https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues'),
+      },
+      {
+        label: TranslationProvider.query('label-donate'),
+        click: () => shell.openExternal('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ'),
+      },
+      {
+        label: TranslationProvider.query('label-learn-more'),
+        click: () => shell.openExternal('http://www.googleplaymusicdesktopplayer.com'),
+      },
+    ],
+  },
+  { label: TranslationProvider.query('label-desktop-settings'), click: () => { showDesktopSettings(); } },
+  { type: 'separator' },
+  { label: TranslationProvider.query('label-quit'), click: () => { global.quitting = true; app.quit(); } },
+]);
 
 // Tray icon toggle action (windows, linux)
 function toggleMainWindow() {
@@ -157,33 +125,64 @@ function toggleMainWindow() {
   }
 }
 
-appIcon.setToolTip('Google Play Music Desktop Player');
+function createTray() {
+  appIcon = new Tray(getAppIconFileName());
 
-switch (process.platform) {
-  case 'darwin': // <- actually means OS-X
-    // No toggle action, use the context menu.
-    break;
-  case 'linux':
-  case 'freebsd': // <- for the hipsters
-  case 'sunos':   // <- in case someone runs this in a museum
-    appIcon.on('click', toggleMainWindow);
-    break;
-  case 'win32': // <- it's win32 also on 64-bit Windows
-    appIcon.on('double-click', toggleMainWindow);
-    break;
-  default:
-    // impossible case to satisfy Linters
+  Settings.onChange('appIconInvert', (newValue) => {
+    appIconInvert = newValue;
+    appIcon.setImage(getAppIconFileName());
+  });
+
+  // Change the icon if the music is playing
+  Emitter.on('playback:isPlaying', () => {
+    currentIconPath = trayPlayingPath;
+    appIcon.setImage(getAppIconFileName());
+  });
+
+  // Change the icon is the music is paused
+  Emitter.on('playback:isPaused', () => {
+    currentIconPath = trayPausedPath;
+    appIcon.setImage(getAppIconFileName());
+  });
+
+  // Change the icon is the music is stopped
+  Emitter.on('playback:isStopped', () => {
+    currentIconPath = trayNormalPath;
+    appIcon.setImage(getAppIconFileName());
+  });
+
+  appIcon.setContextMenu(contextMenu);
+
+  global.wasMaximized = Settings.get('maximized', false);
+
+  appIcon.setToolTip('Google Play Music Desktop Player');
+
+  switch (process.platform) {
+    case 'darwin': // <- actually means OS-X
+      // No toggle action, use the context menu.
+      break;
+    case 'linux':
+    case 'freebsd': // <- for the hipsters
+    case 'sunos':   // <- in case someone runs this in a museum
+      appIcon.on('click', toggleMainWindow);
+      break;
+    case 'win32': // <- it's win32 also on 64-bit Windows
+      appIcon.on('double-click', toggleMainWindow);
+      break;
+    default:
+      // impossible case to satisfy Linters
+  }
+
+
+  // DEV: Keep the icon in the global scope or it gets garbage collected........
+  global.appIcon = appIcon;
+
+  app.on('before-quit', () => {
+    appIcon.destroy();
+    delete global.appIcon;
+    appIcon = null;
+  });
 }
-
-
-// DEV: Keep the icon in the global scope or it gets garbage collected........
-global.appIcon = appIcon;
-
-app.on('before-quit', () => {
-  appIcon.destroy();
-  delete global.appIcon;
-  appIcon = null;
-});
 
 Emitter.on('audiooutput:list', (event, devices) => {
   audioDeviceMenu = [];
@@ -214,8 +213,19 @@ Emitter.on('audiooutput:list', (event, devices) => {
       });
     }
   });
-  setContextMenu();
 });
 
 Emitter.sendToGooglePlayMusic('audiooutput:fetch');
 Emitter.on('audiooutput:set', () => Emitter.sendToGooglePlayMusic('audiooutput:fetch'));
+
+if (Settings.get('hideTrayIcon') !== true) {
+  createTray();
+}
+
+Settings.onChange('hideTrayIcon', (newValue) => {
+  if (newValue) {
+    appIcon.destroy();
+  } else if (appIcon === null || appIcon.isDestroyed()) {
+    createTray();
+  }
+});

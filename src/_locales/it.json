@@ -91,6 +91,7 @@
   "settings-option-hotkey-explanation-2": "Usa il tasto <i>\"Escape\"</i> per resettare il tasto veloce.",
 
   "settings-option-min-to-tray": "Minimizza nell'area di notifica",
+  "settings-option-show-tray-icon": "",
 
   "settings-option-prevent-display-sleep": "Inibisci la sospensione quando GPMDP è avviato",
   "settings-option-auto-launch": "Avvia automaticamente all'accensione del computer",
