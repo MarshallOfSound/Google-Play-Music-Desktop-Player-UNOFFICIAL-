@@ -104,6 +104,7 @@ const sendInitialBurst = (ws) => {
     ws.channel('track', PlaybackAPI.currentSong(true));
     ws.channel('time', PlaybackAPI.currentTime());
     ws.channel('lyrics', PlaybackAPI.currentSongLyrics(true));
+    ws.channel('rating', PlaybackAPI.getRating());
   }
   if (!Settings.__TEST__) {
     settingsChangeEvents.forEach((channel) => {
