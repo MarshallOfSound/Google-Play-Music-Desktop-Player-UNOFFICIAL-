@@ -226,6 +226,7 @@ class PlaybackAPI extends EventEmitter {
   _fire(what, arg) {
     this.emit(what, arg);
     Emitter.sendToWindowsOfName('main', `PlaybackAPI:${what}`, arg);
+    PluginManager.emit('Plugin:Gmusic:Event', what, arg);
   }
 }
 
