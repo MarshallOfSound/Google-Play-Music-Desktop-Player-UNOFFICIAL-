@@ -29,6 +29,17 @@ function getAppIconFileName() {
   return path.resolve(currentIconPath, appIconFileName);
 }
 
+const getTrackString = (track) => {
+  let title = track.title;
+  const artist = track.artist;
+
+  if (title.length + artist.length > 40) {
+    title = `${title.substring(0, 40 - (artist.length + 6))}...`;
+  }
+
+  return `${title} - ${artist}`;
+};
+
 let audioDeviceMenu = [
   {
     label: TranslationProvider.query('label-loading-devices'),
@@ -61,13 +72,16 @@ Emitter.on('playback:isStopped', () => {
   appIcon.setImage(getAppIconFileName());
 });
 
-const setContextMenu = () => {
+const setContextMenu = (track) => {
   const contextMenu = Menu.buildFromTemplate([
     { label: TranslationProvider.query('tray-label-show'),
       click: () => {
         mainWindow.setSkipTaskbar(false);
         mainWindow.show();
       },
+    },
+    { label: track ? getTrackString(track) : TranslationProvider.query('playback-os-no-track-playing'),
+      enabled: false,
     },
     { type: 'separator' },
     {
@@ -126,7 +140,7 @@ const setContextMenu = () => {
   ]);
   appIcon.setContextMenu(contextMenu);
 };
-setContextMenu();
+setContextMenu(null);
 
 
 global.wasMaximized = Settings.get('maximized', false);
@@ -214,8 +228,12 @@ Emitter.on('audiooutput:list', (event, devices) => {
       });
     }
   });
-  setContextMenu();
+  setContextMenu(PlaybackAPI.currentSong());
 });
 
 Emitter.sendToGooglePlayMusic('audiooutput:fetch');
 Emitter.on('audiooutput:set', () => Emitter.sendToGooglePlayMusic('audiooutput:fetch'));
+
+PlaybackAPI.on('change:track', (track) => {
+  setContextMenu(track);
+});
