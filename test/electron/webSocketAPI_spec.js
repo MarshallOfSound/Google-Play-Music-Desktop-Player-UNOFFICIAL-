@@ -12,7 +12,7 @@ const expect = chai.expect;
 chai.use(chaiSinon);
 chai.should();
 
-const INITIAL_DATA_COUNT = 12;
+const INITIAL_DATA_COUNT = 13;
 
 global.API_PORT = 4202; // Travis has something running on 5672
 
@@ -71,7 +71,11 @@ describe('WebSocketAPI', () => {
           const checker = setInterval(() => {
             if (spy.callCount >= INITIAL_DATA_COUNT) {
               clearInterval(checker);
-              fn(done);
+              try {
+                fn(done);
+              } catch (err) {
+                done(err);
+              }
             }
           }, 10);
         });
@@ -94,8 +98,9 @@ describe('WebSocketAPI', () => {
       spy.getCall(7).args[0].channel.should.be.equal('track');
       spy.getCall(8).args[0].channel.should.be.equal('time');
       spy.getCall(9).args[0].channel.should.be.equal('lyrics');
-      spy.getCall(10).args[0].channel.should.be.equal('playlists');
-      spy.getCall(11).args[0].channel.should.be.equal('library');
+      spy.getCall(10).args[0].channel.should.be.equal('rating');
+      spy.getCall(11).args[0].channel.should.be.equal('playlists');
+      spy.getCall(12).args[0].channel.should.be.equal('library');
       done();
     }));
 
@@ -132,10 +137,12 @@ describe('WebSocketAPI', () => {
       spy.getCall(8).args[0].payload.total.should.be.equal(0);
       // lyrics
       expect(spy.getCall(9).args[0].payload).to.be.equal(null);
+      // rating
+      expect(spy.getCall(10).args[0].payload).to.be.deep.equal({ liked: false, disliked: false });
       // playlists
-      spy.getCall(10).args[0].payload.should.be.deep.equal([]);
+      spy.getCall(11).args[0].payload.should.be.deep.equal([]);
       // library
-      spy.getCall(11).args[0].payload.should.be.deep.equal({
+      spy.getCall(12).args[0].payload.should.be.deep.equal({
         albums: [],
         artists: [],
         tracks: [],
