@@ -48,11 +48,6 @@ function _redirectButton(button, URL, reverseURLChange) {
   }
 }
 
-/** Change the Shop button to open Shop in external browser */
-function fixShopButton() {
-  _redirectButton(document.querySelector('[data-type="shop"]'), 'https://play.google.com/store/music?feature=music_general');
-}
-
 function handleSubscribeButton() {
   _redirectButton(document.querySelector('[data-type="sub"]'), 'https://play.google.com/music/listen#/sulp', true);
 }
@@ -217,7 +212,6 @@ const fixChromecastButton = () => {
 // Modify the GUI after everything is sufficiently loaded
 window.wait(() => {
   hideNotWorkingStuff();
-  fixShopButton();
   handleSubscribeButton();
   installMainMenu();
   handleZoom();
