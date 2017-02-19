@@ -61,7 +61,7 @@
     "auto-launch": "^4.0.0",
     "electron": "1.6.0",
     "electron-chromecast": "^1.0.17",
-    "gmusic-mini-player.js": "^2.0.9",
+    "gmusic-mini-player.js": "^2.0.10",
     "gmusic-theme.js": "^2.1.7",
     "gmusic-ui.js": "^2.2.1",
     "gmusic.js": "^6.1.0",
