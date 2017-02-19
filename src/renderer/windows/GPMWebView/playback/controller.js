@@ -76,3 +76,11 @@ Emitter.on('playback:miniEnable', () => {
 Emitter.on('playback:miniDisable', () => {
   window.GPM.mini.disable();
 });
+
+Emitter.on('playback:infoTrack', () => {
+  if (!remote.getGlobal('PlaybackAPI').data.song.title) return;
+  new Notification(remote.getGlobal('PlaybackAPI').data.song.title, { // eslint-disable-line
+    body: `${remote.getGlobal('PlaybackAPI').data.song.artist} - ${remote.getGlobal('PlaybackAPI').data.song.album}`,
+    icon: remote.getGlobal('PlaybackAPI').data.song.albumArt,
+  });
+});

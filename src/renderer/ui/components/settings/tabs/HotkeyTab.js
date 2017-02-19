@@ -16,6 +16,7 @@ export default class HotkeyTab extends Component {
         <HotkeyInput label={TranslationProvider.query('playback-label-thumbs-down')} hotkeyAction="thumbsDown" />
         <HotkeyInput label={TranslationProvider.query('playback-label-volume-down')} hotkeyAction="decreaseVolume" />
         <HotkeyInput label={TranslationProvider.query('playback-label-volume-up')} hotkeyAction="increaseVolume" />
+        <HotkeyInput label={TranslationProvider.query('playback-label-info-track')} hotkeyAction="infoTrack" />
       </SettingsTabWrapper>
     );
   }
