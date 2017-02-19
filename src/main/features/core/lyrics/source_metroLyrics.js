@@ -10,7 +10,7 @@ const attemptMetroLyrics = (path) =>
       .then((data) => data.text())
       .then((html) => {
         const lyricsMatch = /('|")lyrics-body('|")>([\s\S]+)('|")lyrics-bottom('|")/gm.exec(html);
-        if (lyricsMatch) return reject('Could not find lyrics');
+        if (!lyricsMatch) return reject('Could not find lyrics');
         const lyricsChunk = (lyricsMatch[3]); // eslint-disable-line
         let lyrics = '';
         const paraRegexp = /<p class=('|")verse('|")>([\s\S]+?)<\/p>/g;

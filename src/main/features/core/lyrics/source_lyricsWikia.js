@@ -10,7 +10,9 @@ const attemptLyricsWikia = (path) =>
       .then((data) => data.text())
       .then((html) => {
         try {
-          let lyrics = (/('|")lyricbox('|")>(.+<\/script>)?(.+)(<!--)?/g.exec(html)[4]);
+          const lyricsMatch = /('|")lyricbox('|")>(.+<\/script>)?(.+)(<!--)?/g.exec(html);
+          if (!lyricsMatch) return reject('Failed to find lyricbox');
+          let lyrics = lyricsMatch[4];
           lyrics = lyrics.replace(/<br \/>/gi, '\n');
           lyrics = decoder.decode(lyrics);
           lyrics = xss(lyrics, {

@@ -7,7 +7,7 @@ import attemptMetroLyrics from './source_metroLyrics';
 
 const attemptPromiseSequence = (seq) =>
   new Promise((resolve, reject) => {
-    seq[0].then(resolve).catch(() => {
+    seq[0]().then(resolve).catch(() => {
       if (seq.length <= 1) {
         reject();
       } else {
@@ -21,15 +21,15 @@ const attemptPromiseSequence = (seq) =>
 const bracketedRegex = () => /[\(|\[].+?[\)|\]]/g;
 
 export const resolveLyrics = (song) => {
-  const promises = [attemptLyricsWikia(`${song.artist}:${song.title}`)];
+  const promises = [() => attemptLyricsWikia(`${song.artist}:${song.title}`)];
   let bracketed = song.title.match(bracketedRegex()) || [];
 
   // DEV: Attempt to find lyrics from wikia
   let title = song.title;
   _.forEachRight(bracketed, (bracket) => {
     title = title.replace(bracket, '').trim();
-    promises.push(attemptLyricsWikia(`${song.artist}:${title}`));
-    promises.push(attemptLyricsFreak(title, song.artist));
+    promises.push(() => attemptLyricsWikia(`${song.artist}:${title}`));
+    promises.push(() => attemptLyricsFreak(title, song.artist));
   });
 
   // DEV: Attempt to find lyrics from metro
@@ -37,7 +37,7 @@ export const resolveLyrics = (song) => {
   const lowerArtist = song.artist.toLowerCase().replace(/'/g, '');
   const lowerAlbum = song.album.toLowerCase().replace(/'/g, '');
   promises.push(
-    attemptMetroLyrics(`${lowerTitle.replace(/ /g, '-')}-lyrics-${lowerArtist.replace(/ /g, '-')}`)
+    () => attemptMetroLyrics(`${lowerTitle.replace(/ /g, '-')}-lyrics-${lowerArtist.replace(/ /g, '-')}`)
   );
 
   const dashed = lowerAlbum.match(/- [^-]+/g) || [];
@@ -53,7 +53,7 @@ export const resolveLyrics = (song) => {
     _.forEachRight(bracketed, (bracket) => {
       title = title.replace(bracket, '').trim();
       promises.push(
-        attemptMetroLyrics(`${title.replace(/ /g, '-')}-lyrics-${album.replace(/ /g, '-')}`)
+        () => attemptMetroLyrics(`${title.replace(/ /g, '-')}-lyrics-${album.replace(/ /g, '-')}`)
       );
     });
   });
@@ -70,6 +70,6 @@ PlaybackAPI.on('change:track', (song) => {
       }
     })
     .catch(() => {
-      Logger.verbose('Lyrics parsing failed');
+      if (global.Logger) Logger.verbose('Lyrics parsing failed');
     });
 });
