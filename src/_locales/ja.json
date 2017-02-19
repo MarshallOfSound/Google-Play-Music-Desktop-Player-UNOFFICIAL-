@@ -103,6 +103,8 @@
   "settings-option-mini-ontop": "常に最前面に表示する",
   "settings-option-mini-use-scroll-volume": "音量調節にスクロールホイールを利用する",
 
+  "settings-option-skip-bad-songs": "",
+
   "settings-options-style-description": "アプリケーションにスタイルを適用するためのローカルCSSファイルを選択する",
   "settings-options-style-main-app": "メインアプリ",
   "settings-options-style-gpm": "Google Play Music",
@@ -114,7 +116,7 @@
 
   "title-color-picker": "カラーピッカー",
   "title-settings": "設定",
-  "title-settings-audio": "オーディオ",
+  "title-settings-playback": "",
   "title-settings-general": "一般",
   "title-settings-hotkeys": "ホットキー",
   "title-settings-lastfm": "LastFM",

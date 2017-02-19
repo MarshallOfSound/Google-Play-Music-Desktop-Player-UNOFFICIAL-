@@ -103,6 +103,8 @@
   "settings-option-mini-ontop": "Ține fereastra deasupra",
   "settings-option-mini-use-scroll-volume": "Folosește rotița mouse-ului pentru a ajusta volumul",
 
+  "settings-option-skip-bad-songs": "",
+
   "settings-options-style-description": "Alege un fișier CSS pentru a injecta stilul în aplicație",
   "settings-options-style-main-app": "Aplicație GPMDP",
   "settings-options-style-gpm": "Google Play Music",
@@ -114,7 +116,7 @@
 
   "title-color-picker": "Paletă culori",
   "title-settings": "Setări",
-  "title-settings-audio": "Audio",
+  "title-settings-playback": "",
   "title-settings-general": "General",
   "title-settings-hotkeys": "Scurtături",
   "title-settings-lastfm": "LastFM",

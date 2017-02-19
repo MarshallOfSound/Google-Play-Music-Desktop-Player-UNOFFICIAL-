@@ -103,6 +103,8 @@
   "settings-option-mini-ontop": "Zawsze na wierzchu",
   "settings-option-mini-use-scroll-volume": "Użyj rolki myszki aby sterować głośnością",
 
+  "settings-option-skip-bad-songs": "",
+
   "settings-options-style-description": "Wybierz lokalny plik CSS aby dodać nowe style do aplikacji",
   "settings-options-style-main-app": "Główna aplikacja",
   "settings-options-style-gpm": "Muzyka Google Play",
@@ -114,7 +116,7 @@
 
   "title-color-picker": "Wybierz kolor",
   "title-settings": "Ustawienia",
-  "title-settings-audio": "Audio",
+  "title-settings-playback": "",
   "title-settings-general": "Ogólne",
   "title-settings-hotkeys": "Skróty klawiszowe",
   "title-settings-lastfm": "LastFM",

@@ -103,6 +103,8 @@
   "settings-option-mini-ontop": "Завжди нагорі",
   "settings-option-mini-use-scroll-volume": "Керування гічністю за допомогою коліщатка миши",
 
+  "settings-option-skip-bad-songs": "",
+
   "settings-options-style-description": "Оберіть локальний CSS-файл для застосування стилей в застосунку",
   "settings-options-style-main-app": "Стилі додатку",
   "settings-options-style-gpm": "Стилі Google Play Music",
@@ -114,7 +116,7 @@
 
   "title-color-picker": "Обрати колір",
   "title-settings": "Налаштування",
-  "title-settings-audio": "Звук",
+  "title-settings-playback": "",
   "title-settings-general": "Основні",
   "title-settings-hotkeys": "Скорочення клавіатури",
   "title-settings-lastfm": "LastFM",

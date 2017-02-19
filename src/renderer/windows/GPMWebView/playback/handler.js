@@ -23,6 +23,9 @@ window.wait(() => {
     currentSong = song;
     Emitter.fire('change:track', song);
     Emitter.fire('change:rating', window.GPM.rating.getRating());
+    if (window.GPM.rating.getRating() === '1' && Settings.get('skipBadSongs')) {
+      window.GPM.playback.forward();
+    }
   });
 
   window.GPM.on('change:rating', (rating) => {

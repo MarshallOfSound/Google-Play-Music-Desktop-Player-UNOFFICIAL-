@@ -103,6 +103,8 @@
   "settings-option-mini-ontop": "Всегда наверху",
   "settings-option-mini-use-scroll-volume": "Управление громкостью колесом мыши",
 
+  "settings-option-skip-bad-songs": "",
+
   "settings-options-style-description": "Выберите локальный CSS-файл для инъекции стилей в приложение",
   "settings-options-style-main-app": "Стили приложения",
   "settings-options-style-gpm": "Стили сервиса GPM",
@@ -114,7 +116,7 @@
 
   "title-color-picker": "Выбор цвета",
   "title-settings": "Настройки программы",
-  "title-settings-audio": "Аудио",
+  "title-settings-playback": "",
   "title-settings-general": "Основные",
   "title-settings-hotkeys": "Горячие клавиши",
   "title-settings-lastfm": "Last.FM",
