@@ -78,9 +78,11 @@ Emitter.on('playback:miniDisable', () => {
 });
 
 Emitter.on('playback:infoTrack', () => {
-  if (!remote.getGlobal('PlaybackAPI').data.song.title) return;
-  new Notification(remote.getGlobal('PlaybackAPI').data.song.title, { // eslint-disable-line
-    body: `${remote.getGlobal('PlaybackAPI').data.song.artist} - ${remote.getGlobal('PlaybackAPI').data.song.album}`,
-    icon: remote.getGlobal('PlaybackAPI').data.song.albumArt,
+  const currentTrack = window.GPM.getCurrentTrack();
+
+  if (!window.GPM.isPlaying()) return;
+  new Notification(currentTrack.title, { // eslint-disable-line
+    body: `${currentTrack.artist} - ${currentTrack.album}`,
+    icon: currentTrack.albumArt,
   });
 });
