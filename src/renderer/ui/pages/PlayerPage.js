@@ -29,7 +29,7 @@ export default class PlayerPage extends Component {
     this.ready = false;
     this.state = {
       webviewTarget: 'https://play.google.com/music/listen',
-      pageTitle: 'Google Play Music Desktop Player',
+      title: 'Google Play Music Desktop Player',
     };
   }
 
