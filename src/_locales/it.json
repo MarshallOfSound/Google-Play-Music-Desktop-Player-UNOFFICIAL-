@@ -103,7 +103,7 @@
   "settings-option-mini-ontop": "Sempre in primo piano",
   "settings-option-mini-use-scroll-volume": "Usa la rotella di scorrimento per regolare il volume",
 
-  "settings-option-skip-bad-songs": "",
+  "settings-option-skip-bad-songs": "Salta automaticamente i brani non piaciuti",
 
   "settings-options-style-description": "Seleziona un file CSS locale per iniettare gli stili nell'applicazione",
   "settings-options-style-main-app": "Applicazione principale",
@@ -116,7 +116,7 @@
 
   "title-color-picker": "Selettore del colore",
   "title-settings": "Impostazioni",
-  "title-settings-playback": "",
+  "title-settings-playback": "Riproduzione",
   "title-settings-general": "Generale",
   "title-settings-hotkeys": "Tasti veloci",
   "title-settings-lastfm": "LastFM",
