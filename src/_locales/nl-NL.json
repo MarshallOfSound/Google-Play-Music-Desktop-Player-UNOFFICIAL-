@@ -103,6 +103,8 @@
   "settings-option-mini-ontop": "Altijd op de voorgrond",
   "settings-option-mini-use-scroll-volume": "Gebruik het muiswieltje om het volume aan te passen",
 
+  "settings-option-skip-bad-songs": "",
+
   "settings-options-style-description": "",
   "settings-options-style-main-app": "",
   "settings-options-style-gpm": "",
@@ -114,7 +116,7 @@
 
   "title-color-picker": "kleurenkiezer",
   "title-settings": "Instellingen",
-  "title-settings-audio": "Audio",
+  "title-settings-playback": "",
   "title-settings-general": "Algemeen",
   "title-settings-hotkeys": "Sneltoetsen",
   "title-settings-lastfm": "LastFM",

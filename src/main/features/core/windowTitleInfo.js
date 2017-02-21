@@ -1,10 +1,10 @@
-const windowTitle = WindowManager.get(global.mainWindowID).getTitle();
+const windowTitle = 'Google Play Music Desktop Player';
 
 let darwinTimer;
-const updateDarwinTitle = () => {
+const updateDarwinTitle = (newTitle) => {
   clearTimeout(darwinTimer);
   darwinTimer = setTimeout(() => {
-    Emitter.sendToWindowsOfName('main', 'window:updateTitle', WindowManager.get(global.mainWindowID).getTitle());
+    Emitter.sendToWindowsOfName('main', 'window:updateTitle', newTitle);
   }, 200);
 };
 
@@ -12,7 +12,7 @@ PlaybackAPI.on('change:track', (songInfo) => {
   const newString = `${(songInfo.title || TranslationProvider.query('label-unknown-song'))} - ${(songInfo.artist || TranslationProvider.query('label-unknown-artist'))}`; // eslint-disable-line
   global.appIcon.setToolTip(newString);
   WindowManager.get(global.mainWindowID).setTitle(newString);
-  updateDarwinTitle();
+  updateDarwinTitle(newString);
 });
 
 const changeState = (stateVal) => {
@@ -26,7 +26,7 @@ const changeState = (stateVal) => {
   }
   global.appIcon.setToolTip(newString);
   WindowManager.get(global.mainWindowID).setTitle(newString);
-  updateDarwinTitle();
+  updateDarwinTitle(newString);
 };
 
 Emitter.on('playback:isPlaying', changeState.bind(this, 2));

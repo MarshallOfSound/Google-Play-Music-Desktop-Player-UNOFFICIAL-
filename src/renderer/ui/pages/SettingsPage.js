@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
 
-import AudioTab from '../components/settings/tabs/AudioTab';
 import GeneralTab from '../components/settings/tabs/GeneralTab';
 import HotkeyTab from '../components/settings/tabs/HotkeyTab';
 import LastFMTab from '../components/settings/tabs/LastFMTab';
 import MiniTab from '../components/settings/tabs/MiniTab';
+import PlaybackTab from '../components/settings/tabs/PlaybackTab';
 import StyleTab from '../components/settings/tabs/StyleTab';
 import WindowContainer from '../components/generic/WindowContainer';
 
@@ -39,8 +39,8 @@ export default class SettingsPage extends Component {
           <Tab label={TranslationProvider.query('title-settings-hotkeys')}>
             <HotkeyTab />
           </Tab>
-          <Tab label={TranslationProvider.query('title-settings-audio')}>
-            <AudioTab />
+          <Tab label={TranslationProvider.query('title-settings-playback')}>
+            <PlaybackTab />
           </Tab>
           <Tab label={TranslationProvider.query('title-settings-style')}>
             <StyleTab />

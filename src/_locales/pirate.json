@@ -103,6 +103,8 @@
   "settings-option-mini-ontop": "Always keep this 'ere application on top'",
   "settings-option-mini-use-scroll-volume": "",
 
+  "settings-option-skip-bad-songs": "",
+
   "settings-options-style-description": "Choose a local CSS file to inject styles into th' ship",
   "settings-options-style-main-app": "Main App",
   "settings-options-style-gpm": "Google Play Music",
@@ -114,7 +116,7 @@
 
   "title-color-picker": "Paint Picker",
   "title-settings": "",
-  "title-settings-audio": "Noise",
+  "title-settings-playback": "",
   "title-settings-general": "All th' thin's",
   "title-settings-hotkeys": "Magic Buttons",
   "title-settings-lastfm": "LastFM",

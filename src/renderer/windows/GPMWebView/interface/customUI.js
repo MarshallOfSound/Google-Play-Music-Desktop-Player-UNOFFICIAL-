@@ -75,7 +75,7 @@ function hideNotWorkingStuff() {
   hide('.upload-dialog-bg', true);
   hide('.upload-dialog', true);
 
-  setInterval(() => hide('.song-menu.goog-menu.now-playing-menu > .goog-menuitem:nth-child(3)'), 500);
+  cssRule('.song-menu.goog-menu.now-playing-menu > .goog-menuitem:nth-child(3) { display: none !important; }');
 }
 
 function installSidebarButton(translationKey, type, icon, index, fn) {

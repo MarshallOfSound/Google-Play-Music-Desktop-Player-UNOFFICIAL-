@@ -48,7 +48,7 @@ class Settings {
         Emitter.sendToAll(`settings:change:${key}`, value, key);
         Emitter.sendToGooglePlayMusic(`settings:change:${key}`, value, key);
       }
-      this._save();
+      if (valChanged) this._save();
     } else {
       Emitter.fire('settings:set', {
         key,

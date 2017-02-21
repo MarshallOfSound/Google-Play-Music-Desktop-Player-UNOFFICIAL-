@@ -4,14 +4,14 @@ import React from 'react';
 import chai from 'chai';
 import { mount } from 'enzyme';
 
-import AudioTab from '../../../../build/renderer/ui/components/settings/tabs/AudioTab';
+import PlaybackTab from '../../../../build/renderer/ui/components/settings/tabs/PlaybackTab';
 import materialUIContext from '../_materialUIContext';
 
 chai.should();
 
-describe('<AudioTab />', () => {
+describe('<PlaybackTab />', () => {
   it('should render a SettingsTabWrapper', () => {
-    const component = mount(<AudioTab />, materialUIContext);
+    const component = mount(<PlaybackTab />, materialUIContext);
     component.find('SettingsTabWrapper').length.should.be.equal(1);
   });
 });

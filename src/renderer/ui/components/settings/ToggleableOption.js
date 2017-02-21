@@ -30,7 +30,7 @@ class SettingsCheckbox extends Component {
     return (
       <Checkbox
         label={label}
-        checked={this.props[this.props.settingsKey]}
+        checked={!!this.props[this.props.settingsKey]}
         onCheck={this.onChange}
         style={{
           marginTop: 4,
