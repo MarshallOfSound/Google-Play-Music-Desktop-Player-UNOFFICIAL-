@@ -62,6 +62,7 @@
   "playback-label-thumbs-up": "Daumen hoch",
   "playback-label-volume-down": "Leiser",
   "playback-label-volume-up": "Lauter",
+  "playback-label-info-track": "",
   "playback-os-no-track-playing": "Es spielt derzeit kein Titel",
 
   "settings-requires-restart": "Erfordert einen Neustart",
