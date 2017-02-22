@@ -62,6 +62,7 @@
   "playback-label-thumbs-up": "Gostei",
   "playback-label-volume-down": "Diminuir Volume",
   "playback-label-volume-up": "Aumentar Volume",
+  "playback-label-info-track": "Notificar música atual",
   "playback-os-no-track-playing": "",
 
   "settings-requires-restart": "Requer reinicialização",
