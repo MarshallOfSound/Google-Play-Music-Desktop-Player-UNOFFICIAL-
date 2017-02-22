@@ -76,3 +76,13 @@ Emitter.on('playback:miniEnable', () => {
 Emitter.on('playback:miniDisable', () => {
   window.GPM.mini.disable();
 });
+
+Emitter.on('playback:infoTrack', () => {
+  const currentTrack = window.GPM.getCurrentTrack();
+
+  if (!window.GPM.isPlaying()) return;
+  new Notification(currentTrack.title, { // eslint-disable-line
+    body: `${currentTrack.artist} - ${currentTrack.album}`,
+    icon: currentTrack.albumArt,
+  });
+});
