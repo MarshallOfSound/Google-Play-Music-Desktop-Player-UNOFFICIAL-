@@ -6,7 +6,7 @@ import { LASTFM_API_KEY, LASTFM_API_SECRET } from '../../constants';
 // hijack lastfm module to use 'electron.net' instead of 'http'
 global.GENTLY_HIJACK = {
   hijack(require) {
-    return function (moduleName) {
+    return (moduleName) => {
       let module;
 
       if (moduleName === 'http') {
