@@ -10,6 +10,7 @@ description: |
   This is *not* an official Google project.
 grade: stable
 confinement: strict
+icon: snap/gui/google-play-music-desktop-player.png
 
 apps:
   google-play-music-desktop-player:
@@ -48,6 +49,8 @@ parts:
       - libasound2-plugins
       - libnotify4
       - libavahi-compat-libdnssd1
+      - libxss1
+      - libgconf2-4
     after:
       - desktop-gtk2
       - indicator-gtk2
