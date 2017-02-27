@@ -1,5 +1,5 @@
 name: google-play-music-desktop-player
-version: '4.0.4'
+version: '4.1.1'
 summary: Standalone player for Google Play Music
 description: |
   This Google Play Music player provides desktop integration - with music
@@ -28,46 +28,6 @@ apps:
       - mpris
 
 parts:
-  gpmdp-indicator-gtk2:
-    plugin: autotools
-    source: lp:libappindicator
-    build-packages:
-      - at-spi2-core
-      - gobject-introspection
-      - intltool
-      - libdbus-glib-1-dev
-      - libdbusmenu-glib-dev
-      - libdbusmenu-gtk-dev
-      - libgirepository1.0-dev
-      - libglib2.0-dev
-      - libgtk2.0-dev
-      - libindicator-dev
-      - python-all-dev
-      - python-gtk2-dev
-      - valac
-      - gnome-common
-      - gtk-doc-tools
-      # #Mono support
-      - cli-common-dev # [!arm64 !ppc64el]
-      - libnunit-cil-dev # [!arm64 !ppc64el]
-      - mono-devel # [!arm64 !ppc64el]
-      - gtk-sharp2-gapi # [!arm64 !ppc64el]
-      - libgtk2.0-cil-dev # [!arm64 !ppc64el]
-    configflags:
-      - --disable-gtk-doc
-      - --prefix=/usr
-      - --with-gtk=2
-      - --enable-gtk-doc=no
-      - --enable-gtk-doc-html=no
-      - --disable-tests
-      - --disable-mono-test
-    snap:
-      - ./**/lib*.so.*
-      - ./**/*.typelib
-      - ./**/python2.7/**/appindicator
-      - ./**/lib/cli
-      - ./**/lib/mono
-
   google-play-music-desktop-player:
     plugin: gulp
     node-engine: 7.2.1
@@ -87,8 +47,9 @@ parts:
       - libasound2-data
       - libasound2-plugins
       - libnotify4
+      - libavahi-compat-libdnssd1
     after:
       - desktop-gtk2
-      - gpmdp-indicator-gtk2
+      - indicator-gtk2
     organize:
       '../build/dist/Google Play Music Desktop Player-linux-x64': google-play-music-desktop-player
