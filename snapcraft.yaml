@@ -10,7 +10,7 @@ description: |
   This is *not* an official Google project.
 grade: stable
 confinement: strict
-icon: snap/gui/google-play-music-desktop-player.png
+icon: src/assets/icons/svg/vector_logo.svg
 
 apps:
   google-play-music-desktop-player:
@@ -61,3 +61,4 @@ parts:
       - indicator-gtk2
     organize:
       '../build/dist/Google Play Music Desktop Player-linux-x64': google-play-music-desktop-player
+      ../build/build/assets/img/main.png: main.png
