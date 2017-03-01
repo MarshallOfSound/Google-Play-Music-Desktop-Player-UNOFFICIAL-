@@ -15,6 +15,7 @@ icon: snap/gui/google-play-music-desktop-player.png
 apps:
   google-play-music-desktop-player:
     command: desktop-launch '$SNAP/google-play-music-desktop-player/Google\ Play\ Music\ Desktop\ Player'
+    desktop: google-play-music-desktop-player.desktop
     plugs:
       - pulseaudio
       - x11
@@ -29,6 +30,10 @@ apps:
       - mpris
 
 parts:
+  desktop-file:
+    plugin: dump
+    source: vendor/snap/
+
   google-play-music-desktop-player:
     plugin: gulp
     node-engine: 7.2.1
