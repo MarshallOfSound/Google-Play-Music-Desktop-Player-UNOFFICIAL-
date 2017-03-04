@@ -69,3 +69,5 @@ const waitForExternal = setInterval(() => {
     Settings.set('gpmdp_connect_email', window.gbar._CONFIG[0][10][5]);
   }
 }, 10);
+
+if (remote.getGlobal('DEV_MODE')) window.__devtron = { require, process };

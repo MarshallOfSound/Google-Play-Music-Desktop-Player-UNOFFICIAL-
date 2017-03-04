@@ -10,6 +10,7 @@ import concat from 'gulp-concat';
 import cssmin from 'gulp-cssmin';
 import { createWindowsInstaller as electronInstaller } from 'gpmdp-electron-winstaller';
 import fs from 'fs';
+import globber from 'glob';
 import header from 'gulp-header';
 import less from 'gulp-less';
 import packager from 'electron-packager';
@@ -47,7 +48,15 @@ const defaultPackageConf = {
   'app-category-type': 'public.app-category.music',
   'app-copyright': `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
   'app-version': packageJSON.version,
-  afterCopy: [(buildPath, electronVersion, pPlatform, pArch, done) => rebuild(buildPath, electronVersion, pArch).then(() => done()).catch(done)],
+  afterCopy: [
+    (buildPath, electronVersion, pPlatform, pArch, done) => rebuild(buildPath, electronVersion, pArch).then(() => done()).catch(done),
+    (buildPath, electronVersion, pPlatform, pArch, done) => {
+      const files = globber.sync(nodePath.resolve(buildPath, '**', '*.pdb'))
+        .concat(globber.sync(nodePath.resolve(buildPath, '**', '*.obj')));
+      files.forEach(filePath => fs.unlinkSync(filePath));
+      done();
+    },
+  ],
   arch: 'all',
   asar: true,
   'build-version': packageJSON.version,
@@ -293,11 +302,20 @@ gulp.task('make:win:uwp', ['package:win'], (done) => {
     flatten: true,
     packageVersion: `${packageJSON.version}.0`,
     packageName: 'GPMDP',
-    packageDisplayName: packageJSON.productName,
+    packageDisplayName: 'GPMDP',
     packageDescription: packageJSON.description,
     packageExecutable: `app\\${packageJSON.productName}.exe`,
-    publisher: 'CN=marshallca',
+    publisher: 'CN=E800FCD7-1562-414E-A4AC-F1BA78F4A060',
+    publisherDisplayName: 'Samuel Attard',
     assets: 'build\\assets\\img\\assets',
+    devCert: nodePath.resolve(__dirname, '.uwp.pfx'),
+    signtoolParams: ['/p', process.env.SIGN_CERT_PASS],
+    finalSay: () => new Promise((resolve) => {
+      const manifestPath = nodePath.resolve(__dirname, 'dist/uwp/pre-appx/appxmanifest.xml');
+      const manifest = fs.readFileSync(manifestPath, 'utf8').replace('<Identity Name="GPMDP"', '<Identity Name="24619SamuelAttard.GPMDP"');
+      fs.writeFileSync(manifestPath, manifest);
+      resolve();
+    }),
   }).then(() => done()).catch(done);
 });
 
