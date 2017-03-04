@@ -8,8 +8,14 @@ const updateDarwinTitle = (newTitle) => {
   }, 200);
 };
 
+// fix display of ampersands on windows
+const replaceAmpersands = (string) => (
+  process.platform === 'win32' ? string.replace('&', '&&&') : string
+);
+
 PlaybackAPI.on('change:track', (songInfo) => {
-  const newString = `${(songInfo.title || TranslationProvider.query('label-unknown-song'))} - ${(songInfo.artist || TranslationProvider.query('label-unknown-artist'))}`; // eslint-disable-line
+  let newString = `${(songInfo.title || TranslationProvider.query('label-unknown-song'))} - ${(songInfo.artist || TranslationProvider.query('label-unknown-artist'))}`; // eslint-disable-line
+  newString = replaceAmpersands(newString);
   global.appIcon.setToolTip(newString);
   WindowManager.get(global.mainWindowID).setTitle(newString);
   updateDarwinTitle(newString);
@@ -19,6 +25,7 @@ const changeState = (stateVal) => {
   const songInfo = PlaybackAPI.currentSong(true);
   if (!songInfo) return;
   let newString = `${(songInfo.title || TranslationProvider.query('label-unknown-song'))} - ${(songInfo.artist || TranslationProvider.query('label-unknown-artist'))}`; // eslint-disable-line
+  newString = replaceAmpersands(newString);
   if (stateVal === 0) {
     newString = windowTitle;
   } else if (stateVal === 1) {
