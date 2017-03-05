@@ -14,9 +14,8 @@ const replaceAmpersands = string => (
 );
 
 PlaybackAPI.on('change:track', (songInfo) => {
-  let newString = `${(songInfo.title || TranslationProvider.query('label-unknown-song'))} - ${(songInfo.artist || TranslationProvider.query('label-unknown-artist'))}`; // eslint-disable-line
-  newString = replaceAmpersands(newString);
-  global.appIcon.setToolTip(newString);
+  const newString = `${(songInfo.title || TranslationProvider.query('label-unknown-song'))} - ${(songInfo.artist || TranslationProvider.query('label-unknown-artist'))}`; // eslint-disable-line
+  global.appIcon.setToolTip(replaceAmpersands(newString));
   WindowManager.get(global.mainWindowID).setTitle(newString);
   updateDarwinTitle(newString);
 });
@@ -25,13 +24,12 @@ const changeState = (stateVal) => {
   const songInfo = PlaybackAPI.currentSong(true);
   if (!songInfo) return;
   let newString = `${(songInfo.title || TranslationProvider.query('label-unknown-song'))} - ${(songInfo.artist || TranslationProvider.query('label-unknown-artist'))}`; // eslint-disable-line
-  newString = replaceAmpersands(newString);
   if (stateVal === 0) {
     newString = windowTitle;
   } else if (stateVal === 1) {
     newString = `(Paused) ${newString}`;
   }
-  global.appIcon.setToolTip(newString);
+  global.appIcon.setToolTip(replaceAmpersands(newString));
   WindowManager.get(global.mainWindowID).setTitle(newString);
   updateDarwinTitle(newString);
 };
