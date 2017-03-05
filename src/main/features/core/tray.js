@@ -37,7 +37,14 @@ const getTrackString = (track) => {
     title = `${title.substring(0, 40 - (artist.length + 6))}...`;
   }
 
-  return `${title} - ${artist}`;
+  let trackString = `${title} - ${artist}`;
+
+  // fix display of ampersands on windows
+  if (process.platform === 'win32') {
+    trackString = trackString.replace('&', '&&');
+  }
+
+  return trackString;
 };
 
 let audioDeviceMenu = [
