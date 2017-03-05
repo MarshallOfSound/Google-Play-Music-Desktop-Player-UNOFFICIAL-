@@ -9,7 +9,7 @@ const updateDarwinTitle = (newTitle) => {
 };
 
 // fix display of ampersands on windows
-const replaceAmpersands = (string) => (
+const replaceAmpersands = string => (
   process.platform === 'win32' ? string.replace('&', '&&&') : string
 );
 
