@@ -11,7 +11,6 @@ spectron.xml
 coverage.zip
 uwp/
 .vscode/
-*.snapuwp/
 
 # snapcraft
 prime/
