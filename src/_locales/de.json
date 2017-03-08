@@ -40,7 +40,7 @@
 
   "message-pausing-after-song": "Nach diesem Titel pausieren.",
   "message-pausing-after-song-button": "Nicht nach diesem Titel pausieren",
-  "message-uncaught-error": "Es gab einen Fehler innerhalb von GPMDP.",
+  "message-uncaught-error": "Es gab einen unbekannten Fehler innerhalb von GPMDP.",
   "message-uncaught-error-button": "Klicke hier, um den Fehler bei GitHub zu melden",
 
   "modal-confirmTray-title": "Ein kurzer Hinweis",
@@ -50,7 +50,7 @@
   "modal-confirmUpdate-content": "Woo hoo, es sieht so aus, als gäbe es eine Aktualisierung für Google Play Music Desktop Player.  Diese Aktualisierung bringt neue Extras, Fehlerbehebungen und Weiteres.  Für das beste Erlebnis empfehlen wir so schnell wie möglich zu aktualisieren.<br/>Wir hoffen, dir gefällt diese Aktualisierung!",
   "modal-confirmUninstall-title": "Hier ist das Problem...",
   "modal-confirmUninstall-content": "Wir haben gerade herausgefunden, dass noch eine alte Version von GPMDP installiert ist.  Wenn du gerade aktualisiert hast, ist das normal.  Wir versuchen nun die alte Version zu entfernen.  Dies \"könnte\" Administratorrechte benötigen. Bitte gib uns diese, damit wir aufräumen können.",
-  "modal-goToURL-title": "Gebe eine Google Play Music-URL, um dort hin zu gehen:",
+  "modal-goToURL-title": "Gebe eine Google Play Music-URL ein, um dort hin zu gehen:",
   "modal-welcome-title": "Willkommen zu Version",
   "modal-welcome-content": "Wir hoffen, dir gefällt diese Aktualisierung!",
 
@@ -62,7 +62,7 @@
   "playback-label-thumbs-up": "Daumen hoch",
   "playback-label-volume-down": "Leiser",
   "playback-label-volume-up": "Lauter",
-  "playback-label-info-track": "",
+  "playback-label-info-track": "Aktuellen Titel ankündigen",
   "playback-os-no-track-playing": "Es spielt derzeit kein Titel",
 
   "settings-requires-restart": "Erfordert einen Neustart",
@@ -104,7 +104,7 @@
   "settings-option-mini-ontop": "Immer im Vordergrund",
   "settings-option-mini-use-scroll-volume": "Mausrad zur Lautstärkekontrolle verwenden",
 
-  "settings-option-skip-bad-songs": "",
+  "settings-option-skip-bad-songs": "Überspringe automatisch nicht gemochte Titel",
 
   "settings-options-style-description": "Wähle eine lokale CSS-Datei, um eigene Stile in die Anwendung einzubringen",
   "settings-options-style-main-app": "Hauptfenster",
@@ -117,7 +117,7 @@
 
   "title-color-picker": "Farbauswahl",
   "title-settings": "Einstellungen",
-  "title-settings-playback": "",
+  "title-settings-playback": "Wiedergabe",
   "title-settings-general": "Allgemein",
   "title-settings-hotkeys": "Hotkeys",
   "title-settings-lastfm": "LastFM",
