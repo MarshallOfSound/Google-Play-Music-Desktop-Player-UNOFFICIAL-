@@ -62,7 +62,7 @@
   "playback-label-thumbs-up": "Daumen hoch",
   "playback-label-volume-down": "Leiser",
   "playback-label-volume-up": "Lauter",
-  "playback-label-info-track": "",
+  "playback-label-info-track": "Aktuellen Titel ankündigen",
   "playback-os-no-track-playing": "Es spielt derzeit kein Titel",
 
   "settings-requires-restart": "Erfordert einen Neustart",
@@ -104,7 +104,7 @@
   "settings-option-mini-ontop": "Immer im Vordergrund",
   "settings-option-mini-use-scroll-volume": "Mausrad zur Lautstärkekontrolle verwenden",
 
-  "settings-option-skip-bad-songs": "",
+  "settings-option-skip-bad-songs": "Überspringe automatisch nicht gemochte Titel",
 
   "settings-options-style-description": "Wähle eine lokale CSS-Datei, um eigene Stile in die Anwendung einzubringen",
   "settings-options-style-main-app": "Hauptfenster",
@@ -117,7 +117,7 @@
 
   "title-color-picker": "Farbauswahl",
   "title-settings": "Einstellungen",
-  "title-settings-playback": "",
+  "title-settings-playback": "Wiedergabe",
   "title-settings-general": "Allgemein",
   "title-settings-hotkeys": "Hotkeys",
   "title-settings-lastfm": "LastFM",
