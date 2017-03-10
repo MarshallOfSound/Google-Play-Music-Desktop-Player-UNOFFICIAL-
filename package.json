@@ -25,6 +25,7 @@
     "package:linux:64": "gulp package:linux:64",
     "package:win": "gulp package:win",
     "postinstall": "electron-rebuild --types=prod,optional",
+    "postversion": "node vendor/postversion.js",
     "test": "npm run lint",
     "pretest-electron": "npm run build",
     "pretest-electron-coverage": "cross-env NODE_ENV=coverage npm run build",
