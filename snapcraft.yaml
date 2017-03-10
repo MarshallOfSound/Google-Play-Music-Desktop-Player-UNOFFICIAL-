@@ -1,0 +1,64 @@
+name: google-play-music-desktop-player
+version: '4.2.0'
+summary: Standalone player for Google Play Music
+description: |
+  This Google Play Music player provides desktop integration - with music
+  hotkeys and the sound indicator via an MPRIS interface, the abiliy to use
+  custom colours and load custom themes, a remote-control interface, and
+  lower resource consumption than a full-blown browser tab.
+  .
+  This is *not* an official Google project.
+grade: stable
+confinement: strict
+icon: src/assets/icons/svg/vector_logo.svg
+
+apps:
+  google-play-music-desktop-player:
+    command: desktop-launch '$SNAP/google-play-music-desktop-player/Google\ Play\ Music\ Desktop\ Player'
+    desktop: google-play-music-desktop-player.desktop
+    plugs:
+      - pulseaudio
+      - x11
+      - opengl
+      - browser-support
+      - network
+      - network-bind
+      - process-control
+      - unity7
+      - gsettings
+    slots:
+      - mpris
+
+parts:
+  desktop-file:
+    plugin: dump
+    source: vendor/snap/
+
+  google-play-music-desktop-player:
+    plugin: gulp
+    node-engine: 7.2.1
+    source: .
+    source-type: git
+    gulp-tasks:
+      - package:linux:64
+    build-packages:
+      - libavahi-compat-libdnssd-dev
+      - libdbus-1-dev
+      - libx11-dev
+      - libexpat1-dev
+      - libnotify-dev
+    stage-packages:
+      - libnss3
+      - ca-certificates
+      - libasound2-data
+      - libasound2-plugins
+      - libnotify4
+      - libavahi-compat-libdnssd1
+      - libxss1
+      - libgconf2-4
+    after:
+      - desktop-gtk2
+      - indicator-gtk2
+    organize:
+      '../build/dist/Google Play Music Desktop Player-linux-x64': google-play-music-desktop-player
+      ../build/build/assets/img/main.png: main.png
