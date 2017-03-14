@@ -64,6 +64,7 @@ window.wait(() => {
         title: currentTrack.title,
         artist: currentTrack.artist,
         album: currentTrack.album,
+        duration: currentTrack.duration,
         timestamp: Math.round((Date.now() - playTime) / 1000),
       });
       playTime -= playbackInfo.total;

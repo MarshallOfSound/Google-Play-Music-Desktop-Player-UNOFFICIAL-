@@ -84,7 +84,7 @@ export const getLastFMSession = () =>
 //   getLastFMSession();
 // };
 
-export const updateNowPlaying = (track, artist, album) => {
+export const updateNowPlaying = (track, artist, album, duration) => {
   if (Settings.get('lastFMKey')) {
     getLastFMSession()
       .then((session) => {
@@ -92,13 +92,14 @@ export const updateNowPlaying = (track, artist, album) => {
           track,
           artist,
           album,
+          duration,
         }).on('error', (err) => Logger.error('LASTFM ERROR', err));
       })
       .catch((err) => Logger.error('LASTFM ERROR', err));
   }
 };
 
-export const updateScrobble = (track, artist, album, timestamp) => {
+export const updateScrobble = (track, artist, album, timestamp, duration) => {
   if (Settings.get('lastFMKey')) {
     getLastFMSession()
       .then((session) => {
@@ -107,6 +108,7 @@ export const updateScrobble = (track, artist, album, timestamp) => {
           artist,
           album,
           timestamp,
+          duration,
         }).on('error', (err) => Logger.error('LASTFM ERROR', err));
       })
       .catch((err) => Logger.error('LASTFM ERROR', err));
@@ -141,11 +143,11 @@ Emitter.on('lastfm:auth', () => {
 let currentRating = {};
 Emitter.on('change:track', (event, details) => {
   currentRating = {};
-  updateNowPlaying(details.title, details.artist, details.album);
+  updateNowPlaying(details.title, details.artist, details.album, Math.round(details.duration / 1000));
 });
 
 Emitter.on('change:track:scrobble', (event, details) => {
-  updateScrobble(details.title, details.artist, details.album, details.timestamp);
+  updateScrobble(details.title, details.artist, details.album, details.timestamp, Math.round(details.duration / 1000));
 });
 
 PlaybackAPI.on('change:rating', (newRating) => {
