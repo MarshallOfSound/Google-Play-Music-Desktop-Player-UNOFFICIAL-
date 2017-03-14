@@ -15,13 +15,15 @@ window.wait(() => {
     }
   });
 
-  let lastScrobble = {};
-  let lastScrobbleTime = 0;
-  let currentSong;
+  let playTime = 0;
+  let lastPosition = 0;
+  let currentTrack;
 
-  window.GPM.on('change:track', (song) => {
-    currentSong = song;
-    Emitter.fire('change:track', song);
+  window.GPM.on('change:track', (track) => {
+    currentTrack = track;
+    playTime = 0;
+    lastPosition = 0;
+    Emitter.fire('change:track', track);
     Emitter.fire('change:rating', window.GPM.rating.getRating());
     if (window.GPM.rating.getRating() === '1' && Settings.get('skipBadSongs')) {
       window.GPM.playback.forward();
@@ -50,21 +52,21 @@ window.wait(() => {
 
   window.GPM.on('change:playback-time', (playbackInfo) => {
     Emitter.fire('change:playback-time', playbackInfo);
-    if (playbackInfo.current === 0) {
-      lastScrobble = {};
-      lastScrobbleTime = Date.now();
+    const progress = playbackInfo.current - lastPosition;
+    lastPosition = playbackInfo.current;
+    // Update time if slider wasn't moved manually
+    if (progress > 0 && progress < 2000) {
+      playTime += progress;
     }
-    if (playbackInfo.current >= playbackInfo.total / 2
-          && Date.now() - 10000 >= lastScrobbleTime && currentSong !== null
-          && !currentSong.equals(lastScrobble)) {
+    // Scrobble if played more than half or 4 minutes
+    if ((playTime / playbackInfo.total) > 0.5 || playTime > 1000 * 60 * 4) {
       Emitter.fire('change:track:scrobble', {
-        title: currentSong.title,
-        artist: currentSong.artist,
-        album: currentSong.album,
-        timestamp: Math.round((Date.now() - playbackInfo.current) / 1000),
+        title: currentTrack.title,
+        artist: currentTrack.artist,
+        album: currentTrack.album,
+        timestamp: Math.round((Date.now() - playTime) / 1000),
       });
-      lastScrobbleTime = Date.now();
-      lastScrobble = currentSong;
+      playTime -= playbackInfo.total;
     }
   });
 
