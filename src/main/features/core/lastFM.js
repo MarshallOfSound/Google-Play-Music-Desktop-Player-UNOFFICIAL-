@@ -148,7 +148,9 @@ Emitter.on('change:track', (event, details) => {
 });
 
 Emitter.on('change:track:scrobble', (event, details) => {
-  updateScrobble(details.title, details.artist, (details.album === 'Unknown Album' ? undefined : details.album), details.timestamp, Math.round(details.duration / 1000));
+  if (details.duration > 30 * 1000) { // Scrobble only tracks longer than 30 seconds
+    updateScrobble(details.title, details.artist, (details.album === 'Unknown Album' ? undefined : details.album), details.timestamp, Math.round(details.duration / 1000));
+  }
 });
 
 PlaybackAPI.on('change:rating', (newRating) => {
