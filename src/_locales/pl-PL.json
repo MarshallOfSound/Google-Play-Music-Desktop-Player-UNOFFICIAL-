@@ -62,7 +62,7 @@
   "playback-label-thumbs-up": "Podoba mi się",
   "playback-label-volume-down": "Zmniejsz głośność",
   "playback-label-volume-up": "Zwiększ głośność",
-  "playback-label-info-track": "",
+  "playback-label-info-track": "Powiadom o obecnie odtwarzanym utworze",
   "playback-os-no-track-playing": "Żaden utwór nie jest teraz odtwarzany",
 
   "settings-requires-restart": "Wymaga ponownego uruchomienia",
@@ -104,7 +104,7 @@
   "settings-option-mini-ontop": "Zawsze na wierzchu",
   "settings-option-mini-use-scroll-volume": "Użyj rolki myszki aby sterować głośnością",
 
-  "settings-option-skip-bad-songs": "",
+  "settings-option-skip-bad-songs": "Automatycznie pomijaj nielubiane utwory",
 
   "settings-options-style-description": "Wybierz lokalny plik CSS aby dodać nowe style do aplikacji",
   "settings-options-style-main-app": "Główna aplikacja",
@@ -117,7 +117,7 @@
 
   "title-color-picker": "Wybierz kolor",
   "title-settings": "Ustawienia",
-  "title-settings-playback": "",
+  "title-settings-playback": "Odtwarzanie",
   "title-settings-general": "Ogólne",
   "title-settings-hotkeys": "Skróty klawiszowe",
   "title-settings-lastfm": "LastFM",
