@@ -143,11 +143,12 @@ Emitter.on('lastfm:auth', () => {
 let currentRating = {};
 Emitter.on('change:track', (event, details) => {
   currentRating = {};
-  updateNowPlaying(details.title, details.artist, details.album, Math.round(details.duration / 1000));
+  // Last.fm isn't accepting 'Unknown Album'
+  updateNowPlaying(details.title, details.artist, (details.album === 'Unknown Album' ? undefined : details.album), Math.round(details.duration / 1000));
 });
 
 Emitter.on('change:track:scrobble', (event, details) => {
-  updateScrobble(details.title, details.artist, details.album, details.timestamp, Math.round(details.duration / 1000));
+  updateScrobble(details.title, details.artist, (details.album === 'Unknown Album' ? undefined : details.album), details.timestamp, Math.round(details.duration / 1000));
 });
 
 PlaybackAPI.on('change:rating', (newRating) => {
