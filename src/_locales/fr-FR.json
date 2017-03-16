@@ -62,8 +62,8 @@
   "playback-label-thumbs-up": "Voter pour",
   "playback-label-volume-down": "Baisser le volume",
   "playback-label-volume-up": "Augmenter le volume",
-  "playback-label-info-track": "",
-  "playback-os-no-track-playing": "",
+  "playback-label-info-track": "Notifier la piste courante",
+  "playback-os-no-track-playing": "Aucune piste en cours de lecture",
 
   "settings-requires-restart": "Besoin de redémarrer",
 
@@ -75,7 +75,7 @@
   "settings-option-custom-theme-custom-color": "Couleur personnalisée",
   "settings-option-custom-theme-dark": "Sombre",
   "settings-option-custom-theme-light": "Clair",
-  "settings-option-custom-theme-should-track-system": "",
+  "settings-option-custom-theme-should-track-system": "Faire correspondre le thème sombre de votre système avec le type de thème",
 
   "settings-option-enable-api": "Activer l'API Playback",
   "settings-option-enable-api-json": "Activer l'API JSON",
@@ -84,8 +84,8 @@
   "settings-option-enable-voice": "Activer les contrôles vocaux",
   "settings-option-enable-voice-details": "Contrôle mains-libre pour GPMDP, c'est expérimental",
   "settings-option-enable-taskbar-progress": "Afficher la progression du morceau dans la barre des tâches",
-  "settings-option-enable-win10-media-service": "",
-  "settings-option-enable-win10-media-service-details": "",
+  "settings-option-enable-win10-media-service": "Activer le Service Multimedia de Windows 10",
+  "settings-option-enable-win10-media-service-details": "Cela montrera la piste courante sur l'écran de verrouillage",
   "settings-option-change-locale": "Choisir un langage",
 
   "settings-option-hotkey-explanation": "Les touches multimédias continueront à fonctionner malgré ces paramètres. Ceux-ci sont en complément des paramètres par défaut.",
@@ -93,7 +93,7 @@
 
   "settings-option-min-to-tray": "Minimiser vers le système de notification",
 
-  "settings-option-prevent-display-sleep": "",
+  "settings-option-prevent-display-sleep": "Empêcher le système de se mettre en veille lorsque GPMDP est ouvert",
   "settings-option-auto-launch": "Lancer automatiquement au démarrage de l'ordinateur",
 
   "settings-option-save-page": "Charger automatiquement la dernière page vue au lancement",
@@ -104,20 +104,20 @@
   "settings-option-mini-ontop": "Toujours au dessus",
   "settings-option-mini-use-scroll-volume": "Utiliser la molette de la souris pour ajuster le volume",
 
-  "settings-option-skip-bad-songs": "",
+  "settings-option-skip-bad-songs": "Passer automatiquement les pistes notées négativement",
 
   "settings-options-style-description": "Choisir un fichier CSS local pour injecter du style dans l'application",
   "settings-options-style-main-app": "Application principale",
   "settings-options-style-gpm": "Google Play Music",
   "settings-options-style-refresh": "Recharger les styles",
-  "settings-options-style-dialog-title": "",
-  "settings-options-style-dialog-button": "",
-  "settings-options-style-dialog-css-files": "",
-  "settings-options-style-dialog-all-files": "",
+  "settings-options-style-dialog-title": "Choisir un fichier CSS",
+  "settings-options-style-dialog-button": "Charger le CSS",
+  "settings-options-style-dialog-css-files": "Fichiers CSS",
+  "settings-options-style-dialog-all-files": "Tous les fichiers",
 
   "title-color-picker": "Sélecteur de couleur",
   "title-settings": "Paramètres",
-  "title-settings-playback": "",
+  "title-settings-playback": "Lecture",
   "title-settings-general": "Général",
   "title-settings-hotkeys": "Raccourcis",
   "title-settings-lastfm": "LastFM",
