@@ -113,7 +113,7 @@
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^1.5.5",
     "eslint-plugin-react": "^5.2.2",
-    "fs-extra": "^0.30.0",
+    "fs-extra": "^2.1.2",
     "glob": "^7.0.6",
     "gpmdp-electron-winstaller": "1.0.0",
     "gulp": "^3.9.1",
