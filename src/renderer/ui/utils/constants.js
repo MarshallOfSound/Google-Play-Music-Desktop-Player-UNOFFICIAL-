@@ -56,5 +56,6 @@ export const languageMap = {
   ro: 'Romanian',
   ru: 'Russian',
   sk: 'Slovak',
+  sv: 'Swedish',
   ua: 'Ukrainian',
 };
