@@ -30,6 +30,12 @@ function mprisService() {
     }
   });
 
+  player.on('pause', () => {
+    if (PlaybackAPI.isPlaying()) {
+      Emitter.sendToGooglePlayMusic('playback:playPause');
+    }
+  });
+
   player.on('playpause', () => {
     Emitter.sendToGooglePlayMusic('playback:playPause');
   });
