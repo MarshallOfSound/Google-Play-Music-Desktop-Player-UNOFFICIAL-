@@ -42,6 +42,7 @@ parts:
     gulp-tasks:
       - package:linux:64
     build-packages:
+      - g++
       - libavahi-compat-libdnssd-dev
       - libdbus-1-dev
       - libx11-dev
@@ -56,6 +57,7 @@ parts:
       - libavahi-compat-libdnssd1
       - libxss1
       - libgconf2-4
+      - libxtst6
     after:
       - desktop-gtk2
       - indicator-gtk2
