@@ -144,12 +144,14 @@ let currentRating = {};
 Emitter.on('change:track', (event, details) => {
   currentRating = {};
   // Last.fm isn't accepting 'Unknown Album'
-  updateNowPlaying(details.title, details.artist, (details.album === 'Unknown Album' ? undefined : details.album), Math.round(details.duration / 1000));
+  const album = details.album === 'Unknown Album' ? undefined : details.album;
+  updateNowPlaying(details.title, details.artist, album, Math.round(details.duration / 1000));
 });
 
 Emitter.on('change:track:scrobble', (event, details) => {
   if (details.duration > 30 * 1000) { // Scrobble only tracks longer than 30 seconds
-    updateScrobble(details.title, details.artist, (details.album === 'Unknown Album' ? undefined : details.album), details.timestamp, Math.round(details.duration / 1000));
+    const album = details.album === 'Unknown Album' ? undefined : details.album;
+    updateScrobble(details.title, details.artist, album, details.timestamp, Math.round(details.duration / 1000));
   }
 });
 
