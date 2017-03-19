@@ -67,6 +67,8 @@
 
   "settings-requires-restart": "Kræver genstart af GPMDP",
 
+  "settings-option-keep-sidebar-open": "",
+
   "settings-option-invert-tray-icon": "Omvend system ikonets farve",
 
   "settings-option-custom-theme": "Brugerdefineret tema",

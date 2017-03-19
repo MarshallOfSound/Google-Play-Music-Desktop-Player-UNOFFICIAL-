@@ -33,6 +33,14 @@ export const cssRule = (styles) => {
   tag.type = 'text/css';
   tag.appendChild(document.createTextNode(styles));
   document.head.appendChild(tag);
+  return tag;
+};
+
+/** Removes the referenced <style> tag */
+const removeCssRule = (styleTag) => {
+  if (styleTag) {
+    styleTag.parentElement.removeChild(styleTag);
+  }
 };
 
 
@@ -208,13 +216,32 @@ const fixChromecastButton = () => {
   cssRule('#player paper-icon-button[data-id="cast"] { display: inline-block; }');
 };
 
+let openSidebarStyles;
+const setKeepSidebarOpen = (keepSidebarOpen) => {
+  const sidebar = document.querySelector('paper-drawer-panel');
+  if (keepSidebarOpen) {
+    sidebar.removeAttribute('force-narrow');
+    sidebar.removeAttribute('narrow');
+    openSidebarStyles = cssRule('#material-app-bar .music-logo-link { display: none !important; }');
+  } else {
+    sidebar.setAttribute('force-narrow', '');
+    sidebar.setAttribute('narrow', '');
+    removeCssRule(openSidebarStyles);
+  }
+};
+
 
 // Modify the GUI after everything is sufficiently loaded
 window.wait(() => {
+  Emitter.on('settings:change:keepSidebarOpen', (event, keepSidebarOpen) => {
+    setKeepSidebarOpen(keepSidebarOpen);
+  });
+
   hideNotWorkingStuff();
   handleSubscribeButton();
   installMainMenu();
   handleZoom();
   installNowPlayingMenu();
   fixChromecastButton();
+  setKeepSidebarOpen(Settings.get('keepSidebarOpen'));
 });

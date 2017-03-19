@@ -67,6 +67,8 @@
 
   "settings-requires-restart": "Kräver omstart av GPMDP",
 
+  "settings-option-keep-sidebar-open": "",
+
   "settings-option-invert-tray-icon": "Invertera systemikonens färg",
 
   "settings-option-custom-theme": "Användardefinierat tema",
