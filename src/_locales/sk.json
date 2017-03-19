@@ -67,6 +67,8 @@
 
   "settings-requires-restart": "Vyžaduje reštart",
 
+  "settings-option-keep-sidebar-open": "",
+
   "settings-option-invert-tray-icon": "Invertovať farbu ikony v paneli",
 
   "settings-option-custom-theme": "Vlastná téma",

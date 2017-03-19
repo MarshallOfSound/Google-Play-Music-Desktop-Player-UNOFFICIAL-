@@ -67,6 +67,8 @@
 
   "settings-requires-restart": "Requires restart",
 
+  "settings-option-keep-sidebar-open": "Keep sidebar open",
+
   "settings-option-invert-tray-icon": "Invert Tray Icon Color",
 
   "settings-option-custom-theme": "Custom Theme",

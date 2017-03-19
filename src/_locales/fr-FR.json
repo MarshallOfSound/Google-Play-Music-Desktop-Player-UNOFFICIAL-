@@ -67,6 +67,8 @@
 
   "settings-requires-restart": "Besoin de redémarrer",
 
+  "settings-option-keep-sidebar-open": "",
+
   "settings-option-invert-tray-icon": "Inverser l'îcone de la barre de tâches",
 
   "settings-option-custom-theme": "Theme personnalisé",

@@ -67,6 +67,8 @@
 
   "settings-requires-restart": "Erfordert einen Neustart",
 
+  "settings-option-keep-sidebar-open": "",
+
   "settings-option-invert-tray-icon": "Invertiere die Farbe des Kontrollleisten-Icons",
 
   "settings-option-custom-theme": "Eigenes Farbschema",
