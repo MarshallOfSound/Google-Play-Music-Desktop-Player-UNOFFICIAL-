@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "Les touches multimédias continueront à fonctionner malgré ces paramètres. Ceux-ci sont en complément des paramètres par défaut.",
   "settings-option-hotkey-explanation-2": "Utilise la touche <i>\"Echap\"</i> pour réinitialiser les touches de raccourci.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Minimiser vers le système de notification",
 

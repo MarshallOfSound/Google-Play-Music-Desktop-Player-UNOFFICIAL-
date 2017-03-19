@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "Default media keys gunna continue to set the sails regardless 'o these settin's. These settin's be in addition to th' defaults.",
   "settings-option-hotkey-explanation-2": "Use th' <i>\"Escape\"</i> key to reset th' hotkey.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Be hidin' in the tray",
 

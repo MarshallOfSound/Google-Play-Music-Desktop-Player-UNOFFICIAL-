@@ -67,7 +67,7 @@
 
   "settings-requires-restart": "Erfordert einen Neustart",
 
-  "settings-option-keep-sidebar-open": "",
+  "settings-option-keep-sidebar-open": "Seitenleiste offen halten",
 
   "settings-option-invert-tray-icon": "Invertiere die Farbe des Kontrollleisten-Icons",
 
@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "Die grundlegenden Medientasten werden dennoch funktionieren.  Diese Einstellungen kommen zu den Standardeinstellungen hinzu.",
   "settings-option-hotkey-explanation-2": "Zum Zurücksetzen der Tastenkombination benutze die <i>\"Escape\"</i>-Taste.",
+  "settings-option-hotkey-not-set": "Nicht gesetzt",
 
   "settings-option-min-to-tray": "In den Infobereich minimieren",
 

@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "Výchozí multimediální tlačítka budou fungovat jako doposud. Toto nastavení je doplňkem k výchozímu.",
   "settings-option-hotkey-explanation-2": "Použijte klávesu <i>\"Escape\"</i> pro vyresetování klávesové zkratky.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Minimalizovat do lišty",
 

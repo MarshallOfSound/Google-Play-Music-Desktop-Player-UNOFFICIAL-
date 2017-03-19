@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "De almänna mediaknapparna kommer fortsätta funka, oberoende av denna inställningen. Dessa inställningar är extrainställningar.",
   "settings-option-hotkey-explanation-2": "Använd <i>\"Escape\"</i> knappen för att återställa snabbkommandot.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Minimera till aktivitetsfältet.",
 

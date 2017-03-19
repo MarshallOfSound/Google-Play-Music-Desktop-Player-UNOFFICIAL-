@@ -112,7 +112,7 @@ class HotkeyInput extends Component {
           hintText={TranslationProvider.query('settings-option-hotkey-hint')}
           floatingLabelText={this.props.label}
           floatingLabelFixed
-          value={this.props.hotkeys[this.props.hotkeyAction] || 'Not Set'}
+          value={this.props.hotkeys[this.props.hotkeyAction] || TranslationProvider.query('settings-option-hotkey-not-set')}
           onKeyDown={this._handleKeyDown}
           onKeyUp={this._handleKeyUp}
           fullWidth
