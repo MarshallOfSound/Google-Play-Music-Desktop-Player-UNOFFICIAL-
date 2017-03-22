@@ -39,7 +39,7 @@ describe('<HotkeyInput />', () => {
 
   it('should render a text field with the correct default value', () => {
     const component = mount(<HotkeyInput label="Test Label" hotkeyAction="playPause" />, materialUIContext);
-    component.find(TextField).props().value.should.be.equal(undefined);
+    component.find(TextField).props().value.should.be.equal('settings-option-hotkey-not-set');
 
     fakeSettings('hotkeys', {
       playPause: 'Ctrl+Shift+P',
