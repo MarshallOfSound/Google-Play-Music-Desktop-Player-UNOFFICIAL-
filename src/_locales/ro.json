@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "Tastele media vor continua să funcționeze indiferent de aceste setări. Aceste setări vin ca o completare peste cele implicite.",
   "settings-option-hotkey-explanation-2": "Folosește tasta <i>\"Escape\"</i> pentru a reseta scurtătura.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Minimizează în bara de sistem",
 

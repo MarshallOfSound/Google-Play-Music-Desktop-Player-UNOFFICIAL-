@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "Default media keys will continue to work regardless of these settings.  These settings are in addition to the defaults.",
   "settings-option-hotkey-explanation-2": "Use the <i>\"Escape\"</i> key to reset the hotkey.",
+  "settings-option-hotkey-not-set": "Not Set",
 
   "settings-option-min-to-tray": "Minimize to Tray",
 

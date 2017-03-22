@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "Типові мультимедіа кнопки все одно будуть працювати незалежно від цих налаштувань. Ці налаштування для додаткових типових значень.",
   "settings-option-hotkey-explanation-2": "Натисніть <i>\"Escape\"</i> для скидання значення.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Мінімізувати до системного лотка",
 

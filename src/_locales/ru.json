@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "Стандартные мультимедийные кнопки всё равно будут работать, независимо от дополнительных, представленных ниже.",
   "settings-option-hotkey-explanation-2": "Используйте <i>\"Esc\"</i>, чтобы сбросить значение.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Сворачивать в трей при закрытии",
 

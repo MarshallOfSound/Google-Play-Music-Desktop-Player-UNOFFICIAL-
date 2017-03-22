@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "Teclas de mídia padrão continuarão a funcionar independente das configurações. Estas configurações apenas complementam as demais teclas.",
   "settings-option-hotkey-explanation-2": "Use a tecla <i>\"Esc\"</i> para redefinir o atalho.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Minimizar para a bandeja",
 

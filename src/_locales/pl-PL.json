@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "Domyślne klawisze dedykowane obsłudze mediów będą działać bez względu na te ustawienia. Traktuj te ustawienia jako dodatkowe.",
   "settings-option-hotkey-explanation-2": "Użyj klawisza <i>\"Escape\"</i> żeby zresetować ustawienia.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Minimalizuj do paska narzędzi",
 

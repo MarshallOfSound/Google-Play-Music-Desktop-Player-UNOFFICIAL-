@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "これらの設定に関係なくデフォルトのメディアキーは引き続き機能します。 これらの設定はデフォルトに追加するものです",
   "settings-option-hotkey-explanation-2": "ホットキーをリセットするには<i>\"Escape\"</i>キーを押してください",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "トレイにしまう",
 

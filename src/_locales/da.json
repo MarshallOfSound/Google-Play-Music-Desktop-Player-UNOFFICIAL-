@@ -92,6 +92,7 @@
 
   "settings-option-hotkey-explanation": "De almindelige medie knapper vil stadig virke, uafhængigt af denne indstilling. Disse indstillinger er ekstra indstillinger.",
   "settings-option-hotkey-explanation-2": "Benyt <i>\"Escape\"</i> tasten til at gendanne genvejstasten.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Minimere til proceslinjen.",
 
