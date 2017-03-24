@@ -10,7 +10,7 @@ const handleAppCommand = (e, cmd) => {
 
 const handleSwipeCommand = (e, direction) => {
   if (direction === 'left') {
-    remote.getCurrentWebContents.goBack();
+    remote.getCurrentWebContents().goBack();
   } else if (direction === 'right') {
     remote.getCurrentWebContents().goForward();
   }
