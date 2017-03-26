@@ -67,7 +67,7 @@
 
   "settings-requires-restart": "Wymaga ponownego uruchomienia",
 
-  "settings-option-keep-sidebar-open": "",
+  "settings-option-keep-sidebar-open": "Utrzymuj boczne menu otwarte",
 
   "settings-option-invert-tray-icon": "Odwróć kolory ikony w pasku narzędzi",
 
@@ -92,7 +92,7 @@
 
   "settings-option-hotkey-explanation": "Domyślne klawisze dedykowane obsłudze mediów będą działać bez względu na te ustawienia. Traktuj te ustawienia jako dodatkowe.",
   "settings-option-hotkey-explanation-2": "Użyj klawisza <i>\"Escape\"</i> żeby zresetować ustawienia.",
-  "settings-option-hotkey-not-set": "",
+  "settings-option-hotkey-not-set": "Nie ustawiono",
 
   "settings-option-min-to-tray": "Minimalizuj do paska narzędzi",
 
