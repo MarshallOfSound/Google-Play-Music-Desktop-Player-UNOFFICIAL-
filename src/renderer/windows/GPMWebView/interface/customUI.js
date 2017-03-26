@@ -86,11 +86,11 @@ function hideNotWorkingStuff() {
   cssRule('.song-menu.goog-menu.now-playing-menu > .goog-menuitem:nth-child(3) { display: none !important; }');
 }
 
-function installSidebarButton(translationKey, type, icon, index, fn) {
+function installSidebarButton(translationKey, type, icon, index, href, fn) {
   const elem = document.createElement('a');
   elem.setAttribute('data-type', type);
   elem.setAttribute('class', 'nav-item-container tooltip');
-  elem.setAttribute('href', '');
+  elem.setAttribute('href', href);
   elem.setAttribute('no-focus', '');
   elem.innerHTML = `<iron-icon icon="${icon}" alt="" class="x-scope iron-icon-1"></iron-icon><span is="translation-key">${translationKey}</span>`; // eslint-disable-line
   elem.addEventListener('click', fn);
@@ -103,7 +103,7 @@ function installSidebarButton(translationKey, type, icon, index, fn) {
 
 /** Create the Desktop Settings button in the left sidebar */
 function installDesktopSettingsButton() {
-  installSidebarButton('label-desktop-settings', 'desktopsettings', 'settings', 2, (e) => {
+  installSidebarButton('label-desktop-settings', 'desktopsettings', 'settings', 2, '#', (e) => {
     Emitter.fire('window:settings');
     e.preventDefault();
     e.stopPropagation();
@@ -113,7 +113,7 @@ function installDesktopSettingsButton() {
 
 /** Create the Quit button in the left sidebar */
 function installQuitButton() {
-  installSidebarButton('label-quit', 'quit', 'exit-to-app', -1, (e) => {
+  installSidebarButton('label-quit', 'quit', 'exit-to-app', -1, '#', (e) => {
     remote.app.quit();
     e.preventDefault();
     e.stopPropagation();
@@ -122,7 +122,7 @@ function installQuitButton() {
 }
 
 function installAlarmButton() {
-  installSidebarButton('label-alarm', 'alarm', 'alarm', 0, (e) => {
+  installSidebarButton('label-alarm', 'alarm', 'alarm', 0, '#', (e) => {
     // Closes the sliding drawer
     document.querySelector('paper-drawer-panel').setAttribute('selected', 'main');
     Emitter.fireAtMain('alarm:show');
@@ -132,10 +132,15 @@ function installAlarmButton() {
   });
 }
 
+function installRecentsButton() {
+  installSidebarButton('label-recents', 'recents', 'history', 0, '#/recents');
+}
+
 function installMainMenu() {
   installDesktopSettingsButton();
   installQuitButton();
   installAlarmButton();
+  installRecentsButton();
 }
 
 /* eslint-disable max-len, no-multi-str */
