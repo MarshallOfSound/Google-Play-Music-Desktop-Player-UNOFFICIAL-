@@ -155,7 +155,7 @@
     "@nodert-win10/windows.storage.streams": "^0.2.95",
     "appdmg": "^0.4.5",
     "dbus": "GPMDP/node-dbus#linux-only",
-    "electron-installer-debian": "^0.4.0",
+    "electron-installer-debian": "^0.5.1",
     "electron-installer-redhat": "^0.3.0",
     "ll-keyboard-hook-win": "^3.0.0",
     "mouse-forward-back": "^1.0.1",
