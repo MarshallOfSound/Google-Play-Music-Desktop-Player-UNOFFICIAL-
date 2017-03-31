@@ -106,7 +106,7 @@
     "electron-mocha": "^3.0.0",
     "electron-packager": "^8.0.0",
     "electron-rebuild": "^1.5.6",
-    "electron-windows-store": "^0.9.3",
+    "electron-windows-store": "^0.10.1",
     "enzyme": "^2.4.1",
     "eslint": "^2.10.2",
     "eslint-config-airbnb": "^9.0.1",
