@@ -1,4 +1,6 @@
-import mediaService from 'electron-media-service';
+import MediaService from 'electron-media-service';
+
+const mediaService = new MediaService();
 
 mediaService.startService();
 
