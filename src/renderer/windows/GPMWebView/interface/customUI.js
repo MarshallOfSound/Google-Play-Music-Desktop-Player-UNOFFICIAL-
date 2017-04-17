@@ -49,7 +49,7 @@ function _redirectButton(button, URL, reverseURLChange) {
   if (button) {
     button.addEventListener('click', (e) => {
       remote.shell.openExternal(URL);
-      if (reverseURLChange) setImmediate(history.back);
+      if (reverseURLChange) setTimeout(() => history.back(), 0);
       e.preventDefault();
       return false;
     });
