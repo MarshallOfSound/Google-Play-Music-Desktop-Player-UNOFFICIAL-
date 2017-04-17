@@ -22,6 +22,7 @@ class GeneralTab extends Component {
         <ToggleableOption label={TranslationProvider.query('settings-option-auto-launch')} settingsKey={"auto-launch"} />
         <ToggleableOption label={TranslationProvider.query('settings-option-prevent-display-sleep')} settingsKey={"preventDisplaySleep"} />
         <ToggleableOption label={TranslationProvider.query('settings-option-keep-sidebar-open')} settingsKey={"keepSidebarOpen"} />
+        <ToggleableOption label={TranslationProvider.query('settings-option-static-album-art')} settingsKey={"staticAlbumArt"} />
         <ToggleableOption label={TranslationProvider.query('settings-option-custom-theme')} settingsKey={"theme"} />
         {
           this.props.theme ? <ThemeOptions /> : null

@@ -69,6 +69,7 @@
   "settings-requires-restart": "Requires restart",
 
   "settings-option-keep-sidebar-open": "Keep sidebar open",
+  "settings-option-static-album-art": "Keep album art static in visualizer",
 
   "settings-option-invert-tray-icon": "Invert Tray Icon Color",
 

@@ -235,11 +235,37 @@ const setKeepSidebarOpen = (keepSidebarOpen) => {
   }
 };
 
+let staticAlbumArtStyle;
+const setStaticAlbumArt = (staticAlbumArt) => {
+  if (staticAlbumArtStyle) removeCssRule(staticAlbumArtStyle);
+
+  staticAlbumArtStyle = cssRule(staticAlbumArt ? `
+  .art-container {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .art-container img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto !important;
+    height: auto !important;
+  }` : '');
+};
+
 
 // Modify the GUI after everything is sufficiently loaded
 window.wait(() => {
   Emitter.on('settings:change:keepSidebarOpen', (event, keepSidebarOpen) => {
     setKeepSidebarOpen(keepSidebarOpen);
+  });
+  Emitter.on('settings:change:staticAlbumArt', (event, staticAlbumArt) => {
+    setStaticAlbumArt(staticAlbumArt);
   });
 
   hideNotWorkingStuff();
@@ -249,4 +275,5 @@ window.wait(() => {
   installNowPlayingMenu();
   fixChromecastButton();
   setKeepSidebarOpen(Settings.get('keepSidebarOpen'));
+  setStaticAlbumArt(Settings.get('staticAlbumArt'));
 });
