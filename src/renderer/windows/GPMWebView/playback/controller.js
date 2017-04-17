@@ -69,6 +69,10 @@ Emitter.on('playback:decreaseVolume', () => {
   window.GPM.volume.decreaseVolume();
 });
 
+Emitter.on('playback:seek', (event, to) => {
+  window.GPM.playback.setCurrentTime(to);
+});
+
 Emitter.on('playback:miniEnable', () => {
   window.GPM.mini.enable();
 });

@@ -14,3 +14,4 @@ import './windowTitleInfo';
 import './customStyle';
 import './alarm.js';
 import './sleepPreventor';
+import './mediaService';
