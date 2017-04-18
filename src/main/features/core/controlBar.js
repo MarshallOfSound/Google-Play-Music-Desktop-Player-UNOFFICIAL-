@@ -4,10 +4,19 @@ Emitter.on('window:minimize', (event, windowID) => {
 
 Emitter.on('window:maximize', (event, windowID) => {
   const window = WindowManager.getByInternalID(windowID);
-  if (window.isMaximized()) {
-    WindowManager.getByInternalID(windowID).unmaximize();
+
+  if (process.platform === 'darwin') {
+    if (window.isFullScreen()) {
+      window.setFullScreen(false);
+    } else {
+      window.setFullScreen(true);
+    }
   } else {
-    WindowManager.getByInternalID(windowID).maximize();
+    if (window.isMaximized()) {
+      window.unmaximize();
+    } else {
+      window.maximize();
+    }
   }
 });
 
