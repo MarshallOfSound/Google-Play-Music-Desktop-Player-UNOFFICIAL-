@@ -44,22 +44,23 @@ if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1') {
 }
 
 const defaultPackageConf = {
-  'app-bundle-id': packageJSON.name,
-  'app-category-type': 'public.app-category.music',
-  'app-copyright': `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
-  'app-version': packageJSON.version,
+  appBundleId: packageJSON.name,
+  appCategoryType: 'public.app-category.music',
+  appCopyright: `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
+  appVersion: packageJSON.version,
   afterCopy: [
     (buildPath, electronVersion, pPlatform, pArch, done) => rebuild(buildPath, electronVersion, pArch).then(() => done()).catch(done),
     (buildPath, electronVersion, pPlatform, pArch, done) => {
       const files = globber.sync(nodePath.resolve(buildPath, '**', '*.pdb'))
-        .concat(globber.sync(nodePath.resolve(buildPath, '**', '*.obj')));
+        .concat(globber.sync(nodePath.resolve(buildPath, '**', '*.obj')))
+        .concat(globber.sync(nodePath.resolve(buildPath, '**', '.bin', '**', '*')));
       files.forEach(filePath => fs.unlinkSync(filePath));
       done();
     },
   ],
   arch: 'all',
   asar: true,
-  'build-version': packageJSON.version,
+  buildVersion: packageJSON.version,
   dir: __dirname,
   icon: './build/assets/img/main',
   ignore: (path) => {
@@ -320,7 +321,7 @@ gulp.task('make:win:uwp', ['package:win'], (done) => {
 });
 
 gulp.task('package:darwin', ['clean-dist-darwin', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', 'osx-sign': { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
+  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', osxSign: { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
 });
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {
