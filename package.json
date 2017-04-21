@@ -84,7 +84,7 @@
     "semver": "^5.3.0",
     "universal-analytics": "^0.4.2",
     "username": "^2.2.2",
-    "uuid": "^2.0.2",
+    "uuid": "^3.0.0",
     "winston": "^2.2.0",
     "ws": "^1.1.0",
     "xss": "^0.2.13"
