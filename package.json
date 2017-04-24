@@ -60,7 +60,7 @@
   "dependencies": {
     "archiver": "^1.0.1",
     "auto-launch": "^4.0.0",
-    "electron": "1.6.1",
+    "electron": "1.6.6",
     "electron-chromecast": "^1.0.17",
     "gmusic-mini-player.js": "^2.0.10",
     "gmusic-theme.js": "^2.1.10",
