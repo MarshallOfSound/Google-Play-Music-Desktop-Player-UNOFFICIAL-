@@ -10,9 +10,12 @@ security unlock-keychain -p travis $KEY_CHAIN
 security set-keychain-settings -t 3600 -u $KEY_CHAIN
 
 # Add certificates to keychain and allow codesign to access them
-security import $(dirname $0)/apple.cer -k $KEY_CHAIN -T /usr/bin/codesign
-security import $(dirname $0)/osx.cer -k $KEY_CHAIN -T /usr/bin/codesign
-security import $(dirname $0)/osx.p12 -k $KEY_CHAIN -P $KEY_PASSWORD -T /usr/bin/codesign
+security import $(dirname $0)/apple.cer -k $KEY_CHAIN -A /usr/bin/codesign
+security import $(dirname $0)/osx.cer -k $KEY_CHAIN -A /usr/bin/codesign
+security import $(dirname $0)/osx.p12 -k $KEY_CHAIN -P $KEY_PASSWORD -A /usr/bin/codesign
 
 echo "Add keychain to keychain-list"
 security list-keychains -s mac-build.keychain
+
+echo "Settting key partition list"
+security set-key-partition-list -S apple-tool:,apple: -s -k $KEY_PASSWORD $KEY_CHAIN
