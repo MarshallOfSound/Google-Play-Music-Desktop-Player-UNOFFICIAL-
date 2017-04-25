@@ -18,4 +18,4 @@ echo "Add keychain to keychain-list"
 security list-keychains -s mac-build.keychain
 
 echo "Settting key partition list"
-security set-key-partition-list -S apple-tool:,apple: -s -k $KEY_PASSWORD $KEY_CHAIN
+security set-key-partition-list -S apple-tool:,apple: -s -k travis $KEY_CHAIN
