@@ -58,25 +58,25 @@ appIcon = new Tray(getAppIconFileName());
 
 Settings.onChange('appIconInvert', (newValue) => {
   appIconInvert = newValue;
-  appIcon.setImage(getAppIconFileName());
+  if (appIcon) appIcon.setImage(getAppIconFileName());
 });
 
 // Change the icon if the music is playing
 Emitter.on('playback:isPlaying', () => {
   currentIconPath = trayPlayingPath;
-  appIcon.setImage(getAppIconFileName());
+  if (appIcon) appIcon.setImage(getAppIconFileName());
 });
 
 // Change the icon is the music is paused
 Emitter.on('playback:isPaused', () => {
   currentIconPath = trayPausedPath;
-  appIcon.setImage(getAppIconFileName());
+  if (appIcon) appIcon.setImage(getAppIconFileName());
 });
 
 // Change the icon is the music is stopped
 Emitter.on('playback:isStopped', () => {
   currentIconPath = trayNormalPath;
-  appIcon.setImage(getAppIconFileName());
+  if (appIcon) appIcon.setImage(getAppIconFileName());
 });
 
 const setContextMenu = (track) => {
@@ -145,7 +145,7 @@ const setContextMenu = (track) => {
     { type: 'separator' },
     { label: TranslationProvider.query('label-quit'), click: () => { global.quitting = true; app.quit(); } },
   ]);
-  appIcon.setContextMenu(contextMenu);
+  if (appIcon) appIcon.setContextMenu(contextMenu);
 };
 setContextMenu(null);
 
@@ -178,7 +178,7 @@ function toggleMainWindow() {
   }
 }
 
-appIcon.setToolTip('Google Play Music Desktop Player');
+if (appIcon) appIcon.setToolTip('Google Play Music Desktop Player');
 
 switch (process.platform) {
   case 'darwin': // <- actually means OS-X
