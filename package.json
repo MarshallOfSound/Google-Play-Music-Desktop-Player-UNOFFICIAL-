@@ -139,7 +139,7 @@
     "pre-flight": "^1.0.2",
     "rcedit": "^0.7.0",
     "react-addons-test-utils": "^15.3.1",
-    "remap-istanbul": "^0.6.4",
+    "remap-istanbul": "^0.8.1",
     "run-sequence": "^1.1.5",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
