@@ -108,7 +108,7 @@
     "electron-rebuild": "^1.5.6",
     "electron-windows-store": "^0.9.3",
     "enzyme": "^2.4.1",
-    "eslint": "^2.10.2",
+    "eslint": "^3.15.0",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^1.5.5",
