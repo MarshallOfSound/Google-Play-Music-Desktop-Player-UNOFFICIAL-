@@ -120,7 +120,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
-    "gulp-cssmin": "^0.1.7",
+    "gulp-cssmin": "^0.2.0",
     "gulp-header": "^1.8.2",
     "gulp-less": "^3.1.0",
     "gulp-replace": "^0.5.4",
