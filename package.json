@@ -74,7 +74,7 @@
     "mdns": "^2.3.3",
     "mkdirp": "^0.5.1",
     "node-fetch": "^1.5.2",
-    "raven": "^0.12.1",
+    "raven": "^1.0.0",
     "react": "^15.3.1",
     "react-color": "^2.3.4",
     "react-dom": "^15.3.1",
