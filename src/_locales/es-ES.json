@@ -1,0 +1,96 @@
+{
+  "audio-device-communications": "Sistema de comunicaciones por defecto",
+  "audio-device-default": "Dispositivo por defecto",
+  "audio-device-unknown": "Dispositivo Desconocido",
+
+  "button-test-ok": "Aceptar",
+  "button-text-close": "Cerrar",
+  "button-text-dont-tell-me-again": "No recordar más",
+  "button-text-lets-do-this": "¡¡Hagámoslo!!",
+  "button-text-lets-go": "¡¡Vamos!!",
+  "button-text-not-now": "Ahora mismo no",
+
+  "label-about": "Acerca de",
+  "label-desktop-settings": "Ajustes de escritorio",
+  "label-donate": "Donar",
+  "label-help": "Ayuda",
+  "label-issues": "Problemas",
+  "label-learn-more": "Aprender más",
+  "label-loading-devices": "Cargando Dispositivos...",
+  "label-pause-after-song": "Pausar después de esta pista",
+  "label-quit": "Cerrar",
+  "label-show-lyrics": "Mostrar Letras (Beta)",
+  "label-unknown-artist": "Artista desconocido",
+  "label-unknown-song": "Canción desconocida ",
+  "label-version": "Versión",
+
+  "lastfm-login-authorized": "Autorizado",
+  "lastfm-login-authorizing": "Autorización en progreso",
+  "lastfm-login-button-text": "Iniciando sesión en Last.FM",
+  "lastfm-login-error": "Parece que has abandonado el proceso de autorización, si esto es un error, intenta autorizar nuevamente",
+  "lastfm-login-not-authorized": "No autorizado",
+  "lastfm-logout-button-text": "Cerrando sesión en Last.FM",
+
+  "lyrics-failed-message": "No hemos enconrado la letra de esta pista",
+  "lyrics-loading-message": "Cargando letra...",
+  "lyrics-no-song-message": "Actualmente no hay una pista en reproducción",
+
+  "message-pausing-after-song": "Pausando luego de esta pista.",
+  "message-pausing-after-song-button": "No pausar luego de esta pista",
+  "message-uncaught-error": "Un error inesperado ha ocurrido en GPMDP.",
+  "message-uncaught-error-button": "Haz clic aquí para reportar un problema en GitHub",
+
+  "modal-confirmTray-title": "Sólo un aviso",
+  "modal-confirmTray-content": "Cerrar la ventana principal del reproductor (lo que acabas de intentar hacer) lo minimizará a la bandeja del sistema. Éste comportamiento se puede cambiar en la ventana de \"Ajustes de Escritorio\".",
+  "modal-confirmUpdate-title": "Actualización disponible",
+  "modal-confirmUpdate-content": "¡Hey!, parece que hay una nueva actualización para Google Play Music Desktop Player. Ésta actualización incluye nuevas características, soluciones de problemas y cosas nuevas geniales. Recomendamos que lo actualices lo antes posible para una mejor experiencia con nuevas características. <br />¡Esperamos que te guste la nueva actualización!",
+  "modal-confirmUninstall-title": "Resulta que...",
+  "modal-confirmUninstall-content": "Se ha encontrado una versión anterior de GPMDP instalada en el sistema. Si acabas de actualizar es normal. Vamos a desinstalar la versión anterior.  Esto \"puede\" necesitar permisos de administrador, por favor concede esos permisos para que podamos limpiar nuestro caos.",
+  "modal-goToURL-title": "Inserta una URL de Google Play Music para navegar:",
+  "modal-welcome-title": "Bienvenido a la Versión",
+  "modal-welcome-content": "Esperamos que te guste la nueva actualización!",
+
+  "playback-label-next-track": "Siguiente pista",
+  "playback-label-play-pause": "Reproducir / Pausa",
+  "playback-label-previous-track": "Pista anterior",
+  "playback-label-stop": "Parar",
+  "playback-label-thumbs-down": "Pulgar abajo",
+  "playback-label-thumbs-up": "Pulgar arriba",
+  "playback-label-volume-down": "Bajar Volumen",
+  "playback-label-volume-up": "Subir Volumen",
+
+  "settings-option-custom-theme": "Tema personalizado",
+  "settings-option-custom-theme-choose-color": "Selecciona un color a resaltar",
+  "settings-option-custom-theme-choose-custom": "O escoge un",
+  "settings-option-custom-theme-custom-color": "Color personalizado",
+  "settings-option-custom-theme-dark": "Oscuro",
+  "settings-option-custom-theme-light": "Claro",
+
+  "settings-option-enable-api": "Activar reproducción a través de API",
+  "settings-option-enable-api-details": "Esta opción activa el uso de GPMDP por otras aplicaciones.",
+  "settings-option-enable-system-borders": "Usar sistema de ventanas  de sistema operativo",
+  "settings-option-enable-system-borders-details": "Requiere reinicio",
+  "settings-option-enable-voice": "Activar controles por voz",
+  "settings-option-enable-voice-details": "Controles por voz para GPMDP, ésta función es experimental",
+
+  "settings-option-hotkey-explanation": "Las teclas de función multimedia continuarán funcionando a pesar de los cambios. Estos ajustes son adicionales a los que están por defecto.",
+  "settings-option-hotkey-explanation-2": "Usa la tecla <i>\"Escape\"</i> para reiniciar la tecla de acceso rápido.",
+
+  "settings-option-min-to-tray": "Minimizar en bandeja del sistema",
+
+  "settings-option-auto-launch": "Arrancar automáticamente al iniciar el sistema.",
+
+  "settings-option-mini-always-show": "Mostrar siempre la información de la pista",
+  "settings-option-mini-ontop": "Siempre visible",
+
+  "title-color-picker": "Selector de color",
+  "title-settings": "Ajustes",
+  "title-settings-audio": "Audio",
+  "title-settings-general": "General",
+  "title-settings-hotkeys": "Atajos",
+  "title-settings-lastfm": "LastFM",
+  "title-settings-mini": "Mini Reproductor",
+
+  "tray-label-audio-device": "Dispositivo de Audio",
+  "tray-label-show": "Mostrar"
+}
