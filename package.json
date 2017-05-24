@@ -129,7 +129,7 @@
     "jimp": "^0.2.27",
     "material-design-icons-iconfont": "^2.0.5",
     "materialize-css": "^0.97.6",
-    "mocha": "^3.0.0",
+    "mocha": "^3.4.2",
     "mocha-appveyor-reporter": "^0.2.1",
     "mocha-testdata": "^1.2.0",
     "nugget": "^2.0.1",
