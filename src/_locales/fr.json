@@ -1,0 +1,96 @@
+{
+  "audio-device-communications": "Périphérique de communication par défaut",
+  "audio-device-default": "Périphérique audio par défaut",
+  "audio-device-unknown": "Périphérique inconnu",
+
+  "button-test-ok": "OK",
+  "button-text-close": "Fermer",
+  "button-text-dont-tell-me-again": "Ne plus afficher",
+  "button-text-lets-do-this": "Allons-y!!",
+  "button-text-lets-go": "Allons-y!!",
+  "button-text-not-now": "Pas maintenant",
+
+  "label-about": "À propos",
+  "label-desktop-settings": "Paramètres de l'application",
+  "label-donate": "Faire un don",
+  "label-help": "Aide",
+  "label-issues": "Problèmes",
+  "label-learn-more": "En savoir plus",
+  "label-loading-devices": "Chargement des périphériques...",
+  "label-pause-after-song": "Mettre en pause après cette chanson",
+  "label-quit": "Quitter",
+  "label-show-lyrics": "Afficher les paroles (Beta)",
+  "label-unknown-artist": "Artiste inconnu",
+  "label-unknown-song": "Chanson inconnue",
+  "label-version": "Version",
+
+  "lastfm-login-authorized": "Autorisé",
+  "lastfm-login-authorizing": "Autorisation en cours",
+  "lastfm-login-button-text": "Se connecter à Last.FM",
+  "lastfm-login-error": "On dirait que vous avez quitté le processus d'autorisation, si c'était une erreur, s'il vous plaît réessayer.",
+  "lastfm-login-not-authorized": "Non autorisé",
+  "lastfm-logout-button-text": "Se déconnecter de Last.FM",
+
+  "lyrics-failed-message": "Désolé, nous n'avons pas pu trouver les paroles de cette chanson.",
+  "lyrics-loading-message": "Chargement des paroles...",
+  "lyrics-no-song-message": "Aucune chanson ne joue présentement",
+
+  "message-pausing-after-song": "En pause après cette chanson",
+  "message-pausing-after-song-button": "Ne pas mettre en pause après cette chanson",
+  "message-uncaught-error": "Une erreur inattendue est survenue dans GPMDP.",
+  "message-uncaught-error-button": "Cliquer ici pour rapporter le problème sur GitHub",
+
+  "modal-confirmTray-title": "Avis",
+  "modal-confirmTray-content": "Fermer la fenêtre principale (ce que vou venez de tenter de faire) va en fait minimiser l'application dans la zone de notifications. Ce comportement est modifiable dans la fenêtre \"Paramètres de l'application\".",
+  "modal-confirmUpdate-title": "Mise à jour disponible",
+  "modal-confirmUpdate-content": "Youpi, on dirait qu'il y a une nouvelle mise à jour disponible pour Google Play Music Desktop Player. Cette mise à jour devrait apporter son lot de nouvelles fonctionnalités, correctifs de bogues et autre choses géniales. Nous recommandons de mettre à jour le plus rapidement possible pour que vous puissiez profiter de  l'expérience la plus pleine de fonctionnalités et vide de bogues.<br />En espérant que vous aimiez la nouvelle mise à jour!",
+  "modal-confirmUninstall-title": "Il faut qu'on parle...",
+  "modal-confirmUninstall-content": "Nous venons de nous rendre compte qu'une vieille version de GMPDP est toujours installée sur votre système. Si vous venez juste de mettre à jour, ceci est parfaitement normal. Nous allons maintenant essayer de désinstaller l'ancienne version. Ceci \"pourrait\" nécessiter des privilèges administrateur, s'il vous plaît nous les accorder afin que nous puissions nettoyer nos dégâts.",
+  "modal-goToURL-title": "Enter l'URL Google Play Music vers laquelle naviguer:",
+  "modal-welcome-title": "Bienvenue à la version",
+  "modal-welcome-content": "En espérant que vous aimiez la nouvelle mise à jour!",
+
+  "playback-label-next-track": "Piste suivante",
+  "playback-label-play-pause": "Lecture / Pause",
+  "playback-label-previous-track": "Piste précédente",
+  "playback-label-stop": "Arrêt",
+  "playback-label-thumbs-down": "Je n'aime pas",
+  "playback-label-thumbs-up": "J'aime",
+  "playback-label-volume-down": "Diminuer le volume",
+  "playback-label-volume-up": "Augmenter le volume",
+
+  "settings-option-custom-theme": "Thème personnalisé",
+  "settings-option-custom-theme-choose-color": "Choisissez votre couleur d'accent",
+  "settings-option-custom-theme-choose-custom": "Ou choisissez une",
+  "settings-option-custom-theme-custom-color": "Couleur personnalisée",
+  "settings-option-custom-theme-dark": "Blanc",
+  "settings-option-custom-theme-light": "Noir",
+
+  "settings-option-enable-api": "Activer l'API de lecture",
+  "settings-option-enable-api-details": "Ceci permet à d'autres application d'interagir avec GMPDP.",
+  "settings-option-enable-system-borders": "Utiliser les bordures de fenêtre du système",
+  "settings-option-enable-system-borders-details": "Nécessite un redémarrage",
+  "settings-option-enable-voice": "Activer les commandes vocales",
+  "settings-option-enable-voice-details": "Contrôle mains libres pour GMPDP, ceci est expérimental.",
+
+  "settings-option-hotkey-explanation": "Les touches media par défaut vont fonctionner peu importe la valeur de ces paramètres. Ces paramètres s'ajoutent aux valeurs par défaut.",
+  "settings-option-hotkey-explanation-2": "Utilisez la touche <i>\"Échap\"</i> pour réinitialiser le raccourci clavier.",
+
+  "settings-option-min-to-tray": "Minimiser dans la zone de notification",
+
+  "settings-option-auto-launch": "Lancer automatiquement au démarrage de l'ordinateur.",
+
+  "settings-option-mini-always-show": "Toujours montrer les informations de la chanson",
+  "settings-option-mini-ontop": "Rester au-dessus",
+
+  "title-color-picker": "Sélecteur de couleur",
+  "title-settings": "Paramàtres",
+  "title-settings-audio": "Audio",
+  "title-settings-general": "Général",
+  "title-settings-hotkeys": "Raccourcis clavier",
+  "title-settings-lastfm": "LastFM",
+  "title-settings-mini": "Mini Lecteur",
+
+  "tray-label-audio-device": "Périphérique audio",
+  "tray-label-show": "Afficher"
+}
