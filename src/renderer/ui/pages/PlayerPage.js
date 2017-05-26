@@ -28,7 +28,7 @@ export default class PlayerPage extends Component {
       : 'https://play.google.com/music/listen';
     this.ready = false;
     this.state = {
-      webviewTarget: 'https://play.google.com/music/listen',
+      webviewTarget: 'https://play.google.com/music/listen#/wmp',
       title: 'Google Play Music Desktop Player',
     };
   }
@@ -51,7 +51,7 @@ export default class PlayerPage extends Component {
       this.refs.view.executeJavaScript(`window.location = "${this.targetPage}"`);
       setTimeout(() => {
         document.body.removeAttribute('loading');
-      }, 300);
+      }, 900);
     }
   }
 
