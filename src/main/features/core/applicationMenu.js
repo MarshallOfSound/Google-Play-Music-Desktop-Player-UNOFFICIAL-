@@ -128,6 +128,11 @@ const template = [
         accelerator: 'CmdOrCtrl+W',
         role: 'close',
       },
+      {
+        label: 'Close2',
+        accelerator: 'CmdOrCtrl+Q',
+        role: 'close',
+      },
     ],
   },
   {
