@@ -15,7 +15,7 @@ export const ACTION_KEYS = _.transform(_.range(26), (final, current) => { // let
   final[current + 65] = String.fromCharCode(current + 65); // eslint-disable-line
 }, _.transform(_.range(10), (final, current) => { // digits
   final[current + 48] = current.toString(); // eslint-disable-line
-}, _.transform(_.range(12), (final, current) => { // f-keys
+}, _.transform(_.range(24), (final, current) => { // f-keys
   final[current + 112] = 'F' + (current + 1).toString(); // eslint-disable-line
 }, {
   33: 'PageUp',
