@@ -125,12 +125,10 @@ const template = [
       },
       {
         label: 'Close',
-        accelerator: 'CmdOrCtrl+W',
-        role: 'close',
-      },
-      {
-        label: 'Close2',
-        accelerator: 'CmdOrCtrl+Q',
+        accelerator: (() => {
+          if (process.platform === 'linux') return 'CmdOrCtrl+Q';
+          return 'CmdOrCtrl+W';
+        })(),
         role: 'close',
       },
     ],
