@@ -127,6 +127,15 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
 
     // and load the index.html of the app.
     mainWindow.loadURL(`file://${__dirname}/public_html/index.html`);
+
+    // show the main window.
+    mainWindow.show();
+
+    // minimize if 'start minimized' is on.
+    if (Settings.get('startMinimized', false)) {
+      mainWindow.minimize();
+    }
+
     require('./renderer/generic/translations');
     require('./main/features');
     require('./old_win32');

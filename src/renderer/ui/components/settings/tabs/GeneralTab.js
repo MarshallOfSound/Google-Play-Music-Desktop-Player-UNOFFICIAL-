@@ -19,6 +19,7 @@ class GeneralTab extends Component {
         <PlatformSpecific platform="linux">
           <ToggleableOption label={TranslationProvider.query('settings-option-invert-tray-icon')} settingsKey={"appIconInvert"} />
         </PlatformSpecific>
+        <ToggleableOption label={TranslationProvider.query('settings-option-start-minimized')} settingsKey={"startMinimized"} />
         <ToggleableOption label={TranslationProvider.query('settings-option-auto-launch')} settingsKey={"auto-launch"} />
         <ToggleableOption label={TranslationProvider.query('settings-option-prevent-display-sleep')} settingsKey={"preventDisplaySleep"} />
         <ToggleableOption label={TranslationProvider.query('settings-option-keep-sidebar-open')} settingsKey={"keepSidebarOpen"} />

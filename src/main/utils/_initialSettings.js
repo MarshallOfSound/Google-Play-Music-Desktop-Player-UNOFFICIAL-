@@ -6,6 +6,7 @@ export default {
   nativeFrame: (process.platform !== 'win32'),
   savePage: true,
   scrollLyrics: true,
+  startMinimized: false,
   theme: false,
   themeColor: '#2196F3',
   themeType: 'FULL',
