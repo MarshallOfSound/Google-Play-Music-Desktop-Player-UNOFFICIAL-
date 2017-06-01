@@ -146,7 +146,7 @@
     "spec-xunit-file": "0.0.1-3",
     "spectron": "~3.4.0",
     "svg2png": "^4.0.0",
-    "to-ico": "^1.1.3"
+    "to-ico": "^1.1.4"
   },
   "optionalDependencies": {
     "@nodert-win10/windows.foundation": "^0.2.95",
