@@ -39,16 +39,11 @@ OS Support
 Features
 --------
 
-* Supports media keys (play, pause, stop, next, previous)
 * [last.fm](https://www.last.fm) Scrobbling and Now Playing support!
 * Hands free [Voice Controls](docs/VoiceControls.md)!
-* Desktop notifications on track change
-* A simplistic mini player
 * Customizable Dark theme
 * Task bar media controls (media controls embedded into the taskbar) *Windows only*
 * Smooth scrolling and overlay scrollbars for a nicer User Experience
-* HTML5 Audio Support - No more Adobe Flash Player :+1:
-* Minimize to task bar for background music playing
 * Customizable hotkeys, no worries if you don't have media keys.  Choose your own shortcuts
 * Choose your audio output device from within the player
 * And a whole lot more coming soon!
