@@ -86,7 +86,7 @@
     "username": "^2.2.2",
     "uuid": "^2.0.2",
     "winston": "^2.2.0",
-    "ws": "^1.1.0",
+    "ws": "^2.0.3",
     "xss": "^0.2.13"
   },
   "devDependencies": {
