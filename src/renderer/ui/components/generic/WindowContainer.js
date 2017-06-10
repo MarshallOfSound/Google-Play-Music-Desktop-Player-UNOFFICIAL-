@@ -25,7 +25,7 @@ export default class WindowContainer extends Component {
       theme: Settings.get('theme'),
       themeColor: Settings.get('themeColor'),
       themeType: Settings.get('themeType', 'FULL'),
-      isFullscreen: false,
+      isFullscreen: remote.getCurrentWindow().isFullScreen(),
     };
   }
 
