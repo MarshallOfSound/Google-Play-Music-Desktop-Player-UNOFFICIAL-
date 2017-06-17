@@ -1,3 +1,3 @@
 Emitter.on('cover:show', () => {
-  document.getElementById('hover-icon').click();
+  document.querySelector('#hover-icon').click();
 });
