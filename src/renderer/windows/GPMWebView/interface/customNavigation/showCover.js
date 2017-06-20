@@ -1,3 +1,6 @@
 Emitter.on('cover:show', () => {
-  document.querySelector('#hover-icon').click();
+  const hoverIcon = document.querySelector('#hover-icon');
+  if (hoverIcon) {
+    hoverIcon.click();
+  }
 });
