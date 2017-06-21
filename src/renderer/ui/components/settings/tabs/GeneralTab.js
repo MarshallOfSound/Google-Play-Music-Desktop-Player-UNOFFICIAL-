@@ -57,6 +57,15 @@ class GeneralTab extends Component {
             settingsKey={"enableWin10MediaService"}
           />
         </PlatformSpecific>
+        <PlatformSpecific platform="win32" versionRange=">=10">
+          <ToggleableOption
+            label={TranslationProvider.query('settings-option-enable-win10-media-service-track-info')}
+            hintLabel={TranslationProvider.query('settings-requires-restart')}
+            settingsKey={"enableWin10MediaServiceTrackInfo"}
+            dependsOnSettingsKey={"enableWin10MediaService"}
+          />
+        </PlatformSpecific>
+
         <LocaleSelector />
       </SettingsTabWrapper>
     );

@@ -90,6 +90,7 @@
   "settings-option-enable-taskbar-progress": "曲の進行状況をタスクバーに表示する",
   "settings-option-enable-win10-media-service": "Windows 10のSystem Media Serviceを有効にする",
   "settings-option-enable-win10-media-service-details": "これによりロック画面に現在の曲が表示されるようになります",
+  "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "言語",
 
   "settings-option-hotkey-explanation": "これらの設定に関係なくデフォルトのメディアキーは引き続き機能します。 これらの設定はデフォルトに追加するものです",

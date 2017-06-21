@@ -11,4 +11,5 @@ export default {
   themeType: 'FULL',
   preventDisplaySleep: false,
   enableWin10MediaService: false,
+  enableWin10MediaServiceTrackInfo: true,
 };
