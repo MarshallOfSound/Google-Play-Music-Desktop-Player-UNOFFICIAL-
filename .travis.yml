@@ -9,6 +9,7 @@ node_js:
 
 install:
   - rm -rf node_modules
+  - npm i -g npm@3
   - npm install
 
 branches:

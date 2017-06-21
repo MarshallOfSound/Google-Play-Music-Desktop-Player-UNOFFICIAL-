@@ -1,7 +1,6 @@
 import { app } from 'electron';
 import _ from 'lodash';
 import mpris from 'mpris-service';
-import path from 'path';
 
 function mprisService() {
   const mainWindow = WindowManager.getAll('main')[0];
@@ -59,8 +58,8 @@ function mprisService() {
     Emitter.sendToGooglePlayMusic('execute:gmusic', {
       namespace: 'volume',
       method: 'setVolume',
-      args: [Math.round(volume * 100)]
-    })
+      args: [Math.round(volume * 100)],
+    });
   });
 
   PlaybackAPI.on('change:track', (newSong) => {
