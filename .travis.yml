@@ -7,6 +7,9 @@ language: node_js
 node_js:
   - '7'
 
+before_install:
+  - npm config delete prefix
+
 install:
   - rm -rf node_modules
   - npm i -g npm@3
