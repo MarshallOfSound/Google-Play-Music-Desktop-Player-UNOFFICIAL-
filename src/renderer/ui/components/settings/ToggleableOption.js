@@ -27,9 +27,9 @@ class SettingsCheckbox extends Component {
           : null}
       </span>
     );
-    const dependsOnSettingsKey = this.props.dependsOnSettingsKey;
+    const { dependsOnSettingsKey } = this.props;
     if (dependsOnSettingsKey && !this.props[dependsOnSettingsKey]) {
-      return <noscript />;
+      return null;
     }
 
     return (
@@ -65,7 +65,7 @@ export default class ToggleableOption extends Component {
       settingsKey: this.props.settingsKey,
       dependsOnSettingsKey: this.props.dependsOnSettingsKey,
     };
-    let keys = [this.props.settingsKey];
+    const keys = [this.props.settingsKey];
     if (this.props.dependsOnSettingsKey) {
       keys.push(this.props.dependsOnSettingsKey);
     }
