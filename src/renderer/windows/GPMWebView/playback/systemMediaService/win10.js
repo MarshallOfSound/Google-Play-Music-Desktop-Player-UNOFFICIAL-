@@ -15,7 +15,9 @@ Controls.isPreviousEnabled = true;
 Controls.isRecordEnabled = false;
 Controls.isRewindEnabled = false;
 Controls.isStopEnabled = true;
-
+if (!Settings.get('enableWin10MediaServiceTrackInfo')) {
+  Controls.isEnabled = false;
+}
 Controls.playbackStatus = MediaPlaybackStatus.closed;
 Controls.displayUpdater.type = MediaPlaybackType.music;
 

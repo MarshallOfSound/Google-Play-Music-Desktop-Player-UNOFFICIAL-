@@ -90,6 +90,7 @@
   "settings-option-enable-taskbar-progress": "Mostrar o progresso da musica na barra de tarefas",
   "settings-option-enable-win10-media-service": "",
   "settings-option-enable-win10-media-service-details": "",
+  "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "Escolher linguagem",
 
   "settings-option-hotkey-explanation": "Teclas de mídia padrão continuarão a funcionar independente das configurações. Estas configurações apenas complementam as demais teclas.",

@@ -90,6 +90,7 @@
   "settings-option-enable-taskbar-progress": "Show track progress in th' taskbar",
   "settings-option-enable-win10-media-service": "Tell ye' OS what track be playin'",
   "settings-option-enable-win10-media-service-details": "",
+  "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "Choose how ye speak",
 
   "settings-option-hotkey-explanation": "Default media keys gunna continue to set the sails regardless 'o these settin's. These settin's be in addition to th' defaults.",
