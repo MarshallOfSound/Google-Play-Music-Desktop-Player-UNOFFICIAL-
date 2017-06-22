@@ -90,7 +90,7 @@
   "settings-option-enable-taskbar-progress": "Zeige den Fortschritt des Titels in der Taskleiste",
   "settings-option-enable-win10-media-service": "Aktiviere den Windows 10-System Media Service",
   "settings-option-enable-win10-media-service-details": "Dies zeigt den aktuellen Titel auf dem Sperrbildschirm",
-  "settings-option-enable-win10-media-service-track-info": "",
+  "settings-option-enable-win10-media-service-track-info": "Zeige Liedinformationen in der Windows 10-Lautstärkeanzeige an",
   "settings-option-change-locale": "Wähle eine andere Sprache",
 
   "settings-option-hotkey-explanation": "Die grundlegenden Medientasten werden dennoch funktionieren.  Diese Einstellungen kommen zu den Standardeinstellungen hinzu.",
