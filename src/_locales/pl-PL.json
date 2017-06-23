@@ -89,8 +89,8 @@
   "settings-option-enable-voice-details": "Kontrola nad GPMDP za pomocą komend głosowych - funkcja eksperymentalna",
   "settings-option-enable-taskbar-progress": "Pokazuj postęp utworu na pasku systemowym",
   "settings-option-enable-win10-media-service": "Włącz System Media Service (Windows 10)",
-  "settings-option-enable-win10-media-service-details": "Ta funkcja pozwala wyświetlać aktualny utwór na ekranie blokady",
-  "settings-option-enable-win10-media-service-track-info": "",
+  "settings-option-enable-win10-media-service-details": "Pokazuj informacje o aktualnym utworze na ekranie blokady",
+  "settings-option-enable-win10-media-service-track-info": "Pokazuj informacje o aktualnym utworze razem z informacją o ustawieniach głośności (Windows 10)",
   "settings-option-change-locale": "Wybierz język aplikacji",
 
   "settings-option-hotkey-explanation": "Domyślne klawisze dedykowane obsłudze mediów będą działać bez względu na te ustawienia. Traktuj te ustawienia jako dodatkowe.",
