@@ -70,6 +70,13 @@ const template = [
         },
       },
       {
+        label: 'Show Album Cover',
+        accelerator: 'CmdOrCtrl+Shift+C',
+        click: () => {
+          Emitter.sendToGooglePlayMusic('cover:show');
+        },
+      },
+      {
         label: 'Show Lyrics (Beta)',
         accelerator: 'CmdOrCtrl+Shift+L',
         click: () => {
