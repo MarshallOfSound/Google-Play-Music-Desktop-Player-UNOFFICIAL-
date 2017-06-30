@@ -4,16 +4,8 @@ import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import PlayerPage from '../ui/pages/PlayerPage';
-import SettingsClass from '../../main/utils/Settings';
 
 injectTapEventPlugin();
-
-// Instantiate a settings object for checking 'start minimized'
-if (process.env['TEST_SPEC']) { // eslint-disable-line
-  global.Settings = new SettingsClass('.test', true);
-} else {
-  global.Settings = new SettingsClass();
-}
 
 ReactDOM.render(<PlayerPage />, document.querySelector('#main-window'));
 
