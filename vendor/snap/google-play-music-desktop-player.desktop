@@ -3,7 +3,7 @@ Name=Google Play Music Desktop Player
 Comment=An electron wrapper for Google Play Music
 GenericName=Google Play Music Desktop Player
 Exec=env PULSE_PROP=media.role=music google-play-music-desktop-player %U
-Icon=google-play-music-desktop-player %U
+Icon=google-play-music-desktop-player
 Type=Application
 StartupNotify=true
 Categories=AudioVideo;Audio;
