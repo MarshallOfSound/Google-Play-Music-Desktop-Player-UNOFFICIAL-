@@ -7,3 +7,4 @@ Icon=main.png
 Type=Application
 StartupNotify=true
 Categories=AudioVideo;Audio;
+X-PulseAudio-Properties=media.role=music
