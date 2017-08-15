@@ -37,6 +37,21 @@ const waitForExternal = setInterval(() => {
     require('gmusic-mini-player.js')(GMusic);
     const GMusicTheme = require('gmusic-theme.js');
 
+    // Replace requestAnimationFrame for invoking what we want, even when window is minimized
+    const defaultAnimationFrame = window.requestAnimationFrame;
+    window.requestAnimationFrame = (f) => {
+      if (f.toString) {
+        const str = f.toString();
+
+        // Check if function updates slider, based on GPM source
+        if (str.includes('(a,b)') && str.includes('max') && str.includes('value')) {
+          setTimeout(f, 0);
+          return;
+        }
+      }
+      defaultAnimationFrame(f);
+    };
+
     window.GMusic = GMusic;
     window.GMusicTheme = GMusicTheme;
 
