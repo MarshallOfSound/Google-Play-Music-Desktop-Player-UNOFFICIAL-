@@ -34,6 +34,7 @@
   "lastfm-login-error": "Ye appear to have left th' authorization process, if 'tis be a mistake, please give a go' authorizin' again",
   "lastfm-login-not-authorized": "Blimey! Ye ain't Authorized",
   "lastfm-logout-button-text": "Scuttle ye Last.FM session",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "Sorry, we could not find any lyrics fer 'tis song",
   "lyrics-loading-message": "We be loadin' lyrics...",

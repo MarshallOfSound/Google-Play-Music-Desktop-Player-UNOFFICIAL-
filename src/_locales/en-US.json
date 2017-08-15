@@ -34,6 +34,7 @@
   "lastfm-login-error": "You appear to have left the authorization process, if this is a mistake, please try authorizing again",
   "lastfm-login-not-authorized": "Not Authorized",
   "lastfm-logout-button-text": "Log out of Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "Automatically love tracks that are thumbed up",
 
   "lyrics-failed-message": "Sorry, we could not find any lyrics for this song",
   "lyrics-loading-message": "Loading lyrics...",

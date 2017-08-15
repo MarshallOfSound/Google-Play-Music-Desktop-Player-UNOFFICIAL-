@@ -34,6 +34,7 @@
   "lastfm-login-error": "Схоже ви скасували процес авторизації. Якщо це не так, будь ласка, спробуйте ще раз",
   "lastfm-login-not-authorized": "Не авторизовано",
   "lastfm-logout-button-text": "Вийти з Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "На жаль, ми не змогли знайти текст до цієї пісні",
   "lyrics-loading-message": "Завантаження текту пісні...",

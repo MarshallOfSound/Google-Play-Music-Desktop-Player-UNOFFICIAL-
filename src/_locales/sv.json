@@ -34,6 +34,7 @@
   "lastfm-login-error": "Du har lämnat inloggningsprocessen. Om det var ett misstag, prova igen",
   "lastfm-login-not-authorized": "Din inloggning blev inte godkänd",
   "lastfm-logout-button-text": "Logga ut från Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "Beklagar, vi kunde inte hitta några låttexter till denna låten",
   "lyrics-loading-message": "Laddar låttexter...",

@@ -116,7 +116,7 @@ export const updateScrobble = (track, artist, album, timestamp, duration) => {
 };
 
 export const heartSong = (love, track, artist, album) => {
-  if (Settings.get('lastFMKey')) {
+  if (Settings.get('lastFMKey') && Settings.get('lastFMMapThumbToHeart')) {
     getLastFMSession()
       .then((session) => {
         lastfm.request(`track.${love ? 'love' : 'unlove'}`, {
@@ -124,7 +124,7 @@ export const heartSong = (love, track, artist, album) => {
           artist,
           album,
           sk: session.key,
-        }).on('error', (err) => Logger.error('LASTFM ERROR', err)).on('success', console.info);
+        }).on('error', (err) => Logger.error('LASTFM ERROR', err));
       })
       .catch((err) => Logger.error('LASTFM ERROR', err));
   }

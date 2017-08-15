@@ -34,6 +34,7 @@
   "lastfm-login-error": "Zdá sa, že ste opustili proces autorizácie, pokiaľ ide o chybu, skúste to znova",
   "lastfm-login-not-authorized": "Neautorizované",
   "lastfm-logout-button-text": "Odhlásiť sa z Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "Je nám ľúto, ale pre túto skladbu sme nenašli žiadne texty",
   "lyrics-loading-message": "Načítanie textu...",

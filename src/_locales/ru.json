@@ -34,6 +34,7 @@
   "lastfm-login-error": "Похоже, что вы отменили процесс авторизации. Если это ошибка - пожалуйста, попробуйте ещё раз",
   "lastfm-login-not-authorized": "Не авторизован(а)",
   "lastfm-logout-button-text": "Выйти из Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "Извините, мы не смогли найти текста для этой песни",
   "lyrics-loading-message": "Загрузка текста песни...",

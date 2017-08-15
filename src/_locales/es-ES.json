@@ -34,6 +34,7 @@
   "lastfm-login-error": "Parece que te falta autorizar la aplicación, si esto no es correcto, intenta autorizar de nuevo",
   "lastfm-login-not-authorized": "No Autorizado",
   "lastfm-logout-button-text": "Cerrar sesión en Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "Lo sentimos, no hemos podido encontrar la letra de esta canción",
   "lyrics-loading-message": "Cargando la letra...",

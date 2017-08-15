@@ -34,6 +34,7 @@
   "lastfm-login-error": "Du har forladt login processen, hvis dette var en fejl, prøv igen",
   "lastfm-login-not-authorized": "Dit login blev ikke godkendt",
   "lastfm-logout-button-text": "Log ud af Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "Beklager, vi kunne ikke finde nogle sangtekster til denne sang",
   "lyrics-loading-message": "Indlæser sangtekster...",

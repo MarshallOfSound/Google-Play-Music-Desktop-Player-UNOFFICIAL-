@@ -13,4 +13,5 @@ export default {
   preventDisplaySleep: false,
   enableWin10MediaService: false,
   enableWin10MediaServiceTrackInfo: true,
+  lastFMMapThumbToHeart: true,
 };

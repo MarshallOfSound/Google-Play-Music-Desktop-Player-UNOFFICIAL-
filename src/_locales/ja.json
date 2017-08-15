@@ -34,6 +34,7 @@
   "lastfm-login-error": "承認プロセスを終えたようですが、もし失敗しているようなら再度認証を試みてください",
   "lastfm-login-not-authorized": "未接続",
   "lastfm-logout-button-text": "Last.FMとの接続を解除",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "すみませんが、この曲の歌詞がみつかりません",
   "lyrics-loading-message": "歌詞を読み込み中...",

@@ -34,6 +34,7 @@
   "lastfm-login-error": "Il semblerait que vous ayez quitté le processus d'authentification, si c'est une erreur, veuillez rééssayer à nouveau.",
   "lastfm-login-not-authorized": "Non connecté",
   "lastfm-logout-button-text": "Se déconnecter de Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "Désolé, nous n'avons pas pu trouver de paroles à ce morceau",
   "lyrics-loading-message": "Chargement des paroles...",
