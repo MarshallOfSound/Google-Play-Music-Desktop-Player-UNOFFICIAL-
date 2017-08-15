@@ -104,6 +104,8 @@
 
   "settings-option-save-page": "起動時に最後に表示したページを自動で読み込む",
 
+  "settings-option-start-minimized": "",
+
   "settings-option-scroll-lyrics": "再生中に歌詞を自動でスクロールする",
 
   "settings-option-mini-always-show": "常に曲の情報を表示する",
