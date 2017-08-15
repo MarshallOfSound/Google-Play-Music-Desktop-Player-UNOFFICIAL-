@@ -10,7 +10,6 @@ electron.xml
 spectron.xml
 coverage.zip
 uwp/
-.vscode/
 
 # snapcraft
 prime/
