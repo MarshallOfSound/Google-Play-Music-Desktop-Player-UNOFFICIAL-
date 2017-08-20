@@ -8,6 +8,9 @@ export default (app) => {
   // DEV: Enables the HTML5 WebAudio API extensions to allow selection of sinkId
   //      --> Choosing audio output device
   app.commandLine.appendSwitch('enable-experimental-web-platform-features', '1');
+  if (Settings.get('trySupportedChannelLayouts', false)) {
+    app.commandLine.appendSwitch('try-supported-channel-layouts', '1');
+  }
 
   if (process.platform !== 'darwin') {
     app.disableHardwareAcceleration();
