@@ -114,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Use the scroll wheel to adjust volume",
 
   "settings-option-skip-bad-songs": "Automatically skip disliked songs",
+  "settings-option-try-supported-channel-layouts": "Try supported channel layouts (requires restart, should fix 5.1 sound)",
 
   "settings-options-style-description": "Choose a local CSS file to inject styles into the application",
   "settings-options-style-main-app": "Main App",
