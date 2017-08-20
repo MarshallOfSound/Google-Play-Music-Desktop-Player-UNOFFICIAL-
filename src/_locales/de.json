@@ -114,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Mausrad zur Lautstärkekontrolle verwenden",
 
   "settings-option-skip-bad-songs": "Überspringe automatisch nicht gemochte Titel",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Wähle eine lokale CSS-Datei, um eigene Stile in die Anwendung einzubringen",
   "settings-options-style-main-app": "Hauptfenster",

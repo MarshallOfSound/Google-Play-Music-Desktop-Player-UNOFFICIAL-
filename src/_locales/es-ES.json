@@ -113,6 +113,7 @@
   "settings-option-mini-use-scroll-volume": "Usa la rueda del ratón para ajustar el volumen",
 
   "settings-option-skip-bad-songs": "Saltar canciones con 'No me gusta' automáticamente",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Escoger un fichero CSS local para utilizarlo en la aplicación",
   "settings-options-style-main-app": "Aplicación Principal",

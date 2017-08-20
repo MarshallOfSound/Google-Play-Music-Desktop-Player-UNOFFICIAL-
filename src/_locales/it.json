@@ -114,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Usa la rotella di scorrimento per regolare il volume",
 
   "settings-option-skip-bad-songs": "Salta automaticamente i brani segnati con pollice giù",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Seleziona un file CSS locale per iniettare gli stili nell'applicazione",
   "settings-options-style-main-app": "Applicazione principale",

@@ -114,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Управление громкостью колесом мыши",
 
   "settings-option-skip-bad-songs": "Автоматически пропускать непонравившиеся песни",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Выберите локальный CSS-файл для инъекции стилей в приложение",
   "settings-options-style-main-app": "Стили приложения",
