@@ -114,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Použít rolovací kolečko pro změnu hlasitosti",
 
   "settings-option-skip-bad-songs": "",
+  "settings-option-try-supported-channel-layouts": "Experimentální podpora více audio kanálů, jako je 5.1",
 
   "settings-options-style-description": "Vybrat místní CSS soubor pro použití stylů v aplikaci",
   "settings-options-style-main-app": "Hlavní aplikace",

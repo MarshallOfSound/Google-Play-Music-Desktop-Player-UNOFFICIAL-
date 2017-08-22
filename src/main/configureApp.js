@@ -9,6 +9,11 @@ export default (app) => {
   //      --> Choosing audio output device
   app.commandLine.appendSwitch('enable-experimental-web-platform-features', '1');
 
+  // Required for 5.1 sound support
+  if (Settings.get('trySupportedChannelLayouts', false)) {
+    app.commandLine.appendSwitch('try-supported-channel-layouts', '1');
+  }
+
   if (process.platform !== 'darwin') {
     app.disableHardwareAcceleration();
   }
