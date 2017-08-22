@@ -8,6 +8,8 @@ export default (app) => {
   // DEV: Enables the HTML5 WebAudio API extensions to allow selection of sinkId
   //      --> Choosing audio output device
   app.commandLine.appendSwitch('enable-experimental-web-platform-features', '1');
+
+  // Required for 5.1 sound support
   if (Settings.get('trySupportedChannelLayouts', false)) {
     app.commandLine.appendSwitch('try-supported-channel-layouts', '1');
   }
