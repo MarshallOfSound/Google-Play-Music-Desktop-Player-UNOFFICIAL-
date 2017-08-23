@@ -166,7 +166,7 @@ const windowsSignFile = (filePath, signDigest) =>
   new Promise((resolve) => {
     console.log(`Signing file: "${filePath}"\nWith digest: ${signDigest}`);
     exec(
-      `vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd ${signDigest} /tr "http://timestamp.geotrust.com/tsa" /v /as "${filePath}"`,
+      `vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /td ${signDigest} /fd ${signDigest} /tr "http://timestamp.digicert.com" /v /as "${filePath}"`,
       {},
       () => {
         setTimeout(() => {
