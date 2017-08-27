@@ -34,6 +34,7 @@
   "lastfm-login-error": "Du hast den Autorisierungsvorgang verlassen. Wenn das ein Fehler war, versuche es nochmal",
   "lastfm-login-not-authorized": "Nicht autorisiert",
   "lastfm-logout-button-text": "Von Last.FM abmelden",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "Entschuldige, aber wir konnten keinen Liedtext finden",
   "lyrics-loading-message": "Lade Liedtext...",
@@ -104,6 +105,8 @@
 
   "settings-option-save-page": "Zuletzt geöffnete Seite beim Start öffnen",
 
+  "settings-option-start-minimized": "",
+
   "settings-option-scroll-lyrics": "Liedtext automatisch scrollen",
 
   "settings-option-mini-always-show": "Immer Titelinformationen anzeigen",
@@ -111,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Mausrad zur Lautstärkekontrolle verwenden",
 
   "settings-option-skip-bad-songs": "Überspringe automatisch nicht gemochte Titel",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Wähle eine lokale CSS-Datei, um eigene Stile in die Anwendung einzubringen",
   "settings-options-style-main-app": "Hauptfenster",

@@ -34,6 +34,7 @@
   "lastfm-login-error": "Zdá sa, že ste opustili proces autorizácie, pokiaľ ide o chybu, skúste to znova",
   "lastfm-login-not-authorized": "Neautorizované",
   "lastfm-logout-button-text": "Odhlásiť sa z Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "Skladby, ktoré sa mi páčia, automaticky označiť ako obľúbené",
 
   "lyrics-failed-message": "Je nám ľúto, ale pre túto skladbu sme nenašli žiadne texty",
   "lyrics-loading-message": "Načítanie textu...",
@@ -90,7 +91,7 @@
   "settings-option-enable-taskbar-progress": "Zobraziť priebeh skladby na panely úloh",
   "settings-option-enable-win10-media-service": "Povoliť Windows 10 System Media Service",
   "settings-option-enable-win10-media-service-details": "Zobrazí aktuálnu skladbu na uzamknutej obrazovke",
-  "settings-option-enable-win10-media-service-track-info": "",
+  "settings-option-enable-win10-media-service-track-info": "Zobraziť informácie o skladbe na prekrytí hlasitosti vo Windows 10",
   "settings-option-change-locale": "Vybrať jazyk",
 
   "settings-option-hotkey-explanation": "Predvolené mediálne klávesy budú stále fungovať bez ohľadu na tieto nastavenia.  Tieto nastavenia sú ako doplnok k predvoleným.",
@@ -104,6 +105,8 @@
 
   "settings-option-save-page": "Po spustení automaticky načítať poslednú zobrazenú stránku",
 
+  "settings-option-start-minimized": "Spustiť aplikáciu minimalizovanú",
+
   "settings-option-scroll-lyrics": "Automaticky posúvať text skladby počas prehrávania",
 
   "settings-option-mini-always-show": "Vždy zobraziť informácie o skladbe",
@@ -111,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Použiť koliesko myši pre nastavenie hlasitosti",
 
   "settings-option-skip-bad-songs": "Automaticky preskočiť skladby, ktoré sa vám nepáčia",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Zvoľte miestny CSS súbor pre použitie vlastného štýlu v aplikácii",
   "settings-options-style-main-app": "Hlavná apl.",

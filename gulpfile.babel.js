@@ -24,9 +24,6 @@ import rasterImages from './vendor/svg_raster';
 
 const paths = {
   internalScripts: ['src/**/*.js'],
-  utilityScripts: ['node_modules/jquery/dist/jquery.min.js',
-                    'node_modules/materialize-css/dist/js/materialize.min.js',
-                    'node_modules/materialize-css/extras/noUiSlider/nouislider.min.js'],
   html: 'src/public_html/**/*.html',
   less: 'src/assets/less/**/*.less',
   fonts: ['node_modules/materialize-css/dist/fonts/**/*',
@@ -169,7 +166,7 @@ const windowsSignFile = (filePath, signDigest) =>
   new Promise((resolve) => {
     console.log(`Signing file: "${filePath}"\nWith digest: ${signDigest}`);
     exec(
-      `vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd ${signDigest} /tr "http://timestamp.geotrust.com/tsa" /v /as "${filePath}"`,
+      `vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /td ${signDigest} /fd ${signDigest} /tr "http://timestamp.digicert.com" /v /as "${filePath}"`,
       {},
       () => {
         setTimeout(() => {
@@ -184,24 +181,12 @@ gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-i
 gulp.task('clean-dist-darwin', cleanGlob(`./dist/${packageJSON.productName}-darwin-ia32`));
 gulp.task('clean-dist-linux-32', cleanGlob(`./dist/${packageJSON.productName}-linux-ia32`));
 gulp.task('clean-dist-linux-64', cleanGlob(`./dist/${packageJSON.productName}-linux-x64`));
-gulp.task('clean-material', cleanGlob('./build/assets/material'));
-gulp.task('clean-utility', cleanGlob('./build/assets/util'));
 gulp.task('clean-html', cleanGlob('./build/public_html'));
 gulp.task('clean-internal', cleanGlob(['./build/*.js', './build/**/*.js', '!./build/assets/**/*']));
 gulp.task('clean-fonts', cleanGlob('./build/assets/fonts'));
 gulp.task('clean-less', cleanGlob('./build/assets/css'));
 gulp.task('clean-images', cleanGlob('./build/assets/img'));
 gulp.task('clean-locales', cleanGlob('./build/_locales/*.json'));
-
-gulp.task('materialize-js', ['clean-material'], () => {
-  return gulp.src('node_modules/materialize-css/dist/js/materialize.min.js')
-    .pipe(gulp.dest('./build/assets/material'));
-});
-
-gulp.task('utility-js', ['clean-utility'], () => {
-  return gulp.src(paths.utilityScripts)
-    .pipe(gulp.dest('./build/assets/util'));
-});
 
 gulp.task('html', ['clean-html'], () => {
   return gulp.src(paths.html)
@@ -439,6 +424,5 @@ zipTask('linux:rpm', ['rpm:linux'], './dist/installers/redhat', 'the Redhat (Fed
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['watch', 'transpile', 'images']);
-gulp.task('build', ['materialize-js', 'utility-js', 'transpile', 'images', 'less',
-                    'fonts', 'html', 'locales']);
+gulp.task('build', ['transpile', 'images', 'less', 'fonts', 'html', 'locales']);
 gulp.task('package', ['package:win', 'package:darwin', 'package:linux']);

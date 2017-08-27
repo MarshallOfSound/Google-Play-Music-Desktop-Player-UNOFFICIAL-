@@ -34,6 +34,7 @@
   "lastfm-login-error": "Sembra che tu abbia abbandonato il processo di autorizzazione, se è stato un errore, riprova di nuovo",
   "lastfm-login-not-authorized": "Non autorizzato",
   "lastfm-logout-button-text": "Esci da Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "Segna automaticamente come preferiti i brani con pollice su",
 
   "lyrics-failed-message": "Spiacente, non è possibile trovare il testo per questo brano",
   "lyrics-loading-message": "Caricamento del testo...",
@@ -44,7 +45,7 @@
   "message-uncaught-error": "Si è verificato un errore in GPMDP.",
   "message-uncaught-error-button": "Clicca qui per riportare l'errore su GitHub",
 
-  "modal-confirmTray-title": "Giusto un avviso",
+  "modal-confirmTray-title": "Un nota al volo",
   "modal-confirmTray-content": "La chiusura della finestra principale (quello che hai appena provato a fare) minimizzerà il lettore nell'area di notifica. Questo comportamento può essere cambiato nella finestra \"Impostazioni desktop\".",
   "modal-confirmOpenPort-content": "Le API di Playback non possono essere avviate perché sono bloccate dal firewall di Windows. Possiamo sbloccarle per te se vuoi, ma ciò richiederà privilegi amministrativi",
   "modal-confirmUpdate-title": "Aggiornamento disponibile",
@@ -104,13 +105,16 @@
 
   "settings-option-save-page": "Carica automaticamente l'ultima pagina visitata all'avvio",
 
+  "settings-option-start-minimized": "Avvia l'applicazione minimizzata",
+
   "settings-option-scroll-lyrics": "Scorri automaticamente i testi durante la riproduzione",
 
   "settings-option-mini-always-show": "Mostra sempre le informazioni del brano",
   "settings-option-mini-ontop": "Sempre in primo piano",
   "settings-option-mini-use-scroll-volume": "Usa la rotella di scorrimento per regolare il volume",
 
-  "settings-option-skip-bad-songs": "Salta automaticamente i brani non piaciuti",
+  "settings-option-skip-bad-songs": "Salta automaticamente i brani segnati con pollice giù",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Seleziona un file CSS locale per iniettare gli stili nell'applicazione",
   "settings-options-style-main-app": "Applicazione principale",

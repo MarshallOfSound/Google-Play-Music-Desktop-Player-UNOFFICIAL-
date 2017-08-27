@@ -59,7 +59,7 @@ window.wait(() => {
       playTime += progress;
     }
     // Scrobble if played more than half or 4 minutes
-    if ((playTime / playbackInfo.total) > 0.5 || playTime > 1000 * 60 * 4) {
+    if (playbackInfo.total !== 0 && (playTime / playbackInfo.total) > 0.5 || playTime > 1000 * 60 * 4) {
       Emitter.fire('change:track:scrobble', {
         title: currentTrack.title,
         artist: currentTrack.artist,

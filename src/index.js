@@ -127,6 +127,7 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
 
     // and load the index.html of the app.
     mainWindow.loadURL(`file://${__dirname}/public_html/index.html`);
+
     require('./renderer/generic/translations');
     require('./main/features');
     require('./old_win32');

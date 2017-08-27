@@ -34,6 +34,7 @@
   "lastfm-login-error": "承認プロセスを終えたようですが、もし失敗しているようなら再度認証を試みてください",
   "lastfm-login-not-authorized": "未接続",
   "lastfm-logout-button-text": "Last.FMとの接続を解除",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "すみませんが、この曲の歌詞がみつかりません",
   "lyrics-loading-message": "歌詞を読み込み中...",
@@ -104,6 +105,8 @@
 
   "settings-option-save-page": "起動時に最後に表示したページを自動で読み込む",
 
+  "settings-option-start-minimized": "",
+
   "settings-option-scroll-lyrics": "再生中に歌詞を自動でスクロールする",
 
   "settings-option-mini-always-show": "常に曲の情報を表示する",
@@ -111,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "音量調節にスクロールホイールを利用する",
 
   "settings-option-skip-bad-songs": "",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "アプリケーションにスタイルを適用するためのローカルCSSファイルを選択する",
   "settings-options-style-main-app": "メインアプリ",

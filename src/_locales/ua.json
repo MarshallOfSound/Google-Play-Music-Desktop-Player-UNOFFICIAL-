@@ -34,6 +34,7 @@
   "lastfm-login-error": "Схоже ви скасували процес авторизації. Якщо це не так, будь ласка, спробуйте ще раз",
   "lastfm-login-not-authorized": "Не авторизовано",
   "lastfm-logout-button-text": "Вийти з Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "На жаль, ми не змогли знайти текст до цієї пісні",
   "lyrics-loading-message": "Завантаження текту пісні...",
@@ -104,6 +105,8 @@
 
   "settings-option-save-page": "При завантаженні автоматично показати останню переглянуту сторінку",
 
+  "settings-option-start-minimized": "",
+
   "settings-option-scroll-lyrics": "Автоматично прокручувати текст пісні під час відтворення",
 
   "settings-option-mini-always-show": "Завжди показувати інформацію про пісню",
@@ -111,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Керування гічністю за допомогою коліщатка миши",
 
   "settings-option-skip-bad-songs": "Автоматично пропускати пісні, що не сподобались",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Оберіть локальний CSS-файл для застосування стилей в застосунку",
   "settings-options-style-main-app": "Стилі додатку",

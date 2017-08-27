@@ -34,6 +34,7 @@
   "lastfm-login-error": "Du har lämnat inloggningsprocessen. Om det var ett misstag, prova igen",
   "lastfm-login-not-authorized": "Din inloggning blev inte godkänd",
   "lastfm-logout-button-text": "Logga ut från Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "Beklagar, vi kunde inte hitta några låttexter till denna låten",
   "lyrics-loading-message": "Laddar låttexter...",
@@ -104,6 +105,8 @@
 
   "settings-option-save-page": "Ladda automatiskt den senast visade sidan vid uppstart.",
 
+  "settings-option-start-minimized": "",
+
   "settings-option-scroll-lyrics": "Scrolla låttexter automatiskt under uppspelning",
 
   "settings-option-mini-always-show": "Visa altid låtinformation.",
@@ -111,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Använd scrollhjulet för att justera volymen",
 
   "settings-option-skip-bad-songs": "Hoppa automatiskt över ogillade låtar",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Välj en lokal CSS-fil, för att anpassa programmet.",
   "settings-options-style-main-app": "Huvudfönstret",

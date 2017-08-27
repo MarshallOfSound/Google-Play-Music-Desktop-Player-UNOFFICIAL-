@@ -115,19 +115,19 @@ export const updateScrobble = (track, artist, album, timestamp, duration) => {
   }
 };
 
-// export const heartSong = (love, track, artist, album) => {
-export const heartSong = () => {
-  // if (Settings.get('lastFMKey')) {
-  //   getLastFMSession()
-  //     .then((session) => {
-  //       lastfm.request(`track.${love ? 'love' : 'unlove'}`, session, {
-  //         track,
-  //         artist,
-  //         album,
-  //       }).on('error', (err) => Logger.error('LASTFM ERROR', err));
-  //     })
-  //     .catch((err) => Logger.error('LASTFM ERROR', err));
-  // }
+export const heartSong = (love, track, artist, album) => {
+  if (Settings.get('lastFMKey') && Settings.get('lastFMMapThumbToHeart')) {
+    getLastFMSession()
+      .then((session) => {
+        lastfm.request(`track.${love ? 'love' : 'unlove'}`, {
+          track,
+          artist,
+          album,
+          sk: session.key,
+        }).on('error', (err) => Logger.error('LASTFM ERROR', err));
+      })
+      .catch((err) => Logger.error('LASTFM ERROR', err));
+  }
 };
 
 Emitter.on('lastfm:auth', () => {
@@ -165,7 +165,7 @@ PlaybackAPI.on('change:rating', (newRating) => {
       if (!newRating.liked && currentRating.liked) {
         heartSong(false, currentSong.title, currentSong.artist, currentSong.album);
       }
-      currentRating = newRating;
+      currentRating = Object.assign({}, newRating);
     }
   });
 });

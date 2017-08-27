@@ -34,6 +34,7 @@
   "lastfm-login-error": "Wygląda na to, że przerwałeś proces logowania - jeśli to pomyłka, spróbuj jeszcze raz",
   "lastfm-login-not-authorized": "Nie zalogowany",
   "lastfm-logout-button-text": "Wyloguj się z Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "Polubienie utworu w aplikacji spowoduje jego polubienie również na Last.fm",
 
   "lyrics-failed-message": "Niestety nie znaleziono tekstu tego utworu",
   "lyrics-loading-message": "Wczytywanie tekstu utworu...",
@@ -104,6 +105,8 @@
 
   "settings-option-save-page": "Automatycznie załaduj ostatnio przeglądaną stronę przy starcie aplikacji",
 
+  "settings-option-start-minimized": "Zminimalizuj po uruchomieniu",
+
   "settings-option-scroll-lyrics": "Przewijaj napisy automatycznie podczas odtwarzania",
 
   "settings-option-mini-always-show": "Zawsze pokazuj informacje o utworze",
@@ -111,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Użyj rolki myszki aby sterować głośnością",
 
   "settings-option-skip-bad-songs": "Automatycznie pomijaj nielubiane utwory",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Wybierz lokalny plik CSS aby dodać nowe style do aplikacji",
   "settings-options-style-main-app": "Główna aplikacja",

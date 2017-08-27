@@ -14,8 +14,8 @@
 
   "label-about": "O Aplikaci",
   "label-alarm": "Budík",
-  "label-recents": "",
-  "label-desktop-settings": "Nastavení Desktop Přehrávače",
+  "label-recents": "Nedávno přehráno nebo přidáno",
+  "label-desktop-settings": "Nastavení přehrávače",
   "label-donate": "Podpořit",
   "label-help": "Nápověda",
   "label-issues": "Problémy s aplikací",
@@ -34,6 +34,7 @@
   "lastfm-login-error": "Vypadá to, že jste opustili přihlašovací proces. Pokud se tak nestalo, prosím, opakujte přihlášení",
   "lastfm-login-not-authorized": "Nepřihlášen",
   "lastfm-logout-button-text": "Odhlásit se ze služby Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "Omlouváme se, ale nenašly se žádné texty pro tuto skladbu",
   "lyrics-loading-message": "Načítání textu skladby...",
@@ -104,6 +105,8 @@
 
   "settings-option-save-page": "Automaticky načíst poslední stránku při spuštění",
 
+  "settings-option-start-minimized": "",
+
   "settings-option-scroll-lyrics": "Posouvat text skladby při přehrávání automaticky",
 
   "settings-option-mini-always-show": "Vždy zobraz informace o skladbě",
@@ -111,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Použít rolovací kolečko pro změnu hlasitosti",
 
   "settings-option-skip-bad-songs": "",
+  "settings-option-try-supported-channel-layouts": "Experimentální podpora více audio kanálů, jako je 5.1",
 
   "settings-options-style-description": "Vybrat místní CSS soubor pro použití stylů v aplikaci",
   "settings-options-style-main-app": "Hlavní aplikace",

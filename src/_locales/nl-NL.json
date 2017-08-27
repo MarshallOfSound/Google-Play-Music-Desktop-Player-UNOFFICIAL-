@@ -34,6 +34,7 @@
   "lastfm-login-error": "Het lijkt er op dat u het autorisatieproces heeft verlaten. als dit een vergissing is, probeer het dan opnieuw",
   "lastfm-login-not-authorized": "Niet geautoriseerd",
   "lastfm-logout-button-text": "Afmelden bij Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "Sorry, we kunnen geen teksten vinden bij dit nummer",
   "lyrics-loading-message": "Teksten aan 't laden...",
@@ -104,6 +105,8 @@
 
   "settings-option-save-page": "Laad de laatst bekeken pagina automatisch bij opstarten",
 
+  "settings-option-start-minimized": "",
+
   "settings-option-scroll-lyrics": "Scroll liedteksten automatisch bij het afspelen",
 
   "settings-option-mini-always-show": "Toon altijd informatie over het nummer",
@@ -111,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Gebruik het muiswieltje om het volume aan te passen",
 
   "settings-option-skip-bad-songs": "",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "",
   "settings-options-style-main-app": "",

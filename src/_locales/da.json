@@ -34,6 +34,7 @@
   "lastfm-login-error": "Du har forladt login processen, hvis dette var en fejl, prøv igen",
   "lastfm-login-not-authorized": "Dit login blev ikke godkendt",
   "lastfm-logout-button-text": "Log ud af Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
   "lyrics-failed-message": "Beklager, vi kunne ikke finde nogle sangtekster til denne sang",
   "lyrics-loading-message": "Indlæser sangtekster...",
@@ -104,6 +105,8 @@
 
   "settings-option-save-page": "Automatisk indlæs den sidste viste side ved start op.",
 
+  "settings-option-start-minimized": "",
+
   "settings-option-scroll-lyrics": "Automatisk rul af sangtekster når der afspilles",
 
   "settings-option-mini-always-show": "Vis altid sang informationer.",
@@ -111,6 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Brug rullehjulet til at justere lydstyrken",
 
   "settings-option-skip-bad-songs": "",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Vælg en lokal CSS fil, til at tilpasse programmet.",
   "settings-options-style-main-app": "Hovedvinduet",
