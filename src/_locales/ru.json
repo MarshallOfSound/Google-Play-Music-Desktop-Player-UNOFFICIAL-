@@ -105,7 +105,7 @@
 
   "settings-option-save-page": "При запуске автоматически открывать последнюю просмотренную страницу",
 
-  "settings-option-start-minimized": "",
+  "settings-option-start-minimized": "Запускать свернутым в трей",
 
   "settings-option-scroll-lyrics": "Автоматически прокручивать текст песни во время воспроизведения",
 
@@ -114,7 +114,7 @@
   "settings-option-mini-use-scroll-volume": "Управление громкостью колесом мыши",
 
   "settings-option-skip-bad-songs": "Автоматически пропускать непонравившиеся песни",
-  "settings-option-try-supported-channel-layouts": "",
+  "settings-option-try-supported-channel-layouts": "Экспериментальная поддержка нескольких аудиоканалов, таких как аудио 5.1",
 
   "settings-options-style-description": "Выберите локальный CSS-файл для инъекции стилей в приложение",
   "settings-options-style-main-app": "Стили приложения",
