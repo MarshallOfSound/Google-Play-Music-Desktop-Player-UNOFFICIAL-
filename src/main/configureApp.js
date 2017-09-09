@@ -14,7 +14,7 @@ export default (app) => {
     app.commandLine.appendSwitch('try-supported-channel-layouts', '1');
   }
 
-  if (process.platform !== 'darwin') {
+  if (process.platform !== 'darwin' && !process.argv.includes('--enable-gpu')) {
     app.disableHardwareAcceleration();
   }
 
