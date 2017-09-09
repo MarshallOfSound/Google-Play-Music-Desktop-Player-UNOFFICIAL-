@@ -4,6 +4,9 @@ window.wait(() => {
 
   const originalRequestAnimationFrame = window.requestAnimationFrame;
   let updateSliderFn = null;
+  document.addEventListener('visibilitychange', () => {
+    updateSliderFn = null;
+  });
   window.requestAnimationFrame = (fn) => {
     if (document.visibilityState !== 'visible') {
       if (!updateSliderFn && fn.toString) {
