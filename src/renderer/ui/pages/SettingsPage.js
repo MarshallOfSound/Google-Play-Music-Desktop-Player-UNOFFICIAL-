@@ -7,6 +7,7 @@ import LastFMTab from '../components/settings/tabs/LastFMTab';
 import MiniTab from '../components/settings/tabs/MiniTab';
 import PlaybackTab from '../components/settings/tabs/PlaybackTab';
 import StyleTab from '../components/settings/tabs/StyleTab';
+import AboutTab from '../components/settings/tabs/AboutTab';
 import WindowContainer from '../components/generic/WindowContainer';
 
 const styles = {
@@ -44,6 +45,9 @@ export default class SettingsPage extends Component {
           </Tab>
           <Tab label={TranslationProvider.query('title-settings-style')}>
             <StyleTab />
+          </Tab>
+          <Tab label={TranslationProvider.query('label-about')}>
+            <AboutTab />
           </Tab>
         </Tabs>
       </WindowContainer>
