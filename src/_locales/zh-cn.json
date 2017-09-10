@@ -1,0 +1,140 @@
+{
+    "audio-device-communications": "系统默认通讯",
+    "audio-device-default": "系统默认",
+    "audio-device-unknown": "位置设备",
+  
+    "button-text-ok": "OK",
+    "button-text-cancel-alarm": "取消闹钟",
+    "button-text-click-here-to-set-alarm": "点击这里设置闹钟",
+    "button-text-close": "关闭",
+    "button-text-dont-tell-me-again": "不要再次提醒",
+    "button-text-lets-do-this": "搞起!!",
+    "button-text-lets-go": "启程吧!!",
+    "button-text-not-now": "稍后再说",
+  
+    "label-about": "关于",
+    "label-alarm": "闹钟",
+    "label-recents": "最近",
+    "label-desktop-settings": "桌面设置",
+    "label-donate": "捐助",
+    "label-help": "帮助",
+    "label-issues": "问题",
+    "label-learn-more": "更多",
+    "label-loading-devices": "加载设备 ...",
+    "label-pause-after-song": "播放完当前歌曲暂停",
+    "label-quit": "退出",
+    "label-show-lyrics": "显示歌词 (Beta)",
+    "label-unknown-artist": "未知艺术家",
+    "label-unknown-song": "未知歌曲",
+    "label-version": "版本",
+  
+    "lastfm-login-authorized": "已授权",
+    "lastfm-login-authorizing": "正在授权",
+    "lastfm-login-button-text": "登陆 Last.FM",
+    "lastfm-login-error": "您似乎已经离开了授权过程, 如果这是一个错误, 请再次尝试授权",
+    "lastfm-login-not-authorized": "未授权",
+    "lastfm-logout-button-text": "退出 Last.FM",
+    "lastfm-map-thumbs-up-to-heart": "自动收藏点赞的歌曲",
+  
+    "lyrics-failed-message": "抱歉 无法找到该歌曲的歌词",
+    "lyrics-loading-message": "加载歌词中...",
+    "lyrics-no-song-message": "当前没有歌曲在播放",
+  
+    "message-pausing-after-song": "播放完当前歌曲后暂停",
+    "message-pausing-after-song-button": "播放完当前歌曲后不暂停",
+    "message-uncaught-error": "该播放器内部错误",
+    "message-uncaught-error-button": "点击这里报告问题到Github",
+  
+    "modal-confirmTray-title": "通知",
+    "modal-confirmTray-content": "关闭主播放器窗口 (您刚刚尝试做的事情) 实际上会将播放器最小化到系统托盘中。如果要更改此行为, 可以在\"Desktop Settings\"设置它",
+    "modal-confirmOpenPort-content": "The PlaybackAPI 无法启动, 因为 Windows 防火墙正在阻止它. 解除组织可能需要管理员特权",
+    "modal-confirmUpdate-title": "有更新",
+    "modal-confirmUpdate-content": "Woo hoo, Google Play Music Desktop Player更新了! 这次更新修复了已知bug并且增加了新的功能，我们建议您尽快更新,享受全新的用户体验",
+    "modal-confirmUninstall-title": "So heres the thing...",
+    "modal-confirmUninstall-content": "我们刚刚发现一个旧版本的 GPMDP 仍然安装在您的系统上。 如果你刚刚更新, 这是完全正常的。 我们现在将尝试卸载旧版本, 这可能需要管理员权限来卸载旧的版本",
+    "modal-goToURL-title": "输入 Google Play Music 链接跳转到:",
+    "modal-welcome-title": "欢迎来到版本",
+    "modal-welcome-content": "希望你喜欢这些更新!",
+  
+    "playback-label-next-track": "下一首",
+    "playback-label-play-pause": "播放 / 暂停",
+    "playback-label-previous-track": "上一首",
+    "playback-label-stop": "停止",
+    "playback-label-thumbs-down": "踩",
+    "playback-label-thumbs-up": "赞",
+    "playback-label-volume-down": "减小音量",
+    "playback-label-volume-up": "增大音量",
+    "playback-label-info-track": "通知当前音频",
+    "playback-os-no-track-playing": "没有音频正在播放",
+  
+    "settings-requires-restart": "需要重启",
+  
+    "settings-option-keep-sidebar-open": "保持侧栏打开",
+    "settings-option-static-album-art": "在可视化工具中保留歌曲图片",
+  
+    "settings-option-invert-tray-icon": "倒置托盘图标颜色",
+  
+    "settings-option-custom-theme": "自定义主题",
+    "settings-option-custom-theme-choose-color": "选择主题颜色",
+    "settings-option-custom-theme-choose-custom": "或者选择",
+    "settings-option-custom-theme-custom-color": "自定义颜色",
+    "settings-option-custom-theme-dark": "Dark",
+    "settings-option-custom-theme-light": "Light",
+    "settings-option-custom-theme-should-track-system": "将系统Dark模式设置与主题类型相匹配",
+  
+    "settings-option-enable-api": "启用 Playback API",
+    "settings-option-enable-api-json": "启用 JSON API",
+    "settings-option-enable-api-details": "这允许其他应用程序与GPMDP连接",
+    "settings-option-enable-system-borders": "使用系统窗口边框",
+    "settings-option-enable-voice": "启用声音控制",
+    "settings-option-enable-voice-details": "语音操作,解放双手(该功能为试验功能)",
+    "settings-option-enable-taskbar-progress": "在任务栏显示播放进度",
+    "settings-option-enable-win10-media-service": "启用Win10媒体服务",
+    "settings-option-enable-win10-media-service-details": "这将显示当前播放在锁屏时",
+    "settings-option-enable-win10-media-service-track-info": "在Win10音量提示中显示歌曲信息",
+    "settings-option-change-locale": "选择语言",
+  
+    "settings-option-hotkey-explanation": "这些设置是额外设置, 不会影响默认的媒体按键设置",
+    "settings-option-hotkey-explanation-2": "使用 <i>\"Escape\"</i> 重新设置快捷键.",
+    "settings-option-hotkey-not-set": "未设置",
+  
+    "settings-option-min-to-tray": "最小化",
+  
+    "settings-option-prevent-display-sleep": "当该软件运行时电脑不会休眠",
+    "settings-option-auto-launch": "开机自动启动",
+  
+    "settings-option-save-page": "启动时自动加载上次查看的页面",
+  
+    "settings-option-start-minimized": "最小化启动此应用程序",
+  
+    "settings-option-scroll-lyrics": "播放时自动滚动歌词",
+  
+    "settings-option-mini-always-show": "总是显示歌曲信息",
+    "settings-option-mini-ontop": "始终在顶部",
+    "settings-option-mini-use-scroll-volume": "使用滚轮调整音量",
+  
+    "settings-option-skip-bad-songs": "自动跳过不喜欢的歌曲",
+    "settings-option-try-supported-channel-layouts": "支持对多个音频通道 (如5.1 音频)",
+  
+    "settings-options-style-description": "选择本地的CSS文件插入到应用",
+    "settings-options-style-main-app": "主应用",
+    "settings-options-style-gpm": "Google Play Music",
+    "settings-options-style-refresh": "重新加载样式",
+    "settings-options-style-dialog-title": "选择一个CSS文件",
+    "settings-options-style-dialog-button": "加载CSS",
+    "settings-options-style-dialog-css-files": "CSS文件",
+    "settings-options-style-dialog-all-files": "所有文件",
+  
+    "title-color-picker": "颜色选择器",
+    "title-settings": "设置",
+    "title-settings-playback": "回放",
+    "title-settings-general": "通用",
+    "title-settings-hotkeys": "快捷键",
+    "title-settings-lastfm": "LastFM",
+    "title-settings-mini": "Mini 播放器",
+    "title-settings-style": "自定义样式",
+  
+    "tray-label-audio-device": "音频设备",
+    "tray-label-show": "显示"
+  }
+  
