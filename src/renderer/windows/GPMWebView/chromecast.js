@@ -27,6 +27,10 @@ const receiverFn = (receivers) =>
     });
     dialog.appendChild(listContainer);
 
+    listContainer.style.display = 'block';
+    listContainer.style.maxHeight = '50vh';
+    listContainer.style.overflowY = 'auto';
+
     dialog.innerHTML += `
     <div class="buttons">
       <paper-button data-cancel dialog-dismiss>Cancel</paper-button>
