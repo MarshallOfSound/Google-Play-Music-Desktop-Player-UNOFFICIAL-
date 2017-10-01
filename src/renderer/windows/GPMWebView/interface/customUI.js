@@ -132,15 +132,10 @@ function installAlarmButton() {
   });
 }
 
-function installRecentsButton() {
-  installSidebarButton('label-recents', 'recents', 'history', 0, '#/recents');
-}
-
 function installMainMenu() {
   installDesktopSettingsButton();
   installQuitButton();
   installAlarmButton();
-  installRecentsButton();
 }
 
 /* eslint-disable max-len, no-multi-str */
