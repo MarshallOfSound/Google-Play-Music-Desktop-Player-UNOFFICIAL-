@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Извините, мы не смогли найти текста для этой песни",
   "lyrics-loading-message": "Загрузка текста песни...",
   "lyrics-no-song-message": "В данный момент ничего не воспроизводится",
+  "lyrics-search-in": "Искать на",
+  "lyrics-lyrics": "текст песни",
 
   "message-pausing-after-song": "После этой песни будет пауза.",
   "message-pausing-after-song-button": "Не останавливать после этой песни",

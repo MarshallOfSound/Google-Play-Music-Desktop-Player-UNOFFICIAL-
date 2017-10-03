@@ -39,6 +39,8 @@
   "lyrics-failed-message": "すみませんが、この曲の歌詞がみつかりません",
   "lyrics-loading-message": "歌詞を読み込み中...",
   "lyrics-no-song-message": "現在再生中の曲はありません",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "この曲の後に一時停止します",
   "message-pausing-after-song-button": "この曲の後で一時停止しない",

@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Beklager, vi kunne ikke finde nogle sangtekster til denne sang",
   "lyrics-loading-message": "Indlæser sangtekster...",
   "lyrics-no-song-message": "Ingen sang bliver afspillet i øjeblikket",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pauser efter denne sang.",
   "message-pausing-after-song-button": "Pause ikke efter denne sang.",

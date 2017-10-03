@@ -39,6 +39,8 @@
   "lyrics-failed-message": "На жаль, ми не змогли знайти текст до цієї пісні",
   "lyrics-loading-message": "Завантаження текту пісні...",
   "lyrics-no-song-message": "Зараз нічого не відтворюється",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Зупинити після цїєї пісні.",
   "message-pausing-after-song-button": "Не зупиняти програвання після цїєї пісні",

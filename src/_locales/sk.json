@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Je nám ľúto, ale pre túto skladbu sme nenašli žiadne texty",
   "lyrics-loading-message": "Načítanie textu...",
   "lyrics-no-song-message": "Práve sa neprehráva žiadna skladba",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pozastavenie po tejto skladbe.",
   "message-pausing-after-song-button": "Zrušiť pozastavenie po tejto skladbe",

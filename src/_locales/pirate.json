@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Sorry, we could not find any lyrics fer 'tis song",
   "lyrics-loading-message": "We be loadin' lyrics...",
   "lyrics-no-song-message": "No song be currently playin'",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pausin' after 'tis song.",
   "message-pausing-after-song-button": "Don't pause after 'tis song",

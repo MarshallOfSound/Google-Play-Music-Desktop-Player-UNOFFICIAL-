@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Beklagar, vi kunde inte hitta några låttexter till denna låten",
   "lyrics-loading-message": "Laddar låttexter...",
   "lyrics-no-song-message": "Ingen låt spelas just nu",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pausar efter denna låten.",
   "message-pausing-after-song-button": "Pausar inte efter denna låten.",

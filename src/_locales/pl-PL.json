@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Niestety nie znaleziono tekstu tego utworu",
   "lyrics-loading-message": "Wczytywanie tekstu utworu...",
   "lyrics-no-song-message": "Żaden utwór nie jest teraz odtwarzany",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Włączono wstrzymanie po tym utworze.",
   "message-pausing-after-song-button": "Wyłączono wstrzymanie po tym utworze",
