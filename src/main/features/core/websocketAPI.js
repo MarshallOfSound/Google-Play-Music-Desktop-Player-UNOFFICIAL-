@@ -27,6 +27,7 @@ try {
     console.error('One macOS Bonjour should "just work" so if you see this you have much bigger problems'); // eslint-disable-line
   } else {
     console.error('On linux you need to install "avahi"'); // eslint-disable-line
+    console.error('Ubuntu will also need "libavahi-compat-libdnssd1"'); // eslint-disable-line
   }
   if (process.platform === 'win32') {
     Emitter.sendToWindowsOfName('main', 'bonjour-install');
