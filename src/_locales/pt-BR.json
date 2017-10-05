@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Desculpe, não conseguimos encontrar a letra dessa música",
   "lyrics-loading-message": "Carregando letra",
   "lyrics-no-song-message": "Nenhuma música tocando",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pausar após essa música",
   "message-pausing-after-song-button": "Não pause após essa música",

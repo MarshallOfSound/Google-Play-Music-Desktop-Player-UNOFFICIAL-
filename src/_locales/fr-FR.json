@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Désolé, nous n'avons pas pu trouver de paroles à ce morceau",
   "lyrics-loading-message": "Chargement des paroles...",
   "lyrics-no-song-message": "Aucun morceau en cours de lecture",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pause après ce morceau.",
   "message-pausing-after-song-button": "Ne pas mettre en pause après ce morceau",

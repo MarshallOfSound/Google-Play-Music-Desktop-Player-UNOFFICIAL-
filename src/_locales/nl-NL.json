@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Sorry, we kunnen geen teksten vinden bij dit nummer",
   "lyrics-loading-message": "Teksten aan 't laden...",
   "lyrics-no-song-message": "Er wordt nu niets afgespeeld",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pauzeren na dit nummer.",
   "message-pausing-after-song-button": "Niet pauzeren na dit nummer",

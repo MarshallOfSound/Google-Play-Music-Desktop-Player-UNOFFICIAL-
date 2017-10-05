@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Sorry, we could not find any lyrics for this song",
   "lyrics-loading-message": "Loading lyrics...",
   "lyrics-no-song-message": "No song is currently playing",
+  "lyrics-search-in": "Search in",
+  "lyrics-lyrics": "lyrics",
 
   "message-pausing-after-song": "Pausing after this song.",
   "message-pausing-after-song-button": "Don't pause after this song",

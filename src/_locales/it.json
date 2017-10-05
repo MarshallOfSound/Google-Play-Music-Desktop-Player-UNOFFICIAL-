@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Spiacente, non è possibile trovare il testo per questo brano",
   "lyrics-loading-message": "Caricamento del testo...",
   "lyrics-no-song-message": "Nessun brano in riproduzione",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pausa dopo questo brano.",
   "message-pausing-after-song-button": "Non mettere in pausa dopo questo brano",

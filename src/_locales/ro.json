@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Ne pare rău, dar nu am găsit versuri pentru această melodie",
   "lyrics-loading-message": "Se încarcă versurile",
   "lyrics-no-song-message": "Nu se redă nicio melodie în acest moment",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Se va pune pauză după această melodie.",
   "message-pausing-after-song-button": "Nu pune pauză după această melodie",

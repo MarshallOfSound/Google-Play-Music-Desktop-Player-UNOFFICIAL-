@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Entschuldige, aber wir konnten keinen Liedtext finden",
   "lyrics-loading-message": "Lade Liedtext...",
   "lyrics-no-song-message": "Aktuell spielt kein Lied",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Nach diesem Titel pausieren.",
   "message-pausing-after-song-button": "Nicht nach diesem Titel pausieren",

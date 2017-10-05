@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Omlouváme se, ale nenašly se žádné texty pro tuto skladbu",
   "lyrics-loading-message": "Načítání textu skladby...",
   "lyrics-no-song-message": "Právě nehraje žádná skladba",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Po této skladbě se pozastaví přehrávání.",
   "message-pausing-after-song-button": "Nepozastavovat po této skladbě",

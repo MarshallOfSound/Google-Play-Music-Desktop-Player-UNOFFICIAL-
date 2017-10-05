@@ -39,6 +39,8 @@
   "lyrics-failed-message": "Lo sentimos, no hemos podido encontrar la letra de esta canción",
   "lyrics-loading-message": "Cargando la letra...",
   "lyrics-no-song-message": "No hay ninguna canción reproduciéndose",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pausar después de esta canción.",
   "message-pausing-after-song-button": "No pausar después de esta canción.",
