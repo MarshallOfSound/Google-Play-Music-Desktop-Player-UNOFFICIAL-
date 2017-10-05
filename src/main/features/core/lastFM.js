@@ -1,8 +1,29 @@
 import { BrowserWindow } from 'electron';
-import { LastFmNode } from 'lastfm';
 import path from 'path';
 
 import { LASTFM_API_KEY, LASTFM_API_SECRET } from '../../constants';
+
+// hijack lastfm module to use 'electron.net' instead of 'http'
+global.GENTLY_HIJACK = {
+  hijack(require) {
+    return (moduleName) => {
+      let module;
+
+      if (moduleName === 'http') {
+        module = require('electron').net;
+      } else {
+        module = require(moduleName);
+      }
+
+      return module;
+    };
+  },
+};
+
+const LastFmNode = require('lastfm').LastFmNode;
+
+// remove global variable
+delete global.GENTLY_HIJACK;
 
 const lastfm = new LastFmNode({
   api_key: LASTFM_API_KEY,
