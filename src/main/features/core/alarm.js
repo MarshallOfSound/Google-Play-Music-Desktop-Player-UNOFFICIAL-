@@ -19,10 +19,30 @@ const timeUntil = (newDate) => {
 
 Settings.onChange('alarm', (newDate) => {
   clearTimeout(timer);
+  const alarmOption = Settings.get('alarmOption', 'normal');
   if (newDate) {
     timer = setTimeout(() => {
-      Emitter.sendToGooglePlayMusic('playback:play:smooth');
+      if (alarmOption === 'fade') {
+        Emitter.sendToGooglePlayMusic('playback:play:fade');
+      } else {
+        Emitter.sendToGooglePlayMusic('playback:play:smooth');
+      }
       Settings.set('alarm', null);
     }, timeUntil(newDate));
+  }
+});
+
+Settings.onChange('alarmOption', (newOption) => {
+  clearTimeout(timer);
+  const alarm = Settings.get('alarm', null);
+  if (alarm) {
+    timer = setTimeout(() => {
+      if (newOption === 'fade') {
+        Emitter.sendToGooglePlayMusic('playback:play:fade');
+      } else {
+        Emitter.sendToGooglePlayMusic('playback:play:smooth');
+      }
+      Settings.set('alarm', null);
+    }, timeUntil(alarm));
   }
 });

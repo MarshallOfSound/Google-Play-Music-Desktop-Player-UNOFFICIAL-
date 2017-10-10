@@ -14,6 +14,8 @@
 
   "label-about": "О программе",
   "label-alarm": "Будильник",
+  "label-alarm-option-normal": "",
+  "label-alarm-option-fade": "",
   "label-recents": "Недавнее",
   "label-desktop-settings": "Настройки программы",
   "label-donate": "Пожертвовать",

@@ -33,6 +33,34 @@ Emitter.on('playback:play:smooth', () => {
   }, 20);
 });
 
+Emitter.on('playback:play:fade', () => {
+  const originalVolume = window.GPM.volume.getVolume();
+  const FADE_SPEED = 500;
+  let i = 0;
+
+  if (window.GPM.playback.isPlaying()) {
+    const fadeOut = setInterval(() => {
+      window.GPM.volume.setVolume(originalVolume - (i * (originalVolume / FADE_SPEED)));
+      i++;
+      if (i >= FADE_SPEED) {
+        window.GPM.playback.playPause();
+        window.GPM.volume.setVolume(originalVolume);
+        clearInterval(fadeOut);
+      }
+    }, 20);
+  } else {
+    window.GPM.volume.setVolume(0);
+    window.GPM.playback.playPause();
+    const fadeIn = setInterval(() => {
+      window.GPM.volume.setVolume(i * (originalVolume / FADE_SPEED));
+      i++;
+      if (i >= FADE_SPEED) {
+        clearInterval(fadeIn);
+      }
+    }, 20);
+  }
+});
+
 Emitter.on('playback:nextTrack', () => {
   window.GPM.playback.forward();
 });
