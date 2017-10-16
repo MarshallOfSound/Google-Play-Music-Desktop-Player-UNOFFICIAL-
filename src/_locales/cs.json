@@ -36,6 +36,8 @@
   "lastfm-logout-button-text": "Odhlásit se ze služby Last.FM",
   "lastfm-map-thumbs-up-to-heart": "",
 
+  "listenbrainz-label-user-token": "",
+
   "lyrics-failed-message": "Omlouváme se, ale nenašly se žádné texty pro tuto skladbu",
   "lyrics-loading-message": "Načítání textu skladby...",
   "lyrics-no-song-message": "Právě nehraje žádná skladba",
@@ -133,6 +135,7 @@
   "title-settings-general": "Hlavní",
   "title-settings-hotkeys": "Klávesové zkratky",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini přehrávač",
   "title-settings-style": "Vlastní motivy",
 

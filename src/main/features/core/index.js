@@ -6,6 +6,7 @@ import './debug';
 import './desktopSettings';
 import './tray';
 import './lastFM';
+import './listenBrainz';
 import './autoUpdater';
 import './websocketAPI';
 import './lyrics';
