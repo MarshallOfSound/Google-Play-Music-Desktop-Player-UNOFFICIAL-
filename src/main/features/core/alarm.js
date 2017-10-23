@@ -17,32 +17,32 @@ const timeUntil = (newDate) => {
   return targetTime - currentTime;
 };
 
-Settings.onChange('alarm', (newDate) => {
+Settings.onChange('alarmTime', (newAlarmTime) => {
   clearTimeout(timer);
-  const alarmOption = Settings.get('alarmOption', 'normal');
-  if (newDate) {
+  if (newAlarmTime) {
+    const alarmOption = Settings.get('alarmOption', 'normal');
     timer = setTimeout(() => {
       if (alarmOption === 'fade') {
         Emitter.sendToGooglePlayMusic('playback:play:fade');
       } else {
         Emitter.sendToGooglePlayMusic('playback:play:smooth');
       }
-      Settings.set('alarm', null);
-    }, timeUntil(newDate));
+      Settings.set('alarmTime', null);
+    }, timeUntil(newAlarmTime));
   }
 });
 
-Settings.onChange('alarmOption', (newOption) => {
+Settings.onChange('alarmDuration', (newDuration) => {
   clearTimeout(timer);
-  const alarm = Settings.get('alarm', null);
-  if (alarm) {
+  if (newDuration) {
+    const alarmOption = Settings.get('alarmOption', 'normal');
     timer = setTimeout(() => {
-      if (newOption === 'fade') {
+      if (alarmOption === 'fade') {
         Emitter.sendToGooglePlayMusic('playback:play:fade');
       } else {
         Emitter.sendToGooglePlayMusic('playback:play:smooth');
       }
-      Settings.set('alarm', null);
-    }, timeUntil(alarm));
+      Settings.set('alarmDuration', null);
+    }, newDuration);
   }
 });
