@@ -51,7 +51,7 @@
   "modal-confirmTray-content": "Az \"X\" gomb kattintásával valójában nem zárja be az alkalmazást, hanem kis méretre állítja a rendszertálcán . Az  \"Asztali beállítások \" -nál lehetősége van módosítani ezt a beállítást.",
   "modal-confirmOpenPort-content": "A PlaybackAPI nem indult el, mert a Windows tűzfala blokkolja. Feloldhatjuk ha szeretné, de figyelmeztetjük, hogy ez adminisztrátori jogosultságokkal járhat.",
   "modal-confirmUpdate-title": "Frissítés elérhető",
-  "modal-confirmUpdate-content": "Woo hoo, úgy tűnik egy teljesen új frissítés érhető el a Google Play Music Desktop Player számára.  A frissítés új funkciókat és hibajavításokat hozz magával. A legújabb funkciók hozzáféréséért javasoljuk az alkalmazás mihamarabbi frissítését.<br />Reméljük meg van elégedve az új frissítéssel!",
+  "modal-confirmUpdate-content": "Woo hoo, úgy tűnik egy teljesen új frissítés érhető el a Google Play Music Desktop Player számára.  A frissítés új funkciókat és hibajavításokat hoz magával. A legújabb funkciók hozzáféréséért javasoljuk az alkalmazás mihamarabbi frissítését.<br />Reméljük meg van elégedve az új frissítéssel!",
   "modal-confirmUninstall-title": "Az a helyzet, hogy...",
   "modal-confirmUninstall-content": "Észrevettük, hogy a GPMDP egy régi verziója még mindig telepítve van a rendszeren. Teljesen normális ha frissítve volt. Mi most megpróbáljuk eltávolítani a régi verziót, de ehhez adminisztrátori jogosultságokra lehet szükség. Kérjük, adja meg ezeket.",
   "modal-goToURL-title": "Navigáláshoz lépjen be a Google Play Music webcímére:",
@@ -105,9 +105,9 @@
   "settings-option-prevent-display-sleep": "Állítsa le a számítógép alvó állapotát, amíg a GPMDP nyitva van",
   "settings-option-auto-launch": "Automatikusan indítsa el a számítógép bekapcsolásakor",
 
-  "settings-option-save-page": "Az utolsó megtekintett oldal automatikus betöltése az indításkor",
+  "settings-option-save-page": "Az utolsó megtekintett oldal automatikus betöltése az alkalmazás indításakor",
 
-  "settings-option-start-minimized": "Applikáció indítása kis méretben.",
+  "settings-option-start-minimized": "Alkalmazás indítása kis méretben.",
 
   "settings-option-scroll-lyrics": "Zeneszám lejátszása közben automatikusan görgesse a dalszöveget",
 
