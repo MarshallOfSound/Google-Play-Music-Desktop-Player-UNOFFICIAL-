@@ -18,6 +18,7 @@ export const ACTION_KEYS = _.transform(_.range(26), (final, current) => { // let
 }, _.transform(_.range(24), (final, current) => { // f-keys
   final[current + 112] = 'F' + (current + 1).toString(); // eslint-disable-line
 }, {
+  32: 'Space',
   33: 'PageUp',
   34: 'PageDown',
   35: 'End',
