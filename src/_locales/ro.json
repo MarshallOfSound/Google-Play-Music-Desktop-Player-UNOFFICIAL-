@@ -36,6 +36,8 @@
   "lastfm-logout-button-text": "Deautentificare Last.FM",
   "lastfm-map-thumbs-up-to-heart": "",
 
+  "listenbrainz-label-user-token": "",
+
   "lyrics-failed-message": "Ne pare rău, dar nu am găsit versuri pentru această melodie",
   "lyrics-loading-message": "Se încarcă versurile",
   "lyrics-no-song-message": "Nu se redă nicio melodie în acest moment",
@@ -133,6 +135,7 @@
   "title-settings-general": "General",
   "title-settings-hotkeys": "Scurtături",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Player mini",
   "title-settings-style": "Stiluri personalizate",
 

@@ -36,6 +36,8 @@
   "lastfm-logout-button-text": "Sair do Last.FM",
   "lastfm-map-thumbs-up-to-heart": "",
 
+  "listenbrainz-label-user-token": "Digite seu token de usuário no ListenBrainz (pode ser encontrado em https://listenbrainz.org/user/info)",
+
   "lyrics-failed-message": "Desculpe, não conseguimos encontrar a letra dessa música",
   "lyrics-loading-message": "Carregando letra",
   "lyrics-no-song-message": "Nenhuma música tocando",
@@ -133,6 +135,7 @@
   "title-settings-general": "Geral",
   "title-settings-hotkeys": "Atalhos",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Player",
   "title-settings-style": "Estilos personalizados",
 

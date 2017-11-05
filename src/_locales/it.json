@@ -36,6 +36,8 @@
   "lastfm-logout-button-text": "Esci da Last.FM",
   "lastfm-map-thumbs-up-to-heart": "Segna automaticamente come preferiti i brani con pollice su",
 
+  "listenbrainz-label-user-token": "",
+
   "lyrics-failed-message": "Spiacente, non è possibile trovare il testo per questo brano",
   "lyrics-loading-message": "Caricamento del testo...",
   "lyrics-no-song-message": "Nessun brano in riproduzione",
@@ -133,6 +135,7 @@
   "title-settings-general": "Generale",
   "title-settings-hotkeys": "Tasti veloci",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Player",
   "title-settings-style": "Stili personalizzati",
 
