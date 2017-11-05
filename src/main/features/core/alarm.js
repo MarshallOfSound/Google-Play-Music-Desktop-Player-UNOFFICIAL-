@@ -17,12 +17,32 @@ const timeUntil = (newDate) => {
   return targetTime - currentTime;
 };
 
-Settings.onChange('alarm', (newDate) => {
+Settings.onChange('alarmTime', (newAlarmTime) => {
   clearTimeout(timer);
-  if (newDate) {
+  if (newAlarmTime) {
+    const alarmOption = Settings.get('alarmOption', 'normal');
     timer = setTimeout(() => {
-      Emitter.sendToGooglePlayMusic('playback:play:smooth');
-      Settings.set('alarm', null);
-    }, timeUntil(newDate));
+      if (alarmOption === 'fade') {
+        Emitter.sendToGooglePlayMusic('playback:play:fade');
+      } else {
+        Emitter.sendToGooglePlayMusic('playback:play:smooth');
+      }
+      Settings.set('alarmTime', null);
+    }, timeUntil(newAlarmTime));
+  }
+});
+
+Settings.onChange('alarmDuration', (newDuration) => {
+  clearTimeout(timer);
+  if (newDuration) {
+    const alarmOption = Settings.get('alarmOption', 'normal');
+    timer = setTimeout(() => {
+      if (alarmOption === 'fade') {
+        Emitter.sendToGooglePlayMusic('playback:play:fade');
+      } else {
+        Emitter.sendToGooglePlayMusic('playback:play:smooth');
+      }
+      Settings.set('alarmDuration', null);
+    }, newDuration);
   }
 });

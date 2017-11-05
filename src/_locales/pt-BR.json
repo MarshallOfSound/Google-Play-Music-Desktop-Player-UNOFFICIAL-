@@ -14,6 +14,11 @@
 
   "label-about": "Sobre",
   "label-alarm": "Despertador",
+  "label-alarm-option-normal": "",
+  "label-alarm-option-fade": "",
+  "label-alarm-duration-seconds": "",
+  "label-alarm-duration-minutes": "",
+  "label-alarm-duration-hours": "",
   "label-recents": "",
   "label-desktop-settings": "Configurações desktop",
   "label-donate": "Doar",

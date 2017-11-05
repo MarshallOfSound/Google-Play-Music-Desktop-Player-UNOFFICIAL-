@@ -14,6 +14,11 @@
 
   "label-about": "À propos",
   "label-alarm": "Alarme",
+  "label-alarm-option-normal": "",
+  "label-alarm-option-fade": "",
+  "label-alarm-duration-seconds": "",
+  "label-alarm-duration-minutes": "",
+  "label-alarm-duration-hours": "",
   "label-recents": "",
   "label-desktop-settings": "Paramètres du logiciel",
   "label-donate": "Donation",
