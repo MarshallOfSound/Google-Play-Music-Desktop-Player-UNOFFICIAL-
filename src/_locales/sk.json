@@ -36,6 +36,8 @@
   "lastfm-logout-button-text": "Odhlásiť sa z Last.FM",
   "lastfm-map-thumbs-up-to-heart": "Skladby, ktoré sa mi páčia, automaticky označiť ako obľúbené",
 
+  "listenbrainz-label-user-token": "",
+
   "lyrics-failed-message": "Je nám ľúto, ale pre túto skladbu sme nenašli žiadne texty",
   "lyrics-loading-message": "Načítanie textu...",
   "lyrics-no-song-message": "Práve sa neprehráva žiadna skladba",
@@ -133,6 +135,7 @@
   "title-settings-general": "Všeobecné",
   "title-settings-hotkeys": "Klávesové skratky",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini prehrávač",
   "title-settings-style": "Vlastné štýly",
 

@@ -34,7 +34,9 @@
   "lastfm-login-error": "Parece que no completaste la autorización de la aplicación, si fue por error, intenta autorizar de nuevo",
   "lastfm-login-not-authorized": "No autorizado",
   "lastfm-logout-button-text": "Cerrar sesión en Last.FM",
-  "lastfm-map-thumbs-up-to-heart": "Amar canciones con \"Me gusta\" automáticamente",
+  "lastfm-map-thumbs-up-to-heart": "Marcar automáticamente como Love Tracks las canciones que me gustan",
+
+  "listenbrainz-label-user-token": "Introduce tu token de usuario de ListenBrainz (encuéntralo en https://listenbrainz.org/user/info)",
 
   "lyrics-failed-message": "Lo sentimos, no hemos podido encontrar la letra de esta canción",
   "lyrics-loading-message": "Cargando la letra...",
@@ -107,7 +109,7 @@
 
   "settings-option-save-page": "Cargar la última página vista al iniciar",
   
-  "settings-option-start-minimized": "Arrancar la aplicación minimizada",
+  "settings-option-start-minimized": "Iniciar la aplicación minimizada",
 
   "settings-option-scroll-lyrics": "Desplazar letra automáticamente mientras suena la canción",
 
@@ -133,6 +135,7 @@
   "title-settings-general": "General",
   "title-settings-hotkeys": "Atajos de Teclado",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Reproductor Mini",
   "title-settings-style": "Estilos Personalizados",
 

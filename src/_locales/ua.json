@@ -36,6 +36,8 @@
   "lastfm-logout-button-text": "Вийти з Last.FM",
   "lastfm-map-thumbs-up-to-heart": "",
 
+  "listenbrainz-label-user-token": "",
+
   "lyrics-failed-message": "На жаль, ми не змогли знайти текст до цієї пісні",
   "lyrics-loading-message": "Завантаження текту пісні...",
   "lyrics-no-song-message": "Зараз нічого не відтворюється",
@@ -133,6 +135,7 @@
   "title-settings-general": "Основні",
   "title-settings-hotkeys": "Скорочення клавіатури",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Мініплеер",
   "title-settings-style": "Власні стилі",
 
