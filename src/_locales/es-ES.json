@@ -34,7 +34,9 @@
   "lastfm-login-error": "Parece que te falta autorizar la aplicación, si esto no es correcto, intenta autorizar de nuevo",
   "lastfm-login-not-authorized": "No Autorizado",
   "lastfm-logout-button-text": "Cerrar sesión en Last.FM",
-  "lastfm-map-thumbs-up-to-heart": "",
+  "lastfm-map-thumbs-up-to-heart": "Marcar automáticamente como Love Tracks las canciones que me gustan",
+
+  "listenbrainz-label-user-token": "",
 
   "lyrics-failed-message": "Lo sentimos, no hemos podido encontrar la letra de esta canción",
   "lyrics-loading-message": "Cargando la letra...",
@@ -106,7 +108,7 @@
   "settings-option-auto-launch": "Lanzar la aplicación al inicio",
 
   "settings-option-save-page": "Cargar la última página vista al iniciar",
-  "settings-option-start-minimized": "",
+  "settings-option-start-minimized": "Iniciar la aplicación minimizada",
 
   "settings-option-scroll-lyrics": "Desplazar letra automáticamente mientras suena la canción",
 
@@ -115,7 +117,7 @@
   "settings-option-mini-use-scroll-volume": "Usa la rueda del ratón para ajustar el volumen",
 
   "settings-option-skip-bad-songs": "Saltar canciones con 'No me gusta' automáticamente",
-  "settings-option-try-supported-channel-layouts": "",
+  "settings-option-try-supported-channel-layouts": "Soporte experimental para múltiples canales de audio como audio 5.1",
 
   "settings-options-style-description": "Escoger un fichero CSS local para utilizarlo en la aplicación",
   "settings-options-style-main-app": "Aplicación Principal",
@@ -132,6 +134,7 @@
   "title-settings-general": "General",
   "title-settings-hotkeys": "Atajos de Teclado",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Reproductor Mini",
   "title-settings-style": "Estilos Personalizados",
 

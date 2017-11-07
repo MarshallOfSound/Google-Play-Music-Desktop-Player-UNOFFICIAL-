@@ -36,6 +36,8 @@
   "lastfm-logout-button-text": "Выйти из Last.FM",
   "lastfm-map-thumbs-up-to-heart": "",
 
+  "listenbrainz-label-user-token": "",
+
   "lyrics-failed-message": "Извините, мы не смогли найти текста для этой песни",
   "lyrics-loading-message": "Загрузка текста песни...",
   "lyrics-no-song-message": "В данный момент ничего не воспроизводится",
@@ -133,6 +135,7 @@
   "title-settings-general": "Основные",
   "title-settings-hotkeys": "Горячие клавиши",
   "title-settings-lastfm": "Last.FM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Миниплеер",
   "title-settings-style": "Свои стили",
 

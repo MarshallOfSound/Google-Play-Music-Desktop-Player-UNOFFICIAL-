@@ -36,6 +36,8 @@
   "lastfm-logout-button-text": "Wyloguj się z Last.FM",
   "lastfm-map-thumbs-up-to-heart": "Polubienie utworu w aplikacji spowoduje jego polubienie również na Last.fm",
 
+  "listenbrainz-label-user-token": "",
+
   "lyrics-failed-message": "Niestety nie znaleziono tekstu tego utworu",
   "lyrics-loading-message": "Wczytywanie tekstu utworu...",
   "lyrics-no-song-message": "Żaden utwór nie jest teraz odtwarzany",
@@ -133,6 +135,7 @@
   "title-settings-general": "Ogólne",
   "title-settings-hotkeys": "Skróty klawiszowe",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini odtwarzacz",
   "title-settings-style": "Własne style",
 
