@@ -1,7 +1,9 @@
 import path from 'path';
 
 export default (app) => {
-  app.commandLine.appendSwitch('enable-smooth-scrolling', '1');
+  if (!process.argv.includes('--disable-smooth-scrolling')) {
+    app.commandLine.appendSwitch('enable-smooth-scrolling', '1');
+  }
   app.commandLine.appendSwitch('enable-overlay-scrollbar', '1');
   app.commandLine.appendSwitch('enable-use-zoom-for-dsf', 'false');
   app.commandLine.appendSwitch('disable-gpu', '1');
