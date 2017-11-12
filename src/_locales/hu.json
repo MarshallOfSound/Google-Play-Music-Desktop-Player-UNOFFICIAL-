@@ -37,6 +37,7 @@
   "lastfm-map-thumbs-up-to-heart": "Automatikusan \"szeresse \" azokat a dalokat amelyek tetszenek",
 
   "listenbrainz-label-user-token": "Adja meg a ListenBrainz felhasználói tokenjét (megtalálható a https://listenbrainz.org/user/info oldalon)",
+  "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Sajnáljuk, de nem találtunk dalszöveget ehhez a dalhoz",
   "lyrics-loading-message": "Dalszöveg betöltése...",

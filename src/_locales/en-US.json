@@ -37,6 +37,7 @@
   "lastfm-map-thumbs-up-to-heart": "Automatically love tracks that are thumbed up",
 
   "listenbrainz-label-user-token": "Enter your ListenBrainz user token (can be found at https://listenbrainz.org/user/info)",
+  "listenbrainz-token-here": "Enter token",
 
   "lyrics-failed-message": "Sorry, we could not find any lyrics for this song",
   "lyrics-loading-message": "Loading lyrics...",

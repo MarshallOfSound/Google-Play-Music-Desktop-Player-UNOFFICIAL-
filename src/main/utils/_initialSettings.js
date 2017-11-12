@@ -10,6 +10,7 @@ export default {
   theme: false,
   themeColor: '#2196F3',
   themeType: 'FULL',
+  themeTypeShouldTrackSystem: false,
   preventDisplaySleep: false,
   enableWin10MediaService: false,
   enableWin10MediaServiceTrackInfo: true,

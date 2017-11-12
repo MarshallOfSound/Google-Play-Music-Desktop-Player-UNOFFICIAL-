@@ -80,7 +80,7 @@ window.wait(() => {
   style('sj-search-box #clearButton', { 'z-index': 10 });
 
   // Hide Back button if search box has query
-  cssRule('sj-search-box #backButton { color: #fff !important }');
+  cssRule('.gmusic-theme[data-theme-type=FULL] sj-search-box #backButton { color: #fff !important }');
   cssRule('sj-search-box[has-query] #backButton {opacity: 0 !important}');
 
   const correctButtonVis = () => { backBtn.style.opacity = (!canBack()) ? 0 : 1; };

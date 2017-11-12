@@ -37,6 +37,7 @@
   "lastfm-map-thumbs-up-to-heart": "",
 
   "listenbrainz-label-user-token": "Digite seu token de usuário no ListenBrainz (pode ser encontrado em https://listenbrainz.org/user/info)",
+  "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Desculpe, não conseguimos encontrar a letra dessa música",
   "lyrics-loading-message": "Carregando letra",

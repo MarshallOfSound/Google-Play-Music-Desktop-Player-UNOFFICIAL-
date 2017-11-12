@@ -11,6 +11,7 @@ class TField extends Component {
     setSetting: PropTypes.func.isRequired,
     muiTheme: PropTypes.object,
     dependsOnSettingsKey: PropTypes.string,
+    placeholder: PropTypes.string,
   };
 
   onChange = (event, value) => {
@@ -25,9 +26,11 @@ class TField extends Component {
 
     return (
       <TextField
+        id={`test-field-for-${this.props.settingsKey}`}
         label={this.props.label}
-        value={Settings.get(this.props.settingsKey)}
+        value={Settings.get(this.props.settingsKey, '')}
         onChange={this.onChange}
+        placeholder={this.props.placeholder}
       />
     );
   }
@@ -40,6 +43,7 @@ export default class TextFieldSettings extends Component {
     label: PropTypes.string.isRequired,
     settingsKey: PropTypes.string.isRequired,
     dependsOnSettingsKey: PropTypes.string,
+    placeholder: PropTypes.string,
   };
 
   render() {
@@ -47,6 +51,7 @@ export default class TextFieldSettings extends Component {
       label: this.props.label,
       settingsKey: this.props.settingsKey,
       dependsOnSettingsKey: this.props.dependsOnSettingsKey,
+      placeholder: this.props.placeholder,
     };
     const keys = [this.props.settingsKey];
     if (this.props.dependsOnSettingsKey) {

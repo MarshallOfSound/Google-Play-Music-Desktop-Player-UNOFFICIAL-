@@ -16,6 +16,7 @@ class ListenBrainzTab extends Component {
         <TextFieldSettings
           label={TranslationProvider.query('listenbrainz-label-user-token')}
           settingsKey={'listenBrainzUserToken'}
+          placeholder={TranslationProvider.query('listenbrainz-token-here')}
         />
       </SettingsTabWrapper>
     );
