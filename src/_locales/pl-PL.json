@@ -36,14 +36,14 @@
   "lastfm-logout-button-text": "Wyloguj się z Last.FM",
   "lastfm-map-thumbs-up-to-heart": "Polubienie utworu w aplikacji spowoduje jego polubienie również na Last.fm",
 
-  "listenbrainz-label-user-token": "",
-  "listenbrainz-token-here": "",
+  "listenbrainz-label-user-token": "Podaj swój token z ListenBrainz (znajdziesz go pod adresem https://listenbrainz.org/user/info)",
+  "listenbrainz-token-here": "Tu wpisz token",
 
   "lyrics-failed-message": "Niestety nie znaleziono tekstu tego utworu",
   "lyrics-loading-message": "Wczytywanie tekstu utworu...",
   "lyrics-no-song-message": "Żaden utwór nie jest teraz odtwarzany",
-  "lyrics-search-in": "",
-  "lyrics-lyrics": "",
+  "lyrics-search-in": "Szukaj w",
+  "lyrics-lyrics": "tekst utworu",
 
   "message-pausing-after-song": "Włączono wstrzymanie po tym utworze.",
   "message-pausing-after-song-button": "Wyłączono wstrzymanie po tym utworze",
