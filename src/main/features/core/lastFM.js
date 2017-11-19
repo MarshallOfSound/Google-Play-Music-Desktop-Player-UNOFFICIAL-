@@ -7,6 +7,7 @@ import { LASTFM_API_KEY, LASTFM_API_SECRET } from '../../constants';
 const lastfm = new LastFmNode({
   api_key: LASTFM_API_KEY,
   secret: LASTFM_API_SECRET,
+  host: 'https://ws.audioscrobbler.com',
   useragent: 'GPMDP',
 });
 
