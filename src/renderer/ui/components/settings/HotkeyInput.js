@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
-import TextField from 'material-ui/TextField';
+import { FlatButton, TextField } from 'material-ui';
 
 import { requireSettings } from '../generic/SettingsProvider';
 import { ACCELERATOR_KEYS, MODIFIER_KEYS, ACTION_KEYS } from '../../utils/constants';
@@ -10,6 +10,16 @@ const styles = {
     width: '50%',
     float: 'left',
     padding: '4px 6px',
+    position: 'relative',
+  },
+  removeHotkeyButton: {
+    backgroundColor: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    position: 'absolute',
+    minWidth: 0,
+    right: 10,
+    top: 35,
   },
 };
 
@@ -106,17 +116,23 @@ class HotkeyInput extends Component {
   }
 
   render() {
+    let removeHotkeyButton;
+    const hotkey = this.props.hotkeys[this.props.hotkeyAction];
+    if (hotkey) {
+      removeHotkeyButton = <FlatButton style={styles.removeHotkeyButton} onClick={this._reset}>⌫</FlatButton>;
+    }
     return (
       <div style={styles.inputContainer}>
         <TextField
           hintText={TranslationProvider.query('settings-option-hotkey-hint')}
           floatingLabelText={this.props.label}
           floatingLabelFixed
-          value={this.props.hotkeys[this.props.hotkeyAction] || TranslationProvider.query('settings-option-hotkey-not-set')}
+          value={hotkey || TranslationProvider.query('settings-option-hotkey-not-set')}
           onKeyDown={this._handleKeyDown}
           onKeyUp={this._handleKeyUp}
           fullWidth
         />
+        {removeHotkeyButton}
       </div>
     );
   }
