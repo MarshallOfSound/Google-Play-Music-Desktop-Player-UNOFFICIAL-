@@ -5,9 +5,9 @@ Comment=An electron wrapper for Google Play Music
 Comment[fr]=Une application Electron intégrant Google Play Musique au bureau.
 GenericName=Google Play Music Desktop Player
 GenericName[fr]=Lecteur en streaming de Google - version pour bureau
-Exec=gpmdp %U
-Icon=chrome-fahmaaghhglfmonjliepjlchgpgfmobi-Default
+Exec=env PULSE_PROP=media.role=music google-play-music-desktop-player %U
+Icon=google-play-music-desktop-player
 Type=Application
 StartupNotify=true
-Categories=AudioVideo;Player;Audio;
-StartupWMClass=Google Play Music Desktop Player
+Categories=AudioVideo;Audio;
+X-PulseAudio-Properties=media.role=music
