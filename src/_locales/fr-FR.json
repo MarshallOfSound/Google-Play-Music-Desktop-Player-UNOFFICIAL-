@@ -8,14 +8,14 @@
   "button-text-click-here-to-set-alarm": "Cliquez ici pour paramétrer l'alarme",
   "button-text-close": "Fermer",
   "button-text-dont-tell-me-again": "Ne plus me le dire",
-  "button-text-lets-do-this": "Faisons ça !!",
+  "button-text-lets-do-this": "Allons-y !!",
   "button-text-lets-go": "C'est parti !!",
   "button-text-not-now": "Pas maintenant",
 
   "label-about": "À propos",
   "label-alarm": "Alarme",
-  "label-recents": "",
-  "label-desktop-settings": "Paramètres du logiciel",
+  "label-recents": "Récents",
+  "label-desktop-settings": "Paramètres logiciel",
   "label-donate": "Donation",
   "label-help": "Aide",
   "label-issues": "Problèmes",
@@ -34,16 +34,16 @@
   "lastfm-login-error": "Il semblerait que vous ayez quitté le processus d'authentification, si c'est une erreur, veuillez rééssayer à nouveau.",
   "lastfm-login-not-authorized": "Non connecté",
   "lastfm-logout-button-text": "Se déconnecter de Last.FM",
-  "lastfm-map-thumbs-up-to-heart": "",
+  "lastfm-map-thumbs-up-to-heart": "Thumbs up entraîne un Love sur Last.FM",
 
-  "listenbrainz-label-user-token": "",
-  "listenbrainz-token-here": "",
+  "listenbrainz-label-user-token": "Clé utilisateur ListenBrainz",
+  "listenbrainz-token-here": "Entrez la clé",
 
   "lyrics-failed-message": "Désolé, nous n'avons pas pu trouver de paroles à ce morceau",
   "lyrics-loading-message": "Chargement des paroles...",
   "lyrics-no-song-message": "Aucun morceau en cours de lecture",
-  "lyrics-search-in": "",
-  "lyrics-lyrics": "",
+  "lyrics-search-in": "Chercher dans",
+  "lyrics-lyrics": "paroles",
 
   "message-pausing-after-song": "Pause après ce morceau.",
   "message-pausing-after-song-button": "Ne pas mettre en pause après ce morceau",
@@ -110,7 +110,7 @@
 
   "settings-option-save-page": "Charger automatiquement la dernière page vue au lancement",
 
-  "settings-option-start-minimized": "",
+  "settings-option-start-minimized": "Lancer l'application minimisé",
 
   "settings-option-scroll-lyrics": "Défilement automatique des paroles",
 
