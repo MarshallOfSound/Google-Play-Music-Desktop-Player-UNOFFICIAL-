@@ -37,7 +37,7 @@
   "lastfm-map-thumbs-up-to-heart": "Segna automaticamente come preferiti i brani con pollice su",
 
   "listenbrainz-label-user-token": "Inserisci il tuo token utente per ListenBrainz (puoi trovarlo all'indirizzo https://listenbrainz.org/user/info)",
-  "listenbrainz-token-here": "",
+  "listenbrainz-token-here": "Inserisci token",
 
   "lyrics-failed-message": "Spiacente, non è possibile trovare il testo per questo brano",
   "lyrics-loading-message": "Caricamento del testo...",
