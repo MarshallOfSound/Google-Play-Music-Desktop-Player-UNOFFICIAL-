@@ -90,3 +90,7 @@ Emitter.on('playback:infoTrack', () => {
     icon: currentTrack.albumArt,
   });
 });
+
+Emitter.on('playback:imFeelingLucky', () => {
+  window.GPM.playback.startFeelingLucky();
+});
