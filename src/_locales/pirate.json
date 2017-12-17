@@ -71,6 +71,7 @@
   "playback-label-volume-up": "Arr, I can't hear you",
   "playback-label-info-track": "",
   "playback-os-no-track-playing": "",
+  "playback-label-im-feeling-lucky": "",
 
   "settings-requires-restart": "Requires ye scuttle and relaunch",
 
@@ -96,6 +97,7 @@
   "settings-option-enable-taskbar-progress": "Show track progress in th' taskbar",
   "settings-option-enable-win10-media-service": "Tell ye' OS what track be playin'",
   "settings-option-enable-win10-media-service-details": "",
+  "settings-option-discord-rich-presence": "",
   "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "Choose how ye speak",
 

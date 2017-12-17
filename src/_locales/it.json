@@ -37,7 +37,7 @@
   "lastfm-map-thumbs-up-to-heart": "Segna automaticamente come preferiti i brani con pollice su",
 
   "listenbrainz-label-user-token": "Inserisci il tuo token utente per ListenBrainz (puoi trovarlo all'indirizzo https://listenbrainz.org/user/info)",
-  "listenbrainz-token-here": "",
+  "listenbrainz-token-here": "Inserisci token",
 
   "lyrics-failed-message": "Spiacente, non è possibile trovare il testo per questo brano",
   "lyrics-loading-message": "Caricamento del testo...",
@@ -71,6 +71,7 @@
   "playback-label-volume-up": "Aumenta il volume",
   "playback-label-info-track": "Notifica il brano corrente",
   "playback-os-no-track-playing": "Nessun brano in riproduzione",
+  "playback-label-im-feeling-lucky": "",
 
   "settings-requires-restart": "Richiede riavvio",
 
@@ -96,6 +97,7 @@
   "settings-option-enable-taskbar-progress": "Mostra il progresso del brano nella barra delle applicazioni",
   "settings-option-enable-win10-media-service": "Abilita il System Media Service di Windows 10",
   "settings-option-enable-win10-media-service-details": "Mostra il brano corrente nella schermata di blocco",
+  "settings-option-discord-rich-presence": "",
   "settings-option-enable-win10-media-service-track-info": "Mostra le informazioni del brano nell'indicatore del volume di Windows 10",
   "settings-option-change-locale": "Seleziona lingua",
 

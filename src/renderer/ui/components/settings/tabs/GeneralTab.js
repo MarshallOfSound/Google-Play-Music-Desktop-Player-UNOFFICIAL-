@@ -20,7 +20,11 @@ class GeneralTab extends Component {
           <ToggleableOption label={TranslationProvider.query('settings-option-invert-tray-icon')} settingsKey={"appIconInvert"} />
         </PlatformSpecific>
         <ToggleableOption label={TranslationProvider.query('settings-option-start-minimized')} settingsKey={"startMinimized"} />
-        <ToggleableOption label={TranslationProvider.query('settings-option-auto-launch')} settingsKey={"auto-launch"} />
+        {
+          process.windowsStore
+          ? null
+          : <ToggleableOption label={TranslationProvider.query('settings-option-auto-launch')} settingsKey={"auto-launch"} />
+        }
         <ToggleableOption label={TranslationProvider.query('settings-option-prevent-display-sleep')} settingsKey={"preventDisplaySleep"} />
         <ToggleableOption label={TranslationProvider.query('settings-option-keep-sidebar-open')} settingsKey={"keepSidebarOpen"} />
         <ToggleableOption label={TranslationProvider.query('settings-option-static-album-art')} settingsKey={"staticAlbumArt"} />
@@ -66,6 +70,7 @@ class GeneralTab extends Component {
             dependsOnSettingsKey={"enableWin10MediaService"}
           />
         </PlatformSpecific>
+        <ToggleableOption label={TranslationProvider.query('settings-option-discord-rich-presence')} settingsKey="discordRichPresence" />
 
         <LocaleSelector />
       </SettingsTabWrapper>

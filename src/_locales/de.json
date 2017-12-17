@@ -34,16 +34,16 @@
   "lastfm-login-error": "Du hast den Autorisierungsvorgang verlassen. Wenn das ein Fehler war, versuche es nochmal",
   "lastfm-login-not-authorized": "Nicht autorisiert",
   "lastfm-logout-button-text": "Von Last.FM abmelden",
-  "lastfm-map-thumbs-up-to-heart": "",
+  "lastfm-map-thumbs-up-to-heart": "Automatisch einem Lied bei Daumen Hoch in Last.FM ein Herz (Love) geben",
 
-  "listenbrainz-label-user-token": "",
-  "listenbrainz-token-here": "",
+  "listenbrainz-label-user-token": "Gib dein ListenBrainz 'user token' ein. (Den findest du hier: https://listenbrainz.org/user/info)",
+  "listenbrainz-token-here": "'token' hier eingeben",
 
   "lyrics-failed-message": "Entschuldige, aber wir konnten keinen Liedtext finden",
   "lyrics-loading-message": "Lade Liedtext...",
   "lyrics-no-song-message": "Aktuell spielt kein Lied",
-  "lyrics-search-in": "",
-  "lyrics-lyrics": "",
+  "lyrics-search-in": "Suche in",
+  "lyrics-lyrics": "Songtext",
 
   "message-pausing-after-song": "Nach diesem Titel pausieren.",
   "message-pausing-after-song-button": "Nicht nach diesem Titel pausieren",
@@ -71,6 +71,7 @@
   "playback-label-volume-up": "Lauter",
   "playback-label-info-track": "Aktuellen Titel ankündigen",
   "playback-os-no-track-playing": "Es spielt derzeit kein Titel",
+  "playback-label-im-feeling-lucky": "",
 
   "settings-requires-restart": "Erfordert einen Neustart",
 
@@ -96,6 +97,7 @@
   "settings-option-enable-taskbar-progress": "Zeige den Fortschritt des Titels in der Taskleiste",
   "settings-option-enable-win10-media-service": "Aktiviere den Windows 10-System Media Service",
   "settings-option-enable-win10-media-service-details": "Dies zeigt den aktuellen Titel auf dem Sperrbildschirm",
+  "settings-option-discord-rich-presence": "",
   "settings-option-enable-win10-media-service-track-info": "Zeige Liedinformationen in der Windows 10-Lautstärkeanzeige an",
   "settings-option-change-locale": "Wähle eine andere Sprache",
 
@@ -110,7 +112,7 @@
 
   "settings-option-save-page": "Zuletzt geöffnete Seite beim Start öffnen",
 
-  "settings-option-start-minimized": "",
+  "settings-option-start-minimized": "Die Anwendung minimiert starten",
 
   "settings-option-scroll-lyrics": "Liedtext automatisch scrollen",
 
@@ -119,7 +121,7 @@
   "settings-option-mini-use-scroll-volume": "Mausrad zur Lautstärkekontrolle verwenden",
 
   "settings-option-skip-bad-songs": "Überspringe automatisch nicht gemochte Titel",
-  "settings-option-try-supported-channel-layouts": "",
+  "settings-option-try-supported-channel-layouts": "Experimentelle Unterstützung für Raumklang (Mehrfachkanäle), wie z.B. 5.1 Audio",
 
   "settings-options-style-description": "Wähle eine lokale CSS-Datei, um eigene Stile in die Anwendung einzubringen",
   "settings-options-style-main-app": "Hauptfenster",

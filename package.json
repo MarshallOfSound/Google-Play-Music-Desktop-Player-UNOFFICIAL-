@@ -60,8 +60,9 @@
   "dependencies": {
     "archiver": "^1.0.1",
     "auto-launch": "^4.0.0",
-    "electron": "1.6.1",
-    "electron-chromecast": "^1.0.17",
+    "discord-rich-presence": "^0.0.5",
+    "electron": "1.7.9",
+    "electron-chromecast": "^1.1.0",
     "gmusic-mini-player.js": "^2.0.10",
     "gmusic-theme.js": "^2.1.16",
     "gmusic-ui.js": "^2.2.3",
