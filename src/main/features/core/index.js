@@ -16,4 +16,4 @@ import './customStyle';
 import './alarm.js';
 import './sleepPreventor';
 import './mediaService';
-import './discordRickPresence';
+import './discordRichPresence';
