@@ -97,6 +97,7 @@
   "settings-option-enable-taskbar-progress": "Mostra il progresso del brano nella barra delle applicazioni",
   "settings-option-enable-win10-media-service": "Abilita il System Media Service di Windows 10",
   "settings-option-enable-win10-media-service-details": "Mostra il brano corrente nella schermata di blocco",
+  "settings-option-discord-rich-presence": "",
   "settings-option-enable-win10-media-service-track-info": "Mostra le informazioni del brano nell'indicatore del volume di Windows 10",
   "settings-option-change-locale": "Seleziona lingua",
 

@@ -97,6 +97,7 @@
   "settings-option-enable-taskbar-progress": "Afficher la progression du morceau dans la barre des tâches",
   "settings-option-enable-win10-media-service": "Activer le Service Multimedia de Windows 10",
   "settings-option-enable-win10-media-service-details": "Cela montrera la piste courante sur l'écran de verrouillage",
+  "settings-option-discord-rich-presence": "",
   "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "Choisir un langage",
 

@@ -97,6 +97,7 @@
   "settings-option-enable-taskbar-progress": "Arată progresul melodiei în bara de sistem",
   "settings-option-enable-win10-media-service": "Activează Windows 10 System Media Service",
   "settings-option-enable-win10-media-service-details": "Afișează melodia curentă pe ecranul de blocare",
+  "settings-option-discord-rich-presence": "",
   "settings-option-enable-win10-media-service-track-info": "Afișează informații despre melodie în Window 10 volum overlay",
   "settings-option-change-locale": "Alege limba",
 

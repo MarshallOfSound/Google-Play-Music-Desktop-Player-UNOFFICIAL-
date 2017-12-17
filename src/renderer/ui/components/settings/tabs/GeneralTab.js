@@ -70,6 +70,7 @@ class GeneralTab extends Component {
             dependsOnSettingsKey={"enableWin10MediaService"}
           />
         </PlatformSpecific>
+        <ToggleableOption label={TranslationProvider.query('settings-option-discord-rich-presence')} settingsKey="discordRichPresence" />
 
         <LocaleSelector />
       </SettingsTabWrapper>
