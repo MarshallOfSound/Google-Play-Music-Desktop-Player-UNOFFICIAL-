@@ -56,7 +56,7 @@ const setPresence = () => {
     };
 
     if (queueTrackIndex > queueLength || !queueTrackIndex) {
-      delete presence.pratySize;
+      delete presence.partySize;
       delete presence.partyMax;
     }
 
