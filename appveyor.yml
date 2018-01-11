@@ -22,7 +22,7 @@ branches:
   except:
   - website
 
-os: Previous Visual Studio 2015
+os: Visual Studio 2013
 platform:
   - x64
 
@@ -30,32 +30,22 @@ cache:
   - node_modules
   - '%USERPROFILE%\.electron'
 
+init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
 install:
   - ps: Install-Product node $env:nodejs_version
-  - npm i -g npm@3
-  - if exist "node_modules" rd /S /Q "node_modules"
-  - appveyor DownloadFile https://www.samuelattard.com/files/bonjourcore2.msi
-  - msiexec /i bonjourcore2.msi /qn
-  - del bonjourcore2.msi
-  - appveyor DownloadFile https://www.samuelattard.com/files/bonjoursdksetup.exe
-  - bonjoursdksetup.exe /quiet
-  - del bonjoursdksetup.exe
-  - npm cache clean
-  - npm install
 
 test_script:
   # Output useful info for debugging.
   - node --version
   - npm --version
-  # run tests
-  - npm test
-  # Clean build so that Component names are not minified
-  - npm run build
-  - npm run test-electron-main -- -R mocha-appveyor-reporter
-  - npm run test-electron-renderer -- -R mocha-appveyor-reporter
 
 build_script:
-- cmd: npm run make:win
+- cmd: node --version
 
 artifacts:
   - path: 'dist\installers\win32\Google Play Music Desktop PlayerSetup.exe'
