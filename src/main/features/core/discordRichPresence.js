@@ -1,6 +1,9 @@
 import { app } from 'electron';
 import createDiscordClient from 'discord-rich-presence';
 
+// Handle because RPC is weird
+process.on('unhandledRejection', () => null);
+
 let client;
 
 let lastTrack = null;
