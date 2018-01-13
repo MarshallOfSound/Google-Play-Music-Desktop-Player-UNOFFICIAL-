@@ -155,7 +155,8 @@ const appdmgConf = {
   },
 };
 
-const cleanGlob = (glob) => {
+const cleanGlob = (glob, allowSkip) => {
+  if (allowSkip && process.env.GPMDP_SKIP_PACKAGE) return;
   return () => {
     return gulp.src(glob, { read: false })
       .pipe(clean({ force: true }));
@@ -179,8 +180,8 @@ const windowsSignFile = (filePath, signDigest) =>
 gulp.task('clean', cleanGlob(['./build', './dist']));
 gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
 gulp.task('clean-dist-darwin', cleanGlob(`./dist/${packageJSON.productName}-darwin-ia32`));
-gulp.task('clean-dist-linux-32', cleanGlob(`./dist/${packageJSON.productName}-linux-ia32`));
-gulp.task('clean-dist-linux-64', cleanGlob(`./dist/${packageJSON.productName}-linux-x64`));
+gulp.task('clean-dist-linux-32', cleanGlob(`./dist/${packageJSON.productName}-linux-ia32`, true));
+gulp.task('clean-dist-linux-64', cleanGlob(`./dist/${packageJSON.productName}-linux-x64`, true));
 gulp.task('clean-html', cleanGlob('./build/public_html'));
 gulp.task('clean-internal', cleanGlob(['./build/*.js', './build/**/*.js', '!./build/assets/**/*']));
 gulp.task('clean-fonts', cleanGlob('./build/assets/fonts'));
@@ -340,10 +341,12 @@ gulp.task('dmg:darwin', ['package:darwin'], (done) => {
 });
 
 gulp.task('package:linux:32', ['clean-dist-linux-32', 'build-release'], (done) => {
+  if (process.env.GPMDP_SKIP_PACKAGE) return done();
   packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }), done);
 });
 
 gulp.task('package:linux:64', ['clean-dist-linux-64', 'build-release'], (done) => {
+  if (process.env.GPMDP_SKIP_PACKAGE) return done();
   packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }), done);
 });
 

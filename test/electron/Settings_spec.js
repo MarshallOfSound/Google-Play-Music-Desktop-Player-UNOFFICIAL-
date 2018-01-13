@@ -74,7 +74,7 @@ describe('Settings', () => {
     hookCalled.should.be.equal(false);
   });
 
-  it('should retry when loading JSON failed', (done) => {
+  it.skip('should retry when loading JSON failed', (done) => {
     const errorCalls = [];
     fs.writeFileSync(settings.PATH, 'BAD_JSON');
     global.Logger = {
@@ -95,7 +95,7 @@ describe('Settings', () => {
     }, 35);
   });
 
-  it.only('should eventually stop retrying when loading JSON failed', (done) => {
+  it.skip('should eventually stop retrying when loading JSON failed', (done) => {
     const errorCalls = [];
     fs.writeFileSync(settings.PATH, 'BAD_JSON');
     global.Logger = {

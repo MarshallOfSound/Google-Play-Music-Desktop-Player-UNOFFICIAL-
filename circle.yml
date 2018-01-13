@@ -1,44 +1,222 @@
-machine:
-  node:
-    version: 6.3.0
-  environment:
-    XUNIT_FILE: $CIRCLE_TEST_REPORTS/xunit.xml
+version: 2
+jobs:
+  darwin:
+    macos:
+      xcode: "9.0"
+    steps:
+      - checkout
+      - run:
+          name: Replace NPM Version
+          command: npm install -g npm@3
+      - run:
+          name: Install Dependencies
+          command: yarn
+      - run:
+          name: Run Linting
+          command: yarn test
+      - run:
+          name: Run Tests
+          command: yarn test-electron-coverage
+      - run:
+          name: Publish Coverage
+          command: yarn _coverage_publish
+      - run:
+          name: Import Keys
+          command: ./sig/import.sh
+      - run:
+          name: Make Artifacts
+          command: yarn make:darwin
+      - run:
+          name: Move Artifacts
+          command: |
+            mkdir -p dist/installers/darwin
+            mv "dist/Google Play Music Desktop Player-darwin-x64/Google Play Music Desktop Player.zip" "dist/installers/darwin/Google Play Music Desktop Player.zip"
+      - save_cache:
+          key: darwin-artifact-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - "dist/installers"
+      - store_artifacts:
+          path: dist/installers
+      - store_test_results:
+          path: test_reports
+  linux_test:
+    docker:
+      - image: gpmdp/build-64
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn
+      - run:
+          name: Run Linting
+          command: yarn test
+      - run:
+          name: Start xvfb
+          command: |
+            echo "Starting Xvfb"
+            Xvfb :99 -ac &
+            sleep 2
+      - run:
+          name: Run Tests
+          command: DISPLAY=:99 yarn test-electron
+      - run:
+          name: Move Test Report
+          command: |
+            mkdir -p test_reports
+            mv xunit.xml test_reports/xunit.xml
+      - save_cache:
+          key: linux-modules-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - "node_modules"
+      - store_test_results:
+          path: test_reports
+  linux_pack_32:
+    docker:
+      - image: gpmdp/build-32
+    steps:
+      - checkout
+      - restore_cache:
+          key: linux-modules-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Package
+          command: yarn package:linux:32
+      - save_cache:
+          key: linux-packaged-32-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - "dist"
+  linux_pack_64:
+    docker:
+      - image: gpmdp/build-64
+    steps:
+      - checkout
+      - restore_cache:
+          key: linux-modules-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Package
+          command: yarn package:linux:64
+      - save_cache:
+          key: linux-packaged-64-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - "dist"
+  linux_deb_32:
+    docker:
+      - image: gpmdp/build-32
+    steps:
+      - checkout
+      - restore_cache:
+          key: linux-modules-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: linux-packaged-32-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Make
+          command: GPMDP_SKIP_PACKAGE=true yarn make:deb:32
+      - save_cache:
+          key: linux-artifact-deb-32-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - "dist/installers"
+  linux_rpm_32:
+    docker:
+      - image: gpmdp/build-32
+    steps:
+      - checkout
+      - restore_cache:
+          key: linux-modules-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: linux-packaged-32-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Make
+          command: GPMDP_SKIP_PACKAGE=true yarn make:rpm:32
+      - save_cache:
+          key: linux-artifact-rpm-32-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - "dist/installers"
+  linux_deb_64:
+    docker:
+      - image: gpmdp/build-64
+    steps:
+      - checkout
+      - restore_cache:
+          key: linux-modules-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: linux-packaged-64-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Make
+          command: GPMDP_SKIP_PACKAGE=true yarn make:deb:64
+      - save_cache:
+          key: linux-artifact-deb-64-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - "dist/installers"
+  linux_rpm_64:
+    docker:
+      - image: gpmdp/build-64
+    steps:
+      - checkout
+      - restore_cache:
+          key: linux-modules-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: linux-packaged-64-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Make
+          command: GPMDP_SKIP_PACKAGE=true yarn make:rpm:64
+      - save_cache:
+          key: linux-artifact-rpm-64-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - "dist/installers"
+  artifact_gather:
+    docker:
+      - image: gpmdp/build-64
+    steps:
+      - restore_cache:
+          key: linux-artifact-deb-32-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: linux-artifact-rpm-32-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: linux-artifact-deb-64-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: linux-artifact-rpm-64-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Perm Hax
+          command: |
+            sudo mkdir -p /Users/distiller/project
+            sudo chmod -R 777 /Users/distiller/project
+      - restore_cache:
+          key: darwin-artifact-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Move
+          command: mv /Users/distiller/project/dist/installers/darwin dist/installers/darwin
+      - store_artifacts:
+          path: dist
 
 
-dependencies:
-  cache_directories:
-    - "~/.electron"
-    - "~/.apt-cache"
-  pre:
-    - sudo rm -rf /var/cache/apt/archives && sudo ln -s ~/.apt-cache /var/cache/apt/archives && mkdir -p ~/.apt-cache/partial
-    - sudo dpkg --add-architecture i386
-    - sudo apt-get update
-    - sudo apt-get remove --purge docker-engine
-    - sudo apt-get install g++-multilib lib32z1 lib32ncurses5 lib32bz2-1.0
-    - sudo apt-get install rpm fakeroot dpkg libdbus-1-dev libx11-dev
-    - sudo apt-get install libdbus-1-dev:i386 libexpat1-dev:i386 libx11-dev:i386 libc6-dev-i386
-    - sudo apt-get install g++
-    - sudo apt-get install libavahi-compat-libdnssd-dev
-    - sudo apt-get install gcc-4.8-multilib g++-4.8-multilib libnotify4
-    - npm i -g npm@3
-    - rm -rf node_modules
 
-test:
-  override:
-    - sleep 5
-    - npm run test
-  post:
-    - sudo apt-get remove --purge libavahi-compat-libdnssd-dev
-    - sudo apt-get autoremove
-    - case $CIRCLE_NODE_INDEX in 0) sudo apt-get install libavahi-compat-libdnssd-dev:i386 ;; 1) sudo apt-get install libavahi-compat-libdnssd-dev ;; 2) sudo apt-get install libavahi-compat-libdnssd-dev:i386 ;; 3) sudo apt-get install libavahi-compat-libdnssd-dev ;; esac:
-        parallel: true
-    - case $CIRCLE_NODE_INDEX in 0) npm run make:deb:32 ;; 1) npm run make:deb:64 ;; 2) npm run make:rpm:32 ;; 3) npm run make:rpm:64 ;; esac:
-        parallel: true
-    - npm run test-electron
-    # Disable Spectron for now
-    # - case $CIRCLE_NODE_INDEX in 0) npm -v ;; 1) npm run test-spectron ;; 2) npm -v ;; 3) npm run test-spectron ;; esac:
-        # parallel: true
-
-general:
-  artifacts:
-    - "dist/installers"
+workflows:
+  version: 2
+  build:
+    jobs:
+      - darwin
+      - linux_test
+      - linux_pack_32:
+          requires:
+            - linux_test
+      - linux_pack_64:
+          requires:
+            - linux_test
+      - linux_deb_32:
+          requires:
+            - linux_pack_32
+      - linux_rpm_32:
+          requires:
+            - linux_pack_32
+      - linux_deb_64:
+          requires:
+            - linux_pack_64
+      - linux_rpm_64:
+          requires:
+            - linux_pack_64
+      - artifact_gather:
+          requires:
+            - linux_deb_32
+            - linux_rpm_32
+            - linux_deb_64
+            - linux_rpm_64
+            - darwin
