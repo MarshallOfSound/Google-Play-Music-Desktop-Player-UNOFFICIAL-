@@ -1,18 +1,23 @@
-const windowTitle = WindowManager.get(global.mainWindowID).getTitle();
+const windowTitle = 'Google Play Music Desktop Player';
 
 let darwinTimer;
-const updateDarwinTitle = () => {
+const updateDarwinTitle = (newTitle) => {
   clearTimeout(darwinTimer);
   darwinTimer = setTimeout(() => {
-    Emitter.sendToWindowsOfName('main', 'window:updateTitle', WindowManager.get(global.mainWindowID).getTitle());
+    Emitter.sendToWindowsOfName('main', 'window:updateTitle', newTitle);
   }, 200);
 };
 
+// fix display of ampersands on windows
+const replaceAmpersands = string => (
+  process.platform === 'win32' ? string.replace('&', '&&&') : string
+);
+
 PlaybackAPI.on('change:track', (songInfo) => {
   const newString = `${(songInfo.title || TranslationProvider.query('label-unknown-song'))} - ${(songInfo.artist || TranslationProvider.query('label-unknown-artist'))}`; // eslint-disable-line
-  global.appIcon.setToolTip(newString);
+  global.appIcon.setToolTip(replaceAmpersands(newString));
   WindowManager.get(global.mainWindowID).setTitle(newString);
-  updateDarwinTitle();
+  updateDarwinTitle(newString);
 });
 
 const changeState = (stateVal) => {
@@ -24,9 +29,9 @@ const changeState = (stateVal) => {
   } else if (stateVal === 1) {
     newString = `(Paused) ${newString}`;
   }
-  global.appIcon.setToolTip(newString);
+  global.appIcon.setToolTip(replaceAmpersands(newString));
   WindowManager.get(global.mainWindowID).setTitle(newString);
-  updateDarwinTitle();
+  updateDarwinTitle(newString);
 };
 
 Emitter.on('playback:isPlaying', changeState.bind(this, 2));

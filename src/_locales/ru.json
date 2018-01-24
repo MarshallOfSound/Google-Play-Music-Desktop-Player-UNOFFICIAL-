@@ -14,6 +14,7 @@
 
   "label-about": "О программе",
   "label-alarm": "Будильник",
+  "label-recents": "Недавнее",
   "label-desktop-settings": "Настройки программы",
   "label-donate": "Пожертвовать",
   "label-help": "Помощь",
@@ -33,10 +34,16 @@
   "lastfm-login-error": "Похоже, что вы отменили процесс авторизации. Если это ошибка - пожалуйста, попробуйте ещё раз",
   "lastfm-login-not-authorized": "Не авторизован(а)",
   "lastfm-logout-button-text": "Выйти из Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
+
+  "listenbrainz-label-user-token": "",
+  "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Извините, мы не смогли найти текста для этой песни",
   "lyrics-loading-message": "Загрузка текста песни...",
   "lyrics-no-song-message": "В данный момент ничего не воспроизводится",
+  "lyrics-search-in": "Искать на",
+  "lyrics-lyrics": "текст песни",
 
   "message-pausing-after-song": "После этой песни будет пауза.",
   "message-pausing-after-song-button": "Не останавливать после этой песни",
@@ -62,9 +69,14 @@
   "playback-label-thumbs-up": "Нравится",
   "playback-label-volume-down": "Уменьшить громкость",
   "playback-label-volume-up": "Увеличить громкость",
-  "playback-os-no-track-playing": "",
+  "playback-label-info-track": "",
+  "playback-os-no-track-playing": "Ничего не воспроизводится",
+  "playback-label-im-feeling-lucky": "",
 
   "settings-requires-restart": "Требует перезапуска",
+
+  "settings-option-keep-sidebar-open": "Держать сайдбар открытым",
+  "settings-option-static-album-art": "Статичная обложка альбома в визуализаторе",
 
   "settings-option-invert-tray-icon": "Инвертировать цвет иконки в трее",
 
@@ -81,14 +93,17 @@
   "settings-option-enable-api-details": "Это позволит другим приложениям взаимодействовать с GPMDP",
   "settings-option-enable-system-borders": "Использовать системные границы окна",
   "settings-option-enable-voice": "Включить голосовое управление",
-  "settings-option-enable-voice-details": "Голосовое управление для GPMDP, экспериментальная функция",
+  "settings-option-enable-voice-details": "Голосовое управление GPMDP, экспериментальная функция",
   "settings-option-enable-taskbar-progress": "Показывать позицию воспроизведения в панели задач",
-  "settings-option-enable-win10-media-service": "",
-  "settings-option-enable-win10-media-service-details": "",
+  "settings-option-enable-win10-media-service": "Включить поддержку медиасервиса Windows 10",
+  "settings-option-enable-win10-media-service-details": "Информация о текущем треке будет выводиться на экране блокировки",
+  "settings-option-discord-rich-presence": "",
+  "settings-option-enable-win10-media-service-track-info": "Показывать информацию о текущем треке рядом со всплывающим индикатором громкости Windows 10",
   "settings-option-change-locale": "Язык программы",
 
   "settings-option-hotkey-explanation": "Стандартные мультимедийные кнопки всё равно будут работать, независимо от дополнительных, представленных ниже.",
   "settings-option-hotkey-explanation-2": "Используйте <i>\"Esc\"</i>, чтобы сбросить значение.",
+  "settings-option-hotkey-not-set": "Не задана",
 
   "settings-option-min-to-tray": "Сворачивать в трей при закрытии",
 
@@ -97,11 +112,16 @@
 
   "settings-option-save-page": "При запуске автоматически открывать последнюю просмотренную страницу",
 
+  "settings-option-start-minimized": "Запускать свернутым в трей",
+
   "settings-option-scroll-lyrics": "Автоматически прокручивать текст песни во время воспроизведения",
 
   "settings-option-mini-always-show": "Всегда показывать информацию о песне",
   "settings-option-mini-ontop": "Всегда наверху",
   "settings-option-mini-use-scroll-volume": "Управление громкостью колесом мыши",
+
+  "settings-option-skip-bad-songs": "Автоматически пропускать непонравившиеся песни",
+  "settings-option-try-supported-channel-layouts": "Экспериментальная поддержка нескольких аудиоканалов, таких как аудио 5.1",
 
   "settings-options-style-description": "Выберите локальный CSS-файл для инъекции стилей в приложение",
   "settings-options-style-main-app": "Стили приложения",
@@ -114,10 +134,11 @@
 
   "title-color-picker": "Выбор цвета",
   "title-settings": "Настройки программы",
-  "title-settings-audio": "Аудио",
+  "title-settings-playback": "Воспроизведение",
   "title-settings-general": "Основные",
   "title-settings-hotkeys": "Горячие клавиши",
   "title-settings-lastfm": "Last.FM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Миниплеер",
   "title-settings-style": "Свои стили",
 

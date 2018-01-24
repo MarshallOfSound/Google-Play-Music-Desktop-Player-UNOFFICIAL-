@@ -10,6 +10,7 @@ import concat from 'gulp-concat';
 import cssmin from 'gulp-cssmin';
 import { createWindowsInstaller as electronInstaller } from 'gpmdp-electron-winstaller';
 import fs from 'fs';
+import globber from 'glob';
 import header from 'gulp-header';
 import less from 'gulp-less';
 import packager from 'electron-packager';
@@ -23,9 +24,6 @@ import rasterImages from './vendor/svg_raster';
 
 const paths = {
   internalScripts: ['src/**/*.js'],
-  utilityScripts: ['node_modules/jquery/dist/jquery.min.js',
-                    'node_modules/materialize-css/dist/js/materialize.min.js',
-                    'node_modules/materialize-css/extras/noUiSlider/nouislider.min.js'],
   html: 'src/public_html/**/*.html',
   less: 'src/assets/less/**/*.less',
   fonts: ['node_modules/materialize-css/dist/fonts/**/*',
@@ -43,14 +41,23 @@ if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1') {
 }
 
 const defaultPackageConf = {
-  'app-bundle-id': packageJSON.name,
-  'app-category-type': 'public.app-category.music',
-  'app-copyright': `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
-  'app-version': packageJSON.version,
-  afterCopy: [(buildPath, electronVersion, pPlatform, pArch, done) => rebuild(buildPath, electronVersion, pArch).then(() => done()).catch(done)],
+  appBundleId: packageJSON.name,
+  appCategoryType: 'public.app-category.music',
+  appCopyright: `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
+  appVersion: packageJSON.version,
+  afterCopy: [
+    (buildPath, electronVersion, pPlatform, pArch, done) => rebuild(buildPath, electronVersion, pArch).then(() => done()).catch(done),
+    (buildPath, electronVersion, pPlatform, pArch, done) => {
+      const files = globber.sync(nodePath.resolve(buildPath, '**', '*.pdb'))
+        .concat(globber.sync(nodePath.resolve(buildPath, '**', '*.obj')))
+        .concat(globber.sync(nodePath.resolve(buildPath, '**', '.bin', '**', '*')));
+      files.forEach(filePath => fs.unlinkSync(filePath));
+      done();
+    },
+  ],
   arch: 'all',
   asar: true,
-  'build-version': packageJSON.version,
+  buildVersion: packageJSON.version,
   dir: __dirname,
   icon: './build/assets/img/main',
   ignore: (path) => {
@@ -159,7 +166,7 @@ const windowsSignFile = (filePath, signDigest) =>
   new Promise((resolve) => {
     console.log(`Signing file: "${filePath}"\nWith digest: ${signDigest}`);
     exec(
-      `vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd ${signDigest} /tr "http://timestamp.geotrust.com/tsa" /v /as "${filePath}"`,
+      `vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /td ${signDigest} /fd ${signDigest} /tr "http://timestamp.digicert.com" /v /as "${filePath}"`,
       {},
       () => {
         setTimeout(() => {
@@ -174,24 +181,12 @@ gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-i
 gulp.task('clean-dist-darwin', cleanGlob(`./dist/${packageJSON.productName}-darwin-ia32`));
 gulp.task('clean-dist-linux-32', cleanGlob(`./dist/${packageJSON.productName}-linux-ia32`));
 gulp.task('clean-dist-linux-64', cleanGlob(`./dist/${packageJSON.productName}-linux-x64`));
-gulp.task('clean-material', cleanGlob('./build/assets/material'));
-gulp.task('clean-utility', cleanGlob('./build/assets/util'));
 gulp.task('clean-html', cleanGlob('./build/public_html'));
 gulp.task('clean-internal', cleanGlob(['./build/*.js', './build/**/*.js', '!./build/assets/**/*']));
 gulp.task('clean-fonts', cleanGlob('./build/assets/fonts'));
 gulp.task('clean-less', cleanGlob('./build/assets/css'));
 gulp.task('clean-images', cleanGlob('./build/assets/img'));
 gulp.task('clean-locales', cleanGlob('./build/_locales/*.json'));
-
-gulp.task('materialize-js', ['clean-material'], () => {
-  return gulp.src('node_modules/materialize-css/dist/js/materialize.min.js')
-    .pipe(gulp.dest('./build/assets/material'));
-});
-
-gulp.task('utility-js', ['clean-utility'], () => {
-  return gulp.src(paths.utilityScripts)
-    .pipe(gulp.dest('./build/assets/util'));
-});
 
 gulp.task('html', ['clean-html'], () => {
   return gulp.src(paths.html)
@@ -293,16 +288,25 @@ gulp.task('make:win:uwp', ['package:win'], (done) => {
     flatten: true,
     packageVersion: `${packageJSON.version}.0`,
     packageName: 'GPMDP',
-    packageDisplayName: packageJSON.productName,
+    packageDisplayName: 'GPMDP',
     packageDescription: packageJSON.description,
     packageExecutable: `app\\${packageJSON.productName}.exe`,
-    publisher: 'CN=marshallca',
+    publisher: 'CN=E800FCD7-1562-414E-A4AC-F1BA78F4A060',
+    publisherDisplayName: 'Samuel Attard',
     assets: 'build\\assets\\img\\assets',
+    devCert: nodePath.resolve(__dirname, '.uwp.pfx'),
+    signtoolParams: ['/p', process.env.SIGN_CERT_PASS],
+    finalSay: () => new Promise((resolve) => {
+      const manifestPath = nodePath.resolve(__dirname, 'dist/uwp/pre-appx/appxmanifest.xml');
+      const manifest = fs.readFileSync(manifestPath, 'utf8').replace('<Identity Name="GPMDP"', '<Identity Name="24619SamuelAttard.GPMDP"');
+      fs.writeFileSync(manifestPath, manifest);
+      resolve();
+    }),
   }).then(() => done()).catch(done);
 });
 
 gulp.task('package:darwin', ['clean-dist-darwin', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', 'osx-sign': { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
+  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', osxSign: { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
 });
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {
@@ -420,6 +424,5 @@ zipTask('linux:rpm', ['rpm:linux'], './dist/installers/redhat', 'the Redhat (Fed
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['watch', 'transpile', 'images']);
-gulp.task('build', ['materialize-js', 'utility-js', 'transpile', 'images', 'less',
-                    'fonts', 'html', 'locales']);
+gulp.task('build', ['transpile', 'images', 'less', 'fonts', 'html', 'locales']);
 gulp.task('package', ['package:win', 'package:darwin', 'package:linux']);

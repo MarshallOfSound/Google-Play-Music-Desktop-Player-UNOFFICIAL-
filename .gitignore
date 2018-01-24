@@ -10,4 +10,12 @@ electron.xml
 spectron.xml
 coverage.zip
 uwp/
-.vscode/
+
+# snapcraft
+prime/
+snapcraft/
+parts/
+stage/
+snap/
+*.snap
+

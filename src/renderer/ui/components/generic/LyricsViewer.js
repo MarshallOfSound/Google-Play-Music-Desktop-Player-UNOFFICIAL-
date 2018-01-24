@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-
+import { shell, remote } from 'electron';
 import { requireSettings } from './SettingsProvider';
 
 class LyricsViewer extends Component {
@@ -11,11 +11,21 @@ class LyricsViewer extends Component {
     themeType: PropTypes.string.isRequired,
   };
 
+  static openGoogleSearch(event) {
+    event.stopPropagation();
+    const { artist, title } = remote.getGlobal('PlaybackAPI').currentSong(true);
+    const lyricsTranslation = TranslationProvider.query('lyrics-lyrics');
+    const query = encodeURIComponent(`${title} - ${artist} ${lyricsTranslation}`);
+
+    shell.openExternal(`https://www.google.com/search?q=${query}`);
+  }
+
   constructor(...args) {
     super(...args);
 
     this.state = {
       visible: false,
+      noLyricsFound: false,
     };
   }
 
@@ -37,6 +47,7 @@ class LyricsViewer extends Component {
         animate = false;
         clearTimeout(noLyricsTimer);
         noLyricsTimer = setTimeout(() => {
+          this.handleLyricsNotFound();
           $(findDOMNode(this)).find('#lyrics').html('<h1><span is="translation-key">lyrics-failed-message</span></h1>');
         }, 4000);
       } else {
@@ -127,6 +138,11 @@ class LyricsViewer extends Component {
     window.removeEventListener('resize', this.startAnimating);
   }
 
+  handleLyricsNotFound() {
+    this.setState(prevState => Object.assign(prevState, { noLyricsFound: true }));
+  }
+
+
   hide = () => {
     this.setState({
       visible: false,
@@ -158,6 +174,9 @@ class LyricsViewer extends Component {
               {TranslationProvider.query('lyrics-no-song-message')}
             </h1>
           </div>
+          {this.state.noLyricsFound &&
+            <a id="search-link" onClick={LyricsViewer.openGoogleSearch}>{TranslationProvider.query('lyrics-search-in')} Google.com</a>
+           }
           <div id="shadow"></div>
         </div>
         <div id="lyrics_progress" style={progressStyle}>

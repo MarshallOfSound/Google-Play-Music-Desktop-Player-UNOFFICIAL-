@@ -29,6 +29,24 @@ function getAppIconFileName() {
   return path.resolve(currentIconPath, appIconFileName);
 }
 
+const getTrackString = (track) => {
+  let title = track.title;
+  const artist = track.artist;
+
+  if (title.length + artist.length > 40) {
+    title = `${title.substring(0, 40 - (artist.length + 6))}...`;
+  }
+
+  let trackString = `${title} - ${artist}`;
+
+  // fix display of ampersands on windows
+  if (process.platform === 'win32') {
+    trackString = trackString.replace('&', '&&');
+  }
+
+  return trackString;
+};
+
 let audioDeviceMenu = [
   {
     label: TranslationProvider.query('label-loading-devices'),
@@ -40,34 +58,37 @@ appIcon = new Tray(getAppIconFileName());
 
 Settings.onChange('appIconInvert', (newValue) => {
   appIconInvert = newValue;
-  appIcon.setImage(getAppIconFileName());
+  if (appIcon) appIcon.setImage(getAppIconFileName());
 });
 
 // Change the icon if the music is playing
 Emitter.on('playback:isPlaying', () => {
   currentIconPath = trayPlayingPath;
-  appIcon.setImage(getAppIconFileName());
+  if (appIcon) appIcon.setImage(getAppIconFileName());
 });
 
 // Change the icon is the music is paused
 Emitter.on('playback:isPaused', () => {
   currentIconPath = trayPausedPath;
-  appIcon.setImage(getAppIconFileName());
+  if (appIcon) appIcon.setImage(getAppIconFileName());
 });
 
 // Change the icon is the music is stopped
 Emitter.on('playback:isStopped', () => {
   currentIconPath = trayNormalPath;
-  appIcon.setImage(getAppIconFileName());
+  if (appIcon) appIcon.setImage(getAppIconFileName());
 });
 
-const setContextMenu = () => {
+const setContextMenu = (track) => {
   const contextMenu = Menu.buildFromTemplate([
     { label: TranslationProvider.query('tray-label-show'),
       click: () => {
         mainWindow.setSkipTaskbar(false);
         mainWindow.show();
       },
+    },
+    { label: track ? getTrackString(track) : TranslationProvider.query('playback-os-no-track-playing'),
+      enabled: false,
     },
     { type: 'separator' },
     {
@@ -124,9 +145,9 @@ const setContextMenu = () => {
     { type: 'separator' },
     { label: TranslationProvider.query('label-quit'), click: () => { global.quitting = true; app.quit(); } },
   ]);
-  appIcon.setContextMenu(contextMenu);
+  if (appIcon) appIcon.setContextMenu(contextMenu);
 };
-setContextMenu();
+setContextMenu(null);
 
 
 global.wasMaximized = Settings.get('maximized', false);
@@ -157,7 +178,7 @@ function toggleMainWindow() {
   }
 }
 
-appIcon.setToolTip('Google Play Music Desktop Player');
+if (appIcon) appIcon.setToolTip('Google Play Music Desktop Player');
 
 switch (process.platform) {
   case 'darwin': // <- actually means OS-X
@@ -214,8 +235,12 @@ Emitter.on('audiooutput:list', (event, devices) => {
       });
     }
   });
-  setContextMenu();
+  setContextMenu(PlaybackAPI.currentSong());
 });
 
 Emitter.sendToGooglePlayMusic('audiooutput:fetch');
 Emitter.on('audiooutput:set', () => Emitter.sendToGooglePlayMusic('audiooutput:fetch'));
+
+PlaybackAPI.on('change:track', (track) => {
+  setContextMenu(track);
+});

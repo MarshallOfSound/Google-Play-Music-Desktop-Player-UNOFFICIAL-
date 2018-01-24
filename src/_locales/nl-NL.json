@@ -14,6 +14,7 @@
 
   "label-about": "Over",
   "label-alarm": "",
+  "label-recents": "",
   "label-desktop-settings": "Desktop instellingen",
   "label-donate": "Doneer",
   "label-help": "Help",
@@ -33,10 +34,16 @@
   "lastfm-login-error": "Het lijkt er op dat u het autorisatieproces heeft verlaten. als dit een vergissing is, probeer het dan opnieuw",
   "lastfm-login-not-authorized": "Niet geautoriseerd",
   "lastfm-logout-button-text": "Afmelden bij Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
+
+  "listenbrainz-label-user-token": "",
+  "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Sorry, we kunnen geen teksten vinden bij dit nummer",
   "lyrics-loading-message": "Teksten aan 't laden...",
   "lyrics-no-song-message": "Er wordt nu niets afgespeeld",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pauzeren na dit nummer.",
   "message-pausing-after-song-button": "Niet pauzeren na dit nummer",
@@ -62,9 +69,14 @@
   "playback-label-thumbs-up": "Duim omhoog",
   "playback-label-volume-down": "Harder",
   "playback-label-volume-up": "Zachter",
+  "playback-label-info-track": "",
   "playback-os-no-track-playing": "",
+  "playback-label-im-feeling-lucky": "",
 
   "settings-requires-restart": "Vereist herstart",
+
+  "settings-option-keep-sidebar-open": "",
+  "settings-option-static-album-art": "",
 
   "settings-option-invert-tray-icon": "",
 
@@ -85,10 +97,13 @@
   "settings-option-enable-taskbar-progress": "",
   "settings-option-enable-win10-media-service": "",
   "settings-option-enable-win10-media-service-details": "",
+  "settings-option-discord-rich-presence": "",
+  "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "",
 
   "settings-option-hotkey-explanation": "Standaard mediatoetsen zullen blijven werken onafhankelijk van deze instellingen.  Deze instellingen zijn een toevoeging aan de standaard instellingen.",
   "settings-option-hotkey-explanation-2": "Gebruik de <i>\"Escape\"</i> toets om de sneltoetsfunctie te herstellen.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Minimaliseer naar Systeemvak",
 
@@ -97,11 +112,16 @@
 
   "settings-option-save-page": "Laad de laatst bekeken pagina automatisch bij opstarten",
 
+  "settings-option-start-minimized": "",
+
   "settings-option-scroll-lyrics": "Scroll liedteksten automatisch bij het afspelen",
 
   "settings-option-mini-always-show": "Toon altijd informatie over het nummer",
   "settings-option-mini-ontop": "Altijd op de voorgrond",
   "settings-option-mini-use-scroll-volume": "Gebruik het muiswieltje om het volume aan te passen",
+
+  "settings-option-skip-bad-songs": "",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "",
   "settings-options-style-main-app": "",
@@ -114,10 +134,11 @@
 
   "title-color-picker": "kleurenkiezer",
   "title-settings": "Instellingen",
-  "title-settings-audio": "Audio",
+  "title-settings-playback": "",
   "title-settings-general": "Algemeen",
   "title-settings-hotkeys": "Sneltoetsen",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Player",
   "title-settings-style": "",
 

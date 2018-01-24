@@ -1,7 +1,9 @@
 import path from 'path';
 
 export default (app) => {
-  app.commandLine.appendSwitch('enable-smooth-scrolling', '1');
+  if (!process.argv.includes('--disable-smooth-scrolling')) {
+    app.commandLine.appendSwitch('enable-smooth-scrolling', '1');
+  }
   app.commandLine.appendSwitch('enable-overlay-scrollbar', '1');
   app.commandLine.appendSwitch('enable-use-zoom-for-dsf', 'false');
   app.commandLine.appendSwitch('disable-gpu', '1');
@@ -9,7 +11,12 @@ export default (app) => {
   //      --> Choosing audio output device
   app.commandLine.appendSwitch('enable-experimental-web-platform-features', '1');
 
-  if (process.platform !== 'darwin') {
+  // Required for 5.1 sound support
+  if (Settings.get('trySupportedChannelLayouts', false)) {
+    app.commandLine.appendSwitch('try-supported-channel-layouts', '1');
+  }
+
+  if (process.platform !== 'darwin' && !process.argv.includes('--enable-gpu')) {
     app.disableHardwareAcceleration();
   }
 

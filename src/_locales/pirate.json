@@ -14,6 +14,7 @@
 
   "label-about": "",
   "label-alarm": "",
+  "label-recents": "",
   "label-desktop-settings": "Change ye settings",
   "label-donate": "Share some 'o ye plunder",
   "label-help": "Lend me some assistance",
@@ -33,10 +34,16 @@
   "lastfm-login-error": "Ye appear to have left th' authorization process, if 'tis be a mistake, please give a go' authorizin' again",
   "lastfm-login-not-authorized": "Blimey! Ye ain't Authorized",
   "lastfm-logout-button-text": "Scuttle ye Last.FM session",
+  "lastfm-map-thumbs-up-to-heart": "",
+
+  "listenbrainz-label-user-token": "",
+  "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Sorry, we could not find any lyrics fer 'tis song",
   "lyrics-loading-message": "We be loadin' lyrics...",
   "lyrics-no-song-message": "No song be currently playin'",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pausin' after 'tis song.",
   "message-pausing-after-song-button": "Don't pause after 'tis song",
@@ -62,9 +69,14 @@
   "playback-label-thumbs-up": "Ye like",
   "playback-label-volume-down": "Calm that noise",
   "playback-label-volume-up": "Arr, I can't hear you",
+  "playback-label-info-track": "",
   "playback-os-no-track-playing": "",
+  "playback-label-im-feeling-lucky": "",
 
   "settings-requires-restart": "Requires ye scuttle and relaunch",
+
+  "settings-option-keep-sidebar-open": "",
+  "settings-option-static-album-art": "",
 
   "settings-option-invert-tray-icon": "Switch around that yonder Tray Icon Color",
 
@@ -85,10 +97,13 @@
   "settings-option-enable-taskbar-progress": "Show track progress in th' taskbar",
   "settings-option-enable-win10-media-service": "Tell ye' OS what track be playin'",
   "settings-option-enable-win10-media-service-details": "",
+  "settings-option-discord-rich-presence": "",
+  "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "Choose how ye speak",
 
   "settings-option-hotkey-explanation": "Default media keys gunna continue to set the sails regardless 'o these settin's. These settin's be in addition to th' defaults.",
   "settings-option-hotkey-explanation-2": "Use th' <i>\"Escape\"</i> key to reset th' hotkey.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Be hidin' in the tray",
 
@@ -97,11 +112,16 @@
 
   "settings-option-save-page": "Remember where ye set anchor last and load that location again when ye set sail",
 
+  "settings-option-start-minimized": "",
+
   "settings-option-scroll-lyrics": "",
 
   "settings-option-mini-always-show": "Always be showin' song information",
   "settings-option-mini-ontop": "Always keep this 'ere application on top'",
   "settings-option-mini-use-scroll-volume": "",
+
+  "settings-option-skip-bad-songs": "",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Choose a local CSS file to inject styles into th' ship",
   "settings-options-style-main-app": "Main App",
@@ -114,10 +134,11 @@
 
   "title-color-picker": "Paint Picker",
   "title-settings": "",
-  "title-settings-audio": "Noise",
+  "title-settings-playback": "",
   "title-settings-general": "All th' thin's",
   "title-settings-hotkeys": "Magic Buttons",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Small Player",
   "title-settings-style": "Custom ship",
 

@@ -8,3 +8,4 @@ import './pauseAfter';
 import './shortcuts';
 import './toast';
 import './voiceControls';
+import './volumeClicker';

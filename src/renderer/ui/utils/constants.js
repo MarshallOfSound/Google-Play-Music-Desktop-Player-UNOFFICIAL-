@@ -15,9 +15,10 @@ export const ACTION_KEYS = _.transform(_.range(26), (final, current) => { // let
   final[current + 65] = String.fromCharCode(current + 65); // eslint-disable-line
 }, _.transform(_.range(10), (final, current) => { // digits
   final[current + 48] = current.toString(); // eslint-disable-line
-}, _.transform(_.range(12), (final, current) => { // f-keys
+}, _.transform(_.range(24), (final, current) => { // f-keys
   final[current + 112] = 'F' + (current + 1).toString(); // eslint-disable-line
 }, {
+  32: 'Space',
   33: 'PageUp',
   34: 'PageDown',
   35: 'End',
@@ -46,7 +47,9 @@ export const languageMap = {
   da: 'Danish',
   de: 'German',
   'en-US': 'English',
+  'es-ES': 'Spanish',
   'fr-FR': 'French',
+  hu: 'Hungarian',
   it: 'Italian',
   ja: 'Japanese',
   'nl-NL': 'Dutch',
@@ -56,5 +59,6 @@ export const languageMap = {
   ro: 'Romanian',
   ru: 'Russian',
   sk: 'Slovak',
+  sv: 'Swedish',
   ua: 'Ukrainian',
 };

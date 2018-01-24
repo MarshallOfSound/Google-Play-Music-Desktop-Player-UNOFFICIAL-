@@ -1,13 +1,14 @@
 os:
   - osx
+osx_image: xcode8.1
 
-language: node_js
-
-node_js:
-  - '6'
+before_install:
+  - npm config delete prefix
 
 install:
+  - HOMEBREW_NO_AUTO_UPDATE=1 brew install node
   - rm -rf node_modules
+  - npm i -g npm@3
   - npm install
 
 branches:
@@ -15,6 +16,7 @@ branches:
     - website
 
 script:
+  - export DEBUG=electron*
   - npm run test
   - if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then ./sig/import.sh && npm run make:darwin && node ./sig/publish-mac.js; fi
   - if [[ $TRAVIS_PULL_REQUEST != "false" ]]; then npm run package:darwin; fi

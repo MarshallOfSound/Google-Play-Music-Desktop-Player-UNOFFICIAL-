@@ -84,7 +84,7 @@ export const getLastFMSession = () =>
 //   getLastFMSession();
 // };
 
-export const updateNowPlaying = (track, artist, album) => {
+export const updateNowPlaying = (track, artist, album, duration) => {
   if (Settings.get('lastFMKey')) {
     getLastFMSession()
       .then((session) => {
@@ -92,13 +92,14 @@ export const updateNowPlaying = (track, artist, album) => {
           track,
           artist,
           album,
+          duration,
         }).on('error', (err) => Logger.error('LASTFM ERROR', err));
       })
       .catch((err) => Logger.error('LASTFM ERROR', err));
   }
 };
 
-export const updateScrobble = (track, artist, album, timestamp) => {
+export const updateScrobble = (track, artist, album, timestamp, duration) => {
   if (Settings.get('lastFMKey')) {
     getLastFMSession()
       .then((session) => {
@@ -107,25 +108,26 @@ export const updateScrobble = (track, artist, album, timestamp) => {
           artist,
           album,
           timestamp,
+          duration,
         }).on('error', (err) => Logger.error('LASTFM ERROR', err));
       })
       .catch((err) => Logger.error('LASTFM ERROR', err));
   }
 };
 
-// export const heartSong = (love, track, artist, album) => {
-export const heartSong = () => {
-  // if (Settings.get('lastFMKey')) {
-  //   getLastFMSession()
-  //     .then((session) => {
-  //       lastfm.request(`track.${love ? 'love' : 'unlove'}`, session, {
-  //         track,
-  //         artist,
-  //         album,
-  //       }).on('error', (err) => Logger.error('LASTFM ERROR', err));
-  //     })
-  //     .catch((err) => Logger.error('LASTFM ERROR', err));
-  // }
+export const heartSong = (love, track, artist, album) => {
+  if (Settings.get('lastFMKey') && Settings.get('lastFMMapThumbToHeart')) {
+    getLastFMSession()
+      .then((session) => {
+        lastfm.request(`track.${love ? 'love' : 'unlove'}`, {
+          track,
+          artist,
+          album,
+          sk: session.key,
+        }).on('error', (err) => Logger.error('LASTFM ERROR', err));
+      })
+      .catch((err) => Logger.error('LASTFM ERROR', err));
+  }
 };
 
 Emitter.on('lastfm:auth', () => {
@@ -141,11 +143,16 @@ Emitter.on('lastfm:auth', () => {
 let currentRating = {};
 Emitter.on('change:track', (event, details) => {
   currentRating = {};
-  updateNowPlaying(details.title, details.artist, details.album);
+  // Last.fm isn't accepting 'Unknown Album'
+  const album = details.album === 'Unknown Album' ? undefined : details.album;
+  updateNowPlaying(details.title, details.artist, album, Math.round(details.duration / 1000));
 });
 
 Emitter.on('change:track:scrobble', (event, details) => {
-  updateScrobble(details.title, details.artist, details.album, details.timestamp);
+  if (details.duration > 30 * 1000) { // Scrobble only tracks longer than 30 seconds
+    const album = details.album === 'Unknown Album' ? undefined : details.album;
+    updateScrobble(details.title, details.artist, album, details.timestamp, Math.round(details.duration / 1000));
+  }
 });
 
 PlaybackAPI.on('change:rating', (newRating) => {
@@ -158,7 +165,7 @@ PlaybackAPI.on('change:rating', (newRating) => {
       if (!newRating.liked && currentRating.liked) {
         heartSong(false, currentSong.title, currentSong.artist, currentSong.album);
       }
-      currentRating = newRating;
+      currentRating = Object.assign({}, newRating);
     }
   });
 });

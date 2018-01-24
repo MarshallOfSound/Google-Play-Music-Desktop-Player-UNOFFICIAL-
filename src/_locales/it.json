@@ -14,6 +14,7 @@
 
   "label-about": "Riguardo a",
   "label-alarm": "Allarme",
+  "label-recents": "Recenti",
   "label-desktop-settings": "Impostazioni desktop",
   "label-donate": "Donazione",
   "label-help": "Aiuto",
@@ -33,17 +34,23 @@
   "lastfm-login-error": "Sembra che tu abbia abbandonato il processo di autorizzazione, se è stato un errore, riprova di nuovo",
   "lastfm-login-not-authorized": "Non autorizzato",
   "lastfm-logout-button-text": "Esci da Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "Segna automaticamente come preferiti i brani con pollice su",
+
+  "listenbrainz-label-user-token": "Inserisci il tuo token utente per ListenBrainz (puoi trovarlo all'indirizzo https://listenbrainz.org/user/info)",
+  "listenbrainz-token-here": "Inserisci token",
 
   "lyrics-failed-message": "Spiacente, non è possibile trovare il testo per questo brano",
   "lyrics-loading-message": "Caricamento del testo...",
   "lyrics-no-song-message": "Nessun brano in riproduzione",
+  "lyrics-search-in": "Cerca in",
+  "lyrics-lyrics": "testo",
 
   "message-pausing-after-song": "Pausa dopo questo brano.",
   "message-pausing-after-song-button": "Non mettere in pausa dopo questo brano",
   "message-uncaught-error": "Si è verificato un errore in GPMDP.",
   "message-uncaught-error-button": "Clicca qui per riportare l'errore su GitHub",
 
-  "modal-confirmTray-title": "Giusto un avviso",
+  "modal-confirmTray-title": "Un nota al volo",
   "modal-confirmTray-content": "La chiusura della finestra principale (quello che hai appena provato a fare) minimizzerà il lettore nell'area di notifica. Questo comportamento può essere cambiato nella finestra \"Impostazioni desktop\".",
   "modal-confirmOpenPort-content": "Le API di Playback non possono essere avviate perché sono bloccate dal firewall di Windows. Possiamo sbloccarle per te se vuoi, ma ciò richiederà privilegi amministrativi",
   "modal-confirmUpdate-title": "Aggiornamento disponibile",
@@ -62,9 +69,14 @@
   "playback-label-thumbs-up": "Pollice su",
   "playback-label-volume-down": "Abbassa il volume",
   "playback-label-volume-up": "Aumenta il volume",
+  "playback-label-info-track": "Notifica il brano corrente",
   "playback-os-no-track-playing": "Nessun brano in riproduzione",
+  "playback-label-im-feeling-lucky": "Mi sento fortunato",
 
   "settings-requires-restart": "Richiede riavvio",
+
+  "settings-option-keep-sidebar-open": "Mantieni la barra laterale aperta",
+  "settings-option-static-album-art": "Mantieni statica la copertina dell'album nel visualizzatore",
 
   "settings-option-invert-tray-icon": "Inverti il colore dell'icona nell'area di notifica",
 
@@ -85,10 +97,13 @@
   "settings-option-enable-taskbar-progress": "Mostra il progresso del brano nella barra delle applicazioni",
   "settings-option-enable-win10-media-service": "Abilita il System Media Service di Windows 10",
   "settings-option-enable-win10-media-service-details": "Mostra il brano corrente nella schermata di blocco",
+  "settings-option-enable-win10-media-service-track-info": "Mostra le informazioni del brano nell'indicatore del volume di Windows 10",
+  "settings-option-discord-rich-presence": "Abilita l'integrazione di Discord Rich Presence",
   "settings-option-change-locale": "Seleziona lingua",
 
   "settings-option-hotkey-explanation": "I tasti multimediali predefiniti continueranno a funzionare indipendentemente da queste impostazioni.  Queste sono in aggiunta alle impostazioni predefinite.",
   "settings-option-hotkey-explanation-2": "Usa il tasto <i>\"Escape\"</i> per resettare il tasto veloce.",
+  "settings-option-hotkey-not-set": "Non impostato",
 
   "settings-option-min-to-tray": "Minimizza nell'area di notifica",
 
@@ -97,11 +112,16 @@
 
   "settings-option-save-page": "Carica automaticamente l'ultima pagina visitata all'avvio",
 
+  "settings-option-start-minimized": "Avvia l'applicazione minimizzata",
+
   "settings-option-scroll-lyrics": "Scorri automaticamente i testi durante la riproduzione",
 
   "settings-option-mini-always-show": "Mostra sempre le informazioni del brano",
   "settings-option-mini-ontop": "Sempre in primo piano",
   "settings-option-mini-use-scroll-volume": "Usa la rotella di scorrimento per regolare il volume",
+
+  "settings-option-skip-bad-songs": "Salta automaticamente i brani segnati con pollice giù",
+  "settings-option-try-supported-channel-layouts": "Supporto sperimentale per audio multicanale come il 5.1",
 
   "settings-options-style-description": "Seleziona un file CSS locale per iniettare gli stili nell'applicazione",
   "settings-options-style-main-app": "Applicazione principale",
@@ -114,10 +134,11 @@
 
   "title-color-picker": "Selettore del colore",
   "title-settings": "Impostazioni",
-  "title-settings-audio": "Audio",
+  "title-settings-playback": "Riproduzione",
   "title-settings-general": "Generale",
   "title-settings-hotkeys": "Tasti veloci",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Player",
   "title-settings-style": "Stili personalizzati",
 

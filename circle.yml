@@ -20,7 +20,7 @@ dependencies:
     - sudo apt-get install g++
     - sudo apt-get install libavahi-compat-libdnssd-dev
     - sudo apt-get install gcc-4.8-multilib g++-4.8-multilib libnotify4
-    - npm i -g npm
+    - npm i -g npm@3
     - rm -rf node_modules
 
 test:

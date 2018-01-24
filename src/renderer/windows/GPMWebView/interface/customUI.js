@@ -33,6 +33,14 @@ export const cssRule = (styles) => {
   tag.type = 'text/css';
   tag.appendChild(document.createTextNode(styles));
   document.head.appendChild(tag);
+  return tag;
+};
+
+/** Removes the referenced <style> tag */
+const removeCssRule = (styleTag) => {
+  if (styleTag) {
+    styleTag.parentElement.removeChild(styleTag);
+  }
 };
 
 
@@ -41,16 +49,11 @@ function _redirectButton(button, URL, reverseURLChange) {
   if (button) {
     button.addEventListener('click', (e) => {
       remote.shell.openExternal(URL);
-      if (reverseURLChange) setImmediate(history.back);
+      if (reverseURLChange) setTimeout(() => history.back(), 0);
       e.preventDefault();
       return false;
     });
   }
-}
-
-/** Change the Shop button to open Shop in external browser */
-function fixShopButton() {
-  _redirectButton(document.querySelector('[data-type="shop"]'), 'https://play.google.com/store/music?feature=music_general');
 }
 
 function handleSubscribeButton() {
@@ -80,14 +83,14 @@ function hideNotWorkingStuff() {
   hide('.upload-dialog-bg', true);
   hide('.upload-dialog', true);
 
-  setInterval(() => hide('.song-menu.goog-menu.now-playing-menu > .goog-menuitem:nth-child(3)'), 500);
+  cssRule('.song-menu.goog-menu.now-playing-menu > .goog-menuitem:nth-child(3) { display: none !important; }');
 }
 
-function installSidebarButton(translationKey, type, icon, index, fn) {
+function installSidebarButton(translationKey, type, icon, index, href, fn) {
   const elem = document.createElement('a');
   elem.setAttribute('data-type', type);
   elem.setAttribute('class', 'nav-item-container tooltip');
-  elem.setAttribute('href', '');
+  elem.setAttribute('href', href);
   elem.setAttribute('no-focus', '');
   elem.innerHTML = `<iron-icon icon="${icon}" alt="" class="x-scope iron-icon-1"></iron-icon><span is="translation-key">${translationKey}</span>`; // eslint-disable-line
   elem.addEventListener('click', fn);
@@ -100,7 +103,7 @@ function installSidebarButton(translationKey, type, icon, index, fn) {
 
 /** Create the Desktop Settings button in the left sidebar */
 function installDesktopSettingsButton() {
-  installSidebarButton('label-desktop-settings', 'desktopsettings', 'settings', 2, (e) => {
+  installSidebarButton('label-desktop-settings', 'desktopsettings', 'settings', 2, '#', (e) => {
     Emitter.fire('window:settings');
     e.preventDefault();
     e.stopPropagation();
@@ -110,7 +113,7 @@ function installDesktopSettingsButton() {
 
 /** Create the Quit button in the left sidebar */
 function installQuitButton() {
-  installSidebarButton('label-quit', 'quit', 'exit-to-app', -1, (e) => {
+  installSidebarButton('label-quit', 'quit', 'exit-to-app', -1, '#', (e) => {
     remote.app.quit();
     e.preventDefault();
     e.stopPropagation();
@@ -119,7 +122,7 @@ function installQuitButton() {
 }
 
 function installAlarmButton() {
-  installSidebarButton('label-alarm', 'alarm', 'alarm', 0, (e) => {
+  installSidebarButton('label-alarm', 'alarm', 'alarm', 0, '#', (e) => {
     // Closes the sliding drawer
     document.querySelector('paper-drawer-panel').setAttribute('selected', 'main');
     Emitter.fireAtMain('alarm:show');
@@ -213,14 +216,59 @@ const fixChromecastButton = () => {
   cssRule('#player paper-icon-button[data-id="cast"] { display: inline-block; }');
 };
 
+let openSidebarStyles;
+const setKeepSidebarOpen = (keepSidebarOpen) => {
+  const sidebar = document.querySelector('paper-drawer-panel');
+  if (keepSidebarOpen) {
+    sidebar.removeAttribute('force-narrow');
+    sidebar.removeAttribute('narrow');
+    openSidebarStyles = cssRule('#material-app-bar .music-logo-link { display: none !important; }');
+  } else {
+    sidebar.setAttribute('force-narrow', '');
+    sidebar.setAttribute('narrow', '');
+    removeCssRule(openSidebarStyles);
+  }
+};
+
+let staticAlbumArtStyle;
+const setStaticAlbumArt = (staticAlbumArt) => {
+  if (staticAlbumArtStyle) removeCssRule(staticAlbumArtStyle);
+
+  staticAlbumArtStyle = cssRule(staticAlbumArt ? `
+  .art-container {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .art-container img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto !important;
+    height: auto !important;
+  }` : '');
+};
+
 
 // Modify the GUI after everything is sufficiently loaded
 window.wait(() => {
+  Emitter.on('settings:change:keepSidebarOpen', (event, keepSidebarOpen) => {
+    setKeepSidebarOpen(keepSidebarOpen);
+  });
+  Emitter.on('settings:change:staticAlbumArt', (event, staticAlbumArt) => {
+    setStaticAlbumArt(staticAlbumArt);
+  });
+
   hideNotWorkingStuff();
-  fixShopButton();
   handleSubscribeButton();
   installMainMenu();
   handleZoom();
   installNowPlayingMenu();
   fixChromecastButton();
+  setKeepSidebarOpen(Settings.get('keepSidebarOpen'));
+  setStaticAlbumArt(Settings.get('staticAlbumArt'));
 });

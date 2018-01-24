@@ -30,7 +30,7 @@ require('./chromecast');
 // DEV: We need to wait for the page to load sufficiently before we can load
 //      gmusic.js and its child libraries
 const waitForExternal = setInterval(() => {
-  if (document.querySelector('#material-vslider')) {
+  if (document.querySelector('#material-vslider') && document.querySelectorAll('audio')[1]) {
     clearInterval(waitForExternal);
     const GMusic = require('gmusic.js');
     require('gmusic-ui.js')(GMusic);
@@ -69,3 +69,5 @@ const waitForExternal = setInterval(() => {
     Settings.set('gpmdp_connect_email', window.gbar._CONFIG[0][10][5]);
   }
 }, 10);
+
+if (remote.getGlobal('DEV_MODE')) window.__devtron = { require, process };

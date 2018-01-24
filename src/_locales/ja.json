@@ -14,6 +14,7 @@
 
   "label-about": "GPMDPについて",
   "label-alarm": "Alarm",
+  "label-recents": "",
   "label-desktop-settings": "デスクトップ設定",
   "label-donate": "寄付",
   "label-help": "ヘルプ",
@@ -33,10 +34,16 @@
   "lastfm-login-error": "承認プロセスを終えたようですが、もし失敗しているようなら再度認証を試みてください",
   "lastfm-login-not-authorized": "未接続",
   "lastfm-logout-button-text": "Last.FMとの接続を解除",
+  "lastfm-map-thumbs-up-to-heart": "高く評価した曲をLast.fmに好き",
+
+  "listenbrainz-label-user-token": "",
+  "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "すみませんが、この曲の歌詞がみつかりません",
   "lyrics-loading-message": "歌詞を読み込み中...",
   "lyrics-no-song-message": "現在再生中の曲はありません",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "この曲の後に一時停止します",
   "message-pausing-after-song-button": "この曲の後で一時停止しない",
@@ -62,9 +69,14 @@
   "playback-label-thumbs-up": "高く評価",
   "playback-label-volume-down": "音量を上げる",
   "playback-label-volume-up": "音量を下げる",
+  "playback-label-info-track": "",
   "playback-os-no-track-playing": "現在再生中の曲はありません",
+  "playback-label-im-feeling-lucky": "",
 
   "settings-requires-restart": "再起動が必要です",
+
+  "settings-option-keep-sidebar-open": "サイドバーを表示",
+  "settings-option-static-album-art": "",
 
   "settings-option-invert-tray-icon": "トレイアイコンの色を反転させる",
 
@@ -85,10 +97,13 @@
   "settings-option-enable-taskbar-progress": "曲の進行状況をタスクバーに表示する",
   "settings-option-enable-win10-media-service": "Windows 10のSystem Media Serviceを有効にする",
   "settings-option-enable-win10-media-service-details": "これによりロック画面に現在の曲が表示されるようになります",
+  "settings-option-discord-rich-presence": "",
+  "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "言語",
 
   "settings-option-hotkey-explanation": "これらの設定に関係なくデフォルトのメディアキーは引き続き機能します。 これらの設定はデフォルトに追加するものです",
   "settings-option-hotkey-explanation-2": "ホットキーをリセットするには<i>\"Escape\"</i>キーを押してください",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "トレイにしまう",
 
@@ -97,11 +112,16 @@
 
   "settings-option-save-page": "起動時に最後に表示したページを自動で読み込む",
 
+  "settings-option-start-minimized": "最小化した状態で起動する",
+
   "settings-option-scroll-lyrics": "再生中に歌詞を自動でスクロールする",
 
   "settings-option-mini-always-show": "常に曲の情報を表示する",
   "settings-option-mini-ontop": "常に最前面に表示する",
   "settings-option-mini-use-scroll-volume": "音量調節にスクロールホイールを利用する",
+
+  "settings-option-skip-bad-songs": "低く評価した曲を自動にスキップ",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "アプリケーションにスタイルを適用するためのローカルCSSファイルを選択する",
   "settings-options-style-main-app": "メインアプリ",
@@ -114,10 +134,11 @@
 
   "title-color-picker": "カラーピッカー",
   "title-settings": "設定",
-  "title-settings-audio": "オーディオ",
+  "title-settings-playback": "再生",
   "title-settings-general": "一般",
   "title-settings-hotkeys": "ホットキー",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "ミニプレーヤー",
   "title-settings-style": "カスタムスタイル",
 

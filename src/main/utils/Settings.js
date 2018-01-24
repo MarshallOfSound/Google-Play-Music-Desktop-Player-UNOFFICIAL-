@@ -48,7 +48,7 @@ class Settings {
         Emitter.sendToAll(`settings:change:${key}`, value, key);
         Emitter.sendToGooglePlayMusic(`settings:change:${key}`, value, key);
       }
-      this._save();
+      if (valChanged) this._save();
     } else {
       Emitter.fire('settings:set', {
         key,
@@ -64,7 +64,7 @@ class Settings {
     } catch (e) {
       if (retryCount > 0) {
         setTimeout(this._load.bind(this, retryCount - 1), 10);
-        if (global.Logger) Logger.error('Failed to load settings JSON file, retyring in 10 milliseconds');
+        if (global.Logger) Logger.error('Failed to load settings JSON file, retrying in 10 milliseconds');
         return;
       }
       userSettings = {};

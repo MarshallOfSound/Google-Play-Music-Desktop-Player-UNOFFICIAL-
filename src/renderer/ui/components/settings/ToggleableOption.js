@@ -11,6 +11,7 @@ class SettingsCheckbox extends Component {
     settingsKey: PropTypes.string.isRequired,
     setSetting: PropTypes.func.isRequired,
     muiTheme: PropTypes.object,
+    dependsOnSettingsKey: PropTypes.string,
   };
 
   onChange = (event, isChecked) => {
@@ -26,11 +27,15 @@ class SettingsCheckbox extends Component {
           : null}
       </span>
     );
+    const { dependsOnSettingsKey } = this.props;
+    if (dependsOnSettingsKey && !this.props[dependsOnSettingsKey]) {
+      return null;
+    }
 
     return (
       <Checkbox
         label={label}
-        checked={this.props[this.props.settingsKey]}
+        checked={!!this.props[this.props.settingsKey]}
         onCheck={this.onChange}
         style={{
           marginTop: 4,
@@ -50,6 +55,7 @@ export default class ToggleableOption extends Component {
     label: PropTypes.string.isRequired,
     hintLabel: PropTypes.string,
     settingsKey: PropTypes.string.isRequired,
+    dependsOnSettingsKey: PropTypes.string,
   };
 
   render() {
@@ -57,10 +63,14 @@ export default class ToggleableOption extends Component {
       label: this.props.label,
       hintLabel: this.props.hintLabel,
       settingsKey: this.props.settingsKey,
+      dependsOnSettingsKey: this.props.dependsOnSettingsKey,
     };
-
+    const keys = [this.props.settingsKey];
+    if (this.props.dependsOnSettingsKey) {
+      keys.push(this.props.dependsOnSettingsKey);
+    }
     return (
-      <SettingsProvider component={ThemedSettingsCheckbox} componentProps={checkboxProps} keys={[this.props.settingsKey]} defaults={{}} />
+      <SettingsProvider component={ThemedSettingsCheckbox} componentProps={checkboxProps} keys={keys} defaults={{}} />
     );
   }
 }

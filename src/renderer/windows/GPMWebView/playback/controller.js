@@ -69,10 +69,28 @@ Emitter.on('playback:decreaseVolume', () => {
   window.GPM.volume.decreaseVolume();
 });
 
+Emitter.on('playback:seek', (event, to) => {
+  window.GPM.playback.setCurrentTime(to);
+});
+
 Emitter.on('playback:miniEnable', () => {
   window.GPM.mini.enable();
 });
 
 Emitter.on('playback:miniDisable', () => {
   window.GPM.mini.disable();
+});
+
+Emitter.on('playback:infoTrack', () => {
+  const currentTrack = window.GPM.playback.getCurrentTrack();
+
+  if (!window.GPM.playback.isPlaying()) return;
+  new Notification(currentTrack.title, { // eslint-disable-line
+    body: `${currentTrack.artist} - ${currentTrack.album}`,
+    icon: currentTrack.albumArt,
+  });
+});
+
+Emitter.on('playback:imFeelingLucky', () => {
+  window.GPM.playback.startFeelingLucky();
 });

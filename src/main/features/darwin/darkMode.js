@@ -6,6 +6,8 @@ const updateThemeBasedOnSystem = () => {
   }
 };
 
+Settings.onChange('themeTypeShouldTrackSystem', updateThemeBasedOnSystem);
+
 const subscriptionID = systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', updateThemeBasedOnSystem);
 
 updateThemeBasedOnSystem();

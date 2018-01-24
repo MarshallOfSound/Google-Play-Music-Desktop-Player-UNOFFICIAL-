@@ -1,6 +1,6 @@
 import { app } from 'electron';
-import mpris from 'mpris-service';
 import _ from 'lodash';
+import mpris from 'mpris-service';
 
 function mprisService() {
   const mainWindow = WindowManager.getAll('main')[0];
@@ -14,6 +14,7 @@ function mprisService() {
     desktopEntry: 'google-play-music-desktop-player',
   });
   player.playbackStatus = 'Stopped';
+  player.canEditTracks = false;
 
   player.on('raise', () => {
     mainWindow.setSkipTaskbar(false);
@@ -26,6 +27,12 @@ function mprisService() {
 
   player.on('play', () => {
     if (!PlaybackAPI.isPlaying()) {
+      Emitter.sendToGooglePlayMusic('playback:playPause');
+    }
+  });
+
+  player.on('pause', () => {
+    if (PlaybackAPI.isPlaying()) {
       Emitter.sendToGooglePlayMusic('playback:playPause');
     }
   });
@@ -47,7 +54,20 @@ function mprisService() {
     player.playbackStatus = 'Stopped';
   });
 
+  player.on('volume', (volume) => {
+    Emitter.sendToGooglePlayMusic('execute:gmusic', {
+      namespace: 'volume',
+      method: 'setVolume',
+      args: [Math.round(volume * 100)],
+    });
+  });
+
   PlaybackAPI.on('change:track', (newSong) => {
+    player.canSeek = false;
+    player.canPlay = true;
+    player.canPause = true;
+    player.canGoPrevious = true;
+    player.canGoNext = true;
     player.metadata = _songInfo = {
       'mpris:artUrl': newSong.albumArt.replace('=s90', '=s300'),
       'xesam:asText': (newSong.lyrics || ''),
@@ -78,6 +98,10 @@ function mprisService() {
   PlaybackAPI.on('change:state', (playbackState) => {
     // DEV: We skip stopped here because PlaybackAPI only shuttles true/false from GPM
     player.playbackStatus = (playbackState) ? 'Playing' : 'Paused';
+  });
+
+  PlaybackAPI.on('change:volume', (volume) => {
+    player.volume = volume / 100;
   });
 }
 

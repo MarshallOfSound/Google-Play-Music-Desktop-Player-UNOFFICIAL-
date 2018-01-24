@@ -4,7 +4,7 @@
   "audio-device-unknown": "Невідомий",
 
   "button-text-ok": "Гаразд",
-  "button-text-cancel-alarm": "Викнути будильник",
+  "button-text-cancel-alarm": "Вимкнути будильник",
   "button-text-click-here-to-set-alarm": "Встановити будильник",
   "button-text-close": "Закрити",
   "button-text-dont-tell-me-again": "Не нагадувати знову",
@@ -14,6 +14,7 @@
 
   "label-about": "Про",
   "label-alarm": "Будильник",
+  "label-recents": "",
   "label-desktop-settings": "Налаштування застосунку",
   "label-donate": "Заохотити",
   "label-help": "Довідка",
@@ -22,7 +23,7 @@
   "label-loading-devices": "Завантаження пристроїв...",
   "label-pause-after-song": "Призупинити після поточної пісні",
   "label-quit": "Вийти",
-  "label-show-lyrics": "Відобразити текст пісні (Beta)",
+  "label-show-lyrics": "Показати текст пісні (Beta)",
   "label-unknown-artist": "Невідомий виконавець",
   "label-unknown-song": "Невідома пісня",
   "label-version": "Версія",
@@ -30,17 +31,23 @@
   "lastfm-login-authorized": "Авторизовано",
   "lastfm-login-authorizing": "Авторизація триває",
   "lastfm-login-button-text": "Увійти до Last.FM",
-  "lastfm-login-error": "Здається ви скасували процес авторизації. Якщо це не так, будь ласка, спробуйте ще раз",
+  "lastfm-login-error": "Схоже ви скасували процес авторизації. Якщо це не так, будь ласка, спробуйте ще раз",
   "lastfm-login-not-authorized": "Не авторизовано",
   "lastfm-logout-button-text": "Вийти з Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
 
-  "lyrics-failed-message": "Нажаль, ми не змогли знайти текст до цієї пісні",
+  "listenbrainz-label-user-token": "",
+  "listenbrainz-token-here": "",
+
+  "lyrics-failed-message": "На жаль, ми не змогли знайти текст до цієї пісні",
   "lyrics-loading-message": "Завантаження текту пісні...",
   "lyrics-no-song-message": "Зараз нічого не відтворюється",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
-  "message-pausing-after-song": "Призупинити після цїєї пісні.",
+  "message-pausing-after-song": "Зупинити після цїєї пісні.",
   "message-pausing-after-song-button": "Не зупиняти програвання після цїєї пісні",
-  "message-uncaught-error": "В GPMDP відбулася помилка, яку не вдалося перехопити.",
+  "message-uncaught-error": "В GPMDP сталася помилка, яку не вдалося перехопити.",
   "message-uncaught-error-button": "Повідомити про помилку в GitHub",
 
   "modal-confirmTray-title": "Повідомлення",
@@ -49,24 +56,29 @@
   "modal-confirmUpdate-title": "Є оновлення",
   "modal-confirmUpdate-content": "Чудово, вийшло оновлення для Google Play Music Desktop Player! Це оновлення додає нові можливості та виправляє безліч помилок. Наполегливо радимо оновитися якнайшвидше.<br />Сподіваємось вам сподобається!",
   "modal-confirmUninstall-title": "Так ось в чому справа...",
-  "modal-confirmUninstall-content": "Ми тільки но дізналися, що стару версію GPMDP ще встановлено у вашій системі. Якщо ви тільки но оновилися, це абсолютно нормально. Тепер ми спробуємо видалити стару версію. Від вам можуть вимагатися привілеї Адміністратора, будь ласка, надайте їх, й ми наведемо лад.",
+  "modal-confirmUninstall-content": "Ми тільки но дізналися, що стару версію GPMDP ще встановлено у вашій системі. Якщо ви тільки но оновилися, це абсолютно нормально. Тепер ми спробуємо видалити стару версію. Від вас можуть вимагатися привілеї Адміністратора, будь ласка, надайте їх, й ми наведемо лад.",
   "modal-goToURL-title": "Введіть посилання на Google Play Music для переходу:",
   "modal-welcome-title": "Вітаємо у версії",
   "modal-welcome-content": "Сподіваємось вам сподобається нова версія!",
 
   "playback-label-next-track": "Наступний трек",
-  "playback-label-play-pause": "Відтворити / Призупинити",
+  "playback-label-play-pause": "Грати / Зупинити",
   "playback-label-previous-track": "Попередній трек",
   "playback-label-stop": "Зупинити",
   "playback-label-thumbs-down": "Не подобається",
   "playback-label-thumbs-up": "Подобається",
   "playback-label-volume-down": "Зменшити гучніть",
   "playback-label-volume-up": "Збільшити гучність",
-  "playback-os-no-track-playing": "",
+  "playback-label-info-track": "Повідомлення про поточний трек",
+  "playback-os-no-track-playing": "Нічого не відтворюється",
+  "playback-label-im-feeling-lucky": "",
 
   "settings-requires-restart": "Потребує перезапуску",
 
-  "settings-option-invert-tray-icon": "",
+  "settings-option-keep-sidebar-open": "",
+  "settings-option-static-album-art": "",
+
+  "settings-option-invert-tray-icon": "Інвертувати іконку в системному лотку",
 
   "settings-option-custom-theme": "Власна тема",
   "settings-option-custom-theme-choose-color": "Оберіть основний колір теми",
@@ -74,7 +86,7 @@
   "settings-option-custom-theme-custom-color": "власний колір",
   "settings-option-custom-theme-dark": "Темна",
   "settings-option-custom-theme-light": "Світла",
-  "settings-option-custom-theme-should-track-system": "",
+  "settings-option-custom-theme-should-track-system": "Відповідає кольору системи для темного стилю",
 
   "settings-option-enable-api": "Ввімкнути API відтворення",
   "settings-option-enable-api-json": "Ввімкнути JSON API",
@@ -83,19 +95,24 @@
   "settings-option-enable-voice": "Ввімкнути керування голосом",
   "settings-option-enable-voice-details": "Голосове керування для for GPMDP, експериментальна можливість",
   "settings-option-enable-taskbar-progress": "Відобразити прогрес відтворення в панелі",
-  "settings-option-enable-win10-media-service": "",
-  "settings-option-enable-win10-media-service-details": "",
+  "settings-option-enable-win10-media-service": "Увімкнути медіа сервіс Windows 10",
+  "settings-option-enable-win10-media-service-details": "Буде показувати активний трек на екрані блокування",
+  "settings-option-discord-rich-presence": "",
+  "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "Обрати мову",
 
   "settings-option-hotkey-explanation": "Типові мультимедіа кнопки все одно будуть працювати незалежно від цих налаштувань. Ці налаштування для додаткових типових значень.",
   "settings-option-hotkey-explanation-2": "Натисніть <i>\"Escape\"</i> для скидання значення.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Мінімізувати до системного лотка",
 
-  "settings-option-prevent-display-sleep": "",
+  "settings-option-prevent-display-sleep": "Запобігати переходу в режим сну коли GPMDP відкрито",
   "settings-option-auto-launch": "Завантажувати автоматично при вмиканні компʼютеру",
 
   "settings-option-save-page": "При завантаженні автоматично показати останню переглянуту сторінку",
+
+  "settings-option-start-minimized": "",
 
   "settings-option-scroll-lyrics": "Автоматично прокручувати текст пісні під час відтворення",
 
@@ -103,21 +120,25 @@
   "settings-option-mini-ontop": "Завжди нагорі",
   "settings-option-mini-use-scroll-volume": "Керування гічністю за допомогою коліщатка миши",
 
+  "settings-option-skip-bad-songs": "Автоматично пропускати пісні, що не сподобались",
+  "settings-option-try-supported-channel-layouts": "",
+
   "settings-options-style-description": "Оберіть локальний CSS-файл для застосування стилей в застосунку",
   "settings-options-style-main-app": "Стилі додатку",
   "settings-options-style-gpm": "Стилі Google Play Music",
   "settings-options-style-refresh": "Перезавантажити стилі",
-  "settings-options-style-dialog-title": "",
-  "settings-options-style-dialog-button": "",
-  "settings-options-style-dialog-css-files": "",
-  "settings-options-style-dialog-all-files": "",
+  "settings-options-style-dialog-title": "Обрати файл CSS",
+  "settings-options-style-dialog-button": "Завантажити CSS",
+  "settings-options-style-dialog-css-files": "Файл CSS",
+  "settings-options-style-dialog-all-files": "Всі файли",
 
   "title-color-picker": "Обрати колір",
   "title-settings": "Налаштування",
-  "title-settings-audio": "Звук",
+  "title-settings-playback": "Відтворення",
   "title-settings-general": "Основні",
   "title-settings-hotkeys": "Скорочення клавіатури",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Мініплеер",
   "title-settings-style": "Власні стилі",
 
