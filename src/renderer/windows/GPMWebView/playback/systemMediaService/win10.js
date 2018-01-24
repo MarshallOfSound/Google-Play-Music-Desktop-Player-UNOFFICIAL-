@@ -60,7 +60,7 @@ window.wait(() => {
     Controls.displayUpdater.musicProperties.title = track.title;
     Controls.displayUpdater.musicProperties.artist = track.artist;
     Controls.displayUpdater.musicProperties.albumTitle = track.album;
-    Controls.displayUpdater.thumbnail = RandomAccessStreamReference.createFromUri(new Uri(track.albumArt.replace('=s90-c-e100', '')));
+    Controls.displayUpdater.thumbnail = RandomAccessStreamReference.createFromUri(new Uri(track.albumArt.substring(0, albumArtTemp.indexOf('=s90-c-e100'))));
 
     Controls.displayUpdater.update();
   });
