@@ -106,7 +106,7 @@ class PlaybackAPI extends EventEmitter {
   }
 
   _setPlaybackSong(title, artist, album, albumArt) {
-    const fullSizeAlbumArt = albumArt.replace(/=s90-c-e100$/g, '');
+    const fullSizeAlbumArt = albumArt.substring(0, albumArtTemp.indexOf('=s90-c-e100'));
     this.data.song = {
       title,
       artist,
