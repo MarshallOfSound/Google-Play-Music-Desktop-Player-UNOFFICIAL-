@@ -37,7 +37,7 @@
   "lastfm-map-thumbs-up-to-heart": "Marcar automáticamente como Love Tracks las canciones que me gustan",
 
   "listenbrainz-label-user-token": "Introduce tu token de usuario de ListenBrainz (encuéntralo en https://listenbrainz.org/user/info)",
-  "listenbrainz-token-here": "",
+  "listenbrainz-token-here": "Ingresa token",
 
   "lyrics-failed-message": "Lo sentimos, no hemos podido encontrar la letra de esta canción",
   "lyrics-loading-message": "Cargando la letra...",
@@ -71,7 +71,7 @@
   "playback-label-volume-up": "Subir Volumen",
   "playback-label-info-track": "Notificar pista actual",
   "playback-os-no-track-playing": "Ninguna pista sonando",
-  "playback-label-im-feeling-lucky": "",
+  "playback-label-im-feeling-lucky": "Me siento con suerte",
 
   "settings-requires-restart": "Requiere reiniciar",
 
@@ -97,7 +97,7 @@
   "settings-option-enable-taskbar-progress": "Mostrar el progreso de la pista en la barra de tareas",
   "settings-option-enable-win10-media-service": "Habilitar Servicio Multimedia Windows 10",
   "settings-option-enable-win10-media-service-details": "Mostrar la pista actual en la pantalla de bloqueo",
-  "settings-option-discord-rich-presence": "",
+  "settings-option-discord-rich-presence": "Habilita integración Discord Rich Presence",
   "settings-option-enable-win10-media-service-track-info": "Mostrar información de la pista en la superposición de volumen de Windows 10",
   "settings-option-change-locale": "Escoger Idioma",
 
