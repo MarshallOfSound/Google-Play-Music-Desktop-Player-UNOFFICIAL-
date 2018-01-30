@@ -84,10 +84,7 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
   // This is for user reporting
   Settings.set('uuid', Settings.get('uuid', uuid.v4()));
   const user = ua('UA-44220619-5', Settings.get('uuid'));
-  setInterval((function sendPageView() {
-    user.pageview('/').send();
-    return sendPageView;
-  }()), 60000 * 5);
+  user.pageview(`/${app.getVersion()}`).send();
 
   // Replace the logger's levels with those from settings.
   Logger.transports.console.level = Settings.get('consoleLogLevel', defaultConsoleLogLevel);
