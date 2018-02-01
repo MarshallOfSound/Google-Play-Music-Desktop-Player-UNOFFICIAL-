@@ -36,7 +36,7 @@ parts:
 
   google-play-music-desktop-player:
     plugin: gulp
-    node-engine: 7.2.1
+    node-engine: 8.9.4
     source: .
     source-type: git
     gulp-tasks:
