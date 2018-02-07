@@ -48,7 +48,7 @@ const setPresence = () => {
 
     const presence = {
       state: track.title,
-      details: `Album ${track.album} by ${track.artist}`,
+      details: track.artist,
       startTimestamp: start,
       endTimestamp: end,
       instance: false,
