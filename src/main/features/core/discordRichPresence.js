@@ -1,5 +1,6 @@
 import { app } from 'electron';
 import createDiscordClient from 'discord-rich-presence';
+import _ from 'lodash'
 
 // Handle because RPC is weird
 process.on('unhandledRejection', () => null);
@@ -81,4 +82,4 @@ app.on('before-quit', () => {
 
 PlaybackAPI.on('change:state', setPresence);
 PlaybackAPI.on('change:track', setPresence);
-PlaybackAPI.on('change:time', setPresence);
+PlaybackAPI.on('change:time', _.throttle(setPresence, 15000));
