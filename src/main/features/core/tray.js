@@ -47,6 +47,23 @@ const getTrackString = (track) => {
   return trackString;
 };
 
+function getThumbsUpString() {
+  let thumbsUpString = TranslationProvider.query('playback-label-thumbs-up');
+  if (PlaybackAPI.getRating().liked) {
+    thumbsUpString += ' ✓';
+  }
+  return thumbsUpString;
+}
+
+function getThumbsDownString() {
+  let thumbsDownString = TranslationProvider.query('playback-label-thumbs-down');
+  if (PlaybackAPI.getRating().disliked) {
+    thumbsDownString += ' ✓';
+  }
+  return thumbsDownString;
+}
+
+
 let audioDeviceMenu = [
   {
     label: TranslationProvider.query('label-loading-devices'),
@@ -105,11 +122,11 @@ const setContextMenu = (track) => {
     },
     { type: 'separator' },
     {
-      label: TranslationProvider.query('playback-label-thumbs-up'),
+      label: getThumbsUpString(),
       click: () => Emitter.sendToGooglePlayMusic('playback:thumbsUp'),
     },
     {
-      label: TranslationProvider.query('playback-label-thumbs-down'),
+      label: getThumbsDownString(),
       click: () => Emitter.sendToGooglePlayMusic('playback:thumbsDown'),
     },
     { type: 'separator' },
@@ -243,4 +260,9 @@ Emitter.on('audiooutput:set', () => Emitter.sendToGooglePlayMusic('audiooutput:f
 
 PlaybackAPI.on('change:track', (track) => {
   setContextMenu(track);
+});
+
+PlaybackAPI.on('change:rating', () => {
+  // The rating changed; set the menu again to update the check marks
+  setContextMenu(PlaybackAPI.currentSong());
 });
