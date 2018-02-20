@@ -34,6 +34,7 @@ OS Support
 * Mint
 * Fedora
 * Debian
+* [Gentoo](https://github.com/Atoms/rukruk) from Overlay
 
 Features
 --------
