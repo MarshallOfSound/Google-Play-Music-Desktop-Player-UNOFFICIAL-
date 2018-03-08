@@ -47,22 +47,6 @@ const getTrackString = (track) => {
   return trackString;
 };
 
-function getThumbsUpString() {
-  let thumbsUpString = TranslationProvider.query('playback-label-thumbs-up');
-  if (PlaybackAPI.getRating().liked) {
-    thumbsUpString += ' ✓';
-  }
-  return thumbsUpString;
-}
-
-function getThumbsDownString() {
-  let thumbsDownString = TranslationProvider.query('playback-label-thumbs-down');
-  if (PlaybackAPI.getRating().disliked) {
-    thumbsDownString += ' ✓';
-  }
-  return thumbsDownString;
-}
-
 
 let audioDeviceMenu = [
   {
@@ -122,12 +106,16 @@ const setContextMenu = (track) => {
     },
     { type: 'separator' },
     {
-      label: getThumbsUpString(),
-      click: () => Emitter.sendToGooglePlayMusic('playback:thumbsUp'),
+      type: 'checkbox',
+      checked: PlaybackAPI.getRating().liked,
+      label: TranslationProvider.query('playback-label-thumbs-up'),
+      click: () => Emitter.sendToGooglePlayMusic('playback:toggleThumbsUp'),
     },
     {
-      label: getThumbsDownString(),
-      click: () => Emitter.sendToGooglePlayMusic('playback:thumbsDown'),
+      type: 'checkbox',
+      checked: PlaybackAPI.getRating().disliked,
+      label: TranslationProvider.query('playback-label-thumbs-down'),
+      click: () => Emitter.sendToGooglePlayMusic('playback:toggleThumbsDown'),
     },
     { type: 'separator' },
     {
@@ -262,9 +250,4 @@ Emitter.on('audiooutput:set', () => Emitter.sendToGooglePlayMusic('audiooutput:f
 
 PlaybackAPI.on('change:track', (track) => {
   setContextMenu(track);
-});
-
-PlaybackAPI.on('change:rating', () => {
-  // The rating changed; set the menu again to update the check marks
-  setContextMenu(PlaybackAPI.currentSong());
 });

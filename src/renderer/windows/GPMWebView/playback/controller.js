@@ -61,6 +61,14 @@ Emitter.on('playback:thumbsDown', () => {
   window.GPM.rating.setRating(1);
 });
 
+Emitter.on('playback:toggleThumbsUp', () => {
+  window.GPM.rating.toggleThumbsUp();
+});
+
+Emitter.on('playback:toggleThumbsDown', () => {
+  window.GPM.rating.toggleThumbsDown();
+});
+
 Emitter.on('playback:increaseVolume', () => {
   window.GPM.volume.increaseVolume();
 });
