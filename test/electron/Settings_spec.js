@@ -65,7 +65,7 @@ describe('Settings', () => {
     hookCalled.should.be.equal(true);
   });
 
-  it('should not fire changa function when the position key is changed', () => {
+  it('should not fire change function on position key when another key is changed', () => {
     let hookCalled = false;
     settings.onChange('test_key', () => {
       hookCalled = true;

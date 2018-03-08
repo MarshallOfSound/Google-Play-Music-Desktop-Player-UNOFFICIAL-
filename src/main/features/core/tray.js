@@ -142,6 +142,8 @@ const setContextMenu = (track) => {
           label: TranslationProvider.query('label-about'),
           click: () => {
             Emitter.sendToWindowsOfName('main', 'about');
+            mainWindow.setSkipTaskbar(false);
+            mainWindow.show();
           },
         },
         {
