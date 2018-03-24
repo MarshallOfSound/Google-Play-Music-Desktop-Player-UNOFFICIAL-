@@ -1,4 +1,5 @@
 import { remote } from 'electron';
+import _ from 'lodash';
 
 let mode;
 window.wait(() => {
@@ -6,10 +7,14 @@ window.wait(() => {
   window.GPM.on('change:playback', (newMode) => {
     mode = newMode;
   });
-});
 
-Emitter.on('playback:previousTrack', () => {
-  window.GPM.playback.rewind();
+  Emitter.on('playback:previousTrack', 
+    _.debounce(window.GPM.playback.rewind, 300, { leading: true })
+  );
+
+  Emitter.on('playback:nextTrack',
+    _.debounce(window.GPM.playback.forward, 300, { leading: true })
+  );
 });
 
 Emitter.on('playback:playPause', () => {
@@ -31,10 +36,6 @@ Emitter.on('playback:play:smooth', () => {
       clearInterval(fadeIn);
     }
   }, 20);
-});
-
-Emitter.on('playback:nextTrack', () => {
-  window.GPM.playback.forward();
 });
 
 Emitter.on('playback:stop', () => {

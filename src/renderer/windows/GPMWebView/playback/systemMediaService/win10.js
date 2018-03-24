@@ -37,10 +37,12 @@ Controls.on('buttonpressed', (sender, eventArgs) => {
       if (GPM.playback.isPlaying()) GPM.playback.playPause();
       break;
     case SystemMediaTransportControlsButton.next:
-      GPM.playback.forward();
+      Emitter.fireAtGoogle('playback:nextTrack');
+      // GPM.playback.forward();
       break;
     case SystemMediaTransportControlsButton.previous:
-      GPM.playback.rewind();
+      Emitter.fireAtGoogle('playback:previousTrack');
+      // GPM.playback.rewind();
       break;
     default:
       break;
