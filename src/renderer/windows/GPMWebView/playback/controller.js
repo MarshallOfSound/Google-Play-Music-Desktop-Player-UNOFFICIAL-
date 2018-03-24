@@ -8,7 +8,7 @@ window.wait(() => {
     mode = newMode;
   });
 
-  Emitter.on('playback:previousTrack', 
+  Emitter.on('playback:previousTrack',
     _.debounce(window.GPM.playback.rewind, 300, { leading: true })
   );
 
