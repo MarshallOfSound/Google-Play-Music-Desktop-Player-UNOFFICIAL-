@@ -36,7 +36,7 @@
   "lastfm-logout-button-text": "Kilépés a Last.FM-ből",
   "lastfm-map-thumbs-up-to-heart": "Automatikusan \"szeresse \" azokat a dalokat amelyek tetszenek",
 
-  "listenbrainz-label-user-token": "Adja meg a ListenBrainz felhasználói tokenjét (megtalálható a https://listenbrainz.org/user/info oldalon)",
+  "listenbrainz-label-user-token": "Adja meg a ListenBrainz felhasználói tokenjét (megtalálható a https://listenbrainz.org/profile oldalon)",
   "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Sajnáljuk, de nem találtunk dalszöveget ehhez a dalhoz",

@@ -36,7 +36,7 @@
   "lastfm-logout-button-text": "Von Last.FM abmelden",
   "lastfm-map-thumbs-up-to-heart": "Automatisch einem Lied bei Daumen Hoch in Last.FM ein Herz (Love) geben",
 
-  "listenbrainz-label-user-token": "Gib dein ListenBrainz 'user token' ein. (Den findest du hier: https://listenbrainz.org/user/info)",
+  "listenbrainz-label-user-token": "Gib dein ListenBrainz 'user token' ein. (Den findest du hier: https://listenbrainz.org/profile)",
   "listenbrainz-token-here": "'token' hier eingeben",
 
   "lyrics-failed-message": "Entschuldige, aber wir konnten keinen Liedtext finden",
