@@ -222,7 +222,7 @@ const setKeepSidebarOpen = (keepSidebarOpen) => {
   if (keepSidebarOpen) {
     sidebar.removeAttribute('force-narrow');
     sidebar.removeAttribute('narrow');
-    openSidebarStyles = cssRule('#material-app-bar .music-logo-link { display: none !important; }');
+    openSidebarStyles = cssRule('#material-app-bar .music-logo-link, #quickNavContainer { display: none !important; }');
   } else {
     sidebar.setAttribute('force-narrow', '');
     sidebar.setAttribute('narrow', '');
