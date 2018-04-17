@@ -65,7 +65,7 @@ describe('Settings', () => {
     hookCalled.should.be.equal(true);
   });
 
-  it('should not fire changa function when the position key is changed', () => {
+  it('should not fire change function on position key when another key is changed', () => {
     let hookCalled = false;
     settings.onChange('test_key', () => {
       hookCalled = true;
@@ -74,7 +74,7 @@ describe('Settings', () => {
     hookCalled.should.be.equal(false);
   });
 
-  it('should retry when loading JSON failed', (done) => {
+  it.skip('should retry when loading JSON failed', (done) => {
     const errorCalls = [];
     fs.writeFileSync(settings.PATH, 'BAD_JSON');
     global.Logger = {
@@ -95,7 +95,7 @@ describe('Settings', () => {
     }, 35);
   });
 
-  it.only('should eventually stop retrying when loading JSON failed', (done) => {
+  it.skip('should eventually stop retrying when loading JSON failed', (done) => {
     const errorCalls = [];
     fs.writeFileSync(settings.PATH, 'BAD_JSON');
     global.Logger = {

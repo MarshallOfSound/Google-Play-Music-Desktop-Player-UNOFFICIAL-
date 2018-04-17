@@ -71,7 +71,7 @@
   "playback-label-volume-up": "Zwiększ głośność",
   "playback-label-info-track": "Powiadom o obecnie odtwarzanym utworze",
   "playback-os-no-track-playing": "Żaden utwór nie jest teraz odtwarzany",
-  "playback-label-im-feeling-lucky": "",
+  "playback-label-im-feeling-lucky": "Szczęśliwy traf",
 
   "settings-requires-restart": "Wymaga ponownego uruchomienia",
 
@@ -97,7 +97,7 @@
   "settings-option-enable-taskbar-progress": "Pokazuj postęp utworu na pasku systemowym",
   "settings-option-enable-win10-media-service": "Włącz System Media Service (Windows 10)",
   "settings-option-enable-win10-media-service-details": "Pokazuj informacje o aktualnym utworze na ekranie blokady",
-  "settings-option-discord-rich-presence": "",
+  "settings-option-discord-rich-presence": "Aktywuj funkcję Rich Presence w celu integracji z aplikacją Discord",
   "settings-option-enable-win10-media-service-track-info": "Pokazuj informacje o aktualnym utworze razem z informacją o ustawieniach głośności (Windows 10)",
   "settings-option-change-locale": "Wybierz język aplikacji",
 

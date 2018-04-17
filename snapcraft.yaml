@@ -1,5 +1,5 @@
 name: google-play-music-desktop-player
-version: '4.4.1'
+version: '4.5.0'
 summary: Standalone player for Google Play Music
 description: |
   This Google Play Music player provides desktop integration - with music
@@ -14,7 +14,7 @@ icon: src/assets/icons/svg/vector_logo.svg
 
 apps:
   google-play-music-desktop-player:
-    command: desktop-launch '$SNAP/google-play-music-desktop-player/Google\ Play\ Music\ Desktop\ Player'
+    command: desktop-launch "$SNAP/google-play-music-desktop-player/Google Play Music Desktop Player"
     desktop: google-play-music-desktop-player.desktop
     plugs:
       - pulseaudio
@@ -36,7 +36,7 @@ parts:
 
   google-play-music-desktop-player:
     plugin: gulp
-    node-engine: 7.2.1
+    node-engine: 8.9.4
     source: .
     source-type: git
     gulp-tasks:

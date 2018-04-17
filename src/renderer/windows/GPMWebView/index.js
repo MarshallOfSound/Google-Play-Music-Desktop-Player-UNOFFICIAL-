@@ -26,6 +26,7 @@ window.open = (url) => remote.shell.openExternal(url);
 require('./playback');
 require('./interface');
 require('./chromecast');
+require('./runtime');
 
 // DEV: We need to wait for the page to load sufficiently before we can load
 //      gmusic.js and its child libraries

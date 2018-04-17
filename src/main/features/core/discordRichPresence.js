@@ -1,5 +1,9 @@
 import { app } from 'electron';
 import createDiscordClient from 'discord-rich-presence';
+import _ from 'lodash';
+
+// Handle because RPC is weird
+process.on('unhandledRejection', () => null);
 
 let client;
 
@@ -45,7 +49,7 @@ const setPresence = () => {
 
     const presence = {
       state: track.title,
-      details: `Album ${track.album} by ${track.artist}`,
+      details: track.artist,
       startTimestamp: start,
       endTimestamp: end,
       instance: false,
@@ -78,4 +82,4 @@ app.on('before-quit', () => {
 
 PlaybackAPI.on('change:state', setPresence);
 PlaybackAPI.on('change:track', setPresence);
-PlaybackAPI.on('change:time', setPresence);
+PlaybackAPI.on('change:time', _.throttle(setPresence, 15000));
