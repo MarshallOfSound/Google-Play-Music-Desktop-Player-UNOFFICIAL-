@@ -36,7 +36,7 @@ parts:
 
   google-play-music-desktop-player:
     plugin: gulp
-    node-engine: 8.9.4
+    node-engine: 8.11.1
     source: .
     source-type: git
     gulp-tasks:
@@ -48,6 +48,7 @@ parts:
       - libx11-dev
       - libexpat1-dev
       - libnotify-dev
+      - python3
     stage-packages:
       - libnss3
       - ca-certificates

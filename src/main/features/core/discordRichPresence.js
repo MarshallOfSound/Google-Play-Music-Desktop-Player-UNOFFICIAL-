@@ -1,6 +1,6 @@
 import { app } from 'electron';
 import createDiscordClient from 'discord-rich-presence';
-import _ from 'lodash'
+import _ from 'lodash';
 
 // Handle because RPC is weird
 process.on('unhandledRejection', () => null);

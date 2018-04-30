@@ -50,7 +50,8 @@ window.wait(() => {
     Emitter.fire('change:repeat', window.GPM.playback.getRepeat());
   }, 100);
 
-  window.GPM.on('change:playback-time', (playbackInfo) => {
+  // This is emitter in chromecast.js by our voodoo
+  window.GPM.on('change:playback-time-internal', (playbackInfo) => {
     Emitter.fire('change:playback-time', playbackInfo);
     const progress = playbackInfo.current - lastPosition;
     lastPosition = playbackInfo.current;
