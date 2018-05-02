@@ -36,7 +36,7 @@
   "lastfm-logout-button-text": "Wyloguj się z Last.FM",
   "lastfm-map-thumbs-up-to-heart": "Polubienie utworu w aplikacji spowoduje jego polubienie również na Last.fm",
 
-  "listenbrainz-label-user-token": "Podaj swój token z ListenBrainz (znajdziesz go pod adresem https://listenbrainz.org/user/info)",
+  "listenbrainz-label-user-token": "Podaj swój token z ListenBrainz (znajdziesz go pod adresem https://listenbrainz.org/profile)",
   "listenbrainz-token-here": "Tu wpisz token",
 
   "lyrics-failed-message": "Niestety nie znaleziono tekstu tego utworu",

@@ -36,7 +36,7 @@
   "lastfm-logout-button-text": "Sair do Last.FM",
   "lastfm-map-thumbs-up-to-heart": "Marcar automaticamente faixas curtidas como faixas preferidas no Last.fm",
 
-  "listenbrainz-label-user-token": "Digite seu token de usuário no ListenBrainz (pode ser encontrado em https://listenbrainz.org/user/info)",
+  "listenbrainz-label-user-token": "Digite seu token de usuário no ListenBrainz (pode ser encontrado em https://listenbrainz.org/profile)",
   "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Desculpe, não conseguimos encontrar a letra dessa música",

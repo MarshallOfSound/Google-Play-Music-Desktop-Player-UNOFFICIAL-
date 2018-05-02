@@ -36,8 +36,8 @@
   "lastfm-logout-button-text": "Cerrar sesión en Last.FM",
   "lastfm-map-thumbs-up-to-heart": "Marcar automáticamente como Love Tracks las canciones que me gustan",
 
-  "listenbrainz-label-user-token": "Introduce tu token de usuario de ListenBrainz (encuéntralo en https://listenbrainz.org/user/info)",
-  "listenbrainz-token-here": "Ingresa token",
+  "listenbrainz-label-user-token": "Introduce tu token de usuario de ListenBrainz (encuéntralo en https://listenbrainz.org/profile)",
+  "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Lo sentimos, no hemos podido encontrar la letra de esta canción",
   "lyrics-loading-message": "Cargando la letra...",

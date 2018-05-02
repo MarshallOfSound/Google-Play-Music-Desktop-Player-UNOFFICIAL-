@@ -36,7 +36,7 @@
   "lastfm-logout-button-text": "Deautentificare Last.FM",
   "lastfm-map-thumbs-up-to-heart": "Iubește automat melodiile care îmi plac.",
 
-  "listenbrainz-label-user-token": "Introduceți tokenul utilizatorului de pe ListenBrainz (poate fi găsit pe https://listenbrainz.org/user/info)",
+  "listenbrainz-label-user-token": "Introduceți tokenul utilizatorului de pe ListenBrainz (poate fi găsit pe https://listenbrainz.org/profile)",
   "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Ne pare rău, dar nu am găsit versuri pentru această melodie",
