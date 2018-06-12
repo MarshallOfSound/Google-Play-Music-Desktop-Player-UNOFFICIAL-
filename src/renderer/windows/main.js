@@ -1,4 +1,4 @@
-import { remote, app } from 'electron';
+import { remote } from 'electron';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -10,7 +10,7 @@ injectTapEventPlugin();
 ReactDOM.render(<PlayerPage />, document.querySelector('#main-window'));
 
 // minimize if 'start minimized' is on.
-if (Settings.get('startMinimized', false) || app.getLoginItemSettings().wasOpenedAsHidden) {
+if (Settings.get('startMinimized', false) || remote.app.getLoginItemSettings().wasOpenedAsHidden) {
   if (Settings.get('minToTray', false)) {
     // .minimize will show on the windows taskbar even if minToTray is true
     // Since, minToTray is on we can safely close without killing

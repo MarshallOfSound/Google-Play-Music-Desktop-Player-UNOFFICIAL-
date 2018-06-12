@@ -2215,9 +2215,9 @@ electron-windows-store@^0.9.3:
     multiline "^1.0.2"
     path-exists "^3.0.0"
 
-electron@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-2.0.1.tgz#d9defcc187862143b9027378be78490eddbfabf4"
+electron@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-2.0.2.tgz#b77e05f83419cc5ec921a2d21f35b55e4bfc3d68"
   dependencies:
     "@types/node" "^8.0.24"
     electron-download "^3.0.1"
@@ -8196,6 +8196,10 @@ yauzl@2.4.1:
   resolved "https://registry.yarnpkg.com/yauzl/-/yauzl-2.4.1.tgz#9528f442dab1b2284e58b4379bb194e22e0c4005"
   dependencies:
     fd-slicer "~1.0.1"
+
+ytmusic.js@6.1.7:
+  version "6.1.7"
+  resolved "https://registry.yarnpkg.com/ytmusic.js/-/ytmusic.js-6.1.7.tgz#5c6af7c6dc404b9696ff251b5b6b062ea121d530"
 
 zip-stream@^1.1.0, zip-stream@^1.2.0:
   version "1.2.0"

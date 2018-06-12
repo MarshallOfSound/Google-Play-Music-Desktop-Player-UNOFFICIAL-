@@ -15,4 +15,5 @@ export default {
   enableWin10MediaService: false,
   enableWin10MediaServiceTrackInfo: true,
   lastFMMapThumbToHeart: true,
+  service: 'google-play-music',
 };
