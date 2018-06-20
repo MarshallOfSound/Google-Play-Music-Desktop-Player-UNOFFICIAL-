@@ -23,12 +23,13 @@ window.wait = (fn) => {
 // DEV: Polyfill window.open to be shell.openExternal
 window.open = (url) => remote.shell.openExternal(url);
 
+const service = Settings.get('service');
+
 require('./playback');
-require('./interface');
+require(`./interface/${service === 'youtube-music' ? 'ytm' : 'gpm'}`);
 require('./chromecast');
 require('./runtime');
 
-const service = Settings.get('service');
 const serviceReady = () => {
   if (service === 'youtube-music') {
     return document.querySelector('.ytmusic-player-bar') && document.querySelector('video');
@@ -47,6 +48,7 @@ const waitForExternal = setInterval(() => {
       const YTMusic = require('ytmusic.js');
       window.GMusic = YTMusic;
       window.GPM = new YTMusic();
+      require('./mock-gpusic-ui');
       // TODO: Implement theming support
       window.GPMTheme = {
         updateTheme() {},

@@ -100,6 +100,17 @@ html, body {
 }
 
 .window-border {
+  &.fullscreen {
+    border-width: 0;
+
+    header {
+      display: none;
+    }
+
+    .embedded-player {
+      height: 100vh;
+    }
+  }
   .fill-parent;
   border: @border-width solid @orange;
   border-top-width: 0;

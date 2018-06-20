@@ -40,5 +40,5 @@ crashReporter.start({
   productName: 'GPMDP',
   companyName: 'Samuel Attard',
   submitURL: 'https://crash.gpmdp.xyz/post',
-  autoSubmit: true,
+  uploadToServer: true,
 });

@@ -42,6 +42,7 @@ global.chrome.runtime = {
 
     return {
       postMessage: (obj) => {
+        console.info(obj);
         if (extensionId === GOOGLE_MINI_PLAYER_EXT_ID) {
           if (obj.type === PING) {
             onMessage.call({ type: PONG, sentFrom: 'bg' });
