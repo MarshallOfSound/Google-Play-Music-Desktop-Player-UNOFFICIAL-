@@ -8197,9 +8197,9 @@ yauzl@2.4.1:
   dependencies:
     fd-slicer "~1.0.1"
 
-ytmusic.js@6.1.10:
-  version "6.1.10"
-  resolved "https://registry.yarnpkg.com/ytmusic.js/-/ytmusic.js-6.1.10.tgz#52172129cf6cf98b9b758453a4af9a4c8982f08e"
+ytmusic.js@6.1.11:
+  version "6.1.11"
+  resolved "https://registry.yarnpkg.com/ytmusic.js/-/ytmusic.js-6.1.11.tgz#0b88c6ebfbc41a892a68155a497f135077457b89"
 
 zip-stream@^1.1.0, zip-stream@^1.2.0:
   version "1.2.0"
