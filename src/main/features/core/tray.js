@@ -81,6 +81,27 @@ Emitter.on('playback:isStopped', () => {
 
 const setContextMenu = (track) => {
   const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Service',
+      enabled: false,
+    },
+    {
+      label: TranslationProvider.query('tray-label-gpm'),
+      click: () => {
+        Settings.set('service', 'google-play-music');
+        mainWindow.hide();
+        mainWindow.reload();
+      },
+    },
+    {
+      label: TranslationProvider.query('tray-label-ytm'),
+      click: () => {
+        Settings.set('service', 'youtube-music');
+        mainWindow.hide();
+        mainWindow.reload();
+      },
+    },
+    { type: 'separator' },
     { label: TranslationProvider.query('tray-label-show'),
       click: () => {
         mainWindow.setSkipTaskbar(false);
@@ -125,6 +146,8 @@ const setContextMenu = (track) => {
           label: TranslationProvider.query('label-about'),
           click: () => {
             Emitter.sendToWindowsOfName('main', 'about');
+            mainWindow.setSkipTaskbar(false);
+            mainWindow.show();
           },
         },
         {

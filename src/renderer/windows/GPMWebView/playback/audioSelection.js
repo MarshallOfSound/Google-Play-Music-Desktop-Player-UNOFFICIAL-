@@ -21,16 +21,20 @@ export const setAudioDevice = (audioElem, id, count = 0) =>
   });
 
 Emitter.on('audiooutput:set', (event, deviceId) => {
-  Array.prototype.forEach.call(document.querySelectorAll('audio:not(.offscreen)'), (audioElem) => {
-    let once = true;
-    if (audioElem.paused) {
-      audioElem.addEventListener('playing', () => {
-        if (!once) return;
-        once = false;
+  const setForElems = (elems) => {
+    Array.prototype.forEach.call(elems, (audioElem) => {
+      let once = true;
+      if (audioElem.paused) {
+        audioElem.addEventListener('playing', () => {
+          if (!once) return;
+          once = false;
+          setAudioDevice(audioElem, deviceId);
+        });
+      } else {
         setAudioDevice(audioElem, deviceId);
-      });
-    } else {
-      setAudioDevice(audioElem, deviceId);
-    }
-  });
+      }
+    });
+  };
+  setForElems(document.querySelectorAll('audio:not(.offscreen)'));
+  setForElems(document.querySelectorAll('video'));
 });

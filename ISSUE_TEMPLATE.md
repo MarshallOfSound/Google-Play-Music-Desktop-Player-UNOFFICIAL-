@@ -18,6 +18,8 @@ If appropriate please attach the DEBUG information zip file that you can generat
 
 **OS:**
 
+**GPMDP Version:**
+
 **Issue Descriptions:**
 
 **Steps to Reproduce:**
