@@ -17,9 +17,9 @@ window.wait(() => {
   );
 });
 
-Emitter.on('playback:playPause', () => {
-  window.GPM.playback.playPause();
-});
+Emitter.on('playback:playPause',
+  _.debounce(window.GPM.playback.playPause, 300, { leading: true })
+);
 
 Emitter.on('playback:play:smooth', () => {
   const originalVolume = window.GPM.volume.getVolume();
