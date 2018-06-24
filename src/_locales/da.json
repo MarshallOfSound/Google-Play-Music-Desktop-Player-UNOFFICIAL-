@@ -143,5 +143,7 @@
   "title-settings-style": "Tilpas udseende",
 
   "tray-label-audio-device": "Lyd enheder",
-  "tray-label-show": "Vis"
+  "tray-label-show": "Vis",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

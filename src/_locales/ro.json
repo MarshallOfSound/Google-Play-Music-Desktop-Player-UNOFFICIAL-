@@ -143,5 +143,7 @@
   "title-settings-style": "Stiluri personalizate",
 
   "tray-label-audio-device": "Dispozitiv audio",
-  "tray-label-show": "Arată"
+  "tray-label-show": "Arată",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

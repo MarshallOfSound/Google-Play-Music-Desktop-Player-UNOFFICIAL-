@@ -143,5 +143,7 @@
   "title-settings-style": "Custom ship",
 
   "tray-label-audio-device": "",
-  "tray-label-show": ""
+  "tray-label-show": "",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

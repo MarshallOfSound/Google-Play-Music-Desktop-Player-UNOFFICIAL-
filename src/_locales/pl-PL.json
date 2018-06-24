@@ -143,5 +143,7 @@
   "title-settings-style": "Własne style",
 
   "tray-label-audio-device": "Urządzenie Audio",
-  "tray-label-show": "Pokaż"
+  "tray-label-show": "Pokaż",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

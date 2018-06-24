@@ -143,5 +143,7 @@
   "title-settings-style": "Aangepaste stijlen",
 
   "tray-label-audio-device": "Audioapparaat",
-  "tray-label-show": "Tonen"
+  "tray-label-show": "Tonen",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

@@ -143,5 +143,7 @@
   "title-settings-style": "Свои стили",
 
   "tray-label-audio-device": "Аудио устройство",
-  "tray-label-show": "Развернуть"
+  "tray-label-show": "Развернуть",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

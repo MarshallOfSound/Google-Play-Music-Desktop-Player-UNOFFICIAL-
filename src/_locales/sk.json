@@ -143,5 +143,7 @@
   "title-settings-style": "Vlastné štýly",
 
   "tray-label-audio-device": "Prehrávacie zariadenie",
-  "tray-label-show": "Zobraziť"
+  "tray-label-show": "Zobraziť",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }
