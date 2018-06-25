@@ -1,5 +1,5 @@
 import { remote } from 'electron';
-import { style, cssRule } from '../customUI';
+import { style, cssRule } from '../_helpers';
 
 window.wait(() => {
   const listenNowURL = 'https://play.google.com/music/listen#/now';
