@@ -30,6 +30,10 @@
   dependencies:
     nan latest
 
+"@types/node@^10.0.6":
+  version "10.3.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.3.5.tgz#8423cdf6e6fb83433e489900d7600d3b61c8260c"
+
 "@types/node@^8.0.24":
   version "8.10.17"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.17.tgz#d48cf10f0dc6dcf59f827f5a3fc7a4a6004318d3"
@@ -4335,7 +4339,7 @@ istextorbinary@1.0.2:
     binaryextensions "~1.0.0"
     textextensions "~1.0.0"
 
-jimp@^0.2.21, jimp@^0.2.27:
+jimp@^0.2.21, jimp@^0.2.27, jimp@^0.2.28:
   version "0.2.28"
   resolved "https://registry.yarnpkg.com/jimp/-/jimp-0.2.28.tgz#dd529a937190f42957a7937d1acc3a7762996ea2"
   dependencies:
@@ -5943,6 +5947,14 @@ pluralize@^1.2.1:
 pn@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
+
+png-to-ico@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/png-to-ico/-/png-to-ico-2.0.0.tgz#8921706dbe52f6a6161f2116750398f053f008eb"
+  dependencies:
+    "@types/node" "^10.0.6"
+    jimp "^0.2.28"
+    minimist "^1.2.0"
 
 pngjs@^3.0.0, pngjs@^3.2.0:
   version "3.3.1"
