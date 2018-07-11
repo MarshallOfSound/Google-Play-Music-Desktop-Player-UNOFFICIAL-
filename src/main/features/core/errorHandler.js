@@ -38,7 +38,7 @@ if (!global.DEV_MODE && process.env.GPMDP_SENTRY_DSN !== 'undefined') {
 
 crashReporter.start({
   productName: 'GPMDP',
-  companyName: 'Samuel Attard',
-  submitURL: 'https://crash.gpmdp.xyz/post',
-  autoSubmit: true,
+  companyName: 'gpmdp',
+  submitURL: 'https://gpmdp.sp.backtrace.io:6098/post?format=minidump&token=029c3dfba8cc89d09a7a8a5dd42d32eb27371fefe80525edcc8ff0efebff40cd',
+  uploadToServer: true,
 });

@@ -51,7 +51,7 @@ window.wait(() => {
   }, 100);
 
   // This is emitter in chromecast.js by our voodoo
-  window.GPM.on('change:playback-time-internal', (playbackInfo) => {
+  window.GPM.on(location.host === 'music.youtube.com' ? 'change:playback-time' : 'change:playback-time-internal', (playbackInfo) => {
     Emitter.fire('change:playback-time', playbackInfo);
     const progress = playbackInfo.current - lastPosition;
     lastPosition = playbackInfo.current;

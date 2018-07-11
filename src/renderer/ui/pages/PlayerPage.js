@@ -23,14 +23,25 @@ export default class PlayerPage extends Component {
     super(...args);
 
     this.once = true;
-    this.targetPage = Settings.get('savePage', true) ?
-      Settings.get('lastPage', 'https://play.google.com/music/listen')
-      : 'https://play.google.com/music/listen';
+    const service = Settings.get('service');
     this.ready = false;
-    this.state = {
-      webviewTarget: 'https://play.google.com/music/listen#/wmp',
-      title: 'Google Play Music Desktop Player',
-    };
+    if (service === 'youtube-music') {
+      this.targetPage = Settings.get('savePage', true) ?
+        Settings.get('lastYTMPage', 'https://music.youtube.com/')
+        : 'https://music.youtube.com/';
+      this.state = {
+        webviewTarget: 'https://music.youtube.com/',
+        title: 'Youtube Music Desktop Player',
+      };
+    } else if (service === 'google-play-music' || true) {
+      this.targetPage = Settings.get('savePage', true) ?
+        Settings.get('lastPage', 'https://play.google.com/music/listen')
+        : 'https://play.google.com/music/listen';
+      this.state = {
+        webviewTarget: 'https://play.google.com/music/listen#/wmp',
+        title: 'Google Play Music Desktop Player',
+      };
+    }
   }
 
   componentDidMount() {
@@ -61,7 +72,7 @@ export default class PlayerPage extends Component {
       this.ready = true;
 
       const focusWebview = () => {
-        document.querySelector('webview::shadow object').focus();
+        document.querySelector('webview').focus();
       };
       window.addEventListener('beforeunload', () => {
         remote.getCurrentWindow().removeListener('focus', focusWebview);
@@ -95,8 +106,15 @@ export default class PlayerPage extends Component {
 
   _savePage = (param) => {
     const url = param.url || param;
-    if (!/https?:\/\/play\.google\.com\/music/g.test(url)) return;
-    Settings.set('lastPage', url);
+
+    const service = Settings.get('service');
+    if (service === 'youtube-music') {
+      if (!/https?:\/\/music\.youtube\.com\//g.test(url)) return;
+      Settings.set('lastYTMPage', url);
+    } else if (service === 'google-play-music' || true) {
+      if (!/https?:\/\/play\.google\.com\/music/g.test(url)) return;
+      Settings.set('lastPage', url);
+    }
   }
 
   render() {

@@ -143,5 +143,7 @@
   "title-settings-style": "Custom Styles",
 
   "tray-label-audio-device": "Audio Device",
-  "tray-label-show": "Show"
+  "tray-label-show": "Show",
+  "tray-label-gpm": "Google Play Music",
+  "tray-label-ytm": "YouTube Music (alpha, please use the dark theme)"
 }
