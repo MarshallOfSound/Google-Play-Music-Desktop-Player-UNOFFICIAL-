@@ -5,7 +5,6 @@ const Jimp = require('jimp');
 const mkdirp = require('mkdirp');
 const path = require('path');
 const svg2png = require('svg2png');
-const toIco = require('png-to-ico');
 
 const basePath = path.resolve(__dirname, '..', 'src/assets/icons/svg');
 const targetPath = path.resolve(__dirname, '..', 'build/assets/img');
@@ -37,13 +36,7 @@ module.exports = (cb) => {
       };
 
       // Generate ico and icns files
-      if (!fs.existsSync(path.resolve(targetPath, 'main.ico'))) {
-        toIco(path.resolve(targetPath, 'main.png')).then(buf => fs.writeFileSync(path.resolve(targetPath, 'main.ico'), buf))
-          .then(() => done())
-          .catch(err => console.error(err));
-      } else {
-        done();
-      }
+      done();
 
       types.forEach((type) => {
         const typeTargetPath = type ? path.resolve(targetPath, type) : targetPath;
