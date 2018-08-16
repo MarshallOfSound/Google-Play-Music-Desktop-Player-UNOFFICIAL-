@@ -143,5 +143,7 @@
   "title-settings-style": "カスタムスタイル",
 
   "tray-label-audio-device": "オーディオデバイス",
-  "tray-label-show": "手前に表示"
+  "tray-label-show": "手前に表示",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

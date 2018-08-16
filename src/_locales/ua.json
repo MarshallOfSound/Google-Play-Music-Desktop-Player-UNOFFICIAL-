@@ -143,5 +143,7 @@
   "title-settings-style": "Власні стилі",
 
   "tray-label-audio-device": "Звуковий пристрій",
-  "tray-label-show": "Показати"
+  "tray-label-show": "Показати",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }
