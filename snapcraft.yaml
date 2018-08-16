@@ -1,5 +1,5 @@
 name: google-play-music-desktop-player
-version: '4.5.0'
+version: '4.6.0'
 summary: Standalone player for Google Play Music
 description: |
   This Google Play Music player provides desktop integration - with music
@@ -36,7 +36,7 @@ parts:
 
   google-play-music-desktop-player:
     plugin: gulp
-    node-engine: 8.9.4
+    node-engine: 8.11.1
     source: .
     source-type: git
     gulp-tasks:
@@ -48,6 +48,8 @@ parts:
       - libx11-dev
       - libexpat1-dev
       - libnotify-dev
+      - python3
+      - python
     stage-packages:
       - libnss3
       - ca-certificates
@@ -58,6 +60,7 @@ parts:
       - libxss1
       - libgconf2-4
       - libxtst6
+      - libdbus-1-3
     after:
       - desktop-gtk2
       - indicator-gtk2

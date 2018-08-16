@@ -143,5 +143,7 @@
   "title-settings-style": "Anpassa utseende",
 
   "tray-label-audio-device": "Ljudenheter",
-  "tray-label-show": "Visa"
+  "tray-label-show": "Visa",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

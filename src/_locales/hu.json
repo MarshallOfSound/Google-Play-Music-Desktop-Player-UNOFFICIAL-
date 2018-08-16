@@ -143,5 +143,7 @@
   "title-settings-style": "Egyéni stílusok",
 
   "tray-label-audio-device": "Audio eszköz",
-  "tray-label-show": "Mutassa"
+  "tray-label-show": "Mutassa",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

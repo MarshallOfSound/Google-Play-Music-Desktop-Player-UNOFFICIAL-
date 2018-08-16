@@ -36,7 +36,7 @@ const paths = {
 const packageJSON = require('./package.json');
 
 let version = packageJSON.dependencies.electron;
-if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1') {
+if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1' && version.substr(0, 1) !== '2') {
   version = version.substr(1);
 }
 

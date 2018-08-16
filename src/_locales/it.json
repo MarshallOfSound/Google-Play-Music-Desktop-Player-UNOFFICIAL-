@@ -143,5 +143,7 @@
   "title-settings-style": "Stili personalizzati",
 
   "tray-label-audio-device": "Dispositivo audio",
-  "tray-label-show": "Mostra"
+  "tray-label-show": "Mostra",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

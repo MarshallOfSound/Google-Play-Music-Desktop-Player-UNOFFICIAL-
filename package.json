@@ -1,7 +1,7 @@
 {
   "name": "google-play-music-desktop-player",
   "productName": "Google Play Music Desktop Player",
-  "version": "4.5.0",
+  "version": "4.6.1",
   "apiVersion": "1.1.0",
   "description": "An Electron wrapper for Google Play Music",
   "main": "build/index.js",
@@ -61,7 +61,7 @@
     "archiver": "^1.0.1",
     "auto-launch": "^4.0.0",
     "discord-rich-presence": "^0.0.5",
-    "electron": "1.7.9",
+    "electron": "2.0.2",
     "electron-chromecast": "^1.1.0",
     "gmusic-mini-player.js": "^2.0.10",
     "gmusic-theme.js": "^2.1.16",
@@ -89,7 +89,8 @@
     "uuid": "^2.0.2",
     "winston": "^2.2.0",
     "ws": "^1.1.0",
-    "xss": "^0.2.13"
+    "xss": "^0.2.13",
+    "ytmusic.js": "6.1.11"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
@@ -104,7 +105,7 @@
     "coveralls": "^2.11.12",
     "cross-env": "^2.0.1",
     "devtron": "^1.0.1",
-    "electron-devtools-installer": "^2.0.1",
+    "electron-devtools-installer": "^2.2.4",
     "electron-mocha": "^3.0.0",
     "electron-packager": "^8.0.0",
     "electron-rebuild": "^1.5.6",
@@ -137,6 +138,7 @@
     "nugget": "^2.0.1",
     "plist": "^2.0.1",
     "pn": "^1.0.0",
+    "png-to-ico": "^2.0.0",
     "pre-commit": "^1.1.2",
     "pre-flight": "^1.0.2",
     "rcedit": "^0.7.0",

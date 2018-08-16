@@ -1,6 +1,7 @@
 import { remote } from 'electron';
 import _ from 'lodash';
 
+import { style, cssRule } from '../generic/_helpers';
 
 // --- Helpers ---
 
@@ -14,26 +15,6 @@ const hide = (elementSelector, kill = false) => {
       element.remove();
     }
   });
-};
-
-/** Set CSS style by a selector */
-export const style = (elementSelector, styleObject) => {
-  const nodeList = document.querySelectorAll(elementSelector);
-  _.forEach(nodeList, (node) => {
-    const element = node;
-    _.forIn(styleObject, (value, key) => {
-      element.style[key] = value;
-    });
-  });
-};
-
-/** Inject a CSS rule to the page (in a <style> tag) */
-export const cssRule = (styles) => {
-  const tag = document.createElement('style');
-  tag.type = 'text/css';
-  tag.appendChild(document.createTextNode(styles));
-  document.head.appendChild(tag);
-  return tag;
 };
 
 /** Removes the referenced <style> tag */
@@ -222,7 +203,7 @@ const setKeepSidebarOpen = (keepSidebarOpen) => {
   if (keepSidebarOpen) {
     sidebar.removeAttribute('force-narrow');
     sidebar.removeAttribute('narrow');
-    openSidebarStyles = cssRule('#material-app-bar .music-logo-link { display: none !important; }');
+    openSidebarStyles = cssRule('#material-app-bar .music-logo-link, #quickNavContainer { display: none !important; }');
   } else {
     sidebar.setAttribute('force-narrow', '');
     sidebar.setAttribute('narrow', '');
