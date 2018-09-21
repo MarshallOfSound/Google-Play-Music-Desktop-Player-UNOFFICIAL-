@@ -106,6 +106,7 @@
   "settings-option-hotkey-not-set": "Not Set",
 
   "settings-option-min-to-tray": "Minimize to Tray",
+  "settings-option-show-tray-icon": "Hide tray icon",
 
   "settings-option-prevent-display-sleep": "Stop your computer from sleeping while GPMDP is open",
   "settings-option-auto-launch": "Automatically launch when I turn my computer on",

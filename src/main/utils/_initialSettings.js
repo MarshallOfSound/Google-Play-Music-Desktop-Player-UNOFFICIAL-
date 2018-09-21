@@ -3,6 +3,7 @@ export default {
   enableJSON_API: true,
   miniUseScrollVolume: false,
   minToTray: true,
+  hideTrayIcon: false,
   nativeFrame: (process.platform !== 'win32'),
   savePage: true,
   scrollLyrics: true,
