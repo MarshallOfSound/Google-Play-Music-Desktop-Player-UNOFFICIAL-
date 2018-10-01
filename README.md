@@ -39,17 +39,20 @@ Features
 --------
 
 * Supports media keys (play, pause, stop, next, previous)
-* [last.fm](https://www.last.fm) Scrobbling and Now Playing support!
+* [last.fm](https://www.last.fm) & [ListenBrainz](https://listenbrainz.org/) Scrobbling and Now Playing support!
+* Discord [Rich Presences](https://discordapp.com/rich-presence) Now Playing information
 * Hands free [Voice Controls](docs/VoiceControls.md)!
 * Desktop notifications on track change
 * A simplistic mini player
-* Customizable Dark theme
+* Dark Theme
+* Customizable accent color + CSS support
 * Task bar media controls (media controls embedded into the taskbar) *Windows only*
 * Smooth scrolling and overlay scrollbars for a nicer User Experience
 * HTML5 Audio Support - No more Adobe Flash Player :+1:
 * Minimize to task bar for background music playing
 * Customizable hotkeys, no worries if you don't have media keys.  Choose your own shortcuts
 * Choose your audio output device from within the player
+* Song Lyrics for those Karaoke nights
 * And a whole lot more coming soon!
 
 Integrating with GPMDP from External Applications
