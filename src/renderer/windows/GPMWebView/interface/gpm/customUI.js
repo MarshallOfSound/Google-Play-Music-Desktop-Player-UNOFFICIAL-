@@ -54,9 +54,9 @@ function hideNotWorkingStuff() {
   hide('.player-top-right-items > paper-icon-button');
 
   // Settings options that won't work
-  hide('[data-action="upload-music"]');
-  hide('[data-action="help-and-feedback"]');
-  hide('[data-action="send-gift"]');
+  cssRule('#download { display: none !important }');
+  cssRule('#manage-downloads { display: none !important }');
+  cssRule('.subscription-gifting-card.settings-card {display: none !important}');
 
   // Hide the upload music button in settings
   cssRule('.music-sources-card.settings-card {display: none !important}');
