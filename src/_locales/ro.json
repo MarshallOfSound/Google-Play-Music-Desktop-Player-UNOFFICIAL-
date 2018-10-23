@@ -131,6 +131,8 @@
   "settings-options-style-dialog-button": "Încarcă CSS",
   "settings-options-style-dialog-css-files": "Fișiere CSS",
   "settings-options-style-dialog-all-files": "Toate fișierele",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Paletă culori",
   "title-settings": "Setări",
@@ -141,6 +143,7 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Player mini",
   "title-settings-style": "Stiluri personalizate",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Dispozitiv audio",
   "tray-label-show": "Arată",

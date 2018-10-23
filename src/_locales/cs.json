@@ -131,6 +131,8 @@
   "settings-options-style-dialog-button": "",
   "settings-options-style-dialog-css-files": "",
   "settings-options-style-dialog-all-files": "",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Výběr barvy",
   "title-settings": "Nastavení",
@@ -141,6 +143,7 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini přehrávač",
   "title-settings-style": "Vlastní motivy",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Zvukové zařízení",
   "tray-label-show": "Zobrazit",

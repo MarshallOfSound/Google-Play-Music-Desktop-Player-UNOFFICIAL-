@@ -131,6 +131,8 @@
   "settings-options-style-dialog-button": "Charger le CSS",
   "settings-options-style-dialog-css-files": "Fichiers CSS",
   "settings-options-style-dialog-all-files": "Tous les fichiers",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Sélecteur de couleur",
   "title-settings": "Paramètres",
@@ -141,6 +143,7 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Lecteur",
   "title-settings-style": "Styles Personnalisés",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Controlleur Audio",
   "tray-label-show": "Montrer",

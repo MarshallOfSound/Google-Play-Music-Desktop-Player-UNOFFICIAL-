@@ -131,6 +131,8 @@
   "settings-options-style-dialog-button": "CSSを読み込む",
   "settings-options-style-dialog-css-files": "CSSファイル",
   "settings-options-style-dialog-all-files": "全てのファイル",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "カラーピッカー",
   "title-settings": "設定",
@@ -141,6 +143,7 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "ミニプレーヤー",
   "title-settings-style": "カスタムスタイル",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "オーディオデバイス",
   "tray-label-show": "手前に表示",

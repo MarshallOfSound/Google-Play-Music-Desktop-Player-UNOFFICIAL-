@@ -131,6 +131,8 @@
   "settings-options-style-dialog-button": "Načítať CSS",
   "settings-options-style-dialog-css-files": "CSS súbory",
   "settings-options-style-dialog-all-files": "Všetky súbory",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Výber farby",
   "title-settings": "Nastavenia",
@@ -141,6 +143,7 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini prehrávač",
   "title-settings-style": "Vlastné štýly",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Prehrávacie zariadenie",
   "tray-label-show": "Zobraziť",
