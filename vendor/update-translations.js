@@ -3,7 +3,7 @@ const path = require('path');
 
 const locales = path.resolve(__dirname, '../src/_locales');
 
-const targetLines = fs.readFileSync(path.resolve(locales, 'en-US.json'), 'utf8').split('\n');
+const targetLines = fs.readFileSync(path.resolve(locales, 'en-US.json'), 'utf8').split(/\r?\n/g);
 
 const keyTest = () => /"(.+)":/gi;
 
@@ -13,7 +13,6 @@ for (let i = 0; i < targetLines.length; i++) {
   targetKeys.push(keyTest().exec(targetLines[i])[1]);
 }
 
-
 fs.readdirSync(locales).forEach((fileName) => {
   const needToAdd = [];
   const filePath = path.resolve(locales, fileName);
@@ -21,16 +20,15 @@ fs.readdirSync(locales).forEach((fileName) => {
   if (fileName.endsWith('.json') && fileName !== 'en-US.json') {
     const content = fs.readFileSync(filePath, 'utf8');
 
-    let lines = content.split('\n');
+    let lines = content.split(/\r?\n/g);
     let keyI = 0;
     let offset = 0;
     for (let i = 0; i < lines.length; i++) {
       if (lines[i].trim() === '{' || lines[i].trim() === '}' || !lines[i].trim()) continue;
-      console.log(lines[i]);
       const key = keyTest().exec(lines[i])[1];
       if (key !== targetKeys[keyI]) {
         needToAdd.push([i + offset, targetKeys[keyI]]);
-        keyI++;
+        i--;
         offset++;
       }
       keyI++;

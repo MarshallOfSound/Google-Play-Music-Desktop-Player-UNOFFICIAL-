@@ -17,3 +17,4 @@ import './alarm.js';
 import './sleepPreventor';
 import './mediaService';
 import './discordRichPresence';
+import './slack';

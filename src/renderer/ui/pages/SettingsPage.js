@@ -8,6 +8,7 @@ import ListenBrainzTab from '../components/settings/tabs/ListenBrainzTab';
 import MiniTab from '../components/settings/tabs/MiniTab';
 import PlaybackTab from '../components/settings/tabs/PlaybackTab';
 import StyleTab from '../components/settings/tabs/StyleTab';
+import SlackTab from '../components/settings/tabs/SlackTab';
 import WindowContainer from '../components/generic/WindowContainer';
 
 const styles = {
@@ -48,6 +49,9 @@ export default class SettingsPage extends Component {
           </Tab>
           <Tab label={TranslationProvider.query('title-settings-style')}>
             <StyleTab />
+          </Tab>
+          <Tab label={TranslationProvider.query('title-settings-slack')}>
+            <SlackTab />
           </Tab>
         </Tabs>
       </WindowContainer>

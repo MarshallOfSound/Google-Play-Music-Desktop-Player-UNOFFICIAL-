@@ -12,7 +12,13 @@ let lastStart = new Date(0);
 let lastPlayingState = false;
 
 const setPresence = () => {
-  if (!Settings.get('discordRichPresence', false)) return;
+  if (!Settings.get('discordRichPresence', false)) {
+    if (client) {
+      client.disconnect();
+      client = null;
+    }
+    return;
+  }
 
   client = client || createDiscordClient('391934620418965504');
   const time = PlaybackAPI.currentTime();
@@ -54,7 +60,7 @@ const setPresence = () => {
       endTimestamp: end,
       instance: false,
       largeImageKey: 'playing',
-      largeImageText: 'Google Play Music',
+      largeImageText: Settings.get('service') === 'youtube-music' ? 'YouTube Music' : 'Google Play Music',
       partySize: queueTrackIndex,
       partyMax: queueLength,
     };
@@ -77,9 +83,12 @@ const setPresence = () => {
 };
 
 app.on('before-quit', () => {
-  client.disconnect();
+  if (client) {
+    client.disconnect();
+  }
 });
 
 PlaybackAPI.on('change:state', setPresence);
 PlaybackAPI.on('change:track', setPresence);
 PlaybackAPI.on('change:time', _.throttle(setPresence, 15000));
+Settings.onChange('discordRichPresence', setPresence);
