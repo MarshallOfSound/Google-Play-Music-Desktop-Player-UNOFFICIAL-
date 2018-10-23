@@ -54,7 +54,7 @@ const setPresence = () => {
       endTimestamp: end,
       instance: false,
       largeImageKey: 'playing',
-      largeImageText: 'Google Play Music',
+      largeImageText: Settings.get('service') === 'youtube-music' ? 'YouTube Music' : 'Google Play Music',
       partySize: queueTrackIndex,
       partyMax: queueLength,
     };
