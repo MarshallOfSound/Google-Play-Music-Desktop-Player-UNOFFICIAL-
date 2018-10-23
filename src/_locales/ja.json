@@ -18,7 +18,7 @@
   "label-desktop-settings": "デスクトップ設定",
   "label-donate": "寄付",
   "label-help": "ヘルプ",
-  "label-issues": "Issues",
+  "label-issues": "イシュー",
   "label-learn-more": "詳しく見る",
   "label-loading-devices": "デバイスを読み込み中です...",
   "label-pause-after-song": "この曲の後で一時停止する",
@@ -34,16 +34,16 @@
   "lastfm-login-error": "承認プロセスを終えたようですが、もし失敗しているようなら再度認証を試みてください",
   "lastfm-login-not-authorized": "未接続",
   "lastfm-logout-button-text": "Last.FMとの接続を解除",
-  "lastfm-map-thumbs-up-to-heart": "高く評価した曲をLast.fmに好き",
+  "lastfm-map-thumbs-up-to-heart": "高く評価した曲をLast.fmでお気に入り音楽として登録",
 
-  "listenbrainz-label-user-token": "",
-  "listenbrainz-token-here": "",
+  "listenbrainz-label-user-token": "ListenBrainzのユーザートークンを入力してください",
+  "listenbrainz-token-here": "トークンを入力してください",
 
   "lyrics-failed-message": "すみませんが、この曲の歌詞がみつかりません",
   "lyrics-loading-message": "歌詞を読み込み中...",
   "lyrics-no-song-message": "現在再生中の曲はありません",
-  "lyrics-search-in": "",
-  "lyrics-lyrics": "",
+  "lyrics-search-in": "検索",
+  "lyrics-lyrics": "歌詞",
 
   "message-pausing-after-song": "この曲の後に一時停止します",
   "message-pausing-after-song-button": "この曲の後で一時停止しない",
@@ -69,14 +69,14 @@
   "playback-label-thumbs-up": "高く評価",
   "playback-label-volume-down": "音量を上げる",
   "playback-label-volume-up": "音量を下げる",
-  "playback-label-info-track": "",
+  "playback-label-info-track": "今の曲を通知する",
   "playback-os-no-track-playing": "現在再生中の曲はありません",
   "playback-label-im-feeling-lucky": "",
 
   "settings-requires-restart": "再起動が必要です",
 
   "settings-option-keep-sidebar-open": "サイドバーを表示",
-  "settings-option-static-album-art": "",
+  "settings-option-static-album-art": "ビジュアライザでアルバムアートを静止画にする",
 
   "settings-option-invert-tray-icon": "トレイアイコンの色を反転させる",
 
@@ -86,7 +86,7 @@
   "settings-option-custom-theme-custom-color": "カスタムカラーを設定する",
   "settings-option-custom-theme-dark": "ダーク",
   "settings-option-custom-theme-light": "ライト",
-  "settings-option-custom-theme-should-track-system": "",
+  "settings-option-custom-theme-should-track-system": "システムのダークモード設定をテーマの種類と一致させる",
 
   "settings-option-enable-api": "Playback APIを有効にする",
   "settings-option-enable-api-json": "JSON APIを有効にする",
@@ -97,13 +97,13 @@
   "settings-option-enable-taskbar-progress": "曲の進行状況をタスクバーに表示する",
   "settings-option-enable-win10-media-service": "Windows 10のSystem Media Serviceを有効にする",
   "settings-option-enable-win10-media-service-details": "これによりロック画面に現在の曲が表示されるようになります",
-  "settings-option-discord-rich-presence": "",
-  "settings-option-enable-win10-media-service-track-info": "",
+  "settings-option-discord-rich-presence": "DiscordのRich Presenceを有効にする",
+  "settings-option-enable-win10-media-service-track-info": "Windows 10ボリューム操作のオーバーレイで曲の情報を表示する",
   "settings-option-change-locale": "言語",
 
   "settings-option-hotkey-explanation": "これらの設定に関係なくデフォルトのメディアキーは引き続き機能します。 これらの設定はデフォルトに追加するものです",
   "settings-option-hotkey-explanation-2": "ホットキーをリセットするには<i>\"Escape\"</i>キーを押してください",
-  "settings-option-hotkey-not-set": "",
+  "settings-option-hotkey-not-set": "設定されていません",
 
   "settings-option-min-to-tray": "トレイにしまう",
 
@@ -144,6 +144,6 @@
 
   "tray-label-audio-device": "オーディオデバイス",
   "tray-label-show": "手前に表示",
-  "tray-label-gpm": "",
-  "tray-label-ytm": ""
+  "tray-label-gpm": "Google Playミュージック",
+  "tray-label-ytm": "YouTubeミュージック"
 }
