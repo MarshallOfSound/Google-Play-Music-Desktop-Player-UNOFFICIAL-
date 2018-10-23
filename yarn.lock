@@ -1376,7 +1376,7 @@ chai-fs@chaijs/chai-fs:
   resolved "https://codeload.github.com/chaijs/chai-fs/tar.gz/e59d5523eed89c6d9f6cee54265e9fc5aad37cb1"
   dependencies:
     bit-mask "^1.0.1"
-    readdir-enhanced "^1.4.0"
+    readdir-enhanced "^2.0.0"
 
 chai@^3.5.0:
   version "3.5.0"
@@ -2299,9 +2299,9 @@ electron-windows-store@^0.9.3:
     multiline "^1.0.2"
     path-exists "^3.0.0"
 
-electron@2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-2.0.8.tgz#6ec7113b356e09cc9899797e0d41ebff8163e962"
+electron@2.0.12:
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-2.0.12.tgz#04b11ef3246cd2a5839a8f16314051341dc5c449"
   dependencies:
     "@types/node" "^8.0.24"
     electron-download "^3.0.1"
