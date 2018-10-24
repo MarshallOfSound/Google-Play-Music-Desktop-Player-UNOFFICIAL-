@@ -131,6 +131,8 @@
   "settings-options-style-dialog-button": "Indlæs CSS",
   "settings-options-style-dialog-css-files": "CSS filer",
   "settings-options-style-dialog-all-files": "Alle filer",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Farve vælger",
   "title-settings": "Indstillinger",
@@ -141,7 +143,10 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Afspiller",
   "title-settings-style": "Tilpas udseende",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Lyd enheder",
-  "tray-label-show": "Vis"
+  "tray-label-show": "Vis",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

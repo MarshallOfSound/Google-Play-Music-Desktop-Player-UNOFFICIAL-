@@ -34,10 +34,10 @@
   "lastfm-login-error": "Похоже, что вы отменили процесс авторизации. Если это ошибка - пожалуйста, попробуйте ещё раз",
   "lastfm-login-not-authorized": "Не авторизован(а)",
   "lastfm-logout-button-text": "Выйти из Last.FM",
-  "lastfm-map-thumbs-up-to-heart": "",
+  "lastfm-map-thumbs-up-to-heart": "Автоматически добавлять в избранное понравившиеся треки",
 
-  "listenbrainz-label-user-token": "",
-  "listenbrainz-token-here": "",
+  "listenbrainz-label-user-token": "Укажите свой токен ListenBrainz (со страницы https://listenbrainz.org/profile)",
+  "listenbrainz-token-here": "Укажите токен",
 
   "lyrics-failed-message": "Извините, мы не смогли найти текста для этой песни",
   "lyrics-loading-message": "Загрузка текста песни...",
@@ -69,9 +69,9 @@
   "playback-label-thumbs-up": "Нравится",
   "playback-label-volume-down": "Уменьшить громкость",
   "playback-label-volume-up": "Увеличить громкость",
-  "playback-label-info-track": "",
+  "playback-label-info-track": "Уведомлять о текущем треке",
   "playback-os-no-track-playing": "Ничего не воспроизводится",
-  "playback-label-im-feeling-lucky": "",
+  "playback-label-im-feeling-lucky": "Мне повезёт!",
 
   "settings-requires-restart": "Требует перезапуска",
 
@@ -86,7 +86,7 @@
   "settings-option-custom-theme-custom-color": "собственный цвет",
   "settings-option-custom-theme-dark": "Тёмная",
   "settings-option-custom-theme-light": "Светлая",
-  "settings-option-custom-theme-should-track-system": "",
+  "settings-option-custom-theme-should-track-system": "Привести настройки тёмного режима в соответствие с системными",
 
   "settings-option-enable-api": "Включить Playback API",
   "settings-option-enable-api-json": "Включить JSON API",
@@ -97,7 +97,7 @@
   "settings-option-enable-taskbar-progress": "Показывать позицию воспроизведения в панели задач",
   "settings-option-enable-win10-media-service": "Включить поддержку медиасервиса Windows 10",
   "settings-option-enable-win10-media-service-details": "Информация о текущем треке будет выводиться на экране блокировки",
-  "settings-option-discord-rich-presence": "",
+  "settings-option-discord-rich-presence": "Включить поддержку Discord Rich Presence",
   "settings-option-enable-win10-media-service-track-info": "Показывать информацию о текущем треке рядом со всплывающим индикатором громкости Windows 10",
   "settings-option-change-locale": "Язык программы",
 
@@ -131,6 +131,8 @@
   "settings-options-style-dialog-button": "Загрузить CSS",
   "settings-options-style-dialog-css-files": "Файлы CSS",
   "settings-options-style-dialog-all-files": "Все файлы",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Выбор цвета",
   "title-settings": "Настройки программы",
@@ -141,7 +143,10 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Миниплеер",
   "title-settings-style": "Свои стили",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Аудио устройство",
-  "tray-label-show": "Развернуть"
+  "tray-label-show": "Развернуть",
+  "tray-label-gpm": "Google Play Music",
+  "tray-label-ytm": "YouTube Music (альфа, используйте тёмную тему)"
 }

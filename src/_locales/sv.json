@@ -60,7 +60,6 @@
   "modal-goToURL-title": "Skriv in Google Play-adressen:",
   "modal-welcome-title": "Välkommen til version",
   "modal-welcome-content": "Vi hoppas att du gillar den nya uppdateringen!",
-  "playback-label-im-feeling-lucky": "",
 
   "playback-label-next-track": "Nästa låt",
   "playback-label-play-pause": "Spela / Pausa",
@@ -72,6 +71,7 @@
   "playback-label-volume-up": "Sänk volym",
   "playback-label-info-track": "Meddela nuvarande låt",
   "playback-os-no-track-playing": "Ingen låt spelas",
+  "playback-label-im-feeling-lucky": "",
 
   "settings-requires-restart": "Kräver omstart av GPMDP",
 
@@ -131,6 +131,8 @@
   "settings-options-style-dialog-button": "Ladda CSS",
   "settings-options-style-dialog-css-files": "CSS-filer",
   "settings-options-style-dialog-all-files": "Alla filer",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Färgväljare",
   "title-settings": "Inställningar",
@@ -141,7 +143,10 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Miniuppspelare",
   "title-settings-style": "Anpassa utseende",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Ljudenheter",
-  "tray-label-show": "Visa"
+  "tray-label-show": "Visa",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

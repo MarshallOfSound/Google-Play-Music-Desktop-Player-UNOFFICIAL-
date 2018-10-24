@@ -1,3 +1,4 @@
+import './customNavigation';
 import './errorHandler';
 import './fakeActivity';
 import './pauseAfter';

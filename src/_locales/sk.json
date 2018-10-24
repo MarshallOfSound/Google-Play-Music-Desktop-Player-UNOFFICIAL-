@@ -36,14 +36,14 @@
   "lastfm-logout-button-text": "Odhlásiť sa z Last.FM",
   "lastfm-map-thumbs-up-to-heart": "Skladby, ktoré sa mi páčia, automaticky označiť ako obľúbené",
 
-  "listenbrainz-label-user-token": "",
-  "listenbrainz-token-here": "",
+  "listenbrainz-label-user-token": "Zadajte váš ListenBrainz užívateľský token (nájdete ho na https://listenbrainz.org/profile)",
+  "listenbrainz-token-here": "Zadajte token",
 
   "lyrics-failed-message": "Je nám ľúto, ale pre túto skladbu sme nenašli žiadne texty",
   "lyrics-loading-message": "Načítanie textu...",
   "lyrics-no-song-message": "Práve sa neprehráva žiadna skladba",
-  "lyrics-search-in": "",
-  "lyrics-lyrics": "",
+  "lyrics-search-in": "Hľadať v",
+  "lyrics-lyrics": "texty",
 
   "message-pausing-after-song": "Pozastavenie po tejto skladbe.",
   "message-pausing-after-song-button": "Zrušiť pozastavenie po tejto skladbe",
@@ -71,7 +71,7 @@
   "playback-label-volume-up": "Zvýšiť hlasitosť",
   "playback-label-info-track": "Upozornenie s aktuálnou skladbou",
   "playback-os-no-track-playing": "Neprehráva sa žiadna skladba",
-  "playback-label-im-feeling-lucky": "",
+  "playback-label-im-feeling-lucky": "Cítim šťastie",
 
   "settings-requires-restart": "Vyžaduje reštart",
 
@@ -97,7 +97,7 @@
   "settings-option-enable-taskbar-progress": "Zobraziť priebeh skladby na panely úloh",
   "settings-option-enable-win10-media-service": "Povoliť Windows 10 System Media Service",
   "settings-option-enable-win10-media-service-details": "Zobrazí aktuálnu skladbu na uzamknutej obrazovke",
-  "settings-option-discord-rich-presence": "",
+  "settings-option-discord-rich-presence": "Povoliť integráciu Discord Rich Presence",
   "settings-option-enable-win10-media-service-track-info": "Zobraziť informácie o skladbe na prekrytí hlasitosti vo Windows 10",
   "settings-option-change-locale": "Vybrať jazyk",
 
@@ -121,7 +121,7 @@
   "settings-option-mini-use-scroll-volume": "Použiť koliesko myši pre nastavenie hlasitosti",
 
   "settings-option-skip-bad-songs": "Automaticky preskočiť skladby, ktoré sa vám nepáčia",
-  "settings-option-try-supported-channel-layouts": "",
+  "settings-option-try-supported-channel-layouts": "Experimentálna podpora pre viackanálové audio, napr. 5.1 audio",
 
   "settings-options-style-description": "Zvoľte miestny CSS súbor pre použitie vlastného štýlu v aplikácii",
   "settings-options-style-main-app": "Hlavná apl.",
@@ -131,6 +131,8 @@
   "settings-options-style-dialog-button": "Načítať CSS",
   "settings-options-style-dialog-css-files": "CSS súbory",
   "settings-options-style-dialog-all-files": "Všetky súbory",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Výber farby",
   "title-settings": "Nastavenia",
@@ -141,7 +143,10 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini prehrávač",
   "title-settings-style": "Vlastné štýly",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Prehrávacie zariadenie",
-  "tray-label-show": "Zobraziť"
+  "tray-label-show": "Zobraziť",
+  "tray-label-gpm": "Hudba Google Play",
+  "tray-label-ytm": "YouTube Music (alfa, prosím, použite tmavú tému)"
 }

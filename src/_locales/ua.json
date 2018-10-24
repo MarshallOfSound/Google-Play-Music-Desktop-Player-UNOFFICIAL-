@@ -131,6 +131,8 @@
   "settings-options-style-dialog-button": "Завантажити CSS",
   "settings-options-style-dialog-css-files": "Файл CSS",
   "settings-options-style-dialog-all-files": "Всі файли",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Обрати колір",
   "title-settings": "Налаштування",
@@ -141,7 +143,10 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Мініплеер",
   "title-settings-style": "Власні стилі",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Звуковий пристрій",
-  "tray-label-show": "Показати"
+  "tray-label-show": "Показати",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

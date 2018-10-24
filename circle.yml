@@ -14,12 +14,12 @@ jobs:
       - run:
           name: Run Linting
           command: yarn test
-      - run:
-          name: Run Tests
-          command: yarn test-electron-coverage
-      - run:
-          name: Publish Coverage
-          command: yarn _coverage_publish
+      #- run:
+      #    name: Run Tests
+      #    command: yarn test-electron-coverage
+      #- run:
+      #    name: Publish Coverage
+      #    command: yarn _coverage_publish
       - run:
           name: Import Keys
           command: ./sig/import.sh

@@ -36,9 +36,9 @@ export const showColorWheel = () => {
     return;
   }
   const colorWheel = new BrowserWindow({
-    width: 400,
-    minWidth: 400,
-    maxWidth: 400,
+    width: 460,
+    minWidth: 460,
+    maxWidth: 460,
     height: 400,
     minHeight: 400,
     maxHeight: 400,

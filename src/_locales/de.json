@@ -131,6 +131,8 @@
   "settings-options-style-dialog-button": "CSS laden",
   "settings-options-style-dialog-css-files": "CSS-Dateien",
   "settings-options-style-dialog-all-files": "Alle Dateien",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Farbauswahl",
   "title-settings": "Einstellungen",
@@ -141,7 +143,10 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini-Player",
   "title-settings-style": "Eigene Stile",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Audiogerät",
-  "tray-label-show": "Anzeigen"
+  "tray-label-show": "Anzeigen",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

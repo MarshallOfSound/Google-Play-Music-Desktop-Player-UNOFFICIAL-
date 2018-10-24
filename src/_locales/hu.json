@@ -131,6 +131,8 @@
   "settings-options-style-dialog-button": "CSS betöltése",
   "settings-options-style-dialog-css-files": "CSS Fájlok",
   "settings-options-style-dialog-all-files": "Összes fájl",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Színpaletta",
   "title-settings": "Beállítások",
@@ -141,7 +143,10 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Lejátszó",
   "title-settings-style": "Egyéni stílusok",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Audio eszköz",
-  "tray-label-show": "Mutassa"
+  "tray-label-show": "Mutassa",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }
