@@ -132,15 +132,19 @@
   "settings-options-style-dialog-css-files": "CSS ფაილები",
   "settings-options-style-dialog-all-files": "ყველა ფაილი",
 
+  "slack-token-label": "შეიყვანეთ თქვენი Slack მომხმარებლის ტოკენი (რომელიც შეგიძლიათ იპოვოთ ბმულზე https://api.slack.com/custom-integrations/legacy-tokens)",
+  "slack-token-placeholder": "Slack ტოკენი",
+
   "title-color-picker": "ფერის არჩევა",
   "title-settings": "პარამეტრები",
   "title-settings-playback": "დაკვრა",
-  "title-settings-general": "ძირითადი",
-  "title-settings-hotkeys": "სწრაფი ღილაკები",
+  "title-settings-general": "მთავარი",
+  "title-settings-hotkeys": "Hotkeys",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "მინი ფლეერი",
   "title-settings-style": "საკუთარი სტილები",
+  "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "აუდიო დევაისი",
   "tray-label-show": "გახსნა",
