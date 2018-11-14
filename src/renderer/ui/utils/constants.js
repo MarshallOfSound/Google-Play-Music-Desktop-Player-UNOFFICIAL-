@@ -51,6 +51,7 @@ export const languageMap = {
   'fr-FR': 'French',
   hu: 'Hungarian',
   it: 'Italian',
+  'ko-KR': 'Korean',
   ja: 'Japanese',
   'nl-NL': 'Dutch',
   pirate: 'Pirate',
