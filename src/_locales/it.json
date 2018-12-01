@@ -131,8 +131,8 @@
   "settings-options-style-dialog-button": "Carica CSS",
   "settings-options-style-dialog-css-files": "File CSS",
   "settings-options-style-dialog-all-files": "Tutti i file",
-  "slack-token-label": "",
-  "slack-token-placeholder": "",
+  "slack-token-label": "Inserisci il tuo token utente per slack (puoi trovarlo all'indirizzo https://api.slack.com/custom-integrations/legacy-tokens)",
+  "slack-token-placeholder": "Token slack",
 
   "title-color-picker": "Selettore del colore",
   "title-settings": "Impostazioni",
@@ -143,10 +143,10 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Player",
   "title-settings-style": "Stili personalizzati",
-  "title-settings-slack": "",
+  "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "Dispositivo audio",
   "tray-label-show": "Mostra",
-  "tray-label-gpm": "",
-  "tray-label-ytm": ""
+  "tray-label-gpm": "Google Play Music",
+  "tray-label-ytm": "YouTube Music (alfa, per favore usa il tema scuro)"
 }
