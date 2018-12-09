@@ -2,7 +2,7 @@
 @import "../_variables.less";
 
 .loader {
-  display: none;
+  position: absolute;
   margin: 0px auto;
   width: @loader-width;
   top: 0;
@@ -15,7 +15,6 @@
   overflow: hidden;
 
   [loading] & {
-    position: absolute;
     opacity: 1;
     z-index: 10;
   }
@@ -24,6 +23,10 @@
     content:'';
     display: block;
     padding-top: 100%;
+  }
+
+  &.hidden {
+    display: none;
   }
 }
 
