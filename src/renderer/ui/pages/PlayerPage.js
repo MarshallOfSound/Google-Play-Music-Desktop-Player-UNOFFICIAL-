@@ -67,8 +67,8 @@ export default class PlayerPage extends Component {
       }, 900);
       setTimeout(() => {
         this.setState({
-          loading: false
-        })
+          loading: false,
+        });
       }, 2000);
     }
   }
