@@ -157,6 +157,24 @@ function installNowPlayingSeperator() {
   nowPlayingMenu.appendChild(seperator);
 }
 
+function showNowPlayingMenu() {
+  const lyricsButton = document.querySelector('#\\3Agpmdplyrics');
+  const pauseButton = document.querySelector('#\\3Agpmdppause');
+  lyricsButton.previousSibling.style.display = 'block';
+  lyricsButton.style.display = 'block';
+  pauseButton.previousSibling.style.display = 'block';
+  pauseButton.style.display = 'block';
+}
+
+function hideNowPlayingMenu() {
+  const lyricsButton = document.querySelector('#\\3Agpmdplyrics');
+  const pauseButton = document.querySelector('#\\3Agpmdppause');
+  lyricsButton.previousSibling.style.display = 'none';
+  lyricsButton.style.display = 'none';
+  pauseButton.previousSibling.style.display = 'none';
+  pauseButton.style.display = 'none';
+}
+
 function installNowPlayingMenu() {
   installNowPlayingSeperator();
   installNowPlayingButton('label-pause-after-song', ':gpmdppause', () => {
@@ -165,6 +183,22 @@ function installNowPlayingMenu() {
   installNowPlayingSeperator();
   installNowPlayingButton('label-show-lyrics', ':gpmdplyrics', () => {
     Emitter.fireAtMain('lyrics:show');
+  });
+
+  const MenuMutationObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'style' && mutation.target.style.cssText.indexOf('display: none') !== -1) {
+        showNowPlayingMenu();
+      }
+      if (mutation.attributeName !== 'class') return;
+      if (!mutation.target.classList.contains('now-playing-menu')) {
+        hideNowPlayingMenu();
+      }
+    });
+  });
+  MenuMutationObserver.observe(document.querySelector('.goog-menu.song-menu'), {
+    attributes: true,
+    attributeOldValue: true,
   });
 }
 
