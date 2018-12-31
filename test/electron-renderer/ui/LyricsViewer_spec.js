@@ -42,7 +42,6 @@ describe('<LyricsViewer />', () => {
     hooks['lyrics:show'].should.be.ok;
     hooks['PlaybackAPI:change:lyrics'].should.be.ok;
     hooks['PlaybackAPI:change:state'].should.be.ok;
-    hooks['PlaybackAPI:change:time'].should.be.ok;
     hooks['settings:set:scrollLyrics'].should.be.ok;
   });
 
@@ -51,8 +50,13 @@ describe('<LyricsViewer />', () => {
     unhooks['lyrics:show'].should.be.ok;
     unhooks['PlaybackAPI:change:lyrics'].should.be.ok;
     unhooks['PlaybackAPI:change:state'].should.be.ok;
-    unhooks['PlaybackAPI:change:time'].should.be.ok;
     unhooks['settings:set:scrollLyrics'].should.be.ok;
+  });
+
+  it('should hook into the time event when shown', () => {
+    mount(<LyricsViewer />);
+    mockEvent('lyrics:show');
+    hooks['PlaybackAPI:change:time'].should.be.ok;
   });
 
   it('should show when recieving the show event', () => {
