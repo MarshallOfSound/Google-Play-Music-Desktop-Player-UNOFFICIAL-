@@ -5,7 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 export default (themeEnabled, themeColor, themeType) => {
   const themePalette = {};
 
-  let primaryColor = '#FF5722';
+  let primaryColor = '#131313';
   let textColor = darkBlack;
   let alternateTextColor = white;
 
