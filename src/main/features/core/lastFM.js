@@ -141,17 +141,34 @@ Emitter.on('lastfm:auth', () => {
 });
 
 let currentRating = {};
+let trackDetails = {};
+trackDetails.hasUpdatedNowPlaying = false;
+
 Emitter.on('change:track', (event, details) => {
   currentRating = {};
+  trackDetails = details;
+  trackDetails.hasUpdatedNowPlaying = false;
+});
+
+Emitter.on('change:playback-time', (event, timeObj) => {
+  if (trackDetails.hasUpdatedNowPlaying || typeof timeObj.total === 'undefined') {
+    return;
+  }
+
+  const duration = Math.round(timeObj.total / 1000);
+
   // Last.fm isn't accepting 'Unknown Album'
-  const album = details.album === 'Unknown Album' ? undefined : details.album;
-  updateNowPlaying(details.title, details.artist, album, Math.round(details.duration / 1000));
+  const album = trackDetails.album === 'Unknown Album' ? undefined : trackDetails.album;
+  updateNowPlaying(trackDetails.title, trackDetails.artist, album, duration);
+  trackDetails.hasUpdatedNowPlaying = true;
 });
 
 Emitter.on('change:track:scrobble', (event, details) => {
-  if (details.duration > 30 * 1000) { // Scrobble only tracks longer than 30 seconds
+  const duration = Math.round(PlaybackAPI.currentTime().total / 1000);
+
+  if (duration > 30) { // Scrobble only tracks longer than 30 seconds
     const album = details.album === 'Unknown Album' ? undefined : details.album;
-    updateScrobble(details.title, details.artist, album, details.timestamp, Math.round(details.duration / 1000));
+    updateScrobble(details.title, details.artist, album, details.timestamp, duration);
   }
 });
 
