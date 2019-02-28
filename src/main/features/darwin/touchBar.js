@@ -1,13 +1,15 @@
 import { app, TouchBar } from 'electron';
 import path from 'path';
 
-const { TouchBarButton, TouchBarSlider, TouchBarSpacer } = TouchBar;
+const { TouchBarButton, TouchBarSpacer } = TouchBar;
 
 let playing = false;
 let play;
 let mainWindow;
-let mediaSlider;
+let thumbsUp;
+let thumbsDown;
 let renderTouchBar = () => {};
+let { liked, disliked } = PlaybackAPI.getRating();
 
 const mediaControls = `${__dirname}/../../../assets/img/media_controls/`;
 
@@ -28,26 +30,15 @@ const _trackButton = (search) => {
   return trackButton;
 };
 
-const _mediaSlider = (time) => {
-  const touchBar = new TouchBarSlider({
-    value: time.current,
-    maxValue: time.total,
-    change: (newValue) => {
-      Emitter.sendToGooglePlayMusic('playback:seek', newValue);
-    },
-  });
-  return touchBar;
-};
-
 const _thumbsUp = () => new TouchBarButton({
-  label: '👍',
+  icon: path.resolve(`${mediaControls}${liked ? 'filled_' : ''}thumb_up.png`),
   click: () => {
     Emitter.sendToGooglePlayMusic('playback:toggleThumbsUp');
   },
 });
 
 const _thumbsDown = () => new TouchBarButton({
-  label: '👎',
+  icon: path.resolve(`${mediaControls}${disliked ? 'filled_' : ''}thumb_down.png`),
   click: () => {
     Emitter.sendToGooglePlayMusic('playback:toggleThumbsDown');
   },
@@ -59,19 +50,13 @@ const _getTouchBar = () => {
   play = _play();
   const nextTrack = _trackButton('next');
 
-  // media slider
-  const time = PlaybackAPI.currentTime();
-  mediaSlider = _mediaSlider(time);
-
-  const thumbsUp = _thumbsUp();
-  const thumbsDown = _thumbsDown();
+  thumbsUp = _thumbsUp();
+  thumbsDown = _thumbsDown();
 
   const touchBar = new TouchBar([
     prevTrack,
     play,
     nextTrack,
-    new TouchBarSpacer({ size: 'small' }),
-    mediaSlider,
     new TouchBarSpacer({ size: 'small' }),
     thumbsUp,
     thumbsDown,
@@ -97,8 +82,9 @@ PlaybackAPI.on('change:state', (nextState) => {
   play.icon = path.resolve(`${mediaControls}${(playing ? 'pause' : 'play')}.png`);
 });
 
-PlaybackAPI.on('change:time', ({ current }) => {
-  if (mediaSlider) {
-    mediaSlider.value = current;
-  }
+PlaybackAPI.on('change:rating', (newRating) => {
+  liked = newRating.liked;
+  thumbsUp.icon = path.resolve(`${mediaControls}${liked ? 'filled_' : ''}thumb_up.png`);
+  disliked = newRating.disliked;
+  thumbsDown.icon = path.resolve(`${mediaControls}${disliked ? 'filled_' : ''}thumb_down.png`);
 });
