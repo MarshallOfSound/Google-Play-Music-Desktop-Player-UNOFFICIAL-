@@ -1,6 +1,8 @@
 import { app, Menu, shell } from 'electron';
 import { showDesktopSettings } from './desktopSettings';
 
+const mainWindow = WindowManager.getAll('main')[0];
+
 const template = [
   {
     label: 'Edit',
@@ -129,6 +131,14 @@ const template = [
       },
       {
         type: 'separator',
+      },
+      {
+        label: 'Show',
+        accelerator: 'CmdOrCtrl+L',
+        click: () => {
+          mainWindow.setSkipTaskbar(false);
+          mainWindow.show();
+        },
       },
       {
         label: 'Close',
