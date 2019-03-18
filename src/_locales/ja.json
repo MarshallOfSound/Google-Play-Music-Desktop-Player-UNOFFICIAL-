@@ -34,7 +34,7 @@
   "lastfm-login-error": "承認プロセスを終えたようですが、もし失敗しているようなら再度認証を試みてください",
   "lastfm-login-not-authorized": "未接続",
   "lastfm-logout-button-text": "Last.FMとの接続を解除",
-  "lastfm-map-thumbs-up-to-heart": "高く評価した曲をLast.fmでお気に入り音楽として登録",
+  "lastfm-map-thumbs-up-to-heart": "高く評価した曲をLast.fmでお気に入りとして登録",
 
   "listenbrainz-label-user-token": "ListenBrainzのユーザートークンを入力してください",
   "listenbrainz-token-here": "トークンを入力してください",
@@ -57,7 +57,7 @@
   "modal-confirmUpdate-content": "Google Play Music Desktop Playerの最新版があります。  このアップデートでは、新機能、バグ修正、素敵な新機能が満載です。 <br /> <br />最新版が欲しいですよね！",
   "modal-confirmUninstall-title": "つまりは...",
   "modal-confirmUninstall-content": "GPMDPの古いバージョンがまだあなたのシステムにインストールされていることがわかりました。 あなたがGPMDPを更新したばかりであれば正常です。 今古いバージョンをアンインストールしようとしていますが、これには管理者権限が必要な場合がありますので、その際は管理者権限を許可してください",
-  "modal-goToURL-title": "入力されたGoogle Play MusicのURLに飛びます :",
+  "modal-goToURL-title": "入力されたGoogle Play MusicのURLにジャンプします :",
   "modal-welcome-title": "ようこそ バージョン",
   "modal-welcome-content": "最新版が欲しいですよね！",
 
@@ -98,7 +98,7 @@
   "settings-option-enable-win10-media-service": "Windows 10のSystem Media Serviceを有効にする",
   "settings-option-enable-win10-media-service-details": "これによりロック画面に現在の曲が表示されるようになります",
   "settings-option-discord-rich-presence": "DiscordのRich Presenceを有効にする",
-  "settings-option-enable-win10-media-service-track-info": "Windows 10ボリューム操作のオーバーレイで曲の情報を表示する",
+  "settings-option-enable-win10-media-service-track-info": "Windows 10のボリューム操作オーバーレイで曲の情報を表示する",
   "settings-option-change-locale": "言語",
 
   "settings-option-hotkey-explanation": "これらの設定に関係なくデフォルトのメディアキーは引き続き機能します。 これらの設定はデフォルトに追加するものです",
