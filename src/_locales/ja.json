@@ -1,6 +1,6 @@
 {
-  "audio-device-communications": "システムデフォルト通信",
-  "audio-device-default": "システムデフォルト",
+  "audio-device-communications": "システム既定の通信デバイス",
+  "audio-device-default": "システム既定のデバイス",
   "audio-device-unknown": "不明なデバイス",
 
   "button-text-ok": "OK",
