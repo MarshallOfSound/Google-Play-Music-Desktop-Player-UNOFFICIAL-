@@ -13,12 +13,12 @@
   "button-text-not-now": "また後で",
 
   "label-about": "GPMDPについて",
-  "label-alarm": "Alarm",
-  "label-recents": "",
+  "label-alarm": "アラーム",
+  "label-recents": "履歴",
   "label-desktop-settings": "デスクトップ設定",
   "label-donate": "寄付",
   "label-help": "ヘルプ",
-  "label-issues": "イシュー",
+  "label-issues": "Issues",
   "label-learn-more": "詳しく見る",
   "label-loading-devices": "デバイスを読み込み中です...",
   "label-pause-after-song": "この曲の後で一時停止する",
@@ -52,7 +52,7 @@
 
   "modal-confirmTray-title": "お知らせ",
   "modal-confirmTray-content": "メインプレーヤーのウィンドウを閉じると、プレーヤーシステムトレイに最小化されます。この動作を変更したい場合は「デスクトップ設定」ウィンドウで変更できます",
-  "modal-confirmOpenPort-content": "Windowsファイアウォールがブロックしているため、PlaybackAPIを開始できませんでした。 望むならば警告を出すことができますが、これには管理者権限が必要な場合があります",
+  "modal-confirmOpenPort-content": "Windowsファイアウォールにブロックされているため、PlaybackAPIを開始できませんでした。 望むならば警告を出すことができますが、これには管理者権限が必要な場合があります",
   "modal-confirmUpdate-title": "利用可能な更新",
   "modal-confirmUpdate-content": "Google Play Music Desktop Playerの最新版があります。  このアップデートでは、新機能、バグ修正、素敵な新機能が満載です。 <br /> <br />最新版が欲しいですよね！",
   "modal-confirmUninstall-title": "つまりは...",
@@ -71,7 +71,7 @@
   "playback-label-volume-up": "音量を下げる",
   "playback-label-info-track": "今の曲を通知する",
   "playback-os-no-track-playing": "現在再生中の曲はありません",
-  "playback-label-im-feeling-lucky": "",
+  "playback-label-im-feeling-lucky": "I'm Feeling Lucky",
 
   "settings-requires-restart": "再起動が必要です",
 
@@ -121,7 +121,7 @@
   "settings-option-mini-use-scroll-volume": "音量調節にスクロールホイールを利用する",
 
   "settings-option-skip-bad-songs": "低く評価した曲を自動にスキップ",
-  "settings-option-try-supported-channel-layouts": "",
+  "settings-option-try-supported-channel-layouts": "5.1chなどのマルチチャンネルオーディオの実験的サポート",
 
   "settings-options-style-description": "アプリケーションにスタイルを適用するためのローカルCSSファイルを選択する",
   "settings-options-style-main-app": "メインアプリ",
@@ -131,8 +131,8 @@
   "settings-options-style-dialog-button": "CSSを読み込む",
   "settings-options-style-dialog-css-files": "CSSファイル",
   "settings-options-style-dialog-all-files": "全てのファイル",
-  "slack-token-label": "",
-  "slack-token-placeholder": "",
+  "slack-token-label": "Slackのトークンを入力してください",
+  "slack-token-placeholder": "トークンを入力してください",
 
   "title-color-picker": "カラーピッカー",
   "title-settings": "設定",
@@ -143,10 +143,10 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "ミニプレーヤー",
   "title-settings-style": "カスタムスタイル",
-  "title-settings-slack": "",
+  "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "オーディオデバイス",
   "tray-label-show": "手前に表示",
   "tray-label-gpm": "Google Playミュージック",
-  "tray-label-ytm": "YouTubeミュージック"
+  "tray-label-ytm": "YouTube Music"
 }
