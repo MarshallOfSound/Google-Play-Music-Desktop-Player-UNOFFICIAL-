@@ -71,7 +71,7 @@
   "playback-label-volume-up": "Augmenter le volume",
   "playback-label-info-track": "Notifier la piste courante",
   "playback-os-no-track-playing": "Aucune piste en cours de lecture",
-  "playback-label-im-feeling-lucky": "",
+  "playback-label-im-feeling-lucky": "J'ai de la chance",
   "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "Besoin de redémarrer",
@@ -98,8 +98,8 @@
   "settings-option-enable-taskbar-progress": "Afficher la progression du morceau dans la barre des tâches",
   "settings-option-enable-win10-media-service": "Activer le Service Multimedia de Windows 10",
   "settings-option-enable-win10-media-service-details": "Cela montrera la piste courante sur l'écran de verrouillage",
-  "settings-option-discord-rich-presence": "",
-  "settings-option-enable-win10-media-service-track-info": "",
+  "settings-option-discord-rich-presence": "Activer l'integration à Discord pour un statut détaillé",
+  "settings-option-enable-win10-media-service-track-info": "Afficher les informations de la musique sur l'overlay volume de Windows 10",
   "settings-option-change-locale": "Choisir un langage",
 
   "settings-option-hotkey-explanation": "Les touches multimédias continueront à fonctionner malgré ces paramètres. Ceux-ci sont en complément des paramètres par défaut.",
@@ -122,7 +122,7 @@
   "settings-option-mini-use-scroll-volume": "Utiliser la molette de la souris pour ajuster le volume",
 
   "settings-option-skip-bad-songs": "Passer automatiquement les pistes notées négativement",
-  "settings-option-try-supported-channel-layouts": "",
+  "settings-option-try-supported-channel-layouts": "Support experimental pour les canaux audio multiples tel que le 5.1",
 
   "settings-options-style-description": "Choisir un fichier CSS local pour injecter du style dans l'application",
   "settings-options-style-main-app": "Application principale",
@@ -132,8 +132,9 @@
   "settings-options-style-dialog-button": "Charger le CSS",
   "settings-options-style-dialog-css-files": "Fichiers CSS",
   "settings-options-style-dialog-all-files": "Tous les fichiers",
-  "slack-token-label": "",
-  "slack-token-placeholder": "",
+  
+  "slack-token-label": "Entrez votre jeton d'authentification Slack (peut être trouvé à l'adresse: https://api.slack.com/custom-integrations/legacy-tokens)",
+  "slack-token-placeholder": "Jeton Slack",
 
   "title-color-picker": "Sélecteur de couleur",
   "title-settings": "Paramètres",
@@ -144,10 +145,10 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Lecteur",
   "title-settings-style": "Styles Personnalisés",
-  "title-settings-slack": "",
+  "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "Controlleur Audio",
   "tray-label-show": "Montrer",
-  "tray-label-gpm": "",
-  "tray-label-ytm": ""
+  "tray-label-gpm": "Google Play Music",
+  "tray-label-ytm": "YouTube Music (alpha, assurez-vous d'utiliser le thème sombre)"
 }
