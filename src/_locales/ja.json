@@ -1,6 +1,6 @@
 {
-  "audio-device-communications": "システムデフォルト通信",
-  "audio-device-default": "システムデフォルト",
+  "audio-device-communications": "システム既定の通信デバイス",
+  "audio-device-default": "システム既定のデバイス",
   "audio-device-unknown": "不明なデバイス",
 
   "button-text-ok": "OK",
@@ -13,12 +13,12 @@
   "button-text-not-now": "また後で",
 
   "label-about": "GPMDPについて",
-  "label-alarm": "Alarm",
-  "label-recents": "",
+  "label-alarm": "アラーム",
+  "label-recents": "履歴",
   "label-desktop-settings": "デスクトップ設定",
   "label-donate": "寄付",
   "label-help": "ヘルプ",
-  "label-issues": "イシュー",
+  "label-issues": "Issues",
   "label-learn-more": "詳しく見る",
   "label-loading-devices": "デバイスを読み込み中です...",
   "label-pause-after-song": "この曲の後で一時停止する",
@@ -34,7 +34,7 @@
   "lastfm-login-error": "承認プロセスを終えたようですが、もし失敗しているようなら再度認証を試みてください",
   "lastfm-login-not-authorized": "未接続",
   "lastfm-logout-button-text": "Last.FMとの接続を解除",
-  "lastfm-map-thumbs-up-to-heart": "高く評価した曲をLast.fmでお気に入り音楽として登録",
+  "lastfm-map-thumbs-up-to-heart": "高く評価した曲をLast.fmでお気に入りとして登録",
 
   "listenbrainz-label-user-token": "ListenBrainzのユーザートークンを入力してください",
   "listenbrainz-token-here": "トークンを入力してください",
@@ -52,12 +52,12 @@
 
   "modal-confirmTray-title": "お知らせ",
   "modal-confirmTray-content": "メインプレーヤーのウィンドウを閉じると、プレーヤーシステムトレイに最小化されます。この動作を変更したい場合は「デスクトップ設定」ウィンドウで変更できます",
-  "modal-confirmOpenPort-content": "Windowsファイアウォールがブロックしているため、PlaybackAPIを開始できませんでした。 望むならば警告を出すことができますが、これには管理者権限が必要な場合があります",
+  "modal-confirmOpenPort-content": "Windowsファイアウォールにブロックされているため、PlaybackAPIを開始できませんでした。 望むならば警告を出すことができますが、これには管理者権限が必要な場合があります",
   "modal-confirmUpdate-title": "利用可能な更新",
   "modal-confirmUpdate-content": "Google Play Music Desktop Playerの最新版があります。  このアップデートでは、新機能、バグ修正、素敵な新機能が満載です。 <br /> <br />最新版が欲しいですよね！",
   "modal-confirmUninstall-title": "つまりは...",
   "modal-confirmUninstall-content": "GPMDPの古いバージョンがまだあなたのシステムにインストールされていることがわかりました。 あなたがGPMDPを更新したばかりであれば正常です。 今古いバージョンをアンインストールしようとしていますが、これには管理者権限が必要な場合がありますので、その際は管理者権限を許可してください",
-  "modal-goToURL-title": "入力されたGoogle Play MusicのURLに飛びます :",
+  "modal-goToURL-title": "入力されたGoogle Play MusicのURLにジャンプします :",
   "modal-welcome-title": "ようこそ バージョン",
   "modal-welcome-content": "最新版が欲しいですよね！",
 
@@ -71,7 +71,7 @@
   "playback-label-volume-up": "音量を下げる",
   "playback-label-info-track": "今の曲を通知する",
   "playback-os-no-track-playing": "現在再生中の曲はありません",
-  "playback-label-im-feeling-lucky": "",
+  "playback-label-im-feeling-lucky": "I'm Feeling Lucky",
   "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "再起動が必要です",
@@ -99,7 +99,7 @@
   "settings-option-enable-win10-media-service": "Windows 10のSystem Media Serviceを有効にする",
   "settings-option-enable-win10-media-service-details": "これによりロック画面に現在の曲が表示されるようになります",
   "settings-option-discord-rich-presence": "DiscordのRich Presenceを有効にする",
-  "settings-option-enable-win10-media-service-track-info": "Windows 10ボリューム操作のオーバーレイで曲の情報を表示する",
+  "settings-option-enable-win10-media-service-track-info": "Windows 10のボリューム操作オーバーレイで曲の情報を表示する",
   "settings-option-change-locale": "言語",
 
   "settings-option-hotkey-explanation": "これらの設定に関係なくデフォルトのメディアキーは引き続き機能します。 これらの設定はデフォルトに追加するものです",
@@ -122,7 +122,7 @@
   "settings-option-mini-use-scroll-volume": "音量調節にスクロールホイールを利用する",
 
   "settings-option-skip-bad-songs": "低く評価した曲を自動にスキップ",
-  "settings-option-try-supported-channel-layouts": "",
+  "settings-option-try-supported-channel-layouts": "5.1chなどのマルチチャンネルオーディオの実験的サポート",
 
   "settings-options-style-description": "アプリケーションにスタイルを適用するためのローカルCSSファイルを選択する",
   "settings-options-style-main-app": "メインアプリ",
@@ -132,8 +132,8 @@
   "settings-options-style-dialog-button": "CSSを読み込む",
   "settings-options-style-dialog-css-files": "CSSファイル",
   "settings-options-style-dialog-all-files": "全てのファイル",
-  "slack-token-label": "",
-  "slack-token-placeholder": "",
+  "slack-token-label": "Slackのトークンを入力してください",
+  "slack-token-placeholder": "トークンを入力してください",
 
   "title-color-picker": "カラーピッカー",
   "title-settings": "設定",
@@ -144,10 +144,10 @@
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "ミニプレーヤー",
   "title-settings-style": "カスタムスタイル",
-  "title-settings-slack": "",
+  "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "オーディオデバイス",
   "tray-label-show": "手前に表示",
   "tray-label-gpm": "Google Playミュージック",
-  "tray-label-ytm": "YouTubeミュージック"
+  "tray-label-ytm": "YouTube Music"
 }
