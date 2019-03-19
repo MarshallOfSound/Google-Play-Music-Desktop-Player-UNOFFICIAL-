@@ -53,6 +53,7 @@ export const languageMap = {
   it: 'Italian',
   'ko-KR': 'Korean',
   ja: 'Japanese',
+  ka: 'Georgian',
   'nl-NL': 'Dutch',
   pirate: 'Pirate',
   'pl-PL': 'Polish',
