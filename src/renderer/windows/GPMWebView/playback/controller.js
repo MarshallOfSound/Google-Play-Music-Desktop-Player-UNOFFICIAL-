@@ -94,3 +94,7 @@ Emitter.on('playback:infoTrack', () => {
 Emitter.on('playback:imFeelingLucky', () => {
   window.GPM.playback.startFeelingLucky();
 });
+
+Emitter.on('playback:toggleRepeat', () => {
+  window.GPM.playback.toggleRepeat();
+});
