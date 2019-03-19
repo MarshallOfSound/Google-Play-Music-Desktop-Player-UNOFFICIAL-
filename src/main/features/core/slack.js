@@ -42,7 +42,6 @@ let client;
 
 const getClient = () => {
   if (!Settings.get('slackToken')) {
-    Logger.debug('No slack token set');
     return null;
   }
 

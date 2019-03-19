@@ -62,7 +62,7 @@
     "archiver": "^1.0.1",
     "auto-launch": "^4.0.0",
     "discord-rich-presence": "^0.0.7",
-    "electron": "2.0.8",
+    "electron": "3.1.6",
     "electron-chromecast": "^1.1.0",
     "gmusic-mini-player.js": "^2.0.10",
     "gmusic-theme.js": "^2.1.16",
@@ -189,5 +189,8 @@
         "sourceMaps": "inline"
       }
     }
+  },
+  "resolutions": {
+    "nan": "^2.13.1"
   }
 }

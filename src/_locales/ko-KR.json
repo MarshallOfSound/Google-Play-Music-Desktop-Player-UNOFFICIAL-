@@ -72,6 +72,7 @@
   "playback-label-info-track": "현재 트랙 알림",
   "playback-os-no-track-playing": "트랙 재생 안함",
   "playback-label-im-feeling-lucky": "I'm Feeling Lucky",
+  "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "재시작 필요",
 
