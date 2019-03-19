@@ -38,6 +38,7 @@ const customHotkeysTemplate = {
   decreaseVolume: null,
   infoTrack: null,
   imFeelingLucky: null,
+  toggleRepeat: null,
 };
 
 const userHotkeys = Settings.get('hotkeys', {});
