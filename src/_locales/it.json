@@ -9,7 +9,7 @@
   "button-text-close": "Chiudi",
   "button-text-dont-tell-me-again": "Non me lo dire di nuovo",
   "button-text-lets-do-this": "Facciamolo!!",
-  "button-text-lets-go": "Andiamo!!",
+  "button-text-lets-go": "Iniziamo!!",
   "button-text-not-now": "Non ora",
 
   "label-about": "Riguardo a",
@@ -72,7 +72,7 @@
   "playback-label-info-track": "Notifica il brano corrente",
   "playback-os-no-track-playing": "Nessun brano in riproduzione",
   "playback-label-im-feeling-lucky": "Mi sento fortunato",
-  "playback-label-toggle-repeat": "",
+  "playback-label-toggle-repeat": "Attiva / Disattiva ripetizione",
 
   "settings-requires-restart": "Richiede riavvio",
 
