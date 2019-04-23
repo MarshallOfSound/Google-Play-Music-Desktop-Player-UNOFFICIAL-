@@ -30,6 +30,7 @@ export default class PlayerPage extends Component {
         Settings.get('lastYTMPage', 'https://music.youtube.com/')
         : 'https://music.youtube.com/';
       this.state = {
+        loading: true,
         webviewTarget: 'https://music.youtube.com/',
         title: 'Youtube Music Desktop Player',
       };
@@ -38,6 +39,7 @@ export default class PlayerPage extends Component {
         Settings.get('lastPage', 'https://play.google.com/music/listen')
         : 'https://play.google.com/music/listen';
       this.state = {
+        loading: true,
         webviewTarget: 'https://play.google.com/music/listen#/wmp',
         title: 'Google Play Music Desktop Player',
       };
@@ -63,6 +65,11 @@ export default class PlayerPage extends Component {
       setTimeout(() => {
         document.body.removeAttribute('loading');
       }, 900);
+      setTimeout(() => {
+        this.setState({
+          loading: false,
+        });
+      }, 2000);
     }
   }
 
@@ -121,7 +128,7 @@ export default class PlayerPage extends Component {
     return (
       <WindowContainer isMainWindow title={process.platform === 'darwin' ? this.state.title : ''} confirmClose={this._confirmCloseWindow}>
         <div className="drag-handle-large"></div>
-        <div className="loader">
+        <div className={`loader ${this.state.loading ? '' : 'hidden'}`}>
           <svg className="circular" viewBox="25 25 50 50">
             <circle className="path" cx="50" cy="50" r="20" fill="none" strokeWidth="2" strokeMiterlimit="10" />
           </svg>

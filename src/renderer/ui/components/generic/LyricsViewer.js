@@ -122,20 +122,14 @@ class LyricsViewer extends Component {
     Emitter.on('lyrics:show', this.show);
     Emitter.on('PlaybackAPI:change:lyrics', this.lyricsHandler);
     Emitter.on('PlaybackAPI:change:state', this.stateHandler);
-    Emitter.on('PlaybackAPI:change:time', this.timeHandler);
     Emitter.on('settings:set:scrollLyrics', this.scrollSettingsHandler);
-
-    window.addEventListener('resize', this.startAnimating);
   }
 
   _unhook() {
     Emitter.off('lyrics:show', this.show);
     Emitter.off('PlaybackAPI:change:lyrics', this.lyricsHandler);
     Emitter.off('PlaybackAPI:change:state', this.stateHandler);
-    Emitter.off('PlaybackAPI:change:time', this.timeHandler);
     Emitter.off('settings:set:scrollLyrics', this.scrollSettingsHandler);
-
-    window.removeEventListener('resize', this.startAnimating);
   }
 
   handleLyricsNotFound() {
@@ -147,9 +141,14 @@ class LyricsViewer extends Component {
     this.setState({
       visible: false,
     });
+    Emitter.off('PlaybackAPI:change:time', this.timeHandler);
+    window.removeEventListener('resize', this.startAnimating);
   }
 
   show = () => {
+    Emitter.on('PlaybackAPI:change:time', this.timeHandler);
+    window.addEventListener('resize', this.startAnimating);
+
     this.setState({
       visible: true,
     });
