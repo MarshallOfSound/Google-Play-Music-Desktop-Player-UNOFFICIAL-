@@ -126,6 +126,10 @@ Dev Requirements
 * Node.js (Recommend `6.3.x`)
 * NPM (3.x.x)
 
+### Linux
+
+- libavahi-compat-libdnssd-dev (or the equivalent for your distribution)
+
 Continuous Integration
 ------------------------
 
