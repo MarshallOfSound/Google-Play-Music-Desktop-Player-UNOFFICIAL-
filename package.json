@@ -62,10 +62,10 @@
     "archiver": "^1.0.1",
     "auto-launch": "^4.0.0",
     "discord-rich-presence": "^0.0.7",
-    "electron": "3.1.6",
+    "electron": "3.1.8",
     "electron-chromecast": "^1.1.0",
     "gmusic-mini-player.js": "^2.0.10",
-    "gmusic-theme.js": "^2.1.16",
+    "gmusic-theme.js": "^2.1.18",
     "gmusic-ui.js": "^2.2.3",
     "gmusic.js": "^6.1.4",
     "html-entities": "^1.2.0",
@@ -91,7 +91,7 @@
     "winston": "^2.2.0",
     "ws": "^1.1.0",
     "xss": "^0.2.13",
-    "ytmusic.js": "6.1.11"
+    "ytmusic.js": "6.1.12"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",

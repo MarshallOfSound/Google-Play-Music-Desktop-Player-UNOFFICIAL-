@@ -29,8 +29,6 @@ const getProfileUpdateForTrack = (title, artist) => ({
 });
 
 function getProfileUpdate(title, artist, reset) {
-  Logger.debug('Currently Playing: ', PlaybackAPI.isPlaying(), title, artist);
-
   if (PlaybackAPI.isPlaying() && !reset) {
     return getProfileUpdateForTrack(title, artist);
   }
@@ -63,12 +61,11 @@ const updateStatus = (reset = false) => {
   } = PlaybackAPI.currentSong(true);
 
   const profileUpdate = getProfileUpdate(title, artist, reset);
-  Logger.debug('Updating profile status: ', profileUpdate);
 
   client.users.profile
     .set(profileUpdate)
-    .then(result => {
-      Logger.debug('Profile status updated on slack: ', result);
+    .then(() => {
+      Logger.debug('Profile status updated on slack:');
     })
     .catch(err => {
       Logger.error('Error updating profile status', err);

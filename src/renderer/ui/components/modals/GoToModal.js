@@ -96,6 +96,9 @@ export default class GoToModal extends Component {
     } else if (url === 'DEBUG_INFO') {
       Emitter.fire('generateDebugInfo');
       this.handleClose();
+    } else if (url === 'GDEVTOOLS') {
+      window.openGPMDevTools();
+      this.handleClose();
     } else {
       // see if the URL is good to go already
       if (this.validURL(url)) {

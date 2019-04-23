@@ -133,7 +133,7 @@
   "settings-options-style-dialog-css-files": "CSS 파일",
   "settings-options-style-dialog-all-files": "모든 파일",
 
-  "slack-token-label": "Slack 토큰 입력 (https://api.slack.com/custom-integrations/legacy-tokens 찾을 수 있습니다.)",
+  "slack-token-label": "Slack 토큰 입력 ($1 찾을 수 있습니다.)",
   "slack-token-placeholder": "Slack 토큰",
 
   "title-color-picker": "색상 선택",

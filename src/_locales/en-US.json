@@ -133,7 +133,7 @@
   "settings-options-style-dialog-css-files": "CSS Files",
   "settings-options-style-dialog-all-files": "All Files",
 
-  "slack-token-label": "Enter your slack user token (can be found at https://api.slack.com/custom-integrations/legacy-tokens)",
+  "slack-token-label": "Enter your slack user token (can be found at $1)",
   "slack-token-placeholder": "Slack token",
 
   "title-color-picker": "Color Picker",

@@ -133,7 +133,7 @@
   "settings-options-style-dialog-css-files": "CSS ფაილები",
   "settings-options-style-dialog-all-files": "ყველა ფაილი",
 
-  "slack-token-label": "შეიყვანეთ თქვენი Slack მომხმარებლის ტოკენი (რომელიც შეგიძლიათ იპოვოთ ბმულზე https://api.slack.com/custom-integrations/legacy-tokens)",
+  "slack-token-label": "შეიყვანეთ თქვენი Slack მომხმარებლის ტოკენი (რომელიც შეგიძლიათ იპოვოთ ბმულზე $1)",
   "slack-token-placeholder": "Slack ტოკენი",
 
   "title-color-picker": "ფერის არჩევა",

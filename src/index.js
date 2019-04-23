@@ -104,6 +104,10 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
   // initialization and is ready to create browser windows.
   app.on('ready', () => {
     mainWindow = new BrowserWindow(generateBrowserConfig());
+    // Remove Electron from the user agent
+    const newUserAgent = mainWindow.webContents.getUserAgent()
+      .replace(/Electron\/.+? /g, '');
+    mainWindow.webContents.session.setUserAgent(newUserAgent);
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
     const position = Settings.get('position');

@@ -133,7 +133,7 @@
   "settings-options-style-dialog-css-files": "Fichiers CSS",
   "settings-options-style-dialog-all-files": "Tous les fichiers",
   
-  "slack-token-label": "Entrez votre jeton d'authentification Slack (peut être trouvé à l'adresse: https://api.slack.com/custom-integrations/legacy-tokens)",
+  "slack-token-label": "Entrez votre jeton d'authentification Slack (peut être trouvé à l'adresse: $1)",
   "slack-token-placeholder": "Jeton Slack",
 
   "title-color-picker": "Sélecteur de couleur",
