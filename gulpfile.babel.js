@@ -35,7 +35,7 @@ const paths = {
 
 const packageJSON = require('./package.json');
 
-let version = packageJSON.dependencies.electron;
+let version = packageJSON.devDependencies.electron;
 if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1' && version.substr(0, 1) !== '2' && version.substr(0, 1) !== '3') {
   version = version.substr(1);
 }
@@ -259,15 +259,14 @@ gulp.task('watch', ['build'], () => {
 });
 
 gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), (err) => {
-    if (err) return done(err);
+  packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' })).then(() => {
     setTimeout(() => {
       const packageExePath = `dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe`;
       windowsSignFile(packageExePath, 'sha1')
       .then(() => windowsSignFile(packageExePath, 'sha256'))
       .then(() => done());
     }, 1000);
-  });
+  }).catch((err) => done(err));
 });
 
 gulp.task('make:win', ['package:win'], (done) => {
@@ -307,7 +306,9 @@ gulp.task('make:win:uwp', ['package:win'], (done) => {
 });
 
 gulp.task('package:darwin', ['clean-dist-darwin', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', osxSign: { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
+  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', osxSign: { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } })) // eslint-disable-line
+    .then(() => done())
+    .catch((err) => done(err));
 });
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {
@@ -342,12 +343,16 @@ gulp.task('dmg:darwin', ['package:darwin'], (done) => {
 
 gulp.task('package:linux:32', ['clean-dist-linux-32', 'build-release'], (done) => {
   if (process.env.GPMDP_SKIP_PACKAGE) return done();
-  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }), done);
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }))
+    .then(() => done())
+    .catch((err) => done(err));
 });
 
 gulp.task('package:linux:64', ['clean-dist-linux-64', 'build-release'], (done) => {
   if (process.env.GPMDP_SKIP_PACKAGE) return done();
-  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }), done);
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }))
+    .then(() => done())
+    .catch((err) => done(err));
 });
 
 gulp.task('package:linux', (done) => {
