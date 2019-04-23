@@ -3,88 +3,74 @@ import path from 'path';
 
 const { TouchBarButton, TouchBarSpacer } = TouchBar;
 
-let playing = false;
-let play;
-let mainWindow;
-let thumbsUp;
-let thumbsDown;
-let renderTouchBar = () => {};
-let { liked, disliked } = PlaybackAPI.getRating();
+const mediaControls = path.resolve(__dirname, '../../../assets/img/media_controls');
 
-const mediaControls = `${__dirname}/../../../assets/img/media_controls/`;
-
-const _play = () => new TouchBarButton({
-  icon: path.resolve(`${mediaControls}${(playing ? 'pause' : 'play')}.png`),
+const playPauseButton = new TouchBarButton({
+  icon: path.resolve(mediaControls, 'play.png'),
   click: () => {
     Emitter.sendToGooglePlayMusic('playback:playPause');
   },
 });
-
-const _trackButton = (search) => {
-  const trackButton = new TouchBarButton({
-    icon: path.resolve(`${mediaControls}${search}.png`),
-    click: () => {
-      Emitter.sendToGooglePlayMusic(`playback:${search}Track`);
-    },
-  });
-  return trackButton;
+const updatePlayPauseButton = (isPlaying) => {
+  playPauseButton.icon = path.resolve(mediaControls, `${isPlaying ? 'pause' : 'play'}.png`);
 };
 
-const _thumbsUp = () => new TouchBarButton({
-  icon: path.resolve(`${mediaControls}${liked ? 'filled_' : ''}thumb_up.png`),
+const previousButton = new TouchBarButton({
+  icon: path.resolve(mediaControls, 'previous.png'),
+  click: () => {
+    Emitter.sendToGooglePlayMusic('playback:previousTrack');
+  },
+});
+const nextButton = new TouchBarButton({
+  icon: path.resolve(mediaControls, 'next.png'),
+  click: () => {
+    Emitter.sendToGooglePlayMusic('playback:nextTrack');
+  },
+});
+
+const thumbsUpButton = new TouchBarButton({
+  icon: path.resolve(mediaControls, 'thumb_up.png'),
   click: () => {
     Emitter.sendToGooglePlayMusic('playback:toggleThumbsUp');
   },
 });
-
-const _thumbsDown = () => new TouchBarButton({
-  icon: path.resolve(`${mediaControls}${disliked ? 'filled_' : ''}thumb_down.png`),
+const thumbsDownButton = new TouchBarButton({
+  icon: path.resolve(mediaControls, 'thumb_down.png'),
   click: () => {
     Emitter.sendToGooglePlayMusic('playback:toggleThumbsDown');
   },
 });
-
-
-const _getTouchBar = () => {
-  const prevTrack = _trackButton('previous');
-  play = _play();
-  const nextTrack = _trackButton('next');
-
-  thumbsUp = _thumbsUp();
-  thumbsDown = _thumbsDown();
-
-  const touchBar = new TouchBar([
-    prevTrack,
-    play,
-    nextTrack,
-    new TouchBarSpacer({ size: 'small' }),
-    thumbsUp,
-    thumbsDown,
-  ]);
-
-  return touchBar;
+const updateThumbButtons = (liked, disliked) => {
+  thumbsUpButton.icon = path.resolve(mediaControls, `${liked ? 'filled_' : ''}thumb_up.png`);
+  thumbsDownButton.icon = path.resolve(mediaControls, `${disliked ? 'filled_' : ''}thumb_down.png`);
 };
 
-renderTouchBar = () => {
-  mainWindow = WindowManager.getAll('main')[0];
-  if (mainWindow) {
-    mainWindow.setTouchBar(_getTouchBar());
-  } else {
-    // Something went wrong
-    app.quit();
+const touchBar = new TouchBar({
+  items: [
+    previousButton,
+    playPauseButton,
+    nextButton,
+    new TouchBarSpacer({ size: 'small' }),
+    thumbsUpButton,
+    thumbsDownButton,
+  ],
+});
+
+let attached = false;
+const renderTouchBar = () => {
+  const mainWindow = WindowManager.getAll('main')[0];
+  if (mainWindow && !attached) {
+    attached = true;
+    mainWindow.setTouchBar(touchBar);
   }
 };
 
 app.on('browser-window-focus', renderTouchBar);
 
-PlaybackAPI.on('change:state', (nextState) => {
-  playing = nextState;
-  play.icon = path.resolve(`${mediaControls}${(playing ? 'pause' : 'play')}.png`);
+PlaybackAPI.on('change:state', (isPlaying) => {
+  updatePlayPauseButton(isPlaying);
 });
 
 PlaybackAPI.on('change:rating', (newRating) => {
-  liked = newRating.liked;
-  thumbsUp.icon = path.resolve(`${mediaControls}${liked ? 'filled_' : ''}thumb_up.png`);
-  disliked = newRating.disliked;
-  thumbsDown.icon = path.resolve(`${mediaControls}${disliked ? 'filled_' : ''}thumb_down.png`);
+  updateThumbButtons(newRating.liked, newRating.disliked);
 });

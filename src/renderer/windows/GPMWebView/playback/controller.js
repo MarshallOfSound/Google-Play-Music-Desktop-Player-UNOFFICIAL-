@@ -54,10 +54,6 @@ Emitter.on('playback:thumbsUp', () => {
 
 Emitter.on('playback:toggleThumbsUp', () => {
   if (!remote.getGlobal('PlaybackAPI').data.song.title) return;
-  new Notification('You just liked', { // eslint-disable-line
-    body: remote.getGlobal('PlaybackAPI').data.song.title,
-    icon: remote.getGlobal('PlaybackAPI').data.song.albumArt,
-  });
   window.GPM.rating.toggleThumbsUp();
 });
 
@@ -72,10 +68,6 @@ Emitter.on('playback:thumbsDown', () => {
 
 Emitter.on('playback:toggleThumbsDown', () => {
   if (!remote.getGlobal('PlaybackAPI').data.song.title) return;
-  new Notification('You just disliked', { // eslint-disable-line
-    body: remote.getGlobal('PlaybackAPI').data.song.title,
-    icon: remote.getGlobal('PlaybackAPI').data.song.albumArt,
-  });
   window.GPM.rating.toggleThumbsDown();
 });
 
