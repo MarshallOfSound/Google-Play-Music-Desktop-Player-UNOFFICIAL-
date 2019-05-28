@@ -2019,12 +2019,6 @@ dbus-next@^0.6.1:
   optionalDependencies:
     abstract-socket "^2.0.0"
 
-dbus@GPMDP/node-dbus#linux-only:
-  version "0.2.18"
-  resolved "https://codeload.github.com/GPMDP/node-dbus/tar.gz/e35f87d0fcd472b352af236061d28abe78379dc8"
-  dependencies:
-    nan "^2.1.0"
-
 debug@2.6.8:
   version "2.6.8"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
@@ -5928,7 +5922,7 @@ nan-x@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/nan-x/-/nan-x-1.0.0.tgz#0ee78e8d1cd0592d5b4260a5940154545c61c121"
 
-nan@*, nan@2.x, nan@^2.0.9, nan@^2.1.0, nan@^2.13.1, nan@^2.2.0, nan@^2.3.2, nan@^2.4.0, nan@^2.6.2, nan@latest, nan@~2.3.0:
+nan@*, nan@2.x, nan@^2.0.9, nan@^2.13.1, nan@^2.2.0, nan@^2.3.2, nan@^2.4.0, nan@^2.6.2, nan@latest, nan@~2.3.0:
   version "2.13.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.13.1.tgz#a15bee3790bde247e8f38f1d446edcdaeb05f2dd"
   integrity sha512-I6YB/YEuDeUZMmhscXKxGgZlFnhsn5y0hgOZBadkzfTRrZBtJDZeg6eQf7PYMIEclwmorTKK8GztsyOUSVBREA==
