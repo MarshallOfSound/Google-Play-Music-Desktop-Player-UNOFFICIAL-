@@ -160,7 +160,7 @@
     "@nodert-win10/windows.media.playback": "^0.2.95",
     "@nodert-win10/windows.storage.streams": "^0.2.95",
     "appdmg": "^0.4.5",
-    "dbus": "GPMDP/node-dbus#linux-only",
+    "dbus-next": "^0.6.1",
     "electron-installer-debian": "^0.4.0",
     "electron-installer-redhat": "^0.3.0",
     "electron-media-service": "^0.2.2",
