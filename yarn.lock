@@ -3207,12 +3207,12 @@ flatten-packages@^0.1.4:
     wrench "~1.5.4"
 
 flora-colossus@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/flora-colossus/-/flora-colossus-1.0.0.tgz#54729c361edecee014dd441679e1a37c1d773a45"
-  integrity sha1-VHKcNh7ezuAU3UQWeeGjfB13OkU=
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/flora-colossus/-/flora-colossus-1.0.1.tgz#aba198425a8185341e64f9d2a6a96fd9a3cbdb93"
+  integrity sha512-d+9na7t9FyH8gBJoNDSi28mE4NgQVGGvxQ4aHtFRetjyh5SXjuus+V5EZaxFmFdXVemSOrx0lsgEl/ZMjnOWJA==
   dependencies:
-    debug "^3.1.0"
-    fs-extra "^4.0.0"
+    debug "^4.1.1"
+    fs-extra "^7.0.0"
 
 fmix@^0.1.0:
   version "0.1.0"
