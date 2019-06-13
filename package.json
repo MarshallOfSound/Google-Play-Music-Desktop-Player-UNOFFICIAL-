@@ -105,7 +105,7 @@
     "coveralls": "^2.11.12",
     "cross-env": "^2.0.1",
     "devtron": "^1.0.1",
-    "electron": "3.1.8",
+    "electron": "^4.2.0",
     "electron-devtools-installer": "^2.2.4",
     "electron-mocha": "^3.0.0",
     "electron-packager": "^13.1.1",
