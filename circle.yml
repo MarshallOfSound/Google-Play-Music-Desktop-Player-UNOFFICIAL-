@@ -70,20 +70,6 @@ jobs:
             - "node_modules"
       - store_test_results:
           path: test_reports
-  linux_pack_32:
-    docker:
-      - image: gpmdp/build-32
-    steps:
-      - checkout
-      - restore_cache:
-          key: linux-modules-{{ .Branch }}-{{ .Revision }}
-      - run:
-          name: Package
-          command: yarn package:linux:32
-      - save_cache:
-          key: linux-packaged-32-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - "dist"
   linux_pack_64:
     docker:
       - image: gpmdp/build-64
@@ -98,38 +84,6 @@ jobs:
           key: linux-packaged-64-{{ .Branch }}-{{ .Revision }}
           paths:
             - "dist"
-  linux_deb_32:
-    docker:
-      - image: gpmdp/build-32
-    steps:
-      - checkout
-      - restore_cache:
-          key: linux-modules-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: linux-packaged-32-{{ .Branch }}-{{ .Revision }}
-      - run:
-          name: Make
-          command: GPMDP_SKIP_PACKAGE=true yarn make:deb:32
-      - save_cache:
-          key: linux-artifact-deb-32-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - "dist/installers"
-  linux_rpm_32:
-    docker:
-      - image: gpmdp/build-32
-    steps:
-      - checkout
-      - restore_cache:
-          key: linux-modules-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: linux-packaged-32-{{ .Branch }}-{{ .Revision }}
-      - run:
-          name: Make
-          command: GPMDP_SKIP_PACKAGE=true yarn make:rpm:32
-      - save_cache:
-          key: linux-artifact-rpm-32-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - "dist/installers"
   linux_deb_64:
     docker:
       - image: gpmdp/build-64
@@ -167,10 +121,6 @@ jobs:
       - image: gpmdp/build-64
     steps:
       - restore_cache:
-          key: linux-artifact-deb-32-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: linux-artifact-rpm-32-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
           key: linux-artifact-deb-64-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
           key: linux-artifact-rpm-64-{{ .Branch }}-{{ .Revision }}
@@ -195,18 +145,9 @@ workflows:
     jobs:
       - darwin
       - linux_test
-      - linux_pack_32:
-          requires:
-            - linux_test
       - linux_pack_64:
           requires:
             - linux_test
-      - linux_deb_32:
-          requires:
-            - linux_pack_32
-      - linux_rpm_32:
-          requires:
-            - linux_pack_32
       - linux_deb_64:
           requires:
             - linux_pack_64
@@ -215,8 +156,6 @@ workflows:
             - linux_pack_64
       - artifact_gather:
           requires:
-            - linux_deb_32
-            - linux_rpm_32
             - linux_deb_64
             - linux_rpm_64
             - darwin
