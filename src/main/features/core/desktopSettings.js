@@ -17,6 +17,7 @@ export const showDesktopSettings = () => {
     autoHideMenuBar: true,
     frame: Settings.get('nativeFrame'),
     titleBarStyle: Settings.get('nativeFrame') && process.platform === 'darwin' ? 'hidden' : 'default',
+    darkTheme: Settings.get('themeType') === 'FULL',
     show: false,
     webPreferences: {
       nodeIntegration: true,
@@ -45,6 +46,7 @@ export const showColorWheel = () => {
     autoHideMenuBar: true,
     frame: Settings.get('nativeFrame'),
     titleBarStyle: Settings.get('nativeFrame') && process.platform === 'darwin' ? 'hidden' : 'default',
+    darkTheme: Settings.get('themeType') === 'FULL',
     show: false,
     webPreferences: {
       nodeIntegration: true,
