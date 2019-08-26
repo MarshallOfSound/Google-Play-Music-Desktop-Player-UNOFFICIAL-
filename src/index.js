@@ -107,7 +107,7 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
     // Remove Electron from the user agent
     const newUserAgent = mainWindow.webContents.getUserAgent()
       .replace(/Electron\/.+? /g, '');
-    mainWindow.webContents.session.setUserAgent(newUserAgent);
+    mainWindow.webContents.session.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:58.0) Gecko/20100101 Firefox/58.0')
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
     const position = Settings.get('position');
