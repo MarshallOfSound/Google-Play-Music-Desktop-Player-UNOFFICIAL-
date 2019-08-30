@@ -104,9 +104,14 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
   // initialization and is ready to create browser windows.
   app.on('ready', () => {
     mainWindow = new BrowserWindow(generateBrowserConfig());
-    // Remove Electron from the user agent
-    const newUserAgent = mainWindow.webContents.getUserAgent()
-      .replace(/Electron\/.+? /g, '');
+      // Use the default user agent but remove Electron
+    let newUserAgent = mainWindow.webContents.getUserAgent().replace(/Electron\/.+? /g, '');
+
+    // Spoof the user agent to bypass the sign in issue (#3545)
+    if (Settings.get('spoofUserAgent')) {
+      newUserAgent = Settings.get('userAgent');
+    }
+
     mainWindow.webContents.session.setUserAgent(newUserAgent);
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
