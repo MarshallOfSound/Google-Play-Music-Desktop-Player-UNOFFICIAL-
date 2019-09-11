@@ -6,7 +6,7 @@ const decoder = new Entities();
 
 const attemptLyricsWikia = (path) =>
   new Promise((resolve, reject) => {
-    fetch(`http://lyrics.wikia.com/wiki/${path}`)
+    fetch(`https://lyrics.wikia.com/wiki/${path}`)
       .then((data) => data.text())
       .then((html) => {
         try {

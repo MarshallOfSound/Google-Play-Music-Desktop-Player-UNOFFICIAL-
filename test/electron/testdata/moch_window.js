@@ -17,4 +17,8 @@ export default class MockWindow extends Emitter {
   close() {
     this.open = false;
   }
+
+  get webContents() {
+    return new Emitter();
+  }
 }

@@ -30,7 +30,8 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
   let mainWindow = null;
 
   // DEV: Make the app single instance
-  const shouldQuit = app.makeSingleInstance(() => {
+  const gotLock = app.requestSingleInstanceLock();
+  app.on('second-instance', () => {
     if (mainWindow) {
       if (mainWindow.isMinimized()) mainWindow.restore();
       mainWindow.focus();
@@ -40,7 +41,7 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
     }
   });
 
-  if (shouldQuit) {
+  if (!gotLock) {
     app.quit();
     return;
   }
@@ -103,6 +104,15 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
   // initialization and is ready to create browser windows.
   app.on('ready', () => {
     mainWindow = new BrowserWindow(generateBrowserConfig());
+      // Use the default user agent but remove Electron
+    let newUserAgent = mainWindow.webContents.getUserAgent().replace(/Electron\/.+? /g, '');
+
+    // Spoof the user agent to bypass the sign in issue (#3545)
+    if (Settings.get('spoofUserAgent')) {
+      newUserAgent = Settings.get('userAgent');
+    }
+
+    mainWindow.webContents.session.setUserAgent(newUserAgent);
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
     const position = Settings.get('position');

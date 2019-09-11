@@ -88,12 +88,14 @@ html, body {
   }
 
   #lyrics_back {
+    display: none;
     top: 100vh;
     left: 0;
     width: 100vw;
     height: 100vh;
 
     &.vis {
+      display: block;
       top: 0;
     }
   }
@@ -236,7 +238,7 @@ html, body {
     display: flex;
     height: 100%;
     width: 100%;
-    
+
     #search-link {
       position: absolute;
       bottom: 70px;

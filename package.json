@@ -31,8 +31,8 @@
     "pretest-electron-coverage": "cross-env NODE_ENV=coverage npm run build",
     "pretest-spectron": "npm run build",
     "test-electron": "npm run test-electron-main && npm run test-electron-renderer",
-    "test-electron-main": "electron-mocha ./test/electron/*_spec.js ./test/electron/**/*_spec.js --compilers js:babel-core/register -R spec-xunit-file",
-    "test-electron-renderer": "electron-mocha ./test/electron-renderer/**/**/*_spec.js ./test/electron-renderer/**/*_spec.js ./test/electron-renderer/*_spec.js --renderer --compilers js:babel-core/register -R spec-xunit-file",
+    "test-electron-main": "electron-mocha ./test/electron/*_spec.js ./test/electron/**/*_spec.js -R spec-xunit-file --compilers js:babel-core/register",
+    "test-electron-renderer": "electron-mocha ./test/electron-renderer/**/**/*_spec.js ./test/electron-renderer/**/*_spec.js ./test/electron-renderer/*_spec.js --renderer -R spec-xunit-file --compilers js:babel-core/register",
     "test-electron-coverage": "npm run test-electron-main-coverage && npm run test-electron-renderer-coverage",
     "test-electron-main-coverage": "cross-env NODE_ENV=coverage npm run test-electron-main -- -R test/istanbul-reporter",
     "test-electron-renderer-coverage": "cross-env NODE_ENV=coverage npm run test-electron-renderer -- -R test/istanbul-reporter",
@@ -62,10 +62,9 @@
     "archiver": "^1.0.1",
     "auto-launch": "^4.0.0",
     "discord-rich-presence": "^0.0.7",
-    "electron": "2.0.8",
     "electron-chromecast": "^1.1.0",
     "gmusic-mini-player.js": "^2.0.10",
-    "gmusic-theme.js": "^2.1.16",
+    "gmusic-theme.js": "^2.1.18",
     "gmusic-ui.js": "^2.2.3",
     "gmusic.js": "^6.1.4",
     "html-entities": "^1.2.0",
@@ -91,7 +90,7 @@
     "winston": "^2.2.0",
     "ws": "^1.1.0",
     "xss": "^0.2.13",
-    "ytmusic.js": "6.1.11"
+    "ytmusic.js": "^6.1.15"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
@@ -106,10 +105,11 @@
     "coveralls": "^2.11.12",
     "cross-env": "^2.0.1",
     "devtron": "^1.0.1",
+    "electron": "3.1.8",
     "electron-devtools-installer": "^2.2.4",
     "electron-mocha": "^3.0.0",
-    "electron-packager": "^8.0.0",
-    "electron-rebuild": "^1.5.6",
+    "electron-packager": "^13.1.1",
+    "electron-rebuild": "^1.8.4",
     "electron-windows-store": "^0.9.3",
     "enzyme": "^2.4.1",
     "eslint": "^2.10.2",
@@ -160,13 +160,13 @@
     "@nodert-win10/windows.media.playback": "^0.2.95",
     "@nodert-win10/windows.storage.streams": "^0.2.95",
     "appdmg": "^0.4.5",
-    "dbus": "GPMDP/node-dbus#linux-only",
+    "dbus-next": "^0.7.1",
     "electron-installer-debian": "^0.4.0",
     "electron-installer-redhat": "^0.3.0",
     "electron-media-service": "^0.2.2",
     "ll-keyboard-hook-win": "^3.0.0",
     "mouse-forward-back": "^1.0.1",
-    "mpris-service": "GPMDP/mpris-service"
+    "mpris-service": "^2.1.0"
   },
   "babel": {
     "presets": [
@@ -189,5 +189,8 @@
         "sourceMaps": "inline"
       }
     }
+  },
+  "resolutions": {
+    "nan": "^2.13.1"
   }
 }
