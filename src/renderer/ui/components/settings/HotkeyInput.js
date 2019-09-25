@@ -65,8 +65,8 @@ class HotkeyInput extends Component {
   _handleKeyDown = (event) => {
     const keyCode = event.which;
 
-    if (ACCELERATOR_KEYS[keyCode]) {
-      this.keys.accelerators = [ACCELERATOR_KEYS[keyCode]];
+    if (ACCELERATOR_KEYS[keyCode] && !_.includes(this.keys.accelerators, ACCELERATOR_KEYS[keyCode])) {
+      this.keys.accelerators.push(ACCELERATOR_KEYS[keyCode]);
     } else if (MODIFIER_KEYS[keyCode] && !_.includes(this.keys.modifiers, MODIFIER_KEYS[keyCode])) {
       this.keys.modifiers.push(MODIFIER_KEYS[keyCode]);
     } else if (ACTION_KEYS[keyCode] && !_.includes(this.keys.actions, ACTION_KEYS[keyCode])) {

@@ -4,6 +4,7 @@ export const themeColors = ['red', 'cyan', 'purple', 'lime', 'indigo', 'pink', '
 
 export const ACCELERATOR_KEYS = {
   17: 'Ctrl',
+  91: 'Super',
 };
 
 export const MODIFIER_KEYS = {
