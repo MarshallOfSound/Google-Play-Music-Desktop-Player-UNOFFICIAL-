@@ -6,7 +6,7 @@ the following packages are installed on your system:
 ## Debian
 
 * `gcc-c++`
-* `libavahi-compat-libdnssd-dev` (`avahi-compat-mDNSResponder-devel` for OpenSUSE)
+* `libavahi-compat-libdnssd-dev`
 * `libx11-dev`
 
 ## OpenSUSE
