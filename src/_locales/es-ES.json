@@ -11,6 +11,8 @@
   "button-text-lets-do-this": "¡Hagámoslo!",
   "button-text-lets-go": "¡Vamos!",
   "button-text-not-now": "Ahora no",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "Acerca de",
   "label-alarm": "Alarma",
@@ -112,7 +114,7 @@
   "settings-option-auto-launch": "Lanzar la aplicación al arrancar el sistema",
 
   "settings-option-save-page": "Cargar la última página vista al iniciar",
-  
+
   "settings-option-start-minimized": "Iniciar la aplicación minimizada",
 
   "settings-option-scroll-lyrics": "Desplazar letra automáticamente mientras suena la canción",
