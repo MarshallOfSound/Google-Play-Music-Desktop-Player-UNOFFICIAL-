@@ -13,17 +13,17 @@ async function registerBindings(desktopEnv, session) {
   };
 
   const legacy = await session.getProxyObject(`org.${desktopEnv}.SettingsDaemon`, `/org/${desktopEnv}/SettingsDaemon/MediaKeys`);
-  legacy.getInterface(`org.${desktopEnv}.SettingsDaemon.MediaKeys`);
-  legacy.on('MediaPlayerKeyPressed', listener);
+  const interfaceLegacy = legacy.getInterface(`org.${desktopEnv}.SettingsDaemon.MediaKeys`);
+  interfaceLegacy.on('MediaPlayerKeyPressed', listener);
   app.on('browser-window-focus', () => {
-    legacy.GrabMediaPlayerKeys('GPMDP', 0); // eslint-disable-line
+    interfaceLegacy.GrabMediaPlayerKeys('GPMDP', 0); // eslint-disable-line
   });
 
   const future = await session.getProxyObject(`org.${desktopEnv}.SettingsDaemon.MediaKeys`, `/org/${desktopEnv}/SettingsDaemon/MediaKeys`);
-  future.getInterface(`org.${desktopEnv}.SettingsDaemon.MediaKeys`);
-  future.on('MediaPlayerKeyPressed', listener);
+  const interfaceFuture = future.getInterface(`org.${desktopEnv}.SettingsDaemon.MediaKeys`);
+  interfaceFuture.on('MediaPlayerKeyPressed', listener);
   app.on('browser-window-focus', () => {
-    future.GrabMediaPlayerKeys('GPMDP', 0); // eslint-disable-line
+    interfaceFuture.GrabMediaPlayerKeys('GPMDP', 0); // eslint-disable-line
   });
 }
 
