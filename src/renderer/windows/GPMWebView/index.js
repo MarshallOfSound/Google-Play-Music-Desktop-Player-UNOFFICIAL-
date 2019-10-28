@@ -1,6 +1,9 @@
 import _ from 'lodash';
 import { remote } from 'electron';
 
+// Per https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues/3640#issuecomment-543863416
+window.customElements.upgrade = window.customElements.upgrade || function () {};
+
 global.isGPM = true;
 
 require('../../generic');
