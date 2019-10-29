@@ -1,3 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280">
-  <path d="M1272.1 939.5l-51.6-29.7c38.2-82 59.5-173.4 59.5-269.9C1280 286.5 993.5 0 640 0S0 286.5 0 640s286.5 640 640 640c28.8 0 57.2-1.9 85-5.6v.4l1-.6c169.8-22.8 318.4-112.2 418.9-241l127.2-73.2c3.7-2 8.2-5.8 8.2-10.3 0-4.3-4.5-8.2-8.2-10.2zM732 830.6c0 83.9-84.1 152.5-168 152.5s-152.8-68.7-152.8-152.5S479.9 678 563.7 678c30.5 0 53.4 7.8 76.2 23V297h229v160H732v373.6zm40 386.8V676.7l468.3 270.4L772 1217.4z" fill="#F44A23"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 1280 1280"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="vector_logo_tray_transparent_playing.svg">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="0.184375"
+     inkscape:cx="640"
+     inkscape:cy="640"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <path
+     d="m 1094.1076,855.26562 -37.0788,-21.34687 c 27.4498,-58.9375 42.7556,-124.63125 42.7556,-193.99063 C 1099.7844,385.92187 893.9108,180 639.89221,180 385.87362,180 180,385.92187 180,640 c 0,254.07812 205.87362,460 459.89221,460 20.69515,0 41.10287,-1.3656 61.07944,-4.025 l 0,0.2875 0.71858,-0.4312 C 823.70538,1079.4438 930.4866,1015.1875 1002.7041,922.6125 L 1094.1076,870 c 2.6588,-1.4375 5.8924,-4.16875 5.8924,-7.40312 0,-3.09063 -3.2336,-5.89376 -5.8924,-7.33126 z M 706.00172,776.99375 c 0,60.30312 -60.43271,109.60937 -120.72171,109.60937 -60.28899,0 -109.79926,-49.37812 -109.79926,-109.60937 0,-60.23125 49.36655,-109.68125 109.58369,-109.68125 21.91674,0 38.37225,5.60625 54.75591,16.53125 l 0,-290.375 164.55519,0 0,115 -98.37382,0 0,268.525 z m 28.74326,278.01255 0,-388.62818 336.51172,194.35 -336.51172,194.27818 z"
+     id="path4"
+     inkscape:connector-curvature="0"
+     style="fill:#f44a23" />
 </svg>

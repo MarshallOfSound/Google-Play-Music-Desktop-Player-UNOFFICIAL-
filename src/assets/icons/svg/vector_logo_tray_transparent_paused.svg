@@ -1,3 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280">
-  <path d="M640.1 0C286.6 0 0 286.5 0 640s286.5 640 640 640c60 0 118.1-8.2 173.3-23.7 1.7.4 3.5.7 5.3.7h137.3c13.8 0 25.2-11.4 25.2-25.2v-50c22-13.8 43-28.8 63-45v95.1c0 13.8 10.8 25.2 24.5 25.2h137.3c13.8 0 25.2-11.4 25.2-25.2V886.5c31-75.9 49.1-159.1 49.1-246.5-.1-353.5-286.7-640-640.1-640zM732 457v373.6c0 83.9-84.1 152.5-168 152.5s-152.8-68.7-152.8-152.5S479.9 678 563.7 678c30.5 0 53.4 7.8 76.2 23V297h229v160H732zm213 754H829V691h116v520zm250 0h-116V691h116v520z" fill="#F44A23"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 1280 1280"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="vector_logo_tray_transparent_paused.svg">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="0.184375"
+     inkscape:cx="640"
+     inkscape:cy="640"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <path
+     d="m 640,180 c -254.03843,0 -460,205.92187 -460,460 0,254.07812 205.8897,460 459.92814,460 43.11826,0 84.87111,-5.8938 124.53991,-17.0344 1.22169,0.2875 2.51523,0.5032 3.80878,0.5032 l 98.66896,0 c 9.9172,0 18.10967,-8.1938 18.10967,-18.1126 l 0,-35.9375 c 15.81003,-9.9187 30.90142,-20.7 45.27418,-32.3437 l 0,68.3531 c 0,9.9188 7.76128,18.1125 17.60662,18.1125 l 98.66894,0 c 9.9172,0 18.1097,-8.1937 18.1097,-18.1125 l 0,-248.25623 C 1086.9927,762.61875 1100,702.81875 1100,640 1099.9281,385.92187 893.96657,180 640,180 Z m 66.04281,328.46875 0,268.525 c 0,60.30312 -60.43744,109.60937 -120.73114,109.60937 -60.2937,0 -109.80784,-49.37812 -109.80784,-109.60937 0,-60.23125 49.37041,-109.68125 109.59225,-109.68125 21.91845,0 38.37525,5.60625 54.76019,16.53125 l 0,-290.375 164.56804,0 0,115 -98.3815,0 z m 153.06983,541.93755 -83.36198,0 0,-373.75005 83.36198,0 0,373.75005 z m 179.65946,0 -83.36201,0 0,-373.75005 83.36201,0 0,373.75005 z"
+     id="path4"
+     inkscape:connector-curvature="0"
+     style="fill:#f44a23" />
 </svg>
