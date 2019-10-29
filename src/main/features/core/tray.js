@@ -88,17 +88,25 @@ const setContextMenu = (track) => {
     {
       label: TranslationProvider.query('tray-label-gpm'),
       click: () => {
-        Settings.set('service', 'google-play-music');
-        mainWindow.hide();
-        mainWindow.reload();
+        // DEV: default to the other service so it will switch if not set.
+        const currentService = Settings.get('service', 'youtube-music');
+        if (currentService !== 'google-play-music') {
+          Settings.set('service', 'google-play-music');
+          mainWindow.hide();
+          mainWindow.reload();
+        }
       },
     },
     {
       label: TranslationProvider.query('tray-label-ytm'),
       click: () => {
-        Settings.set('service', 'youtube-music');
-        mainWindow.hide();
-        mainWindow.reload();
+        // DEV: default to the other service so it will switch if not set.
+        const currentService = Settings.get('service', 'google-play-music');
+        if (currentService !== 'youtube-music') {
+          Settings.set('service', 'youtube-music');
+          mainWindow.hide();
+          mainWindow.reload();
+        }
       },
     },
     { type: 'separator' },
