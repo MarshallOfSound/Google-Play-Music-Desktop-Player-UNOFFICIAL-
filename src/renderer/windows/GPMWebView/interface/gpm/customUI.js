@@ -82,6 +82,21 @@ function installSidebarButton(translationKey, type, icon, index, href, fn) {
   }
 }
 
+function installYTMButton() {
+  const elem = document.createElement('paper-button');
+  elem.setAttribute('id', 'ytm-button');
+  elem.setAttribute('class', 'paper-button-1');
+  elem.setAttribute('style', 'background: #F43333; color: #FFF');
+  elem.innerHTML = '<span is="translation-key">button-text-ytm-switch</span>';
+  elem.addEventListener('click', () => {
+    const mainWindow = remote.getCurrentWindow();
+    Settings.set('service', 'youtube-music');
+    mainWindow.hide();
+    mainWindow.reload();
+  });
+  document.querySelector('#material-one-right').prepend(elem);
+}
+
 /** Create the Desktop Settings button in the left sidebar */
 function installDesktopSettingsButton() {
   installSidebarButton('label-desktop-settings', 'desktopsettings', 'settings', 2, '#', (e) => {
@@ -286,4 +301,5 @@ window.wait(() => {
   fixChromecastButton();
   setKeepSidebarOpen(Settings.get('keepSidebarOpen'));
   setStaticAlbumArt(Settings.get('staticAlbumArt'));
+  installYTMButton();
 });
