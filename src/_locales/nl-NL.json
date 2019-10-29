@@ -55,8 +55,8 @@
   "modal-confirmOpenPort-content": "De PlaybackAPI kon niet opstarten omdat Windows Firewall dit blokkeert.  We kunnen deze blokkade opheffen voor u als u dit wilt, maar wees gewaarschuwd: dit kan administratorrechten vereisen",
   "modal-confirmUpdate-title": "Update beschikbaar",
   "modal-confirmUpdate-content": "Woo hoo, het ziet er naar uit dat er een gloednieuwe update beschikbaar is voor Google Play Music Desktop Player. Deze update zal een hele lading nieuwe functies, bugfixes en coole nieuwe extra's brengen.  We raden u aan zo snel mogelijk de update uit te voeren om een functierijke en bug-vrije applicatie te ervaren.<br />We hopen dat u de nieuwe update u zal bevallen!",
-  "modal-confirmUninstall-title": "Zo, dit is het geval...",
-  "modal-confirmUninstall-content": "We vonden net uit dat u nog een oude versie van GPMDP heeft staan op uw system.  Als u net heeft bijgewerkt, is dit vrij normaal.  We zullen nu proberen de oude versie te verwijderen.  Dit \"kan misschien\" administratorrechten vereisen, geef die ons, zodat we onze rommel kunnen opruimen.",
+  "modal-confirmUninstall-title": "Dus, dit is wat er aan de hand is...",
+  "modal-confirmUninstall-content": "We ontdekten net dat er nog een oude versie van GPMDP geïnstalleerd staat op uw systeem.  Indien u net heeft geüpdatet is dit normaal.  We zijn de oude versie nu aan het proberen te verwijderen.  Dit vereist \"mogelijk\" beheerdersrechten. Gelieve ons deze te geven, zodat we onze rommel kunnen opruimen.",
   "modal-goToURL-title": "Geef de Google Play Music URL op om er heen te gaan:",
   "modal-welcome-title": "Welkom bij versie",
   "modal-welcome-content": "We hopen dat de nieuwe update u bevalt!",
@@ -72,19 +72,19 @@
   "playback-label-info-track": "Huidige nummer melden",
   "playback-os-no-track-playing": "Er wordt geen nummer afgespeeld",
   "playback-label-im-feeling-lucky": "Ik doe een gok",
-  "playback-label-toggle-repeat": "",
+  "playback-label-toggle-repeat": "Herhalen aan/uit",
 
   "settings-requires-restart": "Vereist herstart",
 
   "settings-option-keep-sidebar-open": "Zijbalk open houden",
   "settings-option-static-album-art": "Statische albumhoes in visualizer houden",
 
-  "settings-option-invert-tray-icon": "Kleuren pictogram inverten",
+  "settings-option-invert-tray-icon": "Kleuren van pictogram inverten",
 
   "settings-option-custom-theme": "Aangepast thema",
   "settings-option-custom-theme-choose-color": "Kies de markeringskleur van uw thema",
   "settings-option-custom-theme-choose-custom": "Of kies een",
-  "settings-option-custom-theme-custom-color": "Aangepaste kleur",
+  "settings-option-custom-theme-custom-color": "aangepaste kleur",
   "settings-option-custom-theme-dark": "Donker",
   "settings-option-custom-theme-light": "Licht",
   "settings-option-custom-theme-should-track-system": "Laat de systeeminstellingen voor nachtmodus overeenkomen met het type thema",
@@ -98,17 +98,17 @@
   "settings-option-enable-taskbar-progress": "Toon voortgang nummer in taakbalk",
   "settings-option-enable-win10-media-service": "Windows 10 System Media Service inschakelen",
   "settings-option-enable-win10-media-service-details": "Dit toont het huidige nummer op het vergrendelingsscherm",
-  "settings-option-discord-rich-presence": "Discord Rich Presence inschakelen",
+  "settings-option-discord-rich-presence": "Discord Rich Presence-integratie inschakelen",
   "settings-option-enable-win10-media-service-track-info": "Toon nummerinformatie in het volume-overlay",
   "settings-option-change-locale": "Taal kiezen",
 
   "settings-option-hotkey-explanation": "Standaardmediatoetsen zullen blijven werken, onafhankelijk van deze instellingen.  Deze instellingen zijn een toevoeging aan de standaardinstellingen.",
-  "settings-option-hotkey-explanation-2": "Gebruik de toets <i>\"Escape\"</i> om de sneltoetsen te resetten.",
+  "settings-option-hotkey-explanation-2": "Gebruik de <i>\"Escape\"</i>-toets om de sneltoetsen te resetten.",
   "settings-option-hotkey-not-set": "Niet ingesteld",
 
   "settings-option-min-to-tray": "Naar systeemvak minimaliseren",
 
-  "settings-option-prevent-display-sleep": "Naar slaapstand gaan terwijl GPMDP open is verhinderen",
+  "settings-option-prevent-display-sleep": "Slaapstand verhinderen terwijl GPMDP open is",
   "settings-option-auto-launch": "Automatisch starten wanneer ik mijn computer aanzet",
 
   "settings-option-save-page": "Automatisch de laatst bekeken pagina openen bij opstarten",
@@ -124,16 +124,17 @@
   "settings-option-skip-bad-songs": "Automatisch nummers die u niet leuk vond overslaan",
   "settings-option-try-supported-channel-layouts": "Experimentele ondersteuning voor meerdere audiokanalen, zoals 5.1 audio",
 
-  "settings-options-style-description": "Kies een lokaal css-bestand om stijlen te injecteren in de applicatie",
+  "settings-options-style-description": "Kies een lokaal CSS-bestand om stijlen te injecteren in de applicatie",
   "settings-options-style-main-app": "Hoofdapp",
   "settings-options-style-gpm": "Google Play Music",
   "settings-options-style-refresh": "Stijlen vernieuwen",
-  "settings-options-style-dialog-title": "Css-bestand kiezen",
-  "settings-options-style-dialog-button": "Css laden",
-  "settings-options-style-dialog-css-files": "Css-bestanden",
+  "settings-options-style-dialog-title": "CSS-bestand kiezen",
+  "settings-options-style-dialog-button": "CSS laden",
+  "settings-options-style-dialog-css-files": "CSS-bestanden",
   "settings-options-style-dialog-all-files": "Alle bestanden",
-  "slack-token-label": "",
-  "slack-token-placeholder": "",
+
+  "slack-token-label": "Geef uw Slack user token in (deze kunt u hier vinden: $1)",
+  "slack-token-placeholder": "Slack-token",
 
   "title-color-picker": "Kleurenkiezer",
   "title-settings": "Instellingen",
@@ -143,11 +144,11 @@
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini-speler",
-  "title-settings-style": "Aangepaste stijlen",
-  "title-settings-slack": "",
+  "title-settings-style": "Stylesheets",
+  "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "Audioapparaat",
   "tray-label-show": "Tonen",
-  "tray-label-gpm": "",
-  "tray-label-ytm": ""
+  "tray-label-gpm": "Google Play Music",
+  "tray-label-ytm": "YouTube Music (alpha, gebruik donker thema a.u.b.)"
 }
