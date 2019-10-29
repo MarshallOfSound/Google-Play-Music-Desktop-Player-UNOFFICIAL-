@@ -71,7 +71,7 @@
     "jquery": "^2.2.4",
     "lastfm": "^0.9.2",
     "listenbrainz": "^1.0.4",
-    "lodash": "^4.12.0",
+    "lodash": "^4.17.13",
     "material-ui": "^0.15.4",
     "mdns": "^2.3.3",
     "mkdirp": "^0.5.1",
@@ -90,7 +90,7 @@
     "winston": "^2.2.0",
     "ws": "^1.1.0",
     "xss": "^0.2.13",
-    "ytmusic.js": "^6.1.15"
+    "ytmusic.js": "^6.2.1"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
