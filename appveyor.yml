@@ -27,7 +27,7 @@ platform:
   - x64
 
 cache:
-  - node_modules
+  # - node_modules
   - '%USERPROFILE%\.electron'
 
 install:
