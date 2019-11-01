@@ -166,7 +166,7 @@
     "electron-media-service": "^0.2.2",
     "ll-keyboard-hook-win": "^3.0.0",
     "mouse-forward-back": "^1.0.1",
-    "mpris-service": "^2.1.0"
+    "mpris-service": "GPMDP/mpris-service"
   },
   "babel": {
     "presets": [
