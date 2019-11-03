@@ -8,6 +8,8 @@ function mprisService() {
     name: 'google_play_music_desktop_player',
     identity: 'Google Play Music Desktop Player',
     canRaise: true,
+    supportedUriSchemes: ['https'],
+    supportedMimeTypes: ['audio/mpeg'],
     supportedInterfaces: ['player'],
     desktopEntry: 'google-play-music-desktop-player',
   });
