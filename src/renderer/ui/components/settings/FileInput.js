@@ -37,9 +37,13 @@ class FileInput extends Component {
 
   _keyDown = (event) => {
     if (event.which === 27) {
-      this.props.setSetting(this.props.settingsKey, null);
-      this.props.bonusEvents.forEach((eventName) => Emitter.fire(eventName));
+      this._triggerClear();
     }
+  }
+
+  _triggerClear = () => {
+    this.props.setSetting(this.props.settingsKey, null);
+    this.props.bonusEvents.forEach((eventName) => Emitter.fire(eventName));
   }
 
   render() {
@@ -58,6 +62,12 @@ class FileInput extends Component {
           onClick={this._triggerFile}
           onKeyDown={this._keyDown}
         />
+        <RaisedButton
+          onTouchTap={this._triggerClear}
+          style={{ backgroundColor: 'transparent', marginLeft: 14, marginTop: 4, maxHeight: 0, minWidth: 44 }}
+        >
+          <i className="material-icons" style={{ verticalAlign: 'middle' }}>clear</i>
+        </RaisedButton>
       </div>
     );
   }
