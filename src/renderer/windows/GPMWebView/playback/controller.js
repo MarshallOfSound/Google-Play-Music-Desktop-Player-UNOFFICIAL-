@@ -52,6 +52,11 @@ Emitter.on('playback:thumbsUp', () => {
   window.GPM.rating.setRating(5);
 });
 
+Emitter.on('playback:toggleThumbsUp', () => {
+  if (!remote.getGlobal('PlaybackAPI').data.song.title) return;
+  window.GPM.rating.toggleThumbsUp();
+});
+
 Emitter.on('playback:thumbsDown', () => {
   if (!remote.getGlobal('PlaybackAPI').data.song.title) return;
   new Notification('You just disliked', { // eslint-disable-line
@@ -61,12 +66,21 @@ Emitter.on('playback:thumbsDown', () => {
   window.GPM.rating.setRating(1);
 });
 
+Emitter.on('playback:toggleThumbsDown', () => {
+  if (!remote.getGlobal('PlaybackAPI').data.song.title) return;
+  window.GPM.rating.toggleThumbsDown();
+});
+
 Emitter.on('playback:increaseVolume', () => {
   window.GPM.volume.increaseVolume();
 });
 
 Emitter.on('playback:decreaseVolume', () => {
   window.GPM.volume.decreaseVolume();
+});
+
+Emitter.on('playback:seek', (event, to) => {
+  window.GPM.playback.setCurrentTime(to);
 });
 
 Emitter.on('playback:miniEnable', () => {
@@ -78,11 +92,19 @@ Emitter.on('playback:miniDisable', () => {
 });
 
 Emitter.on('playback:infoTrack', () => {
-  const currentTrack = window.GPM.getCurrentTrack();
+  const currentTrack = window.GPM.playback.getCurrentTrack();
 
-  if (!window.GPM.isPlaying()) return;
+  if (!window.GPM.playback.isPlaying()) return;
   new Notification(currentTrack.title, { // eslint-disable-line
     body: `${currentTrack.artist} - ${currentTrack.album}`,
     icon: currentTrack.albumArt,
   });
+});
+
+Emitter.on('playback:imFeelingLucky', () => {
+  window.GPM.playback.startFeelingLucky();
+});
+
+Emitter.on('playback:toggleRepeat', () => {
+  window.GPM.playback.toggleRepeat();
 });

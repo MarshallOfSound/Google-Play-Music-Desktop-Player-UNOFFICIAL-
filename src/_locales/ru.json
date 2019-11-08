@@ -11,9 +11,12 @@
   "button-text-lets-do-this": "Сделаем это!!",
   "button-text-lets-go": "Погнали!!",
   "button-text-not-now": "Не сейчас",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "О программе",
   "label-alarm": "Будильник",
+  "label-recents": "Недавнее",
   "label-desktop-settings": "Настройки программы",
   "label-donate": "Пожертвовать",
   "label-help": "Помощь",
@@ -25,7 +28,6 @@
   "label-show-lyrics": "Показать текст песни (Бета)",
   "label-unknown-artist": "Неизвестный исполнитель",
   "label-unknown-song": "Неизвестная песня",
-  "playback-label-info-track": "",
   "label-version": "Версия",
 
   "lastfm-login-authorized": "Авторизован(а)",
@@ -34,10 +36,16 @@
   "lastfm-login-error": "Похоже, что вы отменили процесс авторизации. Если это ошибка - пожалуйста, попробуйте ещё раз",
   "lastfm-login-not-authorized": "Не авторизован(а)",
   "lastfm-logout-button-text": "Выйти из Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "Автоматически добавлять в избранное понравившиеся треки",
+
+  "listenbrainz-label-user-token": "Укажите свой токен ListenBrainz (со страницы https://listenbrainz.org/profile)",
+  "listenbrainz-token-here": "Укажите токен",
 
   "lyrics-failed-message": "Извините, мы не смогли найти текста для этой песни",
   "lyrics-loading-message": "Загрузка текста песни...",
   "lyrics-no-song-message": "В данный момент ничего не воспроизводится",
+  "lyrics-search-in": "Искать на",
+  "lyrics-lyrics": "текст песни",
 
   "message-pausing-after-song": "После этой песни будет пауза.",
   "message-pausing-after-song-button": "Не останавливать после этой песни",
@@ -63,9 +71,15 @@
   "playback-label-thumbs-up": "Нравится",
   "playback-label-volume-down": "Уменьшить громкость",
   "playback-label-volume-up": "Увеличить громкость",
-  "playback-os-no-track-playing": "",
+  "playback-label-info-track": "Уведомлять о текущем треке",
+  "playback-os-no-track-playing": "Ничего не воспроизводится",
+  "playback-label-im-feeling-lucky": "Мне повезёт!",
+  "playback-label-toggle-repeat": "Изменить режим повтора",
 
   "settings-requires-restart": "Требует перезапуска",
+
+  "settings-option-keep-sidebar-open": "Держать сайдбар открытым",
+  "settings-option-static-album-art": "Статичная обложка альбома в визуализаторе",
 
   "settings-option-invert-tray-icon": "Инвертировать цвет иконки в трее",
 
@@ -75,21 +89,24 @@
   "settings-option-custom-theme-custom-color": "собственный цвет",
   "settings-option-custom-theme-dark": "Тёмная",
   "settings-option-custom-theme-light": "Светлая",
-  "settings-option-custom-theme-should-track-system": "",
+  "settings-option-custom-theme-should-track-system": "Привести настройки тёмного режима в соответствие с системными",
 
   "settings-option-enable-api": "Включить Playback API",
   "settings-option-enable-api-json": "Включить JSON API",
   "settings-option-enable-api-details": "Это позволит другим приложениям взаимодействовать с GPMDP",
   "settings-option-enable-system-borders": "Использовать системные границы окна",
   "settings-option-enable-voice": "Включить голосовое управление",
-  "settings-option-enable-voice-details": "Голосовое управление для GPMDP, экспериментальная функция",
+  "settings-option-enable-voice-details": "Голосовое управление GPMDP, экспериментальная функция",
   "settings-option-enable-taskbar-progress": "Показывать позицию воспроизведения в панели задач",
-  "settings-option-enable-win10-media-service": "",
-  "settings-option-enable-win10-media-service-details": "",
+  "settings-option-enable-win10-media-service": "Включить поддержку медиасервиса Windows 10",
+  "settings-option-enable-win10-media-service-details": "Информация о текущем треке будет выводиться на экране блокировки",
+  "settings-option-discord-rich-presence": "Включить поддержку Discord Rich Presence",
+  "settings-option-enable-win10-media-service-track-info": "Показывать информацию о текущем треке рядом со всплывающим индикатором громкости Windows 10",
   "settings-option-change-locale": "Язык программы",
 
   "settings-option-hotkey-explanation": "Стандартные мультимедийные кнопки всё равно будут работать, независимо от дополнительных, представленных ниже.",
   "settings-option-hotkey-explanation-2": "Используйте <i>\"Esc\"</i>, чтобы сбросить значение.",
+  "settings-option-hotkey-not-set": "Не задана",
 
   "settings-option-min-to-tray": "Сворачивать в трей при закрытии",
 
@@ -98,13 +115,16 @@
 
   "settings-option-save-page": "При запуске автоматически открывать последнюю просмотренную страницу",
 
+  "settings-option-start-minimized": "Запускать свернутым в трей",
+
   "settings-option-scroll-lyrics": "Автоматически прокручивать текст песни во время воспроизведения",
 
   "settings-option-mini-always-show": "Всегда показывать информацию о песне",
   "settings-option-mini-ontop": "Всегда наверху",
   "settings-option-mini-use-scroll-volume": "Управление громкостью колесом мыши",
 
-  "settings-option-skip-bad-songs": "",
+  "settings-option-skip-bad-songs": "Автоматически пропускать непонравившиеся песни",
+  "settings-option-try-supported-channel-layouts": "Экспериментальная поддержка нескольких аудиоканалов, таких как аудио 5.1",
 
   "settings-options-style-description": "Выберите локальный CSS-файл для инъекции стилей в приложение",
   "settings-options-style-main-app": "Стили приложения",
@@ -114,16 +134,22 @@
   "settings-options-style-dialog-button": "Загрузить CSS",
   "settings-options-style-dialog-css-files": "Файлы CSS",
   "settings-options-style-dialog-all-files": "Все файлы",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Выбор цвета",
   "title-settings": "Настройки программы",
-  "title-settings-playback": "",
+  "title-settings-playback": "Воспроизведение",
   "title-settings-general": "Основные",
   "title-settings-hotkeys": "Горячие клавиши",
   "title-settings-lastfm": "Last.FM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Миниплеер",
   "title-settings-style": "Свои стили",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Аудио устройство",
-  "tray-label-show": "Развернуть"
+  "tray-label-show": "Развернуть",
+  "tray-label-gpm": "Google Play Music",
+  "tray-label-ytm": "YouTube Music (альфа, используйте тёмную тему)"
 }

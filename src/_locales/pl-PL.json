@@ -11,9 +11,12 @@
   "button-text-lets-do-this": "Zróbmy to!!",
   "button-text-lets-go": "Zaczynajmy!!",
   "button-text-not-now": "Nie teraz",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "Informacje",
   "label-alarm": "Budzik",
+  "label-recents": "Ostatnie",
   "label-desktop-settings": "Ustawienia aplikacji",
   "label-donate": "Wspomóż projekt",
   "label-help": "Pomoc",
@@ -33,10 +36,16 @@
   "lastfm-login-error": "Wygląda na to, że przerwałeś proces logowania - jeśli to pomyłka, spróbuj jeszcze raz",
   "lastfm-login-not-authorized": "Nie zalogowany",
   "lastfm-logout-button-text": "Wyloguj się z Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "Polubienie utworu w aplikacji spowoduje jego polubienie również na Last.fm",
+
+  "listenbrainz-label-user-token": "Podaj swój token z ListenBrainz (znajdziesz go pod adresem https://listenbrainz.org/user/info)",
+  "listenbrainz-token-here": "Tu wpisz token",
 
   "lyrics-failed-message": "Niestety nie znaleziono tekstu tego utworu",
   "lyrics-loading-message": "Wczytywanie tekstu utworu...",
   "lyrics-no-song-message": "Żaden utwór nie jest teraz odtwarzany",
+  "lyrics-search-in": "Szukaj w",
+  "lyrics-lyrics": "tekst utworu",
 
   "message-pausing-after-song": "Włączono wstrzymanie po tym utworze.",
   "message-pausing-after-song-button": "Wyłączono wstrzymanie po tym utworze",
@@ -64,8 +73,13 @@
   "playback-label-volume-up": "Zwiększ głośność",
   "playback-label-info-track": "Powiadom o obecnie odtwarzanym utworze",
   "playback-os-no-track-playing": "Żaden utwór nie jest teraz odtwarzany",
+  "playback-label-im-feeling-lucky": "Szczęśliwy traf",
+  "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "Wymaga ponownego uruchomienia",
+
+  "settings-option-keep-sidebar-open": "Utrzymuj boczne menu otwarte",
+  "settings-option-static-album-art": "Statyczna okładka albumu podczas wizualizacji",
 
   "settings-option-invert-tray-icon": "Odwróć kolory ikony w pasku narzędzi",
 
@@ -85,11 +99,14 @@
   "settings-option-enable-voice-details": "Kontrola nad GPMDP za pomocą komend głosowych - funkcja eksperymentalna",
   "settings-option-enable-taskbar-progress": "Pokazuj postęp utworu na pasku systemowym",
   "settings-option-enable-win10-media-service": "Włącz System Media Service (Windows 10)",
-  "settings-option-enable-win10-media-service-details": "Ta funkcja pozwala wyświetlać aktualny utwór na ekranie blokady",
+  "settings-option-enable-win10-media-service-details": "Pokazuj informacje o aktualnym utworze na ekranie blokady",
+  "settings-option-discord-rich-presence": "Aktywuj funkcję Rich Presence w celu integracji z aplikacją Discord",
+  "settings-option-enable-win10-media-service-track-info": "Pokazuj informacje o aktualnym utworze razem z informacją o ustawieniach głośności (Windows 10)",
   "settings-option-change-locale": "Wybierz język aplikacji",
 
   "settings-option-hotkey-explanation": "Domyślne klawisze dedykowane obsłudze mediów będą działać bez względu na te ustawienia. Traktuj te ustawienia jako dodatkowe.",
   "settings-option-hotkey-explanation-2": "Użyj klawisza <i>\"Escape\"</i> żeby zresetować ustawienia.",
+  "settings-option-hotkey-not-set": "Nie ustawiono",
 
   "settings-option-min-to-tray": "Minimalizuj do paska narzędzi",
 
@@ -98,6 +115,8 @@
 
   "settings-option-save-page": "Automatycznie załaduj ostatnio przeglądaną stronę przy starcie aplikacji",
 
+  "settings-option-start-minimized": "Zminimalizuj po uruchomieniu",
+
   "settings-option-scroll-lyrics": "Przewijaj napisy automatycznie podczas odtwarzania",
 
   "settings-option-mini-always-show": "Zawsze pokazuj informacje o utworze",
@@ -105,6 +124,7 @@
   "settings-option-mini-use-scroll-volume": "Użyj rolki myszki aby sterować głośnością",
 
   "settings-option-skip-bad-songs": "Automatycznie pomijaj nielubiane utwory",
+  "settings-option-try-supported-channel-layouts": "Eksperymentalne wsparcie dla nagłośnienia wielokanałowego (np. typu 5.1)",
 
   "settings-options-style-description": "Wybierz lokalny plik CSS aby dodać nowe style do aplikacji",
   "settings-options-style-main-app": "Główna aplikacja",
@@ -114,6 +134,8 @@
   "settings-options-style-dialog-button": "Załaduj plik CSS",
   "settings-options-style-dialog-css-files": "Pliki CSS",
   "settings-options-style-dialog-all-files": "Wszystkie pliki",
+  "slack-token-label": "Wpisz swój Slack token (znajdziesz go pod linkiem: $1)",
+  "slack-token-placeholder": "Slack token",
 
   "title-color-picker": "Wybierz kolor",
   "title-settings": "Ustawienia",
@@ -121,9 +143,13 @@
   "title-settings-general": "Ogólne",
   "title-settings-hotkeys": "Skróty klawiszowe",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini odtwarzacz",
   "title-settings-style": "Własne style",
+  "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "Urządzenie Audio",
-  "tray-label-show": "Pokaż"
+  "tray-label-show": "Pokaż",
+  "tray-label-gpm": "Google Play Music",
+  "tray-label-ytm": "YouTube Music (wersja alfa, zaleca się użycie ciemnego motywu)"
 }

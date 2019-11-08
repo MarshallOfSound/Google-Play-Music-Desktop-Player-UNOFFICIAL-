@@ -11,9 +11,12 @@
   "button-text-lets-do-this": "Розпочнемо!!",
   "button-text-lets-go": "Вперед!!",
   "button-text-not-now": "Не зараз",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "Про",
   "label-alarm": "Будильник",
+  "label-recents": "",
   "label-desktop-settings": "Налаштування застосунку",
   "label-donate": "Заохотити",
   "label-help": "Довідка",
@@ -33,10 +36,16 @@
   "lastfm-login-error": "Схоже ви скасували процес авторизації. Якщо це не так, будь ласка, спробуйте ще раз",
   "lastfm-login-not-authorized": "Не авторизовано",
   "lastfm-logout-button-text": "Вийти з Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
+
+  "listenbrainz-label-user-token": "",
+  "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "На жаль, ми не змогли знайти текст до цієї пісні",
   "lyrics-loading-message": "Завантаження текту пісні...",
   "lyrics-no-song-message": "Зараз нічого не відтворюється",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Зупинити після цїєї пісні.",
   "message-pausing-after-song-button": "Не зупиняти програвання після цїєї пісні",
@@ -64,8 +73,13 @@
   "playback-label-volume-up": "Збільшити гучність",
   "playback-label-info-track": "Повідомлення про поточний трек",
   "playback-os-no-track-playing": "Нічого не відтворюється",
+  "playback-label-im-feeling-lucky": "",
+  "playback-label-toggle-repeat": "Змінити режим повтору",
 
   "settings-requires-restart": "Потребує перезапуску",
+
+  "settings-option-keep-sidebar-open": "",
+  "settings-option-static-album-art": "",
 
   "settings-option-invert-tray-icon": "Інвертувати іконку в системному лотку",
 
@@ -86,10 +100,13 @@
   "settings-option-enable-taskbar-progress": "Відобразити прогрес відтворення в панелі",
   "settings-option-enable-win10-media-service": "Увімкнути медіа сервіс Windows 10",
   "settings-option-enable-win10-media-service-details": "Буде показувати активний трек на екрані блокування",
+  "settings-option-discord-rich-presence": "",
+  "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "Обрати мову",
 
   "settings-option-hotkey-explanation": "Типові мультимедіа кнопки все одно будуть працювати незалежно від цих налаштувань. Ці налаштування для додаткових типових значень.",
   "settings-option-hotkey-explanation-2": "Натисніть <i>\"Escape\"</i> для скидання значення.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Мінімізувати до системного лотка",
 
@@ -98,6 +115,8 @@
 
   "settings-option-save-page": "При завантаженні автоматично показати останню переглянуту сторінку",
 
+  "settings-option-start-minimized": "",
+
   "settings-option-scroll-lyrics": "Автоматично прокручувати текст пісні під час відтворення",
 
   "settings-option-mini-always-show": "Завжди показувати інформацію про пісню",
@@ -105,6 +124,7 @@
   "settings-option-mini-use-scroll-volume": "Керування гічністю за допомогою коліщатка миши",
 
   "settings-option-skip-bad-songs": "Автоматично пропускати пісні, що не сподобались",
+  "settings-option-try-supported-channel-layouts": "",
 
   "settings-options-style-description": "Оберіть локальний CSS-файл для застосування стилей в застосунку",
   "settings-options-style-main-app": "Стилі додатку",
@@ -114,6 +134,8 @@
   "settings-options-style-dialog-button": "Завантажити CSS",
   "settings-options-style-dialog-css-files": "Файл CSS",
   "settings-options-style-dialog-all-files": "Всі файли",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Обрати колір",
   "title-settings": "Налаштування",
@@ -121,9 +143,13 @@
   "title-settings-general": "Основні",
   "title-settings-hotkeys": "Скорочення клавіатури",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Мініплеер",
   "title-settings-style": "Власні стилі",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Звуковий пристрій",
-  "tray-label-show": "Показати"
+  "tray-label-show": "Показати",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

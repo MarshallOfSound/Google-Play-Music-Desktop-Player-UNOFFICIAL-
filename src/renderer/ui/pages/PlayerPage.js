@@ -23,14 +23,27 @@ export default class PlayerPage extends Component {
     super(...args);
 
     this.once = true;
-    this.targetPage = Settings.get('savePage', true) ?
-      Settings.get('lastPage', 'https://play.google.com/music/listen')
-      : 'https://play.google.com/music/listen';
+    const service = Settings.get('service');
     this.ready = false;
-    this.state = {
-      webviewTarget: 'https://play.google.com/music/listen',
-      title: 'Google Play Music Desktop Player',
-    };
+    if (service === 'youtube-music') {
+      this.targetPage = Settings.get('savePage', true) ?
+        Settings.get('lastYTMPage', 'https://music.youtube.com/')
+        : 'https://music.youtube.com/';
+      this.state = {
+        loading: true,
+        webviewTarget: 'https://music.youtube.com/',
+        title: 'Youtube Music Desktop Player',
+      };
+    } else if (service === 'google-play-music' || true) {
+      this.targetPage = Settings.get('savePage', true) ?
+        Settings.get('lastPage', 'https://play.google.com/music/listen')
+        : 'https://play.google.com/music/listen';
+      this.state = {
+        loading: true,
+        webviewTarget: 'https://play.google.com/music/listen#/wmp',
+        title: 'Google Play Music Desktop Player',
+      };
+    }
   }
 
   componentDidMount() {
@@ -51,7 +64,12 @@ export default class PlayerPage extends Component {
       this.refs.view.executeJavaScript(`window.location = "${this.targetPage}"`);
       setTimeout(() => {
         document.body.removeAttribute('loading');
-      }, 300);
+      }, 900);
+      setTimeout(() => {
+        this.setState({
+          loading: false,
+        });
+      }, 2000);
     }
   }
 
@@ -61,7 +79,7 @@ export default class PlayerPage extends Component {
       this.ready = true;
 
       const focusWebview = () => {
-        document.querySelector('webview::shadow object').focus();
+        document.querySelector('webview').focus();
       };
       window.addEventListener('beforeunload', () => {
         remote.getCurrentWindow().removeListener('focus', focusWebview);
@@ -95,15 +113,22 @@ export default class PlayerPage extends Component {
 
   _savePage = (param) => {
     const url = param.url || param;
-    if (!/https?:\/\/play\.google\.com\/music/g.test(url)) return;
-    Settings.set('lastPage', url);
+
+    const service = Settings.get('service');
+    if (service === 'youtube-music') {
+      if (!/https?:\/\/music\.youtube\.com\//g.test(url)) return;
+      Settings.set('lastYTMPage', url);
+    } else if (service === 'google-play-music' || true) {
+      if (!/https?:\/\/play\.google\.com\/music/g.test(url)) return;
+      Settings.set('lastPage', url);
+    }
   }
 
   render() {
     return (
       <WindowContainer isMainWindow title={process.platform === 'darwin' ? this.state.title : ''} confirmClose={this._confirmCloseWindow}>
         <div className="drag-handle-large"></div>
-        <div className="loader">
+        <div className={`loader ${this.state.loading ? '' : 'hidden'}`}>
           <svg className="circular" viewBox="25 25 50 50">
             <circle className="path" cx="50" cy="50" r="20" fill="none" strokeWidth="2" strokeMiterlimit="10" />
           </svg>

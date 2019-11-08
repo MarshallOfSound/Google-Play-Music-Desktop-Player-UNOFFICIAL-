@@ -5,7 +5,8 @@ import React from 'react';
 import { findDOMNode } from 'react-dom';
 import chai, { expect } from 'chai';
 import { mount } from 'enzyme';
-
+import { shell, remote } from 'electron';
+import sinon from 'sinon';
 import LyricsViewer from '../../../build/renderer/ui/components/generic/LyricsViewer';
 import mockSettings, { fakeSettings, getVars, mockEvent } from './_mockSettings';
 
@@ -15,14 +16,20 @@ describe('<LyricsViewer />', () => {
   let hooks;
   let unhooks;
   let opts;
+  let clock;
 
   beforeEach(() => {
+    clock = sinon.useFakeTimers();
     mockSettings();
     hooks = getVars().hooks;
     unhooks = getVars().unhooks;
     opts = {
       attachTo: document.createElement('div'),
     };
+  });
+
+  afterEach(() => {
+    clock.restore();
   });
 
   it('should render the lyrics container', () => {
@@ -35,7 +42,6 @@ describe('<LyricsViewer />', () => {
     hooks['lyrics:show'].should.be.ok;
     hooks['PlaybackAPI:change:lyrics'].should.be.ok;
     hooks['PlaybackAPI:change:state'].should.be.ok;
-    hooks['PlaybackAPI:change:time'].should.be.ok;
     hooks['settings:set:scrollLyrics'].should.be.ok;
   });
 
@@ -44,8 +50,13 @@ describe('<LyricsViewer />', () => {
     unhooks['lyrics:show'].should.be.ok;
     unhooks['PlaybackAPI:change:lyrics'].should.be.ok;
     unhooks['PlaybackAPI:change:state'].should.be.ok;
-    unhooks['PlaybackAPI:change:time'].should.be.ok;
     unhooks['settings:set:scrollLyrics'].should.be.ok;
+  });
+
+  it('should hook into the time event when shown', () => {
+    mount(<LyricsViewer />);
+    mockEvent('lyrics:show');
+    hooks['PlaybackAPI:change:time'].should.be.ok;
   });
 
   it('should show when recieving the show event', () => {
@@ -71,14 +82,39 @@ describe('<LyricsViewer />', () => {
     domNode.find('h1').text().should.be.equal('lyrics-loading-message');
   });
 
-  it('should should timeout if lyrics aren\'t found in 4 seconds', (done) => {
+  it('should timeout if lyrics aren\'t found in 4 seconds', () => {
     const component = mount(<LyricsViewer />, opts);
     mockEvent('PlaybackAPI:change:lyrics', null);
     const domNode = $(findDOMNode(component.instance()));
-    setTimeout(() => {
-      domNode.find('h1').text().should.be.equal('lyrics-failed-message');
-      done();
-    }, 4500);
+    clock.tick(4500);
+    domNode.find('h1').text().should.be.equal('lyrics-failed-message');
+  });
+
+  it('should show "search in Google.com" link if lyrics was not found', () => {
+    const component = mount(<LyricsViewer />, opts);
+    mockEvent('PlaybackAPI:change:lyrics', null);
+    component.find('#search-link').length.should.be.equal(0);
+    clock.tick(4500);
+    component.find('#search-link').length.should.be.equal(1);
+  });
+
+  describe('When clicked on "search in Google.com" link', () => {
+    it('should open browser, point it to google.com and prefill query field with current song artist and title', () => {
+      const remoteStub = sinon.stub(remote, 'getGlobal', () => ({
+        currentSong: () => ({ title: 'songTitle', artist: 'artistName' }),
+      }));
+      const shellStub = sinon.stub(shell, 'openExternal');
+      const query = encodeURIComponent('songTitle - artistName lyrics-lyrics');
+      const component = mount(<LyricsViewer />, opts);
+      mockEvent('PlaybackAPI:change:lyrics', null);
+      clock.tick(4500);
+      component.find('#search-link').simulate('click');
+      remoteStub.restore();
+
+      expect(shellStub.calledOnce).to.equal(true);
+      expect(shellStub.getCall(0).args.length).to.equal(1);
+      expect(shellStub.getCall(0).args[0]).to.equal(`https://www.google.com/search?q=${query}`);
+    });
   });
 
   it('should update the lyrics when a string of lyrics are passed in', () => {

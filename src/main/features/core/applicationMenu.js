@@ -70,6 +70,13 @@ const template = [
         },
       },
       {
+        label: 'Show Album Cover',
+        accelerator: 'CmdOrCtrl+Shift+C',
+        click: () => {
+          Emitter.sendToGooglePlayMusic('cover:show');
+        },
+      },
+      {
         label: 'Show Lyrics (Beta)',
         accelerator: 'CmdOrCtrl+Shift+L',
         click: () => {
@@ -125,7 +132,7 @@ const template = [
       },
       {
         label: 'Close',
-        accelerator: 'CmdOrCtrl+W',
+        accelerator: process.platform === 'linux' ? 'CmdOrCtrl+Q' : 'CmdOrCtrl+W',
         role: 'close',
       },
     ],
@@ -227,3 +234,8 @@ if (global.DEV_MODE) {
 
 const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
+
+if (process.platform === 'darwin') {
+  // Add Playback menu options to Dock menu
+  app.dock.setMenu(Menu.buildFromTemplate(template[3].submenu));
+}

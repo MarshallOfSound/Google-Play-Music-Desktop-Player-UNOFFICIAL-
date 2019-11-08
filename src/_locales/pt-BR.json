@@ -11,9 +11,12 @@
   "button-text-lets-do-this": "Vamos nessa!!",
   "button-text-lets-go": "Vamos lá!!",
   "button-text-not-now": "Mais tarde...",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "Sobre",
   "label-alarm": "Despertador",
+  "label-recents": "Recentes",
   "label-desktop-settings": "Configurações desktop",
   "label-donate": "Doar",
   "label-help": "Ajuda",
@@ -33,10 +36,16 @@
   "lastfm-login-error": "Você pode ter fechado a página de autorização. Se você acha que é um engano, tente novamente",
   "lastfm-login-not-authorized": "Não autorizado",
   "lastfm-logout-button-text": "Sair do Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "Marcar automaticamente faixas curtidas como faixas preferidas no Last.fm",
+
+  "listenbrainz-label-user-token": "Digite seu token de usuário no ListenBrainz (pode ser encontrado em https://listenbrainz.org/user/info)",
+  "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Desculpe, não conseguimos encontrar a letra dessa música",
   "lyrics-loading-message": "Carregando letra",
   "lyrics-no-song-message": "Nenhuma música tocando",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pausar após essa música",
   "message-pausing-after-song-button": "Não pause após essa música",
@@ -55,7 +64,7 @@
   "modal-welcome-content": "Esperamos que goste da nova atualização!",
 
   "playback-label-next-track": "Próxima faixa",
-  "playback-label-play-pause": "Play / Pause",
+  "playback-label-play-pause": "Tocar / Pausar",
   "playback-label-previous-track": "Faixa anterior",
   "playback-label-stop": "Parar",
   "playback-label-thumbs-down": "Não gostei",
@@ -63,11 +72,16 @@
   "playback-label-volume-down": "Diminuir Volume",
   "playback-label-volume-up": "Aumentar Volume",
   "playback-label-info-track": "Notificar música atual",
-  "playback-os-no-track-playing": "",
+  "playback-os-no-track-playing": "Nenhuma faixa tocando",
+  "playback-label-im-feeling-lucky": "Estou com sorte",
+  "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "Requer reinicialização",
 
-  "settings-option-invert-tray-icon": "",
+  "settings-option-keep-sidebar-open": "Manter a barra lateral aberta",
+  "settings-option-static-album-art": "Manter arte do álbum estática no visualizador",
+
+  "settings-option-invert-tray-icon": "Inverter a cor do ícone da bandeja",
 
   "settings-option-custom-theme": "Tema personalizado",
   "settings-option-custom-theme-choose-color": "Escolha a cor de destaque do tema",
@@ -75,7 +89,7 @@
   "settings-option-custom-theme-custom-color": "Cor personalizada",
   "settings-option-custom-theme-dark": "Escuro",
   "settings-option-custom-theme-light": "Claro",
-  "settings-option-custom-theme-should-track-system": "",
+  "settings-option-custom-theme-should-track-system": "Aplicar modo escuro do sistema ao tipo de tema",
 
   "settings-option-enable-api": "Habilitar PlaybackAPI",
   "settings-option-enable-api-json": "Habilitar API JSON",
@@ -84,19 +98,24 @@
   "settings-option-enable-voice": "Habilitar Controles de Voz",
   "settings-option-enable-voice-details": "Habilita controle de voz do GPMDP, recurso experimental",
   "settings-option-enable-taskbar-progress": "Mostrar o progresso da musica na barra de tarefas",
-  "settings-option-enable-win10-media-service": "",
-  "settings-option-enable-win10-media-service-details": "",
-  "settings-option-change-locale": "Escolher linguagem",
+  "settings-option-enable-win10-media-service": "Habilitar o serviço de mídia do Windows 10",
+  "settings-option-enable-win10-media-service-details": "Este recurso mostrará a faixa tocando na tela de bloqueio",
+  "settings-option-discord-rich-presence": "",
+  "settings-option-enable-win10-media-service-track-info": "Exibir informação da faixa atual no balão de volume do Windows 10",
+  "settings-option-change-locale": "Escolher idioma",
 
   "settings-option-hotkey-explanation": "Teclas de mídia padrão continuarão a funcionar independente das configurações. Estas configurações apenas complementam as demais teclas.",
   "settings-option-hotkey-explanation-2": "Use a tecla <i>\"Esc\"</i> para redefinir o atalho.",
+  "settings-option-hotkey-not-set": "Não configurado",
 
   "settings-option-min-to-tray": "Minimizar para a bandeja",
 
-  "settings-option-prevent-display-sleep": "",
+  "settings-option-prevent-display-sleep": "Impedir que o computador entre em modo de hibernação enquanto o GPMDP estiver aberto",
   "settings-option-auto-launch": "Inicializar automaticamente junto com o computador",
 
   "settings-option-save-page": "Carregar ultima página vista automaticamente",
+
+  "settings-option-start-minimized": "Iniciar o aplicativo minimizado",
 
   "settings-option-scroll-lyrics": "Rolar letra automaticamente enquanto executa",
 
@@ -104,16 +123,19 @@
   "settings-option-mini-ontop": "Sempre no topo",
   "settings-option-mini-use-scroll-volume": "Use o scroll do mouse para controlar o volume",
 
-  "settings-option-skip-bad-songs": "",
+  "settings-option-skip-bad-songs": "Pular automaticamente faixas marcadas como 'Não gostei'",
+  "settings-option-try-supported-channel-layouts": "Suporte, ainda em fase experimental, a múltiplos canais de áudio, como por exemplo Áudio 5.1",
 
   "settings-options-style-description": "Escolha um arquivo CSS local para injetar no aplicativo",
   "settings-options-style-main-app": "Aplicativo Principal",
   "settings-options-style-gpm": "Google Play Música",
   "settings-options-style-refresh": "Recarregar estilos",
-  "settings-options-style-dialog-title": "",
-  "settings-options-style-dialog-button": "",
-  "settings-options-style-dialog-css-files": "",
-  "settings-options-style-dialog-all-files": "",
+  "settings-options-style-dialog-title": "Escolha um arquivo CSS",
+  "settings-options-style-dialog-button": "Carregar CSS",
+  "settings-options-style-dialog-css-files": "Arquivos CSS",
+  "settings-options-style-dialog-all-files": "Todos os arquivos",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Paleta de cores",
   "title-settings": "Configurações",
@@ -121,9 +143,13 @@
   "title-settings-general": "Geral",
   "title-settings-hotkeys": "Atalhos",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Player",
   "title-settings-style": "Estilos personalizados",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Dispositivo de áudio",
-  "tray-label-show": "Mostrar"
+  "tray-label-show": "Mostrar",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

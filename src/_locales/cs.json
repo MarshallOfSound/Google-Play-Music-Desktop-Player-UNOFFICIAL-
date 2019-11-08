@@ -11,10 +11,13 @@
   "button-text-lets-do-this": "Pojďme do toho!",
   "button-text-lets-go": "Tak jdem na to!",
   "button-text-not-now": "Ne nyní",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "O Aplikaci",
   "label-alarm": "Budík",
-  "label-desktop-settings": "Nastavení Desktop Přehrávače",
+  "label-recents": "Nedávno přehráno nebo přidáno",
+  "label-desktop-settings": "Nastavení přehrávače",
   "label-donate": "Podpořit",
   "label-help": "Nápověda",
   "label-issues": "Problémy s aplikací",
@@ -33,10 +36,16 @@
   "lastfm-login-error": "Vypadá to, že jste opustili přihlašovací proces. Pokud se tak nestalo, prosím, opakujte přihlášení",
   "lastfm-login-not-authorized": "Nepřihlášen",
   "lastfm-logout-button-text": "Odhlásit se ze služby Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "",
+
+  "listenbrainz-label-user-token": "",
+  "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Omlouváme se, ale nenašly se žádné texty pro tuto skladbu",
   "lyrics-loading-message": "Načítání textu skladby...",
   "lyrics-no-song-message": "Právě nehraje žádná skladba",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Po této skladbě se pozastaví přehrávání.",
   "message-pausing-after-song-button": "Nepozastavovat po této skladbě",
@@ -64,8 +73,13 @@
   "playback-label-volume-up": "Zvýšit hlasitost",
   "playback-label-info-track": "",
   "playback-os-no-track-playing": "",
+  "playback-label-im-feeling-lucky": "",
+  "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "Vyžaduje restart",
+
+  "settings-option-keep-sidebar-open": "",
+  "settings-option-static-album-art": "",
 
   "settings-option-invert-tray-icon": "Převrátit barvu ikony v liště",
 
@@ -86,10 +100,13 @@
   "settings-option-enable-taskbar-progress": "Ukázat průběh skladby na hlavním panelu",
   "settings-option-enable-win10-media-service": "",
   "settings-option-enable-win10-media-service-details": "",
+  "settings-option-discord-rich-presence": "",
+  "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "Vybrat jazyk (Language)",
 
   "settings-option-hotkey-explanation": "Výchozí multimediální tlačítka budou fungovat jako doposud. Toto nastavení je doplňkem k výchozímu.",
   "settings-option-hotkey-explanation-2": "Použijte klávesu <i>\"Escape\"</i> pro vyresetování klávesové zkratky.",
+  "settings-option-hotkey-not-set": "",
 
   "settings-option-min-to-tray": "Minimalizovat do lišty",
 
@@ -98,6 +115,8 @@
 
   "settings-option-save-page": "Automaticky načíst poslední stránku při spuštění",
 
+  "settings-option-start-minimized": "",
+
   "settings-option-scroll-lyrics": "Posouvat text skladby při přehrávání automaticky",
 
   "settings-option-mini-always-show": "Vždy zobraz informace o skladbě",
@@ -105,6 +124,7 @@
   "settings-option-mini-use-scroll-volume": "Použít rolovací kolečko pro změnu hlasitosti",
 
   "settings-option-skip-bad-songs": "",
+  "settings-option-try-supported-channel-layouts": "Experimentální podpora více audio kanálů, jako je 5.1",
 
   "settings-options-style-description": "Vybrat místní CSS soubor pro použití stylů v aplikaci",
   "settings-options-style-main-app": "Hlavní aplikace",
@@ -114,6 +134,8 @@
   "settings-options-style-dialog-button": "",
   "settings-options-style-dialog-css-files": "",
   "settings-options-style-dialog-all-files": "",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Výběr barvy",
   "title-settings": "Nastavení",
@@ -121,9 +143,13 @@
   "title-settings-general": "Hlavní",
   "title-settings-hotkeys": "Klávesové zkratky",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini přehrávač",
   "title-settings-style": "Vlastní motivy",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Zvukové zařízení",
-  "tray-label-show": "Zobrazit"
+  "tray-label-show": "Zobrazit",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

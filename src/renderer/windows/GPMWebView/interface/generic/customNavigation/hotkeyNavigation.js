@@ -1,27 +1,58 @@
 import { remote } from 'electron';
-import { style, cssRule } from '../customUI';
+import { style, cssRule } from '../_helpers';
 
 window.wait(() => {
-  const listenNowURL = 'https://play.google.com/music/listen#/now';
-  const searchBox = (document.querySelector('#material-one-middle > sj-search-box')
-    || document.querySelector('#material-one-middle'));
-  const searchInput = (document.querySelector('sj-search-box input')
-    || document.querySelector('#material-one-middle > input'));
+  const service = Settings.get('service');
+  const listenNowURLTest = service === 'google-play-music'
+    ? () => /$https:\/\/play\.google\.com\/music\/listen#\/now/
+    : () => /$https:\/\/music\.youtube\.com\/^/;
 
   const backBtn = document.createElement('paper-icon-button');
   backBtn.setAttribute('icon', 'arrow-back');
   backBtn.setAttribute('id', 'backButton');
   backBtn.setAttribute('class', 'x-scope paper-icon-button-0');
-  searchBox.insertBefore(backBtn, null);
 
-  const canBack = () => !(location.href.indexOf(listenNowURL) === 0);
+  let searchInput;
+
+  if (service === 'google-play-music') {
+    const searchBox = (document.querySelector('#material-one-middle > sj-search-box')
+      || document.querySelector('#material-one-middle'));
+    searchInput = (document.querySelector('sj-search-box input')
+      || document.querySelector('#material-one-middle > input'));
+    searchBox.insertBefore(backBtn, null);
+    style('#backButton', {
+      position: 'absolute',
+      right: '3px',
+      top: '1px',
+      width: '46px',
+      height: '46px',
+      opacity: '0',
+      transition: 'opacity 0.2s ease-in-out',
+    });
+  } else if (service === 'youtube-music') {
+    const pivotBar = document.querySelector('ytmusic-pivot-bar-renderer');
+    pivotBar.insertBefore(backBtn, pivotBar.firstChild);
+    style('#backButton', {
+      position: 'relative',
+      right: '-8px',
+      top: '0px',
+      width: '48px',
+      height: '48px',
+      opacity: '0',
+      transition: 'opacity 0.2s ease-in-out',
+    });
+  }
+
+  const canBack = () => !listenNowURLTest().test(location.href);
 
   const attemptBack = () => {
     const testJs = 'document.querySelector("webview").canGoBack()';
     remote.getCurrentWindow().webContents.executeJavaScript(testJs, false, (canGoBack) => {
       if (!canBack()) return null;
       if (canGoBack) return history.back();
-      location.href = listenNowURL;
+      location.href = service === 'google-play-music'
+      ? 'https://play.google.com/music/listen#/now'
+      : 'https://music.youtube.com/';
     });
   };
   const attemptForward = () => {
@@ -66,24 +97,20 @@ window.wait(() => {
     holdingKeyMap[e.which] = false;
   });
 
-  style('#backButton', {
-    position: 'absolute',
-    right: '3px',
-    top: '1px',
-    width: '46px',
-    height: '46px',
-    opacity: '0',
-    transition: 'opacity 0.2s ease-in-out',
-  });
-
   // Make sure the clearSearch button is above the arrow
   style('sj-search-box #clearButton', { 'z-index': 10 });
 
   // Hide Back button if search box has query
+  cssRule('.gmusic-theme[data-theme-type=FULL] sj-search-box #backButton { color: #fff !important }');
   cssRule('sj-search-box[has-query] #backButton {opacity: 0 !important}');
 
   const correctButtonVis = () => { backBtn.style.opacity = (!canBack()) ? 0 : 1; };
   window.addEventListener('popstate', correctButtonVis);
-  searchInput.addEventListener('input', correctButtonVis);
+  if (searchInput) searchInput.addEventListener('input', correctButtonVis);
+  const oPushState = history.pushState.bind(history);
+  history.pushState = (...args) => {
+    setTimeout(correctButtonVis, 50);
+    return oPushState(...args);
+  };
   correctButtonVis();
 });

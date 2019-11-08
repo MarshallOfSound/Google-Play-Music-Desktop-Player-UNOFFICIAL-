@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 
 import SettingsTabWrapper from './SettingsTabWrapper';
+import ToggleableOption from '../ToggleableOption';
 import { requireSettings } from '../../generic/SettingsProvider';
 
 class LastFMTab extends Component {
@@ -89,6 +90,10 @@ class LastFMTab extends Component {
           label={TranslationProvider.query('button-text-lets-go')}
           {...buttonProps}
           onTouchTap={this.handleClick}
+        />
+        <ToggleableOption
+          label={TranslationProvider.query('lastfm-map-thumbs-up-to-heart')}
+          settingsKey="lastFMMapThumbToHeart"
         />
       </SettingsTabWrapper>
     );

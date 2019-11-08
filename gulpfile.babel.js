@@ -24,9 +24,6 @@ import rasterImages from './vendor/svg_raster';
 
 const paths = {
   internalScripts: ['src/**/*.js'],
-  utilityScripts: ['node_modules/jquery/dist/jquery.min.js',
-                    'node_modules/materialize-css/dist/js/materialize.min.js',
-                    'node_modules/materialize-css/extras/noUiSlider/nouislider.min.js'],
   html: 'src/public_html/**/*.html',
   less: 'src/assets/less/**/*.less',
   fonts: ['node_modules/materialize-css/dist/fonts/**/*',
@@ -38,28 +35,29 @@ const paths = {
 
 const packageJSON = require('./package.json');
 
-let version = packageJSON.dependencies.electron;
-if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1') {
+let version = packageJSON.devDependencies.electron;
+if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1' && version.substr(0, 1) !== '2' && version.substr(0, 1) !== '3') {
   version = version.substr(1);
 }
 
 const defaultPackageConf = {
-  'app-bundle-id': packageJSON.name,
-  'app-category-type': 'public.app-category.music',
-  'app-copyright': `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
-  'app-version': packageJSON.version,
+  appBundleId: packageJSON.name,
+  appCategoryType: 'public.app-category.music',
+  appCopyright: `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`, // eslint-disable-line
+  appVersion: packageJSON.version,
   afterCopy: [
     (buildPath, electronVersion, pPlatform, pArch, done) => rebuild(buildPath, electronVersion, pArch).then(() => done()).catch(done),
     (buildPath, electronVersion, pPlatform, pArch, done) => {
       const files = globber.sync(nodePath.resolve(buildPath, '**', '*.pdb'))
-        .concat(globber.sync(nodePath.resolve(buildPath, '**', '*.obj')));
+        .concat(globber.sync(nodePath.resolve(buildPath, '**', '*.obj')))
+        .concat(globber.sync(nodePath.resolve(buildPath, '**', '.bin', '**', '*')));
       files.forEach(filePath => fs.unlinkSync(filePath));
       done();
     },
   ],
   arch: 'all',
   asar: true,
-  'build-version': packageJSON.version,
+  buildVersion: packageJSON.version,
   dir: __dirname,
   icon: './build/assets/img/main',
   ignore: (path) => {
@@ -157,7 +155,8 @@ const appdmgConf = {
   },
 };
 
-const cleanGlob = (glob) => {
+const cleanGlob = (glob, allowSkip) => {
+  if (allowSkip && process.env.GPMDP_SKIP_PACKAGE) return;
   return () => {
     return gulp.src(glob, { read: false })
       .pipe(clean({ force: true }));
@@ -168,7 +167,7 @@ const windowsSignFile = (filePath, signDigest) =>
   new Promise((resolve) => {
     console.log(`Signing file: "${filePath}"\nWith digest: ${signDigest}`);
     exec(
-      `vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd ${signDigest} /tr "http://timestamp.geotrust.com/tsa" /v /as "${filePath}"`,
+      `vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /td ${signDigest} /fd ${signDigest} /tr "http://timestamp.digicert.com" /v /as "${filePath}"`,
       {},
       () => {
         setTimeout(() => {
@@ -181,26 +180,14 @@ const windowsSignFile = (filePath, signDigest) =>
 gulp.task('clean', cleanGlob(['./build', './dist']));
 gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
 gulp.task('clean-dist-darwin', cleanGlob(`./dist/${packageJSON.productName}-darwin-ia32`));
-gulp.task('clean-dist-linux-32', cleanGlob(`./dist/${packageJSON.productName}-linux-ia32`));
-gulp.task('clean-dist-linux-64', cleanGlob(`./dist/${packageJSON.productName}-linux-x64`));
-gulp.task('clean-material', cleanGlob('./build/assets/material'));
-gulp.task('clean-utility', cleanGlob('./build/assets/util'));
+gulp.task('clean-dist-linux-32', cleanGlob(`./dist/${packageJSON.productName}-linux-ia32`, true));
+gulp.task('clean-dist-linux-64', cleanGlob(`./dist/${packageJSON.productName}-linux-x64`, true));
 gulp.task('clean-html', cleanGlob('./build/public_html'));
 gulp.task('clean-internal', cleanGlob(['./build/*.js', './build/**/*.js', '!./build/assets/**/*']));
 gulp.task('clean-fonts', cleanGlob('./build/assets/fonts'));
 gulp.task('clean-less', cleanGlob('./build/assets/css'));
 gulp.task('clean-images', cleanGlob('./build/assets/img'));
 gulp.task('clean-locales', cleanGlob('./build/_locales/*.json'));
-
-gulp.task('materialize-js', ['clean-material'], () => {
-  return gulp.src('node_modules/materialize-css/dist/js/materialize.min.js')
-    .pipe(gulp.dest('./build/assets/material'));
-});
-
-gulp.task('utility-js', ['clean-utility'], () => {
-  return gulp.src(paths.utilityScripts)
-    .pipe(gulp.dest('./build/assets/util'));
-});
 
 gulp.task('html', ['clean-html'], () => {
   return gulp.src(paths.html)
@@ -272,15 +259,14 @@ gulp.task('watch', ['build'], () => {
 });
 
 gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), (err) => {
-    if (err) return done(err);
+  packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' })).then(() => {
     setTimeout(() => {
       const packageExePath = `dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe`;
       windowsSignFile(packageExePath, 'sha1')
       .then(() => windowsSignFile(packageExePath, 'sha256'))
       .then(() => done());
     }, 1000);
-  });
+  }).catch((err) => done(err));
 });
 
 gulp.task('make:win', ['package:win'], (done) => {
@@ -320,7 +306,9 @@ gulp.task('make:win:uwp', ['package:win'], (done) => {
 });
 
 gulp.task('package:darwin', ['clean-dist-darwin', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', 'osx-sign': { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
+  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', osxSign: { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } })) // eslint-disable-line
+    .then(() => done())
+    .catch((err) => done(err));
 });
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {
@@ -354,11 +342,17 @@ gulp.task('dmg:darwin', ['package:darwin'], (done) => {
 });
 
 gulp.task('package:linux:32', ['clean-dist-linux-32', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }), done);
+  if (process.env.GPMDP_SKIP_PACKAGE) return done();
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }))
+    .then(() => done())
+    .catch((err) => done(err));
 });
 
 gulp.task('package:linux:64', ['clean-dist-linux-64', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }), done);
+  if (process.env.GPMDP_SKIP_PACKAGE) return done();
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }))
+    .then(() => done())
+    .catch((err) => done(err));
 });
 
 gulp.task('package:linux', (done) => {
@@ -438,6 +432,5 @@ zipTask('linux:rpm', ['rpm:linux'], './dist/installers/redhat', 'the Redhat (Fed
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['watch', 'transpile', 'images']);
-gulp.task('build', ['materialize-js', 'utility-js', 'transpile', 'images', 'less',
-                    'fonts', 'html', 'locales']);
+gulp.task('build', ['transpile', 'images', 'less', 'fonts', 'html', 'locales']);
 gulp.task('package', ['package:win', 'package:darwin', 'package:linux']);

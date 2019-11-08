@@ -9,7 +9,7 @@ const attemptMetroLyrics = (path) =>
     fetch(`http://www.metrolyrics.com/${path}.html`)
       .then((data) => data.text())
       .then((html) => {
-        const lyricsMatch = /('|")lyrics-body('|")>([\s\S]+)('|")lyrics-bottom('|")/gm.exec(html);
+        const lyricsMatch = /('|")lyrics-body('|")>([\s\S]+)('|")bottom-mpu('|")/gm.exec(html);
         if (!lyricsMatch) return reject('Could not find lyrics');
         const lyricsChunk = (lyricsMatch[3]); // eslint-disable-line
         let lyrics = '';

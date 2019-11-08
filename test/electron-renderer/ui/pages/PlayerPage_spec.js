@@ -75,7 +75,7 @@ describe('<PlayerPage />', () => {
       component.instance()._didStopLoading();
       component.instance().once.should.be.equal(false);
       done();
-    }, 400);
+    }, 1200);
   });
 
   it('should persist GPM URLS on navigate events', () => {

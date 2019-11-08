@@ -19,8 +19,15 @@ class GeneralTab extends Component {
         <PlatformSpecific platform="linux">
           <ToggleableOption label={TranslationProvider.query('settings-option-invert-tray-icon')} settingsKey={"appIconInvert"} />
         </PlatformSpecific>
-        <ToggleableOption label={TranslationProvider.query('settings-option-auto-launch')} settingsKey={"auto-launch"} />
+        <ToggleableOption label={TranslationProvider.query('settings-option-start-minimized')} settingsKey={"startMinimized"} />
+        {
+          process.windowsStore
+          ? null
+          : <ToggleableOption label={TranslationProvider.query('settings-option-auto-launch')} settingsKey={"auto-launch"} />
+        }
         <ToggleableOption label={TranslationProvider.query('settings-option-prevent-display-sleep')} settingsKey={"preventDisplaySleep"} />
+        <ToggleableOption label={TranslationProvider.query('settings-option-keep-sidebar-open')} settingsKey={"keepSidebarOpen"} />
+        <ToggleableOption label={TranslationProvider.query('settings-option-static-album-art')} settingsKey={"staticAlbumArt"} />
         <ToggleableOption label={TranslationProvider.query('settings-option-custom-theme')} settingsKey={"theme"} />
         {
           this.props.theme ? <ThemeOptions /> : null
@@ -55,6 +62,16 @@ class GeneralTab extends Component {
             settingsKey={"enableWin10MediaService"}
           />
         </PlatformSpecific>
+        <PlatformSpecific platform="win32" versionRange=">=10">
+          <ToggleableOption
+            label={TranslationProvider.query('settings-option-enable-win10-media-service-track-info')}
+            hintLabel={TranslationProvider.query('settings-requires-restart')}
+            settingsKey={"enableWin10MediaServiceTrackInfo"}
+            dependsOnSettingsKey={"enableWin10MediaService"}
+          />
+        </PlatformSpecific>
+        <ToggleableOption label={TranslationProvider.query('settings-option-discord-rich-presence')} settingsKey="discordRichPresence" />
+
         <LocaleSelector />
       </SettingsTabWrapper>
     );

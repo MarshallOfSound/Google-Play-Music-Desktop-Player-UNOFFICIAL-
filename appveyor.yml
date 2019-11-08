@@ -1,6 +1,6 @@
 version: 1.0.{build}
 environment:
-  nodejs_version: "6.3.0"
+  nodejs_version: "8.15.0"
   GITHUB_KEY:
     secure: eZcSozzDKzRJhSoXL7LS9w1jqFLdkiRT4H57JoWGpKj/kS6NC/DP3ColwKkvSeFn
   SIGN_CERT_PASS:
@@ -22,17 +22,16 @@ branches:
   except:
   - website
 
-os: Previous Visual Studio 2015
+os: Visual Studio 2015
 platform:
   - x64
 
 cache:
-  - node_modules
+  # - node_modules
   - '%USERPROFILE%\.electron'
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - npm i -g npm
   - if exist "node_modules" rd /S /Q "node_modules"
   - appveyor DownloadFile https://www.samuelattard.com/files/bonjourcore2.msi
   - msiexec /i bonjourcore2.msi /qn
@@ -40,8 +39,7 @@ install:
   - appveyor DownloadFile https://www.samuelattard.com/files/bonjoursdksetup.exe
   - bonjoursdksetup.exe /quiet
   - del bonjoursdksetup.exe
-  - npm cache clean
-  - npm install
+  - npx yarn
 
 test_script:
   # Output useful info for debugging.
@@ -51,8 +49,8 @@ test_script:
   - npm test
   # Clean build so that Component names are not minified
   - npm run build
-  - npm run test-electron-main -- -R mocha-appveyor-reporter
-  - npm run test-electron-renderer -- -R mocha-appveyor-reporter
+  # - npm run test-electron-main
+  # - npm run test-electron-renderer
 
 build_script:
 - cmd: npm run make:win

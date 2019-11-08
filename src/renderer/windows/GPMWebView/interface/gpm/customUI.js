@@ -1,6 +1,7 @@
 import { remote } from 'electron';
 import _ from 'lodash';
 
+import { style, cssRule } from '../generic/_helpers';
 
 // --- Helpers ---
 
@@ -16,23 +17,11 @@ const hide = (elementSelector, kill = false) => {
   });
 };
 
-/** Set CSS style by a selector */
-export const style = (elementSelector, styleObject) => {
-  const nodeList = document.querySelectorAll(elementSelector);
-  _.forEach(nodeList, (node) => {
-    const element = node;
-    _.forIn(styleObject, (value, key) => {
-      element.style[key] = value;
-    });
-  });
-};
-
-/** Inject a CSS rule to the page (in a <style> tag) */
-export const cssRule = (styles) => {
-  const tag = document.createElement('style');
-  tag.type = 'text/css';
-  tag.appendChild(document.createTextNode(styles));
-  document.head.appendChild(tag);
+/** Removes the referenced <style> tag */
+const removeCssRule = (styleTag) => {
+  if (styleTag) {
+    styleTag.parentElement.removeChild(styleTag);
+  }
 };
 
 
@@ -41,7 +30,7 @@ function _redirectButton(button, URL, reverseURLChange) {
   if (button) {
     button.addEventListener('click', (e) => {
       remote.shell.openExternal(URL);
-      if (reverseURLChange) setImmediate(history.back);
+      if (reverseURLChange) setTimeout(() => history.back(), 0);
       e.preventDefault();
       return false;
     });
@@ -65,9 +54,9 @@ function hideNotWorkingStuff() {
   hide('.player-top-right-items > paper-icon-button');
 
   // Settings options that won't work
-  hide('[data-action="upload-music"]');
-  hide('[data-action="help-and-feedback"]');
-  hide('[data-action="send-gift"]');
+  cssRule('#download { display: none !important }');
+  cssRule('#manage-downloads { display: none !important }');
+  cssRule('.subscription-gifting-card.settings-card {display: none !important}');
 
   // Hide the upload music button in settings
   cssRule('.music-sources-card.settings-card {display: none !important}');
@@ -78,11 +67,11 @@ function hideNotWorkingStuff() {
   cssRule('.song-menu.goog-menu.now-playing-menu > .goog-menuitem:nth-child(3) { display: none !important; }');
 }
 
-function installSidebarButton(translationKey, type, icon, index, fn) {
+function installSidebarButton(translationKey, type, icon, index, href, fn) {
   const elem = document.createElement('a');
   elem.setAttribute('data-type', type);
   elem.setAttribute('class', 'nav-item-container tooltip');
-  elem.setAttribute('href', '');
+  elem.setAttribute('href', href);
   elem.setAttribute('no-focus', '');
   elem.innerHTML = `<iron-icon icon="${icon}" alt="" class="x-scope iron-icon-1"></iron-icon><span is="translation-key">${translationKey}</span>`; // eslint-disable-line
   elem.addEventListener('click', fn);
@@ -93,9 +82,24 @@ function installSidebarButton(translationKey, type, icon, index, fn) {
   }
 }
 
+function installYTMButton() {
+  const elem = document.createElement('paper-button');
+  elem.setAttribute('id', 'ytm-button');
+  elem.setAttribute('class', 'paper-button-1');
+  elem.setAttribute('style', 'background: #F43333; color: #FFF');
+  elem.innerHTML = '<span is="translation-key">button-text-ytm-switch</span>';
+  elem.addEventListener('click', () => {
+    const mainWindow = remote.getCurrentWindow();
+    Settings.set('service', 'youtube-music');
+    mainWindow.hide();
+    mainWindow.reload();
+  });
+  document.querySelector('#material-one-right').prepend(elem);
+}
+
 /** Create the Desktop Settings button in the left sidebar */
 function installDesktopSettingsButton() {
-  installSidebarButton('label-desktop-settings', 'desktopsettings', 'settings', 2, (e) => {
+  installSidebarButton('label-desktop-settings', 'desktopsettings', 'settings', 2, '#', (e) => {
     Emitter.fire('window:settings');
     e.preventDefault();
     e.stopPropagation();
@@ -105,7 +109,7 @@ function installDesktopSettingsButton() {
 
 /** Create the Quit button in the left sidebar */
 function installQuitButton() {
-  installSidebarButton('label-quit', 'quit', 'exit-to-app', -1, (e) => {
+  installSidebarButton('label-quit', 'quit', 'exit-to-app', -1, '#', (e) => {
     remote.app.quit();
     e.preventDefault();
     e.stopPropagation();
@@ -114,7 +118,7 @@ function installQuitButton() {
 }
 
 function installAlarmButton() {
-  installSidebarButton('label-alarm', 'alarm', 'alarm', 0, (e) => {
+  installSidebarButton('label-alarm', 'alarm', 'alarm', 0, '#', (e) => {
     // Closes the sliding drawer
     document.querySelector('paper-drawer-panel').setAttribute('selected', 'main');
     Emitter.fireAtMain('alarm:show');
@@ -168,6 +172,24 @@ function installNowPlayingSeperator() {
   nowPlayingMenu.appendChild(seperator);
 }
 
+function showNowPlayingMenu() {
+  const lyricsButton = document.querySelector('#\\3Agpmdplyrics');
+  const pauseButton = document.querySelector('#\\3Agpmdppause');
+  lyricsButton.previousSibling.style.display = 'block';
+  lyricsButton.style.display = 'block';
+  pauseButton.previousSibling.style.display = 'block';
+  pauseButton.style.display = 'block';
+}
+
+function hideNowPlayingMenu() {
+  const lyricsButton = document.querySelector('#\\3Agpmdplyrics');
+  const pauseButton = document.querySelector('#\\3Agpmdppause');
+  lyricsButton.previousSibling.style.display = 'none';
+  lyricsButton.style.display = 'none';
+  pauseButton.previousSibling.style.display = 'none';
+  pauseButton.style.display = 'none';
+}
+
 function installNowPlayingMenu() {
   installNowPlayingSeperator();
   installNowPlayingButton('label-pause-after-song', ':gpmdppause', () => {
@@ -176,6 +198,22 @@ function installNowPlayingMenu() {
   installNowPlayingSeperator();
   installNowPlayingButton('label-show-lyrics', ':gpmdplyrics', () => {
     Emitter.fireAtMain('lyrics:show');
+  });
+
+  const MenuMutationObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'style' && mutation.target.style.cssText.indexOf('display: none') !== -1) {
+        showNowPlayingMenu();
+      }
+      if (mutation.attributeName !== 'class') return;
+      if (!mutation.target.classList.contains('now-playing-menu')) {
+        hideNowPlayingMenu();
+      }
+    });
+  });
+  MenuMutationObserver.observe(document.querySelector('.goog-menu.song-menu'), {
+    attributes: true,
+    attributeOldValue: true,
   });
 }
 
@@ -208,13 +246,60 @@ const fixChromecastButton = () => {
   cssRule('#player paper-icon-button[data-id="cast"] { display: inline-block; }');
 };
 
+let openSidebarStyles;
+const setKeepSidebarOpen = (keepSidebarOpen) => {
+  const sidebar = document.querySelector('paper-drawer-panel');
+  if (keepSidebarOpen) {
+    sidebar.removeAttribute('force-narrow');
+    sidebar.removeAttribute('narrow');
+    openSidebarStyles = cssRule('#material-app-bar .music-logo-link, #quickNavContainer { display: none !important; }');
+  } else {
+    sidebar.setAttribute('force-narrow', '');
+    sidebar.setAttribute('narrow', '');
+    removeCssRule(openSidebarStyles);
+  }
+};
+
+let staticAlbumArtStyle;
+const setStaticAlbumArt = (staticAlbumArt) => {
+  if (staticAlbumArtStyle) removeCssRule(staticAlbumArtStyle);
+
+  staticAlbumArtStyle = cssRule(staticAlbumArt ? `
+  .art-container {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .art-container img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto !important;
+    height: auto !important;
+  }` : '');
+};
+
 
 // Modify the GUI after everything is sufficiently loaded
 window.wait(() => {
+  Emitter.on('settings:change:keepSidebarOpen', (event, keepSidebarOpen) => {
+    setKeepSidebarOpen(keepSidebarOpen);
+  });
+  Emitter.on('settings:change:staticAlbumArt', (event, staticAlbumArt) => {
+    setStaticAlbumArt(staticAlbumArt);
+  });
+
   hideNotWorkingStuff();
   handleSubscribeButton();
   installMainMenu();
   handleZoom();
   installNowPlayingMenu();
   fixChromecastButton();
+  setKeepSidebarOpen(Settings.get('keepSidebarOpen'));
+  setStaticAlbumArt(Settings.get('staticAlbumArt'));
+  installYTMButton();
 });

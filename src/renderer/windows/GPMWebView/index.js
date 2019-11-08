@@ -1,6 +1,9 @@
 import _ from 'lodash';
 import { remote } from 'electron';
 
+// Per https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/issues/3640#issuecomment-543863416
+window.customElements.upgrade = window.customElements.upgrade || function () {};
+
 global.isGPM = true;
 
 require('../../generic');
@@ -23,33 +26,59 @@ window.wait = (fn) => {
 // DEV: Polyfill window.open to be shell.openExternal
 window.open = (url) => remote.shell.openExternal(url);
 
+const service = Settings.get('service');
+
 require('./playback');
-require('./interface');
+require(`./interface/${service === 'youtube-music' ? 'ytm' : 'gpm'}`);
 require('./chromecast');
+require('./runtime');
+
+const serviceReady = () => {
+  if (service === 'youtube-music') {
+    return document.querySelector('.ytmusic-player-bar') && document.querySelector('video');
+  }
+  // Google Play Music
+  return document.querySelector('#material-vslider') && document.querySelectorAll('audio')[1];
+};
 
 // DEV: We need to wait for the page to load sufficiently before we can load
 //      gmusic.js and its child libraries
 const waitForExternal = setInterval(() => {
-  if (document.querySelector('#material-vslider')) {
+  if (serviceReady()) {
     clearInterval(waitForExternal);
-    const GMusic = require('gmusic.js');
-    require('gmusic-ui.js')(GMusic);
-    require('gmusic-mini-player.js')(GMusic);
-    const GMusicTheme = require('gmusic-theme.js');
 
-    window.GMusic = GMusic;
-    window.GMusicTheme = GMusicTheme;
+    if (service === 'youtube-music') {
+      const YTMusic = require('ytmusic.js');
+      window.GMusic = YTMusic;
+      window.GPM = new YTMusic();
+      require('./mock-gpusic-ui');
+      // TODO: Implement theming support
+      window.GPMTheme = {
+        updateTheme() {},
+        enable() {},
+        disable() {},
+      };
+    } else {
+      const GMusic = require('gmusic.js');
+      window.GMusic = GMusic;
+      // Google Play Music
+      require('gmusic-ui.js')(GMusic);
+      require('gmusic-mini-player.js')(GMusic);
+      const GMusicTheme = require('gmusic-theme.js');
 
-    window.GPM = new GMusic();
-    window.GPMTheme = new window.GMusicTheme();
+      window.GPM = new GMusic();
+      window.GPMTheme = new GMusicTheme();
+    }
 
     /*
     Move to magical file
     */
-    window.GPM.search.performSearchAndPlayResult = (searchText, result) => {
-      window.GPM.search.performSearch(searchText)
-        .then(() => window.GPM.search.playResult(result));
-    };
+    if (window.GPM.search) {
+      window.GPM.search.performSearchAndPlayResult = (searchText, result) => {
+        window.GPM.search.performSearch(searchText)
+          .then(() => window.GPM.search.playResult(result));
+      };
+    }
 
     /*
     Fix scrollbars
@@ -66,7 +95,8 @@ const waitForExternal = setInterval(() => {
         Logger.error('Emitter fn() threw exception.', e.stack);
       }
     });
-    Settings.set('gpmdp_connect_email', window.gbar._CONFIG[0][10][5]);
+    // TODO: This never took off, comment out for now
+    // Settings.set('gpmdp_connect_email', window.gbar._CONFIG[0][10][5]);
   }
 }, 10);
 

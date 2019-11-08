@@ -11,9 +11,12 @@
   "button-text-lets-do-this": "Let's do this!!",
   "button-text-lets-go": "Let's Go!!",
   "button-text-not-now": "Not right now",
+  "button-text-ytm-switch": "Switch to YTM (beta)",
+  "button-text-gpm-switch": "Switch to GPM",
 
   "label-about": "About",
   "label-alarm": "Alarm",
+  "label-recents": "Recents",
   "label-desktop-settings": "Desktop Settings",
   "label-donate": "Donate",
   "label-help": "Help",
@@ -33,10 +36,16 @@
   "lastfm-login-error": "You appear to have left the authorization process, if this is a mistake, please try authorizing again",
   "lastfm-login-not-authorized": "Not Authorized",
   "lastfm-logout-button-text": "Log out of Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "Automatically love tracks that are thumbed up",
+
+  "listenbrainz-label-user-token": "Enter your ListenBrainz user token (can be found at https://listenbrainz.org/profile)",
+  "listenbrainz-token-here": "Enter token",
 
   "lyrics-failed-message": "Sorry, we could not find any lyrics for this song",
   "lyrics-loading-message": "Loading lyrics...",
   "lyrics-no-song-message": "No song is currently playing",
+  "lyrics-search-in": "Search in",
+  "lyrics-lyrics": "lyrics",
 
   "message-pausing-after-song": "Pausing after this song.",
   "message-pausing-after-song-button": "Don't pause after this song",
@@ -64,8 +73,13 @@
   "playback-label-volume-up": "Increase Volume",
   "playback-label-info-track": "Notify current track",
   "playback-os-no-track-playing": "No Track Playing",
+  "playback-label-im-feeling-lucky": "I'm Feeling Lucky",
+  "playback-label-toggle-repeat": "Toggle Repeat",
 
   "settings-requires-restart": "Requires restart",
+
+  "settings-option-keep-sidebar-open": "Keep sidebar open",
+  "settings-option-static-album-art": "Keep album art static in visualizer",
 
   "settings-option-invert-tray-icon": "Invert Tray Icon Color",
 
@@ -86,10 +100,13 @@
   "settings-option-enable-taskbar-progress": "Show track progress in the taskbar",
   "settings-option-enable-win10-media-service": "Enable the Windows 10 System Media Service",
   "settings-option-enable-win10-media-service-details": "This will show the current track on the lock screen",
+  "settings-option-discord-rich-presence": "Enable Discord Rich Presence integration",
+  "settings-option-enable-win10-media-service-track-info": "Show track information in Windows 10 volume overlay",
   "settings-option-change-locale": "Choose language",
 
   "settings-option-hotkey-explanation": "Default media keys will continue to work regardless of these settings.  These settings are in addition to the defaults.",
   "settings-option-hotkey-explanation-2": "Use the <i>\"Escape\"</i> key to reset the hotkey.",
+  "settings-option-hotkey-not-set": "Not Set",
 
   "settings-option-min-to-tray": "Minimize to Tray",
 
@@ -98,6 +115,8 @@
 
   "settings-option-save-page": "Automatically load last viewed page on startup",
 
+  "settings-option-start-minimized": "Start this application minimized",
+
   "settings-option-scroll-lyrics": "Scroll lyrics automatically while playing",
 
   "settings-option-mini-always-show": "Always show song information",
@@ -105,6 +124,7 @@
   "settings-option-mini-use-scroll-volume": "Use the scroll wheel to adjust volume",
 
   "settings-option-skip-bad-songs": "Automatically skip disliked songs",
+  "settings-option-try-supported-channel-layouts": "Experimental support for multiple audio channels such as 5.1 audio",
 
   "settings-options-style-description": "Choose a local CSS file to inject styles into the application",
   "settings-options-style-main-app": "Main App",
@@ -115,15 +135,22 @@
   "settings-options-style-dialog-css-files": "CSS Files",
   "settings-options-style-dialog-all-files": "All Files",
 
+  "slack-token-label": "Enter your slack user token (can be found at $1)",
+  "slack-token-placeholder": "Slack token",
+
   "title-color-picker": "Color Picker",
   "title-settings": "Settings",
   "title-settings-playback": "Playback",
   "title-settings-general": "General",
   "title-settings-hotkeys": "Hotkeys",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Player",
   "title-settings-style": "Custom Styles",
+  "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "Audio Device",
-  "tray-label-show": "Show"
+  "tray-label-show": "Show",
+  "tray-label-gpm": "Google Play Music",
+  "tray-label-ytm": "YouTube Music (alpha, please use the dark theme)"
 }

@@ -9,12 +9,11 @@ Google Play Music™ Desktop Player
  [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-.svg)](http://isitmaintained.com/project/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL- "Average time to resolve an issue")
  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23CZGASL6XMLJ" title="Help me out by donating to this project"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>  
  Windows: [![Build status](https://ci.appveyor.com/api/projects/status/clg5vclqyltff7hg/branch/master?svg=true)](https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial/branch/master)  
- Mac OS X: [![Build Status](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-.svg?branch=master)](https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-)  
- Linux: [![Circle CI](https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/tree/master.svg?style=svg)](https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/tree/master)
+ MacOS / Linux: [![CircleCI](https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/tree/master.svg?style=svg)](https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/tree/master)
 
 ![](http://samuel.ninja/img/gpmdp_screen.gif)
 
-Run Google Play Music as a standalone desktop app.  Never again will you have to hunt through your tabs to pause your music, or stop listening to your favourite song because Chrome is guzzling up all your RAM..
+Run "Google Play Music" as a standalone desktop app.  Never again will you have to hunt through your tabs to pause your music, or stop listening to your favourite song because Chrome is guzzling up all your RAM..
 
 Developed by [Samuel Attard][1].
 
@@ -40,17 +39,20 @@ Features
 --------
 
 * Supports media keys (play, pause, stop, next, previous)
-* [last.fm](https://www.last.fm) Scrobbling and Now Playing support!
+* [last.fm](https://www.last.fm) & [ListenBrainz](https://listenbrainz.org/) Scrobbling and Now Playing support!
+* Discord [Rich Presences](https://discordapp.com/rich-presence) Now Playing information
 * Hands free [Voice Controls](docs/VoiceControls.md)!
 * Desktop notifications on track change
 * A simplistic mini player
-* Customizable Dark theme
+* Dark Theme
+* Customizable accent color + CSS support
 * Task bar media controls (media controls embedded into the taskbar) *Windows only*
 * Smooth scrolling and overlay scrollbars for a nicer User Experience
 * HTML5 Audio Support - No more Adobe Flash Player :+1:
 * Minimize to task bar for background music playing
 * Customizable hotkeys, no worries if you don't have media keys.  Choose your own shortcuts
 * Choose your audio output device from within the player
+* Song Lyrics for those Karaoke nights
 * And a whole lot more coming soon!
 
 Integrating with GPMDP from External Applications
@@ -69,6 +71,12 @@ Issues
 If you have any bugs / issues please check the
 [FAQ](https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/wiki/FAQ)
 first before raising an issue
+
+
+Credits
+-------
+
+[Logo](src/assets/icons/svg/vector_logo.svg) designed by @JayToe
 
 
 Development

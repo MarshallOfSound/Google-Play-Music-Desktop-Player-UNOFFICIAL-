@@ -1,6 +1,6 @@
 {
-  "audio-device-communications": "システムデフォルト通信",
-  "audio-device-default": "システムデフォルト",
+  "audio-device-communications": "システム既定の通信デバイス",
+  "audio-device-default": "システム既定のデバイス",
   "audio-device-unknown": "不明なデバイス",
 
   "button-text-ok": "OK",
@@ -11,9 +11,12 @@
   "button-text-lets-do-this": "やっちゃえ!!",
   "button-text-lets-go": "さぁ行きましょう!!",
   "button-text-not-now": "また後で",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "GPMDPについて",
-  "label-alarm": "Alarm",
+  "label-alarm": "アラーム",
+  "label-recents": "履歴",
   "label-desktop-settings": "デスクトップ設定",
   "label-donate": "寄付",
   "label-help": "ヘルプ",
@@ -33,10 +36,16 @@
   "lastfm-login-error": "承認プロセスを終えたようですが、もし失敗しているようなら再度認証を試みてください",
   "lastfm-login-not-authorized": "未接続",
   "lastfm-logout-button-text": "Last.FMとの接続を解除",
+  "lastfm-map-thumbs-up-to-heart": "高く評価した曲をLast.fmでお気に入りとして登録",
+
+  "listenbrainz-label-user-token": "ListenBrainzのユーザートークンを入力してください",
+  "listenbrainz-token-here": "トークンを入力してください",
 
   "lyrics-failed-message": "すみませんが、この曲の歌詞がみつかりません",
   "lyrics-loading-message": "歌詞を読み込み中...",
   "lyrics-no-song-message": "現在再生中の曲はありません",
+  "lyrics-search-in": "検索",
+  "lyrics-lyrics": "歌詞",
 
   "message-pausing-after-song": "この曲の後に一時停止します",
   "message-pausing-after-song-button": "この曲の後で一時停止しない",
@@ -45,12 +54,12 @@
 
   "modal-confirmTray-title": "お知らせ",
   "modal-confirmTray-content": "メインプレーヤーのウィンドウを閉じると、プレーヤーシステムトレイに最小化されます。この動作を変更したい場合は「デスクトップ設定」ウィンドウで変更できます",
-  "modal-confirmOpenPort-content": "Windowsファイアウォールがブロックしているため、PlaybackAPIを開始できませんでした。 望むならば警告を出すことができますが、これには管理者権限が必要な場合があります",
+  "modal-confirmOpenPort-content": "Windowsファイアウォールにブロックされているため、PlaybackAPIを開始できませんでした。 望むならば警告を出すことができますが、これには管理者権限が必要な場合があります",
   "modal-confirmUpdate-title": "利用可能な更新",
   "modal-confirmUpdate-content": "Google Play Music Desktop Playerの最新版があります。  このアップデートでは、新機能、バグ修正、素敵な新機能が満載です。 <br /> <br />最新版が欲しいですよね！",
   "modal-confirmUninstall-title": "つまりは...",
   "modal-confirmUninstall-content": "GPMDPの古いバージョンがまだあなたのシステムにインストールされていることがわかりました。 あなたがGPMDPを更新したばかりであれば正常です。 今古いバージョンをアンインストールしようとしていますが、これには管理者権限が必要な場合がありますので、その際は管理者権限を許可してください",
-  "modal-goToURL-title": "入力されたGoogle Play MusicのURLに飛びます :",
+  "modal-goToURL-title": "入力されたGoogle Play MusicのURLにジャンプします :",
   "modal-welcome-title": "ようこそ バージョン",
   "modal-welcome-content": "最新版が欲しいですよね！",
 
@@ -62,10 +71,15 @@
   "playback-label-thumbs-up": "高く評価",
   "playback-label-volume-down": "音量を上げる",
   "playback-label-volume-up": "音量を下げる",
-  "playback-label-info-track": "",
+  "playback-label-info-track": "今の曲を通知する",
   "playback-os-no-track-playing": "現在再生中の曲はありません",
+  "playback-label-im-feeling-lucky": "I'm Feeling Lucky",
+  "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "再起動が必要です",
+
+  "settings-option-keep-sidebar-open": "サイドバーを表示",
+  "settings-option-static-album-art": "ビジュアライザでアルバムアートを静止画にする",
 
   "settings-option-invert-tray-icon": "トレイアイコンの色を反転させる",
 
@@ -75,7 +89,7 @@
   "settings-option-custom-theme-custom-color": "カスタムカラーを設定する",
   "settings-option-custom-theme-dark": "ダーク",
   "settings-option-custom-theme-light": "ライト",
-  "settings-option-custom-theme-should-track-system": "",
+  "settings-option-custom-theme-should-track-system": "システムのダークモード設定をテーマの種類と一致させる",
 
   "settings-option-enable-api": "Playback APIを有効にする",
   "settings-option-enable-api-json": "JSON APIを有効にする",
@@ -86,10 +100,13 @@
   "settings-option-enable-taskbar-progress": "曲の進行状況をタスクバーに表示する",
   "settings-option-enable-win10-media-service": "Windows 10のSystem Media Serviceを有効にする",
   "settings-option-enable-win10-media-service-details": "これによりロック画面に現在の曲が表示されるようになります",
+  "settings-option-discord-rich-presence": "DiscordのRich Presenceを有効にする",
+  "settings-option-enable-win10-media-service-track-info": "Windows 10のボリューム操作オーバーレイで曲の情報を表示する",
   "settings-option-change-locale": "言語",
 
   "settings-option-hotkey-explanation": "これらの設定に関係なくデフォルトのメディアキーは引き続き機能します。 これらの設定はデフォルトに追加するものです",
   "settings-option-hotkey-explanation-2": "ホットキーをリセットするには<i>\"Escape\"</i>キーを押してください",
+  "settings-option-hotkey-not-set": "設定されていません",
 
   "settings-option-min-to-tray": "トレイにしまう",
 
@@ -98,13 +115,16 @@
 
   "settings-option-save-page": "起動時に最後に表示したページを自動で読み込む",
 
+  "settings-option-start-minimized": "最小化した状態で起動する",
+
   "settings-option-scroll-lyrics": "再生中に歌詞を自動でスクロールする",
 
   "settings-option-mini-always-show": "常に曲の情報を表示する",
   "settings-option-mini-ontop": "常に最前面に表示する",
   "settings-option-mini-use-scroll-volume": "音量調節にスクロールホイールを利用する",
 
-  "settings-option-skip-bad-songs": "",
+  "settings-option-skip-bad-songs": "低く評価した曲を自動にスキップ",
+  "settings-option-try-supported-channel-layouts": "5.1chなどのマルチチャンネルオーディオの実験的サポート",
 
   "settings-options-style-description": "アプリケーションにスタイルを適用するためのローカルCSSファイルを選択する",
   "settings-options-style-main-app": "メインアプリ",
@@ -114,16 +134,22 @@
   "settings-options-style-dialog-button": "CSSを読み込む",
   "settings-options-style-dialog-css-files": "CSSファイル",
   "settings-options-style-dialog-all-files": "全てのファイル",
+  "slack-token-label": "Slackのトークンを入力してください",
+  "slack-token-placeholder": "トークンを入力してください",
 
   "title-color-picker": "カラーピッカー",
   "title-settings": "設定",
-  "title-settings-playback": "",
+  "title-settings-playback": "再生",
   "title-settings-general": "一般",
   "title-settings-hotkeys": "ホットキー",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "ミニプレーヤー",
   "title-settings-style": "カスタムスタイル",
+  "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "オーディオデバイス",
-  "tray-label-show": "手前に表示"
+  "tray-label-show": "手前に表示",
+  "tray-label-gpm": "Google Playミュージック",
+  "tray-label-ytm": "YouTube Music"
 }

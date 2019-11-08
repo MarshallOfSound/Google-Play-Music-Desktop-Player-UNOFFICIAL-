@@ -58,29 +58,58 @@ appIcon = new Tray(getAppIconFileName());
 
 Settings.onChange('appIconInvert', (newValue) => {
   appIconInvert = newValue;
-  appIcon.setImage(getAppIconFileName());
+  if (appIcon) appIcon.setImage(getAppIconFileName());
 });
 
 // Change the icon if the music is playing
 Emitter.on('playback:isPlaying', () => {
   currentIconPath = trayPlayingPath;
-  appIcon.setImage(getAppIconFileName());
+  if (appIcon) appIcon.setImage(getAppIconFileName());
 });
 
 // Change the icon is the music is paused
 Emitter.on('playback:isPaused', () => {
   currentIconPath = trayPausedPath;
-  appIcon.setImage(getAppIconFileName());
+  if (appIcon) appIcon.setImage(getAppIconFileName());
 });
 
 // Change the icon is the music is stopped
 Emitter.on('playback:isStopped', () => {
   currentIconPath = trayNormalPath;
-  appIcon.setImage(getAppIconFileName());
+  if (appIcon) appIcon.setImage(getAppIconFileName());
 });
 
 const setContextMenu = (track) => {
   const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Service',
+      enabled: false,
+    },
+    {
+      label: TranslationProvider.query('tray-label-gpm'),
+      click: () => {
+        // DEV: default to the other service so it will switch if not set.
+        const currentService = Settings.get('service', 'youtube-music');
+        if (currentService !== 'google-play-music') {
+          Settings.set('service', 'google-play-music');
+          mainWindow.hide();
+          mainWindow.reload();
+        }
+      },
+    },
+    {
+      label: TranslationProvider.query('tray-label-ytm'),
+      click: () => {
+        // DEV: default to the other service so it will switch if not set.
+        const currentService = Settings.get('service', 'google-play-music');
+        if (currentService !== 'youtube-music') {
+          Settings.set('service', 'youtube-music');
+          mainWindow.hide();
+          mainWindow.reload();
+        }
+      },
+    },
+    { type: 'separator' },
     { label: TranslationProvider.query('tray-label-show'),
       click: () => {
         mainWindow.setSkipTaskbar(false);
@@ -125,6 +154,8 @@ const setContextMenu = (track) => {
           label: TranslationProvider.query('label-about'),
           click: () => {
             Emitter.sendToWindowsOfName('main', 'about');
+            mainWindow.setSkipTaskbar(false);
+            mainWindow.show();
           },
         },
         {
@@ -145,7 +176,7 @@ const setContextMenu = (track) => {
     { type: 'separator' },
     { label: TranslationProvider.query('label-quit'), click: () => { global.quitting = true; app.quit(); } },
   ]);
-  appIcon.setContextMenu(contextMenu);
+  if (appIcon) appIcon.setContextMenu(contextMenu);
 };
 setContextMenu(null);
 
@@ -178,7 +209,7 @@ function toggleMainWindow() {
   }
 }
 
-appIcon.setToolTip('Google Play Music Desktop Player');
+if (appIcon) appIcon.setToolTip('Google Play Music Desktop Player');
 
 switch (process.platform) {
   case 'darwin': // <- actually means OS-X

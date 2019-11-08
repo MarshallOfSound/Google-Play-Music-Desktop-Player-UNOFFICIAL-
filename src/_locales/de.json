@@ -11,9 +11,12 @@
   "button-text-lets-do-this": "Lass uns starten!!",
   "button-text-lets-go": "Los geht's!!",
   "button-text-not-now": "Nicht jetzt",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "Über",
   "label-alarm": "Wecker",
+  "label-recents": "Zuletzt angehört",
   "label-desktop-settings": "Desktop-Einstellungen",
   "label-donate": "Spenden",
   "label-help": "Hilfe",
@@ -33,10 +36,16 @@
   "lastfm-login-error": "Du hast den Autorisierungsvorgang verlassen. Wenn das ein Fehler war, versuche es nochmal",
   "lastfm-login-not-authorized": "Nicht autorisiert",
   "lastfm-logout-button-text": "Von Last.FM abmelden",
+  "lastfm-map-thumbs-up-to-heart": "Automatisch einem Lied bei Daumen Hoch in Last.FM ein Herz (Love) geben",
+
+  "listenbrainz-label-user-token": "Gib dein ListenBrainz 'user token' ein. (Den findest du hier: https://listenbrainz.org/user/info)",
+  "listenbrainz-token-here": "'token' hier eingeben",
 
   "lyrics-failed-message": "Entschuldige, aber wir konnten keinen Liedtext finden",
   "lyrics-loading-message": "Lade Liedtext...",
   "lyrics-no-song-message": "Aktuell spielt kein Lied",
+  "lyrics-search-in": "Suche in",
+  "lyrics-lyrics": "Songtext",
 
   "message-pausing-after-song": "Nach diesem Titel pausieren.",
   "message-pausing-after-song-button": "Nicht nach diesem Titel pausieren",
@@ -64,8 +73,13 @@
   "playback-label-volume-up": "Lauter",
   "playback-label-info-track": "Aktuellen Titel ankündigen",
   "playback-os-no-track-playing": "Es spielt derzeit kein Titel",
+  "playback-label-im-feeling-lucky": "",
+  "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "Erfordert einen Neustart",
+
+  "settings-option-keep-sidebar-open": "Seitenleiste offen halten",
+  "settings-option-static-album-art": "Unanimiertes Albumcover in der Visualisierung",
 
   "settings-option-invert-tray-icon": "Invertiere die Farbe des Kontrollleisten-Icons",
 
@@ -86,10 +100,13 @@
   "settings-option-enable-taskbar-progress": "Zeige den Fortschritt des Titels in der Taskleiste",
   "settings-option-enable-win10-media-service": "Aktiviere den Windows 10-System Media Service",
   "settings-option-enable-win10-media-service-details": "Dies zeigt den aktuellen Titel auf dem Sperrbildschirm",
+  "settings-option-discord-rich-presence": "",
+  "settings-option-enable-win10-media-service-track-info": "Zeige Liedinformationen in der Windows 10-Lautstärkeanzeige an",
   "settings-option-change-locale": "Wähle eine andere Sprache",
 
   "settings-option-hotkey-explanation": "Die grundlegenden Medientasten werden dennoch funktionieren.  Diese Einstellungen kommen zu den Standardeinstellungen hinzu.",
   "settings-option-hotkey-explanation-2": "Zum Zurücksetzen der Tastenkombination benutze die <i>\"Escape\"</i>-Taste.",
+  "settings-option-hotkey-not-set": "Nicht gesetzt",
 
   "settings-option-min-to-tray": "In den Infobereich minimieren",
 
@@ -98,6 +115,8 @@
 
   "settings-option-save-page": "Zuletzt geöffnete Seite beim Start öffnen",
 
+  "settings-option-start-minimized": "Die Anwendung minimiert starten",
+
   "settings-option-scroll-lyrics": "Liedtext automatisch scrollen",
 
   "settings-option-mini-always-show": "Immer Titelinformationen anzeigen",
@@ -105,6 +124,7 @@
   "settings-option-mini-use-scroll-volume": "Mausrad zur Lautstärkekontrolle verwenden",
 
   "settings-option-skip-bad-songs": "Überspringe automatisch nicht gemochte Titel",
+  "settings-option-try-supported-channel-layouts": "Experimentelle Unterstützung für Raumklang (Mehrfachkanäle), wie z.B. 5.1 Audio",
 
   "settings-options-style-description": "Wähle eine lokale CSS-Datei, um eigene Stile in die Anwendung einzubringen",
   "settings-options-style-main-app": "Hauptfenster",
@@ -114,6 +134,8 @@
   "settings-options-style-dialog-button": "CSS laden",
   "settings-options-style-dialog-css-files": "CSS-Dateien",
   "settings-options-style-dialog-all-files": "Alle Dateien",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Farbauswahl",
   "title-settings": "Einstellungen",
@@ -121,9 +143,13 @@
   "title-settings-general": "Allgemein",
   "title-settings-hotkeys": "Hotkeys",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini-Player",
   "title-settings-style": "Eigene Stile",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Audiogerät",
-  "tray-label-show": "Anzeigen"
+  "tray-label-show": "Anzeigen",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

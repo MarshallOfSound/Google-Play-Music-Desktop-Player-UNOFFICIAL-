@@ -23,8 +23,14 @@ export default function (fileName) {
   }
 
   if (fs.existsSync(OLD_PATH)) {
-    fs.renameSync(OLD_PATH, PATH);
-    fs.rmdirSync(OLD_DIR);
+    // Move old to new if new does not exist
+    if (!fs.existsSync(PATH)) {
+      fs.renameSync(OLD_PATH, PATH);
+    }
+    // Delete old dir if it is empty
+    if (fs.readdirSync(OLD_DIR).length === 0) {
+      fs.rmdirSync(OLD_DIR);
+    }
   }
 
   return PATH;

@@ -11,9 +11,12 @@
   "button-text-lets-do-this": "Să începem!",
   "button-text-lets-go": "Să pornim!",
   "button-text-not-now": "Nu chiar acum",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "Despre",
   "label-alarm": "Alarmă",
+  "label-recents": "Recente",
   "label-desktop-settings": "Setări desktop",
   "label-donate": "Donează",
   "label-help": "Ajutor",
@@ -33,10 +36,16 @@
   "lastfm-login-error": "Se pare că ai părăsit procesul de autentificare. Dacă acest lucru s-a întâmplat din greșeală, te rugăm să reiei procesul de autentificare.",
   "lastfm-login-not-authorized": "Neautentificat",
   "lastfm-logout-button-text": "Deautentificare Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "Iubește automat melodiile care îmi plac.",
+
+  "listenbrainz-label-user-token": "Introduceți tokenul utilizatorului de pe ListenBrainz (poate fi găsit pe https://listenbrainz.org/user/info)",
+  "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Ne pare rău, dar nu am găsit versuri pentru această melodie",
   "lyrics-loading-message": "Se încarcă versurile",
   "lyrics-no-song-message": "Nu se redă nicio melodie în acest moment",
+  "lyrics-search-in": "Căutare",
+  "lyrics-lyrics": "Versuri",
 
   "message-pausing-after-song": "Se va pune pauză după această melodie.",
   "message-pausing-after-song-button": "Nu pune pauză după această melodie",
@@ -62,10 +71,15 @@
   "playback-label-thumbs-up": "Îmi place",
   "playback-label-volume-down": "Scade volumul",
   "playback-label-volume-up": "Crește volumul",
-  "playback-label-info-track": "",
-  "playback-os-no-track-playing": "",
+  "playback-label-info-track": "Notifică melodia curentă",
+  "playback-os-no-track-playing": "Nu se redă nicio melodie în acest moment",
+  "playback-label-im-feeling-lucky": "",
+  "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "Necesită repornirea aplicației",
+
+  "settings-option-keep-sidebar-open": "Păstrează bara laterală deschisă",
+  "settings-option-static-album-art": "Păstrează album static în vizualizator",
 
   "settings-option-invert-tray-icon": "Inversează culoare iconiță din bara de sistem",
 
@@ -73,9 +87,9 @@
   "settings-option-custom-theme-choose-color": "Alege culoarea principală a temei tale",
   "settings-option-custom-theme-choose-custom": "Sau alege o",
   "settings-option-custom-theme-custom-color": "Culoare personalizată",
-  "settings-option-custom-theme-dark": "Tentă închisă",
-  "settings-option-custom-theme-light": "Tentă deschisă",
-  "settings-option-custom-theme-should-track-system": "",
+  "settings-option-custom-theme-dark": "Temă închisă",
+  "settings-option-custom-theme-light": "Temă deschisă",
+  "settings-option-custom-theme-should-track-system": "Potrivește setările de Dark Mode la tipul temei",
 
   "settings-option-enable-api": "Activează API Playback",
   "settings-option-enable-api-json": "Activează API JSON",
@@ -84,19 +98,24 @@
   "settings-option-enable-voice": "Activează comenzile vocale",
   "settings-option-enable-voice-details": "Comenzi vocale \"Mâini libere\" pentru GPMDP, funcționalitate experimentală",
   "settings-option-enable-taskbar-progress": "Arată progresul melodiei în bara de sistem",
-  "settings-option-enable-win10-media-service": "",
-  "settings-option-enable-win10-media-service-details": "",
+  "settings-option-enable-win10-media-service": "Activează Windows 10 System Media Service",
+  "settings-option-enable-win10-media-service-details": "Afișează melodia curentă pe ecranul de blocare",
+  "settings-option-discord-rich-presence": "",
+  "settings-option-enable-win10-media-service-track-info": "Afișează informații despre melodie în Window 10 volum overlay",
   "settings-option-change-locale": "Alege limba",
 
   "settings-option-hotkey-explanation": "Tastele media vor continua să funcționeze indiferent de aceste setări. Aceste setări vin ca o completare peste cele implicite.",
   "settings-option-hotkey-explanation-2": "Folosește tasta <i>\"Escape\"</i> pentru a reseta scurtătura.",
+  "settings-option-hotkey-not-set": "Nu este setat",
 
   "settings-option-min-to-tray": "Minimizează în bara de sistem",
 
-  "settings-option-prevent-display-sleep": "",
+  "settings-option-prevent-display-sleep": "Dezactivează hibernarea calculatorului când GPMDP este deschis",
   "settings-option-auto-launch": "Pornește automat cu calculatorul",
 
   "settings-option-save-page": "Redeschide ultima pagină accesată la pornire",
+
+  "settings-option-start-minimized": "Pornește aplicația minimizată",
 
   "settings-option-scroll-lyrics": "Derulează automat versurile în timpul redării",
 
@@ -104,26 +123,33 @@
   "settings-option-mini-ontop": "Ține fereastra deasupra",
   "settings-option-mini-use-scroll-volume": "Folosește rotița mouse-ului pentru a ajusta volumul",
 
-  "settings-option-skip-bad-songs": "",
+  "settings-option-skip-bad-songs": "Sari peste melodiile nedorite",
+  "settings-option-try-supported-channel-layouts": "Suport experimental pentru mai multe canale, cum ar fi 5.1 audio",
 
   "settings-options-style-description": "Alege un fișier CSS pentru a injecta stilul în aplicație",
   "settings-options-style-main-app": "Aplicație GPMDP",
   "settings-options-style-gpm": "Google Play Music",
   "settings-options-style-refresh": "Reîncarcă stilurile",
-  "settings-options-style-dialog-title": "",
-  "settings-options-style-dialog-button": "",
-  "settings-options-style-dialog-css-files": "",
-  "settings-options-style-dialog-all-files": "",
+  "settings-options-style-dialog-title": "Alege un fișier CSS",
+  "settings-options-style-dialog-button": "Încarcă CSS",
+  "settings-options-style-dialog-css-files": "Fișiere CSS",
+  "settings-options-style-dialog-all-files": "Toate fișierele",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Paletă culori",
   "title-settings": "Setări",
-  "title-settings-playback": "",
+  "title-settings-playback": "Redare",
   "title-settings-general": "General",
   "title-settings-hotkeys": "Scurtături",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Player mini",
   "title-settings-style": "Stiluri personalizate",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Dispozitiv audio",
-  "tray-label-show": "Arată"
+  "tray-label-show": "Arată",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

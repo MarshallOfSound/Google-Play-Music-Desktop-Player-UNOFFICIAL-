@@ -53,7 +53,15 @@ System Memory: ${os.totalmem()}
   zip.pipe(output);
 
   addStringToZip('install.txt', debugInfo.replace(/\n/g, os.EOL));
-  addStringToZip('settings.json', JSON.stringify(Object.assign({}, Settings.data, { lastFMKey: 'HIDDEN' }), null, 4));
+  addStringToZip('settings.json', JSON.stringify(Object.assign(
+    {},
+    Settings.data,
+    {
+      lastFMKey: 'HIDDEN',
+      slackToken: 'HIDDEN',
+      gpmdp_connect_email: 'HIDDEN',
+    }
+  ), null, 4));
   addFileToZip(path.resolve(app.getPath('userData'), 'gpmdp.log'));
   if (process.platform === 'win32') {
     addFileToZip(path.resolve(process.env['LOCALAPPDATA'], 'GPMDP_3', 'SquirrelSetup.log')); // eslint-disable-line

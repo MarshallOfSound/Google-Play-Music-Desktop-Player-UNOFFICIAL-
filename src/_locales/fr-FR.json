@@ -8,13 +8,16 @@
   "button-text-click-here-to-set-alarm": "Cliquez ici pour paramétrer l'alarme",
   "button-text-close": "Fermer",
   "button-text-dont-tell-me-again": "Ne plus me le dire",
-  "button-text-lets-do-this": "Faisons ça!!",
-  "button-text-lets-go": "C'est parti!!",
+  "button-text-lets-do-this": "Allons-y !!",
+  "button-text-lets-go": "C'est parti !!",
   "button-text-not-now": "Pas maintenant",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "À propos",
   "label-alarm": "Alarme",
-  "label-desktop-settings": "Paramètres du logiciel",
+  "label-recents": "Récents",
+  "label-desktop-settings": "Paramètres logiciel",
   "label-donate": "Donation",
   "label-help": "Aide",
   "label-issues": "Problèmes",
@@ -33,10 +36,16 @@
   "lastfm-login-error": "Il semblerait que vous ayez quitté le processus d'authentification, si c'est une erreur, veuillez rééssayer à nouveau.",
   "lastfm-login-not-authorized": "Non connecté",
   "lastfm-logout-button-text": "Se déconnecter de Last.FM",
+  "lastfm-map-thumbs-up-to-heart": "Thumbs up entraîne un Love sur Last.FM",
+
+  "listenbrainz-label-user-token": "Clé utilisateur ListenBrainz",
+  "listenbrainz-token-here": "Entrez la clé",
 
   "lyrics-failed-message": "Désolé, nous n'avons pas pu trouver de paroles à ce morceau",
   "lyrics-loading-message": "Chargement des paroles...",
   "lyrics-no-song-message": "Aucun morceau en cours de lecture",
+  "lyrics-search-in": "Chercher dans",
+  "lyrics-lyrics": "paroles",
 
   "message-pausing-after-song": "Pause après ce morceau.",
   "message-pausing-after-song-button": "Ne pas mettre en pause après ce morceau",
@@ -52,7 +61,7 @@
   "modal-confirmUninstall-content": "Nous avons détecté qu'une ancienne version de GPMDP est toujours installé sur votre système.  Si vous venez de mettre à jour, c'est parfaitement normal.  Nous allons essayer de désinstaller l'ancienne version.  Cela \"peut\" demander les droits administrateurs, merci de les accepter pour nettoyer notre bazar.",
   "modal-goToURL-title": "Entrer une URL Google Play Music pour y naviguer:",
   "modal-welcome-title": "Bienvenue sur la Version",
-  "modal-welcome-content": "Nous espérons que vous aimerez la nouvelle version!",
+  "modal-welcome-content": "Nous espérons que vous aimerez la nouvelle version !",
 
   "playback-label-next-track": "Piste suivante",
   "playback-label-play-pause": "Jouer / Pause",
@@ -62,41 +71,51 @@
   "playback-label-thumbs-up": "Voter pour",
   "playback-label-volume-down": "Baisser le volume",
   "playback-label-volume-up": "Augmenter le volume",
-  "playback-label-info-track": "",
-  "playback-os-no-track-playing": "",
+  "playback-label-info-track": "Notifier la piste courante",
+  "playback-os-no-track-playing": "Aucune piste en cours de lecture",
+  "playback-label-im-feeling-lucky": "J'ai de la chance",
+  "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "Besoin de redémarrer",
 
-  "settings-option-invert-tray-icon": "Inverser l'îcone de la barre de tâches",
+  "settings-option-keep-sidebar-open": "Garder le menu latéral ouvert",
+  "settings-option-static-album-art": "Garder l'image de l'album statique dans le visualiseur",
 
-  "settings-option-custom-theme": "Theme personnalisé",
+  "settings-option-invert-tray-icon": "Inverser l'icône de la barre de tâches",
+
+  "settings-option-custom-theme": "Thème personnalisé",
   "settings-option-custom-theme-choose-color": "Choisissez la couleur de surlignage du thème",
   "settings-option-custom-theme-choose-custom": "Ou choisis une",
-  "settings-option-custom-theme-custom-color": "Couleur personnalisée",
+  "settings-option-custom-theme-custom-color": "couleur  personnalisée",
   "settings-option-custom-theme-dark": "Sombre",
   "settings-option-custom-theme-light": "Clair",
-  "settings-option-custom-theme-should-track-system": "",
+  "settings-option-custom-theme-should-track-system": "Faire correspondre le thème sombre de votre système avec le type de thème",
 
   "settings-option-enable-api": "Activer l'API Playback",
   "settings-option-enable-api-json": "Activer l'API JSON",
   "settings-option-enable-api-details": "Cela autorise les autres applications à communiquer avec GPMDP",
   "settings-option-enable-system-borders": "Utiliser les bordures du système",
   "settings-option-enable-voice": "Activer les contrôles vocaux",
-  "settings-option-enable-voice-details": "Contrôle mains-libre pour GPMDP, c'est expérimental",
+  "settings-option-enable-voice-details": "Contrôle mains-libre pour GPMDP, cette fonction expérimental",
   "settings-option-enable-taskbar-progress": "Afficher la progression du morceau dans la barre des tâches",
-  "settings-option-enable-win10-media-service": "",
-  "settings-option-enable-win10-media-service-details": "",
+  "settings-option-enable-win10-media-service": "Activer le Service Multimedia de Windows 10",
+  "settings-option-enable-win10-media-service-details": "Cela montrera la piste courante sur l'écran de verrouillage",
+  "settings-option-discord-rich-presence": "Activer l'integration à Discord pour un statut détaillé",
+  "settings-option-enable-win10-media-service-track-info": "Afficher les informations de la musique sur l'overlay volume de Windows 10",
   "settings-option-change-locale": "Choisir un langage",
 
   "settings-option-hotkey-explanation": "Les touches multimédias continueront à fonctionner malgré ces paramètres. Ceux-ci sont en complément des paramètres par défaut.",
   "settings-option-hotkey-explanation-2": "Utilise la touche <i>\"Echap\"</i> pour réinitialiser les touches de raccourci.",
+  "settings-option-hotkey-not-set": "Non défini",
 
   "settings-option-min-to-tray": "Minimiser vers le système de notification",
 
-  "settings-option-prevent-display-sleep": "",
+  "settings-option-prevent-display-sleep": "Empêcher le système de se mettre en veille lorsque GPMDP est ouvert",
   "settings-option-auto-launch": "Lancer automatiquement au démarrage de l'ordinateur",
 
   "settings-option-save-page": "Charger automatiquement la dernière page vue au lancement",
+
+  "settings-option-start-minimized": "Lancer l'application minimisé",
 
   "settings-option-scroll-lyrics": "Défilement automatique des paroles",
 
@@ -104,26 +123,34 @@
   "settings-option-mini-ontop": "Toujours au dessus",
   "settings-option-mini-use-scroll-volume": "Utiliser la molette de la souris pour ajuster le volume",
 
-  "settings-option-skip-bad-songs": "",
+  "settings-option-skip-bad-songs": "Passer automatiquement les pistes notées négativement",
+  "settings-option-try-supported-channel-layouts": "Support experimental pour les canaux audio multiples tel que le 5.1",
 
   "settings-options-style-description": "Choisir un fichier CSS local pour injecter du style dans l'application",
   "settings-options-style-main-app": "Application principale",
   "settings-options-style-gpm": "Google Play Music",
   "settings-options-style-refresh": "Recharger les styles",
-  "settings-options-style-dialog-title": "",
-  "settings-options-style-dialog-button": "",
-  "settings-options-style-dialog-css-files": "",
-  "settings-options-style-dialog-all-files": "",
+  "settings-options-style-dialog-title": "Choisir un fichier CSS",
+  "settings-options-style-dialog-button": "Charger le CSS",
+  "settings-options-style-dialog-css-files": "Fichiers CSS",
+  "settings-options-style-dialog-all-files": "Tous les fichiers",
+
+  "slack-token-label": "Entrez votre jeton d'authentification Slack (peut être trouvé à l'adresse: $1)",
+  "slack-token-placeholder": "Jeton Slack",
 
   "title-color-picker": "Sélecteur de couleur",
   "title-settings": "Paramètres",
-  "title-settings-playback": "",
+  "title-settings-playback": "Lecture",
   "title-settings-general": "Général",
   "title-settings-hotkeys": "Raccourcis",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Lecteur",
   "title-settings-style": "Styles Personnalisés",
+  "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "Controlleur Audio",
-  "tray-label-show": "Montrer"
+  "tray-label-show": "Montrer",
+  "tray-label-gpm": "Google Play Music",
+  "tray-label-ytm": "YouTube Music (alpha, assurez-vous d'utiliser le thème sombre)"
 }
