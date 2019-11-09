@@ -11,6 +11,7 @@ chai.should();
 
 const originalIPCMainOn = ipcMain.on.bind(ipcMain);
 const originalIPCMainOnce = ipcMain.once.bind(ipcMain);
+const originalIPCMainRemoveListener = ipcMain.removeListener.bind(ipcMain);
 
 describe('Emitter (main)', () => {
   let Emitter;
@@ -28,10 +29,23 @@ describe('Emitter (main)', () => {
       IPCHooks[eventName].push(fn);
       originalIPCMainOn(eventName, fn);
     };
+    const removeListener = (collection, eventName, fn) => {
+      if (collection[eventName]) {
+        const index = collection[eventName].indexOf(fn);
+        if (index >= 0) {
+          collection[eventName].splice(index, 1);
+        }
+      }
+    };
     ipcMain.once = (eventName, fn) => {
       IPCHooksOnce[eventName] = IPCHooksOnce[eventName] || [];
       IPCHooksOnce[eventName].push(fn);
       originalIPCMainOnce(eventName, fn);
+    };
+    ipcMain.removeListener = (eventName, fn) => {
+      removeListener(IPCHooksOnce, eventName, fn);
+      removeListener(IPCHooks, eventName, fn);
+      originalIPCMainRemoveListener(eventName, fn);
     };
     Emitter = new EmitterClass();
     // Mock WindowManager
@@ -144,6 +158,30 @@ describe('Emitter (main)', () => {
     IPCHooksOnce['dummy-event'].should.be.ok;
     IPCHooksOnce['dummy-event'].length.should.be.equal(1);
     IPCHooksOnce['dummy-event'][0].should.be.equal(fn);
+  });
+
+  it('should unhook events when requested', () => {
+    const fn = () => {};
+    Emitter.on('dummy-event', fn);
+    IPCHooks['dummy-event'].should.be.ok;
+    IPCHooks['dummy-event'].length.should.be.equal(1);
+    IPCHooks['dummy-event'][0].should.be.equal(fn);
+
+    Emitter.removeListener('dummy-event', fn);
+    IPCHooks['dummy-event'].should.be.ok;
+    IPCHooks['dummy-event'].length.should.be.equal(0);
+  });
+
+  it('should unhook events (once) when requested', () => {
+    const fn = () => {};
+    Emitter.once('dummy-event', fn);
+    IPCHooksOnce['dummy-event'].should.be.ok;
+    IPCHooksOnce['dummy-event'].length.should.be.equal(1);
+    IPCHooksOnce['dummy-event'][0].should.be.equal(fn);
+
+    Emitter.removeListener('dummy-event', fn);
+    IPCHooksOnce['dummy-event'].should.be.ok;
+    IPCHooksOnce['dummy-event'].length.should.be.equal(0);
   });
 
   describe('when the webcontents is not loaded', () => {
