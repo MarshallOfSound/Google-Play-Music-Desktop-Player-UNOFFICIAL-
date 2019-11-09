@@ -64,6 +64,7 @@ export default class PlayerPage extends Component {
       this.refs.view.executeJavaScript(`window.location = "${this.targetPage}"`);
       setTimeout(() => {
         document.body.removeAttribute('loading');
+        Emitter.fireAtAll('app:loaded');
       }, 900);
       setTimeout(() => {
         this.setState({

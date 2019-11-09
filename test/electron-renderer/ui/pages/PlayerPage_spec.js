@@ -78,6 +78,15 @@ describe('<PlayerPage />', () => {
     }, 1200);
   });
 
+  it('should fire "app:loaded" when the webview stops loading', (done) => {
+    const component = mount(<PlayerPage />);
+    component.instance()._didStopLoading();
+    setTimeout(() => {
+      expect(fired['app:loaded']).to.be.ok;
+      done();
+    }, 1200);
+  });
+
   it('should persist GPM URLS on navigate events', () => {
     const component = mount(<PlayerPage />);
     component.instance().ready = true;

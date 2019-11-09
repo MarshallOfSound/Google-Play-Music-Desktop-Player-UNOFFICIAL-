@@ -51,6 +51,9 @@ export default () => {
     fireAtGoogle: (what, ...args) => {
       global.Emitter.fire(what, ...args);
     },
+    fireAtAll: (what, ...args) => {
+      global.Emitter.fire(what, ...args);
+    },
     on: (what, fn) => {
       hooks[what] = hooks[what] || [];
       hooks[what].push(fn);
