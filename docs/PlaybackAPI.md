@@ -16,7 +16,8 @@ sometimes it will be empty when you try to read it.  (This is really rare)
 ## Data Format
 
 The file contains a single JSON object with the following attributes:
-- **playing**: (bool) Whether or not the player is current playing.  This is false when the player is closed.
+- **playing**: (bool) Whether or not the player is currently playing.  This is false when the player is closed.
+- **paused**: (bool) Whether or not the player is currently paused.  This is false when the player is closed.
 - **rating**: (object) A rating object in the format below
 - **repeat**: (string) The current repeat mode *(Values can be found [here](https://github.com/gmusic-utils/gmusic.js#playbackgetrepeat))*
 - **shuffle**: (string) The current shuffle mode *(Values can be found [here](https://github.com/gmusic-utils/gmusic.js#playbackgetshuffle))*

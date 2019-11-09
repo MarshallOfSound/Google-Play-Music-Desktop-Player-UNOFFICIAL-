@@ -192,7 +192,7 @@ describe('WebSocketAPI', () => {
         });
       };
 
-      shouldUpdateTest('playState', '_setPlaying', true);
+      shouldUpdateTest('playState', '_setState', [true, false], true);
       shouldUpdateTest('shuffle', '_setShuffle', 'ALL_SHUFFLE');
       shouldUpdateTest('repeat', '_setRepeat', 'SINGLE_REPEAT');
       shouldUpdateTest('playlists', '_setPlaylists',

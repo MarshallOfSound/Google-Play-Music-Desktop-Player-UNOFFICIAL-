@@ -24,9 +24,9 @@ class PlaybackAPI extends EventEmitter {
       this._setPlaybackSong(details.title, details.artist, details.album, details.albumArt);
     });
 
-    Emitter.on('playback:isPlaying', this._setPlaying.bind(this, true));
-    Emitter.on('playback:isPaused', this._setPlaying.bind(this, false));
-    Emitter.on('playback:isStopped', this._setPlaying.bind(this, false));
+    Emitter.on('playback:isPlaying', this._setState.bind(this, true, false));
+    Emitter.on('playback:isPaused', this._setState.bind(this, false, true));
+    Emitter.on('playback:isStopped', this._setState.bind(this, false, false));
 
     Emitter.on('change:playback-time', (event, timeObj) => this._setTime(timeObj.current, timeObj.total));
     Emitter.on('change:volume', (event, newVolume) => this._setVolume(newVolume));
@@ -45,6 +45,7 @@ class PlaybackAPI extends EventEmitter {
   reset() {
     this.data = {
       playing: false,
+      paused: false,
       song: {
         title: null,
         artist: null,
@@ -99,8 +100,9 @@ class PlaybackAPI extends EventEmitter {
     this._fire('change:library', this._private_data.library);
   }
 
-  _setPlaying(isPlaying) {
+  _setState(isPlaying, isPaused) {
     this.data.playing = isPlaying;
+    this.data.paused = isPaused;
     this._fire('change:state', isPlaying);
     this._save();
   }
@@ -177,6 +179,10 @@ class PlaybackAPI extends EventEmitter {
 
   isPlaying() {
     return this.data.playing;
+  }
+
+  isPaused() {
+    return this.data.paused;
   }
 
   currentRepeat() {

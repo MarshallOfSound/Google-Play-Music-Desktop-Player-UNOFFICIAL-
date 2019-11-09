@@ -96,7 +96,6 @@ describe('PlaybackAPI', () => {
   shouldUpdatePropTest('getRating', '_setRating', { liked: true, disliked: false }, '5');
   shouldUpdatePropTest('getRating', '_setRating', { liked: false, disliked: true }, '1');
   shouldUpdatePropTest('getLibrary', '_setLibrary', 'NEW_VALUE');
-  shouldUpdatePropTest('isPlaying', '_setPlaying', true);
   shouldUpdatePropTest('currentSong', '_setPlaybackSong', { title: '', artist: '', album: '', albumArt: '' }, '', '', '', '');
   shouldUpdatePropTest('getPlaylists', '_setPlaylists', ['foo', 'bar']);
   shouldUpdatePropTest('getQueue', '_setQueue', ['dumb', 'queue']);
@@ -106,6 +105,20 @@ describe('PlaybackAPI', () => {
   shouldUpdatePropTest('getResults', '_setResults', 'No results here :)');
   shouldUpdatePropTest('currentTime', '_setTime', { current: 100, total: 200 }, 100, 200);
   shouldUpdatePropTest('getVolume', '_setVolume', 33);
+
+  [
+    ['playback:isPlaying', true, false],
+    ['playback:isPaused', false, true],
+    ['playback:isStopped', false, false],
+  ].forEach(([event, playing, paused]) => {
+    it(`should set isPlaying to ${playing} and isPaused to ${paused} when "${event}" is received.`, () => {
+      // Set the initial state to the opposite of what we expect.
+      PlaybackAPI._setState(!playing, !paused);
+      Emitter.emit(event);
+      expect(PlaybackAPI.isPlaying(), 'isPlaying').to.equal(playing);
+      expect(PlaybackAPI.isPaused(), 'isPaused').to.equal(paused);
+    });
+  });
 
   describe('when creating a new PlaybackAPI', () => {
     given(gpmIpcEvents).it('should hook into GPM IPC event: ', (ipcEventName) => {
