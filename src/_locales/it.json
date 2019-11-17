@@ -18,6 +18,8 @@
   "label-alarm": "Allarme",
   "label-recents": "Recenti",
   "label-desktop-settings": "Impostazioni desktop",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Donazione",
   "label-help": "Aiuto",
   "label-issues": "Problemi",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Non mettere in pausa dopo questo brano",
   "message-uncaught-error": "Si è verificato un errore in GPMDP.",
   "message-uncaught-error-button": "Clicca qui per riportare l'errore su GitHub",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Un nota al volo",
   "modal-confirmTray-content": "La chiusura della finestra principale (quello che hai appena provato a fare) minimizzerà il lettore nell'area di notifica. Questo comportamento può essere cambiato nella finestra \"Impostazioni desktop\".",

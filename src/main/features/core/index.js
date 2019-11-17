@@ -18,3 +18,4 @@ import './sleepPreventor';
 import './mediaService';
 import './discordRichPresence';
 import './slack';
+import './microPlayer';

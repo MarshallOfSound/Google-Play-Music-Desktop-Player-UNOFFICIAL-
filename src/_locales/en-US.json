@@ -18,6 +18,8 @@
   "label-alarm": "Alarm",
   "label-recents": "Recents",
   "label-desktop-settings": "Desktop Settings",
+  "label-micro-player-on": "Micro Player On",
+  "label-micro-player-off": "Micro Player Off",
   "label-donate": "Donate",
   "label-help": "Help",
   "label-issues": "Issues",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Don't pause after this song",
   "message-uncaught-error": "An uncaught error has occurred inside GPMDP.",
   "message-uncaught-error-button": "Click here to report this as an issue on GitHub",
+
+  "micro-show-main-window": "Show main window",
+  "micro-no-track-message": "No song is currently playing",
+  "micro-loading": "Getting ready...",
 
   "modal-confirmTray-title": "Just a heads up",
   "modal-confirmTray-content": "Closing the main player window (what you just tried to do) will actually minimize the player to the System Tray. If you want to change this behaviour it can be changed in the \"Desktop Settings\" window.",

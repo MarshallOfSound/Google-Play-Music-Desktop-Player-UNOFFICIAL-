@@ -16,6 +16,8 @@
   "label-alarm": "Alarm",
   "label-recents": "",
   "label-desktop-settings": "Skrivebords indstillinger",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Donér",
   "label-help": "Hjælp",
   "label-issues": "Problemer",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Pause ikke efter denne sang.",
   "message-uncaught-error": "Der er opstået en ukendt fejl i GPMPD.",
   "message-uncaught-error-button": "Klik her for at rapporter denne fejl på GitHub.",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Vær opmærksom på",
   "modal-confirmTray-content": "Hvis man lukker vinduet, vil det minimere til proceslinjen. Du kan ændre dette under \"Skrivebords Indstillinger\".",

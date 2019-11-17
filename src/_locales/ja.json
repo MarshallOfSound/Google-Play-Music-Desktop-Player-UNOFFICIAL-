@@ -18,6 +18,8 @@
   "label-alarm": "アラーム",
   "label-recents": "履歴",
   "label-desktop-settings": "デスクトップ設定",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "寄付",
   "label-help": "ヘルプ",
   "label-issues": "Issues",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "この曲の後で一時停止しない",
   "message-uncaught-error": "想定外のエラーが発生しました",
   "message-uncaught-error-button": "この問題をGitHubで報告するにはここをクリック",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "お知らせ",
   "modal-confirmTray-content": "メインプレーヤーのウィンドウを閉じると、プレーヤーシステムトレイに最小化されます。この動作を変更したい場合は「デスクトップ設定」ウィンドウで変更できます",

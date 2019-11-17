@@ -18,6 +18,8 @@
   "label-alarm": "Ébresztő",
   "label-recents": "Legutóbbiak",
   "label-desktop-settings": "Asztali beállítások",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Adomány",
   "label-help": "Segítség",
   "label-issues": "Problémák",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Ne szüneteltessen a zeneszám után",
   "message-uncaught-error": "Egy ismeretlen hiba történt a GPMDP-ben.",
   "message-uncaught-error-button": "Kattintson ide, hogy jelentse ezt problémaként a GitHub-on",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Felhívás",
   "modal-confirmTray-content": "Az \"X\" gomb kattintásával valójában nem zárja be az alkalmazást, hanem kis méretre állítja a rendszertálcán . Az  \"Asztali beállítások \" -nál lehetősége van módosítani ezt a beállítást.",

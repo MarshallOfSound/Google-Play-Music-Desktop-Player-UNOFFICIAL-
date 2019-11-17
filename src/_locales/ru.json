@@ -18,6 +18,8 @@
   "label-alarm": "Будильник",
   "label-recents": "Недавнее",
   "label-desktop-settings": "Настройки программы",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Пожертвовать",
   "label-help": "Помощь",
   "label-issues": "Проблемы",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Не останавливать после этой песни",
   "message-uncaught-error": "В GPMDP произошла неперехваченная ошибка.",
   "message-uncaught-error-button": "Нажмите сюда, чтобы сообщить об этой ошибке на GitHub",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Просто напоминание :)",
   "modal-confirmTray-content": "Закрытие главного окна проигрывателя (то, что вы сейчас сделали) просто сворачивает его в трей. Это поведение может быть изменено в окне \"Настройки программы\".",

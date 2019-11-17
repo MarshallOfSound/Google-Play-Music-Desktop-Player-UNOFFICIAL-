@@ -18,6 +18,8 @@
   "label-alarm": "",
   "label-recents": "",
   "label-desktop-settings": "Change ye settings",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Share some 'o ye plunder",
   "label-help": "Lend me some assistance",
   "label-issues": "Somethin' bad be happenin'",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Don't pause after 'tis song",
   "message-uncaught-error": "GPMDP 'as caught ye an error.",
   "message-uncaught-error-button": "Click here to report 'tis 'ere' issue on GitHub",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Ahoy",
   "modal-confirmTray-content": "Closin' th' main player window (what ye just tried to do) gunna actually minimize th' player to th' System Tray. If ye want to change 'tis behaviour it can be changed in th' \"Desktop Settin's\" window.",

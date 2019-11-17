@@ -18,6 +18,8 @@
   "label-alarm": "Budík",
   "label-recents": "Nedávne",
   "label-desktop-settings": "Nastavenia programu",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Podporiť",
   "label-help": "Pomocník",
   "label-issues": "Problémy",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Zrušiť pozastavenie po tejto skladbe",
   "message-uncaught-error": "Vyskytla sa nezachytená chyba v GPMDP.",
   "message-uncaught-error-button": "Kliknite sem, pre nahlásenie chyby na GitHub",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Len pre informáciu",
   "modal-confirmTray-content": "Zatvorenie hlavného okna prehrávača (čo ste sa práve pokúsili urobiť) len minimalizuje prehrávač do systémového panela. Ak to chcete zmeniť, môžete tak urobiť v okne \"Nastavenia programu\".",

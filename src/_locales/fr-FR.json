@@ -18,6 +18,8 @@
   "label-alarm": "Alarme",
   "label-recents": "Récents",
   "label-desktop-settings": "Paramètres logiciel",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Donation",
   "label-help": "Aide",
   "label-issues": "Problèmes",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Ne pas mettre en pause après ce morceau",
   "message-uncaught-error": "Une erreur est survenu dans GPMDP.",
   "message-uncaught-error-button": "Cliquez-ici pour reporter l'erreur sur GitHub",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Juste un avertissement",
   "modal-confirmTray-content": "Fermer la fenêtre principale (ce que vous essayez de faire) va minimiser le lecteur dans le système de notifications. Ce comportement peut être changé dans la fenêtre \"Paramètres du logiciel\".",

@@ -18,6 +18,8 @@
   "label-alarm": "Budík",
   "label-recents": "Nedávno přehráno nebo přidáno",
   "label-desktop-settings": "Nastavení přehrávače",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Podpořit",
   "label-help": "Nápověda",
   "label-issues": "Problémy s aplikací",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Nepozastavovat po této skladbě",
   "message-uncaught-error": "Nastala nespecifikovaná chyba v programu (GPMDP).",
   "message-uncaught-error-button": "Klikněte zde pro nahlášení tohoto problému na GitHub",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Jen abyste věděli",
   "modal-confirmTray-content": "Zavřením hlavního okna programu (to oč jste se právě pokusili) neukončí program, ale pouze jej minimalizuje do systémové lišty. Pokud chcete tuto možnost změnit, můžete tak učinit v okně \"Nastavení Desktop Přehrávače\".",

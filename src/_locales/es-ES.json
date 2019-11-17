@@ -18,6 +18,8 @@
   "label-alarm": "Alarma",
   "label-recents": "Recientes",
   "label-desktop-settings": "Ajustes de escritorio",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Donar",
   "label-help": "Ayuda",
   "label-issues": "Problemas",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "No pausar después de esta canción.",
   "message-uncaught-error": "Un error desconocido ha ocurrido con GPMDP.",
   "message-uncaught-error-button": "Haz click aquí para reportar un \"issue\" en GitHub",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Sólo un aviso",
   "modal-confirmTray-content": "Cerrar la ventana principal (lo que acabas de hacer) minimizará la ventana. Si quieres modificar este comportamiento puedes hacerlo en la ventana de \"Ajustes de Escritorio\".",

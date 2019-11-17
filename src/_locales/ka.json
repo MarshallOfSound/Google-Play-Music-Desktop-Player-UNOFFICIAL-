@@ -18,6 +18,8 @@
   "label-alarm": "მაღვიძარა",
   "label-recents": "ბოლოს",
   "label-desktop-settings": "პროგრამის პარამეტრები",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "დაეხმარე პროექტს",
   "label-help": "დახმარება",
   "label-issues": "პრობლემები",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "არ დაპაუზდეს ამ კომპოზიციის შემდეგ",
   "message-uncaught-error": "GPMDP-ში მოხდა შეცდომა.",
   "message-uncaught-error-button": "დააკლიკეთ აქ რათა ეს შეცდომა გაიგზავნოს GitHub-ზე",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "უბრალოდ შეხსენება",
   "modal-confirmTray-content": "მთავარი ფლეერის ფანჯრის დახურვა (რაც ეხლა გააკეთეთ) კეცავს პროგრამას თრეიში. ამის შეცვლა შეგიძლიათ მენიუში \"პროგრამის პარამეტრები\".",

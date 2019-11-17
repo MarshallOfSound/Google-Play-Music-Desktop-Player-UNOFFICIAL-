@@ -18,6 +18,8 @@
   "label-alarm": "Будильник",
   "label-recents": "",
   "label-desktop-settings": "Налаштування застосунку",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Заохотити",
   "label-help": "Довідка",
   "label-issues": "Помилки",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Не зупиняти програвання після цїєї пісні",
   "message-uncaught-error": "В GPMDP сталася помилка, яку не вдалося перехопити.",
   "message-uncaught-error-button": "Повідомити про помилку в GitHub",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Повідомлення",
   "modal-confirmTray-content": "Закриття головного вікна програвача (то, що ви тільки що намагалися зробити) насправді мінімізує програвач до системного лотку. Змінити цю поведінку можна у \"Налаштування\".",

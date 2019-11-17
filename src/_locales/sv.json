@@ -18,6 +18,8 @@
   "label-alarm": "Alarm",
   "label-recents": "",
   "label-desktop-settings": "Skrivbordsinställingar",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Donera",
   "label-help": "Hjälp",
   "label-issues": "Problem",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Pausar inte efter denna låten.",
   "message-uncaught-error": "Der har uppstått ett okänt fel i GPMPD.",
   "message-uncaught-error-button": "Klicka här för att rapportera detta fel på GitHub.",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "OBS",
   "modal-confirmTray-content": "När man stänger fönstret minimeras det till aktivitetsfältet. Du kan ändra detta under \"Skrivbordsinställningar\".",

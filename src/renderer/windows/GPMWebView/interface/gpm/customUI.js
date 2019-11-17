@@ -67,19 +67,42 @@ function hideNotWorkingStuff() {
   cssRule('.song-menu.goog-menu.now-playing-menu > .goog-menuitem:nth-child(3) { display: none !important; }');
 }
 
-function installSidebarButton(translationKey, type, icon, index, href, fn) {
-  const elem = document.createElement('a');
+function installSidebarItem(elem, type, index, href, fn) {
   elem.setAttribute('data-type', type);
   elem.setAttribute('class', 'nav-item-container tooltip');
   elem.setAttribute('href', href);
   elem.setAttribute('no-focus', '');
-  elem.innerHTML = `<iron-icon icon="${icon}" alt="" class="x-scope iron-icon-1"></iron-icon><span is="translation-key">${translationKey}</span>`; // eslint-disable-line
   elem.addEventListener('click', fn);
   if (index === -1) {
     document.querySelectorAll('.nav-section.material')[0].appendChild(elem);
   } else {
     document.querySelectorAll('.nav-section.material')[0].insertBefore(elem, document.querySelectorAll('.nav-section.material > a')[index]); // eslint-disable-line
   }
+}
+
+function installSidebarButton(translationKey, type, icon, index, href, fn) {
+  const elem = document.createElement('a');
+  elem.innerHTML = `<iron-icon icon="${icon}" alt="" class="x-scope iron-icon-1"></iron-icon><span is="translation-key">${translationKey}</span>`;
+  installSidebarItem(elem, type, index, href, fn);
+}
+
+function installSidebarToggle(onTranslationKey, offTranslationKey, type, icon, index, href, fn) {
+  const elem = document.createElement('a');
+  elem.innerHTML = `
+    <iron-icon icon="${icon}" alt="" class="x-scope iron-icon-1"></iron-icon>
+    <span is="translation-key">${onTranslationKey}</span>
+    <span is="translation-key">${offTranslationKey}</span>`;
+
+  const update = (value) => {
+    const [on, off] = Array.from(elem.querySelectorAll('span'));
+    on.style.display = value ? '' : 'none';
+    off.style.display = value ? 'none' : '';
+  };
+
+  installSidebarItem(elem, type, index, href, fn);
+  update(false);
+
+  return update;
 }
 
 function installYTMButton() {
@@ -128,10 +151,27 @@ function installAlarmButton() {
   });
 }
 
+/** Create the Micro Player button in the left sidebar */
+function installMicroPlayerButton() {
+  const setter = installSidebarToggle('label-micro-player-on', 'label-micro-player-off', 'microplayer', 'picture-in-picture', 1, '#', (e) => {
+    Emitter.fire('window:microplayer');
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  });
+
+  setter(Settings.get('microplayer-enabled'));
+
+  Emitter.on('settings:change:microplayer-enabled', (event, visible) => {
+    setter(visible);
+  });
+}
+
 function installMainMenu() {
   installDesktopSettingsButton();
   installQuitButton();
   installAlarmButton();
+  installMicroPlayerButton();
 }
 
 /* eslint-disable max-len, no-multi-str */

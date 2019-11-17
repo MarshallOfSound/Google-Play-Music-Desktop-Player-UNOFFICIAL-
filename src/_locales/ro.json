@@ -18,6 +18,8 @@
   "label-alarm": "Alarmă",
   "label-recents": "Recente",
   "label-desktop-settings": "Setări desktop",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Donează",
   "label-help": "Ajutor",
   "label-issues": "Probleme",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Nu pune pauză după această melodie",
   "message-uncaught-error": "GPMDP a întâmpinat o problemă.",
   "message-uncaught-error-button": "Apasă aici pentru a raporta problema pe GitHub",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Doar o idee",
   "modal-confirmTray-content": "Închiderea ferestrei principale a player-ului (ceea ce tocmai ai încercat să faci) va minimiza de fapt aplicația în bara de sistem. Acest comportament poate fi schimbat accesând opțiunea \"Setări desktop\" din meniu.",

@@ -18,6 +18,8 @@
   "label-alarm": "Despertador",
   "label-recents": "Recentes",
   "label-desktop-settings": "Configurações desktop",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Doar",
   "label-help": "Ajuda",
   "label-issues": "Github Issues",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Não pause após essa música",
   "message-uncaught-error": "Um erro inesperado ocorreu no GPMDP.",
   "message-uncaught-error-button": "Clique aqui para reportar um problema no Github",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Só um aviso",
   "modal-confirmTray-content": "Fechar a janela principal do Player (como você acabou de fazer) vai minimizá-lo para a bandeja do sistema. Caso queira mudar este comportamento, altere na janela \"Configurações Desktop\"",

@@ -1,0 +1,370 @@
+@import "_colors.less";
+@import "_variables.less";
+
+@border-width: 2px;
+@spacing: 3px;
+@button-active-background: #dedede;
+@button-disabled-color: #e0e0e0;
+@foreground: #212121;
+@foreground-muted: #616161;
+@shadow-size: 8px;
+
+.truncate() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shadow-left() {
+  position: relative;
+
+  &::before {
+    // This is roughly equivalent to:
+    //
+    //    box-shadow: 0px 0px @shadow-size rgba(0, 0, 0, 0.4);
+    //
+    // But the shadow is only put on one side of the element.
+    // That box-shadow is what is used on the footer of the main window.
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0));
+    left: -@shadow-size;
+    display: block;
+    content: '';
+    position: absolute;
+    width: @shadow-size;
+    height: 100%;
+    top: 0;
+  }
+}
+
+.info-display(@display-sm, @display-lg) {
+  .sm {
+    display: @display-sm;
+  }
+
+  .lg {
+    display: @display-lg;
+  }
+}
+
+.button-size(@button-size, @content-size) {
+  width: @button-size;
+  height: @button-size;
+  border-radius: @button-size / 2;
+
+  > i.material-icons {
+    font-size: @content-size;
+  }
+
+  > svg {
+    width: @content-size;
+    height: @content-size;
+  }
+
+   // Make the content of the play/pause
+   // button larger than the other buttons.
+   &.play-pause {
+    > i.material-icons {
+      font-size: min(@button-size, @content-size + 6);
+    }
+   }
+}
+
+.breakpoint-button-size(@breakpoint, @button-size, @content-size) {
+  @media (min-height: @breakpoint) {
+    .button-size(@button-size, @content-size);
+  }
+}
+
+[micro] {
+  display: flex;
+  border: solid @border-width @orange;
+  background: @grey;
+
+  .micro-player {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+
+    // Set a min-width to allow text to
+    // be truncated inside flex elements.
+    min-width: 0;
+  }
+
+  .info {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    line-height: 1.25;
+    color: @foreground;
+
+    // Set a min-width to allow text to
+    // be truncated inside flex elements.
+    min-width: 0;
+
+    // Position relative so that the drag handle can
+    // be positioned over the entire `.info` element.
+    position: relative;
+
+    .no-track-message {
+      .truncate();
+      opacity: 0.5;
+      font-size: 13px;
+      align-self: center;
+      padding: 0 (@spacing * 2);
+
+      // Hide this message by default.
+      display: none;
+    }
+
+    &.no-track {
+      // When there is no current track, hide each of the info groups
+      // elements. We don't hide the whole info element because that
+      // contains the drag handle, which we always want visible, and
+      // the album art, which will be showing a placeholder.
+      .info-group {
+        display: none;
+      }
+
+      // Show the "no track" message instead.
+      .no-track-message {
+        display: block;
+      }
+    }
+
+    .album-art {
+      flex-shrink: 0;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .info-group {
+      padding: 0 (@spacing * 2);
+
+      // Set a min-width to allow text to
+      // be truncated inside flex elements.
+      min-width: 0;
+    }
+
+    // By default, only the small variant is shown. The medium
+    // variant will be shown above certain window heights.
+    .info-display(block, none);
+
+    .sm {
+      .truncate();
+      align-self: center;
+      font-size: 13px;
+
+      // Use a muted color for the small variant because
+      // the normal color looks too dark in a small space.
+      color: @foreground-muted;
+    }
+
+    .lg {
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: @spacing;
+      padding-bottom: @spacing;
+
+      .track {
+        .truncate();
+        font-size: 13px;
+      }
+
+      .artist-album {
+        .truncate();
+        font-size: 11px;
+        color: @foreground-muted;
+      }
+    }
+
+    // Make the drag handle that sits inside the `.info` element
+    // cover the entire info panel. This will allow you to drag the
+    // window from anywhere except the area where the buttons are.
+    > .micro-drag-handle {
+      position: absolute;
+      -webkit-app-region: drag;
+
+      // Inset the element slightly. Because the border of the micro
+      // player is very thin, the resize grip area is also very thin.
+      // By not pushing the drag handle all the way to the edge of the
+      // window, the resize grip area will become a little bit larger.
+      left: 2px;
+      top: 2px;
+      right: 2px;
+      bottom: 2px;
+    }
+
+    .loader-container {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      // Set a min-width to allow text to
+      // be truncated inside flex elements.
+      min-width: 0;
+
+      .circular {
+        position: static;
+        margin: 0 (@spacing * 4);
+        width: 20px;
+        height: 20px;
+      }
+
+      .loading-label {
+        .truncate();
+        flex: 1;
+        font-size: 12px;
+        color: @foreground-muted;
+      }
+    }
+
+    &:not(.loading) {
+      .loader-container {
+        display: none;
+      }
+    }
+
+    &.loading {
+      // While the application is loading, hide
+      // everything in the info panel except for
+      // the loading indicator and the drag handle.
+      .album-art,
+      .info-group,
+      .no-track-message {
+        display: none;
+      }
+    }
+  }
+
+  .controls {
+    .shadow-left();
+
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    padding: 0 (@spacing * 2);
+    background: #ffffff;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &:not(:last-child) {
+        padding-right: @spacing * 2;
+      }
+    }
+
+    button {
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      user-select: none;
+      color: @foreground;
+      fill: @foreground;
+
+      &.play-pause {
+        color: @orange;
+      }
+
+      &:not([disabled]) {
+        cursor: pointer;
+
+        &:active {
+          background: @button-active-background;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      &[disabled] {
+        color: @button-disabled-color;
+        fill: @button-disabled-color;
+      }
+    }
+  }
+
+  @media (max-height: 26px) {
+    .info {
+      // Hide the album art when the window height is
+      // small because the album art isn't legible.
+      .album-art {
+        display: none;
+      }
+
+      // Reduce the size of the loading indicator.
+      .loader-container {
+        .circular {
+          width: 14px;
+          height: 14px;
+        }
+      }
+
+      // When the window is small, the font looks
+      // like it's bold because it fills the window.
+      // Fix this by reducing the font size.
+      .sm,
+      .no-track-message {
+        font-size: 11px;
+      }
+    }
+  }
+
+  @media (min-height: 36px) {
+    // At this breakpoint and above, there is enough
+    // room to show the info in a larger format.
+    .info {
+      .info-display(none, flex);
+    }
+  }
+
+  // Increase the size of the buttons as the window height increases.
+  // The minimum window height is 20px and there's a two-pixel border,
+  // so the buttons should be 14px high at that minimum height which
+  // ensures there is a one-pixel space above and below the buttons.
+  .controls {
+    button {
+      .button-size(14px, 14px);
+      .breakpoint-button-size(22px, 16px, 14px);
+      .breakpoint-button-size(24px, 18px, 16px);
+      .breakpoint-button-size(26px, 20px, 16px);
+      .breakpoint-button-size(28px, 22px, 16px);
+    }
+  }
+
+  @media (min-height: 46px) {
+    // The text in the info element
+    // can become a bit larger.
+    .info {
+      .lg {
+        .track {
+          font-size: 15px;
+
+          // Because there's more room, add some
+          // space between the track and artist.
+          padding-bottom: @spacing;
+        }
+
+        .artist-album {
+          font-size: 13px;
+        }
+      }
+    }
+
+    // The buttons can also become a bit larger.
+    .controls {
+      button {
+        .button-size(26px, 18px);
+      }
+    }
+  }
+}

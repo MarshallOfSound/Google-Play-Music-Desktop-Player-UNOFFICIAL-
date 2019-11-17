@@ -18,6 +18,8 @@
   "label-alarm": "Budzik",
   "label-recents": "Ostatnie",
   "label-desktop-settings": "Ustawienia aplikacji",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Wspomóż projekt",
   "label-help": "Pomoc",
   "label-issues": "Problemy",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Wyłączono wstrzymanie po tym utworze",
   "message-uncaught-error": "Wystąpił niespodziewany błąd w aplikacji GPMDP.",
   "message-uncaught-error-button": "Kliknij tutaj aby zgłosić ten błąd na stronie GitHub",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Chcieliśmy tylko uprzedzić",
   "modal-confirmTray-content": "Zamknięcie głównego okna aplikacji (czyli to, co właśnie próbowałeś zrobić) w rzeczywistości zminimalizuje odtwarzacz do systemowego paska narzędzi. Możesz zmienić to ustawienie w oknie Ustawień Aplikacji.",

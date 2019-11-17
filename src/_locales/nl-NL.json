@@ -18,6 +18,8 @@
   "label-alarm": "Alarm",
   "label-recents": "Recent",
   "label-desktop-settings": "Desktop-instellingen",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Doneren",
   "label-help": "Help",
   "label-issues": "Problemen",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Niet pauzeren na dit nummer",
   "message-uncaught-error": "Er is een onverwachte fout opgetreden in GPMDP.",
   "message-uncaught-error-button": "Klik hier om dit op Github te rapporteren als een probleem",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Een korte waarschuwing",
   "modal-confirmTray-content": "Afsluiten van het hoofdvenster van de speler (wat u net probeerde te doen) zal in feite de speler minimaliseren naar het systeemvak. Als u dit gedrag wilt veranderen, kan dat in het venster \"Desktop-instellingen\".",

@@ -18,6 +18,8 @@
   "label-alarm": "Wecker",
   "label-recents": "Zuletzt angehört",
   "label-desktop-settings": "Desktop-Einstellungen",
+  "label-micro-player-on": "",
+  "label-micro-player-off": "",
   "label-donate": "Spenden",
   "label-help": "Hilfe",
   "label-issues": "Probleme",
@@ -51,6 +53,10 @@
   "message-pausing-after-song-button": "Nicht nach diesem Titel pausieren",
   "message-uncaught-error": "Es gab einen unbekannten Fehler innerhalb von GPMDP.",
   "message-uncaught-error-button": "Klicke hier, um den Fehler bei GitHub zu melden",
+
+  "micro-show-main-window": "",
+  "micro-no-track-message": "",
+  "micro-loading": "",
 
   "modal-confirmTray-title": "Ein kurzer Hinweis",
   "modal-confirmTray-content": "Das Hauptfenster zu schließen (was du gerade versucht hast) wird den Player in den Infobereich minimieren. Um dieses Verhalten zu ändern, gehe in die \"Desktop-Einstellungen\".",
