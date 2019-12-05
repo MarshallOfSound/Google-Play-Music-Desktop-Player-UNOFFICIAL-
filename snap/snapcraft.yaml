@@ -1,0 +1,90 @@
+name: google-play-music-desktop-player
+adopt-info: google-play-music-desktop-player
+summary: Standalone player for Google Play Music
+description: |
+  This Google Play Music player provides desktop integration - with music
+  hotkeys and the sound indicator via an MPRIS interface, the abiliy to use
+  custom colours and load custom themes, a remote-control interface, and
+  lower resource consumption than a full-blown browser tab.
+  .
+  This is *not* an official Google project.
+grade: stable
+base: core18
+confinement: strict
+icon: src/assets/icons/svg/vector_logo.svg
+
+apps:
+  google-play-music-desktop-player:
+    command: desktop-launch google-play-music-desktop-player
+    environment:
+      TMPDIR: $XDG_RUNTIME_DIR
+    desktop: usr/share/applications/google-play-music-desktop-player.desktop
+    extensions:
+      - gnome-3-28
+    plugs:
+      - unity7
+      - alsa
+      - audio-playback
+      - pulseaudio
+      - opengl
+      - browser-support
+      - network
+      - network-bind
+      - gsettings
+      - avahi-observe
+    slots:
+      - mpris-player
+
+slots:
+  mpris-player:
+    interface: mpris
+    name: google_play_music_desktop_player
+
+
+parts:
+  google-play-music-desktop-player:
+    plugin: nodejs
+    source: .
+    source-type: git
+    build-packages:
+      - g++
+      - libavahi-compat-libdnssd-dev
+      - libdbus-1-dev
+      - libx11-dev
+      - libexpat1-dev
+      - libnotify-dev
+      - python3
+      - python
+      - git
+    stage-packages:
+      - libnss3
+      - ca-certificates
+      - libasound2-data
+      - libasound2-plugins
+      - libnotify4
+      - libavahi-compat-libdnssd1
+      - libxss1
+      - libgconf2-4
+      - libxtst6
+      - libdbus-1-3
+      - libx11-xcb1
+      - libappindicator3-1
+      - unity-gtk3-module
+    override-build: |
+        export PATH=$PATH:$SNAPCRAFT_PART_BUILD/../npm/bin
+        export PATH=$PATH:$SNAPCRAFT_PART_BUILD/node_modules/.bin
+        snapcraftctl set-version $(git describe --tags)
+        npm install
+        npm run build
+        npm run make:deb:64
+        cp ${SNAPCRAFT_PART_BUILD}/dist/installers/debian/*.deb ${SNAPCRAFT_STAGE}/dist.deb
+
+  dump-package:
+    plugin: dump
+    source: ../stage/dist.deb
+    source-type: deb
+    override-build: |
+      snapcraftctl build
+      sed -i 's|Icon=google-play-music-desktop-player|Icon=/usr/share/pixmaps/google-play-music-desktop-player.png|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/google-play-music-desktop-player.desktop
+    after:
+      - google-play-music-desktop-player
