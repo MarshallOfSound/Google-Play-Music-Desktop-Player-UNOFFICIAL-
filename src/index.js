@@ -108,8 +108,8 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
     let newUserAgent = mainWindow.webContents.getUserAgent().replace(/Electron\/.+? /g, '');
 
     // Spoof the user agent to bypass the sign in issue (#3545)
-    if (Settings.get('spoofUserAgent')) {
-      newUserAgent = Settings.get('spoofedUserAgent');
+    if (Settings.get('userAgent')) {
+      newUserAgent = Settings.get('userAgent');
     }
 
     mainWindow.webContents.session.setUserAgent(newUserAgent);
