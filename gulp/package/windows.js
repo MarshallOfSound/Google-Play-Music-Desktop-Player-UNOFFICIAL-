@@ -5,6 +5,7 @@ import electronInstaller from 'gpmdp-electron-winstaller';
 import electronWindowsStore from 'electron-windows-store';
 import fs from 'fs';
 import nodePath from 'path';
+import _ from 'lodash';
 import { buildRelease, defaultPackageConf } from './common';
 import { cleanDistWin } from '../clean';
 
