@@ -3,6 +3,7 @@ import packager from 'electron-packager';
 import nodePath from 'path';
 import fs from 'fs';
 import gulp from 'gulp';
+import _ from 'lodash';
 import { buildRelease, defaultPackageConf } from './common';
 
 const packageJSON = require('../../package.json');
