@@ -4,6 +4,7 @@ import nodePath from 'path';
 import fs from 'fs';
 import rebuild from 'electron-rebuild';
 import header from 'gulp-header';
+import { build } from '../../gulpfile.babel';
 
 const packageJSON = require('../../package.json');
 
@@ -91,8 +92,12 @@ This software may be modified and distributed under the terms of the MIT license
  */
 `;
 
-export function buildRelease() {
+function _buildRelease() {
   return gulp.src('./build/**/*.js')
     .pipe(header(headerText))
     .pipe(gulp.dest('./build'));
+}
+
+export function buildRelease() {
+  return gulp.series(build, _buildRelease);
 }
