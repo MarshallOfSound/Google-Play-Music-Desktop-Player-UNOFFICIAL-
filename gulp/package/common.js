@@ -4,7 +4,8 @@ import nodePath from 'path';
 import fs from 'fs';
 import rebuild from 'electron-rebuild';
 import header from 'gulp-header';
-import { build } from '../../gulpfile.babel';
+import { images, less, fonts, html, locales, transpile } from '../build';
+import { watch as watchFiles } from '../watch';
 
 const packageJSON = require('../../package.json');
 
@@ -92,12 +93,22 @@ This software may be modified and distributed under the terms of the MIT license
  */
 `;
 
+const build = gulp.parallel(transpile, images, less, fonts, html, locales);
+build.description = 'Build all the things!';
+
+const watch = gulp.series(build, watchFiles);
+watch.description = 'Build and watch for things to rebuild, then rebuild.';
+
 function _buildRelease() {
   return gulp.src('./build/**/*.js')
     .pipe(header(headerText))
     .pipe(gulp.dest('./build'));
 }
 
-export function buildRelease() {
-  return gulp.series(build, _buildRelease);
-}
+const buildRelease = gulp.series(build, _buildRelease);
+
+export {
+  build,
+  buildRelease,
+  watch,
+};

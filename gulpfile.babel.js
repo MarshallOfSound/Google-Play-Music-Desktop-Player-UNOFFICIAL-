@@ -17,7 +17,6 @@ import {
   makeLinuxDeb,
   makeLinuxRpm,
 } from './gulp/package/linux';
-import { watch as watchFiles } from './gulp/watch';
 import {
   clean,
   cleanDistWin,
@@ -31,15 +30,9 @@ import {
   cleanImages,
   cleanLocales,
 } from './gulp/clean';
-
-const build = gulp.parallel(transpile, images, less, fonts, html, locales);
-build.description = 'Build all the things!';
-
-const watch = gulp.series(build, watchFiles);
-watch.description = 'Build and watch for things to rebuild, then rebuild.';
+import { watch, build } from './gulp/package/common';
 
 const main = gulp.parallel(watch, transpile, images);
-
 const packageApp = gulp.parallel(packageWin, packageDarwin, packageLinux);
 
 export {
