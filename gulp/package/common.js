@@ -18,7 +18,10 @@ export const defaultPackageConf = {
   appCopyright: `Copyright © ${(new Date()).getFullYear()} ${packageJSON.author.name}, All rights reserved.`,
   appVersion: packageJSON.version,
   afterCopy: [
-    (buildPath, electronVersion, pPlatform, pArch, done) => rebuild(buildPath, electronVersion, pArch).then(() => done()).catch(done),
+    (buildPath, electronVersion, pPlatform, arch, done) =>
+      rebuild({
+        buildPath, electronVersion, arch,
+      }).then(() => done()).catch(done),
     (buildPath, electronVersion, pPlatform, pArch, done) => {
       const files = globber.sync(nodePath.resolve(buildPath, '**', '*.pdb'))
         .concat(globber.sync(nodePath.resolve(buildPath, '**', '*.obj')))
