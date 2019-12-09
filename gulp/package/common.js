@@ -33,7 +33,7 @@ export const defaultPackageConf = {
   arch: 'all',
   asar: true,
   buildVersion: packageJSON.version,
-  dir: __dirname,
+  dir: nodePath.join(__dirname, '../../'),
   icon: './build/assets/img/main',
   ignore: (path) => {
     const tests = [
