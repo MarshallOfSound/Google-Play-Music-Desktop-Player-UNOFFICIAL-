@@ -34,7 +34,7 @@ export const defaultPackageConf = {
   asar: true,
   buildVersion: packageJSON.version,
   dir: nodePath.join(__dirname, '../../'),
-  icon: './build/assets/img/main',
+  icon: '../../build/assets/img/main',
   ignore: (path) => {
     const tests = [
       // Ignore git directory
