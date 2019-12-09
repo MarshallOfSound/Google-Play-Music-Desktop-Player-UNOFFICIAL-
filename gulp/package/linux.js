@@ -1,21 +1,14 @@
+import _ from 'lodash';
 import gulp from 'gulp';
 import packager from 'electron-packager';
-import _ from 'lodash';
 import { spawn } from 'child_process';
-
-const packageJSON = require('../../package.json');
-
 import { defaultPackageConf, buildRelease } from './common';
 import { cleanDistLinux32, cleanDistLinux64 } from '../clean';
+const packageJSON = require('../../package.json');
 
-function _packageLinux32() {
+function _packageLinux(arch) {
   if (process.env.GPMDP_SKIP_PACKAGE) return () => {};
-  return packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }));
-}
-
-function _packageLinux64() {
-  if (process.env.GPMDP_SKIP_PACKAGE) return () => {};
-  return packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }));
+  return packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch }));
 }
 
 const generateGulpLinuxDistroTask = (prefix, name, arch) => {
@@ -66,8 +59,8 @@ const zipTask = (makeName, cwd, what) => {
   return fn;
 };
 
-const packageLinux32 = gulp.series(cleanDistLinux32, buildRelease, _packageLinux32);
-const packageLinux64 = gulp.series(cleanDistLinux64, buildRelease, _packageLinux64);
+const packageLinux32 = gulp.series(cleanDistLinux32, buildRelease, _packageLinux('ia32'));
+const packageLinux64 = gulp.series(cleanDistLinux64, buildRelease, _packageLinux('amd64'));
 
 const packageLinux = gulp.series(packageLinux32, packageLinux64);
 

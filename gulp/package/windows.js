@@ -1,16 +1,15 @@
-import { exec } from 'child_process';
+import _ from 'lodash';
+import fs from 'fs';
 import gulp from 'gulp';
 import packager from 'electron-packager';
 import electronInstaller from 'gpmdp-electron-winstaller';
 import electronWindowsStore from 'electron-windows-store';
-import fs from 'fs';
-import nodePath from 'path';
-import _ from 'lodash';
+import path from 'path';
+import { exec } from 'child_process';
 import { buildRelease, defaultPackageConf } from './common';
 import { cleanDistWin } from '../clean';
 
 const packageJSON = require('../../package.json');
-
 
 const winstallerConfig = {
   appDirectory: `dist/${packageJSON.productName}-win32-ia32`,
@@ -61,7 +60,7 @@ function _packageWin(done) {
       .then(() => windowsSignFile(packageExePath, 'sha256'))
       .then(() => done());
     }, 1000);
-  }).catch((err) => done(err));
+  }).catch(err => done(err));
 }
 
 // gulp.task('make:win', gulp.series('package:win'), (done) => {
@@ -73,15 +72,15 @@ function _makeWin(done) {
     .then(() => windowsSignFile(installerExePath, 'sha256'))
     .then(() => done());
   })
-  .catch((err) => done(err));
+  .catch(err => done(err));
 }
 
 // gulp.task('make:win:uwp', gulp.series('package:win'), (done) => {
 function _makeWinUwp(done) {
   electronWindowsStore({
     containerVirtualization: false,
-    inputDirectory: nodePath.resolve(__dirname, `dist/${packageJSON.productName}-win32-ia32`),
-    outputDirectory: nodePath.resolve(__dirname, 'dist/uwp'),
+    inputDirectory: path.resolve(__dirname, `dist/${packageJSON.productName}-win32-ia32`),
+    outputDirectory: path.resolve(__dirname, 'dist/uwp'),
     flatten: true,
     packageVersion: `${packageJSON.version}.0`,
     packageName: 'GPMDP',
@@ -91,10 +90,10 @@ function _makeWinUwp(done) {
     publisher: 'CN=E800FCD7-1562-414E-A4AC-F1BA78F4A060',
     publisherDisplayName: 'Samuel Attard',
     assets: 'build\\assets\\img\\assets',
-    devCert: nodePath.resolve(__dirname, '.uwp.pfx'),
+    devCert: path.resolve(__dirname, '.uwp.pfx'),
     signtoolParams: ['/p', process.env.SIGN_CERT_PASS],
     finalSay: () => new Promise((resolve) => {
-      const manifestPath = nodePath.resolve(__dirname, 'dist/uwp/pre-appx/appxmanifest.xml');
+      const manifestPath = path.resolve(__dirname, 'dist/uwp/pre-appx/appxmanifest.xml');
       const manifest = fs.readFileSync(manifestPath, 'utf8').replace('<Identity Name="GPMDP"', '<Identity Name="24619SamuelAttard.GPMDP"');
       fs.writeFileSync(manifestPath, manifest);
       resolve();
