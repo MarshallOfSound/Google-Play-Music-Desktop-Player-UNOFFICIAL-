@@ -8,13 +8,13 @@ import { cleanDistLinux32, cleanDistLinux64 } from '../clean';
 const packageJSON = require('../../package.json');
 
 function _packageLinux32() {
-  if (process.env.GPMDP_SKIP_PACKAGE) return () => {};
+  if (process.env.GPMDP_SKIP_PACKAGE) return Promise.resolve();
   return packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }));
 }
 
 function _packageLinux64() {
-  if (process.env.GPMDP_SKIP_PACKAGE) return () => {};
-  return packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'amd64' }));
+  if (process.env.GPMDP_SKIP_PACKAGE) return Promise.resolve();
+  return packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }));
 }
 
 const generateGulpLinuxDistroTask = (prefix, name, arch) => {
@@ -27,7 +27,7 @@ const generateGulpLinuxDistroTask = (prefix, name, arch) => {
       depends: ['libappindicator1', 'avahi-daemon'],
       maintainer: `${packageJSON.author.name} <${packageJSON.author.email}>`,
       homepage: packageJSON.homepage,
-      icon: 'build/assets/img/main.png',
+      icon: `${__dirname}/../../build/assets/img/main.png`,
       categories: ['AudioVideo', 'Audio'],
       section: 'sound',
     };

@@ -4,7 +4,7 @@ const packageJSON = require('../package.json');
 
 const cleanGlob = (taskName, glob, allowSkip) => {
   const fn = () => {
-    if (allowSkip && process.env.GPMDP_SKIP_PACKAGE) return;
+    if (allowSkip && process.env.GPMDP_SKIP_PACKAGE) return Promise.resolve();
     return del(glob);
   };
   fn.displayName = taskName;

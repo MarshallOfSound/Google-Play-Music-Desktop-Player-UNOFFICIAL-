@@ -14,7 +14,7 @@ const appdmgConf = {
   specification: {
     title: 'GPMDP',
     icon: `${defaultPackageConf.icon}.icns`,
-    background: '../../src/assets/img/dmg.png',
+    background: `${__dirname}/../../src/assets/img/dmg.png`,
     window: {
       size: {
         width: 600,
