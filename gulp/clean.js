@@ -3,8 +3,10 @@ import del from 'del';
 const packageJSON = require('../package.json');
 
 const cleanGlob = (taskName, glob, allowSkip) => {
-  if (allowSkip && process.env.GPMDP_SKIP_PACKAGE) return;
-  const fn = () => del(glob);
+  const fn = () => {
+    if (allowSkip && process.env.GPMDP_SKIP_PACKAGE) return;
+    return del(glob);
+  };
   fn.displayName = taskName;
   return fn;
 };

@@ -14,7 +14,7 @@ function _packageLinux32() {
 
 function _packageLinux64() {
   if (process.env.GPMDP_SKIP_PACKAGE) return () => {};
-  return packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }));
+  return packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'amd64' }));
 }
 
 const generateGulpLinuxDistroTask = (prefix, name, arch) => {

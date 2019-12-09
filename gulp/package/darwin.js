@@ -10,7 +10,7 @@ const packageJSON = require('../../package.json');
 
 const appdmgConf = {
   target: `dist/${packageJSON.productName}-darwin-x64/${packageJSON.productName}.dmg`,
-  basepath: __dirname,
+  basepath: nodePath.join(__dirname, '../../'),
   specification: {
     title: 'GPMDP',
     icon: `${defaultPackageConf.icon}.icns`,
