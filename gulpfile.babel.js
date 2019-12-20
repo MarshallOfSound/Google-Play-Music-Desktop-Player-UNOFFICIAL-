@@ -177,6 +177,21 @@ const windowsSignFile = (filePath, signDigest) =>
     );
   });
 
+function handleError(err) {
+  // Print the plugin that the error came from so that you don't
+  // have to go searching through the error message to find it.
+  if (err.plugin) {
+    console.error(`Error in '${err.plugin}':`); // eslint-disable-line
+  }
+
+  console.error(err); // eslint-disable-line
+
+  // We *must* emit 'end', otherwise, when watching, the task
+  // will never repeat. Note that this function is not an
+  // arrow function so that the correct `this` is used here.
+  this.emit('end');
+}
+
 gulp.task('clean', cleanGlob(['./build', './dist']));
 gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
 gulp.task('clean-dist-darwin', cleanGlob(`./dist/${packageJSON.productName}-darwin-ia32`));
@@ -197,7 +212,7 @@ gulp.task('html', ['clean-html'], () => {
 gulp.task('transpile', ['clean-internal'], () => {
   return gulp.src(paths.internalScripts)
     .pipe(babel())
-    .on('error', (err) => { console.error(err); }) // eslint-disable-line
+    .on('error', handleError)
     .pipe(replace(/process\.env\.([a-zA-Z_]+)?( |,|;|\))/gi, (envCall, envKey, closer) => {
       return `'${process.env[envKey]}'${closer}`;
     }))
@@ -217,7 +232,7 @@ gulp.task('fonts', ['clean-fonts'], () => {
 gulp.task('less', ['clean-less'], () => {
   return gulp.src(paths.less)
     .pipe(less())
-    .on('error', (err) => { console.error(err); }) // eslint-disable-line
+    .on('error', handleError)
     .pipe(cssmin())
     .pipe(concat('core.css'))
     .pipe(gulp.dest('./build/assets/css'));

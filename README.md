@@ -131,16 +131,13 @@ Continuous Integration
 
 We run tests and generate signed installers on three CI platforms
 * Windows --> [AppVeyor][2]
-* OS X --> [Travis CI][3]
-* Linux --> [Circle CI][4]
+* Linux & OS X --> [Circle CI][3]
 
 You can download the latest signed installers for Windows from the artifacts section of AppVeyor  
-You can download the latest signed package for OS X from the URL at the bottom of the build log on Travis CI  
-You can download the latest linux (debian and fedora) builds from the artifacts section on Circle CI
+You can download the latest linux (debian and fedora) and OS X (darwin) builds from the artifacts section on Circle CI
 
 [2]: https://ci.appveyor.com/project/MarshallOfSound/google-play-music-desktop-player-unofficial
-[3]: https://travis-ci.org/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
-[4]: https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
+[3]: https://circleci.com/gh/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-
 
 License
 -------

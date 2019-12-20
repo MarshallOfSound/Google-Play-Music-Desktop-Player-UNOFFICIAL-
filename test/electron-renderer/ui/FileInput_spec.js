@@ -36,8 +36,8 @@ describe('<FileInput />', () => {
     remote.dialog.showOpenDialog = (bw, opts, cb) => { cb(dummyFileList); callCount++; };
   });
 
-  it('should render a button', () => {
-    component.find('RaisedButton').length.should.be.equal(1);
+  it('should render buttons to select a file and clear', () => {
+    component.find('RaisedButton').length.should.be.equal(2);
   });
 
   it('should render a text input field', () => {
@@ -46,7 +46,8 @@ describe('<FileInput />', () => {
 
   it('should open a file dialog when the button is clicked', () => {
     callCount.should.be.equal(0);
-    component.find('RaisedButton').props().onTouchTap();
+    const button = component.find('RaisedButton').at(0);
+    button.props().onTouchTap();
     callCount.should.be.equal(1);
   });
 
@@ -66,12 +67,20 @@ describe('<FileInput />', () => {
     dummyFileList = [__filename];
     component.find('TextField').props().onClick();
     fired.should.have.property('settings:set');
+    fired['settings:set'].should.deep.equal([[{ key: 'fakeSettingKey', value: __filename }]]);
   });
 
   it('should fire the bonus events when the file exists', () => {
     dummyFileList = [__filename];
     component.find('TextField').props().onClick();
     fired.should.have.property('BonusEvent1');
+  });
+
+  it('should update the correct setting when cleared', () => {
+    const button = component.find('RaisedButton').at(1);
+    button.props().onTouchTap();
+    fired.should.have.property('settings:set');
+    fired['settings:set'].should.deep.equal([[{ key: 'fakeSettingKey', value: null }]]);
   });
 
   afterEach(() => {

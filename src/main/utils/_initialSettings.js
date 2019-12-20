@@ -16,6 +16,6 @@ export default {
   enableWin10MediaServiceTrackInfo: true,
   lastFMMapThumbToHeart: true,
   service: 'google-play-music',
-  spoofedUserAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36',
+  userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/80.0.3904.70 Safari/537.36',
   spoofUserAgent: true,
 };
