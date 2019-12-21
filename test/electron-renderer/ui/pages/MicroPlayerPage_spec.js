@@ -39,6 +39,49 @@ describe('<MicroPlayerPage />', () => {
     it('should emit "micro:ready" event after mounting.', () => {
       expect(fired['micro:ready']).to.have.lengthOf(1);
     });
+
+    it('should reset state after receiving the "app:loading" message.', () => {
+      // Fire some events to mutate the state.
+      mockEvent('app:loaded');
+      mockEvent('PlaybackAPI:change:track', track({
+        artist: 'a',
+        album: 'b',
+        title: 'c',
+        albumArt: 'd',
+      }));
+      mockEvent('playback:isPlaying');
+      mockEvent('PlaybackAPI:change:rating', { liked: false, disliked: true });
+
+      expect(component.state()).to.deep.equal({
+        loading: false,
+        hasTrack: true,
+        artist: 'a',
+        album: 'b',
+        track: 'c',
+        albumArt: 'd',
+        playing: true,
+        stopped: false,
+        thumbsUp: false,
+        thumbsDown: true,
+        albumArtWidth: 0,
+      });
+
+      mockEvent('app:loading');
+
+      expect(component.state()).to.deep.equal({
+        loading: true,
+        hasTrack: false,
+        artist: undefined,
+        album: undefined,
+        track: undefined,
+        albumArt: 'https://www.samuelattard.com/img/gpm_placeholder.jpg',
+        playing: false,
+        stopped: true,
+        thumbsUp: false,
+        thumbsDown: false,
+        albumArtWidth: 0,
+      });
+    });
   });
 
   describe('controls', () => {

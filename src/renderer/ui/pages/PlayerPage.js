@@ -48,6 +48,11 @@ export default class PlayerPage extends Component {
 
   componentDidMount() {
     Emitter.on('window:updateTitle', this._updateTitle);
+
+    // Emit the "app:loading" event so that other things know the player is
+    // loading. This will occur at startup and also when switching between
+    // GPM and YTM modes, because the main window is reloaded at that point.
+    Emitter.fireAtAll('app:loading');
   }
 
   componentWillUnmount() {

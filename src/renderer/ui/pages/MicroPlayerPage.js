@@ -2,6 +2,20 @@ import React, { Component } from 'react';
 
 const ALBUM_ART_PLACEHOLDER = 'https://www.samuelattard.com/img/gpm_placeholder.jpg';
 
+const INITIAL_STATE = {
+  loading: true,
+  stopped: true,
+  playing: false,
+  thumbsUp: false,
+  thumbsDown: false,
+  hasTrack: false,
+  artist: undefined,
+  album: undefined,
+  track: undefined,
+  albumArt: ALBUM_ART_PLACEHOLDER,
+  albumArtWidth: 0,
+};
+
 export default class MicroPlayer extends Component {
   constructor(...args) {
     super(...args);
@@ -9,19 +23,7 @@ export default class MicroPlayer extends Component {
     /** @type [string, Function][] */
     this._listeners = [];
 
-    this.state = {
-      loading: true,
-      stopped: true,
-      playing: false,
-      thumbsUp: false,
-      thumbsDown: false,
-      hasTrack: false,
-      artist: undefined,
-      album: undefined,
-      track: undefined,
-      albumArt: ALBUM_ART_PLACEHOLDER,
-      albumArtWidth: 0,
-    };
+    this.state = Object.assign({}, INITIAL_STATE);
 
     this._albumArtElement = undefined;
 
@@ -35,6 +37,12 @@ export default class MicroPlayer extends Component {
   }
 
   componentDidMount() {
+    this._listen('app:loading', () => {
+      // Reset everything if the player reloads, which
+      // happens when switching between GPM and YTM modes.
+      this.setState(INITIAL_STATE);
+    });
+
     this._listen('app:loaded', () => {
       this.setState({ loading: false }, () => {
         // The album art is hidden while loading, so once

@@ -78,6 +78,11 @@ describe('<PlayerPage />', () => {
     }, 1200);
   });
 
+  it('should fire "app:loading" when mounted', () => {
+    mount(<PlayerPage />);
+    expect(fired['app:loading']).to.be.ok;
+  });
+
   it('should fire "app:loaded" when the webview stops loading', (done) => {
     const component = mount(<PlayerPage />);
     component.instance()._didStopLoading();

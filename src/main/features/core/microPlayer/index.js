@@ -7,11 +7,11 @@ const settings = new MicroPlayerSettings();
 /** @type MicroPlayerController | undefined */
 let controller = undefined;
 
-// Listen for the "app:loaded" event because we need to send it to the
-// micro player if we open the micro player after that event is fired.
-Emitter.on('app:loaded', () => {
-  setAppLoaded(true);
-});
+// Listen for the "app:loaded" and "app:loading" events so that we can track
+// the application state, because we need to send the "app:loaded" event to
+// the micro player if we open the micro player after the application is loaded.
+Emitter.on('app:loaded', () => setAppLoaded(true));
+Emitter.on('app:loading', () => setAppLoaded(false));
 
 // Listen for the button in the
 // main menu toggling the micro player.
