@@ -9,7 +9,7 @@ export class MicroPlayerEventAdapter {
    * @param {Symbol} windowID The ID of the micro player window.
    */
   constructor(windowID) {
-    /** @type [string, Function][] */
+    /** @type [object, string, Function][] */
     this._listeners = [];
 
     [
@@ -17,7 +17,7 @@ export class MicroPlayerEventAdapter {
       'playback:isPaused',
       'playback:isStopped',
     ].forEach((event) => {
-      this._addListener(event, (data) => {
+      this._addEmitterListener(event, (data) => {
         Emitter.sendToWindow(windowID, event, data);
       });
     });
@@ -26,20 +26,20 @@ export class MicroPlayerEventAdapter {
       'change:track',
       'change:rating',
     ].forEach((event) => {
-      PlaybackAPI.on(event, (data) => {
+      this._addPlaybackListener(event, (data) => {
         Emitter.sendToWindow(windowID, `PlaybackAPI:${event}`, data);
       });
     });
 
     // The micro player can't show the main window itself, so it
     // has to send a message to get us to show the main window.
-    this._addListener('micro:showMainWindow', () => {
+    this._addEmitterListener('micro:showMainWindow', () => {
       this._showMainWindow();
     });
 
     // Wait for the micro player window to become ready
     // before we tell it about the initial playback state.
-    this._addListener('micro:ready', () => {
+    this._addEmitterListener('micro:ready', () => {
       // The micro player will appear in a "loading" state until the `app:loaded`
       // event is fired. That event is only raised once by the application, so if
       // we are opening the micro player after that event was fired, then we need
@@ -60,9 +60,19 @@ export class MicroPlayerEventAdapter {
    * @param {string} event The event name.
    * @param {Function} listener The event listener to add.
    */
-  _addListener(event, listener) {
+  _addEmitterListener(event, listener) {
     Emitter.on(event, listener);
-    this._listeners.push([event, listener]);
+    this._listeners.push([Emitter, event, listener]);
+  }
+
+  /**
+   *Adds an event listener to the `PlaybackAPI` and records the listener for disposal.
+   * @param {string} event The event name.
+   * @param {Function} listener The event listener to add.
+   */
+  _addPlaybackListener(event, listener) {
+    PlaybackAPI.on(event, listener);
+    this._listeners.push([PlaybackAPI, event, listener]);
   }
 
   /**
@@ -113,9 +123,10 @@ export class MicroPlayerEventAdapter {
    * Removes all event listeners.
    */
   dispose() {
-    this._listeners.forEach(([event, handler]) => {
-      Emitter.removeListener(event, handler);
+    this._listeners.forEach(([source, event, handler]) => {
+      source.removeListener(event, handler);
     });
+
     this._listeners = [];
   }
 }
