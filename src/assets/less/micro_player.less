@@ -180,9 +180,12 @@
       }
     }
 
-    // Make the drag handle that sits inside the `.info` element
-    // cover the entire info panel. This will allow you to drag the
-    // window from anywhere except the area where the buttons are.
+    // Make the drag handle that sits inside the `.info` element cover
+    // the entire info panel. This will allow you to drag the window from
+    // anywhere except the area where the buttons are. If we allowed the
+    // drag handle cover the buttons, even if it sits behind the buttons
+    // in z-index, it still prevents the buttons from being clicked, so
+    // we are limited to putting the drag area only over the info area.
     > .micro-drag-handle {
       position: absolute;
       -webkit-app-region: drag;
