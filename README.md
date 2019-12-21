@@ -25,6 +25,9 @@ Download
 ---------
 Head over to our website http://www.googleplaymusicdesktopplayer.com to download the latest release for your platform.
 
+If you'd like to try out the latest "successful" development build, head over to this search tool: https://gpmdp.azurewebsites.net/ Project here: agc93/gpmdp-release
+Note: Though a build was successfully build, it may have severe defects. Use at your own risk.
+
 OS Support
 ------------
 
