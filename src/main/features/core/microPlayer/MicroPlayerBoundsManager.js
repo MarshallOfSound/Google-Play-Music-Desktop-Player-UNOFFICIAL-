@@ -4,6 +4,59 @@ import _ from 'lodash';
 const SNAP_THRESHOLD = 5;
 
 /**
+ * Clamps a window coordinate to be within the display.
+ * @param {number} windowPoint The x- or y-coordinate of the window.
+ * @param {number} windowSize The width or height of the window.
+ * @param {number} displayPoint The x- or y-coordinate of the display.
+ * @param {number} displaySize The width or height of the display.
+ * @returns {number} The clamped coordinate.
+ */
+function clampWindowCoordinate(windowPoint, windowSize, displayPoint, displaySize) {
+  // Make sure the edge of the window is not to the
+  // left/top of the display, and the other side of the
+  // window is not past the other side of the display.
+  return _.clamp(
+    windowPoint,
+    displayPoint,
+    displayPoint + (displaySize - windowSize),
+  );
+}
+
+/**
+ * Ensures that the given position is fully on a screen.
+ * @param {[number, number]} size The size of the window.
+ * @param {[number, number] | undefined} position The window position to adjust.
+ * @returns {[number, number]} The adjusted window position.
+ */
+function ensurePositionOnScreen(size, position) {
+  if (!position) {
+    // There isn't a previous window position, so return a position that will
+    // put the window the top-center of the screen that contains the main window.
+    const mainScreen = screen.getDisplayMatching(WindowManager.getAll('main')[0].getBounds());
+
+    return [
+      mainScreen.bounds.x + ((mainScreen.bounds.width - size[0]) / 2),
+      mainScreen.bounds.y,
+    ];
+  }
+
+  // Make sure the window is fully on screen. Find the display that the
+  // window is on the most (or the primary display if it's not on any
+  // display), and move the window so that it's fully on that screen.
+  const display = screen.getDisplayMatching({
+    x: position[0],
+    y: position[1],
+    width: size[0],
+    height: size[1],
+  }) || screen.getPrimaryDisplay();
+
+  return [
+    clampWindowCoordinate(position[0], size[0], display.bounds.x, display.bounds.width),
+    clampWindowCoordinate(position[1], size[1], display.bounds.y, display.bounds.height),
+  ];
+}
+
+/**
  * Manages the size and position of the micro player window.
  */
 export class MicroPlayerBoundsManager {
@@ -19,9 +72,9 @@ export class MicroPlayerBoundsManager {
     this._window = window;
     this._settings = settings;
 
-    const position = this._ensurePositionOnScreen(
+    const position = ensurePositionOnScreen(
       this._window.getSize(),
-      this._settings.position
+      this._settings.position,
     );
 
     this._window.setPosition(...position);
@@ -66,56 +119,6 @@ export class MicroPlayerBoundsManager {
   _addListener(event, listener) {
     this._window.on(event, listener);
     this._listeners.push([event, listener]);
-  }
-
-  /**
-   * Ensures that the given position is fully on a screen.
-   * @param {[number, number]} size The size of the window.
-   * @param {[number, number] | undefined} position The window position to adjust.
-   * @returns {[number, number]} The adjusted window position.
-   */
-  _ensurePositionOnScreen(size, position) {
-    if (!position) {
-      // There isn't a previous window position, so return a position that will
-      // put the window the top-center of the screen that contains the main window.
-      const mainScreen = screen.getDisplayMatching(
-        WindowManager.getAll('main')[0].getBounds()
-      );
-
-      return [
-        mainScreen.bounds.x + ((mainScreen.bounds.width - size[0]) / 2),
-        mainScreen.bounds.y,
-      ];
-    }
-
-    // Make sure the window is fully on screen. Find the display that the
-    // window is on the most (or the primary display if it's not on any
-    // display), and move the window so that it's fully on that screen.
-    const display = screen.getDisplayMatching({
-      x: position[0],
-      y: position[1],
-      width: size[0],
-      height: size[1],
-    }) || screen.getPrimaryDisplay();
-
-    return [
-      // Make sure the left edge of the window is not
-      // to the left of the display, and the right
-      // edge is not to the right of the display.
-      _.clamp(
-        position[0],
-        display.bounds.x,
-        display.bounds.x + display.bounds.width - size[0]
-      ),
-      // Make sure the top of the window is not above
-      // the top of the display, and the bottom of the
-      // window is not below the bottom of the display.
-      _.clamp(
-        position[1],
-        display.bounds.y,
-        display.bounds.y + display.bounds.height - size[1]
-      ),
-    ];
   }
 
   /**

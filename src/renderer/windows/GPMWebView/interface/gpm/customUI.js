@@ -67,31 +67,36 @@ function hideNotWorkingStuff() {
   cssRule('.song-menu.goog-menu.now-playing-menu > .goog-menuitem:nth-child(3) { display: none !important; }');
 }
 
-function installSidebarItem(elem, type, index, href, fn) {
-  elem.setAttribute('data-type', type);
+function installSidebarItem(elem, settings, fn) {
+  elem.setAttribute('data-type', settings.type);
   elem.setAttribute('class', 'nav-item-container tooltip');
-  elem.setAttribute('href', href);
+  elem.setAttribute('href', settings.href || '#');
   elem.setAttribute('no-focus', '');
   elem.addEventListener('click', fn);
-  if (index === -1) {
+  if (settings.index === -1) {
     document.querySelectorAll('.nav-section.material')[0].appendChild(elem);
   } else {
-    document.querySelectorAll('.nav-section.material')[0].insertBefore(elem, document.querySelectorAll('.nav-section.material > a')[index]); // eslint-disable-line
+    document.querySelectorAll('.nav-section.material')[0].insertBefore(
+      elem,
+      document.querySelectorAll('.nav-section.material > a')[settings.index],
+    );
   }
 }
 
-function installSidebarButton(translationKey, type, icon, index, href, fn) {
-  const elem = document.createElement('a');
-  elem.innerHTML = `<iron-icon icon="${icon}" alt="" class="x-scope iron-icon-1"></iron-icon><span is="translation-key">${translationKey}</span>`;
-  installSidebarItem(elem, type, index, href, fn);
-}
-
-function installSidebarToggle(onTranslationKey, offTranslationKey, type, icon, index, href, fn) {
+function installSidebarButton(settings, fn) {
   const elem = document.createElement('a');
   elem.innerHTML = `
-    <iron-icon icon="${icon}" alt="" class="x-scope iron-icon-1"></iron-icon>
-    <span is="translation-key">${onTranslationKey}</span>
-    <span is="translation-key">${offTranslationKey}</span>`;
+    <iron-icon icon="${settings.icon}" alt="" class="x-scope iron-icon-1"></iron-icon>
+    <span is="translation-key">${settings.translationKey}</span>`;
+  installSidebarItem(elem, settings, fn);
+}
+
+function installSidebarToggle(settings, fn) {
+  const elem = document.createElement('a');
+  elem.innerHTML = `
+    <iron-icon icon="${settings.icon}" alt="" class="x-scope iron-icon-1"></iron-icon>
+    <span is="translation-key">${settings.onTranslationKey}</span>
+    <span is="translation-key">${settings.offTranslationKey}</span>`;
 
   const update = (value) => {
     const [on, off] = Array.from(elem.querySelectorAll('span'));
@@ -99,7 +104,7 @@ function installSidebarToggle(onTranslationKey, offTranslationKey, type, icon, i
     off.style.display = value ? 'none' : '';
   };
 
-  installSidebarItem(elem, type, index, href, fn);
+  installSidebarItem(elem, settings, fn);
   update(false);
 
   return update;
@@ -122,7 +127,12 @@ function installYTMButton() {
 
 /** Create the Desktop Settings button in the left sidebar */
 function installDesktopSettingsButton() {
-  installSidebarButton('label-desktop-settings', 'desktopsettings', 'settings', 2, '#', (e) => {
+  installSidebarButton({
+    translationKey: 'label-desktop-settings',
+    type: 'desktopsettings',
+    icon: 'settings',
+    index: 2,
+  }, (e) => {
     Emitter.fire('window:settings');
     e.preventDefault();
     e.stopPropagation();
@@ -132,7 +142,12 @@ function installDesktopSettingsButton() {
 
 /** Create the Quit button in the left sidebar */
 function installQuitButton() {
-  installSidebarButton('label-quit', 'quit', 'exit-to-app', -1, '#', (e) => {
+  installSidebarButton({
+    translationKey: 'label-quit',
+    type: 'quit',
+    icon: 'exit-to-app',
+    index: -1,
+  }, (e) => {
     remote.app.quit();
     e.preventDefault();
     e.stopPropagation();
@@ -141,7 +156,12 @@ function installQuitButton() {
 }
 
 function installAlarmButton() {
-  installSidebarButton('label-alarm', 'alarm', 'alarm', 0, '#', (e) => {
+  installSidebarButton({
+    translationKey: 'label-alarm',
+    type: 'alarm',
+    icon: 'alarm',
+    index: 0,
+  }, (e) => {
     // Closes the sliding drawer
     document.querySelector('paper-drawer-panel').setAttribute('selected', 'main');
     Emitter.fireAtMain('alarm:show');
@@ -153,7 +173,13 @@ function installAlarmButton() {
 
 /** Create the Micro Player button in the left sidebar */
 function installMicroPlayerButton() {
-  const setter = installSidebarToggle('label-micro-player-on', 'label-micro-player-off', 'microplayer', 'picture-in-picture', 1, '#', (e) => {
+  const setter = installSidebarToggle({
+    onTranslationKey: 'label-micro-player-on',
+    offTranslationKey: 'label-micro-player-off',
+    type: 'microplayer',
+    icon: 'picture-in-picture',
+    index: 1,
+  }, (e) => {
     Emitter.fire('window:microplayer');
     e.preventDefault();
     e.stopPropagation();

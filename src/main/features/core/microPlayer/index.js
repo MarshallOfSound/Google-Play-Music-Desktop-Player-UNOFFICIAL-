@@ -5,7 +5,7 @@ import { setAppLoaded } from './_applicationState';
 const settings = new MicroPlayerSettings();
 
 /** @type MicroPlayerController | undefined */
-let controller = undefined;
+let controller;
 
 // Listen for the "app:loaded" and "app:loading" events so that we can track
 // the application state, because we need to send the "app:loaded" event to

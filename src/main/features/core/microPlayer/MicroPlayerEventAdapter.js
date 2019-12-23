@@ -1,5 +1,50 @@
 import { getAppLoaded } from './_applicationState';
 
+
+/**
+ * Gets the event name for the current playback state.
+ * @returns {string} The name of the event.
+ */
+function getCurrentPlaybackStateEvent() {
+  if (PlaybackAPI.isPlaying()) {
+    return 'playback:isPlaying';
+  }
+
+  if (PlaybackAPI.isPaused()) {
+    return 'playback:isPaused';
+  }
+
+  return 'playback:isStopped';
+}
+
+/**
+ * Shows the main window.
+ */
+function showMainWindow() {
+  const main = WindowManager.getAll('main')[0];
+
+  if (main) {
+    // Make sure the window will be shown in the taskbar. That setting
+    // may have been turned off if the window was minimized or hidden.
+    main.setSkipTaskbar(false);
+
+    if (main.isMinimized()) {
+      // If we just called `show()`, then the window will be shown
+      // but, if the window was maximized before it was minimized,
+      // it will not be maximized again. Calling `restore()` will
+      // return the window to its unminimized state.
+      main.restore();
+    }
+
+    // On Windows, calling `restore()` will also show and
+    // focus the window, but on Linux it won't, so we will
+    // always call `show()`. Also call `focus()` because `show()`
+    // doesn't cause the window to become active in Linux.
+    main.show();
+    main.focus();
+  }
+}
+
 /**
  * Adapter for relaying messages toamd from the micro player window.
  */
@@ -17,25 +62,19 @@ export class MicroPlayerEventAdapter {
       'playback:isPaused',
       'playback:isStopped',
     ].forEach((event) => {
-      this._addEmitterListener(event, (data) => {
-        Emitter.sendToWindow(windowID, event, data);
-      });
+      this._addEmitterListener(event, data => Emitter.sendToWindow(windowID, event, data));
     });
 
     [
       'change:track',
       'change:rating',
     ].forEach((event) => {
-      this._addPlaybackListener(event, (data) => {
-        Emitter.sendToWindow(windowID, `PlaybackAPI:${event}`, data);
-      });
+      this._addPlaybackListener(event, data => Emitter.sendToWindow(windowID, `PlaybackAPI:${event}`, data));
     });
 
     // The micro player can't show the main window itself, so it
     // has to send a message to get us to show the main window.
-    this._addEmitterListener('micro:showMainWindow', () => {
-      this._showMainWindow();
-    });
+    this._addEmitterListener('micro:showMainWindow', () => showMainWindow());
 
     // Wait for the micro player window to become ready
     // before we tell it about the initial playback state.
@@ -49,7 +88,7 @@ export class MicroPlayerEventAdapter {
       }
 
       // Send messages for the initial state, track and rating.
-      Emitter.sendToWindow(windowID, this._getCurrentPlaybackStateEvent());
+      Emitter.sendToWindow(windowID, getCurrentPlaybackStateEvent());
       Emitter.sendToWindow(windowID, 'PlaybackAPI:change:rating', PlaybackAPI.getRating());
       Emitter.sendToWindow(windowID, 'PlaybackAPI:change:track', PlaybackAPI.currentSong());
     });
@@ -73,50 +112,6 @@ export class MicroPlayerEventAdapter {
   _addPlaybackListener(event, listener) {
     PlaybackAPI.on(event, listener);
     this._listeners.push([PlaybackAPI, event, listener]);
-  }
-
-  /**
-   * Gets the event name for the current playback state.
-   * @returns {string} The name of the event.
-   */
-  _getCurrentPlaybackStateEvent() {
-    if (PlaybackAPI.isPlaying()) {
-      return 'playback:isPlaying';
-    }
-
-    if (PlaybackAPI.isPaused()) {
-      return 'playback:isPaused';
-    }
-
-    return 'playback:isStopped';
-  }
-
-  /**
-   * Shows the main window.
-   */
-  _showMainWindow() {
-    const main = WindowManager.getAll('main')[0];
-
-    if (main) {
-      // Make sure the window will be shown in the taskbar. That setting
-      // may have been turned off if the window was minimized or hidden.
-      main.setSkipTaskbar(false);
-
-      if (main.isMinimized()) {
-        // If we just called `show()`, then the window will be shown
-        // but, if the window was maximized before it was minimized,
-        // it will not be maximized again. Calling `restore()` will
-        // return the window to its unminimized state.
-        main.restore();
-      }
-
-      // On Windows, calling `restore()` will also show and
-      // focus the window, but on Linux it won't, so we will
-      // always call `show()`. Also call `focus()` because `show()`
-      // doesn't cause the window to become active in Linux.
-      main.show();
-      main.focus();
-    }
   }
 
   /**

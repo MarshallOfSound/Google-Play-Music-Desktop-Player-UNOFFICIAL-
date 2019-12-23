@@ -4,6 +4,56 @@ import { MicroPlayerEventAdapter } from './MicroPlayerEventAdapter';
 import { MicroPlayerBoundsManager } from './MicroPlayerBoundsManager';
 
 /**
+ * Gets the options for creating the window.
+ * @param {number} width The width of the window.
+ * @param {number} height The height of the window.
+ * @returns {import('electron').BrowserWindowConstructorOptions} The window options.
+ */
+function getWindowOptions(width, height) {
+  return {
+    width,
+    height,
+    minWidth: 160,
+    minHeight: 20,
+    maxHeight: 60,
+    autoHideMenuBar: true,
+    frame: false,
+    hasShadow: false,
+    titleBarStyle: 'hidden',
+    title: 'Google Play Music Desktop Player - Micro Player',
+
+    // Set `thickFrame` to false to allow resizing below a hard limit that's
+    // applied by something when running on Windows. Doesn't have any effect
+    // at the moment because the version of Electon being used is quite old.
+    // (https://github.com/electron/electron/issues/20183).
+    thickFrame: false,
+
+    // Same color as the background color of the
+    // main window when using the default theme.
+    backgroundColor: '#fafafa',
+
+    // Don't show the window yet. It will be shown
+    // after we ensure that it's positioned on screen.
+    show: false,
+
+    // Don't allow the micro player to be closed. It can only
+    // be closed by turning the setting off through the UI.
+    closable: false,
+
+    // The micro player has a maximum size and should always be visible,
+    // so don't allow it to be minimized, maximized or shown full screen.
+    fullscreenable: false,
+    minimizable: false,
+    maximizable: false,
+
+    webPreferences: {
+      nodeIntegration: true,
+      preload: path.resolve(`${__dirname}/../../../../renderer/generic/index.js`),
+    },
+  };
+}
+
+/**
  * Handles opening and closing the micro player.
  */
 export class MicroPlayerController {
@@ -27,58 +77,21 @@ export class MicroPlayerController {
     // Prevent the window from being closed. This prevents the user from
     // being able to close the window without turning the setting off. We will
     // remove this handler before we need to programatically close the window.
-    this._preventClose = (e) => e.preventDefault();
+    this._preventClose = e => e.preventDefault();
     this._window.on('close', this._preventClose);
   }
 
   /**
    * Creates the micro player window.
+   *
+   * Note: Even though it doesn't need to be, this is an instance function to allow
+   * it to be stubbed in unit tests to prevent the window from being created.
    * @returns {BrowserWindow} The window.
    */
   _createWindow(settings) {
     const [width, height] = settings.size;
 
-    const window = new BrowserWindow({
-      width,
-      height,
-      minWidth: 160,
-      minHeight: 20,
-      maxHeight: 60,
-      autoHideMenuBar: true,
-      frame: false,
-      hasShadow: false,
-      titleBarStyle: 'hidden',
-      title: 'Google Play Music Desktop Player - Micro Player',
-
-      // Set `thickFrame` to false to allow resizing below a hard limit that's
-      // applied by something when running on Windows. Doesn't have any effect
-      // at the moment because the version of Electon being used is quite old.
-      // (https://github.com/electron/electron/issues/20183).
-      thickFrame: false,
-
-      // Same color as the background color of the
-      // main window when using the default theme.
-      backgroundColor: '#fafafa',
-
-      // Don't show the window yet. It will be shown
-      // after we ensure that it's positioned on screen.
-      show: false,
-
-      // Don't allow the micro player to be closed. It can only
-      // be closed by turning the setting off through the UI.
-      closable: false,
-
-      // The micro player has a maximum size and should always be visible,
-      // so don't allow it to be minimized, maximized or shown full screen.
-      fullscreenable: false,
-      minimizable: false,
-      maximizable: false,
-
-      webPreferences: {
-        nodeIntegration: true,
-        preload: path.resolve(`${__dirname}/../../../../renderer/generic/index.js`),
-      },
-    });
+    const window = new BrowserWindow(getWindowOptions(width, height));
 
     // Always show the micro player on top because it's designed to be
     // put at the top or bottom of the screen and be always visible.

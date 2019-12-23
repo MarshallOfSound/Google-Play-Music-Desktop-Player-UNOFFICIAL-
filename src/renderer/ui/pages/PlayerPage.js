@@ -2,6 +2,7 @@ import { remote, shell } from 'electron';
 import React, { Component } from 'react';
 import { parse as parseURL } from 'url';
 
+import LoadingSpinner from '../components/generic/LoadingSpinner';
 import LyricsViewer from '../components/generic/LyricsViewer';
 import OfflineWarning from '../components/generic/OfflineWarning';
 import WebView from '../components/generic/WebView';
@@ -135,9 +136,7 @@ export default class PlayerPage extends Component {
       <WindowContainer isMainWindow title={process.platform === 'darwin' ? this.state.title : ''} confirmClose={this._confirmCloseWindow}>
         <div className="drag-handle-large"></div>
         <div className={`loader ${this.state.loading ? '' : 'hidden'}`}>
-          <svg className="circular" viewBox="25 25 50 50">
-            <circle className="path" cx="50" cy="50" r="20" fill="none" strokeWidth="2" strokeMiterlimit="10" />
-          </svg>
+          <LoadingSpinner />
         </div>
         <WebView
           ref="view"
