@@ -44,6 +44,23 @@ function showFullWindow() {
   Emitter.fireAtAll('micro:showMainWindow');
 }
 
+function getAlbumArtUrl(track) {
+  let url;
+
+  if (track && track.albumArt) {
+    // YouTube Music will initially use its own URL as the album art,
+    // and since that's not an image URL, a "broken" image is shown
+    // (https://github.com/gmusic-utils/ytmusic.js/issues/13).
+    // Work around this by ignoring the album art if it starts with the
+    // YouTube Music URL so that we use the placeholder image instead.
+    if (!track.albumArt.startsWith('https://music.youtube.com/')) {
+      url = track.albumArt;
+    }
+  }
+
+  return url || ALBUM_ART_PLACEHOLDER;
+}
+
 export default class MicroPlayer extends Component {
   constructor(...args) {
     super(...args);
@@ -90,7 +107,7 @@ export default class MicroPlayer extends Component {
         artist: (track && track.artist) || undefined,
         album: (track && track.album) || undefined,
         track: (track && track.title) || undefined,
-        albumArt: (track && track.albumArt) || ALBUM_ART_PLACEHOLDER,
+        albumArt: getAlbumArtUrl(track),
       });
     });
 
