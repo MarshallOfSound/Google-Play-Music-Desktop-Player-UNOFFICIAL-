@@ -52,7 +52,7 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
     global.Settings = new SettingsClass();
   }
 
-  global.DEV_MODE = process.env['TEST_SPEC'] || process.argv.some(arg => arg === '--development') || process.argv.some(arg => arg === '--dev'); // eslint-disable-line
+  global.DEV_MODE = process.env['TEST_SPEC'] || process.argv.some(arg => arg === '--development') || process.argv.some(arg => arg === '--dev') || Settings.get('_alwaysDevMode'); // eslint-disable-line
 
   updateShortcuts();
 
@@ -103,6 +103,16 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   app.on('ready', () => {
+    // Attempt to install React Developer Tools
+    if (global.DEV_MODE) {
+      try {
+        const devtoolsInstaller = require('electron-devtools-installer');
+        devtoolsInstaller.default(devtoolsInstaller.REACT_DEVELOPER_TOOLS).catch(() => null);
+      } catch (err) {
+        // Whoe cares
+      }
+    }
+
     mainWindow = new BrowserWindow(generateBrowserConfig());
     let newUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:73.0) Gecko/20100101 Firefox/73.0';
 
