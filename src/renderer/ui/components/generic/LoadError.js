@@ -6,6 +6,10 @@ import { requireSettings } from './SettingsProvider';
 
 const RELOAD_INTERVAL = 15;
 
+function reload() {
+  remote.getCurrentWindow().reload();
+}
+
 class LoadError extends Component {
   static propTypes = {
     reason: PropTypes.string,
@@ -38,14 +42,10 @@ class LoadError extends Component {
   _tick() {
     // If the countdown will end, then reload automatically.
     if (this.state.countdown === 1) {
-      this._reload();
+      reload();
     } else {
-      this.setState((prev) => ({ countdown: prev.countdown - 1 }));
+      this.setState(prev => ({ countdown: prev.countdown - 1 }));
     }
-  }
-
-  _reload() {
-    remote.getCurrentWindow().reload();
   }
 
   render() {
@@ -65,7 +65,7 @@ class LoadError extends Component {
           <RaisedButton
             label={TranslationProvider.query('player-load-failed-retry')}
             primary
-            onClick={this._reload}
+            onClick={reload}
           />
 
           <div className="countdown">

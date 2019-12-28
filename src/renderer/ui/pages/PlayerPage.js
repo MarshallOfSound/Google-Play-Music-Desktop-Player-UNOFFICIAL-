@@ -19,34 +19,36 @@ import UpdateModal from '../components/modals/UpdateModal';
 import UninstallV2Modal from '../components/modals/UninstallV2Modal';
 import WelcomeNewVersionModal from '../components/modals/WelcomeNewVersionModal';
 
+function getTargetPage(settingsKey, defaultValue) {
+  return Settings.get('savePage', true) ? Settings.get(settingsKey, defaultValue) : defaultValue;
+}
+
 export default class PlayerPage extends Component {
   constructor(...args) {
     super(...args);
 
+    let webviewTarget;
+    let title;
+
     this.once = true;
-    const service = Settings.get('service');
     this.ready = false;
-    if (service === 'youtube-music') {
-      this.targetPage = Settings.get('savePage', true) ?
-        Settings.get('lastYTMPage', 'https://music.youtube.com/')
-        : 'https://music.youtube.com/';
-      this.state = {
-        loading: true,
-        webviewTarget: 'https://music.youtube.com/',
-        title: 'Youtube Music Desktop Player',
-        loadFailure: null,
-      };
-    } else if (service === 'google-play-music' || true) {
-      this.targetPage = Settings.get('savePage', true) ?
-        Settings.get('lastPage', 'https://play.google.com/music/listen')
-        : 'https://play.google.com/music/listen';
-      this.state = {
-        loading: true,
-        webviewTarget: 'https://play.google.com/music/listen#/wmp',
-        title: 'Google Play Music Desktop Player',
-        loadFailure: null,
-      };
+
+    if (Settings.get('service') === 'youtube-music') {
+      this.targetPage = getTargetPage('lastYTMPage', 'https://music.youtube.com/');
+      webviewTarget = 'https://music.youtube.com/';
+      title = 'Youtube Music Desktop Player';
+    } else {
+      this.targetPage = getTargetPage('lastPage', 'https://play.google.com/music/listen');
+      webviewTarget = 'https://play.google.com/music/listen#/wmp';
+      title = 'Google Play Music Desktop Player';
     }
+
+    this.state = {
+      loading: true,
+      webviewTarget,
+      title,
+      loadFailure: null,
+    };
   }
 
   componentDidMount() {
@@ -132,11 +134,10 @@ export default class PlayerPage extends Component {
   _savePage = (param) => {
     const url = param.url || param;
 
-    const service = Settings.get('service');
-    if (service === 'youtube-music') {
+    if (Settings.get('service') === 'youtube-music') {
       if (!/https?:\/\/music\.youtube\.com\//g.test(url)) return;
       Settings.set('lastYTMPage', url);
-    } else if (service === 'google-play-music' || true) {
+    } else {
       if (!/https?:\/\/play\.google\.com\/music/g.test(url)) return;
       Settings.set('lastPage', url);
     }
