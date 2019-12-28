@@ -114,21 +114,19 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
     }
 
     mainWindow = new BrowserWindow(generateBrowserConfig());
-    let newUserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:73.0) Gecko/20100101 Firefox/73.0';
+    const signInUserAgent = Settings.get('overrideSignInUserAgent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:73.0) Gecko/20100101 Firefox/73.0');
 
-    // Spoof the user agent to bypass the sign in issue (#3545)
+    // Spoof the user agent, this allows for future work arounds
     if (Settings.get('overrideUserAgent')) {
-      newUserAgent = Settings.get('overrideUserAgent');
+      mainWindow.webContents.session.setUserAgent('overrideUserAgent');
     }
 
-    const originalUserAgent = mainWindow.webContents.session.getUserAgent();
-    mainWindow.webContents.session.setUserAgent(newUserAgent);
-
+    // Intercept all requests to accounts.google.com and hijack the UA
     mainWindow.webContents.session.webRequest.onBeforeSendHeaders({
-      urls: ['https://play.google.com/music/*'],
+      urls: ['https://accounts.google.com/*'],
     }, (details, callback) => {
       const newRequestHeaders = Object.assign({}, (details.requestHeaders || {}), {
-        'User-Agent': originalUserAgent,
+        'User-Agent': signInUserAgent,
       });
       callback({ requestHeaders: newRequestHeaders });
     });
