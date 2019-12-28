@@ -121,7 +121,18 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
       newUserAgent = Settings.get('overrideUserAgent');
     }
 
+    const originalUserAgent = mainWindow.webContents.session.getUserAgent();
     mainWindow.webContents.session.setUserAgent(newUserAgent);
+
+    mainWindow.webContents.session.webRequest.onBeforeSendHeaders({
+      urls: ['https://play.google.com/music/*'],
+    }, (details, callback) => {
+      const newRequestHeaders = Object.assign({}, (details.requestHeaders || {}), {
+        'User-Agent': originalUserAgent,
+      });
+      callback({ requestHeaders: newRequestHeaders });
+    });
+
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
     const position = Settings.get('position');
