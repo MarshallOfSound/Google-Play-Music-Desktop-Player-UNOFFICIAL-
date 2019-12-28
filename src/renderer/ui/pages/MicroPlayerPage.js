@@ -168,7 +168,7 @@ export default class MicroPlayer extends Component {
           </div>
 
           <div className="loader-container">
-            <LoadingSpinner size="4" />
+            <LoadingSpinner size={4} />
             <div className="loading-label">
               {TranslationProvider.query('micro-loading')}
             </div>
