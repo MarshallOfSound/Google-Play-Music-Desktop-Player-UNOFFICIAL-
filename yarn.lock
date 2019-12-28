@@ -3713,12 +3713,13 @@ glogg@^1.0.0:
   dependencies:
     sparkles "^1.0.0"
 
-gmusic-mini-player.js@^2.0.10:
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/gmusic-mini-player.js/-/gmusic-mini-player.js-2.0.10.tgz#dffefc57de4ff8d086198225071d334972135fa1"
+gmusic-mini-player.js@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/gmusic-mini-player.js/-/gmusic-mini-player.js-2.0.11.tgz#721004203e8203456318a057eac43e2904fd174d"
+  integrity sha512-Yat598OmxF4yjHIzZSsiqSjpH7wZM8dkiqdSVhkqJ8730Ey4pFXu1uT3uE1kkuMRwC1L1yHmNjbmkDqHLL5Vzg==
   dependencies:
     brfs "^1.4.2"
-    gmusic.js "^6.0.6"
+    gmusic.js "^6.1.5"
 
 gmusic-theme.js@^2.1.18:
   version "2.1.18"
@@ -3728,15 +3729,17 @@ gmusic-theme.js@^2.1.18:
     brfs "^1.4.2"
     color "^0.11.0"
 
-gmusic-ui.js@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/gmusic-ui.js/-/gmusic-ui.js-2.2.3.tgz#c3edf1bdb43fe15c8a963c197589c821c36a5026"
+gmusic-ui.js@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/gmusic-ui.js/-/gmusic-ui.js-2.2.5.tgz#3cfdfcc0e36aca16d79acbffd277fbca2cfc0b2a"
+  integrity sha512-RPpyk1LRopLaLIWU8nQErlxfPNNQ02xzLHszeP91dvgXK5nV40Rna89u7JR4eyTRSTAS7q6csN3JZNqxEWChBg==
   dependencies:
-    gmusic.js "^6.0.5"
+    gmusic.js "^6.1.5"
 
-gmusic.js@^6.0.5, gmusic.js@^6.0.6, gmusic.js@^6.1.4:
-  version "6.1.4"
-  resolved "https://registry.yarnpkg.com/gmusic.js/-/gmusic.js-6.1.4.tgz#daae9d6de3862024945738ae434014a25f7bca75"
+gmusic.js@^6.1.5:
+  version "6.1.5"
+  resolved "https://registry.yarnpkg.com/gmusic.js/-/gmusic.js-6.1.5.tgz#8e336e3da9153599c1dd8353faa2cbe2ce45679a"
+  integrity sha512-TJexVyKEmdnu9pEsqa2MyaHWmNLjfQQZ1/L82ckxu8es1wQZdUueWuxTj7OqrhZywGhp6A5MTiRaRAaQy2aycw==
 
 gpmdp-electron-winstaller@1.0.0:
   version "1.0.0"
