@@ -134,6 +134,7 @@
   "settings-options-style-dialog-button": "Załaduj plik CSS",
   "settings-options-style-dialog-css-files": "Pliki CSS",
   "settings-options-style-dialog-all-files": "Wszystkie pliki",
+
   "slack-token-label": "Wpisz swój Slack token (znajdziesz go pod linkiem: $1)",
   "slack-token-placeholder": "Slack token",
 

@@ -11,6 +11,8 @@
   "button-text-lets-do-this": "La' os gøre det!!",
   "button-text-lets-go": "Kom igang!!",
   "button-text-not-now": "Ikke lige nu",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "Om",
   "label-alarm": "Alarm",
@@ -35,8 +37,6 @@
   "lastfm-login-not-authorized": "Dit login blev ikke godkendt",
   "lastfm-logout-button-text": "Log ud af Last.FM",
   "lastfm-map-thumbs-up-to-heart": "",
-  "button-text-ytm-switch": "",
-  "button-text-gpm-switch": "",
 
   "listenbrainz-label-user-token": "",
   "listenbrainz-token-here": "",
@@ -134,6 +134,7 @@
   "settings-options-style-dialog-button": "Indlæs CSS",
   "settings-options-style-dialog-css-files": "CSS filer",
   "settings-options-style-dialog-all-files": "Alle filer",
+
   "slack-token-label": "",
   "slack-token-placeholder": "",
 

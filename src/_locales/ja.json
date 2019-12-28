@@ -134,6 +134,7 @@
   "settings-options-style-dialog-button": "CSSを読み込む",
   "settings-options-style-dialog-css-files": "CSSファイル",
   "settings-options-style-dialog-all-files": "全てのファイル",
+
   "slack-token-label": "Slackのトークンを入力してください",
   "slack-token-placeholder": "トークンを入力してください",
 

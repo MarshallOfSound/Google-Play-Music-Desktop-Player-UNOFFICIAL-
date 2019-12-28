@@ -1,42 +1,47 @@
+const diff = require('diff');
 const fs = require('fs');
 const path = require('path');
 
-const locales = path.resolve(__dirname, '../src/_locales');
+const BASE_FILE = 'en-US.json';
 
-const targetLines = fs.readFileSync(path.resolve(locales, 'en-US.json'), 'utf8').split(/\r?\n/g);
-
-const keyTest = () => /"(.+)":/gi;
-
-const targetKeys = [];
-for (let i = 0; i < targetLines.length; i++) {
-  if (targetLines[i].trim() === '{' || targetLines[i].trim() === '}' || !targetLines[i].trim()) continue;
-  targetKeys.push(keyTest().exec(targetLines[i])[1]);
+function readLines(fileName) {
+  return fs.readFileSync(fileName, 'utf8').split(/\r?\n/g);
 }
 
-fs.readdirSync(locales).forEach((fileName) => {
-  const needToAdd = [];
-  const filePath = path.resolve(locales, fileName);
+function clearValues(lines) {
+  return lines.map(x => x.replace(/([^:]+:\s*").*(".*)/, '$1$2'));
+}
 
-  if (fileName.endsWith('.json') && fileName !== 'en-US.json') {
-    const content = fs.readFileSync(filePath, 'utf8');
+const dir = path.resolve(__dirname, '../src/_locales');
+const baseLines = clearValues(readLines(path.resolve(dir, BASE_FILE)));
 
-    let lines = content.split(/\r?\n/g);
-    let keyI = 0;
-    let offset = 0;
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].trim() === '{' || lines[i].trim() === '}' || !lines[i].trim()) continue;
-      const key = keyTest().exec(lines[i])[1];
-      if (key !== targetKeys[keyI]) {
-        needToAdd.push([i + offset, targetKeys[keyI]]);
-        i--;
-        offset++;
+fs.readdirSync(dir).forEach((name) => {
+  if ((path.extname(name) === '.json') && name !== BASE_FILE) {
+    const filePath = path.resolve(dir, name);
+    const lines = readLines(filePath);
+
+    const result = [];
+    let lineIndex = 0;
+
+    // Create a diff between the base lines and the lines from this file with empty
+    // values. This will tell us what has been added and removed from the base file.
+    for (const change of diff.diffArrays(baseLines, clearValues(lines))) {
+      if (change.added) {
+        // Some lines are in the locale file that are not in the base file.
+        // We can remove those lines from the locale file by skipping over them.
+        lineIndex += change.count;
+      } else if (change.removed) {
+        // Some lines are in the base file that are not in the locale file.
+        // The diff value contains the missing lines, so add those to the result.
+        result.push(...change.value);
+      } else {
+        // Nothing has changed in this section, so add
+        // the original lines from the locale file.
+        result.push(...lines.slice(lineIndex, lineIndex + change.count));
+        lineIndex += change.count;
       }
-      keyI++;
     }
 
-    needToAdd.forEach((item) => {
-      lines = lines.slice(0, item[0] - 1).concat([`  "${item[1]}": "",`]).concat(lines.slice(item[0] - 1, lines.length));
-    });
-    fs.writeFileSync(filePath, lines.join('\n'));
+    fs.writeFileSync(filePath, result.join('\n'));
   }
 });
