@@ -7,5 +7,5 @@ import MicroPlayerPage from '../ui/pages/MicroPlayerPage';
 
 injectTapEventPlugin();
 
-ReactDOM.render(<MicroPlayerPage />, document.body);
+ReactDOM.render(<MicroPlayerPage />, document.querySelector('#micro-player'));
 remote.getCurrentWindow().show();
