@@ -76,6 +76,11 @@
   "playback-label-im-feeling-lucky": "",
   "playback-label-toggle-repeat": "",
 
+  "player-load-failed-gpm": "",
+  "player-load-failed-ytm": "",
+  "player-load-failed-retry": "",
+  "player-load-failed-countdown": "",
+
   "settings-requires-restart": "Necesită repornirea aplicației",
 
   "settings-option-keep-sidebar-open": "Păstrează bara laterală deschisă",

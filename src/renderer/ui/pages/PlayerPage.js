@@ -2,6 +2,7 @@ import { remote, shell } from 'electron';
 import React, { Component } from 'react';
 import { parse as parseURL } from 'url';
 
+import LoadError from '../components/generic/LoadError';
 import LyricsViewer from '../components/generic/LyricsViewer';
 import OfflineWarning from '../components/generic/OfflineWarning';
 import WebView from '../components/generic/WebView';
@@ -33,6 +34,7 @@ export default class PlayerPage extends Component {
         loading: true,
         webviewTarget: 'https://music.youtube.com/',
         title: 'Youtube Music Desktop Player',
+        loadFailure: null,
       };
     } else if (service === 'google-play-music' || true) {
       this.targetPage = Settings.get('savePage', true) ?
@@ -42,6 +44,7 @@ export default class PlayerPage extends Component {
         loading: true,
         webviewTarget: 'https://play.google.com/music/listen#/wmp',
         title: 'Google Play Music Desktop Player',
+        loadFailure: null,
       };
     }
   }
@@ -70,6 +73,21 @@ export default class PlayerPage extends Component {
           loading: false,
         });
       }, 2000);
+    }
+  }
+
+  _didFailLoad = (e) => {
+    // Only handle load failures when they come from the main frame.
+    // There may be other things that fail to load (API requests, etc.),
+    // but that can be expected. We only want to handle the main page failing
+    // to load so that we can show a "load failed" page instead of a blank page.
+    if (e.isMainFrame && this.once) {
+      this.once = false;
+      document.body.removeAttribute('loading');
+      this.setState({
+        loading: false,
+        loadFailure: e.errorDescription || `Error code: ${e.errorCode || '?'}`,
+      });
     }
   }
 
@@ -139,11 +157,13 @@ export default class PlayerPage extends Component {
           className={`embedded-player ${process.platform}`}
           preload="../renderer/windows/GPMWebView"
           didStopLoading={this._didStopLoading}
+          didFailLoad={this._didFailLoad}
           domReady={this._domReady}
           didNavigate={this._didNavigate}
           didNavigateInPage={this._didNavigateInPage}
           newWindow={this._newWindow}
         />
+        <LoadError reason={this.state.loadFailure} />
         <OfflineWarning />
         <LyricsViewer />
 

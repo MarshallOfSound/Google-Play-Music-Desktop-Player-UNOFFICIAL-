@@ -76,6 +76,11 @@
   "playback-label-im-feeling-lucky": "Cítim šťastie",
   "playback-label-toggle-repeat": "",
 
+  "player-load-failed-gpm": "",
+  "player-load-failed-ytm": "",
+  "player-load-failed-retry": "",
+  "player-load-failed-countdown": "",
+
   "settings-requires-restart": "Vyžaduje reštart",
 
   "settings-option-keep-sidebar-open": "Ponechať bočné menu otvorené",

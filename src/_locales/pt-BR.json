@@ -76,6 +76,11 @@
   "playback-label-im-feeling-lucky": "Estou com sorte",
   "playback-label-toggle-repeat": "",
 
+  "player-load-failed-gpm": "",
+  "player-load-failed-ytm": "",
+  "player-load-failed-retry": "",
+  "player-load-failed-countdown": "",
+
   "settings-requires-restart": "Requer reinicialização",
 
   "settings-option-keep-sidebar-open": "Manter a barra lateral aberta",

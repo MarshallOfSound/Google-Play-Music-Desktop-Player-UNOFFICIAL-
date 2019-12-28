@@ -1,6 +1,14 @@
 @import "_colors.less";
 @import "_variables.less";
 
+.fill-absolute() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
 .fill-parent {
   height: 100%;
   width: 100%;
@@ -335,12 +343,8 @@ html, body {
 }
 
 .offline-warning {
-  position: absolute;
+  .fill-absolute();
   background: @white;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
   z-index: 999;
   text-align: center;
   display: none;
@@ -380,6 +384,29 @@ html, body {
   @media (max-width: 300px), (max-height: 350px) {
     i { font-size: 80px; }
     h1 { font-size: 22px; }
+  }
+}
+
+.load-failed {
+  .fill-absolute();
+  z-index: 999;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  .reason {
+    opacity: 0.75;
+    margin: 10px 0;
+  }
+
+  .countdown {
+    opacity: 0.5;
+    margin-top: 10px;
+    font-size: smaller;
   }
 }
 

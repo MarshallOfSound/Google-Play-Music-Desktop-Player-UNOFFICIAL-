@@ -76,6 +76,11 @@
   "playback-label-im-feeling-lucky": "I'm Feeling Lucky",
   "playback-label-toggle-repeat": "Toggle Repeat",
 
+  "player-load-failed-gpm": "Unable to load Google Play Music",
+  "player-load-failed-ytm": "Unable to load YouTube Music",
+  "player-load-failed-retry": "Try again",
+  "player-load-failed-countdown": "Reloading in $1...",
+
   "settings-requires-restart": "Requires restart",
 
   "settings-option-keep-sidebar-open": "Keep sidebar open",

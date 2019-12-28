@@ -34,7 +34,7 @@ describe('<PlayerPage />', () => {
     // TODO: Test this somehow
   });
 
-  it('shouldbe marked as ready when the DOM is ready inside the webview', (done) => {
+  it('should be marked as ready when the DOM is ready inside the webview', (done) => {
     const component = mount(<PlayerPage />);
     const stub = sinon.stub(window, 'addEventListener');
     const _on = remote.getCurrentWindow().on;
@@ -76,6 +76,49 @@ describe('<PlayerPage />', () => {
       component.instance().once.should.be.equal(false);
       done();
     }, 1200);
+  });
+
+  it('should show a load error if loading fails in the main frame before loading stops', () => {
+    const component = mount(<PlayerPage />);
+    component.instance().once.should.be.equal(true);
+    document.body.setAttribute('loading', 'loading');
+
+    component.instance()._didFailLoad({ isMainFrame: true, errorDescription: 'Foo' });
+
+    component.instance().once.should.be.equal(false);
+    expect(document.body.getAttribute('loading')).to.be.equal(null);
+    expect(component.find('LoadError').props().reason).to.equal('Foo');
+  });
+
+  it('should not show a load error if loading fails but not in the main frame before loading stops', (done) => {
+    const component = mount(<PlayerPage />);
+    component.instance().once.should.be.equal(true);
+    document.body.setAttribute('loading', 'loading');
+
+    component.instance()._didFailLoad({ isMainFrame: false, errorDescription: 'Foo' });
+
+    component.instance().once.should.be.equal(true);
+    expect(document.body.getAttribute('loading')).to.exist;
+    expect(component.find('LoadError').props().reason).to.be.null;
+
+    component.instance()._didStopLoading();
+    component.instance().once.should.be.equal(false);
+    setTimeout(() => {
+      expect(document.body.getAttribute('loading')).to.be.equal(null);
+      done();
+    }, 1200);
+  });
+
+  it('should not show a load error if loading fails in the main frame after loading stops', () => {
+    const component = mount(<PlayerPage />);
+    component.instance().once.should.be.equal(true);
+    document.body.setAttribute('loading', 'loading');
+
+    component.instance()._didStopLoading();
+    component.instance().once.should.be.equal(false);
+
+    component.instance()._didFailLoad({ isMainFrame: true, errorDescription: 'Foo' });
+    expect(component.find('LoadError').props().reason).to.be.null;
   });
 
   it('should persist GPM URLS on navigate events', () => {
