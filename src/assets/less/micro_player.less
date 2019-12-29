@@ -8,6 +8,10 @@
 @foreground: #212121;
 @foreground-muted: #616161;
 @shadow-size: 8px;
+@dark-foreground: #cccccc;
+@dark-foreground-muted: #959595;
+@dark-button-active-background: #484848;
+@dark-button-disabled-color: #545454;
 
 .truncate() {
   white-space: nowrap;
@@ -77,13 +81,14 @@
 
 #micro-player {
   display: flex;
-  border: solid @border-width @orange;
-  background: @grey;
 
   .micro-player {
     flex: 1;
     display: flex;
     flex-direction: row;
+
+    border: solid @border-width @orange;
+    background: @grey;
 
     // Set a min-width to allow text to
     // be truncated inside flex elements.
@@ -367,6 +372,51 @@
     .controls {
       button {
         .button-size(26px, 18px);
+      }
+    }
+  }
+
+  // Dark theme.
+  .dark {
+    background: @darkprimary;
+
+    .info {
+      color: @dark-foreground;
+
+      .sm {
+        color: @dark-foreground;
+      }
+
+      .lg {
+        .artist-album {
+          color: @dark-foreground-muted;
+        }
+      }
+
+      .loader-container {
+        .loading-label {
+          color: @dark-foreground-muted;
+        }
+      }
+    }
+
+    .controls {
+      background: @darksecondary;
+
+      button {
+        color: @dark-foreground;
+        fill: @dark-foreground;
+
+        &:not([disabled]) {
+          &:active {
+            background: @dark-button-active-background;
+          }
+        }
+
+        &[disabled] {
+          color: @dark-button-disabled-color;
+          fill: @dark-button-disabled-color;
+        }
       }
     }
   }

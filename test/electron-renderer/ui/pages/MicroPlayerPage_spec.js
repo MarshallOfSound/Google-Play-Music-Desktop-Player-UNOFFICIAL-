@@ -5,7 +5,7 @@ import sinon from 'sinon';
 import { mount } from 'enzyme';
 
 import MicroPlayerPage from '../../../../build/renderer/ui/pages/MicroPlayerPage';
-import mockSettings, { getVars, mockEvent } from '../_mockSettings';
+import mockSettings, { fakeSettings, getVars, mockEvent } from '../_mockSettings';
 
 chai.should();
 
@@ -24,6 +24,9 @@ describe('<MicroPlayerPage />', () => {
 
   beforeEach(() => {
     mockSettings();
+    fakeSettings('theme', false);
+    fakeSettings('themeColor', 'red');
+    fakeSettings('themeType', 'normal');
     fired = getVars().fired;
 
     component = mount(<MicroPlayerPage />);
@@ -64,6 +67,9 @@ describe('<MicroPlayerPage />', () => {
         thumbsUp: false,
         thumbsDown: true,
         albumArtWidth: 0,
+        borderColor: '',
+        themeName: '',
+        themeColor: '',
       });
 
       mockEvent('app:loading');
@@ -80,7 +86,70 @@ describe('<MicroPlayerPage />', () => {
         thumbsUp: false,
         thumbsDown: false,
         albumArtWidth: 0,
+        borderColor: '',
+        themeName: '',
+        themeColor: '',
       });
+    });
+  });
+
+  describe('theme', () => {
+    it('should clear the theme-based state when theming is disabled.', () => {
+      mockEvent('settings:change:theme', true);
+      mockEvent('settings:change:themeColor', '#ff0000');
+      mockEvent('settings:change:themeType', 'HIGHLIGHT_ONLY');
+
+      expect(component.state().borderColor).to.not.equal('');
+      expect(component.state().themeName).to.not.equal('');
+      expect(component.state().themeColor).to.not.equal('');
+
+      mockEvent('settings:change:theme', false);
+
+      expect(component.state()).to.contain({
+        borderColor: '',
+        themeName: '',
+        themeColor: '',
+      });
+    });
+
+    it('should the set theme-based state correctly when the light theme is enabled.', () => {
+      mockEvent('settings:change:theme', true);
+      mockEvent('settings:change:themeColor', '#ff0000');
+      mockEvent('settings:change:themeType', 'HIGHLIGHT_ONLY');
+
+      expect(component.state()).to.contain({
+        borderColor: '#ff0000',
+        themeName: 'light',
+        themeColor: '#ff0000',
+      });
+    });
+
+    it('should the set theme-based state correctly when the dark theme is enabled.', () => {
+      mockEvent('settings:change:theme', true);
+      mockEvent('settings:change:themeColor', '#00ff00');
+      mockEvent('settings:change:themeType', 'FULL');
+
+      expect(component.state()).to.contain({
+        borderColor: '#222326',
+        themeName: 'dark',
+        themeColor: '#00ff00',
+      });
+    });
+
+    it('should use the theme name as a CSS class on the player element.', () => {
+      mockEvent('settings:change:theme', true);
+      mockEvent('settings:change:themeColor', '#00ff00');
+      mockEvent('settings:change:themeType', 'FULL');
+
+      expect(component.find('.micro-player').hasClass('dark')).to.be.true;
+    });
+
+    it('should apply the theme border color to the player element.', () => {
+      mockEvent('settings:change:theme', true);
+      mockEvent('settings:change:themeColor', '#00ff00');
+      mockEvent('settings:change:themeType', 'HIGHLIGHT_ONLY');
+
+      expect(component.find('.micro-player').props().style.borderColor).to.equal('#00ff00');
     });
   });
 

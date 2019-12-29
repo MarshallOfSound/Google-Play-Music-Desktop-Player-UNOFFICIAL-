@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import LoadingSpinner from '../components/generic/LoadingSpinner';
 import JoinedText from '../components/generic/JoinedText';
 import RatingButton from '../components/generic/RatingButton';
+import generateTheme from '../utils/theme';
 
 const ALBUM_ART_PLACEHOLDER = 'https://www.samuelattard.com/img/gpm_placeholder.jpg';
 
@@ -18,6 +19,9 @@ const INITIAL_STATE = {
   track: undefined,
   albumArt: ALBUM_ART_PLACEHOLDER,
   albumArtWidth: 0,
+  borderColor: null,
+  themeName: '',
+  themeColor: '',
 };
 
 function goToPreviousTrack() {
@@ -68,7 +72,17 @@ export default class MicroPlayer extends Component {
     /** @type [string, Function][] */
     this._listeners = [];
 
-    this.state = Object.assign({}, INITIAL_STATE);
+    // Cache the theme settings. For some reason, if we try to read
+    // the settings after receiving a "change" event, sometimes the
+    // old settings values are read, which results in the theme in the
+    // micro player being out of sync with the rest of the application.
+    this.theme = {
+      enabled: Settings.get('theme'),
+      themeColor: Settings.get('themeColor'),
+      themeType: Settings.get('themeType', 'FULL'),
+    };
+
+    this.state = Object.assign({}, INITIAL_STATE, this._getThemeState());
 
     this._albumArtElement = undefined;
 
@@ -84,7 +98,7 @@ export default class MicroPlayer extends Component {
   componentDidMount() {
     // Reset everything if the player reloads, which
     // happens when switching between GPM and YTM modes.
-    this._listen('app:loading', () => this.setState(INITIAL_STATE));
+    this._listen('app:loading', () => this.setState(Object.assign({}, INITIAL_STATE, this._getThemeState())));
 
     this._listen('app:loaded', () => {
       // The album art is hidden while loading, so once
@@ -97,11 +111,11 @@ export default class MicroPlayer extends Component {
     this._listen('playback:isPaused', () => this.setState({ stopped: false, playing: false }));
     this._listen('playback:isStopped', () => this.setState({ stopped: true, playing: false }));
 
-    this._listen('PlaybackAPI:change:rating', (event, rating) => {
+    this._listen('PlaybackAPI:change:rating', (e, rating) => {
       this.setState({ thumbsUp: rating.liked, thumbsDown: rating.disliked });
     });
 
-    this._listen('PlaybackAPI:change:track', (event, track) => {
+    this._listen('PlaybackAPI:change:track', (e, track) => {
       this.setState({
         hasTrack: !!track,
         artist: (track && track.artist) || undefined,
@@ -110,6 +124,11 @@ export default class MicroPlayer extends Component {
         albumArt: getAlbumArtUrl(track),
       });
     });
+
+    // Listen for theme changes.
+    this._listen('settings:change:theme', (e, data) => this._onThemeChange({ enabled: data }));
+    this._listen('settings:change:themeColor', (e, data) => this._onThemeChange({ themeColor: data }));
+    this._listen('settings:change:themeType', (e, data) => this._onThemeChange({ themeType: data }));
 
     // Listen for changes to the window's size so that we can update
     // the width of the album art to keep that element square. We'll
@@ -136,9 +155,50 @@ export default class MicroPlayer extends Component {
     this._listeners.push([event, listener]);
   }
 
+  _onThemeChange(newSettings) {
+    this.theme = Object.assign(this.theme, newSettings);
+    this.setState(this._getThemeState());
+  }
+
+  _getThemeState() {
+    let borderColor = '';
+    let themeName = '';
+    let themeColor = '';
+
+    if (this.theme.enabled) {
+      const muiTheme = generateTheme(this.theme.enabled, this.theme.themeColor, this.theme.themeType);
+      borderColor = muiTheme.tabs.backgroundColor;
+      themeName = (this.theme.themeType === 'FULL') ? 'dark' : 'light';
+      themeColor = this.theme.themeColor;
+    }
+
+    return { borderColor, themeName, themeColor };
+  }
+
   render() {
+    let styles;
+
+    // The play/pause button should use the color from the theme, but we
+    // can't apply the color directly to the button via a `style` attribute,
+    // because when the button is disabled it should be the disabled color.
+    // To ensure that occurs, we need to apply the theme color via a CSS class.
+    if (this.state.themeColor) {
+      styles = (
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              #micro-player .controls button.play-pause:not([disabled]) {
+                color: ${this.state.themeColor};
+              }
+            `,
+          }}
+        ></style >
+      );
+    }
+
     return (
-      <div className="micro-player">
+      <div className={`micro-player ${this.state.themeName}`} style={{ borderColor: this.state.borderColor }}>
+        {styles}
         <div className={`info ${(this.state.hasTrack ? '' : 'no-track')} ${this.state.loading ? 'loading' : ''}`}>
           <div
             className="album-art"
