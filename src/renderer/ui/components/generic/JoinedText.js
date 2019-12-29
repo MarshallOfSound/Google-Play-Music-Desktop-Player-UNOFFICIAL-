@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class RatingButton extends Component {
+export default class JoinedText extends Component {
   static propTypes = {
     className: PropTypes.string,
     text: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -20,10 +20,10 @@ export default class RatingButton extends Component {
 
     this.props.text.forEach((text, index) => {
       if (index > 0) {
-        spans.push(<span className="separator">{this.props.separator}</span>);
+        spans.push(<span key={`separator-${index}`} className="separator">{this.props.separator}</span>);
       }
 
-      spans.push(<span className={this.props.textClassNames && this.props.textClassNames[index]}>{text}</span>);
+      spans.push(<span key={`text-${index}`} className={this.props.textClassNames && this.props.textClassNames[index]}>{text}</span>);
     });
 
     return <div className={this.props.className}>{spans}</div>;
