@@ -80,7 +80,7 @@ describe('<MicroPlayerPage />', () => {
         artist: undefined,
         album: undefined,
         track: undefined,
-        albumArt: 'https://www.samuelattard.com/img/gpm_placeholder.jpg',
+        albumArt: null,
         playing: false,
         stopped: true,
         thumbsUp: false,
@@ -335,9 +335,11 @@ describe('<MicroPlayerPage />', () => {
     it('should show a placeholder for the album art when there is a track without album art.', () => {
       mockEvent('PlaybackAPI:change:track', track({ albumArt: 'image' }));
       expect(component.find('.info .album-art img').props().src).to.equal('image');
+      expect(component.find('.info .album-art svg').length).to.equal(0);
 
       mockEvent('PlaybackAPI:change:track', track({ albumArt: undefined }));
-      expect(component.find('.info .album-art img').props().src).to.equal('https://www.samuelattard.com/img/gpm_placeholder.jpg');
+      expect(component.find('.info .album-art img').length).to.equal(0);
+      expect(component.find('.info .album-art svg').length).to.equal(1);
     });
 
     it('should show a placeholder for the album art when there is no track.', () => {
@@ -345,7 +347,8 @@ describe('<MicroPlayerPage />', () => {
       expect(component.find('.info .album-art img').props().src).to.equal('image');
 
       mockEvent('PlaybackAPI:change:track', undefined);
-      expect(component.find('.info .album-art img').props().src).to.equal('https://www.samuelattard.com/img/gpm_placeholder.jpg');
+      expect(component.find('.info .album-art img').length).to.equal(0);
+      expect(component.find('.info .album-art svg').length).to.equal(1);
     });
   });
 
