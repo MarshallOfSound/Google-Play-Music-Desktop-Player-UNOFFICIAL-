@@ -3734,9 +3734,14 @@ gmusic-ui.js@^2.2.3:
   dependencies:
     gmusic.js "^6.0.5"
 
-gmusic.js@^6.0.5, gmusic.js@^6.0.6, gmusic.js@^6.1.4:
+gmusic.js@^6.0.5, gmusic.js@^6.0.6:
   version "6.1.4"
   resolved "https://registry.yarnpkg.com/gmusic.js/-/gmusic.js-6.1.4.tgz#daae9d6de3862024945738ae434014a25f7bca75"
+
+gmusic.js@^6.1.5:
+  version "6.1.5"
+  resolved "https://registry.yarnpkg.com/gmusic.js/-/gmusic.js-6.1.5.tgz#8e336e3da9153599c1dd8353faa2cbe2ce45679a"
+  integrity sha512-TJexVyKEmdnu9pEsqa2MyaHWmNLjfQQZ1/L82ckxu8es1wQZdUueWuxTj7OqrhZywGhp6A5MTiRaRAaQy2aycw==
 
 gpmdp-electron-winstaller@1.0.0:
   version "1.0.0"
