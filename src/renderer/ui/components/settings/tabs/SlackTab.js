@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import SettingsTabWrapper from './SettingsTabWrapper';
-import TextFieldSettings from '../TextFieldSettings';
+import TextListFieldSettings from '../TextListFieldSettings';
 import { requireSettings } from '../../generic/SettingsProvider';
 
 class SlackTab extends Component {
@@ -16,11 +16,12 @@ class SlackTab extends Component {
           {TranslationProvider.query('slack-token-label').replace('$1)', '')}
           <a href="https://api.slack.com/custom-integrations/legacy-tokens" target="_blank" style={{ color: 'white' }}>https://api.slack.com/custom-integrations/legacy-tokens</a>)
         </h4>
-        <TextFieldSettings
+        <TextListFieldSettings
           label={TranslationProvider.query('slack-token-label')}
           settingsKey={'slackToken'}
           placeholder={TranslationProvider.query('slack-token-placeholder')}
         />
+
       </SettingsTabWrapper>
     );
   }

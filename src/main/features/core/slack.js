@@ -39,16 +39,12 @@ function getProfileUpdate(title, artist, reset) {
 let clients;
 
 const getClients = () => {
-  if (!Settings.get('slackToken')) {
+  const tokens = Settings.get('slackToken');
+  if (!tokens || tokens.length === 0) {
     return null;
   }
 
-  clients = clients || Settings.get('slackToken')
-    .split(',')
-    .map(token => token.trim()) // Remove whitespace if ', ' is used as a separator
-    .filter(v => !!v) // Remove any empty tokens if the setting ends with ','
-    .map(token => new WebClient(token));
-
+  clients = clients || tokens.map(token => new WebClient(token.trim()));
   return clients;
 };
 
