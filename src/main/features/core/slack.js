@@ -36,22 +36,26 @@ function getProfileUpdate(title, artist, reset) {
   return getStatusResetProfileUpdate();
 }
 
-let client;
+let clients;
 
-const getClient = () => {
+const getClients = () => {
   if (!Settings.get('slackToken')) {
     return null;
   }
 
-  client = client || new WebClient(Settings.get('slackToken'));
+  clients = clients || Settings.get('slackToken')
+    .split(',')
+    .map(token => token.trim()) // Remove whitespace if ', ' is used as a separator
+    .filter(v => !!v) // Remove any empty tokens if the setting ends with ','
+    .map(token => new WebClient(token));
 
-  return client;
+  return clients;
 };
 
 const updateStatus = (reset = false) => {
-  const slackClient = getClient();
+  const slackClients = getClients();
 
-  if (!slackClient) {
+  if (slackClients.length === 0) {
     return;
   }
 
@@ -62,14 +66,14 @@ const updateStatus = (reset = false) => {
 
   const profileUpdate = getProfileUpdate(title, artist, reset);
 
-  client.users.profile
+  clients.forEach(client => client.users.profile
     .set(profileUpdate)
     .then(() => {
       Logger.debug('Profile status updated on slack:');
     })
     .catch(err => {
       Logger.error('Error updating profile status', err);
-    });
+    }));
 };
 
 const statusUpdater = _.debounce(() => _.delay(updateStatus, 1000), 1000);

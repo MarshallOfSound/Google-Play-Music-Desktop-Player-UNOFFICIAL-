@@ -135,7 +135,7 @@
   "settings-options-style-dialog-css-files": "CSS Files",
   "settings-options-style-dialog-all-files": "All Files",
 
-  "slack-token-label": "Enter your slack user token (can be found at $1)",
+  "slack-token-label": "Enter your Slack user token (can be found at $1). If you use multiple Slack workspaces, enter each token separated by a comma.",
   "slack-token-placeholder": "Slack token",
 
   "title-color-picker": "Color Picker",
