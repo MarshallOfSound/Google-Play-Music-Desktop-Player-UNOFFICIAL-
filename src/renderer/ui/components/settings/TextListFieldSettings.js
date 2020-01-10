@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import { List, ListItem } from 'material-ui/List';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import { memoize } from 'lodash';
 
 import SettingsProvider from '../generic/SettingsProvider';
@@ -69,10 +69,12 @@ class TListField extends Component {
             key={value}
             primaryText={value}
             rightIconButton={
-              <FlatButton
-                label="Delete"
-                onClick={this.onRemove(i)}
-              />
+              <RaisedButton
+                onTouchTap={this.onRemove(i)}
+                primary
+              >
+                <i className="material-icons" style={{ verticalAlign: 'middle' }}>clear</i>
+              </RaisedButton>
             }
           />
         ))}
@@ -88,10 +90,12 @@ class TListField extends Component {
             />
           }
           rightIconButton={
-            <FlatButton
-              label="Add"
-              onClick={this.onAdd}
-            />
+            <RaisedButton
+              onTouchTap={this.onAdd}
+              primary
+            >
+              <i className="material-icons" style={{ verticalAlign: 'middle' }}>add</i>
+            </RaisedButton>
           }
         />
       </List>
@@ -109,6 +113,10 @@ export default class TextListFieldSettings extends Component {
     placeholder: PropTypes.string,
   };
 
+  static defaultProps = {
+    placeholder: '',
+  };
+
   render() {
     const textFieldProps = {
       label: this.props.label,
@@ -121,7 +129,12 @@ export default class TextListFieldSettings extends Component {
       keys.push(this.props.dependsOnSettingsKey);
     }
     return (
-      <SettingsProvider component={ThemedTListField} componentProps={textFieldProps} keys={keys} defaults={{}} />
+      <SettingsProvider
+        component={ThemedTListField}
+        componentProps={textFieldProps}
+        keys={keys}
+        defaults={{}}
+      />
     );
   }
 }

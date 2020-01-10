@@ -51,7 +51,7 @@ const updateStatus = (reset = false) => {
   const profileUpdate = getProfileUpdate(title, artist, reset);
 
   // Create any uninitialized clients
-  Settings.get('slackToken').forEach(token => {
+  Settings.get('slackToken').forEach((token) => {
     if (!clients[token]) { clients[token] = new WebClient(token); }
   });
   Object.values(clients)
@@ -69,7 +69,7 @@ Settings.onChange('slackToken', () => {
   const oldTokens = Object.keys(clients);
 
   // Find any tokens that are being removed and reset their status
-  oldTokens.filter(v => !newTokens.includes(v)).forEach(v => {
+  oldTokens.filter(v => !newTokens.includes(v)).forEach((v) => {
     setClientProfile(clients[v], getStatusResetProfileUpdate());
     delete clients[v];
   });

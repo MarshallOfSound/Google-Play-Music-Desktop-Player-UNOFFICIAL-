@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import SettingsTabWrapper from './SettingsTabWrapper';
 import TextListFieldSettings from '../TextListFieldSettings';
@@ -7,6 +8,7 @@ import { requireSettings } from '../../generic/SettingsProvider';
 class SlackTab extends Component {
   static propTypes = {
     setSetting: PropTypes.func.isRequired,
+    muiTheme: PropTypes.object,
   };
 
   render() {
@@ -14,7 +16,13 @@ class SlackTab extends Component {
       <SettingsTabWrapper>
         <h4>
           {TranslationProvider.query('slack-token-label').replace('$1)', '')}
-          <a href="https://api.slack.com/custom-integrations/legacy-tokens" target="_blank" style={{ color: 'white' }}>https://api.slack.com/custom-integrations/legacy-tokens</a>)
+          <a
+            href="https://api.slack.com/custom-integrations/legacy-tokens"
+            target="_blank"
+            style={{ color: this.props.muiTheme.palette.primary1Color }}
+          >
+            https://api.slack.com/custom-integrations/legacy-tokens
+          </a>)
         </h4>
         <TextListFieldSettings
           label={TranslationProvider.query('slack-token-label')}
@@ -27,4 +35,5 @@ class SlackTab extends Component {
   }
 }
 
-export default requireSettings(SlackTab, ['slackToken'], { slackToken: '' });
+const ThemedSlackTab = muiThemeable()(SlackTab);
+export default requireSettings(ThemedSlackTab, ['slackToken'], { slackToken: '' });
