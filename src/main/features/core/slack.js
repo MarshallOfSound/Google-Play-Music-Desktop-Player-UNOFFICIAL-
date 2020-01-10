@@ -3,6 +3,7 @@ import { app } from 'electron';
 import { WebClient } from '@slack/client';
 
 const EMOJI = ':headphones:';
+const clients = {};
 
 const formatTrackForStatus = (title, artist) => {
   const text = `${title} - ${artist}`;
@@ -36,25 +37,12 @@ function getProfileUpdate(title, artist, reset) {
   return getStatusResetProfileUpdate();
 }
 
-let clients;
-
-const getClients = () => {
-  const tokens = Settings.get('slackToken');
-  if (!tokens || tokens.length === 0) {
-    return null;
-  }
-
-  clients = clients || tokens.map(token => new WebClient(token.trim()));
-  return clients;
-};
+const setClientProfile = (client, status) => client.users.profile
+  .set(status)
+  .then(() => Logger.debug(`Profile status updated on slack for ${client.token}`))
+  .catch(err => Logger.error('Error updating profile status', err));
 
 const updateStatus = (reset = false) => {
-  const slackClients = getClients();
-
-  if (slackClients.length === 0) {
-    return;
-  }
-
   const {
     title,
     artist,
@@ -62,19 +50,32 @@ const updateStatus = (reset = false) => {
 
   const profileUpdate = getProfileUpdate(title, artist, reset);
 
-  clients.forEach(client => client.users.profile
-    .set(profileUpdate)
-    .then(() => {
-      Logger.debug('Profile status updated on slack:');
-    })
-    .catch(err => {
-      Logger.error('Error updating profile status', err);
-    }));
+  // Create any uninitialized clients
+  Settings.get('slackToken').forEach(token => {
+    if (!clients[token]) { clients[token] = new WebClient(token); }
+  });
+  Object.values(clients)
+    .forEach(client => setClientProfile(client, profileUpdate));
 };
 
 const statusUpdater = _.debounce(() => _.delay(updateStatus, 1000), 1000);
 
 PlaybackAPI.on('change:state', statusUpdater);
 PlaybackAPI.on('change:track', statusUpdater);
+
+// When the tokens change, reset the clients and update the status
+Settings.onChange('slackToken', () => {
+  const newTokens = Settings.get('slackToken');
+  const oldTokens = Object.keys(clients);
+
+  // Find any tokens that are being removed and reset their status
+  oldTokens.filter(v => !newTokens.includes(v)).forEach(v => {
+    setClientProfile(clients[v], getStatusResetProfileUpdate());
+    delete clients[v];
+  });
+
+  // Update the status for any remaining clients. This will initialize new clients
+  updateStatus(); // Set the correct statuses
+});
 
 app.on('before-quit', updateStatus.bind(null, true));
