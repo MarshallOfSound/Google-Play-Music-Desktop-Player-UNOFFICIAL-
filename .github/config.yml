@@ -3,15 +3,15 @@
 # Configuration for new-issue-welcome - https://github.com/behaviorbot/new-issue-welcome
 
 # Comment to be posted to on first time issues
-newIssueWelcomeComment: >
+newIssueWelcomeComment: |
   👋 Thanks for opening your first issue here! If you're reporting a 🐞 bug, please make sure you include steps to reproduce it. We get a lot of duplicate issues on this repo, so please double check now that your issue has not already been solved or doesn't have an open issue already.
   
-  To help make it easier for us to investigate your issue, please follow the [contributing guidelines](https://github.com/electron/electron/blob/master/CONTRIBUTING.md#submitting-issues) and ensure the issue template was filled out.
+  To help make it easier for us to investigate your issue, please follow the [contributing guidelines](https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/blob/master/CONTRIBUTING.md) and ensure the issue template was filled out.
 
 # Configuration for new-pr-welcome - https://github.com/behaviorbot/new-pr-welcome
 
 # Comment to be posted to on PRs from first time contributors in your repository
-newPRWelcomeComment: >
+newPRWelcomeComment: |
   💖 Thanks for opening this pull request! 💖
   
   Here is a list of things that will help get it across the finish line:
