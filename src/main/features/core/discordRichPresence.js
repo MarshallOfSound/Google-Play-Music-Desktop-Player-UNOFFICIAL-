@@ -1,5 +1,5 @@
 import { app } from 'electron';
-import createDiscordClient from 'discord-rich-presence';
+import DiscordRPC from 'discord-rpc';
 import _ from 'lodash';
 
 // Handle because RPC is weird
@@ -14,18 +14,20 @@ let lastPlayingState = false;
 const setPresence = () => {
   if (!Settings.get('discordRichPresence', false)) {
     if (client) {
-      client.disconnect();
+      client.destroy();
       client = null;
     }
     return;
   }
 
-  client = client || createDiscordClient('391934620418965504');
+  if (!client || !client.ready) { return; }
+
   const time = PlaybackAPI.currentTime();
   const currentTrack = PlaybackAPI.currentSong();
   const isPlaying = PlaybackAPI.isPlaying();
   const queue = PlaybackAPI.getQueue();
   const track = currentTrack || lastTrack;
+  const rating = PlaybackAPI.getRating();
   if (!time.current) return;
   const start = new Date(Date.now() - time.current);
   if (JSON.stringify(track) !== JSON.stringify(lastTrack)
@@ -70,25 +72,49 @@ const setPresence = () => {
       delete presence.partyMax;
     }
 
+    if (rating.liked) {
+      presence.smallImageKey = 'icon-heart';
+      presence.smallImageText = 'Liked';
+    }
+
     if (!isPlaying) {
-      presence.smallImageKey = 'pause';
+      presence.smallImageKey = 'icon-pause';
       presence.smallImageText = 'Paused';
       delete presence.startTimestamp;
       delete presence.endTimestamp;
       presence.state += ' (Paused)';
     }
 
-    client.updatePresence(presence);
+    // Run Event to update
+    client.setActivity(presence);
   }
+};
+
+const tryConnecting = () => {
+  if (client && client.ready) return;
+
+  client = new DiscordRPC.Client({ transport: 'ipc' });
+  client.on('ready', () => {
+    client.ready = true;
+    Logger.info('[Discord RPC] Ready');
+  });
+  client.on('disconnected', () => {
+    Logger.info('[Discord RPC] Disconnected');
+    client = null;
+  });
+  client.login({ clientId: '380678077287628810' });
 };
 
 app.on('before-quit', () => {
   if (client) {
-    client.disconnect();
+    client.destroy();
   }
 });
 
-PlaybackAPI.on('change:state', setPresence);
+PlaybackAPI.on('change:state', () => {
+  tryConnecting();
+  setPresence();
+});
 PlaybackAPI.on('change:track', setPresence);
 PlaybackAPI.on('change:time', _.throttle(setPresence, 15000));
 Settings.onChange('discordRichPresence', setPresence);
