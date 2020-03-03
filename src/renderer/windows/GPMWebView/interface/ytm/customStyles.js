@@ -9,7 +9,7 @@ Emitter.on('LoadYTMCustomStyles', (event, styleString) => {
 Emitter.fire('FetchYTMCustomStyles');
 
 // Attach the element after the DOM is ready.
-document.addEventListener('DOMContentLoaded', () => {
+window.wait(() => {
   document.head.appendChild(customStyle);
 });
 
