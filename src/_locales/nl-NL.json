@@ -129,6 +129,7 @@
   "settings-options-style-description": "Kies een lokaal CSS-bestand om stijlen te injecteren in de applicatie",
   "settings-options-style-main-app": "Hoofdapp",
   "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-ytm": "",
   "settings-options-style-refresh": "Stijlen vernieuwen",
   "settings-options-style-dialog-title": "CSS-bestand kiezen",
   "settings-options-style-dialog-button": "CSS laden",

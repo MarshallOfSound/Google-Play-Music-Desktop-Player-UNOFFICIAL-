@@ -129,6 +129,7 @@
   "settings-options-style-description": "Выберите локальный CSS-файл для инъекции стилей в приложение",
   "settings-options-style-main-app": "Стили приложения",
   "settings-options-style-gpm": "Стили сервиса GPM",
+  "settings-options-style-ytm": "",
   "settings-options-style-refresh": "Перезагрузить стили",
   "settings-options-style-dialog-title": "Выберите файл CSS",
   "settings-options-style-dialog-button": "Загрузить CSS",

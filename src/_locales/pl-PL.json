@@ -129,6 +129,7 @@
   "settings-options-style-description": "Wybierz lokalny plik CSS aby dodać nowe style do aplikacji",
   "settings-options-style-main-app": "Główna aplikacja",
   "settings-options-style-gpm": "Muzyka Google Play",
+  "settings-options-style-ytm": "",
   "settings-options-style-refresh": "Przeładuj style",
   "settings-options-style-dialog-title": "Wybierz plik CSS",
   "settings-options-style-dialog-button": "Załaduj plik CSS",
