@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "Przewijaj napisy automatycznie podczas odtwarzania",
 
+  "settings-option-micro-buttons-next": "",
+  "settings-option-micro-buttons-play-pause": "",
+  "settings-option-micro-buttons-previous": "",
+  "settings-option-micro-buttons-rating": "",
+  "settings-option-micro-buttons-show-main-window": "",
+
   "settings-option-mini-always-show": "Zawsze pokazuj informacje o utworze",
   "settings-option-mini-ontop": "Zawsze na wierzchu",
   "settings-option-mini-use-scroll-volume": "Użyj rolki myszki aby sterować głośnością",
@@ -150,6 +156,7 @@
   "title-settings-hotkeys": "Skróty klawiszowe",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "",
   "title-settings-mini": "Mini odtwarzacz",
   "title-settings-style": "Własne style",
   "title-settings-slack": "Slack",

@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "სიმღერის ტექსტი დაისქროლოს ავტომატურად",
 
+  "settings-option-micro-buttons-next": "",
+  "settings-option-micro-buttons-play-pause": "",
+  "settings-option-micro-buttons-previous": "",
+  "settings-option-micro-buttons-rating": "",
+  "settings-option-micro-buttons-show-main-window": "",
+
   "settings-option-mini-always-show": "ყოველთვის აჩვენე სიმღერის ინფორმაცია",
   "settings-option-mini-ontop": "იყოს მუდამ წინა პლანზე",
   "settings-option-mini-use-scroll-volume": "ხმის მართვა მაუსის სქროლით",
@@ -151,6 +157,7 @@
   "title-settings-hotkeys": "Hotkeys",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "",
   "title-settings-mini": "მინი ფლეერი",
   "title-settings-style": "საკუთარი სტილები",
   "title-settings-slack": "Slack",

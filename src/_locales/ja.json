@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "再生中に歌詞を自動でスクロールする",
 
+  "settings-option-micro-buttons-next": "",
+  "settings-option-micro-buttons-play-pause": "",
+  "settings-option-micro-buttons-previous": "",
+  "settings-option-micro-buttons-rating": "",
+  "settings-option-micro-buttons-show-main-window": "",
+
   "settings-option-mini-always-show": "常に曲の情報を表示する",
   "settings-option-mini-ontop": "常に最前面に表示する",
   "settings-option-mini-use-scroll-volume": "音量調節にスクロールホイールを利用する",
@@ -150,6 +156,7 @@
   "title-settings-hotkeys": "ホットキー",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "",
   "title-settings-mini": "ミニプレーヤー",
   "title-settings-style": "カスタムスタイル",
   "title-settings-slack": "Slack",

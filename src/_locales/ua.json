@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "Автоматично прокручувати текст пісні під час відтворення",
 
+  "settings-option-micro-buttons-next": "",
+  "settings-option-micro-buttons-play-pause": "",
+  "settings-option-micro-buttons-previous": "",
+  "settings-option-micro-buttons-rating": "",
+  "settings-option-micro-buttons-show-main-window": "",
+
   "settings-option-mini-always-show": "Завжди показувати інформацію про пісню",
   "settings-option-mini-ontop": "Завжди нагорі",
   "settings-option-mini-use-scroll-volume": "Керування гічністю за допомогою коліщатка миши",
@@ -150,6 +156,7 @@
   "title-settings-hotkeys": "Скорочення клавіатури",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "",
   "title-settings-mini": "Мініплеер",
   "title-settings-style": "Власні стилі",
   "title-settings-slack": "",

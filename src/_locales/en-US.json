@@ -54,7 +54,7 @@
   "message-uncaught-error": "An uncaught error has occurred inside GPMDP.",
   "message-uncaught-error-button": "Click here to report this as an issue on GitHub",
 
-  "micro-show-main-window": "Show main window",
+  "micro-show-main-window": "Show Main Window",
   "micro-no-track-message": "No song is currently playing",
   "micro-loading": "Getting ready...",
 
@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "Scroll lyrics automatically while playing",
 
+  "settings-option-micro-buttons-next": "Show the 'Next Track' button",
+  "settings-option-micro-buttons-play-pause": "Show the 'Play / Pause' button",
+  "settings-option-micro-buttons-previous": "Show the 'Previous Track' button",
+  "settings-option-micro-buttons-rating": "Show the 'Thumbs Up' and 'Thumbs Down' buttons",
+  "settings-option-micro-buttons-show-main-window": "Show the 'Show Main Window' button",
+
   "settings-option-mini-always-show": "Always show song information",
   "settings-option-mini-ontop": "Always on top",
   "settings-option-mini-use-scroll-volume": "Use the scroll wheel to adjust volume",
@@ -151,6 +157,7 @@
   "title-settings-hotkeys": "Hotkeys",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "Micro Player",
   "title-settings-mini": "Mini Player",
   "title-settings-style": "Custom Styles",
   "title-settings-slack": "Slack",

@@ -27,6 +27,11 @@ describe('<MicroPlayerPage />', () => {
     fakeSettings('theme', false);
     fakeSettings('themeColor', 'red');
     fakeSettings('themeType', 'normal');
+    fakeSettings('microButtonsRating', true);
+    fakeSettings('microButtonsPrevious', true);
+    fakeSettings('microButtonsPlayPause', true);
+    fakeSettings('microButtonsNext', true);
+    fakeSettings('microButtonsShowMainWindow', true);
     fired = getVars().fired;
 
     component = mount(<MicroPlayerPage />);
@@ -70,6 +75,15 @@ describe('<MicroPlayerPage />', () => {
         borderColor: '',
         themeName: '',
         themeColor: '',
+        visibility: {
+          rating: true,
+          previous: true,
+          playPause: true,
+          next: true,
+          showMainWindow: true,
+          controls: true,
+          navigation: true,
+        },
       });
 
       mockEvent('app:loading');
@@ -89,6 +103,15 @@ describe('<MicroPlayerPage />', () => {
         borderColor: '',
         themeName: '',
         themeColor: '',
+        visibility: {
+          rating: true,
+          previous: true,
+          playPause: true,
+          next: true,
+          showMainWindow: true,
+          controls: true,
+          navigation: true,
+        },
       });
     });
   });
@@ -396,6 +419,114 @@ describe('<MicroPlayerPage />', () => {
 
     afterEach(() => {
       sandbox.restore();
+    });
+  });
+
+  describe('visibility', () => {
+    function verifyVisibility(selector, setting) {
+      expect(component.find(selector).exists(), 'initial').to.be.true;
+
+      mockEvent(`settings:change:${setting}`, false);
+
+      expect(component.find(selector).exists(), 'hidden').to.be.false;
+
+      mockEvent(`settings:change:${setting}`, true);
+
+      expect(component.find(selector).exists(), 'shown').to.be.true;
+    }
+
+    it('should initialize visibility from the settings.', () => {
+      fakeSettings('microButtonsRating', false);
+      fakeSettings('microButtonsPrevious', true);
+      fakeSettings('microButtonsPlayPause', false);
+      fakeSettings('microButtonsNext', true);
+      fakeSettings('microButtonsShowMainWindow', false);
+
+      mockEvent('app:loading');
+
+      expect(component.state().visibility).to.deep.equal({
+        rating: false,
+        previous: true,
+        playPause: false,
+        next: true,
+        showMainWindow: false,
+        controls: true,
+        navigation: true,
+      });
+    });
+
+    it('should hide the "ratings" buttons when the setting is false.', () => {
+      verifyVisibility('.micro-player .controls .rating-buttons', 'microButtonsRating');
+    });
+
+    it('should hide the "previous" button when the setting is false.', () => {
+      verifyVisibility('.micro-player .controls .previous', 'microButtonsPrevious');
+    });
+
+    it('should hide the "play / pause" button when the setting is false.', () => {
+      verifyVisibility('.micro-player .controls .play-pause', 'microButtonsPlayPause');
+    });
+
+    it('should hide the "next" button when the setting is false.', () => {
+      verifyVisibility('.micro-player .controls .next', 'microButtonsNext');
+    });
+
+    it('should hide the "show main window" button when the setting is false.', () => {
+      verifyVisibility('.micro-player .controls .window-buttons', 'microButtonsShowMainWindow');
+    });
+
+    it('should hide the "navigation" section when the "previous", "play/pause" and "next" buttons are hidden.', () => {
+      const selector = '.micro-player .controls .navigation-buttons';
+
+      expect(component.find(selector).exists(), 'initial').to.be.true;
+
+      mockEvent('settings:change:microButtonsPrevious', false);
+      expect(component.find(selector).exists(), 'hide previous').to.be.true;
+
+      mockEvent('settings:change:microButtonsPlayPause', false);
+      expect(component.find(selector).exists(), 'hide play/pause').to.be.true;
+
+      mockEvent('settings:change:microButtonsNext', false);
+      expect(component.find(selector).exists(), 'hide next').to.be.false;
+
+      mockEvent('settings:change:microButtonsPrevious', true);
+      expect(component.find(selector).exists(), 'show previous').to.be.true;
+
+      mockEvent('settings:change:microButtonsPrevious', false);
+      expect(component.find(selector).exists(), 'hide previous again').to.be.false;
+
+      mockEvent('settings:change:microButtonsPlayPause', true);
+      expect(component.find(selector).exists(), 'show play/pause').to.be.true;
+    });
+
+    it('should hide the "controls" section when all buttons are hidden.', () => {
+      const selector = '.micro-player .controls';
+
+      expect(component.find(selector).exists(), 'initial').to.be.true;
+
+      mockEvent('settings:change:microButtonsRating', false);
+      expect(component.find(selector).exists(), 'hide rating').to.be.true;
+
+      mockEvent('settings:change:microButtonsPrevious', false);
+      expect(component.find(selector).exists(), 'hide previous').to.be.true;
+
+      mockEvent('settings:change:microButtonsPlayPause', false);
+      expect(component.find(selector).exists(), 'hide play/pause').to.be.true;
+
+      mockEvent('settings:change:microButtonsNext', false);
+      expect(component.find(selector).exists(), 'hide next').to.be.true;
+
+      mockEvent('settings:change:microButtonsShowMainWindow', false);
+      expect(component.find(selector).exists(), 'hide show main window').to.be.false;
+
+      mockEvent('settings:change:microButtonsNext', true);
+      expect(component.find(selector).exists(), 'show next').to.be.true;
+
+      mockEvent('settings:change:microButtonsNext', false);
+      expect(component.find(selector).exists(), 'hide next again').to.be.false;
+
+      mockEvent('settings:change:microButtonsRating', true);
+      expect(component.find(selector).exists(), 'show rating').to.be.true;
     });
   });
 });

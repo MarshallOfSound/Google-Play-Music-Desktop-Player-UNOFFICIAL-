@@ -17,4 +17,9 @@ export default {
   lastFMMapThumbToHeart: true,
   service: 'google-play-music',
   spoofUserAgent: true,
+  microButtonsRating: true,
+  microButtonsPrevious: true,
+  microButtonsPlayPause: true,
+  microButtonsNext: true,
+  microButtonsShowMainWindow: true,
 };

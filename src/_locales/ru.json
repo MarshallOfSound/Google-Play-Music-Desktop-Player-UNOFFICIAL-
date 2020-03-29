@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "Автоматически прокручивать текст песни во время воспроизведения",
 
+  "settings-option-micro-buttons-next": "",
+  "settings-option-micro-buttons-play-pause": "",
+  "settings-option-micro-buttons-previous": "",
+  "settings-option-micro-buttons-rating": "",
+  "settings-option-micro-buttons-show-main-window": "",
+
   "settings-option-mini-always-show": "Всегда показывать информацию о песне",
   "settings-option-mini-ontop": "Всегда наверху",
   "settings-option-mini-use-scroll-volume": "Управление громкостью колесом мыши",
@@ -150,6 +156,7 @@
   "title-settings-hotkeys": "Горячие клавиши",
   "title-settings-lastfm": "Last.FM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "",
   "title-settings-mini": "Миниплеер",
   "title-settings-style": "Свои стили",
   "title-settings-slack": "",

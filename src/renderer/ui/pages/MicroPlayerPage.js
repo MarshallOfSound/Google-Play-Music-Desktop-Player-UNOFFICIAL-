@@ -5,6 +5,14 @@ import JoinedText from '../components/generic/JoinedText';
 import RatingButton from '../components/generic/RatingButton';
 import generateTheme from '../utils/theme';
 
+const VISIBILITY_SETTINGS_MAP = {
+  microButtonsRating: 'rating',
+  microButtonsPrevious: 'previous',
+  microButtonsPlayPause: 'playPause',
+  microButtonsNext: 'next',
+  microButtonsShowMainWindow: 'showMainWindow',
+};
+
 const INITIAL_STATE = {
   loading: true,
   stopped: true,
@@ -20,6 +28,7 @@ const INITIAL_STATE = {
   borderColor: null,
   themeName: '',
   themeColor: '',
+  visibility: {},
 };
 
 function goToPreviousTrack() {
@@ -78,7 +87,12 @@ export default class MicroPlayer extends Component {
       themeType: Settings.get('themeType', 'FULL'),
     };
 
-    this.state = Object.assign({}, INITIAL_STATE, this._getThemeState());
+    this.state = Object.assign(
+      {},
+      INITIAL_STATE,
+      this._getThemeState(),
+      this._getVisibilityState()
+    );
 
     this._albumArtElement = undefined;
 
@@ -94,7 +108,12 @@ export default class MicroPlayer extends Component {
   componentDidMount() {
     // Reset everything if the player reloads, which
     // happens when switching between GPM and YTM modes.
-    this._listen('app:loading', () => this.setState(Object.assign({}, INITIAL_STATE, this._getThemeState())));
+    this._listen('app:loading', () => this.setState(Object.assign(
+      {},
+      INITIAL_STATE,
+      this._getThemeState(),
+      this._getVisibilityState())
+    ));
 
     this._listen('app:loaded', () => {
       // The album art is hidden while loading, so once
@@ -126,6 +145,11 @@ export default class MicroPlayer extends Component {
     this._listen('settings:change:themeColor', (e, data) => this._onThemeChange({ themeColor: data }));
     this._listen('settings:change:themeType', (e, data) => this._onThemeChange({ themeType: data }));
 
+    // Listen for visibility changes.
+    Object.keys(VISIBILITY_SETTINGS_MAP).forEach((key) => {
+      this._listen(`settings:change:${key}`, (e, data) => this._onVisibilityChange({ [VISIBILITY_SETTINGS_MAP[key]]: data }));
+    });
+
     // Listen for changes to the window's size so that we can update
     // the width of the album art to keep that element square. We'll
     // also need to do an initial update of the album art's width.
@@ -156,6 +180,14 @@ export default class MicroPlayer extends Component {
     this.setState(this._getThemeState());
   }
 
+  _onVisibilityChange(change) {
+    this.setState((previous) => {
+      const visibility = Object.assign({}, previous.visibility, change);
+      Object.assign(visibility, this._computeDerivedVisibility(visibility));
+      return { visibility };
+    });
+  }
+
   _getThemeState() {
     let borderColor = '';
     let themeName = '';
@@ -169,6 +201,25 @@ export default class MicroPlayer extends Component {
     }
 
     return { borderColor, themeName, themeColor };
+  }
+
+  _getVisibilityState() {
+    const visibility = {};
+
+    Object.keys(VISIBILITY_SETTINGS_MAP).forEach((key) => {
+      visibility[VISIBILITY_SETTINGS_MAP[key]] = Settings.get(key);
+    });
+
+    Object.assign(visibility, this._computeDerivedVisibility(visibility));
+
+    return { visibility };
+  }
+
+  _computeDerivedVisibility(visibility) {
+    return {
+      navigation: visibility.previous || visibility.playPause || visibility.next,
+      controls: visibility.rating || visibility.previous || visibility.playPause || visibility.next || visibility.showMainWindow,
+    };
   }
 
   render() {
@@ -246,64 +297,78 @@ export default class MicroPlayer extends Component {
           <div className="micro-drag-handle" />
         </div>
 
-        <div className="controls">
-          <div>
-            <RatingButton
-              type="like"
-              translationKey="playback-label-thumbs-up"
-              checked={this.state.thumbsUp}
-              disabled={!this.state.hasTrack}
-              onClick={toggleThumbsUp}
-            />
+        {this.state.visibility.controls &&
+          <div className="controls">
+            {this.state.visibility.rating &&
+              <div className="rating-buttons">
+                <RatingButton
+                  type="like"
+                  translationKey="playback-label-thumbs-up"
+                  checked={this.state.thumbsUp}
+                  disabled={!this.state.hasTrack}
+                  onClick={toggleThumbsUp}
+                />
 
-            <RatingButton
-              type="dislike"
-              translationKey="playback-label-thumbs-down"
-              checked={this.state.thumbsDown}
-              disabled={!this.state.hasTrack}
-              onClick={toggleThumbsDown}
-            />
+                <RatingButton
+                  type="dislike"
+                  translationKey="playback-label-thumbs-down"
+                  checked={this.state.thumbsDown}
+                  disabled={!this.state.hasTrack}
+                  onClick={toggleThumbsDown}
+                />
+              </div>
+            }
+
+            {this.state.visibility.navigation &&
+              <div className="navigation-buttons">
+                {this.state.visibility.previous &&
+                  <button
+                    onClick={goToPreviousTrack}
+                    className="previous"
+                    disabled={!this.state.hasTrack}
+                    title={TranslationProvider.query('playback-label-previous-track')}
+                  >
+                    <i className="material-icons">skip_previous</i>
+                  </button>
+                }
+
+                {this.state.visibility.playPause &&
+                  <button
+                    onClick={togglePlay}
+                    className="play-pause"
+                    disabled={this.state.stopped}
+                    title={TranslationProvider.query('playback-label-play-pause')}
+                  >
+                    <i className="material-icons">{this.state.playing ? 'pause_circle_filled' : 'play_circle_filled'}</i>
+                  </button>
+                }
+
+                {this.state.visibility.next &&
+                  <button
+                    onClick={goToNextTrack}
+                    className="next"
+                    disabled={!this.state.hasTrack}
+                    title={TranslationProvider.query('playback-label-next-track')}
+                  >
+                    <i className="material-icons">skip_next</i>
+                  </button>
+                }
+              </div>
+            }
+
+            {this.state.visibility.showMainWindow &&
+              <div className="window-buttons">
+                <button
+                  onClick={showFullWindow}
+                  className="show-main-window"
+                  title={TranslationProvider.query('micro-show-main-window')}
+                >
+                  <i className="material-icons">open_in_new</i>
+                </button>
+              </div>
+            }
           </div>
-
-          <div>
-            <button
-              onClick={goToPreviousTrack}
-              className="previous"
-              disabled={!this.state.hasTrack}
-              title={TranslationProvider.query('playback-label-previous-track')}
-            >
-              <i className="material-icons">skip_previous</i>
-            </button>
-
-            <button
-              onClick={togglePlay}
-              className="play-pause"
-              disabled={this.state.stopped}
-              title={TranslationProvider.query('playback-label-play-pause')}
-            >
-              <i className="material-icons">{this.state.playing ? 'pause_circle_filled' : 'play_circle_filled'}</i>
-            </button>
-
-            <button
-              onClick={goToNextTrack}
-              className="next"
-              disabled={!this.state.hasTrack}
-              title={TranslationProvider.query('playback-label-next-track')}
-            >
-              <i className="material-icons">skip_next</i>
-            </button>
-          </div>
-
-          <div>
-            <button
-              onClick={showFullWindow}
-              className="show-main-window"
-              title={TranslationProvider.query('micro-show-main-window')}
-            >
-              <i className="material-icons">open_in_new</i>
-            </button>
-          </div>
-        </div>
+        }
       </div>
     );
   }

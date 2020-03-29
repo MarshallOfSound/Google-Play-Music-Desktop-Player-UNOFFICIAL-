@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "Zeneszám lejátszása közben automatikusan görgesse a dalszöveget",
 
+  "settings-option-micro-buttons-next": "",
+  "settings-option-micro-buttons-play-pause": "",
+  "settings-option-micro-buttons-previous": "",
+  "settings-option-micro-buttons-rating": "",
+  "settings-option-micro-buttons-show-main-window": "",
+
   "settings-option-mini-always-show": "Mindig mutassa a dal információit",
   "settings-option-mini-ontop": "Mindig tartsa fent az ablakot",
   "settings-option-mini-use-scroll-volume": "Használja az egér görgetőjét a hangerő beállításához",
@@ -150,6 +156,7 @@
   "title-settings-hotkeys": "Billentyűparancsok",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "",
   "title-settings-mini": "Mini Lejátszó",
   "title-settings-style": "Egyéni stílusok",
   "title-settings-slack": "",

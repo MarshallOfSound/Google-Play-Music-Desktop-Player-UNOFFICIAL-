@@ -6,6 +6,7 @@ import HotkeyTab from '../components/settings/tabs/HotkeyTab';
 import LastFMTab from '../components/settings/tabs/LastFMTab';
 import ListenBrainzTab from '../components/settings/tabs/ListenBrainzTab';
 import MiniTab from '../components/settings/tabs/MiniTab';
+import MicroTab from '../components/settings/tabs/MicroTab';
 import PlaybackTab from '../components/settings/tabs/PlaybackTab';
 import StyleTab from '../components/settings/tabs/StyleTab';
 import SlackTab from '../components/settings/tabs/SlackTab';
@@ -34,6 +35,9 @@ export default class SettingsPage extends Component {
           </Tab>
           <Tab label={TranslationProvider.query('title-settings-mini')}>
             <MiniTab />
+          </Tab>
+          <Tab label={TranslationProvider.query('title-settings-micro')}>
+            <MicroTab />
           </Tab>
           <Tab label={TranslationProvider.query('title-settings-lastfm')}>
             <LastFMTab />

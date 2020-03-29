@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "Posouvat text skladby při přehrávání automaticky",
 
+  "settings-option-micro-buttons-next": "",
+  "settings-option-micro-buttons-play-pause": "",
+  "settings-option-micro-buttons-previous": "",
+  "settings-option-micro-buttons-rating": "",
+  "settings-option-micro-buttons-show-main-window": "",
+
   "settings-option-mini-always-show": "Vždy zobraz informace o skladbě",
   "settings-option-mini-ontop": "Vždy navrchu",
   "settings-option-mini-use-scroll-volume": "Použít rolovací kolečko pro změnu hlasitosti",
@@ -150,6 +156,7 @@
   "title-settings-hotkeys": "Klávesové zkratky",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "",
   "title-settings-mini": "Mini přehrávač",
   "title-settings-style": "Vlastní motivy",
   "title-settings-slack": "",

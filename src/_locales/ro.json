@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "Derulează automat versurile în timpul redării",
 
+  "settings-option-micro-buttons-next": "",
+  "settings-option-micro-buttons-play-pause": "",
+  "settings-option-micro-buttons-previous": "",
+  "settings-option-micro-buttons-rating": "",
+  "settings-option-micro-buttons-show-main-window": "",
+
   "settings-option-mini-always-show": "Arată tot timpul informații despre melodie",
   "settings-option-mini-ontop": "Ține fereastra deasupra",
   "settings-option-mini-use-scroll-volume": "Folosește rotița mouse-ului pentru a ajusta volumul",
@@ -150,6 +156,7 @@
   "title-settings-hotkeys": "Scurtături",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "",
   "title-settings-mini": "Player mini",
   "title-settings-style": "Stiluri personalizate",
   "title-settings-slack": "",

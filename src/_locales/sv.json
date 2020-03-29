@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "Scrolla låttexter automatiskt under uppspelning",
 
+  "settings-option-micro-buttons-next": "",
+  "settings-option-micro-buttons-play-pause": "",
+  "settings-option-micro-buttons-previous": "",
+  "settings-option-micro-buttons-rating": "",
+  "settings-option-micro-buttons-show-main-window": "",
+
   "settings-option-mini-always-show": "Visa altid låtinformation.",
   "settings-option-mini-ontop": "Altid längst upp",
   "settings-option-mini-use-scroll-volume": "Använd scrollhjulet för att justera volymen",
@@ -150,6 +156,7 @@
   "title-settings-hotkeys": "Genvägar",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "",
   "title-settings-mini": "Miniuppspelare",
   "title-settings-style": "Anpassa utseende",
   "title-settings-slack": "",

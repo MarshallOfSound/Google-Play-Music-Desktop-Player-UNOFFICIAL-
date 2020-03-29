@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "재생중에 가사 자동으로 스크롤하기",
 
+  "settings-option-micro-buttons-next": "",
+  "settings-option-micro-buttons-play-pause": "",
+  "settings-option-micro-buttons-previous": "",
+  "settings-option-micro-buttons-rating": "",
+  "settings-option-micro-buttons-show-main-window": "",
+
   "settings-option-mini-always-show": "항상 음악 정보 보여주기",
   "settings-option-mini-ontop": "항상 위에",
   "settings-option-mini-use-scroll-volume": "마우스 스크롤로 볼륨 조절",
@@ -151,6 +157,7 @@
   "title-settings-hotkeys": "단축키",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "",
   "title-settings-mini": "미니 플레이어",
   "title-settings-style": "커스텀 스타일",
   "title-settings-slack": "Slack",

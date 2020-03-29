@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "Automatisk rul af sangtekster når der afspilles",
 
+  "settings-option-micro-buttons-next": "",
+  "settings-option-micro-buttons-play-pause": "",
+  "settings-option-micro-buttons-previous": "",
+  "settings-option-micro-buttons-rating": "",
+  "settings-option-micro-buttons-show-main-window": "",
+
   "settings-option-mini-always-show": "Vis altid sang informationer.",
   "settings-option-mini-ontop": "Altid foran",
   "settings-option-mini-use-scroll-volume": "Brug rullehjulet til at justere lydstyrken",
@@ -150,6 +156,7 @@
   "title-settings-hotkeys": "Genveje",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "",
   "title-settings-mini": "Mini Afspiller",
   "title-settings-style": "Tilpas udseende",
   "title-settings-slack": "",

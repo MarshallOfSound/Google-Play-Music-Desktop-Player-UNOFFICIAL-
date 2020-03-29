@@ -125,6 +125,12 @@
 
   "settings-option-scroll-lyrics": "Liedteksten automatisch scrollen tijdens het afspelen",
 
+  "settings-option-micro-buttons-next": "",
+  "settings-option-micro-buttons-play-pause": "",
+  "settings-option-micro-buttons-previous": "",
+  "settings-option-micro-buttons-rating": "",
+  "settings-option-micro-buttons-show-main-window": "",
+
   "settings-option-mini-always-show": "Altijd informatie over het nummer tonen",
   "settings-option-mini-ontop": "Altijd op de voorgrond",
   "settings-option-mini-use-scroll-volume": "Gebruik het muiswieltje om het volume aan te passen",
@@ -151,6 +157,7 @@
   "title-settings-hotkeys": "Sneltoetsen",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
+  "title-settings-micro": "",
   "title-settings-mini": "Mini-speler",
   "title-settings-style": "Stylesheets",
   "title-settings-slack": "Slack",
