@@ -283,6 +283,14 @@ const setStaticAlbumArt = (staticAlbumArt) => {
   }` : '');
 };
 
+const setViewYTMSwitch = (viewYTMSwitch) => {
+  const ytm_button = document.getElementById('ytm-button');
+  if (viewYTMSwitch) {
+    ytm_button.style.display = 'block';
+  } else {
+    ytm_button.style.display = 'none';
+  }
+};
 
 // Modify the GUI after everything is sufficiently loaded
 window.wait(() => {
@@ -291,6 +299,9 @@ window.wait(() => {
   });
   Emitter.on('settings:change:staticAlbumArt', (event, staticAlbumArt) => {
     setStaticAlbumArt(staticAlbumArt);
+  });
+  Emitter.on('settings:change:viewYTMSwitch', (event, viewYTMSwitch) => {
+    setViewYTMSwitch(viewYTMSwitch);
   });
 
   hideNotWorkingStuff();
@@ -302,4 +313,5 @@ window.wait(() => {
   setKeepSidebarOpen(Settings.get('keepSidebarOpen'));
   setStaticAlbumArt(Settings.get('staticAlbumArt'));
   installYTMButton();
+  setViewYTMSwitch(Settings.get('viewYTMSwitch'));
 });
