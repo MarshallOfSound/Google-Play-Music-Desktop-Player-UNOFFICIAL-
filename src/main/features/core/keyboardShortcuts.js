@@ -60,10 +60,9 @@ const _registerHotkeyIfSet = (accelerator, action) => {
   if (accelerator) {
     try {
       const success = globalShortcut.register(accelerator, () => {
-        if (action == 'showLyrics') {
+        if (action === 'showLyrics') {
           Emitter.sendToAll('lyrics:show');
-        }
-        else {
+        } else {
           Emitter.sendToGooglePlayMusic(`playback:${action}`);
         }
       });
