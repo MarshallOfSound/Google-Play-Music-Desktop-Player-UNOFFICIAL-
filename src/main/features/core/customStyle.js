@@ -6,6 +6,8 @@ Emitter.on('FetchMainAppCustomStyles', () => {
     fs.readFile(mainAppPath, 'utf8', (err, css) => {
       Emitter.sendToAll('LoadMainAppCustomStyles', err ? '' : css);
     });
+  } else {
+    Emitter.sendToAll('LoadMainAppCustomStyles', '');
   }
 });
 
@@ -15,5 +17,7 @@ Emitter.on('FetchGPMCustomStyles', () => {
     fs.readFile(gpmPath, 'utf8', (err, css) => {
       Emitter.sendToGooglePlayMusic('LoadGPMCustomStyles', err ? '' : css);
     });
+  } else {
+    Emitter.sendToGooglePlayMusic('LoadGPMCustomStyles', '');
   }
 });

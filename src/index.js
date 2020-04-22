@@ -52,7 +52,7 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
     global.Settings = new SettingsClass();
   }
 
-  global.DEV_MODE = process.env['TEST_SPEC'] || process.argv.some(arg => arg === '--development') || process.argv.some(arg => arg === '--dev'); // eslint-disable-line
+  global.DEV_MODE = process.env['TEST_SPEC'] || process.argv.some(arg => arg === '--development') || process.argv.some(arg => arg === '--dev') || Settings.get('_alwaysDevMode'); // eslint-disable-line
 
   updateShortcuts();
 
@@ -103,16 +103,34 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   app.on('ready', () => {
-    mainWindow = new BrowserWindow(generateBrowserConfig());
-      // Use the default user agent but remove Electron
-    let newUserAgent = mainWindow.webContents.getUserAgent().replace(/Electron\/.+? /g, '');
-
-    // Spoof the user agent to bypass the sign in issue (#3545)
-    if (Settings.get('userAgent')) {
-      newUserAgent = Settings.get('userAgent');
+    // Attempt to install React Developer Tools
+    if (global.DEV_MODE) {
+      try {
+        const devtoolsInstaller = require('electron-devtools-installer');
+        devtoolsInstaller.default(devtoolsInstaller.REACT_DEVELOPER_TOOLS).catch(() => null);
+      } catch (err) {
+        // Whoe cares
+      }
     }
 
-    mainWindow.webContents.session.setUserAgent(newUserAgent);
+    mainWindow = new BrowserWindow(generateBrowserConfig());
+    const signInUserAgent = Settings.get('overrideSignInUserAgent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:73.0) Gecko/20100101 Firefox/73.0');
+
+    // Spoof the user agent, this allows for future work arounds
+    if (Settings.get('overrideUserAgent')) {
+      mainWindow.webContents.session.setUserAgent('overrideUserAgent');
+    }
+
+    // Intercept all requests to accounts.google.com and hijack the UA
+    mainWindow.webContents.session.webRequest.onBeforeSendHeaders({
+      urls: ['https://accounts.google.com/*'],
+    }, (details, callback) => {
+      const newRequestHeaders = Object.assign({}, (details.requestHeaders || {}), {
+        'User-Agent': signInUserAgent,
+      });
+      callback({ requestHeaders: newRequestHeaders });
+    });
+
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
     const position = Settings.get('position');

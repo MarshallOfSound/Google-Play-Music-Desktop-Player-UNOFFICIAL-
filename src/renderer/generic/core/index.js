@@ -10,14 +10,6 @@ if (remote.getGlobal('DEV_MODE')) {
     // Who cares
   }
 
-  // Attempt to install React Developer Tools
-  try {
-    const devtoolsInstaller = require('electron-devtools-installer');
-    devtoolsInstaller.default(devtoolsInstaller.REACT_DEVELOPER_TOOLS);
-  } catch (err) {
-    // Whoe cares
-  }
-
   window.addEventListener('load', () => {
     const webview = document.querySelector('webview');
     if (!webview) {
