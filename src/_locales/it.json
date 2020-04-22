@@ -126,6 +126,8 @@
   "settings-option-skip-bad-songs": "Salta automaticamente i brani segnati con pollice giù",
   "settings-option-try-supported-channel-layouts": "Supporto sperimentale per audio multicanale come il 5.1",
 
+  "settings-option-show-ytm-button": "",
+
   "settings-options-style-description": "Seleziona un file CSS locale per iniettare gli stili nell'applicazione",
   "settings-options-style-main-app": "Applicazione principale",
   "settings-options-style-gpm": "Google Play Music",

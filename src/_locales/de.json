@@ -126,6 +126,8 @@
   "settings-option-skip-bad-songs": "Überspringe automatisch nicht gemochte Titel",
   "settings-option-try-supported-channel-layouts": "Experimentelle Unterstützung für Raumklang (Mehrfachkanäle), wie z.B. 5.1 Audio",
 
+  "settings-option-show-ytm-button": "",
+
   "settings-options-style-description": "Wähle eine lokale CSS-Datei, um eigene Stile in die Anwendung einzubringen",
   "settings-options-style-main-app": "Hauptfenster",
   "settings-options-style-gpm": "Google Play Music",

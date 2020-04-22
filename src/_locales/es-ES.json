@@ -126,6 +126,8 @@
   "settings-option-skip-bad-songs": "Saltar canciones con \"No me gusta\" automáticamente",
   "settings-option-try-supported-channel-layouts": "Soporte experimental para múltiples canales de audio como audio 5.1",
 
+  "settings-option-show-ytm-button": "",
+
   "settings-options-style-description": "Escoger un fichero CSS local para utilizarlo en la aplicación",
   "settings-options-style-main-app": "Aplicación Principal",
   "settings-options-style-gpm": "Google Play Music",

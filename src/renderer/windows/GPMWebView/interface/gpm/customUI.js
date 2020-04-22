@@ -284,11 +284,11 @@ const setStaticAlbumArt = (staticAlbumArt) => {
 };
 
 const setViewYTMSwitch = (viewYTMSwitch) => {
-  const ytm_button = document.getElementById('ytm-button');
+  const ytmButton = document.getElementById('ytm-button');
   if (viewYTMSwitch) {
-    ytm_button.style.display = 'block';
+    ytmButton.style.display = 'block';
   } else {
-    ytm_button.style.display = 'none';
+    ytmButton.style.display = 'none';
   }
 };
 

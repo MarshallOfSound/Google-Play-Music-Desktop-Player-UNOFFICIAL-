@@ -126,6 +126,8 @@
   "settings-option-skip-bad-songs": "Автоматически пропускать непонравившиеся песни",
   "settings-option-try-supported-channel-layouts": "Экспериментальная поддержка нескольких аудиоканалов, таких как аудио 5.1",
 
+  "settings-option-show-ytm-button": "",
+
   "settings-options-style-description": "Выберите локальный CSS-файл для инъекции стилей в приложение",
   "settings-options-style-main-app": "Стили приложения",
   "settings-options-style-gpm": "Стили сервиса GPM",

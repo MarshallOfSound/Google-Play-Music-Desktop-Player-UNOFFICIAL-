@@ -126,6 +126,8 @@
   "settings-option-skip-bad-songs": "Hoppa automatiskt över ogillade låtar",
   "settings-option-try-supported-channel-layouts": "",
 
+  "settings-option-show-ytm-button": "",
+
   "settings-options-style-description": "Välj en lokal CSS-fil, för att anpassa programmet.",
   "settings-options-style-main-app": "Huvudfönstret",
   "settings-options-style-gpm": "Google Play Music",

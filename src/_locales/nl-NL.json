@@ -126,6 +126,8 @@
   "settings-option-skip-bad-songs": "Automatisch nummers die u niet leuk vond overslaan",
   "settings-option-try-supported-channel-layouts": "Experimentele ondersteuning voor meerdere audiokanalen, zoals 5.1 audio",
 
+  "settings-option-show-ytm-button": "",
+
   "settings-options-style-description": "Kies een lokaal CSS-bestand om stijlen te injecteren in de applicatie",
   "settings-options-style-main-app": "Hoofdapp",
   "settings-options-style-gpm": "Google Play Music",
