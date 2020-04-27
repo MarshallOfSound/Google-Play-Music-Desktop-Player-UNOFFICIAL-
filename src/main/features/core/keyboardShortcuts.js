@@ -12,7 +12,7 @@ if (process.platform === 'win32') {
   };
 }
 
-if (!(process.platform === 'win32' && os.release().startsWith('10.') && Settings.get('enableWin10MediaService'))) {
+if (!(process.platform === 'win32' && os.release().startsWith('10.') && Settings.get('enableWin10MediaServiceTrackInfo'))) {
   keyRegisterFn('MediaPreviousTrack', () => {
     Emitter.sendToGooglePlayMusic('playback:previousTrack');
   });
