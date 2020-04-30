@@ -84,6 +84,10 @@ class LyricsViewer extends Component {
       if (jumped) {
         lyricsP.stop();
         lyricsP.scrollTop(maxHeight * (Math.max(0, timeObj.current - actualWaitTime) / timeObj.total));
+
+        // Reset animate after jump to prevent unwanted scrolling
+        animate = Settings.get('scrollLyrics', true);
+        animationTimer.setTimeout();
       }
       animationTimer = setTimeout(() => {
         lyricsP.stop().animate({
