@@ -23,7 +23,7 @@ const localeLinks = {
   'pt-BR': 'pt-BR',
   'pt-PT': 'pt-BR',
   'nl-BE': 'nl-NL',
-  'bg': 'bg-BG',
+  'bg': 'bg-BG'
 };
 
 export default class TranslationProvider {
