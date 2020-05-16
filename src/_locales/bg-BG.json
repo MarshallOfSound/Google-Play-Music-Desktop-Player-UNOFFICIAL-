@@ -53,16 +53,16 @@
   "message-uncaught-error": "Възникна неочаквана грешка в GPMDP.",
   "message-uncaught-error-button": "Кликни тук, за да докладваш проблема в GitHub",
 
-  "modal-confirmTray-title": Само главата горе",
+  "modal-confirmTray-title": "Само главата горе",
   "modal-confirmTray-content": "Затварянето на основния прозорец на плеъра (каквото опитахте да направите) всъщност ще минимизира прозореца до област от системата.Ако искате да промените това поведение, можете да го направите от прозореца \"Настройки на работния плот\".",
   "modal-confirmOpenPort-content": "The PlaybackAPI не успя да се стартира, защото Windows Firewall is blocking it.  We can unblock it for you if you want, be warned, this may require admin privileges",
-  "modal-confirmUpdate-title": "Update Available",
+  "modal-confirmUpdate-title": "Налична е актуализация",
   "modal-confirmUpdate-content": "Woo hoo, it looks like there is a brand new update available for Google Play Music Desktop Player.  This update should bring a whole load of new features, bugfixes and cool new things.  We recommend updating as fast as possible to allow you to enjoy the best feature filled, bug free experience.<br />We hope you like the new update!",
   "modal-confirmUninstall-title": "So heres the thing...",
   "modal-confirmUninstall-content": "We just found out an old version of GPMDP is still installed on your system.  If you just updated this is perfectly normal.  We are now going to try to uninstall the old version.  This \"might\" require admin permissions, please grant these so we can clean up our mess.",
   "modal-goToURL-title": "Enter to Google Play Music URL to navigate to:",
-  "modal-welcome-title": "Welcome to Version",
-  "modal-welcome-content": "We hope you like the new update!",
+  "modal-welcome-title": "Добре дошли във версия",
+  "modal-welcome-content": "Надяваме се да ви хареса актуализацията!",
 
   "playback-label-next-track": "Следващ Track",
   "playback-label-play-pause": "Пускане / Пауза",
@@ -120,14 +120,14 @@
 
   "settings-option-scroll-lyrics": "Scroll lyrics automatically while playing",
 
-  "settings-option-mini-always-show": "Always show song information",
+  "settings-option-mini-always-show": "Винаги показвай информация за песента",
   "settings-option-mini-ontop": "Always on top",
-  "settings-option-mini-use-scroll-volume": "Use the scroll wheel to adjust volume",
+  "settings-option-mini-use-scroll-volume": "Използвайте scroll wheel, за да регулирате звука",
 
-  "settings-option-skip-bad-songs": "Automatically skip disliked songs",
+  "settings-option-skip-bad-songs": "Автоматично пропускай песните с dislike",
   "settings-option-try-supported-channel-layouts": "Experimental support for multiple audio channels such as 5.1 audio",
 
-  "settings-options-style-description": "Choose a local CSS file to inject styles into the application",
+  "settings-options-style-description": "Избери локален CSS файл, за да инжектирате стилове в приложението",
   "settings-options-style-main-app": "Main App",
   "settings-options-style-gpm": "Google Play Музика",
   "settings-options-style-refresh": "Презареди стиловете",
