@@ -59,8 +59,8 @@
   "modal-confirmUpdate-title": "Налична е актуализация",
   "modal-confirmUpdate-content": "Woo hoo, it looks like there is a brand new update available for Google Play Music Desktop Player.  This update should bring a whole load of new features, bugfixes and cool new things.  We recommend updating as fast as possible to allow you to enjoy the best feature filled, bug free experience.<br />We hope you like the new update!",
   "modal-confirmUninstall-title": "So heres the thing...",
-  "modal-confirmUninstall-content": "We just found out an old version of GPMDP is still installed on your system.  If you just updated this is perfectly normal.  We are now going to try to uninstall the old version.  This \"might\" require admin permissions, please grant these so we can clean up our mess.",
-  "modal-goToURL-title": "Enter to Google Play Music URL to navigate to:",
+  "modal-confirmUninstall-content": "Открихме, че стара версия на GPMDP все още е инсталирана на системата ви.  Ако сте я актуализирали, това е напълно нормално.  Сега ще опитаме да деинсталираме старата версия.  Това \"може\" да изисква администрсторски права, моля предоставете ни ги, за да може да почистим нашата каша.",
+  "modal-goToURL-title": "Въведете Google Play Music URL адрес, към който да навигирате:",
   "modal-welcome-title": "Добре дошли във версия",
   "modal-welcome-content": "Надяваме се да ви хареса актуализацията!",
 
@@ -75,14 +75,14 @@
   "playback-label-info-track": "Уведоми ме за текущия track",
   "playback-os-no-track-playing": "Не се изпълнява Track",
   "playback-label-im-feeling-lucky": "Чувствам се късметлия",
-  "playback-label-toggle-repeat": "Toggle Repeat",
+  "playback-label-toggle-repeat": "Превключи повторението",
 
   "settings-requires-restart": "Изисква рестартиране",
 
-  "settings-option-keep-sidebar-open": "Keep sidebar open",
-  "settings-option-static-album-art": "Keep album art static in visualizer",
+  "settings-option-keep-sidebar-open": "Запази страничната лента отворена",
+  "settings-option-static-album-art": "Запази album art статичен във визуализатора",
 
-  "settings-option-invert-tray-icon": "Invert Tray Icon Color",
+  "settings-option-invert-tray-icon": "Обръщане на цвета на иконата в областта",
 
   "settings-option-custom-theme": "Персонализирана тема",
   "settings-option-custom-theme-choose-color":"Избери цвят за подчертаване на темата",
@@ -99,33 +99,33 @@
   "settings-option-enable-voice": "Активирай гласовите контроли",
   "settings-option-enable-voice-details": "Hands free voice controls for GPMDP, това е експериментално",
   "settings-option-enable-taskbar-progress": "Покажи прогреса на трака",
-  "settings-option-enable-win10-media-service": "Enable the Windows 10 System Media Service",
-  "settings-option-enable-win10-media-service-details": "This will show the current track on the lock screen",
-  "settings-option-discord-rich-presence": "Enable Discord Rich Presence integration",
-  "settings-option-enable-win10-media-service-track-info": "Show track information in Windows 10 volume overlay",
+  "settings-option-enable-win10-media-service": "Активирай Windows 10 System Media Service",
+  "settings-option-enable-win10-media-service-details": "Това ще покаже текущия track на заключен екран",
+  "settings-option-discord-rich-presence": "Активирай Discord Rich Presence интеграция",
+  "settings-option-enable-win10-media-service-track-info": "Покажи информация за трака във Windows 10 volume overlay",
   "settings-option-change-locale": "Избор на език",
 
-  "settings-option-hotkey-explanation": "Default media keys will continue to work regardless of these settings.  These settings are in addition to the defaults.",
-  "settings-option-hotkey-explanation-2": "Use the <i>\"Escape\"</i> key to reset the hotkey.",
-  "settings-option-hotkey-not-set": "Not Set",
+  "settings-option-hotkey-explanation": "Default media keys ще продължат да работят, независимо от тези настройки.  Тези настройки са добавка към основните.",
+  "settings-option-hotkey-explanation-2": "Използвайте <i>\"Escape\"</i> бутона, за да рестартирате hotбутона.",
+  "settings-option-hotkey-not-set": "Не е зададен",
 
-  "settings-option-min-to-tray": "Minimize to Tray",
+  "settings-option-min-to-tray": "Минимизирай до област",
 
-  "settings-option-prevent-display-sleep": "Stop your computer from sleeping while GPMDP is open",
-  "settings-option-auto-launch": "Automatically launch when I turn my computer on",
+  "settings-option-prevent-display-sleep": "Не позволявай на компютъра да заспи, докато GPMDP е отворен",
+  "settings-option-auto-launch": "Автоматично стартирай, когато си включа компютъра",
 
-  "settings-option-save-page": "Automatically load last viewed page on startup",
+  "settings-option-save-page": "Автоматично зареждай последно видяната страница при стартиране",
 
-  "settings-option-start-minimized": "Start this application minimized",
+  "settings-option-start-minimized": "Стартирай приложението минимизирано",
 
-  "settings-option-scroll-lyrics": "Scroll lyrics automatically while playing",
+  "settings-option-scroll-lyrics": "Скролвай текстовете автоматично при изпълнение",
 
   "settings-option-mini-always-show": "Винаги показвай информация за песента",
-  "settings-option-mini-ontop": "Always on top",
+  "settings-option-mini-ontop": "Винаги на върха",
   "settings-option-mini-use-scroll-volume": "Използвайте scroll wheel, за да регулирате звука",
 
   "settings-option-skip-bad-songs": "Автоматично пропускай песните с dislike",
-  "settings-option-try-supported-channel-layouts": "Experimental support for multiple audio channels such as 5.1 audio",
+  "settings-option-try-supported-channel-layouts": "Експериментална поддръжка за много аудио канали като 5.1 аудио",
 
   "settings-options-style-description": "Избери локален CSS файл, за да инжектирате стилове в приложението",
   "settings-options-style-main-app": "Main App",
@@ -136,8 +136,8 @@
   "settings-options-style-dialog-css-files": "CSS файлове",
   "settings-options-style-dialog-all-files": "Всички файлове",
 
-  "slack-token-label": "Enter your slack user token (can be found at $1)",
-  "slack-token-placeholder": "Slack token",
+  "slack-token-label": "Въведи твоя slack потребителски тоукън (може да бъде намерен на $1)",
+  "slack-token-placeholder": "Slack тоукън",
 
   "title-color-picker": "Color Picker",
   "title-settings": "Настройки",
@@ -147,7 +147,7 @@
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Player",
-  "title-settings-style": "Custom Styles",
+  "title-settings-style": "Пердонализирани стилове",
   "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "Аудио устройство",
