@@ -37,7 +37,7 @@
   "lastfm-login-error": "Изглежда че сте напуснали в процес на оторизация, ако мислите, че е било грешка, моля опитайте да се оторизирате отново.",
   "lastfm-login-not-authorized": "Неоторизиран",
   "lastfm-logout-button-text": "Изход от Last.FM",
-  "lastfm-map-thumbs-up-to-heart": "Automatically love tracks that are thumbed up",
+  "lastfm-map-thumbs-up-to-heart": "Автоматично слагай сърце на тракове, които са с палец нагоре",
 
   "listenbrainz-label-user-token": "Въведи твоя ListenBrainz потребителски тоукън (може да бъде намерен на адрес https://listenbrainz.org/profile)",
   "listenbrainz-token-here": "Въведи тоукън",
@@ -55,7 +55,7 @@
 
   "modal-confirmTray-title": "Само главата горе",
   "modal-confirmTray-content": "Затварянето на основния прозорец на плеъра (каквото опитахте да направите) всъщност ще минимизира прозореца до област от системата.Ако искате да промените това поведение, можете да го направите от прозореца \"Настройки на работния плот\".",
-  "modal-confirmOpenPort-content": "The PlaybackAPI не успя да се стартира, защото Windows Firewall is blocking it.  We can unblock it for you if you want, be warned, this may require admin privileges",
+  "modal-confirmOpenPort-content": "PlaybackAPIто не успя да се стартира, защото Windows Firewall го блокира. Можем да го отблокираме, но имай в предвид, че това изисква администрсторски привилегии",
   "modal-confirmUpdate-title": "Налична е актуализация",
   "modal-confirmUpdate-content": "Woo hoo, it looks like there is a brand new update available for Google Play Music Desktop Player.  This update should bring a whole load of new features, bugfixes and cool new things.  We recommend updating as fast as possible to allow you to enjoy the best feature filled, bug free experience.<br />We hope you like the new update!",
   "modal-confirmUninstall-title": "So heres the thing...",
