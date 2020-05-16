@@ -39,10 +39,10 @@
   "lastfm-logout-button-text": "Изход от Last.FM",
   "lastfm-map-thumbs-up-to-heart": "Automatically love tracks that are thumbed up",
 
-  "listenbrainz-label-user-token": "Въведи твоя ListenBrainz user token (може да бъде намерен на адрес https://listenbrainz.org/profile)",
-  "listenbrainz-token-here": "Въведи token",
+  "listenbrainz-label-user-token": "Въведи твоя ListenBrainz потребителски тоукън (може да бъде намерен на адрес https://listenbrainz.org/profile)",
+  "listenbrainz-token-here": "Въведи тоукън",
 
-  "lyrics-failed-message": "Sorry, we could not find any lyrics for this song",
+  "lyrics-failed-message":"Съжаляваме, не успяхме да открием текстове за тази песен",
   "lyrics-loading-message": "Зареждане на текстовете...",
   "lyrics-no-song-message": "В момента няма песен, която да се изпълнява",
   "lyrics-search-in": "Търси във",
@@ -53,9 +53,9 @@
   "message-uncaught-error": "Възникна неочаквана грешка в GPMDP.",
   "message-uncaught-error-button": "Кликни тук, за да докладваш проблема в GitHub",
 
-  "modal-confirmTray-title": "Just a heads up",
-  "modal-confirmTray-content": "Closing the main player window (what you just tried to do) will actually minimize the player to the System Tray. If you want to change this behaviour it can be changed in the \"Desktop Settings\" window.",
-  "modal-confirmOpenPort-content": "The PlaybackAPI failed to start because Windows Firewall is blocking it.  We can unblock it for you if you want, be warned, this may require admin privileges",
+  "modal-confirmTray-title": Само главата горе",
+  "modal-confirmTray-content": "Затварянето на основния прозорец на плеъра (каквото опитахте да направите) всъщност ще минимизира прозореца до област от системата.Ако искате да промените това поведение, можете да го направите от прозореца \"Настройки на работния плот\".",
+  "modal-confirmOpenPort-content": "The PlaybackAPI не успя да се стартира, защото Windows Firewall is blocking it.  We can unblock it for you if you want, be warned, this may require admin privileges",
   "modal-confirmUpdate-title": "Update Available",
   "modal-confirmUpdate-content": "Woo hoo, it looks like there is a brand new update available for Google Play Music Desktop Player.  This update should bring a whole load of new features, bugfixes and cool new things.  We recommend updating as fast as possible to allow you to enjoy the best feature filled, bug free experience.<br />We hope you like the new update!",
   "modal-confirmUninstall-title": "So heres the thing...",
