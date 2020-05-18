@@ -13,7 +13,7 @@ Google Play Music™ Desktop Player
 
 ![](http://samuel.ninja/img/gpmdp_screen.gif)
 
-Run "Google Play Music" as a standalone desktop app.  Never again will you have to hunt through your tabs to pause your music, or stop listening to your favourite song because Chrome is guzzling up all your RAM..
+Run "Google Play Music" as a standalone desktop app.  Never again will you have to hunt through your tabs to pause your music, or stop listening to your favourite song because Chrome is guzzling up all your RAM. Now also has YouTube Music player fully integrated.
 
 Developed by [Samuel Attard][1].
 
@@ -39,6 +39,7 @@ Features
 --------
 
 * Supports media keys (play, pause, stop, next, previous)
+* [YouTube Music](https://music.youtube.com) fully integrated!
 * [last.fm](https://www.last.fm) & [ListenBrainz](https://listenbrainz.org/) Scrobbling and Now Playing support!
 * Discord [Rich Presences](https://discordapp.com/rich-presence) Now Playing information
 * Hands free [Voice Controls](docs/VoiceControls.md)!
