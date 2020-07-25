@@ -6,6 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 function refresh() {
   Emitter.fire('FetchGPMCustomStyles');
+  Emitter.fire('FetchYTMCustomStyles');
   Emitter.fire('FetchMainAppCustomStyles');
 }
 
@@ -22,6 +23,11 @@ export default class StyleTab extends Component {
           label={TranslationProvider.query('settings-options-style-gpm')}
           settingsKey={'gpmStyleFile'}
           bonusEvents={['FetchGPMCustomStyles']}
+        />
+        <FileInput
+          label={TranslationProvider.query('settings-options-style-ytm')}
+          settingsKey={'ytmStyleFile'}
+          bonusEvents={['FetchYTMCustomStyles']}
         />
         <RaisedButton
           label={TranslationProvider.query('settings-options-style-refresh')}

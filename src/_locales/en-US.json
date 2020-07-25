@@ -129,6 +129,7 @@
   "settings-options-style-description": "Choose a local CSS file to inject styles into the application",
   "settings-options-style-main-app": "Main App",
   "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-ytm": "YouTube Music",
   "settings-options-style-refresh": "Reload Styles",
   "settings-options-style-dialog-title": "Choose a CSS file",
   "settings-options-style-dialog-button": "Load CSS",

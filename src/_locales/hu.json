@@ -129,6 +129,7 @@
   "settings-options-style-description": "Válasszon ki egy helyi CSS-fájlt a stílusok behelyezéséhez az alkalmazásba",
   "settings-options-style-main-app": "Fő alkalmazás",
   "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-ytm": "",
   "settings-options-style-refresh": "Stílusok újratöltése",
   "settings-options-style-dialog-title": "CSS fájl választása",
   "settings-options-style-dialog-button": "CSS betöltése",

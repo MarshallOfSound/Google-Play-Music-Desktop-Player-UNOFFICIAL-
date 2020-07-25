@@ -129,6 +129,7 @@
   "settings-options-style-description": "アプリケーションにスタイルを適用するためのローカルCSSファイルを選択する",
   "settings-options-style-main-app": "メインアプリ",
   "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-ytm": "YouTube Music",
   "settings-options-style-refresh": "スタイルを再読み込み",
   "settings-options-style-dialog-title": "CSSファイルを選んでください",
   "settings-options-style-dialog-button": "CSSを読み込む",

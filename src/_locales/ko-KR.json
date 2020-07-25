@@ -129,6 +129,7 @@
   "settings-options-style-description": "애플리케이션에 커스텀 스타일을 적용할 CSS 파일 선택",
   "settings-options-style-main-app": "메인 프로그램",
   "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-ytm": "",
   "settings-options-style-refresh": "스타일 다시 불러오기",
   "settings-options-style-dialog-title": "CSS 파일 선택",
   "settings-options-style-dialog-button": "CSS 불러오기",

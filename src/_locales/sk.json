@@ -129,6 +129,7 @@
   "settings-options-style-description": "Zvoľte miestny CSS súbor pre použitie vlastného štýlu v aplikácii",
   "settings-options-style-main-app": "Hlavná apl.",
   "settings-options-style-gpm": "Hudba Google Play",
+  "settings-options-style-ytm": "",
   "settings-options-style-refresh": "Obnoviť štýly",
   "settings-options-style-dialog-title": "Vyberte CSS súbor",
   "settings-options-style-dialog-button": "Načítať CSS",

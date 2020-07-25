@@ -21,3 +21,14 @@ Emitter.on('FetchGPMCustomStyles', () => {
     Emitter.sendToGooglePlayMusic('LoadGPMCustomStyles', '');
   }
 });
+
+Emitter.on('FetchYTMCustomStyles', () => {
+  const gpmPath = Settings.get('ytmStyleFile');
+  if (gpmPath && fs.existsSync(gpmPath)) {
+    fs.readFile(gpmPath, 'utf8', (err, css) => {
+      Emitter.sendToGooglePlayMusic('LoadYTMCustomStyles', err ? '' : css);
+    });
+  } else {
+    Emitter.sendToGooglePlayMusic('LoadYTMCustomStyles', '');
+  }
+});
