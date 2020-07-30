@@ -18,4 +18,6 @@ parts/
 stage/
 snap/
 *.snap
+*.DS_Store
+package-lock.json
 
