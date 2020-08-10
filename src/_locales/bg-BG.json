@@ -64,16 +64,16 @@
   "modal-welcome-title": "Добре дошли във версия",
   "modal-welcome-content": "Надяваме се да ви хареса актуализацията!",
 
-  "playback-label-next-track": "Следващ Track",
+  "playback-label-next-track": "Следващ трак",
   "playback-label-play-pause": "Пускане / Пауза",
-  "playback-label-previous-track": "Предишен Track",
+  "playback-label-previous-track": "Предишен трак",
   "playback-label-stop": "Спри",
   "playback-label-thumbs-down": "Палец нагоре",
   "playback-label-thumbs-up": "Палец надолу",
   "playback-label-volume-down": "Намали звука",
   "playback-label-volume-up": "Увеличи звука",
-  "playback-label-info-track": "Уведоми ме за текущия track",
-  "playback-os-no-track-playing": "Не се изпълнява Track",
+  "playback-label-info-track": "Уведоми ме за текущия трак",
+  "playback-os-no-track-playing": "Не се изпълнява трак",
   "playback-label-im-feeling-lucky": "Чувствам се късметлия",
   "playback-label-toggle-repeat": "Превключи повторението",
 
@@ -90,7 +90,7 @@
   "settings-option-custom-theme-custom-color": "Персонализиран цвят",
   "settings-option-custom-theme-dark": "Тъмна",
   "settings-option-custom-theme-light": "Светла",
-  "settings-option-custom-theme-should-track-system": "Match your systems Dark Mode setting to the theme type",
+  "settings-option-custom-theme-should-track-system": "Автоматично регулирана според системните настройки",
 
   "settings-option-enable-api": "Активирай Playback API",
   "settings-option-enable-api-json": "Активирай JSON API",
@@ -106,7 +106,7 @@
   "settings-option-change-locale": "Избор на език",
 
   "settings-option-hotkey-explanation": "Default media keys ще продължат да работят, независимо от тези настройки.  Тези настройки са добавка към основните.",
-  "settings-option-hotkey-explanation-2": "Използвайте <i>\"Escape\"</i> бутона, за да рестартирате hotбутона.",
+  "settings-option-hotkey-explanation-2": "Използвайте <i>\"Escape\"</i> бутона, за да рестартирате hotkey.",
   "settings-option-hotkey-not-set": "Не е зададен",
 
   "settings-option-min-to-tray": "Минимизирай до област",
@@ -130,6 +130,7 @@
   "settings-options-style-description": "Избери локален CSS файл, за да инжектирате стилове в приложението",
   "settings-options-style-main-app": "Main App",
   "settings-options-style-gpm": "Google Play Музика",
+  "settings-options-style-ytm": "YouTube Музика",
   "settings-options-style-refresh": "Презареди стиловете",
   "settings-options-style-dialog-title": "Изберете CSS файл",
   "settings-options-style-dialog-button": "Зареди CSS",
@@ -146,8 +147,8 @@
   "title-settings-hotkeys": "Hotkeys",
   "title-settings-lastfm": "LastFM",
   "title-settings-listenbrainz": "ListenBrainz",
-  "title-settings-mini": "Mini Player",
-  "title-settings-style": "Пердонализирани стилове",
+  "title-settings-mini": "Мини плеър",
+  "title-settings-style": "Персонализирани стилове",
   "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "Аудио устройство",

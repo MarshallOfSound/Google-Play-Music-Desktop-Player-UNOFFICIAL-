@@ -63,4 +63,5 @@ export const languageMap = {
   sk: 'Slovak',
   sv: 'Swedish',
   ua: 'Ukrainian',
+  'bg-BG': 'Bulgarian',
 };
