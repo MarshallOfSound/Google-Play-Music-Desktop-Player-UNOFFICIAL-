@@ -130,6 +130,7 @@
   "settings-options-style-description": "Избери локален CSS файл, за да инжектирате стилове в приложението",
   "settings-options-style-main-app": "Main App",
   "settings-options-style-gpm": "Google Play Музика",
+  "settings-options-style-ytm": "YouTube Музика",
   "settings-options-style-refresh": "Презареди стиловете",
   "settings-options-style-dialog-title": "Изберете CSS файл",
   "settings-options-style-dialog-button": "Зареди CSS",
