@@ -129,6 +129,7 @@
   "settings-options-style-description": "Alege un fișier CSS pentru a injecta stilul în aplicație",
   "settings-options-style-main-app": "Aplicație GPMDP",
   "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-ytm": "",
   "settings-options-style-refresh": "Reîncarcă stilurile",
   "settings-options-style-dialog-title": "Alege un fișier CSS",
   "settings-options-style-dialog-button": "Încarcă CSS",

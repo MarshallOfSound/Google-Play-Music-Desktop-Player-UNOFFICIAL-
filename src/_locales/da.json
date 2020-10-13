@@ -129,6 +129,7 @@
   "settings-options-style-description": "Vælg en lokal CSS fil, til at tilpasse programmet.",
   "settings-options-style-main-app": "Hovedvinduet",
   "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-ytm": "",
   "settings-options-style-refresh": "Genindlæs filer",
   "settings-options-style-dialog-title": "Vælg en CSS fil",
   "settings-options-style-dialog-button": "Indlæs CSS",

@@ -129,6 +129,7 @@
   "settings-options-style-description": "Escoger un fichero CSS local para utilizarlo en la aplicación",
   "settings-options-style-main-app": "Aplicación Principal",
   "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-ytm": "",
   "settings-options-style-refresh": "Recargar estilos",
   "settings-options-style-dialog-title": "Escoger un fichero CSS",
   "settings-options-style-dialog-button": "Cargar CSS",
