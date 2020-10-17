@@ -102,7 +102,7 @@ const tryConnecting = () => {
     Logger.info('[Discord RPC] Disconnected');
     client = null;
   });
-  client.login({ clientId: '380678077287628810' });
+  client.login({ clientId: '767047207425146880' });
 };
 
 app.on('before-quit', () => {
