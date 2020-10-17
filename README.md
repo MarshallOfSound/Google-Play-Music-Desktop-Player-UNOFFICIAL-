@@ -21,9 +21,10 @@ No affiliation with Google. Google Play is a trademark of Google Inc.
 
 [1]: https://www.samuelattard.com
 
+
 Download
 ---------
-Head over to our website http://www.googleplaymusicdesktopplayer.com to download the latest release for your platform.
+Go to releases
 
 OS Support
 ------------
