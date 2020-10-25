@@ -11,8 +11,8 @@
   "button-text-lets-do-this": "Laten we het doen!!",
   "button-text-lets-go": "Starten maar!!",
   "button-text-not-now": "Nu even niet",
-  "button-text-ytm-switch": "",
-  "button-text-gpm-switch": "",
+  "button-text-ytm-switch": "Schakel over naar YTM (beta)",
+  "button-text-gpm-switch": "Schakel over naar GPM",
 
   "label-about": "Over",
   "label-alarm": "Alarm",
@@ -79,9 +79,9 @@
   "settings-requires-restart": "Vereist herstart",
 
   "settings-option-keep-sidebar-open": "Zijbalk open houden",
-  "settings-option-static-album-art": "Statische albumhoes in visualizer houden",
+  "settings-option-static-album-art": "Houd albumhoezen statisch in de visualizer",
 
-  "settings-option-invert-tray-icon": "Kleuren van pictogram inverten",
+  "settings-option-invert-tray-icon": "Kleuren van pictogram omkeren",
 
   "settings-option-custom-theme": "Aangepast thema",
   "settings-option-custom-theme-choose-color": "Kies de markeringskleur van uw thema",
@@ -101,7 +101,7 @@
   "settings-option-enable-win10-media-service": "Windows 10 System Media Service inschakelen",
   "settings-option-enable-win10-media-service-details": "Dit toont het huidige nummer op het vergrendelingsscherm",
   "settings-option-discord-rich-presence": "Discord Rich Presence-integratie inschakelen",
-  "settings-option-enable-win10-media-service-track-info": "Toon nummerinformatie in het volume-overlay",
+  "settings-option-enable-win10-media-service-track-info": "Nummerinformatie weergeven in de volume-overlay van Windows 10",
   "settings-option-change-locale": "Taal kiezen",
 
   "settings-option-hotkey-explanation": "Standaardmediatoetsen zullen blijven werken, onafhankelijk van deze instellingen.  Deze instellingen zijn een toevoeging aan de standaardinstellingen.",
@@ -129,7 +129,7 @@
   "settings-options-style-description": "Kies een lokaal CSS-bestand om stijlen te injecteren in de applicatie",
   "settings-options-style-main-app": "Hoofdapp",
   "settings-options-style-gpm": "Google Play Music",
-  "settings-options-style-ytm": "",
+  "settings-options-style-ytm": "YouTube Music",
   "settings-options-style-refresh": "Stijlen vernieuwen",
   "settings-options-style-dialog-title": "CSS-bestand kiezen",
   "settings-options-style-dialog-button": "CSS laden",
