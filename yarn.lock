@@ -4137,8 +4137,9 @@ hexy@^0.2.10:
   integrity sha512-ciq6hFsSG/Bpt2DmrZJtv+56zpPdnq+NQ4ijEFrveKN0ZG1mhl/LdT1NQZ9se6ty1fACcI4d4vYqC9v8EYpH2A==
 
 highlight.js@^9.3.0:
-  version "9.12.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
+  version "9.18.5"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.18.5.tgz#d18a359867f378c138d6819edfc2a8acd5f29825"
+  integrity sha512-a5bFyofd/BHCX52/8i8uJkjr9DYwXIPnM/plwI6W7ezItLGqzt7X2G2nXuYSfsIJdkwwj/g9DG1LkcGJI/dDoA==
 
 hoek@2.x.x:
   version "2.16.3"
@@ -9149,10 +9150,10 @@ yauzl@2.4.1:
   dependencies:
     fd-slicer "~1.0.1"
 
-ytmusic.js@^6.2.1:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/ytmusic.js/-/ytmusic.js-6.2.1.tgz#7545a4ac20349e553bd7b91d20a89e03733486fa"
-  integrity sha512-avD/p/3gNx8VOEya1e8XbBz1K9Ect4HLuOR1el4b5C4oKf/wmiXxyBkkDWeuMISueyLBZK5B93zzIR/viHeEJg==
+ytmusic.js@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/ytmusic.js/-/ytmusic.js-6.2.2.tgz#48a9a35c2cc9f02b73ef4bd563d890327ac85554"
+  integrity sha512-cmwhXHnq5Hq1iH/S5LCvkoIFWvE6YM69xIjm6MOT9EvRg6MaFeVZDYViZ86WWm9hLhAgLHdMVdXklAhxMp5bnw==
 
 zip-stream@^1.1.0, zip-stream@^1.2.0:
   version "1.2.0"
