@@ -39,6 +39,7 @@ const customHotkeysTemplate = {
   infoTrack: null,
   imFeelingLucky: null,
   toggleRepeat: null,
+  showLyrics: null,
 };
 
 const userHotkeys = Settings.get('hotkeys', {});
@@ -59,7 +60,11 @@ const _registerHotkeyIfSet = (accelerator, action) => {
   if (accelerator) {
     try {
       const success = globalShortcut.register(accelerator, () => {
-        Emitter.sendToGooglePlayMusic(`playback:${action}`);
+        if (action === 'showLyrics') {
+          Emitter.sendToAll('lyrics:show');
+        } else {
+          Emitter.sendToGooglePlayMusic(`playback:${action}`);
+        }
       });
       if (!success) {
         Logger.error('Failed to register hotkey.', { accelerator, action });
