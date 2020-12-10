@@ -68,7 +68,7 @@
     "gmusic-ui.js": "^2.2.5",
     "gmusic.js": "^6.1.5",
     "html-entities": "^1.2.0",
-    "jquery": "^2.2.4",
+    "jquery": "^3.5.0",
     "lastfm": "^0.9.2",
     "listenbrainz": "^1.0.4",
     "lodash": "^4.17.13",
