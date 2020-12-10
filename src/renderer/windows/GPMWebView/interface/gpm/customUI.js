@@ -54,12 +54,16 @@ function hideNotWorkingStuff() {
   hide('.player-top-right-items > paper-icon-button');
 
   // Settings options that won't work
-  cssRule('#download { display: none !important }');
-  cssRule('#manage-downloads { display: none !important }');
-  cssRule('.subscription-gifting-card.settings-card {display: none !important}');
+  hide('#download');
+  hide('#manage-downloads');
+  hide('.subscription-gifting-card.settings-card');
 
   // Hide the upload music button in settings
-  cssRule('.music-sources-card.settings-card {display: none !important}');
+  hide('.music-sources-card.settings-card');
+
+  // Hide buttons in sidebar
+  hide('[data-action="upload-music"]');
+  hide('[data-action="help-and-feedback"]');
 
   hide('.upload-dialog-bg', true);
   hide('.upload-dialog', true);
