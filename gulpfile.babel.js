@@ -15,8 +15,7 @@ import header from 'gulp-header';
 import less from 'gulp-less';
 import packager from 'electron-packager';
 import nodePath from 'path';
-import replace from 'gulp-replace';
-import runSequence from 'run-sequence';
+import replace from 'gulp-async-replace';
 import electronWindowsStore from 'electron-windows-store';
 // import uglify from 'gulp-uglify';
 import rebuild from 'electron-rebuild';
@@ -156,9 +155,9 @@ const appdmgConf = {
 };
 
 const cleanGlob = (glob, allowSkip) => {
-  if (allowSkip && process.env.GPMDP_SKIP_PACKAGE) return;
+  if (allowSkip && process.env.GPMDP_SKIP_PACKAGE) return (done) => done();
   return () => {
-    return gulp.src(glob, { read: false })
+    return gulp.src(glob, { read: false, allowEmpty: true })
       .pipe(clean({ force: true }));
   };
 };
@@ -204,12 +203,12 @@ gulp.task('clean-less', cleanGlob('./build/assets/css'));
 gulp.task('clean-images', cleanGlob('./build/assets/img'));
 gulp.task('clean-locales', cleanGlob('./build/_locales/*.json'));
 
-gulp.task('html', ['clean-html'], () => {
+gulp.task('html', gulp.series('clean-html', () => {
   return gulp.src(paths.html)
     .pipe(gulp.dest('./build/public_html'));
-});
+}));
 
-gulp.task('transpile', ['clean-internal'], () => {
+gulp.task('transpile', gulp.series('clean-internal', () => {
   return gulp.src(paths.internalScripts)
     .pipe(babel())
     .on('error', handleError)
@@ -217,38 +216,52 @@ gulp.task('transpile', ['clean-internal'], () => {
       return `'${process.env[envKey]}'${closer}`;
     }))
     .pipe(gulp.dest('./build/'));
-});
+}));
 
-gulp.task('locales', ['clean-locales'], () => {
+gulp.task('locales', gulp.series('clean-locales', () => {
   return gulp.src(paths.locales)
     .pipe(gulp.dest('./build/_locales'));
-});
+}));
 
-gulp.task('fonts', ['clean-fonts'], () => {
+gulp.task('fonts', gulp.series('clean-fonts', () => {
   return gulp.src(paths.fonts)
     .pipe(gulp.dest('./build/assets/fonts'));
-});
+}));
 
-gulp.task('less', ['clean-less'], () => {
+gulp.task('less', gulp.series('clean-less', () => {
   return gulp.src(paths.less)
     .pipe(less())
     .on('error', handleError)
     .pipe(cssmin())
     .pipe(concat('core.css'))
     .pipe(gulp.dest('./build/assets/css'));
-});
+}));
 
 // Copy all static images
-gulp.task('copy-static-images', ['clean-images'], () => {
+gulp.task('copy-static-images', gulp.series('clean-images', () => {
   return gulp.src(paths.images)
     .pipe(gulp.dest('./build/assets/img/'));
-});
+}));
 
-gulp.task('images', ['copy-static-images'], (done) => {
+gulp.task('images', gulp.series('copy-static-images', (done) => {
   rasterImages(done);
-});
+}));
 
-gulp.task('build-release', ['build'], () => {
+gulp.task('build', gulp.parallel('transpile', 'images', 'less', 'fonts', 'html', 'locales'));
+
+// Rerun the task when a file changes
+gulp.task('watch', gulp.series('build', () => {
+  gulp.watch(paths.internalScripts, ['transpile']);
+  gulp.watch(paths.html, ['html']);
+  gulp.watch(paths.images, ['images']);
+  gulp.watch(paths.less, ['less']);
+  gulp.watch(paths.locales, ['locales']);
+}));
+
+// The default task (called when you run `gulp` from cli)
+gulp.task('default', gulp.parallel('watch', 'transpile', 'images'));
+
+gulp.task('build-release', gulp.series('build', () => {
   return gulp.src('./build/**/*.js')
     // .pipe(uglify())
     .pipe(header(
@@ -262,18 +275,29 @@ This software may be modified and distributed under the terms of the MIT license
  */\n`
     ))
     .pipe(gulp.dest('./build'));
-});
+}));
 
-// Rerun the task when a file changes
-gulp.task('watch', ['build'], () => {
-  gulp.watch(paths.internalScripts, ['transpile']);
-  gulp.watch(paths.html, ['html']);
-  gulp.watch(paths.images, ['images']);
-  gulp.watch(paths.less, ['less']);
-  gulp.watch(paths.locales, ['locales']);
-});
+gulp.task('package:linux:32', gulp.series(gulp.parallel('clean-dist-linux-32', 'build-release'), (done) => {
+  if (process.env.GPMDP_SKIP_PACKAGE) return done();
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }))
+    .then(() => done())
+    .catch((err) => done(err));
+}));
 
-gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
+gulp.task('package:linux:64', gulp.series(gulp.parallel('clean-dist-linux-64', 'build-release'), (done) => {
+  if (process.env.GPMDP_SKIP_PACKAGE) return done();
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }))
+    .then(() => done())
+    .catch((err) => done(err));
+}));
+
+gulp.task('package:darwin', gulp.series(gulp.parallel('clean-dist-darwin', 'build-release'), (done) => {
+  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', osxSign: { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } })) // eslint-disable-line
+    .then(() => done())
+    .catch((err) => done(err));
+}));
+
+gulp.task('package:win', gulp.series(gulp.parallel('clean-dist-win', 'build-release'), (done) => {
   packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' })).then(() => {
     setTimeout(() => {
       const packageExePath = `dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe`;
@@ -282,9 +306,13 @@ gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
       .then(() => done());
     }, 1000);
   }).catch((err) => done(err));
-});
+}));
 
-gulp.task('make:win', ['package:win'], (done) => {
+gulp.task('package:linux', gulp.series('package:linux:32', 'package:linux:64'));
+
+gulp.task('package', gulp.parallel('package:win', 'package:darwin', 'package:linux'));
+
+gulp.task('make:win', gulp.series('package:win', (done) => {
   electronInstaller(winstallerConfig)
     .then(() => {
       const installerExePath = `dist/installers/win32/${packageJSON.productName}Setup.exe`;
@@ -293,9 +321,9 @@ gulp.task('make:win', ['package:win'], (done) => {
       .then(() => done());
     })
     .catch((err) => done(err));
-});
+}));
 
-gulp.task('make:win:uwp', ['package:win'], (done) => {
+gulp.task('make:win:uwp', gulp.series('package:win', (done) => {
   electronWindowsStore({
     containerVirtualization: false,
     inputDirectory: nodePath.resolve(__dirname, `dist/${packageJSON.productName}-win32-ia32`),
@@ -318,15 +346,9 @@ gulp.task('make:win:uwp', ['package:win'], (done) => {
       resolve();
     }),
   }).then(() => done()).catch(done);
-});
+}));
 
-gulp.task('package:darwin', ['clean-dist-darwin', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', osxSign: { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } })) // eslint-disable-line
-    .then(() => done())
-    .catch((err) => done(err));
-});
-
-gulp.task('make:darwin', ['package:darwin'], (done) => {
+gulp.task('make:darwin', gulp.series('package:darwin', (done) => {
   const pathEscapedName = packageJSON.productName.replace(/ /gi, ' ');
   const child = spawn('zip', ['-r', '-y', `${pathEscapedName}.zip`, `${pathEscapedName}.app`],
     {
@@ -344,9 +366,9 @@ gulp.task('make:darwin', ['package:darwin'], (done) => {
 
     done();
   });
-});
+}));
 
-gulp.task('dmg:darwin', ['package:darwin'], (done) => {
+gulp.task('dmg:darwin', gulp.series('package:darwin', (done) => {
   if (fs.existsSync(nodePath.resolve(__dirname, appdmgConf.target))) {
     fs.unlinkSync(nodePath.resolve(__dirname, appdmgConf.target));
   }
@@ -354,28 +376,10 @@ gulp.task('dmg:darwin', ['package:darwin'], (done) => {
 
   dmg.on('finish', () => done());
   dmg.on('error', done);
-});
-
-gulp.task('package:linux:32', ['clean-dist-linux-32', 'build-release'], (done) => {
-  if (process.env.GPMDP_SKIP_PACKAGE) return done();
-  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }))
-    .then(() => done())
-    .catch((err) => done(err));
-});
-
-gulp.task('package:linux:64', ['clean-dist-linux-64', 'build-release'], (done) => {
-  if (process.env.GPMDP_SKIP_PACKAGE) return done();
-  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }))
-    .then(() => done())
-    .catch((err) => done(err));
-});
-
-gulp.task('package:linux', (done) => {
-  runSequence('package:linux:32', 'package:linux:64', done);
-});
+}));
 
 const generateGulpLinuxDistroTask = (prefix, name, arch) => {
-  gulp.task(`${prefix}:linux:${arch}`, [`package:linux:${arch}`], (done) => {
+  gulp.task(`${prefix}:linux:${arch}`, gulp.series(`package:linux:${arch}`, (done) => {
     const tool = require(`electron-installer-${name}`);
 
     const defaults = {
@@ -402,7 +406,7 @@ const generateGulpLinuxDistroTask = (prefix, name, arch) => {
       if (err) return done(err);
       done();
     });
-  });
+  }));
 };
 
 generateGulpLinuxDistroTask('rpm', 'redhat', '32');
@@ -410,16 +414,12 @@ generateGulpLinuxDistroTask('rpm', 'redhat', '64');
 generateGulpLinuxDistroTask('deb', 'debian', '32');
 generateGulpLinuxDistroTask('deb', 'debian', '64');
 
-gulp.task('rpm:linux', (done) => {
-  runSequence('rpm:linux:32', 'rpm:linux:64', done);
-});
+gulp.task('rpm:linux', gulp.series('rpm:linux:32', 'rpm:linux:64'));
 
-gulp.task('deb:linux', (done) => {
-  runSequence('deb:linux:32', 'deb:linux:64', done);
-});
+gulp.task('deb:linux', gulp.series('deb:linux:32', 'deb:linux:64'));
 
 const zipTask = (makeName, deps, cwd, what) => {
-  gulp.task(`make:${makeName}`, deps, (done) => {
+  const task = (done) => {
     const child = spawn('zip', ['-r', '-y', 'installers.zip', '.'], { cwd });
 
     console.log(`Zipping ${what}`); // eslint-disable-line
@@ -434,18 +434,12 @@ const zipTask = (makeName, deps, cwd, what) => {
       console.log(`Finished zipping ${what} with code: ${code}`); // eslint-disable-line
       done();
     });
-  });
+  };
+  gulp.task(`make:${makeName}`, deps.length ? gulp.series(gulp.parallel(...deps), task) : task);
 };
-
-gulp.task('make:linux', (done) => {
-  runSequence('deb:linux', 'rpm:linux', 'make:linux:both', done);
-});
 
 zipTask('linux:both', [], './dist/installers', 'all the Linux Installers');
 zipTask('linux:deb', ['deb:linux'], './dist/installers/debian', 'the Debian Packages');
 zipTask('linux:rpm', ['rpm:linux'], './dist/installers/redhat', 'the Redhat (Fedora) Packages');
 
-// The default task (called when you run `gulp` from cli)
-gulp.task('default', ['watch', 'transpile', 'images']);
-gulp.task('build', ['transpile', 'images', 'less', 'fonts', 'html', 'locales']);
-gulp.task('package', ['package:win', 'package:darwin', 'package:linux']);
+gulp.task('make:linux', gulp.series('deb:linux', 'rpm:linux', 'make:linux:both'));

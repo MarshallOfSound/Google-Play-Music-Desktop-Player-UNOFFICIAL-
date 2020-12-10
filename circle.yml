@@ -2,12 +2,23 @@ version: 2
 jobs:
   darwin:
     macos:
-      xcode: "9.0"
+      xcode: "12.2.0"
     steps:
       - checkout
       - run:
           name: Replace NPM Version
           command: npm install -g npm@3
+      - run:
+          name: Fix Node Version
+          command: |
+              set +e
+              touch $BASH_ENV
+              curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+              echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
+              echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+              echo nvm install 10 >> $BASH_ENV
+              echo nvm use 10 >> $BASH_ENV
+              echo nvm alias default 10 >> $BASH_ENV
       - run:
           name: Install Dependencies
           command: yarn

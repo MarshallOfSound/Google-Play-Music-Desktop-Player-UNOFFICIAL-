@@ -1,8 +1,7 @@
 import _ from 'lodash';
 
 // Lyrics Sources
-// import attemptLyricsFreak from './source_lyricsFreak';
-import attemptLyricsWikia from './source_lyricsWikia';
+// import attemptGeniusLyrics from './source_geniusLyrics';
 import attemptMetroLyrics from './source_metroLyrics';
 
 const attemptPromiseSequence = (seq) =>
@@ -21,16 +20,9 @@ const attemptPromiseSequence = (seq) =>
 const bracketedRegex = () => /[\(|\[].+?[\)|\]]/g;
 
 export const resolveLyrics = (song) => {
-  const promises = [() => attemptLyricsWikia(`${song.artist}:${song.title}`)];
+  // const promises = [() => attemptGeniusLyrics(song.title, song.artist)];
+  const promises = [];
   let bracketed = song.title.match(bracketedRegex()) || [];
-
-  // DEV: Attempt to find lyrics from wikia
-  let title = song.title;
-  _.forEachRight(bracketed, (bracket) => {
-    title = title.replace(bracket, '').trim();
-    promises.push(() => attemptLyricsWikia(`${song.artist}:${title}`));
-    // promises.push(() => attemptLyricsFreak(title, song.artist));
-  });
 
   // DEV: Attempt to find lyrics from metro
   const lowerTitle = song.title.toLowerCase().replace(/'/g, '');
@@ -43,6 +35,11 @@ export const resolveLyrics = (song) => {
   const dashed = lowerAlbum.match(/- [^-]+/g) || [];
   dashed.push('');
 
+  let title = song.title;
+  _.forEachRight(bracketed, (bracket) => {
+    title = title.replace(bracket, '').trim();
+    // promises.push(() => attemptGeniusLyrics(title, artist));
+  });
   let album = lowerAlbum;
   _.forEachRight(dashed, (dash) => {
     album = album.replace(dash, '').trim();
