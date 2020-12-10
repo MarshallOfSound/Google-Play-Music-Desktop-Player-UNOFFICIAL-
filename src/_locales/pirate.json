@@ -126,6 +126,8 @@
   "settings-option-skip-bad-songs": "",
   "settings-option-try-supported-channel-layouts": "",
 
+  "settings-option-show-ytm-button": "",
+
   "settings-options-style-description": "Choose a local CSS file to inject styles into th' ship",
   "settings-options-style-main-app": "Main App",
   "settings-options-style-gpm": "Google Play Music",

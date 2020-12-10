@@ -126,6 +126,8 @@
   "settings-option-skip-bad-songs": "Automatikusan kihagyja a nem kedvelt dalokat",
   "settings-option-try-supported-channel-layouts": "Hangcsatornák támogatása, mint például 5.1-es hangrendszer.",
 
+  "settings-option-show-ytm-button": "",
+
   "settings-options-style-description": "Válasszon ki egy helyi CSS-fájlt a stílusok behelyezéséhez az alkalmazásba",
   "settings-options-style-main-app": "Fő alkalmazás",
   "settings-options-style-gpm": "Google Play Music",

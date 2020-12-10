@@ -126,6 +126,8 @@
   "settings-option-skip-bad-songs": "ავტომატურად გამოტოვე არ მოწონებული ტრეკები",
   "settings-option-try-supported-channel-layouts": "დამატებითი აუდიო ჩენელების ექსპერიმენტული მხარდაჭერა (მაგალითად 5.1 audio)",
 
+  "settings-option-show-ytm-button": "",
+  
   "settings-options-style-description": "აირჩიეთ ლოკალური CSS ფაილი აპლიკაციაში საკუთარი სტილების მორგებისთვის",
   "settings-options-style-main-app": "აპლიკაციის სტილები",
   "settings-options-style-gpm": "Google Play Music",

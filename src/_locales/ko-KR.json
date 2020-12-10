@@ -126,6 +126,8 @@
   "settings-option-skip-bad-songs": "\"싫어요\" 표시한 노래 자동으로 스킵",
   "settings-option-try-supported-channel-layouts": "다중 오디오 채널 지원. 실험적 기능",
 
+  "settings-option-show-ytm-button": "",
+
   "settings-options-style-description": "애플리케이션에 커스텀 스타일을 적용할 CSS 파일 선택",
   "settings-options-style-main-app": "메인 프로그램",
   "settings-options-style-gpm": "Google Play Music",

@@ -17,4 +17,5 @@ export default {
   lastFMMapThumbToHeart: true,
   service: 'google-play-music',
   spoofUserAgent: true,
+  viewYTMSwitch: true,
 };

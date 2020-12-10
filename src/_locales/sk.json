@@ -126,6 +126,8 @@
   "settings-option-skip-bad-songs": "Automaticky preskočiť skladby, ktoré sa vám nepáčia",
   "settings-option-try-supported-channel-layouts": "Experimentálna podpora pre viackanálové audio, napr. 5.1 audio",
 
+  "settings-option-show-ytm-button": "",
+
   "settings-options-style-description": "Zvoľte miestny CSS súbor pre použitie vlastného štýlu v aplikácii",
   "settings-options-style-main-app": "Hlavná apl.",
   "settings-options-style-gpm": "Hudba Google Play",

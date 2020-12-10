@@ -126,6 +126,8 @@
   "settings-option-skip-bad-songs": "Automatically skip disliked songs",
   "settings-option-try-supported-channel-layouts": "Experimental support for multiple audio channels such as 5.1 audio",
 
+  "settings-option-show-ytm-button": "Show \"Switch to YTM\" button",
+
   "settings-options-style-description": "Choose a local CSS file to inject styles into the application",
   "settings-options-style-main-app": "Main App",
   "settings-options-style-gpm": "Google Play Music",

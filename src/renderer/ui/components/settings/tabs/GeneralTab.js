@@ -71,6 +71,7 @@ class GeneralTab extends Component {
           />
         </PlatformSpecific>
         <ToggleableOption label={TranslationProvider.query('settings-option-discord-rich-presence')} settingsKey="discordRichPresence" />
+        <ToggleableOption label={TranslationProvider.query('settings-option-show-ytm-button')} settingsKey="viewYTMSwitch" />
 
         <LocaleSelector />
       </SettingsTabWrapper>
