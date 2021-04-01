@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { globalShortcut } from 'electron';
+import os from 'os';
 
 // ↓ Without the lambda it crashes - Electron bug ?
 let keyRegisterFn = (...args) => globalShortcut.register(...args);
@@ -11,21 +12,23 @@ if (process.platform === 'win32') {
   };
 }
 
-keyRegisterFn('MediaPreviousTrack', () => {
-  Emitter.sendToGooglePlayMusic('playback:previousTrack');
-});
+if (!(process.platform === 'win32' && os.release().startsWith('10.') && Settings.get('enableWin10MediaServiceTrackInfo'))) {
+  keyRegisterFn('MediaPreviousTrack', () => {
+    Emitter.sendToGooglePlayMusic('playback:previousTrack');
+  });
 
-keyRegisterFn('MediaPlayPause', () => {
-  Emitter.sendToGooglePlayMusic('playback:playPause');
-});
+  keyRegisterFn('MediaPlayPause', () => {
+    Emitter.sendToGooglePlayMusic('playback:playPause');
+  });
 
-keyRegisterFn('MediaNextTrack', () => {
-  Emitter.sendToGooglePlayMusic('playback:nextTrack');
-});
+  keyRegisterFn('MediaNextTrack', () => {
+    Emitter.sendToGooglePlayMusic('playback:nextTrack');
+  });
 
-keyRegisterFn('MediaStop', () => {
-  Emitter.sendToGooglePlayMusic('playback:stop');
-});
+  keyRegisterFn('MediaStop', () => {
+    Emitter.sendToGooglePlayMusic('playback:stop');
+  });
+}
 
 const customHotkeysTemplate = {
   playPause: null,
