@@ -45,11 +45,15 @@ Emitter.on('playback:stop', () => {
 
 Emitter.on('playback:thumbsUp', () => {
   if (!remote.getGlobal('PlaybackAPI').data.song.title) return;
-  new Notification('You just liked', { // eslint-disable-line
-    body: remote.getGlobal('PlaybackAPI').data.song.title,
-    icon: remote.getGlobal('PlaybackAPI').data.song.albumArt,
-  });
-  window.GPM.rating.setRating(5);
+  if (window.GPM.rating.getRating() !== '5') {
+    new Notification('You just liked', { // eslint-disable-line
+      body: remote.getGlobal('PlaybackAPI').data.song.title,
+      icon: remote.getGlobal('PlaybackAPI').data.song.albumArt,
+    });
+    window.GPM.rating.setRating(5);
+  } else {
+    window.GPM.rating.resetRating();
+  }
 });
 
 Emitter.on('playback:toggleThumbsUp', () => {
@@ -59,11 +63,15 @@ Emitter.on('playback:toggleThumbsUp', () => {
 
 Emitter.on('playback:thumbsDown', () => {
   if (!remote.getGlobal('PlaybackAPI').data.song.title) return;
-  new Notification('You just disliked', { // eslint-disable-line
-    body: remote.getGlobal('PlaybackAPI').data.song.title,
-    icon: remote.getGlobal('PlaybackAPI').data.song.albumArt,
-  });
-  window.GPM.rating.setRating(1);
+  if (window.GPM.rating.getRating() !== '0') {
+    new Notification('You just disliked', { // eslint-disable-line
+      body: remote.getGlobal('PlaybackAPI').data.song.title,
+      icon: remote.getGlobal('PlaybackAPI').data.song.albumArt,
+    });
+    window.GPM.rating.setRating(1);
+  } else {
+    window.GPM.rating.resetRating();
+  }
 });
 
 Emitter.on('playback:toggleThumbsDown', () => {

@@ -135,11 +135,15 @@ const setContextMenu = (track) => {
     { type: 'separator' },
     {
       label: TranslationProvider.query('playback-label-thumbs-up'),
+      type: 'checkbox',
       click: () => Emitter.sendToGooglePlayMusic('playback:thumbsUp'),
+      checked: (PlaybackAPI.getRating().liked),
     },
     {
       label: TranslationProvider.query('playback-label-thumbs-down'),
+      type: 'checkbox',
       click: () => Emitter.sendToGooglePlayMusic('playback:thumbsDown'),
+      checked: (PlaybackAPI.getRating().disliked),
     },
     { type: 'separator' },
     {
@@ -274,4 +278,8 @@ Emitter.on('audiooutput:set', () => Emitter.sendToGooglePlayMusic('audiooutput:f
 
 PlaybackAPI.on('change:track', (track) => {
   setContextMenu(track);
+});
+
+PlaybackAPI.on('change:rating', () => {
+  setContextMenu(PlaybackAPI.currentSong());
 });
