@@ -8,6 +8,9 @@ window.wait(() => {
   GPM.on('change:track', () => {
     if (pauseAfter === PAUSE_NEXT) {
       GPM.playback.playPause();
+      // because change:track is sometimes triggered twice in a row, it's good to set pauseAfter here
+      // so a track doesn't get playPaused() then immediately playPaused() again.
+      pauseAfter = DONT_PAUSE;
       Emitter.fireAtGoogle('pauseAfter:hide', null);
     }
     if (pauseAfter === PAUSE_AFTER) {
@@ -26,7 +29,7 @@ Emitter.on('pauseAfter:show', () => {
       return false;
     },
     (toast) => {
-      pauseAfter = PAUSE_AFTER;
+      pauseAfter = PAUSE_NEXT;
       Emitter.on('pauseAfter:hide', () => {
         pauseAfter = DONT_PAUSE;
         toast.hide();
