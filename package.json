@@ -71,7 +71,7 @@
     "jquery": "^3.5.0",
     "lastfm": "^0.9.2",
     "listenbrainz": "^1.0.4",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.21",
     "material-ui": "^0.15.4",
     "mdns": "^2.3.3",
     "mkdirp": "^0.5.1",
