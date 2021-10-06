@@ -1,44 +1,5 @@
-version: 2
+version: 2.1
 jobs:
-  darwin:
-    macos:
-      xcode: "9.0"
-    steps:
-      - checkout
-      - run:
-          name: Replace NPM Version
-          command: npm install -g npm@3
-      - run:
-          name: Install Dependencies
-          command: yarn
-      - run:
-          name: Run Linting
-          command: yarn test
-      #- run:
-      #    name: Run Tests
-      #    command: yarn test-electron-coverage
-      #- run:
-      #    name: Publish Coverage
-      #    command: yarn _coverage_publish
-      - run:
-          name: Import Keys
-          command: ./sig/import.sh
-      - run:
-          name: Make Artifacts
-          command: yarn make:darwin
-      - run:
-          name: Move Artifacts
-          command: |
-            mkdir -p dist/installers/darwin
-            mv "dist/Google Play Music Desktop Player-darwin-x64/Google Play Music Desktop Player.zip" "dist/installers/darwin/Google Play Music Desktop Player.zip"
-      - save_cache:
-          key: darwin-artifact-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - "dist/installers"
-      - store_artifacts:
-          path: dist/installers
-      - store_test_results:
-          path: test_reports
   linux_test:
     docker:
       - image: gpmdp/build-64
@@ -114,22 +75,6 @@ jobs:
           key: linux-artifact-deb-32-{{ .Branch }}-{{ .Revision }}
           paths:
             - "dist/installers"
-  linux_rpm_32:
-    docker:
-      - image: gpmdp/build-32
-    steps:
-      - checkout
-      - restore_cache:
-          key: linux-modules-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: linux-packaged-32-{{ .Branch }}-{{ .Revision }}
-      - run:
-          name: Make
-          command: GPMDP_SKIP_PACKAGE=true yarn make:rpm:32
-      - save_cache:
-          key: linux-artifact-rpm-32-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - "dist/installers"
   linux_deb_64:
     docker:
       - image: gpmdp/build-64
@@ -146,22 +91,6 @@ jobs:
           key: linux-artifact-deb-64-{{ .Branch }}-{{ .Revision }}
           paths:
             - "dist/installers"
-  linux_rpm_64:
-    docker:
-      - image: gpmdp/build-64
-    steps:
-      - checkout
-      - restore_cache:
-          key: linux-modules-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: linux-packaged-64-{{ .Branch }}-{{ .Revision }}
-      - run:
-          name: Make
-          command: GPMDP_SKIP_PACKAGE=true yarn make:rpm:64
-      - save_cache:
-          key: linux-artifact-rpm-64-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - "dist/installers"
   artifact_gather:
     docker:
       - image: gpmdp/build-64
@@ -169,11 +98,7 @@ jobs:
       - restore_cache:
           key: linux-artifact-deb-32-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
-          key: linux-artifact-rpm-32-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
           key: linux-artifact-deb-64-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: linux-artifact-rpm-64-{{ .Branch }}-{{ .Revision }}
       - run:
           name: Perm Hax
           command: |
@@ -193,7 +118,6 @@ workflows:
   version: 2
   build:
     jobs:
-      - darwin
       - linux_test
       - linux_pack_32:
           requires:
@@ -204,19 +128,10 @@ workflows:
       - linux_deb_32:
           requires:
             - linux_pack_32
-      - linux_rpm_32:
-          requires:
-            - linux_pack_32
       - linux_deb_64:
-          requires:
-            - linux_pack_64
-      - linux_rpm_64:
           requires:
             - linux_pack_64
       - artifact_gather:
           requires:
             - linux_deb_32
-            - linux_rpm_32
             - linux_deb_64
-            - linux_rpm_64
-            - darwin
