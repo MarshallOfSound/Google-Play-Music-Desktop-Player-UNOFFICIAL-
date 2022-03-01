@@ -137,7 +137,7 @@
     "mocha-appveyor-reporter": "^0.2.1",
     "mocha-testdata": "^1.2.0",
     "nugget": "^2.0.1",
-    "plist": "^2.0.1",
+    "plist": "^3.0.4",
     "pn": "^1.0.0",
     "png-to-ico": "^2.0.0",
     "pre-commit": "^1.1.2",
