@@ -8,14 +8,16 @@
   "button-text-click-here-to-set-alarm": "Cliquez ici pour paramétrer l'alarme",
   "button-text-close": "Fermer",
   "button-text-dont-tell-me-again": "Ne plus me le dire",
-  "button-text-lets-do-this": "Faisons ça !!",
+  "button-text-lets-do-this": "Allons-y !!",
   "button-text-lets-go": "C'est parti !!",
   "button-text-not-now": "Pas maintenant",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "À propos",
   "label-alarm": "Alarme",
-  "label-recents": "",
-  "label-desktop-settings": "Paramètres du logiciel",
+  "label-recents": "Récents",
+  "label-desktop-settings": "Paramètres logiciel",
   "label-donate": "Donation",
   "label-help": "Aide",
   "label-issues": "Problèmes",
@@ -34,11 +36,16 @@
   "lastfm-login-error": "Il semblerait que vous ayez quitté le processus d'authentification, si c'est une erreur, veuillez rééssayer à nouveau.",
   "lastfm-login-not-authorized": "Non connecté",
   "lastfm-logout-button-text": "Se déconnecter de Last.FM",
-  "lastfm-map-thumbs-up-to-heart": "",
+  "lastfm-map-thumbs-up-to-heart": "Thumbs up entraîne un Love sur Last.FM",
+
+  "listenbrainz-label-user-token": "Clé utilisateur ListenBrainz",
+  "listenbrainz-token-here": "Entrez la clé",
 
   "lyrics-failed-message": "Désolé, nous n'avons pas pu trouver de paroles à ce morceau",
   "lyrics-loading-message": "Chargement des paroles...",
   "lyrics-no-song-message": "Aucun morceau en cours de lecture",
+  "lyrics-search-in": "Chercher dans",
+  "lyrics-lyrics": "paroles",
 
   "message-pausing-after-song": "Pause après ce morceau.",
   "message-pausing-after-song-button": "Ne pas mettre en pause après ce morceau",
@@ -66,6 +73,8 @@
   "playback-label-volume-up": "Augmenter le volume",
   "playback-label-info-track": "Notifier la piste courante",
   "playback-os-no-track-playing": "Aucune piste en cours de lecture",
+  "playback-label-im-feeling-lucky": "J'ai de la chance",
+  "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "Besoin de redémarrer",
 
@@ -91,7 +100,8 @@
   "settings-option-enable-taskbar-progress": "Afficher la progression du morceau dans la barre des tâches",
   "settings-option-enable-win10-media-service": "Activer le Service Multimedia de Windows 10",
   "settings-option-enable-win10-media-service-details": "Cela montrera la piste courante sur l'écran de verrouillage",
-  "settings-option-enable-win10-media-service-track-info": "",
+  "settings-option-discord-rich-presence": "Activer l'integration à Discord pour un statut détaillé",
+  "settings-option-enable-win10-media-service-track-info": "Afficher les informations de la musique sur l'overlay volume de Windows 10",
   "settings-option-change-locale": "Choisir un langage",
 
   "settings-option-hotkey-explanation": "Les touches multimédias continueront à fonctionner malgré ces paramètres. Ceux-ci sont en complément des paramètres par défaut.",
@@ -105,7 +115,7 @@
 
   "settings-option-save-page": "Charger automatiquement la dernière page vue au lancement",
 
-  "settings-option-start-minimized": "",
+  "settings-option-start-minimized": "Lancer l'application minimisé",
 
   "settings-option-scroll-lyrics": "Défilement automatique des paroles",
 
@@ -114,15 +124,22 @@
   "settings-option-mini-use-scroll-volume": "Utiliser la molette de la souris pour ajuster le volume",
 
   "settings-option-skip-bad-songs": "Passer automatiquement les pistes notées négativement",
+  "settings-option-try-supported-channel-layouts": "Support experimental pour les canaux audio multiples tel que le 5.1",
+
+  "settings-option-show-ytm-button": "",
 
   "settings-options-style-description": "Choisir un fichier CSS local pour injecter du style dans l'application",
   "settings-options-style-main-app": "Application principale",
   "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-ytm": "",
   "settings-options-style-refresh": "Recharger les styles",
   "settings-options-style-dialog-title": "Choisir un fichier CSS",
   "settings-options-style-dialog-button": "Charger le CSS",
   "settings-options-style-dialog-css-files": "Fichiers CSS",
   "settings-options-style-dialog-all-files": "Tous les fichiers",
+
+  "slack-token-label": "Entrez votre jeton d'authentification Slack (peut être trouvé à l'adresse: $1)",
+  "slack-token-placeholder": "Jeton Slack",
 
   "title-color-picker": "Sélecteur de couleur",
   "title-settings": "Paramètres",
@@ -130,9 +147,13 @@
   "title-settings-general": "Général",
   "title-settings-hotkeys": "Raccourcis",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Lecteur",
   "title-settings-style": "Styles Personnalisés",
+  "title-settings-slack": "Slack",
 
   "tray-label-audio-device": "Controlleur Audio",
-  "tray-label-show": "Montrer"
+  "tray-label-show": "Montrer",
+  "tray-label-gpm": "Google Play Music",
+  "tray-label-ytm": "YouTube Music (alpha, assurez-vous d'utiliser le thème sombre)"
 }

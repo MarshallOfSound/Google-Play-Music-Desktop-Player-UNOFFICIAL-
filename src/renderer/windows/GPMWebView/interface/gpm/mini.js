@@ -1,6 +1,6 @@
 import { remote } from 'electron';
 
-import { positionOnScreen } from '../../../../_util';
+import { positionOnScreen } from '../../../../../_util';
 
 const mainWindow = remote.getCurrentWindow();
 const webContents = mainWindow.webContents;

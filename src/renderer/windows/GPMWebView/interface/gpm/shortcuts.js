@@ -1,18 +1,11 @@
+// F == Search
 window.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.which === 70) {
     document.querySelector('.top.material-one-google input').focus();
   }
 }, false);
 
-if (process.platform === 'win32') {
-  window.addEventListener('keydown', (e) => {
-    if (document.activeElement.value === undefined && e.altKey && e.which === 32) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-  }, true);
-}
-
+// Command + (1,2,3,4,5...) = Side Nav
 if (process.platform === 'darwin') {
   window.addEventListener('keydown', (e) => {
     if (document.activeElement.value === undefined && e.metaKey && e.which >= 49 && e.which <= 54) {

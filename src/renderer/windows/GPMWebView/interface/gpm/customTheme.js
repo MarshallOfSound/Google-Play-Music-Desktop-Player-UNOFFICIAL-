@@ -20,6 +20,7 @@ Emitter.on('settings:change:themeType', (event, type) => {
   window.GPMTheme.updateTheme({
     type,
   });
+  document.querySelector('html').setAttribute('data-theme-type', type);
 });
 
 Emitter.on('LoadGPMCustomStyles', (event, styleString) => {
@@ -30,11 +31,13 @@ Emitter.fire('FetchGPMCustomStyles');
 
 window.wait(() => {
   document.body.appendChild(customStyle);
+  const type = Settings.get('themeType', 'FULL');
   window.GPMTheme.updateTheme({
-    type: Settings.get('themeType', 'FULL'),
+    type,
     backHighlight: '#1a1b1d',
     foreSecondary: Settings.get('themeColor'),
   });
+  document.querySelector('html').setAttribute('data-theme-type', type);
   if (Settings.get('theme')) {
     window.GPMTheme.enable();
   } else {

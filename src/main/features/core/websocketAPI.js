@@ -24,7 +24,7 @@ try {
   if (process.platform === 'win32') {
     console.error('On windows you need to install Bonjour Print Services'); // eslint-disable-line
   } else if (process.platform === 'darwin') {
-    console.error('One macOS Bonjour should "just work" so if you see this you have much bigger problems'); // eslint-disable-line
+    console.error('On macOS Bonjour should "just work" so if you see this you have much bigger problems'); // eslint-disable-line
   } else {
     console.error('On linux you need to install "avahi"'); // eslint-disable-line
   }

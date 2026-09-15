@@ -29,7 +29,14 @@ mainWindow.on('close', (event) => {
       if (PlaybackAPI.isPlaying() && !Settings.get('minToTray', true)) {
         Emitter.sendToGooglePlayMusic('playback:playPause');
       }
-      mainWindow.hide();
+      if (mainWindow.isFullScreen()) {
+        mainWindow.setFullScreen(false);
+        mainWindow.once('leave-full-screen', () => {
+          mainWindow.hide();
+        });
+      } else {
+        mainWindow.hide();
+      }
     }
     event.preventDefault();
     return;

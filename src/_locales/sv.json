@@ -11,6 +11,8 @@
   "button-text-lets-do-this": "Låt oss göra det!!",
   "button-text-lets-go": "Kom igång!!",
   "button-text-not-now": "Inte just nu",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "Om",
   "label-alarm": "Alarm",
@@ -36,9 +38,14 @@
   "lastfm-logout-button-text": "Logga ut från Last.FM",
   "lastfm-map-thumbs-up-to-heart": "",
 
+  "listenbrainz-label-user-token": "",
+  "listenbrainz-token-here": "",
+
   "lyrics-failed-message": "Beklagar, vi kunde inte hitta några låttexter till denna låten",
   "lyrics-loading-message": "Laddar låttexter...",
   "lyrics-no-song-message": "Ingen låt spelas just nu",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pausar efter denna låten.",
   "message-pausing-after-song-button": "Pausar inte efter denna låten.",
@@ -66,6 +73,8 @@
   "playback-label-volume-up": "Sänk volym",
   "playback-label-info-track": "Meddela nuvarande låt",
   "playback-os-no-track-playing": "Ingen låt spelas",
+  "playback-label-im-feeling-lucky": "",
+  "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "Kräver omstart av GPMDP",
 
@@ -91,6 +100,7 @@
   "settings-option-enable-taskbar-progress": "Visa låtens förlopp i processraden.",
   "settings-option-enable-win10-media-service": "Aktivera Windows 10-mediatjänsten",
   "settings-option-enable-win10-media-service-details": "Detta kommer att visa nuvarande låten på låsskärmen",
+  "settings-option-discord-rich-presence": "",
   "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "Välj språk",
 
@@ -114,15 +124,21 @@
   "settings-option-mini-use-scroll-volume": "Använd scrollhjulet för att justera volymen",
 
   "settings-option-skip-bad-songs": "Hoppa automatiskt över ogillade låtar",
+  "settings-option-try-supported-channel-layouts": "",
+
+  "settings-option-show-ytm-button": "",
 
   "settings-options-style-description": "Välj en lokal CSS-fil, för att anpassa programmet.",
   "settings-options-style-main-app": "Huvudfönstret",
   "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-ytm": "",
   "settings-options-style-refresh": "Ladda om filer",
   "settings-options-style-dialog-title": "Välj en CSS-fil",
   "settings-options-style-dialog-button": "Ladda CSS",
   "settings-options-style-dialog-css-files": "CSS-filer",
   "settings-options-style-dialog-all-files": "Alla filer",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Färgväljare",
   "title-settings": "Inställningar",
@@ -130,9 +146,13 @@
   "title-settings-general": "Allmänt",
   "title-settings-hotkeys": "Genvägar",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Miniuppspelare",
   "title-settings-style": "Anpassa utseende",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Ljudenheter",
-  "tray-label-show": "Visa"
+  "tray-label-show": "Visa",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

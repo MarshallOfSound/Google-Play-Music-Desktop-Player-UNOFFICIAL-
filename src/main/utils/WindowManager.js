@@ -1,3 +1,4 @@
+import { shell } from 'electron';
 import _ from 'lodash';
 
 class WindowManager {
@@ -27,6 +28,10 @@ class WindowManager {
     });
     window.on('leave-full-screen', () => {
       window.webContents.send('window:changefullscreen', false);
+    });
+    window.webContents.on('new-window', (event, url) => {
+      event.preventDefault();
+      shell.openExternal(url);
     });
     if (name) {
       this.nameReferences[name] = this.nameReferences[name] || [];

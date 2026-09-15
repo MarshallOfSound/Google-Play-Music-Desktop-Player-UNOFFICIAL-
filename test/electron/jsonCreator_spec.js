@@ -25,6 +25,8 @@ describe('JSONCreator', () => {
   });
 
   describe('when an old JSON file exists', () => {
+    let jsonPath;
+
     // Old path var
     const oldPath = (process.env.APPDATA || // eslint-disable-line
       (process.platform === 'darwin' ? process.env.HOME + '/Library/Preferences' : os.homedir())) + // eslint-disable-line
@@ -35,18 +37,24 @@ describe('JSONCreator', () => {
       fs.writeFileSync(`${oldPath}/test.json`, JSON.stringify({ test: 123 }), 'utf8');
     });
 
+    afterEach(() => {
+      if (jsonPath && fs.existsSync(jsonPath)) {
+        fs.unlinkSync(jsonPath);
+      }
+    });
+
     it('should preserve the old file', () => {
-      const jsonPath = jsonCreator('test');
+      jsonPath = jsonCreator('test');
       jsonPath.should.be.a.file();
     });
 
     it('should preserve the contents of the old file', () => {
-      const jsonPath = jsonCreator('test');
+      jsonPath = jsonCreator('test');
       jsonPath.should.have.content('{"test":123}');
     });
 
     it('should delete the old JSON directory', () => {
-      jsonCreator('test');
+      jsonPath = jsonCreator('test');
 
       fs.existsSync(oldPath).should.be.equal(false);
     });

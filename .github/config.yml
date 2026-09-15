@@ -1,0 +1,30 @@
+# Configuration for welcome - https://github.com/behaviorbot/welcome
+
+# Configuration for new-issue-welcome - https://github.com/behaviorbot/new-issue-welcome
+
+# Comment to be posted to on first time issues
+newIssueWelcomeComment: |
+  👋 Thanks for opening your first issue here! If you're reporting a 🐞 bug, please make sure you include steps to reproduce it. We get a lot of duplicate issues on this repo, so please double check now that your issue has not already been solved or doesn't have an open issue already.
+  
+  To help make it easier for us to investigate your issue, please follow the [contributing guidelines](https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/blob/master/CONTRIBUTING.md) and ensure the issue template was filled out.
+
+# Configuration for new-pr-welcome - https://github.com/behaviorbot/new-pr-welcome
+
+# Comment to be posted to on PRs from first time contributors in your repository
+newPRWelcomeComment: |
+  💖 Thanks for opening this pull request! 💖
+  
+  Here is a list of things that will help get it across the finish line:
+  - Run `npm run lint` locally to catch formatting errors earlier.
+  - Include tests when adding/changing behavior.
+  - Include screenshots and animated GIFs whenever possible.
+  - If you added new translation strings ensure that you have added empty strings for all languages
+  - If you added new functionality or modified existing functionality please ensure it is tested
+
+# Configuration for first-pr-merge - https://github.com/behaviorbot/first-pr-merge
+
+# Comment to be posted to on pull requests merged by a first time user
+firstPRMergeComment: >
+  Congrats on merging your first pull request! Have a :star:
+
+# It is recommend to include as many gifs and emojis as possible!

@@ -35,8 +35,8 @@ const paths = {
 
 const packageJSON = require('./package.json');
 
-let version = packageJSON.dependencies.electron;
-if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1') {
+let version = packageJSON.devDependencies.electron;
+if (version.substr(0, 1) !== '0' && version.substr(0, 1) !== '1' && version.substr(0, 1) !== '2' && version.substr(0, 1) !== '3') {
   version = version.substr(1);
 }
 
@@ -155,7 +155,8 @@ const appdmgConf = {
   },
 };
 
-const cleanGlob = (glob) => {
+const cleanGlob = (glob, allowSkip) => {
+  if (allowSkip && process.env.GPMDP_SKIP_PACKAGE) return;
   return () => {
     return gulp.src(glob, { read: false })
       .pipe(clean({ force: true }));
@@ -166,7 +167,7 @@ const windowsSignFile = (filePath, signDigest) =>
   new Promise((resolve) => {
     console.log(`Signing file: "${filePath}"\nWith digest: ${signDigest}`);
     exec(
-      `vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /fd ${signDigest} /tr "http://timestamp.geotrust.com/tsa" /v /as "${filePath}"`,
+      `vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /td ${signDigest} /fd ${signDigest} /tr "http://timestamp.digicert.com" /v /as "${filePath}"`,
       {},
       () => {
         setTimeout(() => {
@@ -176,11 +177,26 @@ const windowsSignFile = (filePath, signDigest) =>
     );
   });
 
+function handleError(err) {
+  // Print the plugin that the error came from so that you don't
+  // have to go searching through the error message to find it.
+  if (err.plugin) {
+    console.error(`Error in '${err.plugin}':`); // eslint-disable-line
+  }
+
+  console.error(err); // eslint-disable-line
+
+  // We *must* emit 'end', otherwise, when watching, the task
+  // will never repeat. Note that this function is not an
+  // arrow function so that the correct `this` is used here.
+  this.emit('end');
+}
+
 gulp.task('clean', cleanGlob(['./build', './dist']));
 gulp.task('clean-dist-win', cleanGlob(`./dist/${packageJSON.productName}-win32-ia32`));
 gulp.task('clean-dist-darwin', cleanGlob(`./dist/${packageJSON.productName}-darwin-ia32`));
-gulp.task('clean-dist-linux-32', cleanGlob(`./dist/${packageJSON.productName}-linux-ia32`));
-gulp.task('clean-dist-linux-64', cleanGlob(`./dist/${packageJSON.productName}-linux-x64`));
+gulp.task('clean-dist-linux-32', cleanGlob(`./dist/${packageJSON.productName}-linux-ia32`, true));
+gulp.task('clean-dist-linux-64', cleanGlob(`./dist/${packageJSON.productName}-linux-x64`, true));
 gulp.task('clean-html', cleanGlob('./build/public_html'));
 gulp.task('clean-internal', cleanGlob(['./build/*.js', './build/**/*.js', '!./build/assets/**/*']));
 gulp.task('clean-fonts', cleanGlob('./build/assets/fonts'));
@@ -196,7 +212,7 @@ gulp.task('html', ['clean-html'], () => {
 gulp.task('transpile', ['clean-internal'], () => {
   return gulp.src(paths.internalScripts)
     .pipe(babel())
-    .on('error', (err) => { console.error(err); }) // eslint-disable-line
+    .on('error', handleError)
     .pipe(replace(/process\.env\.([a-zA-Z_]+)?( |,|;|\))/gi, (envCall, envKey, closer) => {
       return `'${process.env[envKey]}'${closer}`;
     }))
@@ -216,7 +232,7 @@ gulp.task('fonts', ['clean-fonts'], () => {
 gulp.task('less', ['clean-less'], () => {
   return gulp.src(paths.less)
     .pipe(less())
-    .on('error', (err) => { console.error(err); }) // eslint-disable-line
+    .on('error', handleError)
     .pipe(cssmin())
     .pipe(concat('core.css'))
     .pipe(gulp.dest('./build/assets/css'));
@@ -258,15 +274,14 @@ gulp.task('watch', ['build'], () => {
 });
 
 gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' }), (err) => {
-    if (err) return done(err);
+  packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' })).then(() => {
     setTimeout(() => {
       const packageExePath = `dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe`;
       windowsSignFile(packageExePath, 'sha1')
       .then(() => windowsSignFile(packageExePath, 'sha256'))
       .then(() => done());
     }, 1000);
-  });
+  }).catch((err) => done(err));
 });
 
 gulp.task('make:win', ['package:win'], (done) => {
@@ -306,7 +321,9 @@ gulp.task('make:win:uwp', ['package:win'], (done) => {
 });
 
 gulp.task('package:darwin', ['clean-dist-darwin', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', osxSign: { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } }), done); // eslint-disable-line
+  packager(_.extend({}, defaultPackageConf, { platform: 'darwin', osxSign: { identity: 'Developer ID Application: Samuel Attard (S7WPQ45ZU2)' } })) // eslint-disable-line
+    .then(() => done())
+    .catch((err) => done(err));
 });
 
 gulp.task('make:darwin', ['package:darwin'], (done) => {
@@ -340,11 +357,17 @@ gulp.task('dmg:darwin', ['package:darwin'], (done) => {
 });
 
 gulp.task('package:linux:32', ['clean-dist-linux-32', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }), done);
+  if (process.env.GPMDP_SKIP_PACKAGE) return done();
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'ia32' }))
+    .then(() => done())
+    .catch((err) => done(err));
 });
 
 gulp.task('package:linux:64', ['clean-dist-linux-64', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }), done);
+  if (process.env.GPMDP_SKIP_PACKAGE) return done();
+  packager(_.extend({}, defaultPackageConf, { platform: 'linux', arch: 'x64' }))
+    .then(() => done())
+    .catch((err) => done(err));
 });
 
 gulp.task('package:linux', (done) => {

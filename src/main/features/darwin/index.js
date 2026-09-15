@@ -1,5 +1,6 @@
 import { app } from 'electron';
 import './darkMode';
+import './touchBar';
 
 app.on('activate', () => {
   const mainWindow = WindowManager.getAll('main')[0];

@@ -4,9 +4,11 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import GeneralTab from '../components/settings/tabs/GeneralTab';
 import HotkeyTab from '../components/settings/tabs/HotkeyTab';
 import LastFMTab from '../components/settings/tabs/LastFMTab';
+import ListenBrainzTab from '../components/settings/tabs/ListenBrainzTab';
 import MiniTab from '../components/settings/tabs/MiniTab';
 import PlaybackTab from '../components/settings/tabs/PlaybackTab';
 import StyleTab from '../components/settings/tabs/StyleTab';
+import SlackTab from '../components/settings/tabs/SlackTab';
 import WindowContainer from '../components/generic/WindowContainer';
 
 const styles = {
@@ -36,6 +38,9 @@ export default class SettingsPage extends Component {
           <Tab label={TranslationProvider.query('title-settings-lastfm')}>
             <LastFMTab />
           </Tab>
+          <Tab label={TranslationProvider.query('title-settings-listenbrainz')}>
+            <ListenBrainzTab />
+          </Tab>
           <Tab label={TranslationProvider.query('title-settings-hotkeys')}>
             <HotkeyTab />
           </Tab>
@@ -44,6 +49,9 @@ export default class SettingsPage extends Component {
           </Tab>
           <Tab label={TranslationProvider.query('title-settings-style')}>
             <StyleTab />
+          </Tab>
+          <Tab label={TranslationProvider.query('title-settings-slack')}>
+            <SlackTab />
           </Tab>
         </Tabs>
       </WindowContainer>

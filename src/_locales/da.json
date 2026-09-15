@@ -35,10 +35,17 @@
   "lastfm-login-not-authorized": "Dit login blev ikke godkendt",
   "lastfm-logout-button-text": "Log ud af Last.FM",
   "lastfm-map-thumbs-up-to-heart": "",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
+
+  "listenbrainz-label-user-token": "",
+  "listenbrainz-token-here": "",
 
   "lyrics-failed-message": "Beklager, vi kunne ikke finde nogle sangtekster til denne sang",
   "lyrics-loading-message": "Indlæser sangtekster...",
   "lyrics-no-song-message": "Ingen sang bliver afspillet i øjeblikket",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pauser efter denne sang.",
   "message-pausing-after-song-button": "Pause ikke efter denne sang.",
@@ -66,6 +73,8 @@
   "playback-label-volume-up": "Skru ned for lydstyrken",
   "playback-label-info-track": "",
   "playback-os-no-track-playing": "",
+  "playback-label-im-feeling-lucky": "",
+  "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "Kræver genstart af GPMDP",
 
@@ -91,6 +100,7 @@
   "settings-option-enable-taskbar-progress": "Vis sangens forløb i proceslinjen.",
   "settings-option-enable-win10-media-service": "",
   "settings-option-enable-win10-media-service-details": "",
+  "settings-option-discord-rich-presence": "",
   "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "Vælg sprog",
 
@@ -114,15 +124,21 @@
   "settings-option-mini-use-scroll-volume": "Brug rullehjulet til at justere lydstyrken",
 
   "settings-option-skip-bad-songs": "",
+  "settings-option-try-supported-channel-layouts": "",
+
+  "settings-option-show-ytm-button": "",
 
   "settings-options-style-description": "Vælg en lokal CSS fil, til at tilpasse programmet.",
   "settings-options-style-main-app": "Hovedvinduet",
   "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-ytm": "",
   "settings-options-style-refresh": "Genindlæs filer",
   "settings-options-style-dialog-title": "Vælg en CSS fil",
   "settings-options-style-dialog-button": "Indlæs CSS",
   "settings-options-style-dialog-css-files": "CSS filer",
   "settings-options-style-dialog-all-files": "Alle filer",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Farve vælger",
   "title-settings": "Indstillinger",
@@ -130,9 +146,13 @@
   "title-settings-general": "Generalt",
   "title-settings-hotkeys": "Genveje",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Mini Afspiller",
   "title-settings-style": "Tilpas udseende",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "Lyd enheder",
-  "tray-label-show": "Vis"
+  "tray-label-show": "Vis",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

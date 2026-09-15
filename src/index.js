@@ -30,7 +30,8 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
   let mainWindow = null;
 
   // DEV: Make the app single instance
-  const shouldQuit = app.makeSingleInstance(() => {
+  const gotLock = app.requestSingleInstanceLock();
+  app.on('second-instance', () => {
     if (mainWindow) {
       if (mainWindow.isMinimized()) mainWindow.restore();
       mainWindow.focus();
@@ -40,7 +41,7 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
     }
   });
 
-  if (shouldQuit) {
+  if (!gotLock) {
     app.quit();
     return;
   }
@@ -51,7 +52,7 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
     global.Settings = new SettingsClass();
   }
 
-  global.DEV_MODE = process.env['TEST_SPEC'] || process.argv.some(arg => arg === '--development') || process.argv.some(arg => arg === '--dev'); // eslint-disable-line
+  global.DEV_MODE = process.env['TEST_SPEC'] || process.argv.some(arg => arg === '--development') || process.argv.some(arg => arg === '--dev') || Settings.get('_alwaysDevMode'); // eslint-disable-line
 
   updateShortcuts();
 
@@ -84,10 +85,7 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
   // This is for user reporting
   Settings.set('uuid', Settings.get('uuid', uuid.v4()));
   const user = ua('UA-44220619-5', Settings.get('uuid'));
-  setInterval((function sendPageView() {
-    user.pageview('/').send();
-    return sendPageView;
-  }()), 60000 * 5);
+  user.pageview(`/${app.getVersion()}`).send();
 
   // Replace the logger's levels with those from settings.
   Logger.transports.console.level = Settings.get('consoleLogLevel', defaultConsoleLogLevel);
@@ -105,7 +103,34 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   app.on('ready', () => {
+    // Attempt to install React Developer Tools
+    if (global.DEV_MODE) {
+      try {
+        const devtoolsInstaller = require('electron-devtools-installer');
+        devtoolsInstaller.default(devtoolsInstaller.REACT_DEVELOPER_TOOLS).catch(() => null);
+      } catch (err) {
+        // Whoe cares
+      }
+    }
+
     mainWindow = new BrowserWindow(generateBrowserConfig());
+    const signInUserAgent = Settings.get('overrideSignInUserAgent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:73.0) Gecko/20100101 Firefox/73.0');
+
+    // Spoof the user agent, this allows for future work arounds
+    if (Settings.get('overrideUserAgent')) {
+      mainWindow.webContents.session.setUserAgent('overrideUserAgent');
+    }
+
+    // Intercept all requests to accounts.google.com and hijack the UA
+    mainWindow.webContents.session.webRequest.onBeforeSendHeaders({
+      urls: ['https://accounts.google.com/*'],
+    }, (details, callback) => {
+      const newRequestHeaders = Object.assign({}, (details.requestHeaders || {}), {
+        'User-Agent': signInUserAgent,
+      });
+      callback({ requestHeaders: newRequestHeaders });
+    });
+
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
     const position = Settings.get('position');

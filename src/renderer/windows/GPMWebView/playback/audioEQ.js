@@ -3,8 +3,10 @@ import _ from 'lodash';
 import { setAudioDevice } from './audioSelection';
 
 window.wait(() => {
+  const service = Settings.get('service');
+  const audioSelector = service === 'youtube-music' ? 'video' : 'audio:not(.offscreen)';
   const waitForAudio = setInterval(() => {
-    if (document.querySelectorAll('audio.offscreen').length > 0 && document.querySelectorAll('audio:not(.offscreen)').length > 0) {
+    if (document.querySelectorAll(audioSelector).length > 0) {
       clearInterval(waitForAudio);
 
       // DEV: We do this here so that we can set the output device before hooking the context
@@ -15,7 +17,7 @@ window.wait(() => {
             _.forEach(devices, (device) => {
               if (device.label === Settings.get('audiooutput')) {
                 set = true;
-                Array.prototype.forEach.call(document.querySelectorAll('audio:not(.offscreen)'), (audioElem) => {
+                Array.prototype.forEach.call(document.querySelectorAll(audioSelector), (audioElem) => {
                   let once = true;
                   audioElem.addEventListener('playing', () => {
                     if (!once) return;

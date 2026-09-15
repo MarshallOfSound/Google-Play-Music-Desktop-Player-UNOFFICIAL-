@@ -1,6 +1,7 @@
 import { remote } from 'electron';
 import _ from 'lodash';
 
+import { style, cssRule } from '../generic/_helpers';
 
 // --- Helpers ---
 
@@ -14,26 +15,6 @@ const hide = (elementSelector, kill = false) => {
       element.remove();
     }
   });
-};
-
-/** Set CSS style by a selector */
-export const style = (elementSelector, styleObject) => {
-  const nodeList = document.querySelectorAll(elementSelector);
-  _.forEach(nodeList, (node) => {
-    const element = node;
-    _.forIn(styleObject, (value, key) => {
-      element.style[key] = value;
-    });
-  });
-};
-
-/** Inject a CSS rule to the page (in a <style> tag) */
-export const cssRule = (styles) => {
-  const tag = document.createElement('style');
-  tag.type = 'text/css';
-  tag.appendChild(document.createTextNode(styles));
-  document.head.appendChild(tag);
-  return tag;
 };
 
 /** Removes the referenced <style> tag */
@@ -73,12 +54,16 @@ function hideNotWorkingStuff() {
   hide('.player-top-right-items > paper-icon-button');
 
   // Settings options that won't work
-  hide('[data-action="upload-music"]');
-  hide('[data-action="help-and-feedback"]');
-  hide('[data-action="send-gift"]');
+  hide('#download');
+  hide('#manage-downloads');
+  hide('.subscription-gifting-card.settings-card');
 
   // Hide the upload music button in settings
-  cssRule('.music-sources-card.settings-card {display: none !important}');
+  hide('.music-sources-card.settings-card');
+
+  // Hide buttons in sidebar
+  hide('[data-action="upload-music"]');
+  hide('[data-action="help-and-feedback"]');
 
   hide('.upload-dialog-bg', true);
   hide('.upload-dialog', true);
@@ -99,6 +84,21 @@ function installSidebarButton(translationKey, type, icon, index, href, fn) {
   } else {
     document.querySelectorAll('.nav-section.material')[0].insertBefore(elem, document.querySelectorAll('.nav-section.material > a')[index]); // eslint-disable-line
   }
+}
+
+function installYTMButton() {
+  const elem = document.createElement('paper-button');
+  elem.setAttribute('id', 'ytm-button');
+  elem.setAttribute('class', 'paper-button-1');
+  elem.setAttribute('style', 'background: #F43333; color: #FFF');
+  elem.innerHTML = '<span is="translation-key">button-text-ytm-switch</span>';
+  elem.addEventListener('click', () => {
+    const mainWindow = remote.getCurrentWindow();
+    Settings.set('service', 'youtube-music');
+    mainWindow.hide();
+    mainWindow.reload();
+  });
+  document.querySelector('#material-one-right').prepend(elem);
 }
 
 /** Create the Desktop Settings button in the left sidebar */
@@ -132,15 +132,10 @@ function installAlarmButton() {
   });
 }
 
-function installRecentsButton() {
-  installSidebarButton('label-recents', 'recents', 'history', 0, '#/recents');
-}
-
 function installMainMenu() {
   installDesktopSettingsButton();
   installQuitButton();
   installAlarmButton();
-  installRecentsButton();
 }
 
 /* eslint-disable max-len, no-multi-str */
@@ -181,6 +176,24 @@ function installNowPlayingSeperator() {
   nowPlayingMenu.appendChild(seperator);
 }
 
+function showNowPlayingMenu() {
+  const lyricsButton = document.querySelector('#\\3Agpmdplyrics');
+  const pauseButton = document.querySelector('#\\3Agpmdppause');
+  lyricsButton.previousSibling.style.display = 'block';
+  lyricsButton.style.display = 'block';
+  pauseButton.previousSibling.style.display = 'block';
+  pauseButton.style.display = 'block';
+}
+
+function hideNowPlayingMenu() {
+  const lyricsButton = document.querySelector('#\\3Agpmdplyrics');
+  const pauseButton = document.querySelector('#\\3Agpmdppause');
+  lyricsButton.previousSibling.style.display = 'none';
+  lyricsButton.style.display = 'none';
+  pauseButton.previousSibling.style.display = 'none';
+  pauseButton.style.display = 'none';
+}
+
 function installNowPlayingMenu() {
   installNowPlayingSeperator();
   installNowPlayingButton('label-pause-after-song', ':gpmdppause', () => {
@@ -189,6 +202,22 @@ function installNowPlayingMenu() {
   installNowPlayingSeperator();
   installNowPlayingButton('label-show-lyrics', ':gpmdplyrics', () => {
     Emitter.fireAtMain('lyrics:show');
+  });
+
+  const MenuMutationObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'style' && mutation.target.style.cssText.indexOf('display: none') !== -1) {
+        showNowPlayingMenu();
+      }
+      if (mutation.attributeName !== 'class') return;
+      if (!mutation.target.classList.contains('now-playing-menu')) {
+        hideNowPlayingMenu();
+      }
+    });
+  });
+  MenuMutationObserver.observe(document.querySelector('.goog-menu.song-menu'), {
+    attributes: true,
+    attributeOldValue: true,
   });
 }
 
@@ -227,7 +256,7 @@ const setKeepSidebarOpen = (keepSidebarOpen) => {
   if (keepSidebarOpen) {
     sidebar.removeAttribute('force-narrow');
     sidebar.removeAttribute('narrow');
-    openSidebarStyles = cssRule('#material-app-bar .music-logo-link { display: none !important; }');
+    openSidebarStyles = cssRule('#material-app-bar .music-logo-link, #quickNavContainer { display: none !important; }');
   } else {
     sidebar.setAttribute('force-narrow', '');
     sidebar.setAttribute('narrow', '');
@@ -258,6 +287,14 @@ const setStaticAlbumArt = (staticAlbumArt) => {
   }` : '');
 };
 
+const setViewYTMSwitch = (viewYTMSwitch) => {
+  const ytmButton = document.getElementById('ytm-button');
+  if (viewYTMSwitch) {
+    ytmButton.style.display = 'block';
+  } else {
+    ytmButton.style.display = 'none';
+  }
+};
 
 // Modify the GUI after everything is sufficiently loaded
 window.wait(() => {
@@ -266,6 +303,9 @@ window.wait(() => {
   });
   Emitter.on('settings:change:staticAlbumArt', (event, staticAlbumArt) => {
     setStaticAlbumArt(staticAlbumArt);
+  });
+  Emitter.on('settings:change:viewYTMSwitch', (event, viewYTMSwitch) => {
+    setViewYTMSwitch(viewYTMSwitch);
   });
 
   hideNotWorkingStuff();
@@ -276,4 +316,6 @@ window.wait(() => {
   fixChromecastButton();
   setKeepSidebarOpen(Settings.get('keepSidebarOpen'));
   setStaticAlbumArt(Settings.get('staticAlbumArt'));
+  installYTMButton();
+  setViewYTMSwitch(Settings.get('viewYTMSwitch'));
 });

@@ -81,6 +81,35 @@ Emitter.on('playback:isStopped', () => {
 
 const setContextMenu = (track) => {
   const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Service',
+      enabled: false,
+    },
+    {
+      label: TranslationProvider.query('tray-label-gpm'),
+      click: () => {
+        // DEV: default to the other service so it will switch if not set.
+        const currentService = Settings.get('service', 'youtube-music');
+        if (currentService !== 'google-play-music') {
+          Settings.set('service', 'google-play-music');
+          mainWindow.hide();
+          mainWindow.reload();
+        }
+      },
+    },
+    {
+      label: TranslationProvider.query('tray-label-ytm'),
+      click: () => {
+        // DEV: default to the other service so it will switch if not set.
+        const currentService = Settings.get('service', 'google-play-music');
+        if (currentService !== 'youtube-music') {
+          Settings.set('service', 'youtube-music');
+          mainWindow.hide();
+          mainWindow.reload();
+        }
+      },
+    },
+    { type: 'separator' },
     { label: TranslationProvider.query('tray-label-show'),
       click: () => {
         mainWindow.setSkipTaskbar(false);
@@ -125,6 +154,8 @@ const setContextMenu = (track) => {
           label: TranslationProvider.query('label-about'),
           click: () => {
             Emitter.sendToWindowsOfName('main', 'about');
+            mainWindow.setSkipTaskbar(false);
+            mainWindow.show();
           },
         },
         {

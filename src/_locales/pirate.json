@@ -11,6 +11,8 @@
   "button-text-lets-do-this": "Let's be doin' it!!",
   "button-text-lets-go": "Trim th' sails. Let's be goin'!!",
   "button-text-not-now": "After a wee wee bit 'o spiced rum",
+  "button-text-ytm-switch": "",
+  "button-text-gpm-switch": "",
 
   "label-about": "",
   "label-alarm": "",
@@ -36,9 +38,14 @@
   "lastfm-logout-button-text": "Scuttle ye Last.FM session",
   "lastfm-map-thumbs-up-to-heart": "",
 
+  "listenbrainz-label-user-token": "",
+  "listenbrainz-token-here": "",
+
   "lyrics-failed-message": "Sorry, we could not find any lyrics fer 'tis song",
   "lyrics-loading-message": "We be loadin' lyrics...",
   "lyrics-no-song-message": "No song be currently playin'",
+  "lyrics-search-in": "",
+  "lyrics-lyrics": "",
 
   "message-pausing-after-song": "Pausin' after 'tis song.",
   "message-pausing-after-song-button": "Don't pause after 'tis song",
@@ -66,6 +73,8 @@
   "playback-label-volume-up": "Arr, I can't hear you",
   "playback-label-info-track": "",
   "playback-os-no-track-playing": "",
+  "playback-label-im-feeling-lucky": "",
+  "playback-label-toggle-repeat": "",
 
   "settings-requires-restart": "Requires ye scuttle and relaunch",
 
@@ -91,6 +100,7 @@
   "settings-option-enable-taskbar-progress": "Show track progress in th' taskbar",
   "settings-option-enable-win10-media-service": "Tell ye' OS what track be playin'",
   "settings-option-enable-win10-media-service-details": "",
+  "settings-option-discord-rich-presence": "",
   "settings-option-enable-win10-media-service-track-info": "",
   "settings-option-change-locale": "Choose how ye speak",
 
@@ -114,15 +124,21 @@
   "settings-option-mini-use-scroll-volume": "",
 
   "settings-option-skip-bad-songs": "",
+  "settings-option-try-supported-channel-layouts": "",
+
+  "settings-option-show-ytm-button": "",
 
   "settings-options-style-description": "Choose a local CSS file to inject styles into th' ship",
   "settings-options-style-main-app": "Main App",
   "settings-options-style-gpm": "Google Play Music",
+  "settings-options-style-ytm": "YouTube Music",
   "settings-options-style-refresh": "Reload them Styles",
   "settings-options-style-dialog-title": "",
   "settings-options-style-dialog-button": "",
   "settings-options-style-dialog-css-files": "",
   "settings-options-style-dialog-all-files": "",
+  "slack-token-label": "",
+  "slack-token-placeholder": "",
 
   "title-color-picker": "Paint Picker",
   "title-settings": "",
@@ -130,9 +146,13 @@
   "title-settings-general": "All th' thin's",
   "title-settings-hotkeys": "Magic Buttons",
   "title-settings-lastfm": "LastFM",
+  "title-settings-listenbrainz": "ListenBrainz",
   "title-settings-mini": "Small Player",
   "title-settings-style": "Custom ship",
+  "title-settings-slack": "",
 
   "tray-label-audio-device": "",
-  "tray-label-show": ""
+  "tray-label-show": "",
+  "tray-label-gpm": "",
+  "tray-label-ytm": ""
 }

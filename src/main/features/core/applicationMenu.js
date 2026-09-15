@@ -234,3 +234,8 @@ if (global.DEV_MODE) {
 
 const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
+
+if (process.platform === 'darwin') {
+  // Add Playback menu options to Dock menu
+  app.dock.setMenu(Menu.buildFromTemplate(template[3].submenu));
+}

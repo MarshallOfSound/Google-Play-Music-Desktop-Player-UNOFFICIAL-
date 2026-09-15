@@ -2,7 +2,7 @@
 @import "../_variables.less";
 
 .loader {
-  position: absolute;;
+  position: absolute;
   margin: 0px auto;
   width: @loader-width;
   top: 0;
@@ -23,6 +23,10 @@
     content:'';
     display: block;
     padding-top: 100%;
+  }
+
+  &.hidden {
+    display: none;
   }
 }
 

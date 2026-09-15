@@ -1,4 +1,4 @@
-import { remote } from 'electron';
+import { remote, webFrame } from 'electron';
 import '../rendererEmitter';
 import './core';
 
@@ -15,6 +15,8 @@ require(`./${process.platform}`);
 require('./translations');
 
 process.env['NODE_ENV'] = remote.getGlobal('DEV_MODE') ? 'development' : 'production'; // eslint-disable-line
+
+webFrame.setVisualZoomLevelLimits(1, 1);
 
 document.addEventListener('DOMContentLoaded', () => {
   require('./windowThemeHandler');

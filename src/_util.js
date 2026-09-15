@@ -5,9 +5,9 @@ export const positionOnScreen = (position) => {
   if (position) {
     screen.getAllDisplays().forEach((display) => {
       if (position[0] >= display.workArea.x &&
-          position[0] <= display.workArea.x + display.workArea.width &&
+          position[0] < display.workArea.x + display.workArea.width &&
           position[1] >= display.workArea.y &&
-          position[1] <= display.workArea.y + display.workArea.height) {
+          position[1] < display.workArea.y + display.workArea.height) {
         inBounds = true;
       }
     });
